@@ -155,34 +155,37 @@
   </div>
 
   <!-- ========================================================================= -->
-  <!-- 4. HERO DASHBOARD PRINCIPAL -->
+  <!-- 4. HERO DASHBOARD PRINCIPAL (CENTRADO Y OPTIMIZADO) -->
   <!-- ========================================================================= -->
   <section id="hero" class="relative overflow-hidden bg-white border-b border-slate-200 py-12 lg:py-16">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 space-y-6">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center space-y-6">
       
-      <div class="flex flex-wrap items-center gap-2">
-        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-semibold text-emerald-800">
-          <span class="w-2 h-2 rounded-full bg-sena"></span>
+      <!-- Badges de Contexto Formativo Institucional -->
+      <div class="inline-flex flex-wrap items-center justify-center gap-2">
+        <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-semibold text-emerald-800 shadow-2xs">
+          <span class="w-2 h-2 rounded-full bg-sena animate-pulse"></span>
           <span>SENA Regional Huila · CADPH Sede Garzón</span>
         </span>
-        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-100 border border-slate-200 text-xs font-semibold text-slate-700">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-xs font-semibold text-slate-700 shadow-2xs">
           <i data-lucide="terminal" class="w-3.5 h-3.5 text-slate-500"></i>
           <span>Tecnología ADSO Virtual</span>
         </span>
       </div>
 
-      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.15]">
-        Repositorio Técnico & <span class="text-sena">Descarga de Guías ADSO</span>
+      <!-- Titular Principal Centrado -->
+      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.12] max-w-4xl mx-auto">
+        Repositorio Técnico &amp; <span class="text-sena">Descarga de Guías ADSO</span>
       </h1>
 
-      <p class="text-slate-600 text-sm sm:text-base leading-relaxed max-w-3xl">
+      <!-- Descripción Curricular Centrada -->
+      <p class="text-slate-600 text-sm sm:text-base lg:text-lg leading-relaxed max-w-3xl mx-auto text-center">
         Repositorio pedagógico complementario para descargar las <strong>Guías de Aprendizaje oficiales de ADSO</strong> y consultar el 
         <strong>material explicativo paso a paso</strong> de cada evidencia de aprendizaje técnica. Diseñado para proyectar y orientar las 
         <strong>sesiones sincrónicas virtuales</strong> en las competencias específicas de desarrollo de software.
       </p>
 
-      <!-- Tarjeta de Instructor y Autoría -->
-      <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 max-w-3xl">
+      <!-- Tarjeta de Instructor y Autoría Centrada -->
+      <div class="bg-slate-50/80 hover:bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 max-w-2xl w-full text-left shadow-xs transition-colors">
         <div class="flex items-center gap-3.5">
           <div class="w-12 h-12 rounded-full bg-[#00324D] text-white flex items-center justify-center font-extrabold text-sm shrink-0 shadow-xs border-2 border-emerald-500">
             HT
@@ -196,34 +199,67 @@
             <p class="text-xs text-slate-600">Centro Agroempresarial y Desarrollo Pecuario del Huila · SENA Garzón</p>
           </div>
         </div>
-        <a href="#evidencias-section" class="text-xs font-bold text-sena hover:text-emerald-800 flex items-center gap-1.5 transition-colors whitespace-nowrap bg-emerald-50 hover:bg-emerald-100 px-3 py-2 rounded-lg border border-emerald-200">
+        <a href="#evidencias-section" class="text-xs font-bold text-sena hover:text-emerald-800 flex items-center gap-1.5 transition-colors whitespace-nowrap bg-emerald-50 hover:bg-emerald-100 px-4 py-2.5 rounded-xl border border-emerald-200 shrink-0">
           <span>Explorar Evidencias</span>
           <i data-lucide="arrow-down" class="w-3.5 h-3.5"></i>
         </a>
       </div>
 
-      <!-- Botones de Acción Principal -->
-      <div class="flex flex-wrap items-center gap-3 pt-1">
-        <a href="#descarga-guias" class="inline-flex items-center gap-2 bg-[#00324D] hover:bg-[#00263a] text-white font-bold px-5 py-3 rounded-lg text-sm shadow-md hover:shadow-lg transition-all">
+      <!-- Botones de Acción Principal Centrados -->
+      <div class="flex flex-wrap items-center justify-center gap-3 pt-1">
+        <a href="#descarga-guias" class="inline-flex items-center gap-2 bg-[#00324D] hover:bg-[#00263a] text-white font-bold px-5 py-3 rounded-xl text-sm shadow-md hover:shadow-lg transition-all">
           <i data-lucide="download" class="w-4 h-4 text-emerald-400"></i>
           <span>Centro de Descarga de Guías</span>
         </a>
 
-        <a href="#evidencias-section" class="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold px-5 py-3 rounded-lg text-sm border border-slate-300 shadow-xs transition-all">
+        <a href="#evidencias-section" class="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold px-5 py-3 rounded-xl text-sm border border-slate-300 shadow-xs transition-all">
           <i data-lucide="layout-grid" class="w-4 h-4 text-emerald-600"></i>
           <span>Explorador de Evidencias</span>
         </a>
 
-        <a href="guias/guia-06/proyeccion.html" class="inline-flex items-center gap-2 bg-[#39A900] hover:bg-[#2D8200] text-white font-bold px-5 py-3 rounded-lg text-sm shadow-md hover:shadow-lg transition-all">
+        <a href="guias/guia-06/proyeccion.html" class="inline-flex items-center gap-2 bg-[#39A900] hover:bg-[#2D8200] text-white font-bold px-5 py-3 rounded-xl text-sm shadow-md hover:shadow-lg transition-all">
           <i data-lucide="presentation" class="w-4 h-4"></i>
           <span>Iniciar Proyección Técnica</span>
         </a>
       </div>
 
-      <!-- Badges de Competencias Técnicas -->
-      <div class="flex flex-wrap items-center gap-3 text-xs text-slate-500 pt-3 border-t border-slate-100">
+      <!-- Tarjetas de Características de Valor (Aprovechamiento del Ancho) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-3 w-full max-w-4xl mx-auto text-left">
+        <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-2xs hover:border-emerald-300 transition-colors flex items-start gap-3">
+          <div class="w-10 h-10 rounded-lg bg-emerald-50 text-sena flex items-center justify-center shrink-0 border border-emerald-100">
+            <i data-lucide="file-down" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wide">Guías Oficiales PDF</h4>
+            <p class="text-[11px] text-slate-500 mt-0.5 leading-relaxed">Descarga directa de las guías curriculares oficiales emitidas por el SENA.</p>
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-2xs hover:border-blue-300 transition-colors flex items-start gap-3">
+          <div class="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 border border-blue-100">
+            <i data-lucide="code" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wide">Paso a Paso Técnico</h4>
+            <p class="text-[11px] text-slate-500 mt-0.5 leading-relaxed">Explicaciones de SQL, NoSQL MongoDB, prototipado Figma y maquetación web.</p>
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-2xs hover:border-purple-300 transition-colors flex items-start gap-3">
+          <div class="w-10 h-10 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center shrink-0 border border-purple-100">
+            <i data-lucide="monitor-play" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wide">Sesiones en Aula Virtual</h4>
+            <p class="text-[11px] text-slate-500 mt-0.5 leading-relaxed">Diapositivas interactivas en vivo y checklists para calificar en Zajuna LMS.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Badges de Competencias Técnicas Centrados -->
+      <div class="flex flex-wrap items-center justify-center gap-3 text-xs text-slate-500 pt-3 border-t border-slate-100 max-w-3xl w-full mx-auto">
         <span class="flex items-center gap-1.5 font-semibold text-slate-800">
-          <i data-lucide="database" class="w-4 h-4 text-blue-600"></i> Bases de Datos SQL & NoSQL (MongoDB)
+          <i data-lucide="database" class="w-4 h-4 text-blue-600"></i> Bases de Datos SQL &amp; NoSQL (MongoDB)
         </span>
         <span class="text-slate-300">•</span>
         <span class="flex items-center gap-1.5 font-semibold text-slate-800">
@@ -234,6 +270,7 @@
           <i data-lucide="code" class="w-4 h-4 text-emerald-600"></i> Frontend Web HTML5/CSS3/JS
         </span>
       </div>
+
     </div>
   </section>
 

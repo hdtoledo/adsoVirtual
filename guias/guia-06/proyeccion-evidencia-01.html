@@ -1,0 +1,1806 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-slate-50 text-slate-900 antialiased">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sesión Proyectada · Evidencia 1: Normalización, Proyectos Propios y MySQL Workbench | SENA ADSO</title>
+  <meta name="description" content="Presentación interactiva completa de 20 diapositivas para explicar la Evidencia 1 (GA6-220501096-AA1-EV01): Normalización de 0FN a 3FN, descarga e instalación de MySQL Workbench, modelado EER, generación de DDL y adaptación a proyectos individuales. Instructor: Ing. Hector David Toledo García.">
+  <link rel="icon" type="image/png" href="../../assets/logo_green.png">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            sena: {
+              green: '#39A900',
+              'green-hover': '#2D8200',
+              navy: '#00324D',
+              'navy-dark': '#00263A',
+              'navy-light': '#004164'
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../assets/css/presenter.css">
+  <style>
+    .slide-content.active {
+      display: flex !important;
+      flex-direction: column;
+      justify-content: center;
+    }
+    kbd {
+      font-family: 'JetBrains Mono', monospace;
+    }
+  </style>
+</head>
+<body class="min-h-full flex flex-col bg-slate-50 text-slate-900 font-sans selection:bg-[#39A900] selection:text-white">
+
+  <!-- ========================================================================= -->
+  <!-- BARRA SUPERIOR INSTITUCIONAL (CINTILLO) -->
+  <!-- ========================================================================= -->
+  <div class="bg-[#00324D] text-white text-[11px] py-1.5 px-4 border-b border-[#00263A]">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2 truncate">
+        <span class="font-extrabold tracking-wide shrink-0">SENA</span>
+        <span class="text-slate-400">|</span>
+        <span class="text-slate-200 truncate font-medium">Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)</span>
+      </div>
+      <div class="flex items-center gap-3 text-slate-300 font-mono text-[11px] shrink-0">
+        <span>Sede Garzón</span>
+        <span class="text-slate-400">•</span>
+        <span class="text-emerald-400 font-semibold">ADSO Virtual • Proyección Técnica en Aula</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- BARRA DE CONTROL DE PRESENTACIÓN -->
+  <!-- ========================================================================= -->
+  <header class="border-b border-slate-200 bg-white sticky top-0 z-40 shadow-xs">
+    <!-- Barra de Progreso Dinámica -->
+    <div class="w-full bg-slate-100 h-1">
+      <div id="presentation-progress" class="bg-[#39A900] h-1 transition-all duration-300 ease-out" style="width: 5%;"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+      <!-- Logo y Breadcrumbs -->
+      <div class="flex items-center gap-3 min-w-0">
+        <a href="../../index.html" class="flex items-center gap-2.5 group shrink-0">
+          <img src="../../assets/logo_green.png" alt="SENA" class="w-7 h-7 object-contain" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/8/83/Sena_Colombia_logo.svg'">
+          <div class="truncate">
+            <span class="font-extrabold text-slate-900 tracking-tight text-sm">FORMACIÓN <span class="text-sena">ADSO</span></span>
+            <span class="text-[11px] font-bold text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded ml-1 uppercase">CADPH</span>
+          </div>
+        </a>
+        <span class="text-slate-300 hidden sm:inline">/</span>
+        <div class="hidden sm:flex items-center gap-2 text-xs truncate">
+          <span class="font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Guía 06</span>
+          <span class="text-slate-600 font-medium truncate">Evidencia 01: Normalización, Proyectos Individuales & MySQL Workbench</span>
+        </div>
+      </div>
+
+      <!-- Controles de Proyección -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Temporizador -->
+        <div class="hidden md:flex items-center gap-1.5 bg-slate-100 px-2.5 py-1 rounded-lg border border-slate-200 font-mono text-xs text-slate-700">
+          <i data-lucide="clock" class="w-3.5 h-3.5 text-slate-500"></i>
+          <span id="timer-display" class="font-bold">00:00</span>
+          <button id="btn-timer-start" class="text-emerald-700 hover:text-emerald-800 font-bold ml-1 text-[11px] uppercase">Iniciar</button>
+          <button id="btn-timer-reset" class="text-slate-400 hover:text-slate-600 ml-1" title="Reset"><i data-lucide="rotate-ccw" class="w-3 h-3"></i></button>
+        </div>
+
+        <!-- Menú de Índice -->
+        <button id="btn-toggle-menu" class="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors" title="Índice de Diapositivas (M)">
+          <i data-lucide="list" class="w-4 h-4"></i>
+        </button>
+
+        <!-- Contador de Slide -->
+        <div class="px-2.5 py-1 bg-slate-100 rounded-lg text-xs font-mono font-bold text-slate-700 border border-slate-200 shrink-0">
+          <span id="slide-counter">1 / 20</span>
+        </div>
+
+        <!-- Botones de Navegación -->
+        <div class="flex items-center gap-1">
+          <button id="btn-prev-slide" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors disabled:opacity-40" title="Anterior (Flecha Izq)">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+          </button>
+          <button id="btn-next-slide" class="p-2 rounded-lg bg-[#39A900] hover:bg-[#2D8200] text-white transition-colors" title="Siguiente (Espacio o Flecha Der)">
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <!-- Pantalla Completa -->
+        <button id="btn-fullscreen" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors" title="Pantalla Completa (F)">
+          <i data-lucide="maximize" class="w-4 h-4"></i>
+        </button>
+
+        <!-- Ayuda -->
+        <button id="btn-toggle-help" class="p-2 rounded-lg text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors" title="Atajos de teclado (?)">
+          <i data-lucide="help-circle" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- CONTENEDOR PRINCIPAL DE DIAPOSITIVAS (20 SLIDES COMPLETAS) -->
+  <!-- ========================================================================= -->
+  <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 py-6 sm:py-8 flex flex-col justify-center slide-container">
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- SLIDE 1: PORTADA INSTITUCIONAL Y OBJETIVOS -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content active" id="slide-1" aria-hidden="false">
+      <div class="text-center max-w-4xl mx-auto space-y-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-semibold text-emerald-800">
+          <span class="w-2 h-2 rounded-full bg-[#39A900] animate-pulse"></span>
+          <span>SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+          Guía 06 · Evidencia Técnica 01 <br>
+          <span class="text-[#39A900]">Normalización de Bases de Datos & MySQL Workbench</span>
+        </h1>
+
+        <p class="text-slate-600 text-sm sm:text-base max-w-3xl mx-auto leading-relaxed">
+          Tecnólogo en Análisis y Desarrollo de Software (ADSO) • Evidencia Oficial <strong>GA6-220501096-AA1-EV01</strong> (16 Horas).
+          Aprende el proceso paso a paso desde el análisis en 0FN hasta 3FN, instalación de herramientas y su aplicación exacta al <strong>proyecto formativo individual de cada aprendiz</strong>.
+        </p>
+
+        <!-- 3 Bloques de la Sesión -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 pt-4 text-left">
+          <div class="bg-white border-2 border-emerald-500/80 rounded-xl p-4 sm:p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">BLOQUE 1</span>
+                <span class="text-[11px] text-slate-400 font-mono">Slides 01 - 10</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-sm">Teoría, Anomalías & 3 Formas Normales</h3>
+              <p class="text-xs text-slate-500 leading-relaxed">Las reglas de Edgar F. Codd: diagnóstico de una tabla 0FN, paso a 1FN, 2FN y 3FN, diccionario de datos y cardinalidades.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] text-emerald-700 font-semibold flex items-center gap-1">
+              <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Fundamentos Relacionales
+            </div>
+          </div>
+
+          <div class="bg-white border-2 border-blue-500/80 rounded-xl p-4 sm:p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-800">BLOQUE 2</span>
+                <span class="text-[11px] text-slate-400 font-mono">Slides 11 - 18</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-sm">MySQL Workbench: Descarga, Setup & Taller EER</h3>
+              <p class="text-xs text-slate-500 leading-relaxed">Descarga oficial de MySQL y Workbench, instalación paso a paso, modelado EER visual, relaciones foráneas y Forward Engineering a SQL.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] text-blue-700 font-semibold flex items-center gap-1">
+              <i data-lucide="terminal" class="w-3.5 h-3.5"></i> Herramientas & Live Coding
+            </div>
+          </div>
+
+          <div class="bg-white border-2 border-purple-500/80 rounded-xl p-4 sm:p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-100 text-purple-800">BLOQUE 3</span>
+                <span class="text-[11px] text-slate-400 font-mono">Slides 19 - 20</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-sm">Aplicación al Proyecto Propio & Rúbrica Zajuna</h3>
+              <p class="text-xs text-slate-500 leading-relaxed">Cómo transferir este ejercicio a los proyectos individuales (Salud, E-commerce, Veterinaria, Talleres) y estructura del PDF entregable.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] text-purple-700 font-semibold flex items-center gap-1">
+              <i data-lucide="award" class="w-3.5 h-3.5"></i> Calificación Oficial
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-4 flex flex-wrap items-center justify-center gap-4">
+          <button onclick="presenter.nextSlide()" class="inline-flex items-center gap-2 bg-[#39A900] hover:bg-[#2D8200] text-white font-bold px-6 py-3 rounded-lg text-sm shadow-md transition-all">
+            <span>Iniciar Explicación Paso a Paso</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+          <span class="text-xs text-slate-400 font-mono">Atajos: [Espacio] o [→] Avanzar • [M] Índice • [F] Pantalla Completa</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- SLIDE 2: REQUERIMIENTOS OFICIALES DE LA GUÍA 6 (EVIDENCIA 1) -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-2" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            ¿Qué Exige la Guía de Aprendizaje para la <span class="text-[#39A900]">Evidencia 1</span>?
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Instrumento Oficial: <strong>IE-GA6-220501096-AA1-EV01</strong> • Tipo: Evidencia de Conocimiento
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-5 pt-2">
+          <!-- Tarjeta de Especificaciones Oficiales -->
+          <div class="md:col-span-7 bg-white border border-slate-200 rounded-2xl p-5 shadow-xs space-y-3 text-xs text-slate-700">
+            <div class="flex items-center gap-2 text-sena font-bold uppercase tracking-wider text-[11px]">
+              <i data-lucide="file-text" class="w-4 h-4"></i>
+              <span>Definición Curricular Oficial</span>
+            </div>
+            <h3 class="text-base font-extrabold text-slate-900">
+              Resolución de problemas aplicando el modelo relacional, cardinalidad y normalización
+            </h3>
+            <p class="leading-relaxed text-slate-600">
+              El aprendiz debe formular una situación problema relacionada con el almacenamiento transaccional de datos, plantear una tabla inicial desnormalizada (0FN), identificar y documentar las anomalías de diseño, y realizar la descomposición analítica rigurosa aplicando la <strong>1FN, 2FN y 3FN</strong>.
+            </p>
+
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1.5 font-mono text-[11px]">
+              <div><strong>Código de Actividad:</strong> GA6-220501096-AA1</div>
+              <div><strong>Duración Asignada:</strong> 16 Horas de Formación</div>
+              <div><strong>Formato de Entrega:</strong> Documento Escrito en formato PDF</div>
+              <div><strong>Plataforma de Recepción:</strong> Zajuna LMS (Enlace oficial de la evidencia)</div>
+            </div>
+          </div>
+
+          <!-- Tarjeta de Contexto: Proyectos Individuales -->
+          <div class="md:col-span-5 bg-gradient-to-br from-[#00324D] to-[#00263A] text-white rounded-2xl p-5 shadow-xs flex flex-col justify-between space-y-4">
+            <div class="space-y-2.5">
+              <div class="flex items-center gap-2 text-emerald-400 font-bold uppercase tracking-wider text-[11px]">
+                <i data-lucide="alert-circle" class="w-4 h-4"></i>
+                <span>Enfoque por Proyectos Propios</span>
+              </div>
+              <h4 class="text-sm font-extrabold leading-snug">
+                ¡Cada Aprendiz Trabaja en su Propio Proyecto Formativo!
+              </h4>
+              <p class="text-xs text-slate-200 leading-relaxed">
+                En esta evidencia, cada aprendiz o equipo <strong>debe aplicar el proceso a un módulo transaccional de su software independiente</strong> (ej. Facturación en un comercio, Historias/Citas en una clínica, Reservas en un hotel o Pedidos en un restaurante).
+              </p>
+              <div class="p-2.5 bg-white/10 rounded-lg text-emerald-300 text-[11px]">
+                💡 <em>En esta presentación utilizaremos el caso transaccional de Facturación Comercial como ejemplo maestro universal, para que cada aprendiz pueda replicarlo exactamente en su sistema.</em>
+              </div>
+            </div>
+            <div class="text-[11px] text-slate-300 border-t border-slate-700 pt-2 flex items-center justify-between">
+              <span>Orientación: Ing. Hector Toledo</span>
+              <span class="font-bold text-emerald-400">SENA CADPH</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- SLIDE 3: ECOSISTEMA DBMS & ¿POR QUÉ MYSQL? -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-3" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Ecosistema de DBMS: <span class="text-[#39A900]">¿Por qué MySQL para esta Evidencia?</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Comprendiendo el rol de los motores RDBMS relacionales frente a las alternativas NoSQL
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 pt-2">
+          <!-- RDBMS Relacionales -->
+          <div class="bg-white border-2 border-emerald-500 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 uppercase">RDBMS RELACIONAL (REQUERIDO)</span>
+              <h3 class="font-bold text-slate-900 text-base">MySQL / MariaDB & PostgreSQL</h3>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Estructura de datos en tablas bidimensionales (filas y columnas) con integridad referencial gobernada por claves primarias (PK) y foráneas (FK).
+              </p>
+              <ul class="space-y-1.5 text-xs text-slate-700">
+                <li class="flex items-start gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sena shrink-0 mt-0.5"></i> <strong>Propiedades ACID:</strong> Atomicidad, Consistencia, Aislamiento y Durabilidad.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sena shrink-0 mt-0.5"></i> <strong>Lenguaje Estándar:</strong> SQL (DDL, DML, DCL).</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sena shrink-0 mt-0.5"></i> <strong>Aplicación:</strong> Núcleos transaccionales de software administrativo.</li>
+              </ul>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 text-[11px] text-emerald-700 font-bold flex items-center justify-between">
+              <span>Evidencia 1, 2, 5, 6 y 7</span>
+              <span>Motor Obligatorio</span>
+            </div>
+          </div>
+
+          <!-- NoSQL Documental -->
+          <div class="bg-white border-2 border-blue-500/70 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-800 uppercase">NoSQL DOCUMENTAL</span>
+              <h3 class="font-bold text-slate-900 text-base">MongoDB & CouchDB</h3>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Almacenamiento de documentos semiestructurados BSON/JSON sin un esquema tabular rígido. Ideal para datos heterogéneos y rápido escalamiento horizontal.
+              </p>
+              <ul class="space-y-1.5 text-xs text-slate-700">
+                <li class="flex items-start gap-1.5"><i data-lucide="layers" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i> No utiliza álgebra relacional estricta ni tablas normalizadas.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="layers" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i> Soporta incrustación (embedding) y referencias simples.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="layers" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i> <strong>Aplicación:</strong> Logs, catálogos cambiantes, carritos de compra.</li>
+              </ul>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 text-[11px] text-blue-700 font-bold flex items-center justify-between">
+              <span>Evidencias 3 y 4 de la Guía 6</span>
+              <span>MongoDB</span>
+            </div>
+          </div>
+
+          <!-- Otras Familias NoSQL -->
+          <div class="bg-white border-2 border-purple-500/70 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-100 text-purple-800 uppercase">CLAVE-VALOR & GRAFOS</span>
+              <h3 class="font-bold text-slate-900 text-base">Redis & Neo4j</h3>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Modelos altamente especializados para ultra baja latencia en memoria RAM o análisis de redes densamente interconectadas.
+              </p>
+              <ul class="space-y-1.5 text-xs text-slate-700">
+                <li class="flex items-start gap-1.5"><i data-lucide="zap" class="w-3.5 h-3.5 text-purple-600 shrink-0 mt-0.5"></i> <strong>Redis:</strong> Consultas en sub-milisegundos para sesiones y tokens.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="share-2" class="w-3.5 h-3.5 text-purple-600 shrink-0 mt-0.5"></i> <strong>Neo4j:</strong> Grafos de nodos y aristas (relaciones sociales).</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="cpu" class="w-3.5 h-3.5 text-purple-600 shrink-0 mt-0.5"></i> <strong>Aplicación:</strong> Motores de recomendación, caching y Big Data.</li>
+              </ul>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 text-[11px] text-purple-700 font-bold flex items-center justify-between">
+              <span>Arquitecturas Híbridas</span>
+              <span>Especialización</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- SLIDE 4: CASO REAL 0FN (SIN NORMALIZAR) -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-4" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            El Problema: La Tabla Plana en <span class="text-rose-600">0FN (Sin Normalizar)</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Punto de partida de la evidencia: cómo guardan los datos muchas hojas de cálculo en el mundo real
+          </p>
+        </div>
+
+        <div class="p-3.5 bg-rose-50 border border-rose-200 rounded-xl text-xs text-rose-950 flex items-start gap-2.5">
+          <i data-lucide="alert-triangle" class="w-5 h-5 text-rose-600 shrink-0 mt-0.5"></i>
+          <div>
+            <strong>Situación Real:</strong> En un negocio se lleva el registro de ventas en una sola planilla plana denominada <code>registro_facturas</code>. En una sola fila se intentan almacenar los datos del cliente, la factura y múltiples productos vendidos.
+          </div>
+        </div>
+
+        <!-- Tabla 0FN Ilustrativa -->
+        <div class="bg-white rounded-xl border border-slate-200 p-3 shadow-2xs overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse font-mono">
+            <thead>
+              <tr class="bg-slate-100 text-slate-700 border-b border-slate-200 text-[11px]">
+                <th class="p-2">NumFactura</th>
+                <th class="p-2">Fecha</th>
+                <th class="p-2">DocCliente</th>
+                <th class="p-2">NombreCliente</th>
+                <th class="p-2">Ciudad</th>
+                <th class="p-2">IdProducto</th>
+                <th class="p-2">Descripcion</th>
+                <th class="p-2">PrecioUnit</th>
+                <th class="p-2">Cant</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 text-slate-600 text-[11px]">
+              <tr class="bg-rose-50/50">
+                <td class="p-2 font-bold text-rose-700">F-101</td>
+                <td class="p-2">2026-09-15</td>
+                <td class="p-2">10752001</td>
+                <td class="p-2 font-semibold text-slate-800">Carlos Dussán</td>
+                <td class="p-2">Garzón</td>
+                <td class="p-2 text-rose-700 font-bold">P-01, P-02</td>
+                <td class="p-2 text-rose-700 font-bold">Teclado, Mouse Óptico</td>
+                <td class="p-2">$150.000, $60.000</td>
+                <td class="p-2 font-bold text-rose-700">1, 2 (Múltiples)</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-bold text-slate-800">F-102</td>
+                <td class="p-2">2026-09-15</td>
+                <td class="p-2">10752002</td>
+                <td class="p-2 font-semibold text-slate-800">Andrea Peña</td>
+                <td class="p-2">Neiva</td>
+                <td class="p-2">P-02</td>
+                <td class="p-2">Mouse Óptico</td>
+                <td class="p-2">$60.000</td>
+                <td class="p-2">1</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-bold text-slate-800">F-103</td>
+                <td class="p-2">2026-09-16</td>
+                <td class="p-2">10752001</td>
+                <td class="p-2 font-semibold text-slate-800">Carlos Dussán</td>
+                <td class="p-2">Garzón</td>
+                <td class="p-2">P-03</td>
+                <td class="p-2">Cable HDMI 4K</td>
+                <td class="p-2">$25.000</td>
+                <td class="p-2">3</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+          <div class="p-3 bg-white border border-slate-200 rounded-xl space-y-1">
+            <strong class="text-slate-800 flex items-center gap-1.5"><i data-lucide="x-circle" class="w-4 h-4 text-rose-500"></i> Violación de Atomicidad:</strong>
+            <p class="text-slate-600">En la fila <code>F-101</code> los campos de producto tienen listas de valores separados por coma. Ningún motor SQL puede ordenar, sumar o indexar esto eficientemente.</p>
+          </div>
+          <div class="p-3 bg-white border border-slate-200 rounded-xl space-y-1">
+            <strong class="text-slate-800 flex items-center gap-1.5"><i data-lucide="refresh-ccw" class="w-4 h-4 text-amber-500"></i> Redundancia Masiva de Datos:</strong>
+            <p class="text-slate-600">El nombre <code>Carlos Dussán</code> y la ciudad <code>Garzón</code> se repiten en cada compra, malgastando espacio y abriendo la puerta a errores de tipeo.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- SLIDE 5: LAS 3 ANOMALÍAS DE EDGAR F. CODD -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-5" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Diagnóstico Forense: <span class="text-rose-600">Las 3 Anomalías de Codd</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Requisito obligatorio en el PDF: Justificar por qué la tabla 0FN destruye la integridad del sistema
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 pt-2">
+          <!-- Anomalía 1: Inserción -->
+          <div class="bg-white border-2 border-rose-500 rounded-xl p-5 shadow-xs space-y-3 flex flex-col justify-between">
+            <div class="space-y-2.5">
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-100 text-rose-800 uppercase">ANOMALÍA 1</span>
+              <h3 class="font-bold text-slate-900 text-base flex items-center gap-2">
+                <i data-lucide="plus-circle" class="w-4 h-4 text-rose-600"></i> Inserción (Insert)
+              </h3>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                <strong>Problema:</strong> Llega un nuevo producto al almacén (ej. <code>P-04 Cámara Web</code>).
+              </p>
+              <div class="p-3 bg-rose-50 rounded-lg text-rose-950 text-xs leading-relaxed">
+                ¿Cómo lo registras si nadie lo ha comprado aún? En 0FN tendrías que inventar una factura ficticia y un cliente falso con valores nulos o basura.
+              </div>
+            </div>
+            <div class="pt-3 border-t border-slate-100 text-[11px] text-rose-700 font-bold">Imposible guardar sin venta previa</div>
+          </div>
+
+          <!-- Anomalía 2: Modificación -->
+          <div class="bg-white border-2 border-amber-500 rounded-xl p-5 shadow-xs space-y-3 flex flex-col justify-between">
+            <div class="space-y-2.5">
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800 uppercase">ANOMALÍA 2</span>
+              <h3 class="font-bold text-slate-900 text-base flex items-center gap-2">
+                <i data-lucide="edit-3" class="w-4 h-4 text-amber-600"></i> Modificación (Update)
+              </h3>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                <strong>Problema:</strong> El cliente <code>Carlos Dussán</code> se traslada de Garzón a Neiva.
+              </p>
+              <div class="p-3 bg-amber-50 rounded-lg text-amber-950 text-xs leading-relaxed">
+                Debes actualizar decenas de filas de su historial. Si el sistema o el usuario omite actualizar una fila, la base de datos contendrá datos contradictorios y corruptos.
+              </div>
+            </div>
+            <div class="pt-3 border-t border-slate-100 text-[11px] text-amber-700 font-bold">Riesgo inminente de inconsistencia</div>
+          </div>
+
+          <!-- Anomalía 3: Eliminación -->
+          <div class="bg-white border-2 border-purple-500 rounded-xl p-5 shadow-xs space-y-3 flex flex-col justify-between">
+            <div class="space-y-2.5">
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-100 text-purple-800 uppercase">ANOMALÍA 3</span>
+              <h3 class="font-bold text-slate-900 text-base flex items-center gap-2">
+                <i data-lucide="trash-2" class="w-4 h-4 text-purple-600"></i> Eliminación (Delete)
+              </h3>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                <strong>Problema:</strong> La factura <code>F-102</code> se cancela por error contable.
+              </p>
+              <div class="p-3 bg-purple-50 rounded-lg text-purple-950 text-xs leading-relaxed">
+                Al borrar la fila <code>F-102</code> para anular la venta, borras accidentalmente a la clienta <code>Andrea Peña</code> y se pierde su número de contacto y existencia en la empresa.
+              </div>
+            </div>
+            <div class="pt-3 border-t border-slate-100 text-[11px] text-purple-700 font-bold">Pérdida colateral de datos maestros</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- SLIDE 6: PRIMERA FORMA NORMAL (1FN) -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-6" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Paso 1: <span class="text-[#39A900]">Primera Forma Normal (1FN)</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Atomicidad de valores, eliminación de grupos repetitivos y Clave Primaria Compuesta
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-5 pt-2 items-start">
+          <div class="md:col-span-4 space-y-3 bg-white p-5 rounded-xl border border-slate-200 shadow-2xs text-xs">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 uppercase">Reglas de Edgar F. Codd</span>
+            <h3 class="font-bold text-slate-900 text-sm">Condiciones para Cumplir 1FN</h3>
+            <ul class="space-y-2.5 text-slate-600">
+              <li class="flex items-start gap-2">
+                <span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center shrink-0 text-[10px]">1</span>
+                <span><strong>Valores Atómicos:</strong> Cada intersección fila-columna contiene un único dato indivisible.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center shrink-0 text-[10px]">2</span>
+                <span><strong>Cero Grupos Repetitivos:</strong> La factura F-101 se divide en 2 filas individuales para cada producto.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center shrink-0 text-[10px]">3</span>
+                <span><strong>Clave Primaria Compuesta:</strong> La combinación única que identifica cada renglón es <code>(NumFactura, IdProducto)</code>.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="md:col-span-8 bg-white p-4 rounded-xl border border-slate-200 shadow-2xs overflow-x-auto">
+            <h4 class="text-xs font-bold text-slate-800 uppercase mb-2 flex items-center justify-between">
+              <span>Tabla Resultante en 1FN:</span>
+              <span class="text-[10px] text-emerald-700 font-mono font-normal">Clave Compuesta: (NumFactura, IdProducto)</span>
+            </h4>
+            <table class="w-full text-left text-xs border-collapse font-mono">
+              <thead>
+                <tr class="bg-emerald-50 text-emerald-900 border-b border-emerald-200 text-[11px]">
+                  <th class="p-2 font-bold">NumFactura (PK)</th>
+                  <th class="p-2 font-bold">IdProducto (PK)</th>
+                  <th class="p-2">Fecha</th>
+                  <th class="p-2">DocCliente</th>
+                  <th class="p-2">Nombre</th>
+                  <th class="p-2">Descripcion</th>
+                  <th class="p-2">Precio</th>
+                  <th class="p-2">Cant</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 text-slate-600 text-[11px]">
+                <tr class="bg-emerald-50/20">
+                  <td class="p-2 font-bold text-emerald-700">F-101</td>
+                  <td class="p-2 font-bold text-emerald-700">P-01</td>
+                  <td class="p-2">2026-09-15</td>
+                  <td class="p-2">10752001</td>
+                  <td class="p-2">Carlos Dussán</td>
+                  <td class="p-2">Teclado Mecánico</td>
+                  <td class="p-2">$150.000</td>
+                  <td class="p-2 font-bold text-slate-800">1</td>
+                </tr>
+                <tr class="bg-emerald-50/20">
+                  <td class="p-2 font-bold text-emerald-700">F-101</td>
+                  <td class="p-2 font-bold text-emerald-700">P-02</td>
+                  <td class="p-2">2026-09-15</td>
+                  <td class="p-2">10752001</td>
+                  <td class="p-2">Carlos Dussán</td>
+                  <td class="p-2">Mouse Óptico</td>
+                  <td class="p-2">$60.000</td>
+                  <td class="p-2 font-bold text-slate-800">2</td>
+                </tr>
+                <tr>
+                  <td class="p-2 font-bold text-emerald-700">F-102</td>
+                  <td class="p-2 font-bold text-emerald-700">P-02</td>
+                  <td class="p-2">2026-09-15</td>
+                  <td class="p-2">10752002</td>
+                  <td class="p-2">Andrea Peña</td>
+                  <td class="p-2">Mouse Óptico</td>
+                  <td class="p-2">$60.000</td>
+                  <td class="p-2 font-bold text-slate-800">1</td>
+                </tr>
+                <tr>
+                  <td class="p-2 font-bold text-emerald-700">F-103</td>
+                  <td class="p-2 font-bold text-emerald-700">P-03</td>
+                  <td class="p-2">2026-09-16</td>
+                  <td class="p-2">10752001</td>
+                  <td class="p-2">Carlos Dussán</td>
+                  <td class="p-2">Cable HDMI</td>
+                  <td class="p-2">$25.000</td>
+                  <td class="p-2 font-bold text-slate-800">3</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- SLIDE 7: SEGUNDA FORMA NORMAL (2FN) -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-7" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Paso 2: <span class="text-[#39A900]">Segunda Forma Normal (2FN)</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Eliminar dependencias parciales: Todo atributo debe depender de la TOTALIDAD de la clave primaria
+          </p>
+        </div>
+
+        <div class="p-3.5 bg-blue-50 border border-blue-200 rounded-xl text-xs text-blue-950">
+          <strong>Regla de Oro de la 2FN:</strong> Debe estar en 1FN. Si la clave primaria es compuesta <code>(NumFactura, IdProducto)</code>, ningún atributo puede depender únicamente de <em>una parte</em> de la clave.
+          <code>DocCliente</code> depende solo de <code>NumFactura</code>; <code>Descripcion</code> depende solo de <code>IdProducto</code>. Solo <code>Cantidad</code> depende de <strong>ambos</strong>.
+        </div>
+
+        <!-- Descomposición en 3 Tablas en 2FN -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 pt-2">
+          <div class="bg-white border-2 border-blue-500 rounded-xl p-4 shadow-xs space-y-2.5">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-800 uppercase">Tabla 1: Factura</span>
+            <p class="text-xs text-slate-600">Dependen solo de <code>NumFactura</code>:</p>
+            <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-200 font-mono text-[11px] text-slate-800 space-y-1">
+              <p>• <strong>num_factura (PK)</strong></p>
+              <p>• fecha_emision</p>
+              <p>• doc_cliente</p>
+              <p>• nombre_cliente</p>
+              <p>• ciudad</p>
+            </div>
+            <span class="text-[10px] text-blue-700 font-semibold block">Separado del catálogo de productos</span>
+          </div>
+
+          <div class="bg-white border-2 border-emerald-500 rounded-xl p-4 shadow-xs space-y-2.5">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 uppercase">Tabla 2: Producto</span>
+            <p class="text-xs text-slate-600">Dependen solo de <code>IdProducto</code>:</p>
+            <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-200 font-mono text-[11px] text-slate-800 space-y-1">
+              <p>• <strong>id_producto (PK)</strong></p>
+              <p>• descripcion</p>
+              <p>• precio_unitario</p>
+            </div>
+            <span class="text-[10px] text-emerald-700 font-semibold block">Catálogo independiente de ventas</span>
+          </div>
+
+          <div class="bg-white border-2 border-purple-500 rounded-xl p-4 shadow-xs space-y-2.5">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-100 text-purple-800 uppercase">Tabla 3: DetalleFactura</span>
+            <p class="text-xs text-slate-600">Depende de <strong>ambas claves juntas</strong>:</p>
+            <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-200 font-mono text-[11px] text-slate-800 space-y-1">
+              <p>• <strong>num_factura (PK, FK)</strong></p>
+              <p>• <strong>id_producto (PK, FK)</strong></p>
+              <p>• cantidad</p>
+            </div>
+            <span class="text-[10px] text-purple-700 font-semibold block">Rompe la relación N:M inicial</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- SLIDE 8: TERCERA FORMA NORMAL (3FN) -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-8" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Paso 3: <span class="text-[#39A900]">Tercera Forma Normal (3FN)</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Eliminar dependencias transitivas: Ningún atributo no clave puede depender de otro atributo no clave
+          </p>
+        </div>
+
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-3.5 text-xs text-amber-950 space-y-1">
+          <strong>Detección de la Dependencia Transitiva en la Tabla Factura (2FN):</strong>
+          <p>
+            <code>num_factura (PK)</code> determina al <code>doc_cliente</code>, pero a su vez <code>doc_cliente</code> determina el <code>nombre_cliente</code> y la <code>ciudad</code>.
+            Fórmula: <code>PK ➔ X ➔ Y</code>. Si el cliente no compra, ¡no podemos almacenar sus datos!
+          </p>
+        </div>
+
+        <!-- 4 Tablas Resultantes en 3FN -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-1">
+          <div class="bg-white border-2 border-emerald-500 rounded-xl p-4 shadow-xs space-y-2">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 uppercase">1. CLIENTE</span>
+            <div class="font-mono text-[11px] text-slate-700 space-y-1">
+              <p class="text-emerald-700 font-bold">• doc_cliente (PK)</p>
+              <p>• nombre_completo</p>
+              <p>• ciudad</p>
+              <p>• telefono</p>
+            </div>
+            <span class="text-[10px] text-slate-400 block pt-1 border-t">Entidad Maestra</span>
+          </div>
+
+          <div class="bg-white border-2 border-blue-500 rounded-xl p-4 shadow-xs space-y-2">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-800 uppercase">2. FACTURA</span>
+            <div class="font-mono text-[11px] text-slate-700 space-y-1">
+              <p class="text-blue-700 font-bold">• num_factura (PK)</p>
+              <p>• fecha_emision</p>
+              <p class="text-purple-700 font-semibold">• doc_cliente (FK)</p>
+            </div>
+            <span class="text-[10px] text-slate-400 block pt-1 border-t">Encabezado Venta</span>
+          </div>
+
+          <div class="bg-white border-2 border-amber-500 rounded-xl p-4 shadow-xs space-y-2">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800 uppercase">3. PRODUCTO</span>
+            <div class="font-mono text-[11px] text-slate-700 space-y-1">
+              <p class="text-amber-700 font-bold">• id_producto (PK)</p>
+              <p>• descripcion</p>
+              <p>• precio_unitario</p>
+              <p>• stock</p>
+            </div>
+            <span class="text-[10px] text-slate-400 block pt-1 border-t">Catálogo Bienes</span>
+          </div>
+
+          <div class="bg-white border-2 border-purple-500 rounded-xl p-4 shadow-xs space-y-2">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-100 text-purple-800 uppercase">4. DETALLE_FACTURA</span>
+            <div class="font-mono text-[11px] text-slate-700 space-y-1">
+              <p class="text-purple-700 font-bold">• id_detalle (PK)</p>
+              <p>• num_factura (FK)</p>
+              <p>• id_producto (FK)</p>
+              <p>• cantidad</p>
+              <p>• precio_historico</p>
+            </div>
+            <span class="text-[10px] text-slate-400 block pt-1 border-t">Intermedia Transaccional</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- SLIDE 9: DICCIONARIO DE DATOS DEL MODELO NORMALIZADO -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-9" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Diccionario de Datos: <span class="text-[#39A900]">Estructura y Restricciones</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Elemento obligatorio en el informe técnico: Definición de tipos, longitudes y restricciones
+          </p>
+        </div>
+
+        <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-2xs overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="bg-slate-100 text-slate-800 border-b border-slate-200 text-[11px] uppercase">
+                <th class="p-2">Tabla</th>
+                <th class="p-2">Campo</th>
+                <th class="p-2 font-mono">Tipo de Dato SQL</th>
+                <th class="p-2 font-mono">Clave</th>
+                <th class="p-2 font-mono">Nulo</th>
+                <th class="p-2">Descripción Pedagógica</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 text-slate-600 text-[11px]">
+              <tr>
+                <td class="p-2 font-bold text-emerald-700">cliente</td>
+                <td class="p-2 font-mono font-bold">doc_cliente</td>
+                <td class="p-2 font-mono">VARCHAR(20)</td>
+                <td class="p-2 font-bold text-emerald-700 font-mono">PK</td>
+                <td class="p-2 font-mono">NOT NULL</td>
+                <td class="p-2">Documento de identidad nacional o NIT.</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-bold text-emerald-700">cliente</td>
+                <td class="p-2 font-mono">nombre_completo</td>
+                <td class="p-2 font-mono">VARCHAR(100)</td>
+                <td class="p-2 font-mono">-</td>
+                <td class="p-2 font-mono">NOT NULL</td>
+                <td class="p-2">Nombres y apellidos completos.</td>
+              </tr>
+              <tr class="bg-slate-50/50">
+                <td class="p-2 font-bold text-blue-700">factura</td>
+                <td class="p-2 font-mono font-bold">num_factura</td>
+                <td class="p-2 font-mono">INT AUTO_INCREMENT</td>
+                <td class="p-2 font-bold text-blue-700 font-mono">PK</td>
+                <td class="p-2 font-mono">NOT NULL</td>
+                <td class="p-2">Consecutivo fiscal de venta.</td>
+              </tr>
+              <tr class="bg-slate-50/50">
+                <td class="p-2 font-bold text-blue-700">factura</td>
+                <td class="p-2 font-mono font-bold">doc_cliente</td>
+                <td class="p-2 font-mono">VARCHAR(20)</td>
+                <td class="p-2 font-bold text-purple-700 font-mono">FK</td>
+                <td class="p-2 font-mono">NOT NULL</td>
+                <td class="p-2">Referencia foránea a <code>cliente(doc_cliente)</code>.</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-bold text-amber-700">producto</td>
+                <td class="p-2 font-mono font-bold">id_producto</td>
+                <td class="p-2 font-mono">INT AUTO_INCREMENT</td>
+                <td class="p-2 font-bold text-amber-700 font-mono">PK</td>
+                <td class="p-2 font-mono">NOT NULL</td>
+                <td class="p-2">Identificador único del producto en inventario.</td>
+              </tr>
+              <tr class="bg-purple-50/30">
+                <td class="p-2 font-bold text-purple-700">detalle_factura</td>
+                <td class="p-2 font-mono font-bold">id_detalle</td>
+                <td class="p-2 font-mono">INT AUTO_INCREMENT</td>
+                <td class="p-2 font-bold text-purple-700 font-mono">PK</td>
+                <td class="p-2 font-mono">NOT NULL</td>
+                <td class="p-2">Clave primaria subrogada del renglón.</td>
+              </tr>
+              <tr class="bg-purple-50/30">
+                <td class="p-2 font-bold text-purple-700">detalle_factura</td>
+                <td class="p-2 font-mono">precio_historico</td>
+                <td class="p-2 font-mono">DECIMAL(12,2)</td>
+                <td class="p-2 font-mono">-</td>
+                <td class="p-2 font-mono">NOT NULL</td>
+                <td class="p-2">Precio de congelamiento al momento de facturar.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- SLIDE 10: ANÁLISIS DE CARDINALIDADES Y REGLAS DEL NEGOCIO -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-10" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Análisis de <span class="text-[#39A900]">Cardinalidades (1:1, 1:N, N:M)</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Justificación semántica de cómo se relacionan las entidades normalizadas
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 pt-2">
+          <div class="bg-white border-2 border-emerald-500/80 rounded-xl p-5 shadow-xs space-y-2.5 text-xs">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 uppercase">Relación 1</span>
+            <h3 class="font-bold text-slate-900 text-sm">Cliente ➔ Factura (1 : N)</h3>
+            <ul class="space-y-1.5 text-slate-600">
+              <li>• <strong>Mínimo:</strong> Un cliente registrado puede tener <strong>0 facturas</strong> (ej. cliente recién creado).</li>
+              <li>• <strong>Máximo:</strong> Un cliente puede registrar <strong>N facturas</strong> a lo largo del tiempo.</li>
+              <li>• <strong>Sentido Inverso:</strong> Toda factura pertenece obligatoriamente a <strong>1 y solo 1</strong> cliente.</li>
+            </ul>
+            <div class="p-2 bg-emerald-50 rounded text-emerald-800 font-mono text-[11px]">
+              FK: <code>factura.doc_cliente</code>
+            </div>
+          </div>
+
+          <div class="bg-white border-2 border-blue-500/80 rounded-xl p-5 shadow-xs space-y-2.5 text-xs">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-800 uppercase">Relación 2</span>
+            <h3 class="font-bold text-slate-900 text-sm">Factura ➔ Detalle (1 : N)</h3>
+            <ul class="space-y-1.5 text-slate-600">
+              <li>• <strong>Mínimo:</strong> Toda factura legal debe contener al menos <strong>1 ítem</strong> de venta.</li>
+              <li>• <strong>Máximo:</strong> Puede contener <strong>N renglones</strong> según los productos adquiridos.</li>
+              <li>• <strong>Sentido Inverso:</strong> Cada renglón de detalle pertenece a una única factura cabecera.</li>
+            </ul>
+            <div class="p-2 bg-blue-50 rounded text-blue-800 font-mono text-[11px]">
+              FK: <code>detalle_factura.num_factura</code>
+            </div>
+          </div>
+
+          <div class="bg-white border-2 border-purple-500/80 rounded-xl p-5 shadow-xs space-y-2.5 text-xs">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-100 text-purple-800 uppercase">Relación 3</span>
+            <h3 class="font-bold text-slate-900 text-sm">Producto ➔ Detalle (1 : N)</h3>
+            <ul class="space-y-1.5 text-slate-600">
+              <li>• <strong>Mínimo:</strong> Un producto recién ingresado al inventario puede estar en <strong>0 detalles</strong> de venta.</li>
+              <li>• <strong>Máximo:</strong> Puede estar referenciado en <strong>N compras</strong> de distintos clientes.</li>
+              <li>• <strong>Sentido Inverso:</strong> Cada ítem de detalle referencia a 1 producto específico.</li>
+            </ul>
+            <div class="p-2 bg-purple-50 rounded text-purple-800 font-mono text-[11px]">
+              FK: <code>detalle_factura.id_producto</code>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-3 bg-slate-100 rounded-xl text-xs text-slate-700 flex items-center justify-between">
+          <span>🎯 <strong>Conclusión:</strong> La relación inicial muchos a muchos (N:M) entre Factura y Producto queda resuelta limpiamente mediante dos relaciones 1:N con la tabla asociativa <code>detalle_factura</code>.</span>
+          <span class="font-bold text-sena font-mono">3FN Completada</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- SLIDE 11: DESCARGA OFICIAL DE MYSQL WORKBENCH Y REQUISITOS -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-11" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            MySQL Workbench: <span class="text-[#39A900]">¿De dónde Descargarlo y Requisitos?</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Enlaces oficiales seguros de Oracle y prerrequisitos del sistema operativo Windows
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2">
+          <!-- Opción Recomendada: MySQL Installer -->
+          <div class="bg-white border-2 border-emerald-500 rounded-2xl p-5 shadow-xs space-y-3 flex flex-col justify-between">
+            <div class="space-y-2.5">
+              <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 uppercase">OPCIÓN RECOMENDADA (TODO EN UNO)</span>
+              <h3 class="text-lg font-extrabold text-slate-900">MySQL Community Installer for Windows</h3>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Es el instalador oficial de Oracle que instala tanto el motor de base de datos (<strong>MySQL Server 8.0</strong>) como la herramienta gráfica de modelado visual (<strong>MySQL Workbench 8.0</strong>).
+              </p>
+              
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs space-y-1.5 font-mono">
+                <div class="text-slate-500 text-[10px] uppercase font-bold">Portal Oficial de Descarga:</div>
+                <a href="https://dev.mysql.com/downloads/installer/" target="_blank" class="text-emerald-700 hover:underline font-bold flex items-center gap-1">
+                  <span>https://dev.mysql.com/downloads/installer/</span>
+                  <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                </a>
+                <div class="text-slate-500 text-[11px] pt-1">
+                  • <code>mysql-installer-web-community-8.0.x.msi</code> (2.5 MB - descarga componentes vía web)<br>
+                  • <code>mysql-installer-community-8.0.x.msi</code> (~450 MB - instalador offline completo)
+                </div>
+              </div>
+            </div>
+            <div class="text-[11px] text-emerald-800 font-semibold bg-emerald-50 p-2 rounded-lg">
+              ✓ Incluye Servidor local + Workbench + Shell en un solo paquete.
+            </div>
+          </div>
+
+          <!-- Prerrequisito Crítico: Visual C++ -->
+          <div class="bg-white border-2 border-amber-500 rounded-2xl p-5 shadow-xs space-y-3 flex flex-col justify-between">
+            <div class="space-y-2.5">
+              <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800 uppercase">PRERREQUISITO OBLIGATORIO WINDOWS</span>
+              <h3 class="text-lg font-extrabold text-slate-900">Microsoft Visual C++ Redistributable</h3>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Sin este paquete de librerías del sistema, MySQL Workbench mostrará un error indicando que <code>VCRUNTIME140.dll</code> no fue encontrado y no abrirá.
+              </p>
+
+              <div class="p-3 bg-amber-50/50 rounded-xl border border-amber-200 text-xs space-y-1.5 font-mono">
+                <div class="text-amber-900 font-bold">Paquete x64 Requerido:</div>
+                <p class="text-slate-700 text-[11px]">Visual C++ 2015-2022 Redistributable (x64) disponible en la web de Microsoft:</p>
+                <code class="text-slate-800 text-[10px] block bg-white p-1 rounded border border-amber-200">https://aka.ms/vs/17/release/vc_redist.x64.exe</code>
+              </div>
+            </div>
+            <div class="text-[11px] text-amber-900 font-semibold bg-amber-50 p-2 rounded-lg">
+              ⚠️ <em>Instalar este prerrequisito ANTES de ejecutar el instalador de MySQL Workbench.</em>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- SLIDE 12: INSTALACIÓN PASO A PASO EN WINDOWS -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-12" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Instalación Paso a Paso de <span class="text-[#39A900]">MySQL Server &amp; Workbench</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Guía de configuración en Windows para que el servicio quede listo para las clases virtuales
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-1 text-xs">
+          <!-- Paso 1 -->
+          <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-2xs space-y-2">
+            <span class="w-6 h-6 rounded-full bg-[#00324D] text-white font-bold flex items-center justify-center text-xs">1</span>
+            <h4 class="font-bold text-slate-900 text-sm">Selección de Productos</h4>
+            <p class="text-slate-600 leading-relaxed">
+              Ejecuta el archivo <code>.msi</code>. En la pantalla <em>Choosing a Setup Type</em>, selecciona <strong>Developer Default</strong> o <strong>Custom</strong>.
+            </p>
+            <p class="text-[11px] text-emerald-700 font-semibold">Asegúrate de marcar: MySQL Server 8.0 y MySQL Workbench 8.0.</p>
+          </div>
+
+          <!-- Paso 2 -->
+          <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-2xs space-y-2">
+            <span class="w-6 h-6 rounded-full bg-[#00324D] text-white font-bold flex items-center justify-center text-xs">2</span>
+            <h4 class="font-bold text-slate-900 text-sm">Puerto y Conexión</h4>
+            <p class="text-slate-600 leading-relaxed">
+              En la pantalla <em>Type and Networking</em>:
+            </p>
+            <ul class="text-[11px] text-slate-700 space-y-1">
+              <li>• Config Type: <code>Development Computer</code></li>
+              <li>• TCP/IP Port: <strong>3306</strong> (predeterminado)</li>
+              <li>• X Protocol Port: 33060</li>
+            </ul>
+            <p class="text-[10px] text-slate-400">Verifica que el puerto 3306 esté libre en tu PC.</p>
+          </div>
+
+          <!-- Paso 3 -->
+          <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-2xs space-y-2">
+            <span class="w-6 h-6 rounded-full bg-[#00324D] text-white font-bold flex items-center justify-center text-xs">3</span>
+            <h4 class="font-bold text-slate-900 text-sm">Contraseña de Root</h4>
+            <p class="text-slate-600 leading-relaxed">
+              En <em>Accounts and Roles</em>, asigna una contraseña segura al superusuario <code>root</code>.
+            </p>
+            <div class="p-2 bg-amber-50 rounded border border-amber-200 text-amber-900 text-[10px]">
+              🔒 <strong>¡Anota tu contraseña!</strong> La necesitarás cada vez que abras Workbench o conectes tu backend Node/PHP/Java.
+            </div>
+          </div>
+
+          <!-- Paso 4 -->
+          <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-2xs space-y-2">
+            <span class="w-6 h-6 rounded-full bg-[#00324D] text-white font-bold flex items-center justify-center text-xs">4</span>
+            <h4 class="font-bold text-slate-900 text-sm">Servicio de Windows</h4>
+            <p class="text-slate-600 leading-relaxed">
+              En <em>Windows Service</em>, deja marcado <strong>Start the MySQL Server at System Startup</strong> con nombre de servicio <code>MySQL80</code>.
+            </p>
+            <p class="text-[11px] text-sena font-semibold">Haz clic en <strong>Execute</strong> hasta que todos los puntos queden en verde.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- SLIDE 13: PRIMEROS PASOS EN WORKBENCH: MODELO EER -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-13" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Primeros Pasos en Workbench: <span class="text-[#39A900]">Creación de Modelo EER</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Cómo abrir la aplicación y configurar un nuevo diagrama relacional profesional
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 pt-2 text-xs">
+          <div class="bg-white border-2 border-emerald-500/80 rounded-xl p-5 shadow-xs space-y-3">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 uppercase">PASO 1</span>
+            <h3 class="font-bold text-slate-900 text-sm">Crear Nuevo Modelo</h3>
+            <p class="text-slate-600 leading-relaxed">
+              Abre <strong>MySQL Workbench</strong>. En la barra de menús superior haz clic en:
+            </p>
+            <div class="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-slate-800">
+              File &gt; New Model
+            </div>
+            <p class="text-slate-500">O usa el atajo rápido de teclado: <kbd class="px-1.5 py-0.5 bg-white border rounded shadow-2xs font-mono">Ctrl + N</kbd>.</p>
+          </div>
+
+          <div class="bg-white border-2 border-blue-500/80 rounded-xl p-5 shadow-xs space-y-3">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-800 uppercase">PASO 2</span>
+            <h3 class="font-bold text-slate-900 text-sm">Abrir el Lienzo de Diagrama</h3>
+            <p class="text-slate-600 leading-relaxed">
+              En la ventana <em>Model Overview</em> que aparece, localiza la sección <strong>EER Diagrams</strong>.
+            </p>
+            <div class="p-2.5 bg-blue-50 rounded-lg border border-blue-200 text-blue-900">
+              Haz doble clic sobre el icono verde: <strong>Add Diagram</strong>.
+            </div>
+            <p class="text-slate-500">Se abrirá el lienzo cuadriculado interactivo de diseño visual.</p>
+          </div>
+
+          <div class="bg-white border-2 border-purple-500/80 rounded-xl p-5 shadow-xs space-y-3">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-100 text-purple-800 uppercase">PASO 3</span>
+            <h3 class="font-bold text-slate-900 text-sm">Renombrar el Esquema</h3>
+            <p class="text-slate-600 leading-relaxed">
+              Por defecto Workbench nombra la base de datos como <code>mydb</code>.
+            </p>
+            <div class="p-2.5 bg-purple-50 rounded-lg border border-purple-200 text-purple-900">
+              Doble clic en la pestaña <em>mydb</em> abajo y cámbiala por el nombre de tu proyecto: <code>db_adso_facturacion</code>.
+            </div>
+            <p class="text-slate-500">Colación recomendada: <code>utf8mb4</code> con <code>utf8mb4_unicode_ci</code>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- SLIDE 14: TABLAS, COLUMNAS Y BANDERAS (PK, NN, UQ, AI) -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-14" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            MySQL Workbench: <span class="text-[#39A900]">Tablas, Columnas y Banderas</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Cómo agregar tablas al lienzo y qué significa cada casilla de verificación en Workbench
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-5 pt-2 items-start text-xs">
+          <!-- Colocación de Tablas -->
+          <div class="md:col-span-5 bg-white border border-slate-200 rounded-xl p-5 shadow-xs space-y-3">
+            <h3 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+              <i data-lucide="layout-grid" class="w-4 h-4 text-sena"></i> Herramienta Tabla (Tecla T)
+            </h3>
+            <p class="text-slate-600 leading-relaxed">
+              En la paleta de herramientas vertical izquierda, haz clic en el icono de tabla o presiona la tecla <kbd class="px-1.5 py-0.5 bg-slate-100 border rounded font-mono">T</kbd>. Luego haz clic sobre el lienzo para colocarla.
+            </p>
+            <p class="text-slate-600 leading-relaxed">
+              Haz doble clic sobre la tabla para abrir el panel inferior de configuración de columnas.
+            </p>
+            <div class="p-3 bg-emerald-50 rounded-lg text-emerald-900 text-[11px]">
+              <strong>Buenas prácticas SENA:</strong> Escribe los nombres de tablas en <em>singular</em> y en <em>minúsculas con guiones bajos</em>: <code>cliente</code>, <code>producto</code>, <code>factura</code>, <code>detalle_factura</code>.
+            </div>
+          </div>
+
+          <!-- Banderas Clave -->
+          <div class="md:col-span-7 bg-white border border-slate-200 rounded-xl p-5 shadow-xs space-y-3">
+            <h3 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+              <i data-lucide="check-square" class="w-4 h-4 text-blue-600"></i> Banderas de Columna en Workbench
+            </h3>
+            <div class="grid grid-cols-2 gap-2 text-[11px]">
+              <div class="p-2 bg-slate-50 rounded border border-slate-100">
+                <strong class="text-emerald-700 font-mono font-bold block">PK (Primary Key)</strong>
+                <span>Identificador único e irrepetible del registro.</span>
+              </div>
+              <div class="p-2 bg-slate-50 rounded border border-slate-100">
+                <strong class="text-blue-700 font-mono font-bold block">NN (Not Null)</strong>
+                <span>Campo obligatorio. No admite valores vacíos.</span>
+              </div>
+              <div class="p-2 bg-slate-50 rounded border border-slate-100">
+                <strong class="text-purple-700 font-mono font-bold block">UQ (Unique)</strong>
+                <span>Valor único en toda la tabla (ej. correo, serial).</span>
+              </div>
+              <div class="p-2 bg-slate-50 rounded border border-slate-100">
+                <strong class="text-amber-700 font-mono font-bold block">AI (Auto Increment)</strong>
+                <span>Generación numérica automática secuencial (1, 2, 3...).</span>
+              </div>
+              <div class="p-2 bg-slate-50 rounded border border-slate-100">
+                <strong class="text-slate-600 font-mono font-bold block">UN (Unsigned)</strong>
+                <span>Solo números positivos (evita valores negativos).</span>
+              </div>
+              <div class="p-2 bg-slate-50 rounded border border-slate-100">
+                <strong class="text-slate-600 font-mono font-bold block">G (Generated)</strong>
+                <span>Columna calculada a partir de otros campos.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- SLIDE 15: TRAZADO DE RELACIONES Y FORÁNEAS (REGLA DE ORO) -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-15" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            MySQL Workbench: <span class="text-[#39A900]">Trazado de Relaciones y Foráneas</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            La regla de oro para no invertir las claves foráneas en el diagrama EER
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2 text-xs">
+          <!-- Regla de Oro -->
+          <div class="bg-white border-2 border-emerald-500 rounded-2xl p-5 shadow-xs space-y-3">
+            <div class="flex items-center gap-2 text-emerald-800 font-bold uppercase text-[11px]">
+              <i data-lucide="compass" class="w-4 h-4"></i>
+              <span>Regla Nemotécnica Fundamental</span>
+            </div>
+            <h3 class="text-base font-extrabold text-slate-900">
+              ¿En qué Orden Hacer Clic para Conectar Tablas?
+            </h3>
+            <div class="p-3 bg-emerald-50 rounded-xl text-emerald-950 leading-relaxed font-semibold">
+              👉 En MySQL Workbench se hace clic PRIMERO en la tabla que RECIBE la clave foránea (tabla hija), y LUEGO en la tabla que contiene la clave primaria (tabla padre).
+            </div>
+            <ul class="space-y-2 text-slate-700">
+              <li class="p-2 bg-slate-50 rounded border border-slate-200">
+                <strong>1. Conectar Cliente y Factura:</strong><br>
+                Clic en <code>factura</code> ➔ Clic en <code>cliente</code>.<br>
+                <em>Resultado:</em> Workbench añade automáticamente el campo foráneo <code>cliente_doc_cliente</code>.
+              </li>
+              <li class="p-2 bg-slate-50 rounded border border-slate-200">
+                <strong>2. Conectar Factura y Detalle:</strong><br>
+                Clic en <code>detalle_factura</code> ➔ Clic en <code>factura</code>.
+              </li>
+              <li class="p-2 bg-slate-50 rounded border border-slate-200">
+                <strong>3. Conectar Producto y Detalle:</strong><br>
+                Clic en <code>detalle_factura</code> ➔ Clic en <code>producto</code>.
+              </li>
+            </ul>
+          </div>
+
+          <!-- Identifying vs Non-Identifying -->
+          <div class="bg-white border-2 border-blue-500 rounded-2xl p-5 shadow-xs space-y-3">
+            <div class="flex items-center gap-2 text-blue-800 font-bold uppercase text-[11px]">
+              <i data-lucide="git-branch" class="w-4 h-4"></i>
+              <span>Tipo de Conexión en la Paleta</span>
+            </div>
+            <h3 class="text-base font-extrabold text-slate-900">
+              ¿Relación Identificadora o No Identificadora?
+            </h3>
+            
+            <div class="space-y-3 text-slate-700">
+              <div class="p-3 bg-blue-50/60 rounded-xl border border-blue-200 space-y-1">
+                <strong class="text-blue-900 block font-bold">1:n Non-Identifying Relationship (Línea Punteada):</strong>
+                <p>La clave foránea en la tabla hija es una columna común y corriente, <em>no</em> forma parte de la clave primaria. <strong>(Esta es la opción estándar para el 90% de los casos en ADSO).</strong></p>
+              </div>
+
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+                <strong class="text-slate-800 block font-bold">1:n Identifying Relationship (Línea Continua):</strong>
+                <p>La clave foránea de la tabla padre pasa a formar parte obligatoria de la clave primaria compuesta de la tabla hija (dependencia de existencia e identificación).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- SLIDE 16: INTEGRIDAD REFERENCIAL: ON DELETE Y ON UPDATE -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-16" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Integridad Referencial: <span class="text-[#39A900]">ON DELETE y ON UPDATE</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Cómo proteger la base de datos contra registros huérfanos y pérdidas de auditoría
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 pt-2 text-xs">
+          <!-- RESTRICT -->
+          <div class="bg-white border-2 border-emerald-500 rounded-xl p-5 shadow-xs space-y-3 flex flex-col justify-between">
+            <div class="space-y-2">
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 uppercase font-mono">RESTRICT / NO ACTION</span>
+              <h3 class="font-bold text-slate-900 text-sm">Bloqueo Preventivo Estricto</h3>
+              <p class="text-slate-600 leading-relaxed">
+                El motor SQL <strong>impide eliminar o modificar un registro padre</strong> si existe al menos un registro hijo que dependa de él.
+              </p>
+              <div class="p-2.5 bg-emerald-50 rounded-lg text-emerald-950 font-semibold text-[11px]">
+                📌 <em>Ejemplo:</em> Si intentas borrar a <code>Carlos Dussán</code> teniendo facturas registradas a su nombre, MySQL lanzará un error de clave foránea impidiendo el borrado.
+              </div>
+            </div>
+            <div class="pt-3 border-t border-slate-100 text-[10px] text-emerald-700 font-bold">Máxima Seguridad Contable</div>
+          </div>
+
+          <!-- CASCADE -->
+          <div class="bg-white border-2 border-blue-500 rounded-xl p-5 shadow-xs space-y-3 flex flex-col justify-between">
+            <div class="space-y-2">
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-800 uppercase font-mono">CASCADE (En Cascada)</span>
+              <h3 class="font-bold text-slate-900 text-sm">Propagación Automática</h3>
+              <p class="text-slate-600 leading-relaxed">
+                Cualquier cambio o eliminación sobre el registro padre se replica de manera automática sobre todos sus registros dependientes.
+              </p>
+              <div class="p-2.5 bg-blue-50 rounded-lg text-blue-950 font-semibold text-[11px]">
+                📌 <em>Ejemplo:</em> Si se anula la factura <code>F-101</code>, <code>ON DELETE CASCADE</code> borra en un solo paso todos sus renglones en <code>detalle_factura</code>.
+              </div>
+            </div>
+            <div class="pt-3 border-t border-slate-100 text-[10px] text-blue-700 font-bold">Ideal para Tablas Hija de Detalle</div>
+          </div>
+
+          <!-- SET NULL -->
+          <div class="bg-white border-2 border-purple-500 rounded-xl p-5 shadow-xs space-y-3 flex flex-col justify-between">
+            <div class="space-y-2">
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-100 text-purple-800 uppercase font-mono">SET NULL</span>
+              <h3 class="font-bold text-slate-900 text-sm">Desvinculación Segura</h3>
+              <p class="text-slate-600 leading-relaxed">
+                Si el padre se borra, la columna foránea en el hijo se transforma automáticamente en <code>NULL</code> (requiere que el campo admita nulos).
+              </p>
+              <div class="p-2.5 bg-purple-50 rounded-lg text-purple-950 font-semibold text-[11px]">
+                📌 <em>Ejemplo:</em> En un sistema con empleados y jefes directos, si se retira un supervisor, sus subordinados quedan con jefe en <code>NULL</code> temporalmente.
+              </div>
+            </div>
+            <div class="pt-3 border-t border-slate-100 text-[10px] text-purple-700 font-bold">Para Vínculos Opcionales</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- SLIDE 17: FORWARD ENGINEERING (CTRL + G) -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-17" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            MySQL Workbench: <span class="text-[#39A900]">Forward Engineering (Ctrl + G)</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Cómo convertir el diagrama visual EER en un script SQL DDL ejecutable para la entrega
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 pt-2 text-xs">
+          <!-- Paso 1 -->
+          <div class="bg-white border-2 border-emerald-500/80 rounded-xl p-5 shadow-xs space-y-3">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 uppercase">PASO 1</span>
+            <h3 class="font-bold text-slate-900 text-sm">Abrir el Asistente</h3>
+            <p class="text-slate-600 leading-relaxed">
+              En la barra de menú superior de Workbench, selecciona:
+            </p>
+            <div class="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-slate-800">
+              Database &gt; Forward Engineer...
+            </div>
+            <p class="text-slate-500">O usa el atajo: <kbd class="px-1.5 py-0.5 bg-white border rounded font-mono shadow-2xs">Ctrl + G</kbd>.</p>
+            <p class="text-slate-600">Selecciona la conexión a tu MySQL local en el puerto 3306 y haz clic en <strong>Next</strong>.</p>
+          </div>
+
+          <!-- Paso 2 -->
+          <div class="bg-white border-2 border-blue-500/80 rounded-xl p-5 shadow-xs space-y-3">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-800 uppercase">PASO 2</span>
+            <h3 class="font-bold text-slate-900 text-sm">Opciones DDL Clave</h3>
+            <p class="text-slate-600 leading-relaxed">
+              En la pantalla de opciones SQL, marca las casillas recomendadas:
+            </p>
+            <ul class="space-y-1.5 text-slate-700 font-mono text-[11px]">
+              <li>☑ <code>Generate DROP Statements Before Each CREATE</code></li>
+              <li>☑ <code>Generate INSERT Statements for Tables</code></li>
+            </ul>
+            <p class="text-slate-500 text-[11px]">Esto asegura que el script pueda ejecutarse desde cero en cualquier máquina sin colisiones.</p>
+          </div>
+
+          <!-- Paso 3 -->
+          <div class="bg-white border-2 border-purple-500/80 rounded-xl p-5 shadow-xs space-y-3">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-100 text-purple-800 uppercase">PASO 3</span>
+            <h3 class="font-bold text-slate-900 text-sm">Exportar y Guardar</h3>
+            <p class="text-slate-600 leading-relaxed">
+              Workbench compilará el código SQL completo con <code>CREATE SCHEMA</code>, <code>CREATE TABLE</code> y <code>ALTER TABLE ADD CONSTRAINT</code>.
+            </p>
+            <div class="p-2.5 bg-purple-50 rounded-lg text-purple-950 font-semibold text-[11px]">
+              Haz clic en <strong>Save to Text File...</strong> y nómbralo <code>script_evidencia1_ga6.sql</code> para anexarlo a tu entrega.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- SLIDE 18: LIVE TESTING: SCRIPT DDL, INSERCIÓN Y CONSULTA JOIN -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-18" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Live Testing: <span class="text-[#39A900]">Demostración con Sentencias SQL &amp; JOIN</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Comprobación práctica: Reconstruir la factura original uniendo las 4 tablas normalizadas
+          </p>
+        </div>
+
+        <div class="bg-slate-900 text-slate-100 rounded-xl p-4 font-mono text-xs overflow-x-auto shadow-sm relative">
+          <span class="absolute right-4 top-3 text-[10px] text-emerald-400 uppercase font-bold tracking-wider">MySQL Workbench Query Editor</span>
+          <pre class="leading-relaxed"><code><span class="text-emerald-400">-- 1. CONSULTA DE RECONSTRUCCIÓN DE FACTURA CON INNER JOIN:</span>
+<span class="text-blue-400">SELECT</span> 
+  f.num_factura <span class="text-blue-400">AS</span> Factura,
+  f.fecha_emision <span class="text-blue-400">AS</span> Fecha,
+  c.nombre_completo <span class="text-blue-400">AS</span> Cliente,
+  c.ciudad <span class="text-blue-400">AS</span> Ciudad,
+  p.descripcion <span class="text-blue-400">AS</span> Producto,
+  df.cantidad <span class="text-blue-400">AS</span> Cantidad,
+  df.precio_historico <span class="text-blue-400">AS</span> PrecioUnit,
+  (df.cantidad * df.precio_historico) <span class="text-blue-400">AS</span> Subtotal
+<span class="text-blue-400">FROM</span> factura f
+<span class="text-purple-400">INNER JOIN</span> cliente c <span class="text-blue-400">ON</span> f.doc_cliente = c.doc_cliente
+<span class="text-purple-400">INNER JOIN</span> detalle_factura df <span class="text-blue-400">ON</span> f.num_factura = df.num_factura
+<span class="text-purple-400">INNER JOIN</span> producto p <span class="text-blue-400">ON</span> df.id_producto = p.id_producto
+<span class="text-blue-400">ORDER BY</span> f.num_factura <span class="text-blue-400">ASC</span>;</code></pre>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+          <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-950 space-y-1">
+            <strong class="flex items-center gap-1.5"><i data-lucide="check" class="w-4 h-4 text-sena"></i> ¿Qué Demuestra este Resultado?</strong>
+            <p>Que las 4 tablas normalizadas guardan los datos sin duplicidad y los reúnen instantáneamente en memoria al consultar con <code>JOIN</code>.</p>
+          </div>
+          <div class="p-3 bg-blue-50 border border-blue-200 rounded-xl text-blue-950 space-y-1">
+            <strong class="flex items-center gap-1.5"><i data-lucide="shield-check" class="w-4 h-4 text-blue-600"></i> Evidencia en el PDF:</strong>
+            <p>Toma una captura de pantalla clara de MySQL Workbench mostrando el código SQL y la cuadrícula inferior con los resultados.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- SLIDE 19: ADAPTACIÓN A LOS PROYECTOS INDIVIDUALES DE CADA APRENDIZ -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-19" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            ¿Cómo Aplicarlo a <span class="text-[#39A900]">TU Propio Proyecto Formativo</span>?
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Guía práctica para transferir este ejercicio a los diferentes sectores de software que desarrollan los aprendices
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1 text-xs">
+          <!-- Caso 1: Veterinaria / Mascotas -->
+          <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-xs space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="font-extrabold text-emerald-800 uppercase text-[11px] flex items-center gap-1.5">
+                <i data-lucide="stethoscope" class="w-4 h-4"></i> Proyecto: Veterinaria / Clínica
+              </span>
+              <span class="text-[10px] text-slate-400 font-mono">Salud</span>
+            </div>
+            <p class="text-slate-600 leading-relaxed">
+              <strong>Módulo Transaccional:</strong> Atención médica y prescripción de fármacos.
+            </p>
+            <div class="p-2.5 bg-slate-50 rounded-lg border border-slate-100 font-mono text-[11px] text-slate-700 space-y-1">
+              <p>• <strong>0FN:</strong> Registro de Consulta con Dueño, Mascota, Veterinario y Medicamentos en una celda.</p>
+              <p>• <strong>3FN Resultante:</strong> <code>propietario</code>, <code>mascota</code>, <code>veterinario</code>, <code>consulta</code>, <code>medicamento</code>, <code>receta_detalle</code>.</p>
+            </div>
+          </div>
+
+          <!-- Caso 2: E-Commerce / Ferretería / Ropa -->
+          <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-xs space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="font-extrabold text-blue-800 uppercase text-[11px] flex items-center gap-1.5">
+                <i data-lucide="shopping-cart" class="w-4 h-4"></i> Proyecto: E-Commerce / Ferretería
+              </span>
+              <span class="text-[10px] text-slate-400 font-mono">Comercio</span>
+            </div>
+            <p class="text-slate-600 leading-relaxed">
+              <strong>Módulo Transaccional:</strong> Pedido en línea o compra de mostrador.
+            </p>
+            <div class="p-2.5 bg-slate-50 rounded-lg border border-slate-100 font-mono text-[11px] text-slate-700 space-y-1">
+              <p>• <strong>0FN:</strong> Pedido plano con lista de artículos, tallas y medios de pago repetidos.</p>
+              <p>• <strong>3FN Resultante:</strong> <code>usuario</code>, <code>pedido</code>, <code>producto</code>, <code>categoria</code>, <code>detalle_pedido</code>, <code>pago</code>.</p>
+            </div>
+          </div>
+
+          <!-- Caso 3: Taller Mecánico / Mantenimiento -->
+          <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-xs space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="font-extrabold text-amber-800 uppercase text-[11px] flex items-center gap-1.5">
+                <i data-lucide="wrench" class="w-4 h-4"></i> Proyecto: Taller Mecánico / Repuestos
+              </span>
+              <span class="text-[10px] text-slate-400 font-mono">Servicios</span>
+            </div>
+            <p class="text-slate-600 leading-relaxed">
+              <strong>Módulo Transaccional:</strong> Orden de servicio y sustitución de autopartes.
+            </p>
+            <div class="p-2.5 bg-slate-50 rounded-lg border border-slate-100 font-mono text-[11px] text-slate-700 space-y-1">
+              <p>• <strong>0FN:</strong> Hoja de ingreso del vehículo con mecánicos y repuestos en texto libre.</p>
+              <p>• <strong>3FN Resultante:</strong> <code>cliente</code>, <code>vehiculo</code>, <code>orden_servicio</code>, <code>repuesto</code>, <code>detalle_repuestos</code>.</p>
+            </div>
+          </div>
+
+          <!-- Caso 4: Restaurante / Bar -->
+          <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-xs space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="font-extrabold text-purple-800 uppercase text-[11px] flex items-center gap-1.5">
+                <i data-lucide="coffee" class="w-4 h-4"></i> Proyecto: Restaurante / Reservas
+              </span>
+              <span class="text-[10px] text-slate-400 font-mono">Gastronomía</span>
+            </div>
+            <p class="text-slate-600 leading-relaxed">
+              <strong>Módulo Transaccional:</strong> Comanda de mesa y consumo de platos y bebidas.
+            </p>
+            <div class="p-2.5 bg-slate-50 rounded-lg border border-slate-100 font-mono text-[11px] text-slate-700 space-y-1">
+              <p>• <strong>0FN:</strong> Ticket manual de mesero con lista de comidas y precios en bloque.</p>
+              <p>• <strong>3FN Resultante:</strong> <code>mesa</code>, <code>mesero</code>, <code>comanda</code>, <code>plato</code>, <code>detalle_comanda</code>.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-950 flex items-center justify-between">
+          <span>💡 <strong>Consejo del Instructor:</strong> No intentes normalizar las 30 tablas de tu sistema en esta primera evidencia. Selecciona el <strong>proceso central de tu negocio</strong> (4 a 6 tablas interrelacionadas) y demuéstralo con excelencia.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- SLIDE 20: ESTRUCTURA DEL PDF FINAL Y RÚBRICA ZAJUNA -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-20" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Estructura del Documento PDF &amp; <span class="text-[#39A900]">Rúbrica Zajuna</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Lista de chequeo oficial <strong>IE-GA6-220501096-AA1-EV01</strong> para asegurar tu calificación aprobatoria (A)
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2 text-xs">
+          <!-- Estructura del PDF -->
+          <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-xs space-y-3">
+            <h3 class="font-extrabold text-slate-900 text-sm flex items-center gap-2">
+              <i data-lucide="file-check" class="w-4 h-4 text-sena"></i> Estructura Obligatoria del Documento PDF
+            </h3>
+            <ol class="space-y-2 text-slate-700">
+              <li class="p-2 bg-slate-50 rounded border border-slate-100 flex items-start gap-2">
+                <span class="font-bold text-sena">1.</span>
+                <span><strong>Portada Institucional SENA:</strong> Nombre del proyecto, aprendiz(ces), ficha ADSO, instructor <strong>Ing. Hector David Toledo García</strong> y fecha.</span>
+              </li>
+              <li class="p-2 bg-slate-50 rounded border border-slate-100 flex items-start gap-2">
+                <span class="font-bold text-sena">2.</span>
+                <span><strong>Contexto del Problema:</strong> Breve descripción del proceso seleccionado de tu proyecto formativo.</span>
+              </li>
+              <li class="p-2 bg-slate-50 rounded border border-slate-100 flex items-start gap-2">
+                <span class="font-bold text-sena">3.</span>
+                <span><strong>Tabla 0FN & Diagnóstico:</strong> Tabla plana con datos y explicación de las anomalías de inserción, actualización y borrado.</span>
+              </li>
+              <li class="p-2 bg-slate-50 rounded border border-slate-100 flex items-start gap-2">
+                <span class="font-bold text-sena">4.</span>
+                <span><strong>Proceso Analítico de Normalización:</strong> Paso a 1FN, 2FN y 3FN con justificación técnica de cada división.</span>
+              </li>
+              <li class="p-2 bg-slate-50 rounded border border-slate-100 flex items-start gap-2">
+                <span class="font-bold text-sena">5.</span>
+                <span><strong>Diccionario de Datos & Diagrama EER:</strong> Tabla de atributos y captura en alta resolución de MySQL Workbench.</span>
+              </li>
+              <li class="p-2 bg-slate-50 rounded border border-slate-100 flex items-start gap-2">
+                <span class="font-bold text-sena">6.</span>
+                <span><strong>Script DDL & Conclusiones:</strong> Código SQL generado por Forward Engineering y conclusiones del aprendizaje.</span>
+              </li>
+            </ol>
+          </div>
+
+          <!-- Rúbrica y Entrega Zajuna -->
+          <div class="bg-white border-2 border-emerald-500 rounded-2xl p-5 shadow-xs space-y-4 flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 uppercase">CALIFICACIÓN OFICIAL</span>
+                <span class="text-xs font-mono font-bold text-sena">APROBADO (A)</span>
+              </div>
+              <h4 class="text-sm font-extrabold text-slate-900">Puntos de Verificación del Instructor</h4>
+              
+              <ul class="space-y-2 text-slate-700">
+                <li class="flex items-start gap-2">
+                  <i data-lucide="check-circle" class="w-4 h-4 text-sena shrink-0 mt-0.5"></i>
+                  <span>¿Se eliminaron completamente los grupos repetitivos en 1FN?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i data-lucide="check-circle" class="w-4 h-4 text-sena shrink-0 mt-0.5"></i>
+                  <span>¿Se eliminaron dependencias parciales en 2FN y transitivas en 3FN?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i data-lucide="check-circle" class="w-4 h-4 text-sena shrink-0 mt-0.5"></i>
+                  <span>¿Las relaciones 1:N tienen definidas sus políticas ON DELETE/UPDATE?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i data-lucide="check-circle" class="w-4 h-4 text-sena shrink-0 mt-0.5"></i>
+                  <span>¿El archivo está nombrado: <code>GA6-220501096-AA1-EV01_Nombre_Apellido.pdf</code>?</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="pt-3 border-t border-slate-100 space-y-2">
+              <a href="https://zajuna.sena.edu.co" target="_blank" class="w-full inline-flex items-center justify-center gap-2 bg-[#39A900] hover:bg-[#2D8200] text-white font-bold py-2.5 px-4 rounded-lg text-xs shadow-xs transition-colors">
+                <span>Ir al Espacio de Entrega en Zajuna LMS</span>
+                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              </a>
+              <div class="flex items-center justify-between text-[11px] text-slate-500">
+                <a href="../../index.html" class="hover:text-sena font-semibold flex items-center gap-1">
+                  <i data-lucide="home" class="w-3.5 h-3.5"></i> Volver al Portal Principal
+                </a>
+                <button onclick="presenter.goToSlide(0)" class="hover:text-sena font-semibold flex items-center gap-1">
+                  <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> Reiniciar Diapositivas
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- BARRA INFERIOR DE NAVEGACIÓN Y ATAJOS -->
+  <!-- ========================================================================= -->
+  <footer class="border-t border-slate-200 bg-white py-3 px-4 sm:px-6">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 font-mono">
+      <div class="flex items-center gap-2">
+        <button onclick="presenter.nextSlide()" class="inline-flex items-center gap-1.5 bg-[#39A900] hover:bg-[#2D8200] text-white px-3 py-1.5 rounded-lg font-sans font-bold text-xs transition-colors">
+          <span>Siguiente</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </button>
+        <span class="hidden md:inline text-slate-400">|</span>
+        <span class="hidden md:inline">Atajos: [Espacio] o [→] Siguiente • [←] Anterior</span>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <span class="hidden sm:inline">[F] Pantalla Completa</span>
+        <span class="hidden sm:inline">•</span>
+        <span class="hidden sm:inline">[M] Menú de 20 Slides</span>
+        <span class="hidden sm:inline">•</span>
+        <a href="../../index.html" class="text-emerald-700 font-bold hover:underline font-sans">Volver al Portal</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL DE AYUDA / ATAJOS (HELP MODAL) -->
+  <!-- ========================================================================= -->
+  <div id="help-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs hidden items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200 animate-in fade-in zoom-in-95">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <h3 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+          <i data-lucide="keyboard" class="w-4 h-4 text-sena"></i> Atajos de Teclado
+        </h3>
+        <button id="btn-close-help" class="text-slate-400 hover:text-slate-700 p-1 rounded-lg">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="py-4 space-y-2.5 text-xs text-slate-700">
+        <div class="flex items-center justify-between p-2 bg-slate-50 rounded-lg">
+          <span>Avanzar Diapositiva:</span>
+          <kbd class="px-2 py-1 bg-white border border-slate-200 rounded font-mono font-bold">Espacio</kbd> o <kbd class="px-2 py-1 bg-white border border-slate-200 rounded font-mono font-bold">→</kbd>
+        </div>
+        <div class="flex items-center justify-between p-2 bg-slate-50 rounded-lg">
+          <span>Retroceder Diapositiva:</span>
+          <kbd class="px-2 py-1 bg-white border border-slate-200 rounded font-mono font-bold">←</kbd> o <kbd class="px-2 py-1 bg-white border border-slate-200 rounded font-mono font-bold">RePág</kbd>
+        </div>
+        <div class="flex items-center justify-between p-2 bg-slate-50 rounded-lg">
+          <span>Pantalla Completa:</span>
+          <kbd class="px-2 py-1 bg-white border border-slate-200 rounded font-mono font-bold">F</kbd>
+        </div>
+        <div class="flex items-center justify-between p-2 bg-slate-50 rounded-lg">
+          <span>Abrir / Cerrar Menú:</span>
+          <kbd class="px-2 py-1 bg-white border border-slate-200 rounded font-mono font-bold">M</kbd>
+        </div>
+        <div class="flex items-center justify-between p-2 bg-slate-50 rounded-lg">
+          <span>Iniciar / Pausar Cronómetro:</span>
+          <kbd class="px-2 py-1 bg-white border border-slate-200 rounded font-mono font-bold">T</kbd>
+        </div>
+      </div>
+
+      <button onclick="document.getElementById('help-modal').classList.add('hidden')" class="w-full py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-lg font-bold text-xs transition-colors">
+        Entendido
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MENÚ DRAWER LATERAL (ÍNDICE DE 20 DIAPOSITIVAS) -->
+  <!-- ========================================================================= -->
+  <aside id="menu-drawer" class="fixed inset-y-0 right-0 z-50 w-84 bg-white shadow-2xl border-l border-slate-200 hidden flex-col">
+    <div class="p-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+      <h3 class="font-bold text-slate-900 text-xs uppercase tracking-wider flex items-center gap-2">
+        <i data-lucide="layers" class="w-4 h-4 text-sena"></i> Índice de 20 Slides
+      </h3>
+      <button id="btn-close-menu" class="text-slate-400 hover:text-slate-700 p-1 rounded-lg">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+    </div>
+
+    <div class="p-3 overflow-y-auto flex-1 space-y-1 text-xs font-medium">
+      <div class="text-[10px] uppercase font-bold text-slate-400 px-2 pt-1 pb-0.5">Bloque 1: Fundamentos & 3FN</div>
+      <button onclick="presenter.goToSlide(0)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">01</span> Portada y Objetivos Formativos
+      </button>
+      <button onclick="presenter.goToSlide(1)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">02</span> Requerimientos Oficiales Guía 6
+      </button>
+      <button onclick="presenter.goToSlide(2)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">03</span> Ecosistema DBMS & ¿Por qué MySQL?
+      </button>
+      <button onclick="presenter.goToSlide(3)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">04</span> Caso Real: Tabla Plana 0FN
+      </button>
+      <button onclick="presenter.goToSlide(4)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">05</span> Las 3 Anomalías de Edgar F. Codd
+      </button>
+      <button onclick="presenter.goToSlide(5)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">06</span> Primera Forma Normal (1FN)
+      </button>
+      <button onclick="presenter.goToSlide(6)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">07</span> Segunda Forma Normal (2FN)
+      </button>
+      <button onclick="presenter.goToSlide(7)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">08</span> Tercera Forma Normal (3FN)
+      </button>
+      <button onclick="presenter.goToSlide(8)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">09</span> Diccionario de Datos del Modelo
+      </button>
+      <button onclick="presenter.goToSlide(9)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">10</span> Análisis de Cardinalidades (1:N)
+      </button>
+
+      <div class="text-[10px] uppercase font-bold text-slate-400 px-2 pt-3 pb-0.5">Bloque 2: MySQL Workbench & SQL</div>
+      <button onclick="presenter.goToSlide(10)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">11</span> Descarga Oficial de MySQL & Workbench
+      </button>
+      <button onclick="presenter.goToSlide(11)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">12</span> Instalación Paso a Paso en Windows
+      </button>
+      <button onclick="presenter.goToSlide(12)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">13</span> Primeros Pasos & Modelo EER
+      </button>
+      <button onclick="presenter.goToSlide(13)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">14</span> Tablas, Columnas y Banderas
+      </button>
+      <button onclick="presenter.goToSlide(14)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">15</span> Trazado de Relaciones y Foráneas
+      </button>
+      <button onclick="presenter.goToSlide(15)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">16</span> Integridad: ON DELETE & UPDATE
+      </button>
+      <button onclick="presenter.goToSlide(16)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">17</span> Forward Engineering (Ctrl + G)
+      </button>
+      <button onclick="presenter.goToSlide(17)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">18</span> Live Testing: Inserciones & JOIN
+      </button>
+
+      <div class="text-[10px] uppercase font-bold text-slate-400 px-2 pt-3 pb-0.5">Bloque 3: Proyecto Propio & Zajuna</div>
+      <button onclick="presenter.goToSlide(18)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">19</span> Adaptación a Tu Proyecto ADSO
+      </button>
+      <button onclick="presenter.goToSlide(19)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">20</span> Estructura del PDF & Rúbrica Zajuna
+      </button>
+    </div>
+  </aside>
+
+  <!-- Script del motor de diapositivas -->
+  <script src="../../assets/js/presenter.js"></script>
+  <script>
+    let presenter;
+    document.addEventListener('DOMContentLoaded', () => {
+      presenter = new SlidePresenter();
+      
+      const btnMenu = document.getElementById('btn-toggle-menu');
+      const btnCloseMenu = document.getElementById('btn-close-menu');
+      if (btnMenu) btnMenu.addEventListener('click', () => presenter.toggleMenu());
+      if (btnCloseMenu) btnCloseMenu.addEventListener('click', () => presenter.closeMenu());
+
+      const btnHelp = document.getElementById('btn-toggle-help');
+      const btnCloseHelp = document.getElementById('btn-close-help');
+      if (btnHelp) btnHelp.addEventListener('click', () => presenter.toggleHelpModal());
+      if (btnCloseHelp) btnCloseHelp.addEventListener('click', () => presenter.toggleHelpModal());
+
+      if (window.lucide && typeof window.lucide.createIcons === 'function') {
+        window.lucide.createIcons();
+      }
+    });
+  </script>
+</body>
+</html>

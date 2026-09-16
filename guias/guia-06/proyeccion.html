@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-slate-50 text-slate-900 antialiased">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modo Proyección · Guía de Aprendizaje 06 | SENA ADSO</title>
+  <meta name="description" content="Modo proyección en aula para Guía de Aprendizaje 6 - Análisis y Desarrollo de Software SENA Garzón Huila.">
+  <link rel="icon" type="image/png" href="../../assets/logo_green.png">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            sena: {
+              green: '#39A900',
+              'green-hover': '#2D8200',
+              navy: '#00324D',
+              'navy-dark': '#00263A',
+              'navy-light': '#004164'
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../assets/css/presenter.css">
+  <style>
+    /* Estilos específicos para videobeam */
+    .slide-content.active {
+      display: flex !important;
+      flex-direction: column;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body class="min-h-full flex flex-col bg-slate-50 text-slate-900 font-sans selection:bg-[#39A900] selection:text-white">
+
+  <!-- ========================================================================= -->
+  <!-- BARRA SUPERIOR INSTITUCIONAL (CINTILLO) -->
+  <!-- ========================================================================= -->
+  <div class="bg-[#00324D] text-white text-[11px] py-1.5 px-4 border-b border-[#00263A]">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="font-extrabold tracking-wide">SENA</span>
+        <span class="text-slate-400">|</span>
+        <span class="text-slate-200 truncate font-medium">Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)</span>
+      </div>
+      <div class="flex items-center gap-3 text-slate-300 font-mono text-[11px]">
+        <span>Sede Garzón</span>
+        <span class="text-slate-400">•</span>
+        <span class="text-emerald-400 font-semibold">ADSO • Proyección en Aula</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- BARRA DE CONTROL DE PRESENTACIÓN -->
+  <!-- ========================================================================= -->
+  <header class="border-b border-slate-200 bg-white sticky top-0 z-40 shadow-xs">
+    <!-- Barra de Progreso Dinámica -->
+    <div class="w-full bg-slate-100 h-1">
+      <div id="presentation-progress" class="bg-[#39A900] h-1 transition-all duration-300 ease-out" style="width: 6.25%;"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+      <!-- Logo y Título -->
+      <div class="flex items-center gap-3 min-w-0">
+        <a href="../../index.html" class="flex items-center gap-2.5 group">
+          <img src="../../assets/logo_green.png" alt="SENA" class="w-7 h-7 object-contain" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/8/83/Sena_Colombia_logo.svg'">
+          <div class="truncate">
+            <span class="font-extrabold text-slate-900 tracking-tight text-sm">FORMACIÓN <span class="text-sena">ADSO</span></span>
+            <span class="text-[11px] font-bold text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded ml-1 uppercase">CADPH</span>
+          </div>
+        </a>
+        <span class="text-slate-300 hidden sm:inline">/</span>
+        <div class="hidden sm:flex items-center gap-2 text-xs truncate">
+          <span class="font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Guía 06</span>
+          <span class="text-slate-600 font-medium truncate">Fase Ejecución • AP6</span>
+        </div>
+      </div>
+
+      <!-- Controles de Proyección -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Temporizador -->
+        <div class="hidden md:flex items-center gap-1.5 bg-slate-100 px-2.5 py-1 rounded-lg border border-slate-200 font-mono text-xs text-slate-700">
+          <i data-lucide="clock" class="w-3.5 h-3.5 text-slate-500"></i>
+          <span id="timer-display" class="font-bold">00:00</span>
+          <button id="btn-timer-start" class="text-emerald-700 hover:text-emerald-800 font-bold ml-1 text-[11px] uppercase">Iniciar</button>
+          <button id="btn-timer-reset" class="text-slate-400 hover:text-slate-600 ml-1" title="Reset"><i data-lucide="rotate-ccw" class="w-3 h-3"></i></button>
+        </div>
+
+        <!-- Menú de Índice -->
+        <button id="btn-toggle-menu" class="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors" title="Índice de Diapositivas (M)">
+          <i data-lucide="list" class="w-4 h-4"></i>
+        </button>
+
+        <!-- Contador de Slide -->
+        <div class="px-2.5 py-1 bg-slate-100 rounded-lg text-xs font-mono font-bold text-slate-700 border border-slate-200 shrink-0">
+          <span id="slide-counter">1 / 16</span>
+        </div>
+
+        <!-- Botones de Navegación -->
+        <div class="flex items-center gap-1">
+          <button id="btn-prev-slide" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors disabled:opacity-40" title="Anterior (Flecha Izq)">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+          </button>
+          <button id="btn-next-slide" class="p-2 rounded-lg bg-[#39A900] hover:bg-[#2D8200] text-white transition-colors" title="Siguiente (Espacio o Flecha Der)">
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <!-- Pantalla Completa -->
+        <button id="btn-fullscreen" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors" title="Pantalla Completa (F)">
+          <i data-lucide="maximize" class="w-4 h-4"></i>
+        </button>
+
+        <!-- Ayuda -->
+        <button id="btn-toggle-help" class="p-2 rounded-lg text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors" title="Atajos de teclado (?)">
+          <i data-lucide="help-circle" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- CONTENEDOR PRINCIPAL DE DIAPOSITIVAS -->
+  <!-- ========================================================================= -->
+  <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 py-6 sm:py-8 flex flex-col justify-center slide-container">
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- SLIDE 1: PORTADA GENERAL GUÍA 06 -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content active" id="slide-1" aria-hidden="false">
+      <div class="text-center max-w-4xl mx-auto space-y-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-semibold text-emerald-800">
+          <span class="w-2 h-2 rounded-full bg-[#39A900] animate-pulse"></span>
+          <span>SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)</span>
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+          Guía de Aprendizaje 06: <br>
+          <span class="text-[#39A900]">Estructura de Datos e Interfaz de Usuario</span>
+        </h1>
+
+        <p class="text-slate-600 text-base sm:text-lg max-w-2xl mx-auto">
+          Tecnólogo en Análisis y Desarrollo de Software (ADSO) • Fase de Ejecución • 288 Horas de Formación Integral.
+        </p>
+
+        <!-- 3 Bloques Resumen -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 text-left">
+          <div class="bg-white border-2 border-emerald-500/80 rounded-xl p-5 shadow-xs">
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800">BLOQUE 1</span>
+              <span class="text-xs text-slate-400 font-mono">110 MINUTOS</span>
+            </div>
+            <h3 class="font-bold text-slate-900 text-sm">Teoría & Fundamentos</h3>
+            <p class="text-xs text-slate-500 mt-1">Normalización 1FN-3FN, esquemas NoSQL, usabilidad WCAG y semántica HTML5.</p>
+            <div class="mt-4 text-[11px] text-emerald-700 font-semibold flex items-center gap-1">
+              <i data-lucide="check" class="w-3.5 h-3.5"></i> 110 minutos de fundamentos
+            </div>
+          </div>
+
+          <div class="bg-white border-2 border-blue-500/80 rounded-xl p-5 shadow-xs">
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-blue-100 text-blue-800">BLOQUE 2</span>
+              <span class="text-xs text-slate-400 font-mono">70 MINUTOS</span>
+            </div>
+            <h3 class="font-bold text-slate-900 text-sm">Taller Práctico Guiado</h3>
+            <p class="text-xs text-slate-500 mt-1">Live coding en MySQL Workbench, MongoDB Compass, Figma y maquetación web.</p>
+            <div class="mt-4 text-[11px] text-blue-700 font-semibold flex items-center gap-1">
+              <i data-lucide="terminal" class="w-3.5 h-3.5"></i> 70 minutos prácticos
+            </div>
+          </div>
+
+          <div class="bg-white border-2 border-purple-500/80 rounded-xl p-5 shadow-xs">
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-purple-100 text-purple-800">BLOQUE 3</span>
+              <span class="text-xs text-slate-400 font-mono">40 MINUTOS</span>
+            </div>
+            <h3 class="font-bold text-slate-900 text-sm">Evidencia & Sustentación</h3>
+            <p class="text-xs text-slate-500 mt-1">Validación contra lista de chequeo oficial IE-GA6 y carga en plataforma Zajuna.</p>
+            <div class="mt-4 text-[11px] text-purple-700 font-semibold flex items-center gap-1">
+              <i data-lucide="clipboard-check" class="w-3.5 h-3.5"></i> 40 minutos de evaluación
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-6 flex items-center justify-center gap-4">
+          <button onclick="presenter.nextSlide()" class="inline-flex items-center gap-2 bg-[#39A900] hover:bg-[#2D8200] text-white font-bold px-6 py-3 rounded-lg text-sm shadow-md transition-all">
+            <span>Iniciar Proyección</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+          <span class="text-xs text-slate-400 font-mono">Navegar: [Espacio] o [→] • [F] Pantalla Completa</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- SLIDE 2: NORMALIZACIÓN DE BASES DE DATOS (AA1-EV01) -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-2" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Normalización de Bases de Datos <span class="text-[#39A900]">(1FN, 2FN y 3FN)</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Tecnólogo en Análisis y Desarrollo de Software (ADSO) • Evidencia GA6-220501096-AA1-EV01
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+          <!-- Bloque 1 -->
+          <div class="bg-white border-2 border-emerald-500/80 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800">BLOQUE 1</span>
+                <span class="text-xs text-slate-400 font-mono">110 MINUTOS</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Teoría & Formas Normales</h3>
+              <p class="text-xs text-slate-600">Reglas matemáticas de Codd para eliminar redundancias y anomalías de actualización.</p>
+              <ul class="space-y-1.5 text-xs text-slate-700">
+                <li class="flex items-start gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sena shrink-0 mt-0.5"></i> <strong>1FN:</strong> Valores atómicos, sin grupos repetitivos.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sena shrink-0 mt-0.5"></i> <strong>2FN:</strong> Dependencia funcional completa de la PK.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sena shrink-0 mt-0.5"></i> <strong>3FN:</strong> Cero dependencias transitivas entre no-claves.</li>
+              </ul>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+              <span>Fundamentos</span>
+              <span class="text-emerald-700 font-bold">110 min sesión</span>
+            </div>
+          </div>
+
+          <!-- Bloque 2 -->
+          <div class="bg-white border-2 border-blue-500/80 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-blue-100 text-blue-800">BLOQUE 2</span>
+                <span class="text-xs text-slate-400 font-mono">70 MINUTOS</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Taller Práctico en Aula</h3>
+              <p class="text-xs text-slate-600">Descomposición paso a paso de una factura plana con ítems repetitivos.</p>
+              <ul class="space-y-1.5 text-xs text-slate-700">
+                <li class="flex items-start gap-1.5"><i data-lucide="arrow-right" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i> Identificar clave primaria compuesta y atributos.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="arrow-right" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i> Separar entidades Cliente, Factura, Producto y Detalle.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="arrow-right" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i> Validar integridad con claves foráneas (FK).</li>
+              </ul>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+              <span>Metodología</span>
+              <span class="text-blue-700 font-bold">Taller Guiado</span>
+            </div>
+          </div>
+
+          <!-- Bloque 3 -->
+          <div class="bg-white border-2 border-purple-500/80 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-purple-100 text-purple-800">BLOQUE 3</span>
+                <span class="text-xs text-slate-400 font-mono">40 MINUTOS</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Evidencia & Sustentación</h3>
+              <p class="text-xs text-slate-600">Entrega de resolución de problemas aplicando el modelo relacional.</p>
+              <div class="bg-purple-50 p-2.5 rounded-lg border border-purple-200 text-xs text-purple-900 space-y-1 font-mono">
+                <p>• Código: <strong>GA6-220501096-AA1-EV01</strong></p>
+                <p>• Formato: <strong>Documento PDF</strong></p>
+                <p>• Instrumento: <strong>IE-GA6-220501096-AA1-EV01</strong></p>
+              </div>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+              <span>Entrega</span>
+              <span class="text-purple-700 font-bold">Plataforma Zajuna</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botón para lanzar la proyección detallada de 12 diapositivas -->
+        <div class="pt-2 text-center">
+          <a href="proyeccion-evidencia-01.html" class="inline-flex items-center gap-2 bg-[#00324D] hover:bg-[#00263A] text-white font-bold px-5 py-2.5 rounded-lg text-xs shadow-sm hover:shadow transition-all">
+            <i data-lucide="presentation" class="w-4 h-4 text-emerald-400"></i>
+            <span>Iniciar Diapositivas Paso a Paso de la Evidencia 1 (12 Slides Específicos)</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- SLIDE 3: MODELO ENTIDAD-RELACIÓN Y DICCIONARIO (AA1-EV02) -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-3" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Modelo Entidad-Relación y <span class="text-[#39A900]">Diccionario de Datos</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Tecnólogo en Análisis y Desarrollo de Software (ADSO) • Evidencia GA6-220501096-AA1-EV02
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+          <!-- Bloque 1 -->
+          <div class="bg-white border-2 border-emerald-500/80 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800">BLOQUE 1</span>
+                <span class="text-xs text-slate-400 font-mono">110 MINUTOS</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Teoría & Notación MER / MR</h3>
+              <p class="text-xs text-slate-600">Modelado semántico de datos y paso del modelo conceptual (Chen) al relacional (Codd).</p>
+              <ul class="space-y-1.5 text-xs text-slate-700">
+                <li class="flex items-start gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sena shrink-0 mt-0.5"></i> Entidades fuertes vs débiles.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sena shrink-0 mt-0.5"></i> Relaciones 1:1, 1:N y N:M con tablas puente.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sena shrink-0 mt-0.5"></i> Diccionario de datos: nombres, tipos, longitud y nulos.</li>
+              </ul>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 text-[11px] text-slate-500 flex justify-between">
+              <span>Fundamentos</span><span class="text-emerald-700 font-bold">110 min</span>
+            </div>
+          </div>
+
+          <!-- Bloque 2 -->
+          <div class="bg-white border-2 border-blue-500/80 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-blue-100 text-blue-800">BLOQUE 2</span>
+                <span class="text-xs text-slate-400 font-mono">70 MINUTOS</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Taller de Diagramación</h3>
+              <p class="text-xs text-slate-600">Construcción del diagrama en MySQL Workbench / dbdiagram.io para el caso asignado.</p>
+              <ul class="space-y-1.5 text-xs text-slate-700">
+                <li class="flex items-start gap-1.5"><i data-lucide="terminal" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i> Creación de esquemas y tablas normalizadas.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="terminal" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i> Vinculación gráfica de Foreign Keys.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="terminal" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i> Exportación de imagen vectorial de alta calidad.</li>
+              </ul>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 text-[11px] text-slate-500 flex justify-between">
+              <span>Herramienta</span><span class="text-blue-700 font-bold">MySQL Workbench</span>
+            </div>
+          </div>
+
+          <!-- Bloque 3 -->
+          <div class="bg-white border-2 border-purple-500/80 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-purple-100 text-purple-800">BLOQUE 3</span>
+                <span class="text-xs text-slate-400 font-mono">40 MINUTOS</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Evidencia de Desempeño</h3>
+              <div class="bg-purple-50 p-2.5 rounded-lg border border-purple-200 text-xs text-purple-900 space-y-1 font-mono">
+                <p>• Código: <strong>GA6-220501096-AA1-EV02</strong></p>
+                <p>• Formato: <strong>PDF (Diagrama + Diccionario)</strong></p>
+                <p>• Instrumento: <strong>IE-GA6-220501096-AA1-EV02</strong></p>
+              </div>
+              <p class="text-[11px] text-slate-500">Debe incluir el 100% de los módulos funcionales del caso de estudio.</p>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 text-[11px] text-slate-500 flex justify-between">
+              <span>Entrega</span><span class="text-purple-700 font-bold">Zajuna / SofiaPlus</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- SLIDE 4: MODELO DOCUMENTAL NOSQL MONGODB (AA1-EV03 Y EV04) -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-4" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Bases de Datos NoSQL y <span class="text-[#39A900]">Estructura en MongoDB</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Tecnólogo en Análisis y Desarrollo de Software (ADSO) • Evidencias GA6-220501096-AA1-EV03 y EV04
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+          <!-- Bloque 1 -->
+          <div class="bg-white border-2 border-emerald-500/80 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800">BLOQUE 1</span>
+                <span class="text-xs text-slate-400 font-mono">110 MINUTOS</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Teoría & Modelo Documental</h3>
+              <p class="text-xs text-slate-600">Comparativa Relacional vs NoSQL: Colecciones, documentos BSON y diseño denormalizado.</p>
+              <ul class="space-y-1.5 text-xs text-slate-700">
+                <li class="flex items-start gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sena shrink-0 mt-0.5"></i> Embedding (documentos embebidos) para lectura rápida.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sena shrink-0 mt-0.5"></i> Referencing (ObjectId) para relaciones amplias.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sena shrink-0 mt-0.5"></i> Validadores de esquema $jsonSchema.</li>
+              </ul>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 text-[11px] text-slate-500 flex justify-between">
+              <span>Enfoque</span><span class="text-emerald-700 font-bold">NoSQL Atlas / Local</span>
+            </div>
+          </div>
+
+          <!-- Bloque 2 -->
+          <div class="bg-white border-2 border-blue-500/80 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-blue-100 text-blue-800">BLOQUE 2</span>
+                <span class="text-xs text-slate-400 font-mono">70 MINUTOS</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Live Coding en MongoShell</h3>
+              <p class="text-xs text-slate-600">Creación de base de datos, inserciones masivas y consultas con filtros y agregación.</p>
+              <div class="bg-slate-900 text-slate-100 p-2.5 rounded font-mono text-[11px] overflow-x-auto">
+                <code>db.usuarios.insertMany([<br>&nbsp;&nbsp;{ nombre: "Ana", rol: "admin", activo: true }<br>]);<br>db.usuarios.find({ activo: true });</code>
+              </div>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 text-[11px] text-slate-500 flex justify-between">
+              <span>Herramienta</span><span class="text-blue-700 font-bold">MongoDB Compass</span>
+            </div>
+          </div>
+
+          <!-- Bloque 3 -->
+          <div class="bg-white border-2 border-purple-500/80 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-purple-100 text-purple-800">BLOQUE 3</span>
+                <span class="text-xs text-slate-400 font-mono">40 MINUTOS</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Entregables Oficiales</h3>
+              <div class="bg-purple-50 p-2.5 rounded-lg border border-purple-200 text-xs text-purple-900 space-y-1 font-mono">
+                <p>• <strong>EV03:</strong> Objetos NoSQL (PDF / JSON)</p>
+                <p>• <strong>EV04:</strong> Elaboración BD (ZIP con script + informe)</p>
+                <p>• Instrumento: <strong>IE-GA6-220501096-AA1-EV04</strong></p>
+              </div>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 text-[11px] text-slate-500 flex justify-between">
+              <span>Entrega</span><span class="text-purple-700 font-bold">Plataforma Zajuna</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- SLIDE 5: SENTENCIAS SQL DDL Y DML (AA2-EV01) -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-5" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Consultas SQL, Agregaciones y <span class="text-[#39A900]">Cruce de Tablas (JOINs)</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Tecnólogo en Análisis y Desarrollo de Software (ADSO) • Evidencia GA6-220501096-AA2-EV01
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+          <!-- Bloque 1 -->
+          <div class="bg-white border-2 border-emerald-500/80 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800">BLOQUE 1</span>
+                <span class="text-xs text-slate-400 font-mono">110 MINUTOS</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Teoría & Live Coding</h3>
+              <p class="text-xs text-slate-600">Pipeline de ejecución SQL, trampa del NULL, funciones de agregado y diagramas relacionales.</p>
+              <ul class="space-y-1.5 text-xs text-slate-700">
+                <li class="flex items-start gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sena shrink-0 mt-0.5"></i> Pipeline de 8 fases (FROM hasta LIMIT).</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sena shrink-0 mt-0.5"></i> INNER JOIN vs LEFT JOIN con diagramas de Venn.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sena shrink-0 mt-0.5"></i> GROUP BY y diferencia clave con HAVING.</li>
+              </ul>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 text-[11px] text-slate-500 flex justify-between">
+              <span>Fundamentos</span><span class="text-emerald-700 font-bold">Aula Informática</span>
+            </div>
+          </div>
+
+          <!-- Bloque 2 -->
+          <div class="bg-white border-2 border-blue-500/80 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-blue-100 text-blue-800">BLOQUE 2</span>
+                <span class="text-xs text-slate-400 font-mono">70 MINUTOS</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Taller Práctico en Aula</h3>
+              <p class="text-xs text-slate-600">Resolución de los 5 retos de negocio sobre el esquema relacional en MySQL Workbench.</p>
+              <ul class="space-y-1.5 text-xs text-slate-700">
+                <li class="flex items-start gap-1.5"><i data-lucide="arrow-right" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i> Filtros avanzados, rangos y agregaciones.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="arrow-right" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i> Auditoría de registros huérfanos con LEFT JOIN.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="arrow-right" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i> Generación de reportes de ventas agrupadas.</li>
+              </ul>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 text-[11px] text-slate-500 flex justify-between">
+              <span>Modalidad</span><span class="text-blue-700 font-bold">Individual / Parejas</span>
+            </div>
+          </div>
+
+          <!-- Bloque 3 -->
+          <div class="bg-white border-2 border-purple-500/80 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-purple-100 text-purple-800">BLOQUE 3</span>
+                <span class="text-xs text-slate-400 font-mono">40 MINUTOS</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Evidencia & Sustentación</h3>
+              <p class="text-xs text-slate-600">Sustentación individual en vivo ante el instructor: modificación de queries en caliente (sin IA) y commit oficial.</p>
+              <div class="bg-purple-50 p-2.5 rounded-lg border border-purple-200 text-xs text-purple-900 space-y-1 font-mono">
+                <p>• Código: <strong>GA6-220501096-AA2-EV01</strong></p>
+                <p>• Formato: <strong>Script .sql + PDF</strong></p>
+                <p>• Instrumento: <strong>IE-GA6-220501096-AA2-EV01</strong></p>
+              </div>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 text-[11px] text-slate-500 flex justify-between">
+              <span>Sustentación</span><span class="text-purple-700 font-bold">40 min evaluación</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- SLIDE 6: ESTRUCTURA Y RESTRICCIONES DDL (AA2-EV02 Y EV03) -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-6" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Restricciones de Integridad y <span class="text-[#39A900]">Script SQL del Proyecto</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Tecnólogo en Análisis y Desarrollo de Software (ADSO) • Evidencias GA6-220501096-AA2-EV02 y EV03
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+          <!-- Bloque 1 -->
+          <div class="bg-white border-2 border-emerald-500/80 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800">BLOQUE 1</span>
+                <span class="text-xs text-slate-400 font-mono">110 MINUTOS</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Teoría de Integridad DDL</h3>
+              <p class="text-xs text-slate-600">Mecanismos nativos del motor relacional para garantizar que no existan datos corruptos.</p>
+              <ul class="space-y-1.5 text-xs text-slate-700">
+                <li class="flex items-start gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sena shrink-0 mt-0.5"></i> PRIMARY KEY vs UNIQUE.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sena shrink-0 mt-0.5"></i> FOREIGN KEY con ON DELETE CASCADE/SET NULL.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sena shrink-0 mt-0.5"></i> Restricciones CHECK y valores DEFAULT.</li>
+              </ul>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 text-[11px] text-slate-500 flex justify-between">
+              <span>Fundamentos</span><span class="text-emerald-700 font-bold">110 min</span>
+            </div>
+          </div>
+
+          <!-- Bloque 2 -->
+          <div class="bg-white border-2 border-blue-500/80 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-blue-100 text-blue-800">BLOQUE 2</span>
+                <span class="text-xs text-slate-400 font-mono">70 MINUTOS</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Pruebas de Resistencia</h3>
+              <p class="text-xs text-slate-600">Simulación de violaciones de integridad referencial para certificar el blindaje del esquema.</p>
+              <ul class="space-y-1.5 text-xs text-slate-700">
+                <li class="flex items-start gap-1.5"><i data-lucide="terminal" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i> Intento de inserción de FK inexistente.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="terminal" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i> Intento de inserción de valores fuera de rango en CHECK.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="terminal" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i> Poblamiento con datos semilla (seeders).</li>
+              </ul>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 text-[11px] text-slate-500 flex justify-between">
+              <span>Taller</span><span class="text-blue-700 font-bold">70 min live</span>
+            </div>
+          </div>
+
+          <!-- Bloque 3 -->
+          <div class="bg-white border-2 border-purple-500/80 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-purple-100 text-purple-800">BLOQUE 3</span>
+                <span class="text-xs text-slate-400 font-mono">40 MINUTOS</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Script Oficial del Proyecto</h3>
+              <div class="bg-purple-50 p-2.5 rounded-lg border border-purple-200 text-xs text-purple-900 space-y-1 font-mono">
+                <p>• <strong>EV02:</strong> Restricciones (Script + Informe)</p>
+                <p>• <strong>EV03:</strong> Script definitivo (.sql)</p>
+                <p>• Criterio: <strong>Ejecución limpia y reproducible</strong></p>
+              </div>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 text-[11px] text-slate-500 flex justify-between">
+              <span>Entrega</span><span class="text-purple-700 font-bold">Zajuna LMS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- SLIDE 7: HERRAMIENTAS DE PROTOTIPADO UI/UX (AA3-EV01) -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-7" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Selección de Herramientas de <span class="text-[#39A900]">Prototipado UX/UI</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Tecnólogo en Análisis y Desarrollo de Software (ADSO) • Evidencia GA6-220501096-AA3-EV01
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+          <!-- Bloque 1 -->
+          <div class="bg-white border-2 border-emerald-500/80 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800">BLOQUE 1</span>
+                <span class="text-xs text-slate-400 font-mono">110 MINUTOS</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Ecosistema de Diseño</h3>
+              <p class="text-xs text-slate-600">Evaluación de herramientas líderes para diseño de productos digitales.</p>
+              <ul class="space-y-1.5 text-xs text-slate-700">
+                <li class="flex items-start gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sena shrink-0 mt-0.5"></i> <strong>Figma:</strong> Estándar de la industria, colaboración cloud en tiempo real.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sena shrink-0 mt-0.5"></i> <strong>Penpot:</strong> Alternativa open-source basada en estándares web y SVG.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sena shrink-0 mt-0.5"></i> <strong>Balsamiq:</strong> Wireframing rápido de baja fidelidad.</li>
+              </ul>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 text-[11px] text-slate-500 flex justify-between">
+              <span>Fundamentos</span><span class="text-emerald-700 font-bold">110 min</span>
+            </div>
+          </div>
+
+          <!-- Bloque 2 -->
+          <div class="bg-white border-2 border-blue-500/80 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-blue-100 text-blue-800">BLOQUE 2</span>
+                <span class="text-xs text-slate-400 font-mono">70 MINUTOS</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Creación de Prototipo Base</h3>
+              <p class="text-xs text-slate-600">Creación del espacio de trabajo del equipo y desarrollo de las 3 primeras pantallas de prueba.</p>
+              <ul class="space-y-1.5 text-xs text-slate-700">
+                <li class="flex items-start gap-1.5"><i data-lucide="layout" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i> Configuración de Frame (Desktop 1440px y Mobile 375px).</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="layout" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i> Uso de Auto Layout y componentes reutilizables.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="layout" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i> Generación de enlaces compartibles de previsualización.</li>
+              </ul>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 text-[11px] text-slate-500 flex justify-between">
+              <span>Práctica</span><span class="text-blue-700 font-bold">Figma / Penpot</span>
+            </div>
+          </div>
+
+          <!-- Bloque 3 -->
+          <div class="bg-white border-2 border-purple-500/80 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-purple-100 text-purple-800">BLOQUE 3</span>
+                <span class="text-xs text-slate-400 font-mono">40 MINUTOS</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Evidencia Entregable</h3>
+              <div class="bg-purple-50 p-2.5 rounded-lg border border-purple-200 text-xs text-purple-900 space-y-1 font-mono">
+                <p>• Código: <strong>GA6-220501096-AA3-EV01</strong></p>
+                <p>• Formato: <strong>ZIP (Word/PDF + Prototipo)</strong></p>
+                <p>• Instrumento: <strong>IE-GA6-220501096-AA3-EV01</strong></p>
+              </div>
+              <p class="text-[11px] text-slate-500">Debe argumentar ventajas técnicas y costos de adopción.</p>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 text-[11px] text-slate-500 flex justify-between">
+              <span>Entrega</span><span class="text-purple-700 font-bold">Zajuna LMS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- SLIDE 8: WIREFRAMES Y FLUJOS DE NAVEGACIÓN (AA3-EV02) -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-8" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Wireframes y <span class="text-[#39A900]">Arquitectura de Navegación</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Tecnólogo en Análisis y Desarrollo de Software (ADSO) • Evidencia GA6-220501096-AA3-EV02
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+          <!-- Bloque 1 -->
+          <div class="bg-white border-2 border-emerald-500/80 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800">BLOQUE 1</span>
+                <span class="text-xs text-slate-400 font-mono">110 MINUTOS</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Arquitectura de Información</h3>
+              <p class="text-xs text-slate-600">Estructuración de jerarquías de contenido, flujos de tareas de usuario y diseño centrado en el usuario.</p>
+              <ul class="space-y-1.5 text-xs text-slate-700">
+                <li class="flex items-start gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sena shrink-0 mt-0.5"></i> Mapa del sitio y árboles de decisión.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sena shrink-0 mt-0.5"></i> Wireframes de media fidelidad sin distracciones de color.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sena shrink-0 mt-0.5"></i> Patrones estándar: barras de navegación, breadcrumbs y footers.</li>
+              </ul>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 text-[11px] text-slate-500 flex justify-between">
+              <span>Fundamentos</span><span class="text-emerald-700 font-bold">110 min</span>
+            </div>
+          </div>
+
+          <!-- Bloque 2 -->
+          <div class="bg-white border-2 border-blue-500/80 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-blue-100 text-blue-800">BLOQUE 2</span>
+                <span class="text-xs text-slate-400 font-mono">70 MINUTOS</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Flujo Interactivo en Figma</h3>
+              <p class="text-xs text-slate-600">Conectar pantallas para simular la navegación real del software.</p>
+              <ul class="space-y-1.5 text-xs text-slate-700">
+                <li class="flex items-start gap-1.5"><i data-lucide="navigation" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i> Conexión On Click de botones a vistas destino.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="navigation" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i> Simulación de modales emergentes (Overlays).</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="navigation" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i> Test de usabilidad con aprendices del equipo.</li>
+              </ul>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 text-[11px] text-slate-500 flex justify-between">
+              <span>Prototipo</span><span class="text-blue-700 font-bold">Interactivo</span>
+            </div>
+          </div>
+
+          <!-- Bloque 3 -->
+          <div class="bg-white border-2 border-purple-500/80 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-purple-100 text-purple-800">BLOQUE 3</span>
+                <span class="text-xs text-slate-400 font-mono">40 MINUTOS</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Evidencia de Desempeño</h3>
+              <div class="bg-purple-50 p-2.5 rounded-lg border border-purple-200 text-xs text-purple-900 space-y-1 font-mono">
+                <p>• Código: <strong>GA6-220501096-AA3-EV02</strong></p>
+                <p>• Formato: <strong>ZIP (Doc + Mockup interactivo)</strong></p>
+                <p>• Instrumento: <strong>IE-GA6-220501096-AA3-EV02</strong></p>
+              </div>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 text-[11px] text-slate-500 flex justify-between">
+              <span>Entrega</span><span class="text-purple-700 font-bold">Zajuna LMS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- SLIDE 9: INTERFACES DE ALTA FIDELIDAD DEL PROYECTO (AA3-EV03) -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-9" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Interfaces Gráficas de <span class="text-[#39A900]">Alta Fidelidad (UI Design)</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Tecnólogo en Análisis y Desarrollo de Software (ADSO) • Evidencia GA6-220501096-AA3-EV03
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+          <!-- Bloque 1 -->
+          <div class="bg-white border-2 border-emerald-500/80 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800">BLOQUE 1</span>
+                <span class="text-xs text-slate-400 font-mono">110 MINUTOS</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Sistemas de Diseño & WCAG</h3>
+              <p class="text-xs text-slate-600">Fundamentos de accesibilidad web, jerarquía visual, espaciados atómicos y componentes reusables.</p>
+              <ul class="space-y-1.5 text-xs text-slate-700">
+                <li class="flex items-start gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sena shrink-0 mt-0.5"></i> Relación de contraste mínimo 4.5:1 (WCAG AA).</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sena shrink-0 mt-0.5"></i> Escala tipográfica modular y pesos visuales.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sena shrink-0 mt-0.5"></i> Variantes de botones: Primary, Secondary, Danger, Ghost.</li>
+              </ul>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 text-[11px] text-slate-500 flex justify-between">
+              <span>Fundamentos</span><span class="text-emerald-700 font-bold">110 min</span>
+            </div>
+          </div>
+
+          <!-- Bloque 2 -->
+          <div class="bg-white border-2 border-blue-500/80 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-blue-100 text-blue-800">BLOQUE 2</span>
+                <span class="text-xs text-slate-400 font-mono">70 MINUTOS</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Diseño del Software del Proyecto</h3>
+              <p class="text-xs text-slate-600">Maquetación en Figma de todas las vistas del proyecto de software con componentes reales.</p>
+              <ul class="space-y-1.5 text-xs text-slate-700">
+                <li class="flex items-start gap-1.5"><i data-lucide="palette" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i> Vistas de Login, Dashboard, Tablas CRUD y Formularios.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="palette" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i> Estados vacíos (Empty states) y modales de confirmación.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="palette" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i> Handoff para desarrolladores (CSS inspect).</li>
+              </ul>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 text-[11px] text-slate-500 flex justify-between">
+              <span>Taller</span><span class="text-blue-700 font-bold">Figma Pro</span>
+            </div>
+          </div>
+
+          <!-- Bloque 3 -->
+          <div class="bg-white border-2 border-purple-500/80 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-purple-100 text-purple-800">BLOQUE 3</span>
+                <span class="text-xs text-slate-400 font-mono">40 MINUTOS</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Evidencia de Producto</h3>
+              <div class="bg-purple-50 p-2.5 rounded-lg border border-purple-200 text-xs text-purple-900 space-y-1 font-mono">
+                <p>• Código: <strong>GA6-220501096-AA3-EV03</strong></p>
+                <p>• Formato: <strong>ZIP / Enlace de Figma</strong></p>
+                <p>• Criterio: <strong>Interfaces completas navegables</strong></p>
+              </div>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 text-[11px] text-slate-500 flex justify-between">
+              <span>Entrega</span><span class="text-purple-700 font-bold">Zajuna LMS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- SLIDE 10: FUNDAMENTOS FRONTEND HTML/CSS/JS (AA4-EV01) -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-10" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Fundamentos de Frontend: <span class="text-[#39A900]">HTML5 Semántico, CSS y JS</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Tecnólogo en Análisis y Desarrollo de Software (ADSO) • Evidencia GA6-220501096-AA4-EV01
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+          <!-- Bloque 1 -->
+          <div class="bg-white border-2 border-emerald-500/80 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800">BLOQUE 1</span>
+                <span class="text-xs text-slate-400 font-mono">110 MINUTOS</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Estándares Web W3C</h3>
+              <p class="text-xs text-slate-600">Estructura semántica para accesibilidad y SEO técnico.</p>
+              <ul class="space-y-1.5 text-xs text-slate-700">
+                <li class="flex items-start gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sena shrink-0 mt-0.5"></i> Etiquetas &lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, &lt;article&gt;, &lt;section&gt;, &lt;footer&gt;.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sena shrink-0 mt-0.5"></i> Flexbox y CSS Grid para layouts responsive.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sena shrink-0 mt-0.5"></i> Manipulación básica del DOM con JavaScript ES6+.</li>
+              </ul>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 text-[11px] text-slate-500 flex justify-between">
+              <span>Fundamentos</span><span class="text-emerald-700 font-bold">110 min</span>
+            </div>
+          </div>
+
+          <!-- Bloque 2 -->
+          <div class="bg-white border-2 border-blue-500/80 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-blue-100 text-blue-800">BLOQUE 2</span>
+                <span class="text-xs text-slate-400 font-mono">70 MINUTOS</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Tutorial Web Interactivo</h3>
+              <p class="text-xs text-slate-600">Construcción de una página web didáctica con enlaces ancla y tarjetas de conceptos.</p>
+              <ul class="space-y-1.5 text-xs text-slate-700">
+                <li class="flex items-start gap-1.5"><i data-lucide="code" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i> Lista ordenada con anclas internas (#tema-1).</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="code" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i> Diseño en CSS moderno sin frameworks.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="code" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i> Interactividad básica con script en JS.</li>
+              </ul>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 text-[11px] text-slate-500 flex justify-between">
+              <span>Taller</span><span class="text-blue-700 font-bold">HTML5 + CSS3</span>
+            </div>
+          </div>
+
+          <!-- Bloque 3 -->
+          <div class="bg-white border-2 border-purple-500/80 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-purple-100 text-purple-800">BLOQUE 3</span>
+                <span class="text-xs text-slate-400 font-mono">40 MINUTOS</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Evidencia de Conocimiento</h3>
+              <div class="bg-purple-50 p-2.5 rounded-lg border border-purple-200 text-xs text-purple-900 space-y-1 font-mono">
+                <p>• Código: <strong>GA6-220501096-AA4-EV01</strong></p>
+                <p>• Formato: <strong>ZIP / Enlace Web</strong></p>
+                <p>• Instrumento: <strong>IE-GA6-220501096-AA4-EV01</strong></p>
+              </div>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 text-[11px] text-slate-500 flex justify-between">
+              <span>Entrega</span><span class="text-purple-700 font-bold">Zajuna LMS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- SLIDE 11: CATÁLOGO Y ARQUITECTURA DE COMPONENTES FRONTEND (AA4-EV02) -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-11" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Catálogo y Arquitectura de <span class="text-[#39A900]">Componentes Web</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Tecnólogo en Análisis y Desarrollo de Software (ADSO) • Evidencia GA6-220501096-AA4-EV02
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+          <!-- Bloque 1 -->
+          <div class="bg-white border-2 border-emerald-500/80 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800">BLOQUE 1</span>
+                <span class="text-xs text-slate-400 font-mono">110 MINUTOS</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Ingeniería de Componentes</h3>
+              <p class="text-xs text-slate-600">Diseño atómico: Átomos, moléculas, organismos, plantillas y páginas completas.</p>
+              <ul class="space-y-1.5 text-xs text-slate-700">
+                <li class="flex items-start gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sena shrink-0 mt-0.5"></i> Especificación de componentes de UI del software.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sena shrink-0 mt-0.5"></i> Atributos, clases CSS y estados visuales.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sena shrink-0 mt-0.5"></i> Roles ARIA para lectores de pantalla.</li>
+              </ul>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 text-[11px] text-slate-500 flex justify-between">
+              <span>Fundamentos</span><span class="text-emerald-700 font-bold">110 min</span>
+            </div>
+          </div>
+
+          <!-- Bloque 2 -->
+          <div class="bg-white border-2 border-blue-500/80 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-blue-100 text-blue-800">BLOQUE 2</span>
+                <span class="text-xs text-slate-400 font-mono">70 MINUTOS</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Documentación Técnica</h3>
+              <p class="text-xs text-slate-600">Redacción del documento de ingeniería frontend del proyecto formativo.</p>
+              <ul class="space-y-1.5 text-xs text-slate-700">
+                <li class="flex items-start gap-1.5"><i data-lucide="file-text" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i> Portada, introducción, objetivos y alcance.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="file-text" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i> Fichas técnicas de cada componente web.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="file-text" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i> Mapeo directo contra los wireframes aprobados.</li>
+              </ul>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 text-[11px] text-slate-500 flex justify-between">
+              <span>Taller</span><span class="text-blue-700 font-bold">Doc Técnico</span>
+            </div>
+          </div>
+
+          <!-- Bloque 3 -->
+          <div class="bg-white border-2 border-purple-500/80 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-purple-100 text-purple-800">BLOQUE 3</span>
+                <span class="text-xs text-slate-400 font-mono">40 MINUTOS</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Evidencia de Desempeño</h3>
+              <div class="bg-purple-50 p-2.5 rounded-lg border border-purple-200 text-xs text-purple-900 space-y-1 font-mono">
+                <p>• Código: <strong>GA6-220501096-AA4-EV02</strong></p>
+                <p>• Formato: <strong>ZIP (Documento Técnico)</strong></p>
+                <p>• Instrumento: <strong>IE-GA6-220501096-AA4-EV02</strong></p>
+              </div>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 text-[11px] text-slate-500 flex justify-between">
+              <span>Entrega</span><span class="text-purple-700 font-bold">Zajuna LMS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- SLIDE 12: MAQUETACIÓN FRONTEND FINAL DEL PROYECTO (AA4-EV03) -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-12" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Maquetación Frontend Final del <span class="text-[#39A900]">Proyecto de Software</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Tecnólogo en Análisis y Desarrollo de Software (ADSO) • Evidencia GA6-220501096-AA4-EV03
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+          <!-- Bloque 1 -->
+          <div class="bg-white border-2 border-emerald-500/80 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800">BLOQUE 1</span>
+                <span class="text-xs text-slate-400 font-mono">110 MINUTOS</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Criterios de Calidad Frontend</h3>
+              <p class="text-xs text-slate-600">Revisión de rendimiento (Lighthouse), semántica, compatibilidad entre navegadores y responsive design.</p>
+              <ul class="space-y-1.5 text-xs text-slate-700">
+                <li class="flex items-start gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sena shrink-0 mt-0.5"></i> Vistas completas: Home, Auth, Dashboard, Formularios.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sena shrink-0 mt-0.5"></i> Validación de formularios nativa y JavaScript.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sena shrink-0 mt-0.5"></i> Fidelidad 1:1 con respecto al diseño de Figma.</li>
+              </ul>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 text-[11px] text-slate-500 flex justify-between">
+              <span>Fundamentos</span><span class="text-emerald-700 font-bold">110 min</span>
+            </div>
+          </div>
+
+          <!-- Bloque 2 -->
+          <div class="bg-white border-2 border-blue-500/80 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-blue-100 text-blue-800">BLOQUE 2</span>
+                <span class="text-xs text-slate-400 font-mono">70 MINUTOS</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Despliegue en GitHub Pages</h3>
+              <p class="text-xs text-slate-600">Publicación en producción del sitio web estático para revisión remota.</p>
+              <ul class="space-y-1.5 text-xs text-slate-700">
+                <li class="flex items-start gap-1.5"><i data-lucide="globe" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i> Inicialización de repositorio Git y commits limpios.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="globe" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i> Configuración de rama main y GitHub Pages.</li>
+                <li class="flex items-start gap-1.5"><i data-lucide="globe" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i> Comprobación de enlaces relativos funcionales.</li>
+              </ul>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 text-[11px] text-slate-500 flex justify-between">
+              <span>Despliegue</span><span class="text-blue-700 font-bold">GitHub Pages</span>
+            </div>
+          </div>
+
+          <!-- Bloque 3 -->
+          <div class="bg-white border-2 border-purple-500/80 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-purple-100 text-purple-800">BLOQUE 3</span>
+                <span class="text-xs text-slate-400 font-mono">40 MINUTOS</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Evidencia de Producto</h3>
+              <div class="bg-purple-50 p-2.5 rounded-lg border border-purple-200 text-xs text-purple-900 space-y-1 font-mono">
+                <p>• Código: <strong>GA6-220501096-AA4-EV03</strong></p>
+                <p>• Formato: <strong>ZIP / Enlace GitHub Pages</strong></p>
+                <p>• Criterio: <strong>Frontend funcional y responsive</strong></p>
+              </div>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 text-[11px] text-slate-500 flex justify-between">
+              <span>Entrega</span><span class="text-purple-700 font-bold">Zajuna LMS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- SLIDE 13: CULTURA FÍSICA Y HÁBITOS SALUDABLES (TRANSVERSAL) -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-13" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Cultura Física y <span class="text-[#39A900]">Hábitos Saludables en ADSO</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Competencia Transversal 230101507 • 4 Evidencias Oficiales (48 Horas)
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-2">
+          <!-- EV01 -->
+          <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-2xs space-y-2">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-50 text-rose-700 border border-rose-200">AA1-EV01</span>
+            <h4 class="font-bold text-slate-900 text-xs">Foro Coordinación Motriz</h4>
+            <p class="text-[11px] text-slate-500 leading-relaxed">
+              Responder las 5 preguntas del sistema osteomuscular, motricidad fina y gruesa en desarrollo de software con 2 réplicas a compañeros.
+            </p>
+            <div class="text-[11px] font-mono text-emerald-700 font-bold pt-2">Formato: Foro LMS</div>
+          </div>
+
+          <!-- EV02 -->
+          <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-2xs space-y-2">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-50 text-rose-700 border border-rose-200">AA2-EV01</span>
+            <h4 class="font-bold text-slate-900 text-xs">Infografía Vida Saludable</h4>
+            <p class="text-[11px] text-slate-500 leading-relaxed">
+              Recurso visual con necesidades calóricas diarias, macronutrientes y esquema ilustrado del puesto ergonómico ideal.
+            </p>
+            <div class="text-[11px] font-mono text-emerald-700 font-bold pt-2">Formato: PDF / Imagen</div>
+          </div>
+
+          <!-- EV03 -->
+          <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-2xs space-y-2">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-50 text-rose-700 border border-rose-200">AA3-EV01</span>
+            <h4 class="font-bold text-slate-900 text-xs">Ficha Antropométrica</h4>
+            <p class="text-[11px] text-slate-500 leading-relaxed">
+              Registro de mediciones corporales (talla, peso, IMC) y resultados de test físicos (Burpee, abdominales) con plan de acción semanal.
+            </p>
+            <div class="text-[11px] font-mono text-emerald-700 font-bold pt-2">Formato: PDF</div>
+          </div>
+
+          <!-- EV04 -->
+          <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-2xs space-y-2">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-50 text-rose-700 border border-rose-200">AA4-EV01</span>
+            <h4 class="font-bold text-slate-900 text-xs">Folleto de Pausas Activas</h4>
+            <p class="text-[11px] text-slate-500 leading-relaxed">
+              Tríptico informativo de patologías laborales comunes (túnel carpiano, fatiga visual) y rutina gráfica de pausas activas.
+            </p>
+            <div class="text-[11px] font-mono text-emerald-700 font-bold pt-2">Formato: PDF Tríptico</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- SLIDE 14: INGLÉS LABORAL (COMPETENCIA CLAVE) -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-14" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Inglés Laboral: <span class="text-[#39A900]">Perfil y Funciones Ocupacionales</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Competencia Clave 240202501 • 3 Evidencias Oficiales (48 Horas)
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+          <!-- EV01 -->
+          <div class="bg-white border-2 border-sky-400 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-sky-100 text-sky-800">AA1-EV01 • CONOCIMIENTO</span>
+              <h3 class="font-bold text-slate-900 text-base">Personal Statement</h3>
+              <p class="text-xs text-slate-600">
+                Redacción de una carta de presentación profesional en inglés (1 a 2 páginas) destacando perfil técnico, fortalezas y metas en desarrollo de software.
+              </p>
+              <div class="bg-sky-50 p-2.5 rounded-lg border border-sky-200 text-xs text-sky-900 space-y-1 font-mono">
+                <p>• Formato: <strong>Documento PDF</strong></p>
+                <p>• Gramática: Present & Future Perfect</p>
+                <p>• Estilo: Formal Business English</p>
+              </div>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 text-[11px] text-sky-700 font-bold">16 Horas de dedicación</div>
+          </div>
+
+          <!-- EV02 -->
+          <div class="bg-white border-2 border-sky-400 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-sky-100 text-sky-800">AA1-EV02 • PRODUCTO</span>
+              <h3 class="font-bold text-slate-900 text-base">Video de Funciones en Inglés</h3>
+              <p class="text-xs text-slate-600">
+                Video expositivo de 2 a 5 minutos con cámara encendida explicando en inglés las funciones cotidianas de un desarrollador de software.
+              </p>
+              <div class="bg-sky-50 p-2.5 rounded-lg border border-sky-200 text-xs text-sky-900 space-y-1 font-mono">
+                <p>• Formato: <strong>MP4 o Enlace YouTube/Drive</strong></p>
+                <p>• Duración: 2 a 5 minutos</p>
+                <p>• Pronunciación y fluidez nivel B1</p>
+              </div>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 text-[11px] text-sky-700 font-bold">16 Horas de dedicación</div>
+          </div>
+
+          <!-- EV03 -->
+          <div class="bg-white border-2 border-sky-400 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-sky-100 text-sky-800">AA1-EV03 • DESEMPEÑO</span>
+              <h3 class="font-bold text-slate-900 text-base">Foro en Inglés (Rúbrica TIGRE)</h3>
+              <p class="text-xs text-slate-600">
+                Discusión en idioma inglés en la plataforma virtual respondiendo y debatiendo sobre experiencias laborales aplicando T-I-G-R-E.
+              </p>
+              <div class="bg-sky-50 p-2.5 rounded-lg border border-sky-200 text-xs text-sky-900 space-y-1 font-mono">
+                <p>• Formato: <strong>Participación en Foro LMS</strong></p>
+                <p>• Rúbrica: T-I-G-R-E rigurosa</p>
+                <p>• Mínimo 2 réplicas a compañeros</p>
+              </div>
+            </div>
+            <div class="pt-3 mt-4 border-t border-slate-100 text-[11px] text-sky-700 font-bold">16 Horas de dedicación</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- SLIDE 15: CRITERIOS DE APROBACIÓN Y CIERRE DE SESIÓN -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-15" aria-hidden="true">
+      <div class="max-w-3xl mx-auto text-center space-y-6">
+        <div class="w-16 h-16 bg-emerald-100 text-sena rounded-2xl flex items-center justify-center mx-auto shadow-xs">
+          <i data-lucide="award" class="w-8 h-8"></i>
+        </div>
+
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+          Criterios Oficiales de Aprobación · <span class="text-[#39A900]">Guía 06</span>
+        </h2>
+
+        <p class="text-slate-600 text-sm leading-relaxed">
+          Para alcanzar los Resultados de Aprendizaje de la Fase de Ejecución (AP6), el aprendiz debe entregar y aprobar el 100% de las 20 evidencias en la plataforma virtual <strong>Zajuna</strong> antes de la fecha límite establecida.
+        </p>
+
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm text-left grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-slate-700">
+          <div class="flex items-start gap-2.5">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-sena shrink-0 mt-0.5"></i>
+            <div>
+              <strong class="text-slate-900 block">RAP 220501096-02:</strong>
+              Construir la base de datos para el software a partir del modelo de datos (SQL & NoSQL).
+            </div>
+          </div>
+
+          <div class="flex items-start gap-2.5">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-sena shrink-0 mt-0.5"></i>
+            <div>
+              <strong class="text-slate-900 block">RAP 220501096-03:</strong>
+              Crear componentes front-end del software de acuerdo con el diseño.
+            </div>
+          </div>
+
+          <div class="flex items-start gap-2.5">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-sena shrink-0 mt-0.5"></i>
+            <div>
+              <strong class="text-slate-900 block">RAP 230101507 (01 al 04):</strong>
+              Cultura física, hábitos saludables, ergonomía y pausas activas.
+            </div>
+          </div>
+
+          <div class="flex items-start gap-2.5">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-sena shrink-0 mt-0.5"></i>
+            <div>
+              <strong class="text-slate-900 block">RAP 240202501-06:</strong>
+              Explicar funciones de su ocupación laboral en lengua inglesa.
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-4 flex items-center justify-center gap-3">
+          <a href="../../index.html" class="inline-flex items-center gap-2 bg-[#00324D] hover:bg-[#00263A] text-white font-bold px-5 py-2.5 rounded-lg text-xs transition-all">
+            <i data-lucide="home" class="w-4 h-4"></i>
+            <span>Volver al Portal Principal</span>
+          </a>
+          <button onclick="presenter.goToSlide(0)" class="inline-flex items-center gap-2 bg-slate-200 hover:bg-slate-300 text-slate-800 font-semibold px-4 py-2.5 rounded-lg text-xs transition-all">
+            <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+            <span>Reiniciar Proyección</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- SLIDE 16: CONTACTO Y CANALES DE ATENCIÓN SENA -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-16" aria-hidden="true">
+      <div class="max-w-2xl mx-auto text-center space-y-6">
+        <div class="w-16 h-16 bg-emerald-100 text-[#39A900] rounded-full flex items-center justify-center mx-auto">
+          <i data-lucide="users" class="w-8 h-8"></i>
+        </div>
+
+        <h2 class="text-3xl font-extrabold text-slate-900">
+          Canales de Asesoría y Formación Virtual
+        </h2>
+
+        <p class="text-slate-600 text-sm">
+          SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH)
+        </p>
+
+        <div class="bg-white border border-slate-200 rounded-xl p-5 text-left text-xs space-y-3 shadow-xs">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+            <span class="text-slate-500 font-medium">LMS Oficial:</span>
+            <span class="font-bold text-slate-800">Zajuna / Sofia Plus</span>
+          </div>
+          <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+            <span class="text-slate-500 font-medium">Sesiones Sincrónicas:</span>
+            <span class="font-bold text-slate-800">Microsoft Teams institucional</span>
+          </div>
+          <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+            <span class="text-slate-500 font-medium">Foro de Dudas e Inquietudes:</span>
+            <span class="font-bold text-slate-800">Activo 24/7 en plataforma</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-slate-500 font-medium">Repositorio de Código:</span>
+            <span class="font-bold text-emerald-700">GitHub Pages ADSO Virtual</span>
+          </div>
+        </div>
+
+        <a href="../../index.html" class="inline-flex items-center gap-2 bg-sena hover:bg-sena-green-hover text-white font-bold px-6 py-2.5 rounded-lg text-xs shadow-xs transition-all">
+          <span>Ir al Catálogo de Evidencias</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- BARRA INFERIOR DE NAVEGACIÓN Y ATAJOS -->
+  <!-- ========================================================================= -->
+  <footer class="border-t border-slate-200 bg-white py-3 px-4 sm:px-6">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 font-mono">
+      <div class="flex items-center gap-2">
+        <button onclick="presenter.nextSlide()" class="inline-flex items-center gap-1.5 bg-[#39A900] hover:bg-[#2D8200] text-white px-3 py-1.5 rounded-lg font-sans font-bold text-xs transition-colors">
+          <span>Siguiente</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </button>
+        <span class="hidden md:inline text-slate-400">|</span>
+        <span class="hidden md:inline">Atajos: [Espacio] o [→] Siguiente • [←] Anterior</span>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <span class="hidden sm:inline">[F] Pantalla Completa</span>
+        <span class="hidden sm:inline">•</span>
+        <span class="hidden sm:inline">[M] Menú</span>
+        <span class="hidden sm:inline">•</span>
+        <a href="../../index.html" class="text-emerald-700 font-bold hover:underline font-sans">Volver al Portal</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL DE AYUDA / ATAJOS (HELP MODAL) -->
+  <!-- ========================================================================= -->
+  <div id="help-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs hidden items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200 animate-in fade-in zoom-in-95">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <h3 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+          <i data-lucide="keyboard" class="w-4 h-4 text-sena"></i> Atajos de Teclado
+        </h3>
+        <button id="btn-close-help" class="text-slate-400 hover:text-slate-700 p-1 rounded-lg">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="py-4 space-y-2.5 text-xs text-slate-700">
+        <div class="flex items-center justify-between p-2 bg-slate-50 rounded-lg">
+          <span>Avanzar Diapositiva:</span>
+          <kbd class="px-2 py-1 bg-white border border-slate-200 rounded font-mono font-bold">Espacio</kbd> o <kbd class="px-2 py-1 bg-white border border-slate-200 rounded font-mono font-bold">→</kbd>
+        </div>
+        <div class="flex items-center justify-between p-2 bg-slate-50 rounded-lg">
+          <span>Retroceder Diapositiva:</span>
+          <kbd class="px-2 py-1 bg-white border border-slate-200 rounded font-mono font-bold">←</kbd> o <kbd class="px-2 py-1 bg-white border border-slate-200 rounded font-mono font-bold">RePág</kbd>
+        </div>
+        <div class="flex items-center justify-between p-2 bg-slate-50 rounded-lg">
+          <span>Pantalla Completa:</span>
+          <kbd class="px-2 py-1 bg-white border border-slate-200 rounded font-mono font-bold">F</kbd>
+        </div>
+        <div class="flex items-center justify-between p-2 bg-slate-50 rounded-lg">
+          <span>Abrir / Cerrar Menú:</span>
+          <kbd class="px-2 py-1 bg-white border border-slate-200 rounded font-mono font-bold">M</kbd>
+        </div>
+        <div class="flex items-center justify-between p-2 bg-slate-50 rounded-lg">
+          <span>Iniciar / Pausar Cronómetro:</span>
+          <kbd class="px-2 py-1 bg-white border border-slate-200 rounded font-mono font-bold">T</kbd>
+        </div>
+        <div class="flex items-center justify-between p-2 bg-slate-50 rounded-lg">
+          <span>Cerrar Modales / Menú:</span>
+          <kbd class="px-2 py-1 bg-white border border-slate-200 rounded font-mono font-bold">Esc</kbd>
+        </div>
+      </div>
+
+      <button onclick="document.getElementById('help-modal').classList.add('hidden')" class="w-full py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-lg font-bold text-xs transition-colors">
+        Entendido
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MENÚ DRAWER LATERAL (ÍNDICE DE DIAPOSITIVAS) -->
+  <!-- ========================================================================= -->
+  <aside id="menu-drawer" class="fixed inset-y-0 right-0 z-50 w-80 bg-white shadow-2xl border-l border-slate-200 hidden flex-col">
+    <div class="p-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+      <h3 class="font-bold text-slate-900 text-xs uppercase tracking-wider flex items-center gap-2">
+        <i data-lucide="layers" class="w-4 h-4 text-sena"></i> Índice de Sesión
+      </h3>
+      <button id="btn-close-menu" class="text-slate-400 hover:text-slate-700 p-1 rounded-lg">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+    </div>
+
+    <div class="p-3 overflow-y-auto flex-1 space-y-1 text-xs">
+      <button onclick="presenter.goToSlide(0)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 font-medium transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">01</span> Portada General Guía 06
+      </button>
+      <button onclick="presenter.goToSlide(1)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 font-medium transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">02</span> Normalización BD (1FN-3FN)
+      </button>
+      <button onclick="presenter.goToSlide(2)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 font-medium transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">03</span> Modelo Entidad-Relación (MER)
+      </button>
+      <button onclick="presenter.goToSlide(3)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 font-medium transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">04</span> NoSQL MongoDB Documentos
+      </button>
+      <button onclick="presenter.goToSlide(4)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 font-medium transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">05</span> Consultas SQL y JOINs
+      </button>
+      <button onclick="presenter.goToSlide(5)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 font-medium transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">06</span> Restricciones DDL & Script
+      </button>
+      <button onclick="presenter.goToSlide(6)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 font-medium transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">07</span> Prototipado UX/UI Herramientas
+      </button>
+      <button onclick="presenter.goToSlide(7)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 font-medium transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">08</span> Wireframes y Navegación
+      </button>
+      <button onclick="presenter.goToSlide(8)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 font-medium transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">09</span> Interfaces Alta Fidelidad
+      </button>
+      <button onclick="presenter.goToSlide(9)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 font-medium transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">10</span> Fundamentos HTML/CSS/JS
+      </button>
+      <button onclick="presenter.goToSlide(10)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 font-medium transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">11</span> Catálogo Componentes Web
+      </button>
+      <button onclick="presenter.goToSlide(11)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 font-medium transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">12</span> Maquetación Frontend Final
+      </button>
+      <button onclick="presenter.goToSlide(12)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 font-medium transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">13</span> Hábitos y Cultura Física
+      </button>
+      <button onclick="presenter.goToSlide(13)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 font-medium transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">14</span> Inglés Laboral
+      </button>
+      <button onclick="presenter.goToSlide(14)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 font-medium transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">15</span> Criterios de Aprobación
+      </button>
+      <button onclick="presenter.goToSlide(15)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 font-medium transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">16</span> Canales de Asesoría SENA
+      </button>
+    </div>
+  </aside>
+
+  <!-- Script del motor de diapositivas -->
+  <script src="../../assets/js/presenter.js"></script>
+  <script>
+    let presenter;
+    document.addEventListener('DOMContentLoaded', () => {
+      presenter = new SlidePresenter();
+      
+      // Botón toggle menú
+      const btnMenu = document.getElementById('btn-toggle-menu');
+      const btnCloseMenu = document.getElementById('btn-close-menu');
+      if (btnMenu) btnMenu.addEventListener('click', () => presenter.toggleMenu());
+      if (btnCloseMenu) btnCloseMenu.addEventListener('click', () => presenter.closeMenu());
+
+      // Botón toggle help
+      const btnHelp = document.getElementById('btn-toggle-help');
+      const btnCloseHelp = document.getElementById('btn-close-help');
+      if (btnHelp) btnHelp.addEventListener('click', () => presenter.toggleHelpModal());
+      if (btnCloseHelp) btnCloseHelp.addEventListener('click', () => presenter.toggleHelpModal());
+
+      if (window.lucide && typeof window.lucide.createIcons === 'function') {
+        window.lucide.createIcons();
+      }
+    });
+  </script>
+</body>
+</html>

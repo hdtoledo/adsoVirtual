@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-slate-50 text-slate-900 antialiased">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sesión Proyectada · Evidencia 3: MongoDB Compass & MONGOSH Shell | SENA ADSO</title>
+  <meta name="description" content="Taller paso a paso para la Evidencia 3 (GA6-220501096-AA1-EV03): Fundamentos NoSQL, descarga de MongoDB Compass, creación gráfica de bases de datos, consola MONGOSH con comandos básicos, incrustar vs referenciar y validación $jsonSchema. Instructor: Ing. Hector David Toledo García.">
+  <link rel="icon" type="image/png" href="../../assets/logo_green.png">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            sena: {
+              green: '#39A900',
+              'green-hover': '#2D8200',
+              navy: '#00324D',
+              'navy-dark': '#00263A',
+              'navy-light': '#004164'
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../assets/css/presenter.css">
+  <style>
+    .slide-content.active {
+      display: flex !important;
+      flex-direction: column;
+      justify-content: center;
+    }
+    kbd {
+      font-family: 'JetBrains Mono', monospace;
+    }
+  </style>
+</head>
+<body class="min-h-full flex flex-col bg-slate-50 text-slate-900 font-sans selection:bg-[#39A900] selection:text-white">
+
+  <!-- ========================================================================= -->
+  <!-- BARRA SUPERIOR INSTITUCIONAL (CINTILLO) -->
+  <!-- ========================================================================= -->
+  <div class="bg-[#00324D] text-white text-[11px] py-1.5 px-4 border-b border-[#00263A]">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2 truncate">
+        <span class="font-extrabold tracking-wide shrink-0">SENA</span>
+        <span class="text-slate-400">|</span>
+        <span class="text-slate-200 truncate font-medium">Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)</span>
+      </div>
+      <div class="flex items-center gap-3 text-slate-300 font-mono text-[11px] shrink-0">
+        <span>Sede Garzón</span>
+        <span class="text-slate-400">•</span>
+        <span class="text-emerald-400 font-semibold">ADSO Virtual • Sesión Técnica en Aula</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- BARRA DE CONTROL DE PRESENTACIÓN -->
+  <!-- ========================================================================= -->
+  <header class="border-b border-slate-200 bg-white sticky top-0 z-40 shadow-xs">
+    <!-- Barra de Progreso Dinámica -->
+    <div class="w-full bg-slate-100 h-1">
+      <div id="presentation-progress" class="bg-[#39A900] h-1 transition-all duration-300 ease-out" style="width: 7%;"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+      <!-- Logo y Ruta -->
+      <div class="flex items-center gap-3 min-w-0">
+        <a href="../../index.html" class="flex items-center gap-2.5 group shrink-0">
+          <img src="../../assets/logo_green.png" alt="SENA" class="w-7 h-7 object-contain" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/8/83/Sena_Colombia_logo.svg'">
+          <div class="truncate">
+            <span class="font-extrabold text-slate-900 tracking-tight text-sm">FORMACIÓN <span class="text-sena">ADSO</span></span>
+            <span class="text-[11px] font-bold text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded ml-1 uppercase">CADPH</span>
+          </div>
+        </a>
+        <span class="text-slate-300 hidden sm:inline">/</span>
+        <div class="hidden sm:flex items-center gap-2 text-xs truncate">
+          <span class="font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Guía 06</span>
+          <span class="text-slate-600 font-medium truncate">Evidencia 03: Creación de Objetos NoSQL MongoDB Compass & MONGOSH</span>
+        </div>
+      </div>
+
+      <!-- Controles de Proyección -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Temporizador -->
+        <div class="hidden md:flex items-center gap-1.5 bg-slate-100 px-2.5 py-1 rounded-lg border border-slate-200 font-mono text-xs text-slate-700">
+          <i data-lucide="clock" class="w-3.5 h-3.5 text-slate-500"></i>
+          <span id="timer-display" class="font-bold">00:00</span>
+          <button id="btn-timer-start" class="text-emerald-700 hover:text-emerald-800 font-bold ml-1 text-[11px] uppercase">Iniciar</button>
+          <button id="btn-timer-reset" class="text-slate-400 hover:text-slate-600 ml-1" title="Reiniciar"><i data-lucide="rotate-ccw" class="w-3 h-3"></i></button>
+        </div>
+
+        <!-- Menú de Índice -->
+        <button id="btn-toggle-menu" class="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors" title="Índice de Diapositivas (M)">
+          <i data-lucide="list" class="w-4 h-4"></i>
+        </button>
+
+        <!-- Contador de Diapositiva -->
+        <div class="px-2.5 py-1 bg-slate-100 rounded-lg text-xs font-mono font-bold text-slate-700 border border-slate-200 shrink-0">
+          <span id="slide-counter">1 / 14</span>
+        </div>
+
+        <!-- Botones de Navegación -->
+        <div class="flex items-center gap-1">
+          <button id="btn-prev-slide" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors disabled:opacity-40" title="Anterior (Flecha Izq)">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+          </button>
+          <button id="btn-next-slide" class="p-2 rounded-lg bg-[#39A900] hover:bg-[#2D8200] text-white transition-colors" title="Siguiente (Espacio o Flecha Der)">
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <!-- Pantalla Completa -->
+        <button id="btn-fullscreen" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors" title="Pantalla Completa (F)">
+          <i data-lucide="maximize" class="w-4 h-4"></i>
+        </button>
+
+        <!-- Ayuda -->
+        <button id="btn-toggle-help" class="p-2 rounded-lg text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors" title="Atajos de teclado (?)">
+          <i data-lucide="help-circle" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- CONTENEDOR PRINCIPAL DE DIAPOSITIVAS (14 SLIDES GUIADAS Y COMPLETAS) -->
+  <!-- ========================================================================= -->
+  <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 py-6 sm:py-8 flex flex-col justify-center slide-container">
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- DIAPOSITIVA 1: PORTADA INSTITUCIONAL Y OBJETIVOS -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content active" id="slide-1" aria-hidden="false">
+      <div class="text-center max-w-4xl mx-auto space-y-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-semibold text-emerald-800">
+          <span class="w-2 h-2 rounded-full bg-[#39A900] animate-pulse"></span>
+          <span>SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+          Guía 06 · Evidencia Técnica 03 <br>
+          <span class="text-[#39A900]">Creación de Objetos en Base de Datos NoSQL MongoDB</span>
+        </h1>
+
+        <p class="text-slate-600 text-sm sm:text-base max-w-3xl mx-auto leading-relaxed">
+          Tecnólogo en Análisis y Desarrollo de Software (ADSO) • Código Oficial: <strong>GA6-220501096-AA1-EV03</strong> (16 Horas de Formación Técnica).
+          Instructor: <strong>Ing. Hector David Toledo García</strong>.
+          Taller práctico con <strong>MongoDB Compass</strong> y consola <strong>MONGOSH</strong>: desde los conceptos no relacionales hasta la creación gráfica de bases de datos, colecciones y comandos básicos.
+        </p>
+
+        <!-- 3 Bloques del Taller Práctico -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-3 text-left">
+          <div class="bg-white border-2 border-emerald-500 rounded-xl p-4 shadow-xs space-y-2">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">BLOQUE 1</span>
+            <h3 class="font-bold text-slate-900 text-sm">Bases NoSQL & MongoDB</h3>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              Qué es NoSQL, las 4 familias, tabla de equivalencias con SQL (Colecciones y Documentos) y la regla de <strong>Incrustar vs Referenciar</strong>.
+            </p>
+          </div>
+
+          <div class="bg-white border-2 border-blue-500 rounded-xl p-4 shadow-xs space-y-2">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-800">BLOQUE 2</span>
+            <h3 class="font-bold text-slate-900 text-sm">MongoDB Compass Visual</h3>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              Descarga oficial, uso del botón <strong>"+ Create Database"</strong>, creación de colecciones y configuración de esquemas con validación.
+            </p>
+          </div>
+
+          <div class="bg-white border-2 border-purple-500 rounded-xl p-4 shadow-xs space-y-2">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-100 text-purple-800">BLOQUE 3</span>
+            <h3 class="font-bold text-slate-900 text-sm">Consola MONGOSH & Zajuna</h3>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              Uso del shell integrado con comandos básicos (<code>show dbs</code>, <code>use</code>, <code>insertOne</code>, <code>find</code>) y armado del PDF final.
+            </p>
+          </div>
+        </div>
+
+        <div class="pt-3 flex flex-wrap items-center justify-center gap-4">
+          <button onclick="presenter.nextSlide()" class="inline-flex items-center gap-2 bg-[#39A900] hover:bg-[#2D8200] text-white font-bold px-6 py-3 rounded-lg text-sm shadow-md transition-all">
+            <span>Iniciar Taller Paso a Paso</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+          <span class="text-xs text-slate-400 font-mono">Navegación: [Espacio] o [→] Avanzar • [M] Menú • [F] Pantalla Completa</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- DIAPOSITIVA 2: ¿QUÉ DEBES ENTREGAR SEGÚN LA GUÍA 6? -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-2" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            Requerimiento Curricular Oficial · Zajuna LMS
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            ¿Qué Debes Entregar en la <span class="text-[#39A900]">Evidencia 3</span>?
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Instrumento Oficial: <strong>IE-GA6-220501096-AA1-EV03</strong> • Formato: Documento PDF con anexos.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-5 pt-2">
+          <!-- Los 4 Entregables Clave -->
+          <div class="md:col-span-7 bg-white border border-slate-200 rounded-2xl p-5 shadow-xs space-y-3 text-xs text-slate-700">
+            <h3 class="font-extrabold text-slate-900 text-sm flex items-center gap-2">
+              <i data-lucide="file-text" class="w-4 h-4 text-sena"></i>
+              Contenido Exacto que Califica el Instructor Toledo
+            </h3>
+
+            <div class="space-y-2 text-xs">
+              <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
+                <span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-extrabold flex items-center justify-center shrink-0 text-xs">1</span>
+                <div>
+                  <strong class="text-slate-900 block">Justificación del Módulo NoSQL:</strong>
+                  <span class="text-slate-600 text-[11px]">Explicar qué parte de tu proyecto individual se beneficia de almacenar datos en documentos (ej. catálogo de productos con atributos variables, pedidos con ítems, o historias clínicas).</span>
+                </div>
+              </div>
+
+              <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
+                <span class="w-6 h-6 rounded-full bg-blue-100 text-blue-800 font-extrabold flex items-center justify-center shrink-0 text-xs">2</span>
+                <div>
+                  <strong class="text-slate-900 block">Estructura de Colecciones y Documentos JSON:</strong>
+                  <span class="text-slate-600 text-[11px]">Diseño formal de al menos 2 colecciones con documentos de ejemplo que contengan campos simples, listas y subdocumentos anidados.</span>
+                </div>
+              </div>
+
+              <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
+                <span class="w-6 h-6 rounded-full bg-purple-100 text-purple-800 font-extrabold flex items-center justify-center shrink-0 text-xs">3</span>
+                <div>
+                  <strong class="text-slate-900 block">Evidencias Prácticas en MongoDB Compass:</strong>
+                  <span class="text-slate-600 text-[11px]">Capturas de pantalla usando el botón <em>"+ Create Database"</em> y la consola integrada <em>MONGOSH</em> ejecutando comandos básicos de inserción y consulta.</span>
+                </div>
+              </div>
+
+              <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
+                <span class="w-6 h-6 rounded-full bg-amber-100 text-amber-800 font-extrabold flex items-center justify-center shrink-0 text-xs">4</span>
+                <div>
+                  <strong class="text-slate-900 block">Justificación Técnica: Incrustar vs Referenciar:</strong>
+                  <span class="text-slate-600 text-[11px]">Un párrafo explicando por qué decidiste incrustar unos datos dentro del documento o relacionarlos por su ID.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cuadro de Enfoque Individual -->
+          <div class="md:col-span-5 bg-gradient-to-br from-[#00324D] to-[#00263A] text-white rounded-2xl p-5 shadow-xs space-y-4 flex flex-col justify-between text-xs">
+            <div class="space-y-3">
+              <span class="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-300 font-mono text-[11px] font-bold inline-block border border-emerald-500/30">
+                PROYECTO FORMATIVO INDIVIDUAL
+              </span>
+              <h4 class="text-base font-bold text-white">Aplica a tu Propio Software</h4>
+              <p class="text-slate-300 leading-relaxed text-[11px]">
+                En esta evidencia no debes copiar un caso genérico. Tomas una parte de tu proyecto ADSO (comercio, salud, taller o restaurante) y creas su modelo en MongoDB.
+              </p>
+              <div class="p-3 bg-white/5 rounded-xl border border-white/10 space-y-1 text-[11px]">
+                <strong class="text-emerald-300 block">Criterio Oficial de Evaluación:</strong>
+                <p class="text-slate-200 italic">
+                  "Construye la base de datos NoSQL de acuerdo con los requerimientos del sistema y documenta la estructura de objetos."
+                </p>
+              </div>
+            </div>
+
+            <div class="p-2.5 bg-emerald-500/10 rounded-xl border border-emerald-500/30 text-[11px] text-emerald-300 font-mono flex items-center justify-between">
+              <span>Entrega Única:</span>
+              <strong class="text-white">Zajuna LMS</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- DIAPOSITIVA 3: ¿QUÉ ES NOSQL Y LAS 4 FAMILIAS? -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-3" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            Fundamentos de Bases de Datos No Relacionales
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            ¿Qué es NoSQL? <span class="text-[#39A900]">Las 4 Familias Tecnológicas</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            NoSQL significa <em>"Not Only SQL"</em> (No Solo SQL). Diseñadas para esquemas flexibles y alta velocidad.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-2 text-xs">
+          <!-- 1. Documentales -->
+          <div class="bg-white border-2 border-emerald-500 rounded-xl p-4 shadow-xs space-y-2 flex flex-col justify-between">
+            <div class="space-y-1.5">
+              <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold text-[10px]">ESTÁNDAR SENA</span>
+              <h4 class="font-bold text-slate-900 text-sm">1. Documentales</h4>
+              <p class="text-slate-600 text-[11px] leading-relaxed">
+                Guardan la información en documentos semiestructurados tipo JSON/BSON.
+              </p>
+              <div class="p-2 bg-emerald-50 rounded border border-emerald-200 text-[10.5px] font-mono text-emerald-950 font-bold">
+                Motor: MongoDB, CouchDB
+              </div>
+            </div>
+            <span class="text-[10px] text-emerald-700 font-semibold block pt-2 border-t">Uso: Catálogos, ventas, blogs y perfiles.</span>
+          </div>
+
+          <!-- 2. Clave-Valor -->
+          <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-xs space-y-2 flex flex-col justify-between">
+            <div class="space-y-1.5">
+              <span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 font-bold text-[10px]">ULTRA-RÁPIDAS</span>
+              <h4 class="font-bold text-slate-900 text-sm">2. Clave - Valor</h4>
+              <p class="text-slate-600 text-[11px] leading-relaxed">
+                Guardan un valor asociado a una clave única en memoria RAM.
+              </p>
+              <div class="p-2 bg-slate-50 rounded border border-slate-200 text-[10.5px] font-mono text-slate-700 font-bold">
+                Motor: Redis, DynamoDB
+              </div>
+            </div>
+            <span class="text-[10px] text-slate-500 block pt-2 border-t">Uso: Sesiones de usuario, carritos temporales y caché.</span>
+          </div>
+
+          <!-- 3. Columnas Anchas -->
+          <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-xs space-y-2 flex flex-col justify-between">
+            <div class="space-y-1.5">
+              <span class="px-2 py-0.5 rounded bg-purple-100 text-purple-800 font-bold text-[10px]">BIG DATA</span>
+              <h4 class="font-bold text-slate-900 text-sm">3. Columnas Anchas</h4>
+              <p class="text-slate-600 text-[11px] leading-relaxed">
+                Estructura de tablas cuyas columnas varían dinámicamente por registro.
+              </p>
+              <div class="p-2 bg-slate-50 rounded border border-slate-200 text-[10.5px] font-mono text-slate-700 font-bold">
+                Motor: Cassandra, ScyllaDB
+              </div>
+            </div>
+            <span class="text-[10px] text-slate-500 block pt-2 border-t">Uso: Sensores IoT, telemetría y métricas masivas.</span>
+          </div>
+
+          <!-- 4. Grafos -->
+          <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-xs space-y-2 flex flex-col justify-between">
+            <div class="space-y-1.5">
+              <span class="px-2 py-0.5 rounded bg-amber-100 text-amber-800 font-bold text-[10px]">RELACIONES VIVAS</span>
+              <h4 class="font-bold text-slate-900 text-sm">4. Grafos</h4>
+              <p class="text-slate-600 text-[11px] leading-relaxed">
+                Basadas en nodos y aristas para navegar conexiones complejas.
+              </p>
+              <div class="p-2 bg-slate-50 rounded border border-slate-200 text-[10.5px] font-mono text-slate-700 font-bold">
+                Motor: Neo4j, Neptune
+              </div>
+            </div>
+            <span class="text-[10px] text-slate-500 block pt-2 border-t">Uso: Redes sociales y sistemas de recomendación.</span>
+          </div>
+        </div>
+
+        <div class="p-3 bg-slate-100 border border-slate-200 rounded-xl text-xs text-slate-700">
+          💡 <strong>Conclusión:</strong> En el tecnólogo ADSO nos enfocamos en <strong>Bases de Datos Documentales con MongoDB</strong> porque es el estándar moderno en aplicaciones web y móviles (MERN Stack).
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- DIAPOSITIVA 4: TABLA DE EQUIVALENCIAS SQL VS MONGODB -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-4" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            Glosario Técnico en Español
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Tabla de Equivalencias: <span class="text-[#39A900]">De Tablas SQL a Documentos NoSQL</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Aprende a traducir mentalmente cada elemento del modelo relacional al modelo de MongoDB.
+          </p>
+        </div>
+
+        <div class="overflow-x-auto bg-white border border-slate-200 rounded-xl shadow-xs text-xs">
+          <table class="w-full text-left divide-y divide-slate-200 text-[11.5px]">
+            <thead class="bg-[#00324D] text-white font-mono uppercase text-[10px]">
+              <tr>
+                <th class="p-3">Término en SQL (MySQL)</th>
+                <th class="p-3">Término en MongoDB (NoSQL)</th>
+                <th class="p-3">Diferencia Fundamental</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 text-slate-700">
+              <tr class="hover:bg-slate-50">
+                <td class="p-2.5 font-bold text-slate-900">Base de Datos (Database)</td>
+                <td class="p-2.5 font-bold text-emerald-700 font-mono">Base de Datos (Database)</td>
+                <td class="p-2.5 text-slate-500">Es igual. Contiene las colecciones de tu proyecto.</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-2.5 font-bold text-slate-900">Tabla (Table)</td>
+                <td class="p-2.5 font-bold text-emerald-700 font-mono">Colección (Collection)</td>
+                <td class="p-2.5 text-slate-500">No exige columnas fijas previas. Almacena documentos de un mismo tema.</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-2.5 font-bold text-slate-900">Fila / Registro (Row)</td>
+                <td class="p-2.5 font-bold text-emerald-700 font-mono">Documento (Document)</td>
+                <td class="p-2.5 text-slate-500">Es un objeto en formato JSON/BSON con sus propios campos y listas.</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-2.5 font-bold text-slate-900">Columna (Column)</td>
+                <td class="p-2.5 font-bold text-emerald-700 font-mono">Campo (Field)</td>
+                <td class="p-2.5 text-slate-500">Par clave-valor. Puede contener subdocumentos u arreglos anidados.</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-2.5 font-bold text-slate-900">Llave Primaria (PK)</td>
+                <td class="p-2.5 font-bold text-emerald-700 font-mono">Campo _id (ObjectId)</td>
+                <td class="p-2.5 text-slate-500">Identificador único generado automáticamente por MongoDB de 12 bytes.</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-2.5 font-bold text-slate-900">Cruces con JOIN</td>
+                <td class="p-2.5 font-bold text-emerald-700 font-mono">Incrustación / $lookup</td>
+                <td class="p-2.5 text-slate-500">Se prefiere incrustar los datos hijos en lugar de cruzar múltiples tablas.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-950 font-medium">
+          ✅ <strong>Para recordar:</strong> En MySQL creas <strong>Tablas con Filas</strong>. En MongoDB creas <strong>Colecciones con Documentos</strong>.
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- DIAPOSITIVA 5: JSON VS BSON: ANATOMÍA DE UN DOCUMENTO -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-5" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            Formato de Almacenamiento
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Anatomía de un Documento: <span class="text-[#39A900]">JSON y BSON</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Escribimos en JSON legible y MongoDB lo guarda internamente en BSON binario optimizado.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-5 pt-1 text-xs">
+          <!-- Conceptos de tipos -->
+          <div class="md:col-span-5 space-y-3 text-slate-700">
+            <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-xs space-y-2">
+              <strong class="text-slate-900 block font-bold text-sm">Tipos de Datos Soportados:</strong>
+              <ul class="space-y-1.5 text-[11px] text-slate-600">
+                <li>• <strong>Texto (String):</strong> Cadenas de caracteres entre comillas dobles.</li>
+                <li>• <strong>Numérico (Int / Double):</strong> Enteros o decimales directos sin comillas.</li>
+                <li>• <strong>Booleano (Boolean):</strong> Valores de verdad: <code>true</code> o <code>false</code>.</li>
+                <li>• <strong>Fecha (Date / ISODate):</strong> Marcas de tiempo exactas universales.</li>
+                <li>• <strong>Arreglo (Array / Listas):</strong> Colecciones de datos entre corchetes <code>[ ]</code>.</li>
+                <li>• <strong>Objeto / Subdocumento:</strong> Datos anidados entre llaves <code>{ }</code>.</li>
+              </ul>
+            </div>
+
+            <div class="p-3 bg-amber-50 border border-amber-200 rounded-xl text-[11px] text-amber-900 font-medium">
+              📏 <strong>Regla Técnica:</strong> Un solo documento puede medir hasta <strong>16 MB</strong>. Si necesitas guardar miles de registros subordinados, usa referenciación.
+            </div>
+          </div>
+
+          <!-- Documento ilustrado -->
+          <div class="md:col-span-7 bg-[#00263A] text-slate-200 rounded-2xl p-5 shadow-xs font-mono text-xs flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between border-b border-white/10 pb-2 mb-2">
+                <span class="text-emerald-400 font-bold text-xs">Ejemplo de Documento BSON</span>
+                <span class="text-slate-400 text-[10px]">Colección: clientes</span>
+              </div>
+              <pre class="overflow-x-auto text-[11px] leading-relaxed text-slate-300">
+{
+  <span class="text-purple-400">"_id"</span>: <span class="text-amber-400">ObjectId("664f1a2b8c9d0e1f2a3b4c5d")</span>,
+  <span class="text-purple-400">"nombres"</span>: <span class="text-emerald-300">"Mariana López García"</span>,
+  <span class="text-purple-400">"documento"</span>: <span class="text-emerald-300">"1082456789"</span>,
+  <span class="text-purple-400">"estado"</span>: <span class="text-emerald-300">"Activo"</span>,
+  <span class="text-purple-400">"puntos_fidelizacion"</span>: <span class="text-amber-300">150</span>,
+
+  <span class="text-slate-400">// Lista de valores (Arreglo)</span>
+  <span class="text-purple-400">"etiquetas"</span>: [<span class="text-emerald-300">"frecuente"</span>, <span class="text-emerald-300">"mayorista"</span>],
+
+  <span class="text-slate-400">// Subdocumento anidado (Incrustación)</span>
+  <span class="text-purple-400">"contacto"</span>: {
+    <span class="text-purple-400">"correo"</span>: <span class="text-emerald-300">"mariana.lopez@gmail.com"</span>,
+    <span class="text-purple-400">"celular"</span>: <span class="text-emerald-300">"3158765432"</span>,
+    <span class="text-purple-400">"ciudad"</span>: <span class="text-emerald-300">"Garzón"</span>
+  },
+  <span class="text-purple-400">"creado_en"</span>: <span class="text-amber-400">ISODate("2026-09-23T10:00:00Z")</span>
+}
+              </pre>
+            </div>
+            <div class="pt-2 border-t border-white/10 text-[10.5px] text-slate-400 font-sans">
+              Todo lo que describe a Mariana está en un solo documento sin necesidad de hacer cruces con otras tablas.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- DIAPOSITIVA 6: INCRUSTAR VS REFERENCIAR -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-6" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            Regla de Oro en NoSQL
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Decisión de Diseño: <span class="text-[#39A900]">¿Incrustar o Referenciar?</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            La justificación técnica de esta decisión es obligatoria en el informe para obtener calificación Aprobada ('A').
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2 text-xs">
+          <!-- Incrustar -->
+          <div class="bg-white border-2 border-emerald-500 rounded-2xl p-5 shadow-xs space-y-3 flex flex-col justify-between">
+            <div class="space-y-2.5">
+              <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold text-[10px] uppercase">OPCIÓN A</span>
+              <h3 class="font-extrabold text-slate-900 text-base">Incrustar (Subdocumentos Anidados)</h3>
+              <p class="text-slate-600 text-[11px] leading-relaxed">
+                Los datos relacionados se guardan <strong>dentro del documento padre</strong>.
+              </p>
+              
+              <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl space-y-1 text-[11px]">
+                <strong class="text-emerald-950 block">Úsalo cuando:</strong>
+                <ul class="space-y-1 text-emerald-900 list-disc list-inside">
+                  <li>Es una relación de <strong>1 a pocos</strong> (ej. los teléfonos de un usuario o los renglones de una factura).</li>
+                  <li>Los datos casi siempre se leen juntos al consultar el documento principal.</li>
+                  <li>Si se elimina el documento principal, los datos hijos deben desaparecer.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="p-2 bg-slate-900 text-emerald-400 font-mono text-[10.5px] rounded-lg">
+              { _id: 1, factura: "001", items: [ {prod: "Pan", cant: 2} ] }
+            </div>
+          </div>
+
+          <!-- Referenciar -->
+          <div class="bg-white border-2 border-blue-500 rounded-2xl p-5 shadow-xs space-y-3 flex flex-col justify-between">
+            <div class="space-y-2.5">
+              <span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 font-bold text-[10px] uppercase">OPCIÓN B</span>
+              <h3 class="font-extrabold text-slate-900 text-base">Referenciar (Por Identificador ObjectId)</h3>
+              <p class="text-slate-600 text-[11px] leading-relaxed">
+                Los datos se guardan en <strong>otra colección separada</strong> y se enlazan guardando solo el <code>_id</code>.
+              </p>
+              
+              <div class="p-3 bg-blue-50 border border-blue-200 rounded-xl space-y-1 text-[11px]">
+                <strong class="text-blue-950 block">Úsalo cuando:</strong>
+                <ul class="space-y-1 text-blue-900 list-disc list-inside">
+                  <li>Es una relación de <strong>1 a muchísimos</strong> (ej. miles de comentarios o logs de auditoría).</li>
+                  <li>Son catálogos independientes que se usan en muchas partes y cambian de precio frecuentemente.</li>
+                  <li>Para evitar que el documento supere el límite de 16 MB.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="p-2 bg-slate-900 text-slate-200 font-mono text-[10.5px] rounded-lg">
+              { _id: 1, <span class="text-blue-400">cliente_id: ObjectId("664f1...")</span> }
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- DIAPOSITIVA 7: DESCARGA E INSTALACIÓN DE MONGODB COMPASS -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-7" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            Herramienta Oficial de Práctica Visual
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Descarga de MongoDB Compass: <span class="text-[#39A900]">Instalación y Conexión</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            La interfaz gráfica oficial para administrar bases de datos MongoDB de forma visual e intuitiva.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-5 pt-2 text-xs">
+          <!-- Pasos de instalación y enlace oficial -->
+          <div class="md:col-span-6 bg-white border border-slate-200 rounded-2xl p-5 shadow-xs space-y-3.5 text-slate-700">
+            <h3 class="font-extrabold text-slate-900 text-sm flex items-center gap-2">
+              <i data-lucide="download-cloud" class="w-4 h-4 text-emerald-600"></i>
+              Enlace Oficial de Descarga Gratuita
+            </h3>
+            
+            <p class="text-slate-600 text-[11px] leading-relaxed">
+              MongoDB Compass está disponible para Windows (instalador <code>.exe</code>), macOS y Linux sin costo alguno.
+            </p>
+
+            <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl space-y-2">
+              <span class="text-[11px] font-bold text-emerald-950 block">Portal Oficial de Descarga:</span>
+              <a href="https://www.mongodb.com/try/download/compass" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-[#39A900] hover:bg-[#2D8200] text-white font-bold px-4 py-2 rounded-lg text-xs transition-colors">
+                <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                <span>Descargar MongoDB Compass (Windows)</span>
+                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              </a>
+              <span class="text-[10px] text-emerald-800 block font-mono">URL: mongodb.com/try/download/compass</span>
+            </div>
+
+            <div class="space-y-1.5 text-[11px]">
+              <strong class="text-slate-900 block font-bold">Pasos de Instalación:</strong>
+              <ol class="space-y-1 list-decimal list-inside text-slate-600">
+                <li>Descarga el instalador <em>Compass (MSI or EXE)</em>.</li>
+                <li>Ejecuta el asistente y completa la instalación típica.</li>
+                <li>Al abrir, te pedirá una <em>Cadena de Conexión</em> (Connection String).</li>
+              </ol>
+            </div>
+          </div>
+
+          <!-- Conexión Local o Nube (Atlas) -->
+          <div class="md:col-span-6 bg-white border-2 border-[#00324D] rounded-2xl p-5 shadow-xs space-y-3 text-slate-700 flex flex-col justify-between">
+            <div class="space-y-2.5">
+              <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-800 font-bold text-[10px] uppercase font-mono">CONEXIÓN INICIAL</span>
+              <h4 class="font-extrabold text-slate-900 text-sm">¿Cómo Conectarse en Compass?</h4>
+              
+              <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl space-y-1.5 font-mono text-[11px]">
+                <strong class="text-slate-900 font-sans block text-xs">Opción 1: Servidor Local (tu PC)</strong>
+                <code class="text-emerald-700 block bg-white p-2 rounded border border-slate-200">
+                  mongodb://localhost:27017
+                </code>
+                <span class="text-[10px] text-slate-500 font-sans block">Si instalaste el servicio de MongoDB Community en Windows.</span>
+              </div>
+
+              <div class="p-3 bg-blue-50 border border-blue-200 rounded-xl space-y-1.5 font-mono text-[11px]">
+                <strong class="text-blue-950 font-sans block text-xs">Opción 2: Clúster en la Nube (MongoDB Atlas)</strong>
+                <code class="text-blue-800 block bg-white p-2 rounded border border-blue-200 text-[10px] truncate">
+                  mongodb+srv://usuario:clave@testingapps.mongodb.net
+                </code>
+                <span class="text-[10px] text-blue-700 font-sans block">Clúster gratuito de 512 MB proporcionado por MongoDB en la nube.</span>
+              </div>
+            </div>
+
+            <div class="p-2.5 bg-slate-100 rounded-lg text-[10.5px] text-slate-600">
+              💡 Haz clic en el botón verde <strong>"Connect"</strong> y entrarás a la pantalla principal de bases de datos.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- DIAPOSITIVA 8: PRÁCTICA GRÁFICA EN COMPASS: "+ CREATE DATABASE" -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-8" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            Taller Visual Paso a Paso
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Práctica en Compass: <span class="text-[#39A900]">El Botón "+ Create Database"</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Cómo crear la base de datos de tu proyecto y su primera colección desde la interfaz de Compass.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-5 pt-2 text-xs">
+          <!-- Instrucciones de los 3 Pasos -->
+          <div class="md:col-span-6 bg-white border border-slate-200 rounded-2xl p-5 shadow-xs space-y-3 text-slate-700">
+            <h3 class="font-extrabold text-slate-900 text-sm flex items-center gap-2">
+              <i data-lucide="plus-circle" class="w-4 h-4 text-emerald-600"></i>
+              Procedimiento en Pantalla
+            </h3>
+
+            <div class="space-y-2.5 text-[11.5px]">
+              <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+                <strong class="text-slate-900 block font-bold">Paso 1: Clic en "+ Create Database"</strong>
+                <p class="text-slate-600 text-[11px]">En la esquina superior derecha de Compass verás el botón verde <code>+ Create database</code>. Haz clic allí para abrir la ventana modal.</p>
+              </div>
+
+              <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+                <strong class="text-slate-900 block font-bold">Paso 2: Diligenciar los 2 Campos Obligatorios</strong>
+                <p class="text-slate-600 text-[11px]">
+                  • <strong>Database Name:</strong> El nombre de la base de datos de tu proyecto (ej. <code>adso_veterinaria</code>, <code>adso_tienda</code>).<br>
+                  • <strong>Collection Name:</strong> El nombre de tu primera colección en plural (ej. <code>productos</code>, <code>pacientes</code>).
+                </p>
+              </div>
+
+              <div class="p-2.5 bg-emerald-50 rounded-xl border border-emerald-200 space-y-1 text-emerald-950">
+                <strong class="block font-bold">¿Por qué pide ambos nombres al tiempo?</strong>
+                <p class="text-[11px] leading-relaxed">
+                  En MongoDB <strong>no existen bases de datos vacías</strong>. El motor solo crea físicamente la base de datos en disco cuando tiene al menos una colección con documentos.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Representación de la Ventana Modal de Compass -->
+          <div class="md:col-span-6 bg-[#00263A] text-slate-200 rounded-2xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center justify-between border-b border-white/10 pb-2">
+                <span class="font-bold text-sm text-white flex items-center gap-2">
+                  <i data-lucide="folder-plus" class="w-4 h-4 text-emerald-400"></i> Create Database
+                </span>
+                <span class="text-slate-400 font-mono text-xs">Ventana Modal de Compass</span>
+              </div>
+
+              <!-- Simulación Visual del Formulario -->
+              <div class="space-y-2.5 text-xs">
+                <div>
+                  <label class="block text-slate-300 font-bold mb-1 text-[11px]">Database Name</label>
+                  <div class="p-2 bg-[#001724] border-2 border-emerald-500 rounded-lg text-emerald-300 font-mono text-xs">
+                    adso_ventas_dev
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-slate-300 font-bold mb-1 text-[11px]">Collection Name</label>
+                  <div class="p-2 bg-[#001724] border border-slate-600 rounded-lg text-slate-300 font-mono text-xs">
+                    productos
+                  </div>
+                </div>
+
+                <div class="p-2.5 bg-white/5 border border-white/10 rounded-lg flex items-start gap-2 text-[10.5px] text-slate-300">
+                  <i data-lucide="info" class="w-4 h-4 text-blue-400 shrink-0 mt-0.5"></i>
+                  <span>Before MongoDB can save your new database, a collection name must also be specified at the time of creation.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-white/10 flex items-center justify-end gap-2 text-xs">
+              <span class="px-3 py-1.5 text-slate-400 font-medium">Cancel</span>
+              <span class="px-4 py-1.5 bg-[#39A900] text-white font-bold rounded-lg shadow-sm">
+                Create Database
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- DIAPOSITIVA 9: LA CONSOLA MONGOSH INTEGRADA EN COMPASS -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-9" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            Línea de Comandos Integrada
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            La Consola MONGOSH: <span class="text-[#39A900]">Comandos Básicos de Navegación</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Aprende a abrir y usar el shell oficial que viene integrado en la parte inferior de MongoDB Compass.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-5 pt-2 text-xs">
+          <!-- Cómo abrir MONGOSH y comandos básicos -->
+          <div class="md:col-span-5 space-y-3 text-slate-700">
+            <h3 class="font-extrabold text-slate-900 text-sm">¿Cómo abrir la consola MONGOSH?</h3>
+            <p class="text-slate-600 text-[11px] leading-relaxed">
+              En la barra superior derecha o en la pestaña inferior de MongoDB Compass, haz clic en el botón <strong>"&gt;_ Open MongoDB shell"</strong> (o <strong>&gt;_ MONGOSH</strong>).
+            </p>
+
+            <div class="space-y-2 text-[11px]">
+              <strong class="text-slate-900 block font-bold">Comandos de Navegación Esenciales:</strong>
+              
+              <div class="p-2.5 bg-slate-50 border border-slate-200 rounded-lg font-mono">
+                <span class="text-emerald-700 font-bold block">1. show dbs</span>
+                <span class="text-slate-500 font-sans text-[10.5px]">Muestra todas las bases de datos que tienen datos guardados.</span>
+              </div>
+
+              <div class="p-2.5 bg-slate-50 border border-slate-200 rounded-lg font-mono">
+                <span class="text-emerald-700 font-bold block">2. use mi_proyecto_dev</span>
+                <span class="text-slate-500 font-sans text-[10.5px]">Selecciona o crea la base de datos de trabajo activa.</span>
+              </div>
+
+              <div class="p-2.5 bg-slate-50 border border-slate-200 rounded-lg font-mono">
+                <span class="text-emerald-700 font-bold block">3. show collections</span>
+                <span class="text-slate-500 font-sans text-[10.5px]">Lista todas las colecciones que existen dentro de la base de datos activa.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Consola MONGOSH en Vivo -->
+          <div class="md:col-span-7 bg-[#001724] text-slate-200 rounded-2xl p-5 shadow-xs font-mono text-xs flex flex-col justify-between border border-slate-800">
+            <div>
+              <div class="flex items-center justify-between border-b border-white/10 pb-2 mb-3">
+                <span class="text-emerald-400 font-bold text-xs flex items-center gap-1.5">
+                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                  &gt;_ MONGOSH (Consola Integrada)
+                </span>
+                <span class="text-slate-400 text-[10px]">Atlas / Local</span>
+              </div>
+              <pre class="overflow-x-auto text-[11px] leading-relaxed text-slate-300">
+<span class="text-slate-400">// 1. Ver qué bases de datos existen en el servidor</span>
+<span class="text-emerald-400">test&gt;</span> show dbs
+admin             40.00 KiB
+config            12.00 KiB
+adso_ventas_dev   64.00 KiB
+
+<span class="text-slate-400">// 2. Cambiarse a la base de datos del proyecto</span>
+<span class="text-emerald-400">test&gt;</span> use adso_ventas_dev
+switched to db adso_ventas_dev
+
+<span class="text-slate-400">// 3. Ver qué colecciones existen adentro</span>
+<span class="text-emerald-400">adso_ventas_dev&gt;</span> show collections
+clientes
+pedidos
+productos
+              </pre>
+            </div>
+            <div class="pt-2 border-t border-white/10 text-[10.5px] text-slate-400 font-sans">
+              El prompt de la consola siempre te muestra entre corchetes el nombre de la base de datos en la que estás trabajando.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- DIAPOSITIVA 10: COMANDOS DE INSERCIÓN EN MONGOSH -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-10" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            Operaciones de Escritura
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Comandos de Inserción: <span class="text-[#39A900]">insertOne() e insertMany()</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Cómo insertar documentos reales en tus colecciones desde la consola de MongoDB Compass.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2 text-xs font-mono">
+          <!-- insertOne -->
+          <div class="bg-white border-2 border-emerald-500 rounded-2xl p-5 shadow-xs space-y-3 flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between font-sans">
+                <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold text-[10px] uppercase">UN SOLO DOCUMENTO</span>
+                <span class="text-slate-400 font-mono text-[10px]">insertOne()</span>
+              </div>
+              <h4 class="font-extrabold text-slate-900 text-sm font-sans">Insertar un Registro Único</h4>
+              <p class="text-slate-600 text-[11px] font-sans leading-relaxed">
+                Inserta un único objeto entre llaves <code>{ }</code>. Si no le colocas el campo <code>_id</code>, MongoDB lo crea automáticamente.
+              </p>
+              
+              <div class="bg-slate-900 text-slate-200 p-3 rounded-xl overflow-x-auto text-[10.5px]">
+<span class="text-emerald-400">db.productos.insertOne</span>({
+  nombre: <span class="text-emerald-300">"Café Especial Huila 500g"</span>,
+  categoria: <span class="text-emerald-300">"Alimentos"</span>,
+  precio: <span class="text-amber-300">24000.00</span>,
+  stock: <span class="text-amber-300">45</span>,
+  disponible: <span class="text-blue-300">true</span>
+});
+              </div>
+            </div>
+
+            <div class="p-2 bg-emerald-50 rounded border border-emerald-200 text-[10.5px] text-emerald-900 font-sans font-medium">
+              ✅ Respuesta: <code>{ acknowledged: true, insertedId: ObjectId(...) }</code>
+            </div>
+          </div>
+
+          <!-- insertMany -->
+          <div class="bg-white border-2 border-blue-500 rounded-2xl p-5 shadow-xs space-y-3 flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between font-sans">
+                <span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 font-bold text-[10px] uppercase">VARIOS DOCUMENTOS</span>
+                <span class="text-slate-400 font-mono text-[10px]">insertMany()</span>
+              </div>
+              <h4 class="font-extrabold text-slate-900 text-sm font-sans">Insertar Múltiples Registros en Lote</h4>
+              <p class="text-slate-600 text-[11px] font-sans leading-relaxed">
+                Inserta una lista de documentos encerrados entre corchetes <code>[ { }, { } ]</code>. Ideal para poblar datos de prueba.
+              </p>
+              
+              <div class="bg-slate-900 text-slate-200 p-3 rounded-xl overflow-x-auto text-[10.5px]">
+<span class="text-blue-400">db.productos.insertMany</span>([
+  {
+    nombre: <span class="text-emerald-300">"Miel de Abejas 250ml"</span>,
+    precio: <span class="text-amber-300">18000.00</span>,
+    stock: <span class="text-amber-300">20</span>
+  },
+  {
+    nombre: <span class="text-emerald-300">"Panela Orgánica 1kg"</span>,
+    precio: <span class="text-amber-300">7500.00</span>,
+    stock: <span class="text-amber-300">80</span>
+  }
+]);
+              </div>
+            </div>
+
+            <div class="p-2 bg-blue-50 rounded border border-blue-200 text-[10.5px] text-blue-900 font-sans font-medium">
+              ✅ Inserta todos los documentos en una sola operación atómica.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- DIAPOSITIVA 11: COMANDOS DE CONSULTA Y FILTROS EN MONGOSH -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-11" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            Operaciones de Lectura
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Consultas y Filtros: <span class="text-[#39A900]">El Comando db.coleccion.find()</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Cómo buscar registros específicos utilizando operadores de comparación en MONGOSH.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2 text-xs font-mono">
+          <!-- 1. find() simple -->
+          <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-xs space-y-2">
+            <span class="font-sans px-2 py-0.5 rounded bg-slate-100 text-slate-700 font-bold text-[10px]">CONSULTA GENERAL</span>
+            <h4 class="font-sans font-bold text-slate-900 text-sm">Consultar Todos</h4>
+            <p class="font-sans text-slate-600 text-[11px] leading-relaxed">
+              Equivale al <code>SELECT * FROM tabla</code> de SQL. Trae todos los documentos de la colección.
+            </p>
+            <div class="bg-slate-900 text-emerald-400 p-2.5 rounded-lg text-[10.5px]">
+              db.productos.find();
+            </div>
+            <p class="font-sans text-[10.5px] text-slate-500">
+              Puedes agregar <code>.limit(5)</code> para limitar a los primeros 5 resultados.
+            </p>
+          </div>
+
+          <!-- 2. find() con filtro exacto -->
+          <div class="bg-white border-2 border-emerald-500 rounded-xl p-4 shadow-xs space-y-2">
+            <span class="font-sans px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold text-[10px]">FILTRO EXACTO</span>
+            <h4 class="font-sans font-bold text-slate-900 text-sm">Filtro por Campo</h4>
+            <p class="font-sans text-slate-600 text-[11px] leading-relaxed">
+              Equivale al <code>WHERE categoria = 'Alimentos'</code>. Pasas un objeto con la condición de búsqueda.
+            </p>
+            <div class="bg-slate-900 text-emerald-400 p-2.5 rounded-lg text-[10.5px]">
+              db.productos.find({<br>
+              &nbsp;&nbsp;categoria: "Alimentos"<br>
+              });
+            </div>
+          </div>
+
+          <!-- 3. Operadores avanzados -->
+          <div class="bg-white border-2 border-blue-500 rounded-xl p-4 shadow-xs space-y-2">
+            <span class="font-sans px-2 py-0.5 rounded bg-blue-100 text-blue-800 font-bold text-[10px]">OPERADORES</span>
+            <h4 class="font-sans font-bold text-slate-900 text-sm">Mayor Que ($gt)</h4>
+            <p class="font-sans text-slate-600 text-[11px] leading-relaxed">
+              Equivale a <code>WHERE precio &gt;= 20000</code>. Usa operadores como <code>$gt</code>, <code>$gte</code>, <code>$in</code>.
+            </p>
+            <div class="bg-slate-900 text-blue-300 p-2.5 rounded-lg text-[10.5px]">
+              db.productos.find({<br>
+              &nbsp;&nbsp;precio: { $gte: 20000 }<br>
+              });
+            </div>
+          </div>
+        </div>
+
+        <div class="p-3 bg-slate-100 border border-slate-200 rounded-xl text-xs text-slate-700">
+          💡 <strong>Tip para el PDF:</strong> En tu documento incluye al menos <strong>2 capturas de pantalla de la consola MONGOSH</strong> mostrando una inserción y una consulta exitosa.
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- DIAPOSITIVA 12: VALIDACIÓN DE ESQUEMAS CON $jsonSchema -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-12" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            Reglas de Integridad Oficiales
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Validación de Esquemas: <span class="text-[#39A900]">Instrucción $jsonSchema</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Cómo proteger tu base de datos para que rechace documentos sin campos requeridos o con tipos incorrectos.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-5 pt-1 text-xs">
+          <!-- Explicación -->
+          <div class="md:col-span-5 space-y-3 text-slate-700">
+            <h3 class="font-extrabold text-slate-900 text-sm">¿Cómo funciona la regla?</h3>
+            <p class="text-slate-600 text-[11px] leading-relaxed">
+              Al crear una colección con <code>db.createCollection()</code>, puedes adjuntar un validador que evalúa cada documento antes de guardarlo en disco.
+            </p>
+
+            <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl space-y-1.5 text-[11px]">
+              <strong class="text-slate-900 block font-bold">Parámetros Clave:</strong>
+              <div>• <code>required</code>: Lista de campos obligatorios.</div>
+              <div>• <code>bsonType</code>: Tipo obligatorio (string, int, double, bool).</div>
+              <div>• <code>minimum</code>: Valor numérico mínimo permitido.</div>
+            </div>
+
+            <div class="p-2.5 bg-emerald-50 border border-emerald-200 rounded-lg text-[11px] text-emerald-950 font-medium">
+              ✅ Incluir este bloque en tu evidencia garantiza que tu entrega obtenga calificación sobresaliente.
+            </div>
+          </div>
+
+          <!-- Código ejecutable -->
+          <div class="md:col-span-7 bg-[#00263A] text-slate-200 rounded-2xl p-5 shadow-xs font-mono text-xs flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between border-b border-white/10 pb-2 mb-2">
+                <span class="text-emerald-400 font-bold text-xs">Script de Validación</span>
+                <span class="text-slate-400 text-[10px]">Colección: clientes</span>
+              </div>
+              <pre class="overflow-x-auto text-[10.5px] leading-relaxed text-slate-300">
+db.<span class="text-blue-300">createCollection</span>(<span class="text-emerald-300">"clientes"</span>, {
+  <span class="text-purple-400">validator</span>: {
+    <span class="text-purple-400">$jsonSchema</span>: {
+      <span class="text-purple-400">bsonType</span>: <span class="text-emerald-300">"object"</span>,
+      <span class="text-purple-400">required</span>: [<span class="text-emerald-300">"nombres"</span>, <span class="text-emerald-300">"documento"</span>, <span class="text-emerald-300">"estado"</span>],
+      <span class="text-purple-400">properties</span>: {
+        <span class="text-purple-400">nombres</span>: {
+          <span class="text-purple-400">bsonType</span>: <span class="text-emerald-300">"string"</span>,
+          <span class="text-purple-400">description</span>: <span class="text-emerald-300">"El nombre debe ser un texto obligatorio"</span>
+        },
+        <span class="text-purple-400">documento</span>: {
+          <span class="text-purple-400">bsonType</span>: <span class="text-emerald-300">"string"</span>,
+          <span class="text-purple-400">description</span>: <span class="text-emerald-300">"Cédula obligatoria"</span>
+        },
+        <span class="text-purple-400">estado</span>: {
+          <span class="text-purple-400">enum</span>: [<span class="text-emerald-300">"Activo"</span>, <span class="text-emerald-300">"Inactivo"</span>],
+          <span class="text-purple-400">description</span>: <span class="text-emerald-300">"Solo admite 'Activo' o 'Inactivo'"</span>
+        }
+      }
+    }
+  }
+});
+              </pre>
+            </div>
+            <div class="pt-2 border-t border-white/10 text-[10.5px] text-slate-400 font-sans">
+              Si alguien intenta insertar un estado diferente a "Activo" o "Inactivo", MongoDB lo bloqueará de inmediato.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- DIAPOSITIVA 13: CASO PRÁCTICO RESUELTO DE INICIO A FIN -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-13" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            Plantilla Guía Resuelta
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Caso Real Resuelto: <span class="text-[#39A900]">Colección de Pedidos con Ítems Incrustados</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Un diseño completo que puedes tomar de modelo para tu propio proyecto de grado ADSO.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-5 pt-1 text-xs">
+          <!-- Documento JSON del Pedido -->
+          <div class="md:col-span-7 bg-[#00263A] text-slate-200 rounded-2xl p-4 shadow-xs font-mono text-[10.5px]">
+            <div class="flex items-center justify-between border-b border-white/10 pb-1.5 mb-2">
+              <span class="text-emerald-400 font-bold">Colección: pedidos</span>
+              <span class="text-slate-400 text-[10px]">1 Documento Completo</span>
+            </div>
+            <pre class="overflow-x-auto leading-relaxed text-slate-300">
+{
+  <span class="text-purple-400">"_id"</span>: <span class="text-amber-400">ObjectId("664f33b1e2a84c001f5e89a1")</span>,
+  <span class="text-purple-400">"numero_factura"</span>: <span class="text-emerald-300">"FAC-2026-0042"</span>,
+  <span class="text-purple-400">"fecha"</span>: <span class="text-amber-400">ISODate("2026-09-23T15:20:00Z")</span>,
+  <span class="text-purple-400">"estado"</span>: <span class="text-emerald-300">"Entregado"</span>,
+  
+  <span class="text-slate-400">// 1. Referencia al Cliente (Referencing por ID)</span>
+  <span class="text-purple-400">"cliente_id"</span>: <span class="text-amber-400">ObjectId("664f1a2b8c9d0e1f2a3b4c5d")</span>,
+  <span class="text-purple-400">"cliente_nombre"</span>: <span class="text-emerald-300">"Carlos Andrés Pérez"</span>,
+
+  <span class="text-slate-400">// 2. Ítems Comprados (Incrustación / Embedding)</span>
+  <span class="text-purple-400">"items"</span>: [
+    {
+      <span class="text-purple-400">"producto_id"</span>: <span class="text-amber-400">ObjectId("664f2010c7a10f002a9b1101")</span>,
+      <span class="text-purple-400">"descripcion"</span>: <span class="text-emerald-300">"Café Especial Huila 500g"</span>,
+      <span class="text-purple-400">"cantidad"</span>: <span class="text-amber-300">3</span>,
+      <span class="text-purple-400">"precio_unitario"</span>: <span class="text-amber-300">24000.00</span>,
+      <span class="text-purple-400">"subtotal"</span>: <span class="text-amber-300">72000.00</span>
+    }
+  ],
+  <span class="text-purple-400">"total_pagar"</span>: <span class="text-amber-300">72000.00</span>,
+  <span class="text-purple-400">"metodo_pago"</span>: <span class="text-emerald-300">"Transferencia Bancaria"</span>
+}
+            </pre>
+          </div>
+
+          <!-- Adaptación a Otros Sectores -->
+          <div class="md:col-span-5 space-y-3 text-slate-700">
+            <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-xs space-y-2">
+              <strong class="text-slate-900 block font-bold text-xs">¿Por qué es el diseño perfecto?</strong>
+              <p class="text-[11px] text-slate-600 leading-relaxed">
+                El precio unitario de los productos queda congelado en el pedido, garantizando que el historial de facturación no se altere si el catálogo sube de precio.
+              </p>
+            </div>
+
+            <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl space-y-1.5 text-[11px] text-emerald-950">
+              <strong class="block font-bold">Cómo adaptarlo a otros proyectos:</strong>
+              <div>• <strong>Veterinaria:</strong> La mascota tiene una lista de <code>vacunas: [{fecha, nombre, dosis}]</code> incrustadas.</div>
+              <div>• <strong>Taller:</strong> La orden tiene una lista de <code>repuestos: [{nombre, cant, costo}]</code> incrustados.</div>
+              <div>• <strong>Restaurante:</strong> La comanda tiene una lista de <code>platos: [{nombre, notas, precio}]</code> incrustados.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- DIAPOSITIVA 14: CÓMO ARMAR EL PDF Y LISTA DE CHEQUEO ('A') -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-14" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            Instrumento Oficial IE-GA6-220501096-AA1-EV03
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Estructura del PDF & <span class="text-[#39A900]">Lista de Chequeo Aprobada ('A')</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            El orden de las páginas y los 5 puntos clave antes de hacer el envío oficial en Zajuna LMS.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-5 pt-1 text-xs">
+          <!-- Autoevaluación interactiva -->
+          <div class="md:col-span-8 bg-white border border-slate-200 rounded-2xl p-5 shadow-xs space-y-3 text-slate-700">
+            <h3 class="font-extrabold text-slate-900 text-sm flex items-center gap-2">
+              <i data-lucide="check-square" class="w-4 h-4 text-sena"></i>
+              Autoevaluación de los 5 Criterios Oficiales
+            </h3>
+
+            <div class="space-y-2 text-[11.5px]">
+              <label class="p-2.5 bg-slate-50 border border-slate-200 rounded-xl flex items-start gap-2.5 cursor-pointer hover:bg-slate-100 transition-colors">
+                <input type="checkbox" checked class="mt-0.5 w-4 h-4 text-sena rounded border-slate-300 focus:ring-sena">
+                <span><strong>1. Portada formal y descripción del módulo:</strong> Datos del aprendiz, ficha ADSO, centro CADPH Garzón, instructor Hector David Toledo García y descripción del módulo que usa NoSQL.</span>
+              </label>
+
+              <label class="p-2.5 bg-slate-50 border border-slate-200 rounded-xl flex items-start gap-2.5 cursor-pointer hover:bg-slate-100 transition-colors">
+                <input type="checkbox" checked class="mt-0.5 w-4 h-4 text-sena rounded border-slate-300 focus:ring-sena">
+                <span><strong>2. Definición formal de Colecciones y Esquemas JSON:</strong> Lista de colecciones con documentos de ejemplo con datos reales.</span>
+              </label>
+
+              <label class="p-2.5 bg-slate-50 border border-slate-200 rounded-xl flex items-start gap-2.5 cursor-pointer hover:bg-slate-100 transition-colors">
+                <input type="checkbox" checked class="mt-0.5 w-4 h-4 text-sena rounded border-slate-300 focus:ring-sena">
+                <span><strong>3. Capturas de Práctica en MongoDB Compass:</strong> Muestra la creación con el botón <em>"+ Create Database"</em> y la consola <em>MONGOSH</em> ejecutando inserciones y consultas.</span>
+              </label>
+
+              <label class="p-2.5 bg-slate-50 border border-slate-200 rounded-xl flex items-start gap-2.5 cursor-pointer hover:bg-slate-100 transition-colors">
+                <input type="checkbox" checked class="mt-0.5 w-4 h-4 text-sena rounded border-slate-300 focus:ring-sena">
+                <span><strong>4. Justificación técnica de Incrustar vs Referenciar:</strong> Argumentación clara del por qué unos datos van anidados y otros por ID.</span>
+              </label>
+
+              <label class="p-2.5 bg-slate-50 border border-slate-200 rounded-xl flex items-start gap-2.5 cursor-pointer hover:bg-slate-100 transition-colors">
+                <input type="checkbox" checked class="mt-0.5 w-4 h-4 text-sena rounded border-slate-300 focus:ring-sena">
+                <span><strong>5. Reglas de Validación ($jsonSchema) y Nomenclatura:</strong> Archivo guardado como <code>GA6-220501096-AA1-EV03_Nombre_Apellido.pdf</code> sin errores.</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Mensaje Final del Instructor -->
+          <div class="md:col-span-4 bg-gradient-to-br from-[#00324D] to-[#00263A] text-white rounded-2xl p-5 shadow-xs space-y-4 flex flex-col justify-between text-xs">
+            <div class="space-y-3">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-lg border border-emerald-500/30">
+                <i data-lucide="award" class="w-5 h-5"></i>
+              </div>
+              <h4 class="font-extrabold text-base text-white">¡Muchos Éxitos en tu Entrega!</h4>
+              <p class="text-slate-300 leading-relaxed text-[11px]">
+                Aprender MongoDB Compass y la consola MONGOSH te capacita para construir sistemas modernos con arquitecturas híbridas SQL + NoSQL.
+              </p>
+              <div class="p-3 bg-white/5 rounded-xl border border-white/10 text-[11px] text-slate-300 space-y-1">
+                <strong class="text-emerald-300 block">Canal Oficial:</strong>
+                <span>Zajuna LMS → Fase Ejecución → Guía 06 → Actividad AA1 → Evidencia 03</span>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-white/10 space-y-2">
+              <a href="../../index.html#evidencias-section" class="w-full inline-flex items-center justify-center gap-2 bg-[#39A900] hover:bg-[#2D8200] text-white font-bold py-2.5 rounded-xl text-xs shadow-md transition-all">
+                <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i>
+                <span>Volver al Catálogo de Evidencias</span>
+              </a>
+              <div class="text-[10px] text-center text-slate-400 font-mono">
+                CADPH Garzón • Regional Huila
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL DE AYUDA Y ATAJOS DE TECLADO -->
+  <!-- ========================================================================= -->
+  <div id="help-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200 space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <h3 class="font-extrabold text-slate-900 text-base flex items-center gap-2">
+          <i data-lucide="keyboard" class="w-5 h-5 text-sena"></i> Atajos de Teclado
+        </h3>
+        <button id="btn-close-help" class="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="space-y-2 text-xs text-slate-600 font-mono">
+        <div class="flex items-center justify-between p-2 rounded bg-slate-50 border border-slate-100">
+          <span class="font-sans">Avanzar Diapositiva</span>
+          <span class="font-bold text-slate-800">[Espacio] o [→]</span>
+        </div>
+        <div class="flex items-center justify-between p-2 rounded bg-slate-50 border border-slate-100">
+          <span class="font-sans">Retroceder Diapositiva</span>
+          <span class="font-bold text-slate-800">[←] o [RePág]</span>
+        </div>
+        <div class="flex items-center justify-between p-2 rounded bg-slate-50 border border-slate-100">
+          <span class="font-sans">Pantalla Completa</span>
+          <span class="font-bold text-slate-800">[F]</span>
+        </div>
+        <div class="flex items-center justify-between p-2 rounded bg-slate-50 border border-slate-100">
+          <span class="font-sans">Abrir / Cerrar Menú</span>
+          <span class="font-bold text-slate-800">[M]</span>
+        </div>
+        <div class="flex items-center justify-between p-2 rounded bg-slate-50 border border-slate-100">
+          <span class="font-sans">Cerrar Ventanas</span>
+          <span class="font-bold text-slate-800">[Esc]</span>
+        </div>
+      </div>
+
+      <div class="pt-2 text-center">
+        <button onclick="presenter.toggleHelpModal()" class="w-full bg-[#00324D] hover:bg-[#00263A] text-white text-xs font-bold py-2 rounded-lg">
+          Entendido
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MENÚ LATERAL DE ÍNDICE DE DIAPOSITIVAS -->
+  <!-- ========================================================================= -->
+  <aside id="menu-drawer" class="fixed inset-y-0 right-0 w-80 bg-white shadow-2xl border-l border-slate-200 z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
+    <div class="p-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+      <div>
+        <h3 class="font-bold text-slate-900 text-sm">Índice del Taller NoSQL</h3>
+        <p class="text-[11px] text-slate-500">14 Diapositivas Paso a Paso</p>
+      </div>
+      <button id="btn-close-menu" class="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-200">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <div class="flex-1 overflow-y-auto p-3 space-y-1 text-xs">
+      <div class="text-[10px] uppercase font-bold text-slate-400 px-2 pt-1 pb-0.5">Bloque 1: Fundamentos NoSQL</div>
+      <button onclick="presenter.goToSlide(0)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">01</span> Portada y Objetivos
+      </button>
+      <button onclick="presenter.goToSlide(1)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">02</span> ¿Qué Debes Entregar?
+      </button>
+      <button onclick="presenter.goToSlide(2)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">03</span> ¿Qué es NoSQL? 4 Familias
+      </button>
+      <button onclick="presenter.goToSlide(3)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">04</span> Equivalencias SQL vs MongoDB
+      </button>
+      <button onclick="presenter.goToSlide(4)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">05</span> JSON vs BSON y Tipos de Datos
+      </button>
+      <button onclick="presenter.goToSlide(5)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">06</span> Incrustar vs Referenciar
+      </button>
+
+      <div class="text-[10px] uppercase font-bold text-slate-400 px-2 pt-2.5 pb-0.5">Bloque 2: MongoDB Compass & MONGOSH</div>
+      <button onclick="presenter.goToSlide(6)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">07</span> Descarga de MongoDB Compass
+      </button>
+      <button onclick="presenter.goToSlide(7)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">08</span> Botón "+ Create Database"
+      </button>
+      <button onclick="presenter.goToSlide(8)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">09</span> Consola MONGOSH: Navegación
+      </button>
+      <button onclick="presenter.goToSlide(9)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">10</span> Inserciones: insertOne/Many
+      </button>
+      <button onclick="presenter.goToSlide(10)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">11</span> Consultas y Filtros: find()
+      </button>
+
+      <div class="text-[10px] uppercase font-bold text-slate-400 px-2 pt-2.5 pb-0.5">Bloque 3: Validación & Entrega</div>
+      <button onclick="presenter.goToSlide(11)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">12</span> Validación $jsonSchema
+      </button>
+      <button onclick="presenter.goToSlide(12)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">13</span> Caso Práctico Resuelto
+      </button>
+      <button onclick="presenter.goToSlide(13)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">14</span> Armado del PDF y Chequeo ('A')
+      </button>
+    </div>
+  </aside>
+
+  <!-- Script del motor de diapositivas -->
+  <script src="../../assets/js/presenter.js"></script>
+  <script>
+    let presenter;
+    document.addEventListener('DOMContentLoaded', () => {
+      presenter = new SlidePresenter();
+      
+      const btnMenu = document.getElementById('btn-toggle-menu');
+      const btnCloseMenu = document.getElementById('btn-close-menu');
+      if (btnMenu) btnMenu.addEventListener('click', () => presenter.toggleMenu());
+      if (btnCloseMenu) btnCloseMenu.addEventListener('click', () => presenter.closeMenu());
+
+      const btnHelp = document.getElementById('btn-toggle-help');
+      const btnCloseHelp = document.getElementById('btn-close-help');
+      if (btnHelp) btnHelp.addEventListener('click', () => presenter.toggleHelpModal());
+      if (btnCloseHelp) btnCloseHelp.addEventListener('click', () => presenter.toggleHelpModal());
+
+      if (window.lucide && typeof window.lucide.createIcons === 'function') {
+        window.lucide.createIcons();
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-slate-50 text-slate-900 antialiased">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sesión Proyectada · Evidencia 2: Modelo Entidad Relación de Caso & Diccionario de Datos | SENA ADSO</title>
+  <meta name="description" content="Guía directa paso a paso en 10 diapositivas para presentar la Evidencia 2 (GA6-220501096-AA1-EV02): Modelo Entidad-Relación, Modelo Relacional, Diccionario de Datos y Generación de Script SQL en MySQL Workbench. Instructor: Ing. Hector David Toledo García.">
+  <link rel="icon" type="image/png" href="../../assets/logo_green.png">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            sena: {
+              green: '#39A900',
+              'green-hover': '#2D8200',
+              navy: '#00324D',
+              'navy-dark': '#00263A',
+              'navy-light': '#004164'
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../assets/css/presenter.css">
+  <style>
+    .slide-content.active {
+      display: flex !important;
+      flex-direction: column;
+      justify-content: center;
+    }
+    kbd {
+      font-family: 'JetBrains Mono', monospace;
+    }
+  </style>
+</head>
+<body class="min-h-full flex flex-col bg-slate-50 text-slate-900 font-sans selection:bg-[#39A900] selection:text-white">
+
+  <!-- ========================================================================= -->
+  <!-- BARRA SUPERIOR INSTITUCIONAL (CINTILLO) -->
+  <!-- ========================================================================= -->
+  <div class="bg-[#00324D] text-white text-[11px] py-1.5 px-4 border-b border-[#00263A]">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2 truncate">
+        <span class="font-extrabold tracking-wide shrink-0">SENA</span>
+        <span class="text-slate-400">|</span>
+        <span class="text-slate-200 truncate font-medium">Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)</span>
+      </div>
+      <div class="flex items-center gap-3 text-slate-300 font-mono text-[11px] shrink-0">
+        <span>Sede Garzón</span>
+        <span class="text-slate-400">•</span>
+        <span class="text-emerald-400 font-semibold">ADSO Virtual • Sesión Técnica en Aula</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- BARRA DE CONTROL DE PRESENTACIÓN -->
+  <!-- ========================================================================= -->
+  <header class="border-b border-slate-200 bg-white sticky top-0 z-40 shadow-xs">
+    <!-- Barra de Progreso Dinámica -->
+    <div class="w-full bg-slate-100 h-1">
+      <div id="presentation-progress" class="bg-[#39A900] h-1 transition-all duration-300 ease-out" style="width: 10%;"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+      <!-- Logo y Ruta -->
+      <div class="flex items-center gap-3 min-w-0">
+        <a href="../../index.html" class="flex items-center gap-2.5 group shrink-0">
+          <img src="../../assets/logo_green.png" alt="SENA" class="w-7 h-7 object-contain" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/8/83/Sena_Colombia_logo.svg'">
+          <div class="truncate">
+            <span class="font-extrabold text-slate-900 tracking-tight text-sm">FORMACIÓN <span class="text-sena">ADSO</span></span>
+            <span class="text-[11px] font-bold text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded ml-1 uppercase">CADPH</span>
+          </div>
+        </a>
+        <span class="text-slate-300 hidden sm:inline">/</span>
+        <div class="hidden sm:flex items-center gap-2 text-xs truncate">
+          <span class="font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Guía 06</span>
+          <span class="text-slate-600 font-medium truncate">Evidencia 02: Modelo Entidad-Relación & Diccionario de Datos</span>
+        </div>
+      </div>
+
+      <!-- Controles de Proyección -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Temporizador -->
+        <div class="hidden md:flex items-center gap-1.5 bg-slate-100 px-2.5 py-1 rounded-lg border border-slate-200 font-mono text-xs text-slate-700">
+          <i data-lucide="clock" class="w-3.5 h-3.5 text-slate-500"></i>
+          <span id="timer-display" class="font-bold">00:00</span>
+          <button id="btn-timer-start" class="text-emerald-700 hover:text-emerald-800 font-bold ml-1 text-[11px] uppercase">Iniciar</button>
+          <button id="btn-timer-reset" class="text-slate-400 hover:text-slate-600 ml-1" title="Reiniciar"><i data-lucide="rotate-ccw" class="w-3 h-3"></i></button>
+        </div>
+
+        <!-- Menú de Índice -->
+        <button id="btn-toggle-menu" class="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors" title="Índice de Diapositivas (M)">
+          <i data-lucide="list" class="w-4 h-4"></i>
+        </button>
+
+        <!-- Contador de Diapositiva -->
+        <div class="px-2.5 py-1 bg-slate-100 rounded-lg text-xs font-mono font-bold text-slate-700 border border-slate-200 shrink-0">
+          <span id="slide-counter">1 / 10</span>
+        </div>
+
+        <!-- Botones de Navegación -->
+        <div class="flex items-center gap-1">
+          <button id="btn-prev-slide" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors disabled:opacity-40" title="Anterior (Flecha Izq)">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+          </button>
+          <button id="btn-next-slide" class="p-2 rounded-lg bg-[#39A900] hover:bg-[#2D8200] text-white transition-colors" title="Siguiente (Espacio o Flecha Der)">
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <!-- Pantalla Completa -->
+        <button id="btn-fullscreen" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors" title="Pantalla Completa (F)">
+          <i data-lucide="maximize" class="w-4 h-4"></i>
+        </button>
+
+        <!-- Ayuda -->
+        <button id="btn-toggle-help" class="p-2 rounded-lg text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors" title="Atajos de teclado (?)">
+          <i data-lucide="help-circle" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- CONTENEDOR PRINCIPAL DE DIAPOSITIVAS (10 SLIDES DIRECTAS AL GRANO) -->
+  <!-- ========================================================================= -->
+  <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 py-6 sm:py-8 flex flex-col justify-center slide-container">
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- DIAPOSITIVA 1: PORTADA INSTITUCIONAL Y RESUMEN EJECUTIVO -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content active" id="slide-1" aria-hidden="false">
+      <div class="text-center max-w-4xl mx-auto space-y-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-semibold text-emerald-800">
+          <span class="w-2 h-2 rounded-full bg-[#39A900] animate-pulse"></span>
+          <span>SENA Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+          Guía 06 · Evidencia Técnica 02 <br>
+          <span class="text-[#39A900]">Modelo Entidad-Relación & Diccionario de Datos</span>
+        </h1>
+
+        <p class="text-slate-600 text-sm sm:text-base max-w-3xl mx-auto leading-relaxed">
+          Tecnólogo en Análisis y Desarrollo de Software (ADSO) • Código Oficial: <strong>GA6-220501096-AA1-EV02</strong>.
+          Instructor: <strong>Ing. Hector David Toledo García</strong>.
+          Explicación práctica, directa y sin rodeos de lo que debes presentar en tu <strong>proyecto individual</strong> para obtener calificación Aprobada ('A') en Zajuna LMS.
+        </p>
+
+        <!-- 3 Pasos Claves para Presentar -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-3 text-left">
+          <div class="bg-white border-2 border-emerald-500 rounded-xl p-4 shadow-xs space-y-2">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">PASO 1</span>
+            <h3 class="font-bold text-slate-900 text-sm">Diagrama Conceptual (MER)</h3>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              Identificar las entidades de tu software, sus atributos y relaciones con cardinalidades (1 a 1, 1 a muchos o muchos a muchos).
+            </p>
+          </div>
+
+          <div class="bg-white border-2 border-blue-500 rounded-xl p-4 shadow-xs space-y-2">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-800">PASO 2</span>
+            <h3 class="font-bold text-slate-900 text-sm">Modelo en Tablas & Llaves</h3>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              Convertir las entidades en tablas relacionales con sus Llaves Primarias (PK) y Llaves Foráneas (FK) en MySQL Workbench o draw.io.
+            </p>
+          </div>
+
+          <div class="bg-white border-2 border-purple-500 rounded-xl p-4 shadow-xs space-y-2">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-100 text-purple-800">PASO 3</span>
+            <h3 class="font-bold text-slate-900 text-sm">Diccionario de Datos & PDF</h3>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              Diligenciar la tabla formal descriptiva de cada campo y compilar el documento final en formato PDF para subir a la plataforma Zajuna.
+            </p>
+          </div>
+        </div>
+
+        <div class="pt-3 flex flex-wrap items-center justify-center gap-4">
+          <button onclick="presenter.nextSlide()" class="inline-flex items-center gap-2 bg-[#39A900] hover:bg-[#2D8200] text-white font-bold px-6 py-3 rounded-lg text-sm shadow-md transition-all">
+            <span>Ver Explicación Directa al Grano</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+          <span class="text-xs text-slate-400 font-mono">Navegación: [Espacio] o [→] Avanzar • [M] Menú • [F] Pantalla Completa</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- DIAPOSITIVA 2: ¿QUÉ DEBES ENTREGAR EXACTAMENTE? -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-2" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            Requerimiento Oficial · Zajuna LMS
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            ¿Qué Debes Entregar Exactamente en la <span class="text-[#39A900]">Evidencia 2</span>?
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Instrumento Oficial: <strong>IE-GA6-220501096-AA1-EV02</strong> • Un solo archivo en formato <strong>PDF</strong>.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-5 pt-2">
+          <!-- Los 4 Contenidos Obligatorios -->
+          <div class="md:col-span-7 bg-white border border-slate-200 rounded-2xl p-5 shadow-xs space-y-3 text-xs text-slate-700">
+            <h3 class="font-extrabold text-slate-900 text-sm flex items-center gap-2">
+              <i data-lucide="file-check" class="w-4 h-4 text-sena"></i>
+              Los 4 Contenidos Obligatorios del Documento PDF
+            </h3>
+
+            <div class="space-y-2 text-xs">
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
+                <span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-extrabold flex items-center justify-center shrink-0 text-xs">1</span>
+                <div>
+                  <strong class="text-slate-900 block">Descripción y Alcance de tu Proyecto:</strong>
+                  <span class="text-slate-600 text-[11px]">Un texto corto (1 a 2 párrafos) explicando qué hace tu software y qué reglas del negocio atiende (ej. citas médicas, ventas, taller o restaurante).</span>
+                </div>
+              </div>
+
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
+                <span class="w-6 h-6 rounded-full bg-blue-100 text-blue-800 font-extrabold flex items-center justify-center shrink-0 text-xs">2</span>
+                <div>
+                  <strong class="text-slate-900 block">Diagrama Conceptual (MER):</strong>
+                  <span class="text-slate-600 text-[11px]">Gráfico con las entidades de tu sistema, sus atributos y relaciones con cardinalidades (notación Chen o Pata de Gallo).</span>
+                </div>
+              </div>
+
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
+                <span class="w-6 h-6 rounded-full bg-purple-100 text-purple-800 font-extrabold flex items-center justify-center shrink-0 text-xs">3</span>
+                <div>
+                  <strong class="text-slate-900 block">Diagrama del Modelo Relacional:</strong>
+                  <span class="text-slate-600 text-[11px]">Estructura en tablas con sus columnas, Llaves Primarias (PK) y Llaves Foráneas (FK) generadas en MySQL Workbench o draw.io.</span>
+                </div>
+              </div>
+
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
+                <span class="w-6 h-6 rounded-full bg-amber-100 text-amber-800 font-extrabold flex items-center justify-center shrink-0 text-xs">4</span>
+                <div>
+                  <strong class="text-slate-900 block">Diccionario de Datos:</strong>
+                  <span class="text-slate-600 text-[11px]">Tablas descriptivas donde explicas el tipo de dato, tamaño, si es nulo y la función de cada campo de tu base de datos.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Aclaración Individual & Calificación -->
+          <div class="md:col-span-5 bg-gradient-to-br from-[#00324D] to-[#00263A] text-white rounded-2xl p-5 shadow-xs space-y-4 flex flex-col justify-between text-xs">
+            <div class="space-y-3">
+              <span class="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-300 font-mono text-[11px] font-bold inline-block border border-emerald-500/30">
+                PROYECTO FORMATIVO PROPIO
+              </span>
+              <h4 class="text-base font-bold text-white">Cada Aprendiz Trabaja en Su Propio Sistema</h4>
+              <p class="text-slate-300 leading-relaxed text-[11px]">
+                Esta evidencia <strong>no es un caso genérico repetido</strong>. Debes modelar la base de datos del sistema de información que tú mismo seleccionaste para tu formación técnica ADSO.
+              </p>
+              <div class="p-3 bg-white/5 rounded-xl border border-white/10 space-y-1.5 text-[11px]">
+                <strong class="text-emerald-400 block">¿Cuántas tablas mínimas debe tener?</strong>
+                <p class="text-slate-300">
+                  Para que tu modelo sea completo y aprobado, debe contar con un mínimo de <strong>5 a 8 tablas</strong> bien relacionadas.
+                </p>
+              </div>
+            </div>
+
+            <div class="p-3 bg-emerald-500/10 rounded-xl border border-emerald-500/30 text-[11px] text-emerald-300 font-mono flex items-center justify-between">
+              <span>Entrega Única:</span>
+              <strong class="text-white">Plataforma Zajuna LMS</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- DIAPOSITIVA 3: PASO 1 · IDENTIFICAR ENTIDADES, ATRIBUTOS Y LLAVES -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-3" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            Paso 1 · Análisis del Negocio
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Paso 1: <span class="text-[#39A900]">Identificar Entidades, Atributos y Llaves</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            La técnica rápida para extraer los elementos de tu base de datos a partir de lo que hace tu software.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2 text-xs">
+          <!-- 1. Entidades -->
+          <div class="bg-white border-2 border-emerald-500 rounded-xl p-4 shadow-xs space-y-2">
+            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold text-[10px] uppercase">1. Entidad</span>
+            <h4 class="font-bold text-slate-900 text-sm">¿Qué objetos maneja el sistema?</h4>
+            <p class="text-slate-600 text-[11px] leading-relaxed">
+              Son los <strong>sustantivos</strong> o cosas principales sobre las cuales necesitas guardar registros.
+            </p>
+            <div class="p-2.5 bg-slate-50 rounded-lg border border-slate-200 text-[11px] font-mono space-y-1">
+              <div>• CLIENTE</div>
+              <div>• PRODUCTO</div>
+              <div>• FACTURA / VENTA</div>
+              <div>• VEHICULO / PACIENTE</div>
+            </div>
+            <div class="text-[10px] text-emerald-700 font-semibold">
+              Regla: Se escriben en MAYÚSCULA y en singular.
+            </div>
+          </div>
+
+          <!-- 2. Atributos -->
+          <div class="bg-white border-2 border-blue-500 rounded-xl p-4 shadow-xs space-y-2">
+            <span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 font-bold text-[10px] uppercase">2. Atributos</span>
+            <h4 class="font-bold text-slate-900 text-sm">¿Qué datos describen a la entidad?</h4>
+            <p class="text-slate-600 text-[11px] leading-relaxed">
+              Son las características o propiedades individuales que almacenarás de cada objeto.
+            </p>
+            <div class="p-2.5 bg-slate-50 rounded-lg border border-slate-200 text-[11px] font-mono space-y-1">
+              <div>• nombre, telefono, correo</div>
+              <div>• precio, stock, descripcion</div>
+              <div>• fecha_creacion, estado</div>
+            </div>
+            <div class="text-[10px] text-blue-700 font-semibold">
+              Regla: Deben ser simples y atómicos (no listas).
+            </div>
+          </div>
+
+          <!-- 3. Llave Primaria -->
+          <div class="bg-white border-2 border-amber-500 rounded-xl p-4 shadow-xs space-y-2">
+            <span class="px-2 py-0.5 rounded bg-amber-100 text-amber-800 font-bold text-[10px] uppercase">3. Llave Primaria (PK)</span>
+            <h4 class="font-bold text-slate-900 text-sm">¿Cómo diferencias cada registro?</h4>
+            <p class="text-slate-600 text-[11px] leading-relaxed">
+              El identificador único obligatorio que no se puede repetir nunca en la tabla.
+            </p>
+            <div class="p-2.5 bg-slate-50 rounded-lg border border-slate-200 text-[11px] font-mono space-y-1">
+              <div>• id_cliente (número autoincremental)</div>
+              <div>• numero_documento (cédula)</div>
+              <div>• placa (en caso de vehículos)</div>
+            </div>
+            <div class="text-[10px] text-amber-800 font-semibold">
+              Regla: Ninguna tabla puede existir sin Llave Primaria.
+            </div>
+          </div>
+        </div>
+
+        <!-- Ejemplo Práctico -->
+        <div class="p-3 bg-slate-100 border border-slate-200 rounded-xl text-xs text-slate-700">
+          <strong>Ejemplo Claro de Lectura:</strong> "El cliente solicita una cita con el médico".
+          → <strong>Entidad 1:</strong> <code>CLIENTE</code> | <strong>Entidad 2:</strong> <code>MEDICO</code> | <strong>Relación:</strong> <code>SOLICITA CITA</code>.
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- DIAPOSITIVA 4: PASO 2 · DIBUJAR EL MODELO CONCEPTUAL (MER) -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-4" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            Paso 2 · Diagramación Conceptual
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Paso 2: <span class="text-[#39A900]">Dibujar el Diagrama Conceptual (MER)</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Cómo plasmar gráficamente las entidades y sus conexiones mediante figuras sencillas.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2 text-xs">
+          <!-- Simbología Gráfica -->
+          <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-xs space-y-3">
+            <h3 class="font-extrabold text-slate-900 text-sm">Simbología del Diagrama Conceptual (Chen)</h3>
+            
+            <div class="space-y-2 font-mono text-[11px]">
+              <div class="p-2.5 bg-emerald-50 border border-emerald-200 rounded-lg flex items-center justify-between">
+                <span class="font-bold text-emerald-900">[ Rectángulo ]</span>
+                <span class="font-sans text-slate-700">Representa una <strong>Entidad</strong> (ej. CLIENTE)</span>
+              </div>
+              <div class="p-2.5 bg-blue-50 border border-blue-200 rounded-lg flex items-center justify-between">
+                <span class="font-bold text-blue-900">&lt; Rombo &gt;</span>
+                <span class="font-sans text-slate-700">Representa la <strong>Relación</strong> (ej. Realiza)</span>
+              </div>
+              <div class="p-2.5 bg-purple-50 border border-purple-200 rounded-lg flex items-center justify-between">
+                <span class="font-bold text-purple-900">( Óvalo / Elipse )</span>
+                <span class="font-sans text-slate-700">Representa un <strong>Atributo</strong> (ej. Nombre)</span>
+              </div>
+              <div class="p-2.5 bg-amber-50 border border-amber-200 rounded-lg flex items-center justify-between">
+                <span class="font-bold text-amber-900">( <u>Óvalo Subrayado</u> )</span>
+                <span class="font-sans text-slate-700">Representa la <strong>Llave Primaria</strong></span>
+              </div>
+            </div>
+
+            <p class="text-[11px] text-slate-500 leading-relaxed">
+              Herramienta recomendada para este diagrama conceptual: <strong>draw.io</strong> (gratuita en navegador).
+            </p>
+          </div>
+
+          <!-- Cardinalidades Explicadas -->
+          <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-xs space-y-3 flex flex-col justify-between">
+            <div class="space-y-2">
+              <h3 class="font-extrabold text-slate-900 text-sm">Los 3 Tipos de Relación (Cardinalidad)</h3>
+              
+              <div class="space-y-2 text-[11px]">
+                <div class="p-2.5 bg-slate-50 rounded-lg border border-slate-200">
+                  <strong class="text-emerald-700 block">1 a 1 (Uno a Uno):</strong>
+                  <span>Un registro se asocia solo con uno del otro lado (ej. Un <code>USUARIO</code> tiene un único <code>PERFIL</code>).</span>
+                </div>
+
+                <div class="p-2.5 bg-slate-50 rounded-lg border border-slate-200">
+                  <strong class="text-blue-700 block">1 a Muchos (1:N) — La Más Común:</strong>
+                  <span>Un registro del lado 1 tiene varios del lado N (ej. Un <code>CLIENTE</code> realiza muchas <code>COMPRAS</code>).</span>
+                </div>
+
+                <div class="p-2.5 bg-slate-50 rounded-lg border border-slate-200">
+                  <strong class="text-purple-700 block">Muchos a Muchos (N:M):</strong>
+                  <span>Varios registros se asocian con varios (ej. Una <code>VENTA</code> tiene muchos <code>PRODUCTOS</code> y un producto está en muchas ventas).</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-2.5 bg-amber-50 border border-amber-200 rounded-lg text-[11px] text-amber-900 font-medium">
+              ⚠️ Toda relación Muchos a Muchos (N:M) se convertirá en una tabla intermedia en el siguiente paso.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- DIAPOSITIVA 5: PASO 3 · REGLAS PARA CONVERTIR EL MER EN TABLAS -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-5" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            Paso 3 · Transformación al Modelo Relacional
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Paso 3: <span class="text-[#39A900]">Las 3 Reglas para Pasar a Tablas</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Aplica estas 3 reglas mecánicas para no cometer ningún error de diseño.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2 text-xs">
+          <!-- Regla 1 -->
+          <div class="bg-white border-2 border-emerald-500 rounded-xl p-4 shadow-xs space-y-2">
+            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold text-[10px]">REGLA 1</span>
+            <h4 class="font-bold text-slate-900 text-sm">Entidades se vuelven Tablas</h4>
+            <p class="text-slate-600 text-[11px] leading-relaxed">
+              Cada entidad identificada se convierte directamente en una tabla. Sus atributos pasan a ser las columnas de la tabla.
+            </p>
+            <div class="p-2.5 bg-slate-900 text-emerald-400 font-mono text-[10.5px] rounded-lg">
+              Tabla: CLIENTES<br>
+              - <span class="text-amber-400">id_cliente (Llave Primaria)</span><br>
+              - nombre<br>
+              - correo
+            </div>
+          </div>
+
+          <!-- Regla 2 -->
+          <div class="bg-white border-2 border-blue-500 rounded-xl p-4 shadow-xs space-y-2">
+            <span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 font-bold text-[10px]">REGLA 2 · CLAVE</span>
+            <h4 class="font-bold text-slate-900 text-sm">Relación 1 a Muchos (1:N)</h4>
+            <p class="text-slate-600 text-[11px] leading-relaxed">
+              La Llave Primaria de la tabla del lado <strong>"1"</strong> viaja como <strong>Llave Foránea (FK)</strong> a la tabla del lado <strong>"Muchos"</strong>.
+            </p>
+            <div class="p-2.5 bg-slate-900 text-slate-200 font-mono text-[10.5px] rounded-lg">
+              Tabla: PEDIDOS<br>
+              - <span class="text-amber-400">id_pedido (Llave Primaria)</span><br>
+              - fecha<br>
+              - <span class="text-blue-400">id_cliente (Llave Foránea)</span>
+            </div>
+          </div>
+
+          <!-- Regla 3 -->
+          <div class="bg-white border-2 border-purple-500 rounded-xl p-4 shadow-xs space-y-2">
+            <span class="px-2 py-0.5 rounded bg-purple-100 text-purple-800 font-bold text-[10px]">REGLA 3 · INTERMEDIA</span>
+            <h4 class="font-bold text-slate-900 text-sm">Relación Muchos a Muchos (N:M)</h4>
+            <p class="text-slate-600 text-[11px] leading-relaxed">
+              Crea obligatoriamente una <strong>nueva tabla intermedia</strong> que une a ambas tablas y guarda datos propios de esa acción.
+            </p>
+            <div class="p-2.5 bg-slate-900 text-slate-200 font-mono text-[10.5px] rounded-lg">
+              Tabla: DETALLE_PEDIDO<br>
+              - <span class="text-amber-400">id_detalle (Llave Primaria)</span><br>
+              - <span class="text-blue-400">id_pedido (Llave Foránea)</span><br>
+              - <span class="text-blue-400">id_producto (Llave Foránea)</span><br>
+              - cantidad, subtotal
+            </div>
+          </div>
+        </div>
+
+        <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-900 font-medium">
+          ✅ <strong>En resumen:</strong> Nunca coloques listas de productos separados por comas. Siempre que algo se repita, se soluciona con una Llave Foránea o con una tabla intermedia.
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- DIAPOSITIVA 6: PASO 4 · EL DICCIONARIO DE DATOS OFICIAL SENA -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-6" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            Paso 4 · Documentación Requerida
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Paso 4: <span class="text-[#39A900]">El Diccionario de Datos Oficial</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            La tabla estandarizada que debes incluir en tu PDF para describir cada columna de tus tablas.
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          <div class="flex items-center justify-between text-xs text-slate-600">
+            <span>Ejemplo para la tabla: <strong class="text-slate-900 font-mono">CLIENTES</strong></span>
+            <span class="text-[11px] font-mono text-emerald-800 font-bold bg-emerald-50 px-2.5 py-0.5 rounded border border-emerald-200">
+              8 Columnas Oficiales en Español
+            </span>
+          </div>
+
+          <div class="overflow-x-auto bg-white border border-slate-200 rounded-xl shadow-xs">
+            <table class="w-full text-left text-[11px] divide-y divide-slate-200">
+              <thead class="bg-[#00324D] text-white font-mono text-[10px] uppercase">
+                <tr>
+                  <th class="p-2.5">Nombre Campo</th>
+                  <th class="p-2.5">Nombre Técnico</th>
+                  <th class="p-2.5">Tipo de Dato</th>
+                  <th class="p-2.5">Longitud</th>
+                  <th class="p-2.5">Llave</th>
+                  <th class="p-2.5">Nulo</th>
+                  <th class="p-2.5">Por Defecto</th>
+                  <th class="p-2.5">Descripción en el Negocio</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 font-mono text-slate-700">
+                <tr class="hover:bg-slate-50">
+                  <td class="p-2 font-sans font-medium text-slate-900">Identificador</td>
+                  <td class="p-2 text-emerald-700 font-bold">id_cliente</td>
+                  <td class="p-2 text-blue-700">INT (Entero)</td>
+                  <td class="p-2">10</td>
+                  <td class="p-2 text-amber-600 font-bold">Primaria (PK)</td>
+                  <td class="p-2 text-red-600 font-bold">NO</td>
+                  <td class="p-2 text-slate-400">Autoincremental</td>
+                  <td class="p-2 font-sans text-slate-600">Código único secuencial asignado automáticamente al cliente.</td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-2 font-sans font-medium text-slate-900">Cédula o NIT</td>
+                  <td class="p-2 text-emerald-700 font-bold">numero_documento</td>
+                  <td class="p-2 text-blue-700">VARCHAR (Texto)</td>
+                  <td class="p-2">20</td>
+                  <td class="p-2 text-purple-600 font-bold">Único</td>
+                  <td class="p-2 text-red-600 font-bold">NO</td>
+                  <td class="p-2 text-slate-400">Ninguno</td>
+                  <td class="p-2 font-sans text-slate-600">Documento de identidad oficial sin puntos ni guiones.</td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-2 font-sans font-medium text-slate-900">Nombre Completo</td>
+                  <td class="p-2 text-emerald-700 font-bold">nombre_completo</td>
+                  <td class="p-2 text-blue-700">VARCHAR (Texto)</td>
+                  <td class="p-2">120</td>
+                  <td class="p-2 text-slate-400">-</td>
+                  <td class="p-2 text-red-600 font-bold">NO</td>
+                  <td class="p-2 text-slate-400">Ninguno</td>
+                  <td class="p-2 font-sans text-slate-600">Nombres y apellidos completos del cliente.</td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-2 font-sans font-medium text-slate-900">Correo Electrónico</td>
+                  <td class="p-2 text-emerald-700 font-bold">correo</td>
+                  <td class="p-2 text-blue-700">VARCHAR (Texto)</td>
+                  <td class="p-2">100</td>
+                  <td class="p-2 text-purple-600 font-bold">Único</td>
+                  <td class="p-2 text-red-600 font-bold">NO</td>
+                  <td class="p-2 text-slate-400">Ninguno</td>
+                  <td class="p-2 font-sans text-slate-600">Email para notificaciones y facturas electrónicas.</td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-2 font-sans font-medium text-slate-900">Estado</td>
+                  <td class="p-2 text-emerald-700 font-bold">estado</td>
+                  <td class="p-2 text-blue-700">VARCHAR (Texto)</td>
+                  <td class="p-2">15</td>
+                  <td class="p-2 text-slate-400">-</td>
+                  <td class="p-2 text-red-600 font-bold">NO</td>
+                  <td class="p-2 text-emerald-700">'Activo'</td>
+                  <td class="p-2 font-sans text-slate-600">Indica si el cliente está 'Activo' o 'Inactivo'.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="p-3 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-900 flex items-center justify-between">
+            <span>📌 <strong>Nota Calificable:</strong> En tu documento PDF debes incluir la tabla de diccionario de datos para <strong>cada una de las tablas</strong> de tu proyecto.</span>
+            <span class="font-mono text-amber-800 text-[11px] font-bold">Requisito Obligatorio</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- DIAPOSITIVA 7: PASO 5 · CÓMO HACERLO EN MYSQL WORKBENCH Y GENERAR SQL -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-7" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            Paso 5 · Herramienta Oficial de Práctica
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Paso 5: <span class="text-[#39A900]">Modelar en MySQL Workbench y Generar Script SQL</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Cómo armar el diagrama visual en la herramienta oficial y obtener el script de creación de base de datos.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2 text-xs">
+          <!-- 4 Pasos Clave en Workbench -->
+          <div class="space-y-2.5">
+            <div class="bg-white border border-slate-200 rounded-xl p-3.5 shadow-xs">
+              <strong class="text-slate-900 block font-bold text-xs mb-1">1. Crear Nuevo Diagrama:</strong>
+              <p class="text-slate-600 text-[11px]">Abre Workbench → <code>File > New Model</code> (o <kbd class="px-1.5 py-0.5 bg-slate-100 rounded border">Ctrl + N</kbd>) → Doble clic en <strong>Add Diagram</strong>.</p>
+            </div>
+
+            <div class="bg-white border border-slate-200 rounded-xl p-3.5 shadow-xs">
+              <strong class="text-slate-900 block font-bold text-xs mb-1">2. Crear las Tablas:</strong>
+              <p class="text-slate-600 text-[11px]">Presiona la tecla <kbd class="px-1.5 py-0.5 bg-slate-100 rounded border">T</kbd> y haz clic en el lienzo. Doble clic en la tabla para agregar las columnas y marcar <strong>PK</strong> (Llave Primaria) y <strong>NN</strong> (No Nulo).</p>
+            </div>
+
+            <div class="bg-white border border-slate-200 rounded-xl p-3.5 shadow-xs">
+              <strong class="text-slate-900 block font-bold text-xs mb-1">3. Trazar las Relaciones con Pata de Gallo:</strong>
+              <p class="text-slate-600 text-[11px]">Selecciona la herramienta <code>1:n Non-Identifying Relationship</code>. Haz clic <strong>primero en la tabla hija</strong> (lado Muchos) y <strong>luego en la tabla padre</strong> (lado 1). Workbench crea la Llave Foránea solo.</p>
+            </div>
+
+            <div class="bg-white border-2 border-emerald-500 rounded-xl p-3.5 shadow-xs">
+              <strong class="text-emerald-800 block font-bold text-xs mb-1">4. Exportar Imagen para el PDF:</strong>
+              <p class="text-slate-600 text-[11px]">Ve a <code>File > Export > Export as PNG...</code> para guardar la imagen nítida que pegarás en tu informe formal.</p>
+            </div>
+          </div>
+
+          <!-- Generar Script SQL (Ingeniería Hacia Adelante) -->
+          <div class="bg-[#00263A] text-slate-200 rounded-2xl p-5 shadow-xs space-y-3 font-mono text-xs flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between border-b border-white/10 pb-2 mb-2">
+                <span class="text-emerald-400 font-bold text-xs">Generación de Script SQL</span>
+                <span class="text-slate-400 text-[10px]">Ingeniería Hacia Adelante</span>
+              </div>
+              <p class="text-[11px] text-slate-300 font-sans leading-relaxed mb-3">
+                Para obtener el código SQL ejecutable a partir de tu diagrama visual:
+              </p>
+              <div class="space-y-2 text-[11px] text-slate-300">
+                <div class="p-2 bg-white/5 rounded border border-white/10">
+                  1. Presiona <kbd class="px-1.5 py-0.5 bg-emerald-900 text-emerald-300 rounded font-bold">Ctrl + G</kbd> (o menú <code>Database > Forward Engineer</code>).
+                </div>
+                <div class="p-2 bg-white/5 rounded border border-white/10">
+                  2. Avanza con <code>Next</code> hasta la pantalla del código generado.
+                </div>
+                <div class="p-2 bg-white/5 rounded border border-white/10">
+                  3. Haz clic en <strong>Copy to Clipboard</strong> (Copiar al portapapeles) y pégalo en el anexo de tu documento.
+                </div>
+              </div>
+            </div>
+
+            <div class="p-2.5 bg-emerald-500/10 border border-emerald-500/20 rounded-lg text-[10.5px] text-emerald-300 font-sans">
+              💡 Si Workbench genera el código sin errores, significa que tu diseño relacional es 100% válido.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- DIAPOSITIVA 8: EJEMPLO COMPLETO RESUELTO DE INICIO A FIN (CASO REAL) -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-8" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            Plantilla Guía Resuelta
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Ejemplo Resuelto: <span class="text-[#39A900]">Las 5 Tablas del Sistema de Ventas</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Puedes tomar esta misma estructura lógica y adaptarla a tu propio proyecto formativo.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 pt-2 text-xs">
+          <!-- 1. CATEGORIAS -->
+          <div class="bg-white border border-slate-200 rounded-xl p-3.5 shadow-xs space-y-1.5 font-mono text-[11px]">
+            <div class="font-sans font-bold text-slate-900 border-b pb-1 flex items-center justify-between">
+              <span>1. CATEGORIAS</span>
+              <span class="text-[10px] bg-slate-100 px-1.5 py-0.5 rounded text-slate-600">Catálogo</span>
+            </div>
+            <div>• <strong class="text-amber-700">id_categoria</strong> [PK, INT]</div>
+            <div>• nombre [VARCHAR(50)]</div>
+            <div>• descripcion [VARCHAR(200)]</div>
+          </div>
+
+          <!-- 2. PRODUCTOS -->
+          <div class="bg-white border-2 border-emerald-500 rounded-xl p-3.5 shadow-xs space-y-1.5 font-mono text-[11px]">
+            <div class="font-sans font-bold text-slate-900 border-b pb-1 flex items-center justify-between">
+              <span>2. PRODUCTOS</span>
+              <span class="text-[10px] bg-emerald-100 px-1.5 py-0.5 rounded text-emerald-800 font-bold">Principal</span>
+            </div>
+            <div>• <strong class="text-amber-700">id_producto</strong> [PK, INT]</div>
+            <div>• <strong class="text-blue-700">id_categoria</strong> [FK, INT]</div>
+            <div>• nombre [VARCHAR(100)]</div>
+            <div>• precio [DECIMAL(10,2)]</div>
+            <div>• stock [INT]</div>
+          </div>
+
+          <!-- 3. CLIENTES -->
+          <div class="bg-white border border-slate-200 rounded-xl p-3.5 shadow-xs space-y-1.5 font-mono text-[11px]">
+            <div class="font-sans font-bold text-slate-900 border-b pb-1 flex items-center justify-between">
+              <span>3. CLIENTES</span>
+              <span class="text-[10px] bg-slate-100 px-1.5 py-0.5 rounded text-slate-600">Personas</span>
+            </div>
+            <div>• <strong class="text-amber-700">id_cliente</strong> [PK, INT]</div>
+            <div>• cedula [VARCHAR(20), Único]</div>
+            <div>• nombres [VARCHAR(120)]</div>
+            <div>• telefono [VARCHAR(20)]</div>
+            <div>• correo [VARCHAR(100)]</div>
+          </div>
+
+          <!-- 4. VENTAS -->
+          <div class="bg-white border-2 border-blue-500 rounded-xl p-3.5 shadow-xs space-y-1.5 font-mono text-[11px]">
+            <div class="font-sans font-bold text-slate-900 border-b pb-1 flex items-center justify-between">
+              <span>4. VENTAS (Cabecera)</span>
+              <span class="text-[10px] bg-blue-100 px-1.5 py-0.5 rounded text-blue-800 font-bold">Transacción</span>
+            </div>
+            <div>• <strong class="text-amber-700">id_venta</strong> [PK, INT]</div>
+            <div>• <strong class="text-blue-700">id_cliente</strong> [FK, INT]</div>
+            <div>• fecha [DATETIME]</div>
+            <div>• total [DECIMAL(10,2)]</div>
+            <div>• estado [VARCHAR(20)]</div>
+          </div>
+
+          <!-- 5. DETALLE_VENTAS -->
+          <div class="bg-white border-2 border-purple-500 rounded-xl p-3.5 shadow-xs space-y-1.5 font-mono text-[11px] sm:col-span-2 lg:col-span-2">
+            <div class="font-sans font-bold text-slate-900 border-b pb-1 flex items-center justify-between">
+              <span>5. DETALLE_VENTAS (Tabla Intermedia)</span>
+              <span class="text-[10px] bg-purple-100 px-1.5 py-0.5 rounded text-purple-800 font-bold">Rompe relación N:M</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <div>• <strong class="text-amber-700">id_detalle</strong> [PK, INT]</div>
+              <div>• <strong class="text-blue-700">id_venta</strong> [FK, INT]</div>
+              <div>• <strong class="text-blue-700">id_producto</strong> [FK, INT]</div>
+              <div>• cantidad [INT]</div>
+              <div>• precio_unitario [DECIMAL(10,2)]</div>
+              <div>• subtotal [DECIMAL(10,2)]</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Adaptaciones a Otros Sectores -->
+        <div class="p-3 bg-slate-100 border border-slate-200 rounded-xl text-xs text-slate-700 flex flex-wrap items-center justify-between gap-2">
+          <span>🩺 <strong>En Veterinaria/Salud:</strong> Cambias Cliente por <code>PACIENTE</code>, Venta por <code>CONSULTA</code> y Detalle por <code>TRATAMIENTO</code>.</span>
+          <span>🔧 <strong>En Taller:</strong> Cambias por <code>VEHICULO</code>, <code>ORDEN_SERVICIO</code> y <code>REPUESTOS</code>.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- DIAPOSITIVA 9: CÓMO ARMAR EL DOCUMENTO PDF PARA SUBIR A ZAJUNA -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-9" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            Formato y Nomenclatura del Entregable
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Paso Final: <span class="text-[#39A900]">Estructura del PDF para Zajuna LMS</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            El orden exacto de las páginas y la forma correcta de guardar tu archivo.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2 text-xs">
+          <!-- Estructura de Páginas del PDF -->
+          <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-xs space-y-3 text-slate-700">
+            <span class="text-xs font-extrabold text-slate-900 uppercase tracking-wider block">Orden de Contenido en el PDF:</span>
+            
+            <div class="space-y-2 text-[11px]">
+              <div class="p-2 bg-slate-50 rounded border border-slate-200 flex items-center justify-between">
+                <span class="font-bold">Página 1: Portada Institucional</span>
+                <span class="text-slate-500">CADPH Garzón, Ficha ADSO, Aprendiz, Toledo</span>
+              </div>
+              <div class="p-2 bg-slate-50 rounded border border-slate-200 flex items-center justify-between">
+                <span class="font-bold">Página 2: Alcance y Caso del Proyecto</span>
+                <span class="text-slate-500">Descripción del problema que resuelve tu software</span>
+              </div>
+              <div class="p-2 bg-emerald-50 border border-emerald-200 rounded flex items-center justify-between text-emerald-950 font-bold">
+                <span>Página 3: Diagrama Conceptual (MER)</span>
+                <span class="text-emerald-800">Imagen nítida con entidades, atributos y relaciones</span>
+              </div>
+              <div class="p-2 bg-blue-50 border border-blue-200 rounded flex items-center justify-between text-blue-950 font-bold">
+                <span>Página 4: Modelo Relacional en Tablas</span>
+                <span class="text-blue-800">Diagrama de MySQL Workbench con PKs y FKs</span>
+              </div>
+              <div class="p-2 bg-purple-50 border border-purple-200 rounded flex items-center justify-between text-purple-950 font-bold">
+                <span>Páginas 5+: Diccionario de Datos</span>
+                <span class="text-purple-800">Tablas descriptivas con las 8 columnas</span>
+              </div>
+              <div class="p-2 bg-slate-50 rounded border border-slate-200 flex items-center justify-between">
+                <span class="font-bold">Página Final: Conclusiones y Script SQL</span>
+                <span class="text-slate-500">Anexo opcional con el código generado</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Nomenclatura Oficial del Archivo -->
+          <div class="bg-white border-2 border-[#00324D] rounded-2xl p-5 shadow-xs space-y-4 text-slate-700 flex flex-col justify-between">
+            <div class="space-y-3">
+              <span class="text-xs font-extrabold text-[#00324D] uppercase tracking-wider block">Nombre Oficial del Archivo a Subir</span>
+              
+              <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl space-y-1.5 font-mono text-xs">
+                <span class="text-slate-500 font-sans block text-[11px]">Guarda tu archivo exactamente con este formato:</span>
+                <code class="text-emerald-700 font-bold block bg-emerald-50 p-2 rounded border border-emerald-200 text-[11.5px]">
+                  GA6-220501096-AA1-EV02_Nombre_Apellido.pdf
+                </code>
+              </div>
+
+              <div class="space-y-2 text-[11px] text-slate-600 leading-relaxed">
+                <p>• <strong>Formato Obligatorio:</strong> Sube únicamente archivo <code>.pdf</code>. No subas fotos sueltas de celular ni capturas borrosas.</p>
+                <p>• <strong>Revisión de Imágenes:</strong> Haz zoom en tu PDF antes de subirlo y comprueba que los nombres de tablas y llaves se lean claramente.</p>
+              </div>
+            </div>
+
+            <div class="p-3 bg-slate-100 rounded-xl border border-slate-200 text-[11px] text-slate-600">
+              Instructor: <strong>Ing. Hector David Toledo García</strong> • Área de Desarrollo de Software
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- DIAPOSITIVA 10: LISTA DE CHEQUEO FINAL PARA APROBACIÓN ('A') -->
+    <!-- ----------------------------------------------------------------------- -->
+    <section class="slide-content" id="slide-10" aria-hidden="true">
+      <div class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            Criterios de Calificación · Lista de Chequeo
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Lista de Chequeo: <span class="text-[#39A900]">5 Puntos para Calificación Aprobada ('A')</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Marca mentalmente cada casilla antes de oprimir el botón "Enviar" en Zajuna LMS.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-5 pt-2 text-xs">
+          <!-- Las 5 Casillas de Aprobación -->
+          <div class="md:col-span-8 bg-white border border-slate-200 rounded-2xl p-5 shadow-xs space-y-3 text-slate-700">
+            <h3 class="font-extrabold text-slate-900 text-sm flex items-center gap-2">
+              <i data-lucide="check-square" class="w-4 h-4 text-sena"></i>
+              Autoevaluación del Aprendiz
+            </h3>
+
+            <div class="space-y-2 text-[11.5px]">
+              <label class="p-2.5 bg-slate-50 border border-slate-200 rounded-xl flex items-start gap-2.5 cursor-pointer hover:bg-slate-100 transition-colors">
+                <input type="checkbox" checked class="mt-0.5 w-4 h-4 text-sena rounded border-slate-300 focus:ring-sena">
+                <span><strong>1. Portada formal con datos completos:</strong> Tu nombre, ficha ADSO, centro CADPH Garzón e instructor Toledo García.</span>
+              </label>
+
+              <label class="p-2.5 bg-slate-50 border border-slate-200 rounded-xl flex items-start gap-2.5 cursor-pointer hover:bg-slate-100 transition-colors">
+                <input type="checkbox" checked class="mt-0.5 w-4 h-4 text-sena rounded border-slate-300 focus:ring-sena">
+                <span><strong>2. Diagrama Conceptual (MER):</strong> Se aprecian claramente las entidades, atributos y cardinalidades de tu proyecto.</span>
+              </label>
+
+              <label class="p-2.5 bg-slate-50 border border-slate-200 rounded-xl flex items-start gap-2.5 cursor-pointer hover:bg-slate-100 transition-colors">
+                <input type="checkbox" checked class="mt-0.5 w-4 h-4 text-sena rounded border-slate-300 focus:ring-sena">
+                <span><strong>3. Modelo Relacional en Tablas:</strong> Muestra Llaves Primarias (PK) y Foráneas (FK) generadas con MySQL Workbench o draw.io.</span>
+              </label>
+
+              <label class="p-2.5 bg-slate-50 border border-slate-200 rounded-xl flex items-start gap-2.5 cursor-pointer hover:bg-slate-100 transition-colors">
+                <input type="checkbox" checked class="mt-0.5 w-4 h-4 text-sena rounded border-slate-300 focus:ring-sena">
+                <span><strong>4. Diccionario de Datos Diligenciado:</strong> Cuenta con la tabla formal de 8 columnas para todas las tablas del sistema.</span>
+              </label>
+
+              <label class="p-2.5 bg-slate-50 border border-slate-200 rounded-xl flex items-start gap-2.5 cursor-pointer hover:bg-slate-100 transition-colors">
+                <input type="checkbox" checked class="mt-0.5 w-4 h-4 text-sena rounded border-slate-300 focus:ring-sena">
+                <span><strong>5. Archivo PDF con Nombre Oficial:</strong> Guardado como <code>GA6-220501096-AA1-EV02_Nombre_Apellido.pdf</code> sin errores.</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Mensaje Final del Instructor -->
+          <div class="md:col-span-4 bg-gradient-to-br from-[#00324D] to-[#00263A] text-white rounded-2xl p-5 shadow-xs space-y-4 flex flex-col justify-between text-xs">
+            <div class="space-y-3">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-lg border border-emerald-500/30">
+                <i data-lucide="award" class="w-5 h-5"></i>
+              </div>
+              <h4 class="font-extrabold text-base text-white">¡Muchos Éxitos en tu Entrega!</h4>
+              <p class="text-slate-300 leading-relaxed text-[11px]">
+                Diseñar una base de datos clara es la base más importante para que luego puedas programar tu software sin complicaciones.
+              </p>
+              <div class="p-3 bg-white/5 rounded-xl border border-white/10 text-[11px] text-slate-300 space-y-1">
+                <strong class="text-emerald-300 block">Canal Oficial:</strong>
+                <span>Zajuna LMS → Fase Ejecución → Guía 06 → Actividad AA1 → Evidencia 02</span>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-white/10 space-y-2">
+              <a href="../../index.html#evidencias-section" class="w-full inline-flex items-center justify-center gap-2 bg-[#39A900] hover:bg-[#2D8200] text-white font-bold py-2.5 rounded-xl text-xs shadow-md transition-all">
+                <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i>
+                <span>Volver al Catálogo de Evidencias</span>
+              </a>
+              <div class="text-[10px] text-center text-slate-400 font-mono">
+                CADPH Garzón • Regional Huila
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL DE AYUDA Y ATAJOS DE TECLADO -->
+  <!-- ========================================================================= -->
+  <div id="help-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200 space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <h3 class="font-extrabold text-slate-900 text-base flex items-center gap-2">
+          <i data-lucide="keyboard" class="w-5 h-5 text-sena"></i> Atajos de Teclado
+        </h3>
+        <button id="btn-close-help" class="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="space-y-2 text-xs text-slate-600 font-mono">
+        <div class="flex items-center justify-between p-2 rounded bg-slate-50 border border-slate-100">
+          <span class="font-sans">Avanzar Diapositiva</span>
+          <span class="font-bold text-slate-800">[Espacio] o [→]</span>
+        </div>
+        <div class="flex items-center justify-between p-2 rounded bg-slate-50 border border-slate-100">
+          <span class="font-sans">Retroceder Diapositiva</span>
+          <span class="font-bold text-slate-800">[←] o [RePág]</span>
+        </div>
+        <div class="flex items-center justify-between p-2 rounded bg-slate-50 border border-slate-100">
+          <span class="font-sans">Pantalla Completa</span>
+          <span class="font-bold text-slate-800">[F]</span>
+        </div>
+        <div class="flex items-center justify-between p-2 rounded bg-slate-50 border border-slate-100">
+          <span class="font-sans">Abrir / Cerrar Índice</span>
+          <span class="font-bold text-slate-800">[M]</span>
+        </div>
+        <div class="flex items-center justify-between p-2 rounded bg-slate-50 border border-slate-100">
+          <span class="font-sans">Cerrar Ventana</span>
+          <span class="font-bold text-slate-800">[Esc]</span>
+        </div>
+      </div>
+
+      <div class="pt-2 text-center">
+        <button onclick="presenter.toggleHelpModal()" class="w-full bg-[#00324D] hover:bg-[#00263A] text-white text-xs font-bold py-2 rounded-lg">
+          Entendido
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MENÚ LATERAL DE ÍNDICE DE DIAPOSITIVAS -->
+  <!-- ========================================================================= -->
+  <aside id="menu-drawer" class="fixed inset-y-0 right-0 w-80 bg-white shadow-2xl border-l border-slate-200 z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
+    <div class="p-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+      <div>
+        <h3 class="font-bold text-slate-900 text-sm">Índice de la Sesión</h3>
+        <p class="text-[11px] text-slate-500">10 Diapositivas Directas al Grano</p>
+      </div>
+      <button id="btn-close-menu" class="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-200">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <div class="flex-1 overflow-y-auto p-3 space-y-1 text-xs">
+      <button onclick="presenter.goToSlide(0)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">01</span> Portada y Objetivos
+      </button>
+      <button onclick="presenter.goToSlide(1)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">02</span> ¿Qué Debes Entregar?
+      </button>
+      <button onclick="presenter.goToSlide(2)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">03</span> Paso 1: Entidades y Llaves
+      </button>
+      <button onclick="presenter.goToSlide(3)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">04</span> Paso 2: Diagrama Conceptual (MER)
+      </button>
+      <button onclick="presenter.goToSlide(4)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">05</span> Paso 3: Reglas de Paso a Tablas
+      </button>
+      <button onclick="presenter.goToSlide(5)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">06</span> Paso 4: Diccionario de Datos
+      </button>
+      <button onclick="presenter.goToSlide(6)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">07</span> Paso 5: MySQL Workbench y Script SQL
+      </button>
+      <button onclick="presenter.goToSlide(7)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">08</span> Ejemplo Resuelto (5 Tablas)
+      </button>
+      <button onclick="presenter.goToSlide(8)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">09</span> Armar el PDF para Zajuna
+      </button>
+      <button onclick="presenter.goToSlide(9)" class="menu-slide-item w-full text-left p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-2">
+        <span class="w-5 font-mono text-slate-400 text-[10px]">10</span> Lista de Chequeo Aprobada ('A')
+      </button>
+    </div>
+  </aside>
+
+  <!-- Script del motor de diapositivas -->
+  <script src="../../assets/js/presenter.js"></script>
+  <script>
+    let presenter;
+    document.addEventListener('DOMContentLoaded', () => {
+      presenter = new SlidePresenter();
+      
+      const btnMenu = document.getElementById('btn-toggle-menu');
+      const btnCloseMenu = document.getElementById('btn-close-menu');
+      if (btnMenu) btnMenu.addEventListener('click', () => presenter.toggleMenu());
+      if (btnCloseMenu) btnCloseMenu.addEventListener('click', () => presenter.closeMenu());
+
+      const btnHelp = document.getElementById('btn-toggle-help');
+      const btnCloseHelp = document.getElementById('btn-close-help');
+      if (btnHelp) btnHelp.addEventListener('click', () => presenter.toggleHelpModal());
+      if (btnCloseHelp) btnCloseHelp.addEventListener('click', () => presenter.toggleHelpModal());
+
+      if (window.lucide && typeof window.lucide.createIcons === 'function') {
+        window.lucide.createIcons();
+      }
+    });
+  </script>
+</body>
+</html>

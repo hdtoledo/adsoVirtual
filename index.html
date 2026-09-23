@@ -781,7 +781,9 @@
         <ul class="space-y-2 text-slate-400">
           <li><a href="guias/Guia_aprendizaje_6.pdf" download class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="download" class="w-3.5 h-3.5"></i> Descargar Guía 6 PDF</a></li>
           <li><a href="#evidencias-section" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="layout-grid" class="w-3.5 h-3.5"></i> Catálogo Visual de Evidencias</a></li>
-          <li><a href="guias/guia-06/proyeccion-evidencia-01.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="presentation" class="w-3.5 h-3.5"></i> Sesión Interactiva: Normalización & MySQL</a></li>
+          <li><a href="guias/guia-06/proyeccion-evidencia-01.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="presentation" class="w-3.5 h-3.5"></i> Sesión Evidencia 1: Normalización</a></li>
+          <li><a href="guias/guia-06/proyeccion-evidencia-02.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="presentation" class="w-3.5 h-3.5"></i> Sesión Evidencia 2: MER & Diccionario</a></li>
+          <li><a href="guias/guia-06/proyeccion-evidencia-03.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="presentation" class="w-3.5 h-3.5"></i> Sesión Evidencia 3: NoSQL MongoDB</a></li>
           <li><a href="guias/guia-06/proyeccion.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="monitor" class="w-3.5 h-3.5"></i> Modo Proyección Sincrónica</a></li>
         </ul>
       </div>
@@ -880,6 +882,7 @@
         format: 'PDF / Diagrama',
         instrument: 'IE-GA6-220501096-AA1-EV02',
         slideRef: 'slide-3',
+        directProj: 'proyeccion-evidencia-02.html',
         summary: 'Diseño conceptual MER y lógico MR para el sistema de información del proyecto formativo, con diccionario de datos exhaustivo.',
         steps: [
           'Identificar entidades, atributos y relaciones a partir de requerimientos de software.',
@@ -910,6 +913,7 @@
         format: 'PDF',
         instrument: 'IE-GA6-220501096-AA1-EV03',
         slideRef: 'slide-4',
+        directProj: 'proyeccion-evidencia-03.html',
         summary: 'Diseño estructural de colecciones y documentos en MongoDB con decisiones de incrustación (embedding) vs referenciación.',
         steps: [
           'Seleccionar el módulo del sistema adecuado para almacenamiento documental NoSQL.',
@@ -1670,13 +1674,13 @@
               `).join('')}
             </ol>
 
-            ${activeEvidence.id === 'ev-01' ? `
-              <div class="p-3 bg-blue-50 border border-blue-200 rounded-xl flex items-center justify-between gap-3 text-xs">
-                <div class="flex items-center gap-2 text-blue-900">
-                  <i data-lucide="presentation" class="w-4 h-4 text-blue-600 shrink-0"></i>
-                  <span><strong>Sesión Interactiva en Diapositivas:</strong> Caso práctico paso a paso de Normalización (0FN a 3FN), comparativa DBMS y tutorial MySQL Workbench.</span>
+            ${activeEvidence.directProj ? `
+              <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl flex items-center justify-between gap-3 text-xs">
+                <div class="flex items-center gap-2 text-emerald-950">
+                  <i data-lucide="presentation" class="w-4 h-4 text-emerald-700 shrink-0"></i>
+                  <span><strong>Sesión Interactiva en Diapositivas:</strong> ${activeEvidence.id === 'ev-01' ? 'Caso práctico paso a paso de Normalización (0FN a 3FN), comparativa DBMS y tutorial MySQL Workbench.' : activeEvidence.id === 'ev-02' ? 'Guía directa en español de 10 diapositivas: MER conceptual, paso a tablas, Diccionario de Datos oficial, generación de script SQL y ejemplo resuelto.' : 'Guía directa en español de 10 diapositivas: Bases de datos NoSQL, MongoDB, Colecciones, Documentos JSON, Incrustar vs Referenciar y Validación $jsonSchema.'}</span>
                 </div>
-                <a href="guias/guia-06/proyeccion-evidencia-01.html" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg shrink-0 transition-colors flex items-center gap-1">
+                <a href="guias/guia-06/${activeEvidence.directProj}" class="px-3 py-1.5 bg-[#39A900] hover:bg-[#2D8200] text-white font-bold rounded-lg shrink-0 transition-colors flex items-center gap-1">
                   <span>Ver Diapositivas</span>
                   <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
                 </a>

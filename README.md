@@ -44,7 +44,9 @@ repoVirtual/
 └── guias/
     ├── Guia_aprendizaje_6.pdf          # PDF oficial emitido por la Dirección de Formación SENA
     └── guia-06/
-        ├── proyeccion-evidencia-01.html # Presentación interactiva de 20 diapositivas para Evidencia 1
+        ├── proyeccion-evidencia-01.html # Presentación interactiva de 20 diapositivas para Evidencia 1 (Normalización)
+        ├── proyeccion-evidencia-02.html # Presentación interactiva de 10 diapositivas para Evidencia 2 (MER y Diccionario)
+        ├── proyeccion-evidencia-03.html # Presentación interactiva de 10 diapositivas para Evidencia 3 (NoSQL MongoDB)
         └── proyeccion.html             # Modo Proyección General en Aula (Guía 06)
 ```
 
@@ -63,44 +65,37 @@ repoVirtual/
   * **Guía 06 (Activa):** Bases de Datos Relacionales/NoSQL, Prototipado Figma y Frontend Web (13 evidencias).
   * **Guía 07:** Servicios Backend, APIs REST, ORM/ODM y documentación Swagger/Postman (3 evidencias).
 * **Filtros por Área Técnica:** Selector por categorías (`Bases de Datos SQL`, `NoSQL MongoDB`, `Prototipado UI/UX Figma`, `Frontend Web`, `Backend & APIs`, `Arquitectura UML`).
-* **Buscador en Tiempo Real:** Filtrado reactivo instantáneo por código de evidencia (ej. `AA1-EV01`), título, resumen o tecnologías.
+* **Buscador en Tiempo Real:** Filtrado reactivo instantáneo por código de evidencia (ej. `AA1-EV01`, `AA1-EV02`, `AA1-EV03`), título, resumen o tecnologías.
 * **Paginación Dinámica:** Paginación calibrada a **6 evidencias por página** con navegación previa/siguiente, botones numerados y contador contextual (`Mostrando X a Y de Z evidencias`).
-* **Modales Detallados:** Cada evidencia despliega un modal con paso a paso detallado, criterios oficiales de evaluación y checklist interactivo con persistencia local en navegador (`localStorage`).
+* **Modales Detallados:** Cada evidencia despliega un modal con paso a paso detallado, llamada directa a diapositivas interactivas, criterios oficiales de evaluación y checklist interactivo con persistencia local en navegador (`localStorage`).
 
 ---
 
-## 📽️ Presentación Interactiva de la Evidencia 1 (`proyeccion-evidencia-01.html`)
+## 📽️ Presentaciones Interactivas en Diapositivas (Modo Videobeam)
 
-Presentación especializada de **20 diapositivas interactivas** diseñada para proyectar en sesiones virtuales sincrónicas la **Evidencia Técnica 01: Resolución de problemas aplicando el modelo relacional, cardinalidad y normalización (GA6-220501096-AA1-EV01)**:
+### 🟢 Evidencia 1: Normalización de Bases de Datos & MySQL Workbench (`proyeccion-evidencia-01.html`)
+* **Código Oficial:** `GA6-220501096-AA1-EV01` (16 Horas de Formación Técnica).
+* **20 Diapositivas:** Fundamentos de Edgar F. Codd, análisis forense de anomalías en 0FN, paso a 1FN, 2FN y 3FN, descarga oficial e instalación en Windows de MySQL Server 8.0 y Workbench, modelado EER, integridad referencial (`ON DELETE CASCADE / RESTRICT`), Forward Engineering y consultas SQL `INNER JOIN`.
 
-### 📗 Bloque 1: Fundamentos y Caso Real de 0FN a 3FN (Slides 01 a 10)
-* **Slide 01 - 02:** Portada institucional SENA CADPH Garzón y especificación oficial de la Guía 6 (`IE-GA6-220501096-AA1-EV01`).
-* **Slide 03:** Ecosistema de DBMS: Motores RDBMS relacionales vs NoSQL, y por qué MySQL para transacciones ACID.
-* **Slide 04:** El Caso Real en Bruto: Planilla desnormalizada en 0FN con violación de atomicidad y celdas compuestas.
-* **Slide 05:** Diagnóstico Forense: Demostración detallada de las 3 anomalías de Edgar F. Codd (Inserción, Modificación y Eliminación).
-* **Slide 06:** Primera Forma Normal (1FN): Desglose atómico, eliminación de listas repetitivas y Clave Primaria Compuesta.
-* **Slide 07:** Segunda Forma Normal (2FN): Dependencia funcional completa y división en tablas `Factura`, `Producto` y `DetalleFactura`.
-* **Slide 08:** Tercera Forma Normal (3FN): Eliminación de dependencias transitivas y creación de las 4 tablas normalizadas con `Cliente`.
-* **Slide 09:** Diccionario de Datos del Modelo: Tipos de datos SQL (`INT`, `VARCHAR`, `DECIMAL`), restricciones (`PK`, `FK`, `NOT NULL`) y longitudes.
-* **Slide 10:** Análisis de Cardinalidades: Desglose semántico mínimo/máximo de relaciones 1:N y resolución de la relación N:M.
+### 🟢 Evidencia 2: Modelo Entidad-Relación de Caso & Diccionario de Datos (`proyeccion-evidencia-02.html`)
+* **Código Oficial:** `GA6-220501096-AA1-EV02` (16 Horas de Formación Técnica).
+* **10 Diapositivas Directas al Grano (100% en Español):**
+  * **Slide 01 - 02:** Portada institucional y entregables exactos requeridos por la lista de chequeo oficial en Zajuna LMS.
+  * **Slide 03 - 04:** Paso 1 y 2: Identificación de entidades, atributos, Llaves Primarias y trazado del Diagrama Conceptual (MER) con notación Chen y cardinalidades.
+  * **Slide 05 - 06:** Paso 3 y 4: Las 3 reglas de oro para convertir el MER en tablas (1:1, 1:N y N:M con tabla intermedia) y ficha oficial del **Diccionario de Datos SENA** (8 columnas en español).
+  * **Slide 07:** Paso 5: Cómo diagramar en MySQL Workbench con notación Pata de Gallo y generar el script SQL mediante ingeniería hacia adelante (<kbd>Ctrl + G</kbd>).
+  * **Slide 08:** Ejemplo real resuelto de inicio a fin: Las 5 tablas completas (`CLIENTES`, `PRODUCTOS`, `CATEGORIAS`, `VENTAS`, `DETALLE_VENTAS`) con sus llaves y adaptación a otros sectores (Salud, Taller, Restaurante).
+  * **Slide 09 - 10:** Estructura oficial del documento PDF entregable, nomenclatura de archivo y lista de chequeo de 5 puntos para asegurar calificación Aprobada ('A') en **Zajuna LMS**.
 
-### 📘 Bloque 2: MySQL Workbench, Descarga, Setup y Taller EER (Slides 11 a 18)
-* **Slide 11:** Descarga Oficial de Oracle (`dev.mysql.com/downloads/installer/`) y prerrequisito crítico de *Microsoft Visual C++ 2015-2022 Redistributable (x64)*.
-* **Slide 12:** Instalación paso a paso en Windows: Selección de productos (Server 8.0 y Workbench 8.0), configuración de puerto `3306`, contraseña de `root` y servicio `MySQL80`.
-* **Slide 13:** Primeros pasos en Workbench: Creación de modelo EER (`File > New Model`), lienzo `Add Diagram` y esquema de base de datos.
-* **Slide 14:** Herramienta Tabla (<kbd>T</kbd>), configuración de columnas y banderas (`PK`, `NN`, `UQ`, `AI`, `UN`).
-* **Slide 15:** Trazado de relaciones foráneas: La **Regla de Oro de Workbench** (*clic primero en la tabla que recibe la foránea / tabla hija, luego en la tabla padre*).
-* **Slide 16:** Integridad Referencial: Configuración de políticas `ON DELETE RESTRICT / NO ACTION` y `ON DELETE CASCADE`.
-* **Slide 17:** Forward Engineering (<kbd>Ctrl + G</kbd>): Opciones `Generate DROP Statements` y exportación a script SQL físico.
-* **Slide 18:** Live Testing: Poblado con datos de prueba y reconstrucción íntegra de la factura mediante consulta `INNER JOIN`.
-
-### 📙 Bloque 3: Aplicación a Proyectos Propios y Rúbrica Zajuna (Slides 19 a 20)
-* **Slide 19:** Adaptación del ejercicio a los proyectos formativos individuales de los aprendices con ejemplos por sector:
-  * *Veterinaria / Salud Animal:* Consulta médica, propietario, mascota, veterinario y fármacos.
-  * *E-Commerce / Ferretería:* Orden de compra, cliente, producto, categoría y renglones de detalle.
-  * *Taller Mecánico / Mantenimiento:* Orden de servicio, vehículo, mecánico y repuestos.
-  * *Restaurante / Bar:* Comanda de mesa, mesero, platos y bebidas.
-* **Slide 20:** Estructura obligatoria del documento PDF entregable (portada institucional, planteamiento del problema, análisis de anomalías, normalización 1FN a 3FN, diccionario de datos, diagrama EER y script SQL) y lista de chequeo de calificación en **Zajuna LMS**.
+### 🟢 Evidencia 3: Creación de Objetos en Base de Datos NoSQL MongoDB (`proyeccion-evidencia-03.html`)
+* **Código Oficial:** `GA6-220501096-AA1-EV03` (16 Horas de Formación Técnica).
+* **10 Diapositivas Directas al Grano (100% en Español):**
+  * **Slide 01 - 02:** Portada institucional y qué son las Bases de Datos No Relacionales (NoSQL) con las 4 familias tecnológicas (Documentales, Clave-Valor, Columnas Anchas y Grafos).
+  * **Slide 03 - 04:** Tabla de equivalencias conceptuales directa (Tabla $\rightarrow$ Colección, Fila $\rightarrow$ Documento, Columna $\rightarrow$ Campo, PK $\rightarrow$ `_id`) y anatomía de un documento JSON vs BSON.
+  * **Slide 05 - 06:** La decisión arquitectónica crítica: **Incrustar (Subdocumentos)** vs **Referenciar (Por ID)**, y el paso a paso metodológico para estructurar las colecciones del proyecto individual.
+  * **Slide 07:** Validación formal de esquemas en MongoDB mediante reglas `$jsonSchema` (campos requeridos, tipos de datos y rangos).
+  * **Slide 08:** Ejemplo completo resuelto para un sistema de ventas (colección `pedidos` con cliente referenciado e ítems de compra incrustados) y notas de adaptación para Salud/Veterinaria, Talleres y Restaurantes.
+  * **Slide 09 - 10:** Herramientas oficiales (*MongoDB Compass*, *MongoDB Atlas* clúster gratuito y *mongosh*), estructura obligatoria del informe PDF y lista de chequeo de 5 puntos para calificación Aprobada ('A') en **Zajuna LMS**.
 
 ---
 

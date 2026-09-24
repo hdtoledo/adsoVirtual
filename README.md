@@ -67,7 +67,11 @@ repoVirtual/
 * **Filtros por Área Técnica:** Selector por categorías (`Bases de Datos SQL`, `NoSQL MongoDB`, `Prototipado UI/UX Figma`, `Frontend Web`, `Backend & APIs`, `Arquitectura UML`).
 * **Buscador en Tiempo Real:** Filtrado reactivo instantáneo por código de evidencia (ej. `AA1-EV01`, `AA1-EV02`, `AA1-EV03`), título, resumen o tecnologías.
 * **Paginación Dinámica:** Paginación calibrada a **6 evidencias por página** con navegación previa/siguiente, botones numerados y contador contextual (`Mostrando X a Y de Z evidencias`).
-* **Modales Detallados:** Cada evidencia despliega un modal con paso a paso detallado, llamada directa a diapositivas interactivas, criterios oficiales de evaluación y checklist interactivo con persistencia local en navegador (`localStorage`).
+* **Estado de Disponibilidad de Diapositivas:**
+  * **🟢 Diapositivas Disponibles:** Insignia verde para las evidencias con presentación interactiva activa (EV01, EV02, EV03), permitiendo proyección directa inmediata.
+  * **🟡 En Preparación:** Insignia ámbar para evidencias en desarrollo curricular. Si el aprendiz o docente intenta proyectarlas, el sistema despliega una ventana modal explicativa indicando que el material será orientado en la sesión sincrónica virtual correspondiente por el **Ing. Hector David Toledo García**, guiando al aprendiz hacia el PDF de la guía y los requerimientos preliminares.
+* **Modales Detallados:** Cada evidencia despliega un modal con paso a paso detallado, criterios oficiales de evaluación y checklist interactivo con persistencia local en navegador (`localStorage`).
+* **Estabilidad Visual y Cero Saltos de Diseño (Anti-CLS):** Estandarización de cabeceras fijas (`h-16`), paddings simétricos (`px-4 sm:px-6`), canal de scroll reservado (`scrollbar-gutter: stable`) y dimensiones predefinidas para iconos SVG, garantizando transiciones suaves y fluidas entre páginas sin saltos de elementos.
 
 ---
 

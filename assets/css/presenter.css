@@ -29,6 +29,31 @@ code, pre, .font-mono {
   font-family: 'JetBrains Mono', monospace;
 }
 
+/* ==============================================================================
+   ESTABILIZACIÓN DE DISEÑO Y PREVENCIÓN DE SALTOS VISUALES (ANTI-CLS)
+   ============================================================================== */
+html {
+  scrollbar-gutter: stable;
+  scroll-behavior: smooth;
+}
+
+/* Evita que los iconos de Lucide salten antes de que se ejecute createIcons() */
+i[data-lucide], svg.lucide {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  min-width: 1rem;
+  min-height: 1rem;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+/* Evita el quiebre de texto en menús y barras de navegación */
+header nav a,
+.nav-link {
+  white-space: nowrap;
+}
+
 /* Transición suave entre diapositivas y ocupación óptima de pantalla */
 .slide-container {
   min-height: calc(100vh - 5.5rem);

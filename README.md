@@ -104,13 +104,19 @@ repoVirtual/
 
 ### 🟢 Evidencia 4: Elaboración de las Bases de Datos en MongoDB (`proyeccion-evidencia-04.html`)
 * **Código Oficial:** `GA6-220501096-AA1-EV04` (16 Horas de Formación Técnica).
+* **Único Producto a Entregar según la Guía:** **Video la creación y manipulación de bases de datos NoSQL** (Extensión: **MP4**). *No se piden más archivos ni informes escritos.*
 * **12 Diapositivas Directas al Grano (100% en Español):**
-  * **Slide 01 - 02:** Portada institucional y especificación exacta del archivo `.ZIP` (script `.js` ejecutable + informe `.pdf`).
-  * **Slide 03 - 04:** Entorno de trabajo (Community Server vs Atlas M0) y Paso 1: Creación de la base de datos del proyecto (`use`).
-  * **Slide 05 - 06:** Paso 2 y 3: Reglas de validación formal `$jsonSchema` (campos requeridos, regex de correo y enums) y **demostración de rechazo con captura del error en rojo**.
-  * **Slide 07 - 08:** Paso 4 y 5: Inserción masiva de 5 documentos válidos con `insertMany()` y modelado de segunda colección con subdocumentos incrustados.
-  * **Slide 09 - 10:** Paso 6 y 7: Cuatro consultas avanzadas (comparación `$gte`, expresiones regulares `$regex`, operadores lógicos `$and` y proyecciones) y pipeline analítico de agregación (`$match`, `$group`, `$sort`).
-  * **Slide 11 - 12:** Estructura oficial del informe técnico en PDF, capturas numeradas requeridas y lista de chequeo de 5 puntos para calificación Aprobada ('A') en **Zajuna LMS**.
+  * **Slide 01 - 02:** Portada institucional y **Requerimientos Oficiales de la Guía** (lectura textual de los 8 pasos exactos sobre la colección `"parque"` y lineamiento del video MP4 como único entregable).
+  * **Slide 03:** Entorno de trabajo (*MongoDB Compass* interfaz gráfica y terminal integrada `_MONGOSH` o consola del sistema).
+  * **Slide 04:** **Pasos 1 y 2 de la Guía:** Creación de la base de datos NoSQL (`use parqueadero_db;`) y de la colección de datos llamada exactamente `"parque"` (`db.createCollection("parque")`).
+  * **Slide 05:** **Paso 3 de la Guía:** Inserción de cinco (5) documentos con la estructura JSON creada en la EV03 (`db.parque.insertMany([...])` con placas, modelos, colores y propietarios).
+  * **Slide 06:** **Paso 4 de la Guía:** Actualización de los datos del primer y último registro con `updateOne()` y el operador atómico `$set`.
+  * **Slide 07:** **Paso 5 de la Guía:** Listar la colección completa (`db.parque.find()`), verificando en pantalla la existencia de los 5 documentos iniciales y sus modificaciones.
+  * **Slide 08:** **Paso 6 de la Guía:** Borrado puntual del tercer documento de la colección parque (`db.parque.deleteOne({ placa: "..." })`).
+  * **Slide 09:** **Paso 7 de la Guía:** Listar nuevamente la colección completa (`db.parque.find()`), demostrando en vivo que ahora restan cuatro (4) registros tras el borrado.
+  * **Slide 10:** **Paso 8 de la Guía:** Sentencia que permite obtener un documento según su número de placa (`db.parque.findOne({ placa: "..." })`).
+  * **Slide 11:** **Lineamientos Oficiales del Video:** Grabación de pantalla con audio nítido del aprendiz (OBS, Clipchamp, Loom), duración sugerida (4 a 8 min), opciones de envío en Zajuna (subida directa de archivo MP4 o enlace público en YouTube/Drive).
+  * **Slide 12:** **Lista de Chequeo Final:** Verificación interactiva de los 8 requerimientos oficiales antes de enviar para obtener calificación Aprobada ('A') en **Zajuna LMS**.
 
 ---
 

@@ -19,7 +19,7 @@ Este documento es la **hoja de ruta maestra** para instructores y aprendices de 
 | **01** | `GA6-220501096-AA1-EV01` | Conocimiento | Resolución de problemas aplicando modelo relacional y normalización | Técnica (BD SQL) | 16h | PDF |
 | **02** | `GA6-220501096-AA1-EV02` | Desempeño | Modelo Entidad-Relación de caso | Técnica (BD SQL) | 16h | PDF / Diagrama |
 | **03** | `GA6-220501096-AA1-EV03` | Desempeño | Creación de los objetos de la base de datos NoSQL | Técnica (BD NoSQL) | 16h | PDF / JSON |
-| **04** | `GA6-220501096-AA1-EV04` | Producto | Elaboración de las bases de datos en MongoDB | Técnica (BD NoSQL) | 16h | ZIP / Script Mongo |
+| **04** | `GA6-220501096-AA1-EV04` | Producto | Elaboración de las bases de datos | Técnica (BD NoSQL) | 16h | Video (MP4) |
 | **05** | `GA6-220501096-AA2-EV01` | Desempeño | Destrezas y conocimientos en sentencias DDL y DML de SQL | Técnica (SQL) | 16h | PDF / Script .sql |
 | **06** | `GA6-220501096-AA2-EV02` | Desempeño | Creación de estructura BD y aplicación de restricciones | Técnica (SQL) | 16h | Script .sql + PDF |
 | **07** | `GA6-220501096-AA2-EV03` | Producto | Script oficial de base de datos del proyecto formativo | Técnica (SQL) | 16h | Archivo .sql |
@@ -94,18 +94,24 @@ Este documento es la **hoja de ruta maestra** para instructores y aprendices de 
 ---
 
 #### 4. Evidencia `GA6-220501096-AA1-EV04`
-**Nombre:** Elaboración de las bases de datos en MongoDB.  
+**Nombre:** Elaboración de las bases de datos.  
 - **Tipo:** Evidencia de Producto.
 - **Instrumento de Evaluación:** `IE-GA6-220501096-AA1-EV04`.
-- **Descripción:** Implementar de forma real la base de datos en el gestor MongoDB (Community Server o MongoDB Atlas en la nube), creando la base de datos, colecciones e insertando documentos de prueba.
-- **Paso a Paso:**
-  1. Iniciar el servicio MongoDB o configurar un cluster gratuito en MongoDB Atlas.
-  2. Crear la base de datos con `use nombre_bd;`.
-  3. Ejecutar sentencias `db.createCollection()` con validación de esquemas.
-  4. Insertar al menos 5 documentos representativos por colección usando `insertMany()`.
-  5. Ejecutar consultas con filtros (`$gt`, `$in`), proyecciones y agregaciones (`$match`, `$group`, `$sort`).
-  6. Exportar el script de inicialización (`init-mongo.js`) o archivo JSON dump.
-- **Formato de Entrega:** Archivo comprimido ZIP que contenga el script ejecutable de MongoDB y un informe en PDF con capturas de MongoDB Compass o MongoShell demostrando la inserción y consulta de datos.
+- **Descripción Oficial de la Guía:** Con base en el documento realizado en la evidencia GA6-220501096-AA1-EV03, realice la base de datos en MongoDB, cumpliendo con las siguientes características:
+- **Los 8 Requerimientos Obligatorios a Demostrar en el Video:**
+  1. Cree una base de datos NoSQL (en MongoDB Compass o mediante consola con `use parqueadero_db;`).
+  2. Cree una colección de datos llamada `"parque"`.
+  3. Inserte cinco (5) documentos con la estructura JSON creada en la evidencia EV03 (vehículos con placas, tipos, marcas, modelos y propietarios).
+  4. Actualice los datos del primer y último registro (utilizando `updateOne()` con el operador atómico `$set`).
+  5. Liste la colección completa (`db.parque.find()`), mostrando en pantalla los 5 documentos y sus modificaciones.
+  6. Borre el tercer documento de la colección parque (`db.parque.deleteOne({ placa: "..." })`).
+  7. Liste la colección de datos completa (`db.parque.find()`), demostrando en vivo que ahora quedan exactamente cuatro (4) registros.
+  8. Cree la sentencia que permita obtener un documento, según el número de placa del documento (`db.parque.findOne({ placa: "..." })`).
+- **Lineamientos Generales para la Entrega:**
+  - **Producto a entregar:** Video la creación y manipulación de bases de datos NoSQL.
+  - **Extensión:** MP4.
+  - **Aclaración clave:** *La guía oficial no solicita informes en PDF ni scripts adicionales por separado.* El único entregable es el video en formato MP4 (o enlace accesible en YouTube / Google Drive / OneDrive SENA si supera el límite de peso de Zajuna) donde el aprendiz sustenta verbalmente y en pantalla cada uno de los 8 pasos.
+  - **Espacio de envío en Zajuna:** *Elaboración de las bases de datos. GA6-220501096-AA1-EV04.*
 
 ---
 

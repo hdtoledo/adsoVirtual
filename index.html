@@ -991,7 +991,7 @@
               </div>
             </div>
 
-            <!-- Tarjeta: Evidencia 04 (MongoDB $jsonSchema & mongosh) -->
+            <!-- Tarjeta: Evidencia 04 (MongoDB Colección 'parque' - Video MP4) -->
             <div class="p-4 rounded-2xl bg-white border border-slate-200 hover:border-emerald-300 transition-all hover:shadow-md flex flex-col justify-between gap-3 group">
               <div>
                 <div class="flex items-center justify-between gap-2 mb-1.5">
@@ -999,10 +999,10 @@
                   <span class="text-[10px] font-mono font-bold text-emerald-700 bg-emerald-100/80 px-2 py-0.5 rounded">12 Slides</span>
                 </div>
                 <h4 class="text-sm font-extrabold text-slate-900 group-hover:text-emerald-800 transition-colors">
-                  Evidencia 04: Elaboración de Bases de Datos en MongoDB
+                  Evidencia 04: Elaboración de las bases de datos
                 </h4>
                 <p class="text-[11.5px] text-slate-600 leading-relaxed mt-1">
-                  Validación formal con $jsonSchema estricto, captura del rechazo de datos erróneos, insertMany y pipeline de agregación.
+                  Sustentación en video (MP4): creación de BD NoSQL, colección "parque", 5 documentos JSON, actualización del 1° y último, listados, borrado del 3° y consulta por placa.
                 </p>
               </div>
               <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
@@ -1276,28 +1276,36 @@
         catName: 'NoSQL MongoDB',
         type: 'Producto',
         hours: '16 Horas',
-        title: 'Elaboración de las bases de datos en MongoDB',
-        format: 'ZIP / Scripts JS',
+        title: 'Elaboración de las bases de datos',
+        format: 'Video (MP4)',
         instrument: 'IE-GA6-220501096-AA1-EV04',
         slideRef: 'slide-5',
         directProj: 'proyeccion-evidencia-04.html',
         hasSlides: true,
         slideCount: '12 slides',
-        summary: 'Implementación práctica en MongoDB de colecciones, reglas de validación JSON Schema e inserción de datos de prueba.',
+        summary: 'Sustentación exclusiva en video explicativo (formato MP4) demostrando en vivo la creación y manipulación de la base de datos NoSQL y la colección "parque", cumpliendo con los 8 requerimientos exactos de la guía de aprendizaje.',
         steps: [
-          'Instalar y configurar MongoDB Community Server y MongoDB Compass.',
-          'Crear la base de datos y colecciones con reglas de validación (validator con $jsonSchema).',
-          'Probar el rechazo de inserción enviando un documento inválido (captura de error obligatoria).',
-          'Insertar al menos 5 documentos válidos y variados usando insertMany().',
-          'Ejecutar consultas con filtros avanzados ($gte, $regex), proyecciones y pipeline de agregación.'
+          '1. Crear una base de datos NoSQL en MongoDB Compass o terminal mongosh (use parqueadero_db).',
+          '2. Crear una colección de datos llamada exactamente "parque".',
+          '3. Insertar cinco (5) documentos con la estructura JSON creada en la evidencia EV03 (vehículos con placas, tipos, modelos y propietarios).',
+          '4. Actualizar los datos del primer y último registro utilizando updateOne() con el operador atómico $set.',
+          '5. Listar la colección completa con db.parque.find() comprobando los 5 documentos en pantalla.',
+          '6. Borrar el tercer documento de la colección parque mediante deleteOne() especificando su placa.',
+          '7. Listar la colección de datos completa verificando en vivo que ahora restan cuatro (4) registros.',
+          '8. Crear la sentencia que permita obtener un documento específico según su número de placa (db.parque.findOne({ placa: "..." })).'
         ],
-        criteria: 'Aplica validación de esquemas y restricciones en el motor NoSQL.',
+        criteria: 'Elabora y manipula bases de datos NoSQL según los requerimientos técnicos de la guía de aprendizaje.',
         checklist: [
-          'Script .js ejecutable con creación de colecciones, esquemas e inserciones.',
-          'Reglas de validación con $jsonSchema comprobadas ante inserciones erróneas.',
-          'Mínimo 5 documentos de prueba insertados con tipos y formatos variados.',
-          'Consultas documentadas con filtros y pipeline de agregación en mongosh o Compass.',
-          'Informe técnico en PDF con portada institucional SENA y capturas numeradas.'
+          'Producto único entregado: Archivo de video en formato MP4 (o enlace accesible en YouTube / Google Drive / OneDrive SENA).',
+          'Presentación verbal del aprendiz indicando nombre, ficha ADSO y evidencia técnica.',
+          'Demostración en video del Paso 1: Creación de la base de datos NoSQL.',
+          'Demostración en video del Paso 2: Creación de la colección "parque".',
+          'Demostración en video del Paso 3: Inserción de los 5 documentos JSON.',
+          'Demostración en video del Paso 4: Actualización del primer y último registro con $set.',
+          'Demostración en video del Paso 5: Listado completo inicial con db.parque.find().',
+          'Demostración en video del Paso 6: Borrado puntual del tercer documento con deleteOne().',
+          'Demostración en video del Paso 7: Listado completo demostrando que restan 4 registros.',
+          'Demostración en video del Paso 8: Sentencia para obtener un documento según número de placa.'
         ]
       },
       {

@@ -97,7 +97,7 @@
         <span class="text-slate-300 hidden sm:inline">/</span>
         <div class="hidden sm:flex items-center gap-2 text-xs truncate">
           <span class="font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Guía 06</span>
-          <span class="text-slate-600 font-medium truncate">Evidencia 04: Elaboración de Bases de Datos en MongoDB ($jsonSchema & MONGOSH)</span>
+          <span class="text-slate-600 font-medium truncate">Evidencia 04: Elaboración de las bases de datos (Colección "parque" · Video MP4)</span>
         </div>
       </div>
 
@@ -216,801 +216,996 @@
 
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-6">
           <span class="w-2 h-2 rounded-full bg-[#39A900] animate-pulse"></span>
-          <span>Guía de Aprendizaje 06 • Fase de Ejecución</span>
+          <span>Guía de Aprendizaje 06 • Fase de Ejecución • ADSO</span>
         </div>
 
         <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight max-w-4xl leading-tight mb-4">
           Elaboración de las Bases de Datos en <span class="text-sena">MongoDB</span>
         </h1>
         <p class="text-sm sm:text-base font-mono font-bold text-slate-500 mb-6">
-          Evidencia Técnica: <span class="text-slate-800">GA6-220501096-AA1-EV04</span> (16 Horas de Formación)
+          Evidencia Oficial: <span class="text-slate-800">GA6-220501096-AA1-EV04</span> (Colección <span class="text-emerald-700">"parque"</span>)
         </p>
 
-        <p class="text-xs sm:text-sm text-slate-600 max-w-2xl mx-auto leading-relaxed mb-8">
-          Taller práctico integral: creación de base de datos en <strong>MongoDB Compass</strong> y <strong>mongosh</strong>, definición obligatoria de esquemas con reglas de validación formal <code>$jsonSchema</code>, inserción masiva de documentos y ejecución de consultas avanzadas con agregaciones para los proyectos de software individuales.
+        <!-- Banner de único producto a entregar -->
+        <div class="mb-8 p-4 bg-amber-50 border border-amber-300 rounded-2xl max-w-2xl text-left flex items-start gap-3">
+          <i data-lucide="video" class="w-6 h-6 text-amber-600 shrink-0 mt-0.5"></i>
+          <div class="text-xs text-amber-900">
+            <strong class="block font-bold text-amber-800 text-sm mb-1">ÚNICO PRODUCTO A ENTREGAR SEGÚN LA GUÍA: VIDEO EXPLICATIVO (MP4)</strong>
+            <span>La guía de aprendizaje SENA <strong>no solicita documentos escritos, ni informes PDF, ni archivos zip</strong>. Los aprendices deben grabar un video demostrando en vivo la creación y manipulación de la base de datos NoSQL con los 8 requerimientos oficiales.</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full max-w-3xl mb-8">
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col items-center">
+            <i data-lucide="database" class="w-6 h-6 text-sena mb-2"></i>
+            <span class="text-xs text-slate-400 font-bold uppercase">Base de Datos</span>
+            <strong class="text-sm text-slate-800">NoSQL MongoDB</strong>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col items-center">
+            <i data-lucide="folder-tree" class="w-6 h-6 text-sky-600 mb-2"></i>
+            <span class="text-xs text-slate-400 font-bold uppercase">Colección</span>
+            <strong class="text-sm text-slate-800 font-mono">"parque"</strong>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col items-center">
+            <i data-lucide="file-video" class="w-6 h-6 text-amber-600 mb-2"></i>
+            <span class="text-xs text-slate-400 font-bold uppercase">Entregable</span>
+            <strong class="text-sm text-slate-800 font-mono">Video MP4</strong>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col items-center">
+            <i data-lucide="list-ordered" class="w-6 h-6 text-purple-600 mb-2"></i>
+            <span class="text-xs text-slate-400 font-bold uppercase">Requerimientos</span>
+            <strong class="text-sm text-slate-800">8 Pasos Clave</strong>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <button onclick="goToSlide(1)" class="inline-flex items-center gap-2 bg-[#39A900] hover:bg-[#2D8200] text-white text-xs sm:text-sm font-bold px-6 py-3 rounded-xl shadow-sm transition-all hover:scale-105">
+            <span>Iniciar Explicación de la Evidencia</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <p class="text-[11px] text-slate-400 mt-6">
+          Instructor Técnico: <strong>Ing. Hector David Toledo García</strong> • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)
         </p>
+      </div>
+    </section>
 
-        <!-- Ficha de Autoría del Instructor -->
-        <div class="inline-flex items-center gap-3 bg-slate-50 border border-slate-200 p-3 sm:px-5 rounded-2xl text-left shadow-2xs">
-          <div class="w-11 h-11 rounded-full bg-[#00324D] text-white flex items-center justify-center font-extrabold text-sm border-2 border-emerald-500 shrink-0">
-            HT
-          </div>
-          <div>
-            <div class="flex items-center gap-1.5">
-              <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800">Instructor Líder Técnico</span>
-              <span class="text-[10px] text-slate-500">Área Software</span>
+    <!-- ======================================================================= -->
+    <!-- SLIDE 2: REQUERIMIENTOS OFICIALES DE LA GUÍA -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="02. Requerimientos Oficiales de la Guía">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sena font-mono">Guía de Aprendizaje GA6-220501096-AA1-EV04</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Texto Exacto de la Guía y los 8 Pasos Obligatorios
+              </h2>
             </div>
-            <p class="text-xs font-bold text-slate-900">Ing. Hector David Toledo García</p>
-            <p class="text-[10.5px] text-slate-500">CADPH Garzón • Regional Huila • SENA</p>
+            <span class="px-3 py-1 bg-emerald-50 text-emerald-800 border border-emerald-200 rounded-full text-xs font-bold">
+              Único Producto: Video MP4
+            </span>
           </div>
+
+          <div class="p-4 bg-slate-50 border-l-4 border-sena rounded-r-xl mb-5 text-xs sm:text-sm text-slate-700 leading-relaxed">
+            <p class="font-bold text-slate-900 mb-1">Enunciado Oficial de la Guía SENA:</p>
+            <p class="italic text-slate-600">
+              "Con base en el documento realizado en la evidencia GA6-220501096-AA1-EV03, realice la base de datos en MongoDB, cumpliendo con las siguientes características:"
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-5">
+            <div class="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-200 shadow-2xs">
+              <span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">1</span>
+              <div>
+                <strong class="text-xs font-bold text-slate-900">Cree una base de datos NoSQL.</strong>
+                <p class="text-[11px] text-slate-500">Creación en MongoDB Compass o con <code>use parqueadero_db</code>.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-200 shadow-2xs">
+              <span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">2</span>
+              <div>
+                <strong class="text-xs font-bold text-slate-900">Cree una colección de datos llamada "parque".</strong>
+                <p class="text-[11px] text-slate-500">Nombre exacto solicitado por la guía de aprendizaje.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-200 shadow-2xs">
+              <span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">3</span>
+              <div>
+                <strong class="text-xs font-bold text-slate-900">Inserte cinco (5) documentos con la estructura JSON creada.</strong>
+                <p class="text-[11px] text-slate-500">5 registros de vehículos con placas y atributos creados en la EV03.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-200 shadow-2xs">
+              <span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">4</span>
+              <div>
+                <strong class="text-xs font-bold text-slate-900">Actualice los datos del primer y último registro.</strong>
+                <p class="text-[11px] text-slate-500">Modificación de campos con <code>updateOne()</code> y <code>$set</code>.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-200 shadow-2xs">
+              <span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">5</span>
+              <div>
+                <strong class="text-xs font-bold text-slate-900">Liste la colección completa.</strong>
+                <p class="text-[11px] text-slate-500">Ejecución de <code>db.parque.find()</code> mostrando los 5 documentos.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-200 shadow-2xs">
+              <span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">6</span>
+              <div>
+                <strong class="text-xs font-bold text-slate-900">Borre el tercer documento de la colección parque.</strong>
+                <p class="text-[11px] text-slate-500">Eliminación puntual del 3er registro con <code>deleteOne()</code>.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-200 shadow-2xs">
+              <span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">7</span>
+              <div>
+                <strong class="text-xs font-bold text-slate-900">Liste la colección de datos completa.</strong>
+                <p class="text-[11px] text-slate-500">Verificación en vivo de que ahora solo quedan 4 registros.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-200 shadow-2xs">
+              <span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">8</span>
+              <div>
+                <strong class="text-xs font-bold text-slate-900">Cree la sentencia para obtener documento según placa.</strong>
+                <p class="text-[11px] text-slate-500">Consulta exacta por filtro: <code>db.parque.findOne({ placa: "..." })</code>.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200 text-xs text-emerald-900 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <i data-lucide="check-circle" class="w-5 h-5 text-[#39A900]"></i>
+              <span><strong>Lineamiento de entrega:</strong> Producto a entregar: <strong>Video la creación y manipulación de bases de datos NoSQL</strong>. Extensión: <strong>MP4</strong>.</span>
+            </div>
+            <span class="font-bold text-emerald-800 text-[11px]">Espacio: GA6-220501096-AA1-EV04</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(0)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(2)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Entorno de Trabajo <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
         </div>
       </div>
     </section>
 
     <!-- ======================================================================= -->
-    <!-- SLIDE 2: QUÉ DEBEN ENTREGAR EXACTAMENTE (ZIP Y PDF OFICIAL) -->
+    <!-- SLIDE 3: ENTORNO DE TRABAJO (COMPASS Y MONGOSH) -->
     <!-- ======================================================================= -->
-    <section class="slide-content hidden min-h-[580px]" data-title="02. Entregables Oficiales Zajuna">
+    <section class="slide-content hidden min-h-[580px]" data-title="03. Entorno de Trabajo (Compass y mongosh)">
       <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
-        <div class="space-y-2">
-          <div class="flex items-center justify-between flex-wrap gap-2">
-            <span class="text-[11px] font-mono font-bold text-sena uppercase bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-100">
-              Entregable Oficial • Instrumento IE-GA6-220501096-AA1-EV04
-            </span>
-            <span class="text-xs font-bold text-slate-500">Evidencia de Producto (16 Horas)</span>
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sena font-mono">Preparación Técnica del Aprendiz</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Herramientas para Demostrar en el Video
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-mono font-bold">Compass / mongosh</span>
           </div>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-            ¿Qué debe entregar el aprendiz en Zajuna LMS?
-          </h2>
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            Para obtener calificación <strong>Aprobada (A)</strong>, el aprendiz debe empaquetar un archivo comprimido <strong>.ZIP</strong> que contenga exactamente los dos siguientes elementos:
+
+          <p class="text-xs sm:text-sm text-slate-600 mb-6">
+            Para la grabación de su video MP4, el aprendiz puede utilizar la interfaz gráfica <strong>MongoDB Compass</strong>, la consola integrada <strong>_MONGOSH</strong> o la terminal del sistema. Ambas son 100% válidas para sustentar los 8 pasos:
           </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <!-- Opción A: MongoDB Compass -->
+            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-2 mb-3">
+                  <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
+                    <i data-lucide="layout" class="w-4 h-4"></i>
+                  </div>
+                  <h3 class="font-bold text-slate-900 text-sm">Opción A: MongoDB Compass (GUI)</h3>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                  Excelente para mostrar visualmente las bases de datos, colecciones y documentos en pestañas ("Documents", "Schema", "Indexes").
+                </p>
+                <ul class="text-xs text-slate-600 space-y-2 list-disc list-inside">
+                  <li>Conexión local: <code>mongodb://localhost:27017</code></li>
+                  <li>Botón verde <strong>"Create Database"</strong></li>
+                  <li>Inserción con <strong>"Add Data" &gt; "Insert Document"</strong></li>
+                  <li>Filtro en barra de búsqueda: <code>{ "placa": "..." }</code></li>
+                </ul>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-200 text-[11px] text-slate-500 font-mono">
+                Visual y amigable para aprendices noveles.
+              </div>
+            </div>
+
+            <!-- Opción B: Consola MONGOSH -->
+            <div class="p-5 rounded-2xl bg-slate-900 text-slate-100 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-2 mb-3">
+                  <div class="w-8 h-8 rounded-lg bg-emerald-500 text-slate-900 flex items-center justify-center font-bold">
+                    <i data-lucide="terminal" class="w-4 h-4"></i>
+                  </div>
+                  <h3 class="font-bold text-white text-sm">Opción B: mongosh (Terminal Shell)</h3>
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                  Disponible en la barra inferior de Compass (pestaña <code>_MONGOSH</code>) o en la terminal PowerShell / Bash ejecutando <code>mongosh</code>.
+                </p>
+                <div class="p-3 bg-slate-950 rounded-xl font-mono text-[11px] text-emerald-400 space-y-1">
+                  <div><span class="text-slate-500">&gt;</span> use parqueadero_db</div>
+                  <div><span class="text-slate-500">&gt;</span> db.createCollection("parque")</div>
+                  <div><span class="text-slate-500">&gt;</span> db.parque.insertMany([...])</div>
+                </div>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-emerald-400 font-mono">
+                Recomendada: Mayor agilidad técnica en el video.
+              </div>
+            </div>
+          </div>
+
+          <div class="p-3 bg-sky-50 rounded-xl border border-sky-200 text-xs text-sky-900 flex items-center gap-2">
+            <i data-lucide="info" class="w-4 h-4 text-sky-600 shrink-0"></i>
+            <span><strong>Tip para el video:</strong> Puedes alternar entre la terminal <code>mongosh</code> y Compass para refrescar con F5 y mostrar cómo los datos cambian en tiempo real.</span>
+          </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 my-6">
-          <!-- Elemento 1: Script de MongoDB -->
-          <div class="p-5 rounded-2xl bg-slate-50 border-2 border-emerald-500/30 flex flex-col justify-between space-y-4 relative">
-            <div class="absolute -top-3 left-4 bg-emerald-600 text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full shadow-xs">
-              Elemento 1: Archivo de Código
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(1)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(3)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Pasos 1 y 2 <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 4: PASOS 1 Y 2: BASE DE DATOS Y COLECCIÓN "parque" -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="04. Pasos 1 y 2: Crear DB y Colección 'parque'">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sena font-mono">Requerimientos 1 y 2 de la Guía</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Crear Base de Datos NoSQL y Colección <span class="text-emerald-700 font-mono">"parque"</span>
+              </h2>
             </div>
-            <div class="space-y-2 pt-2">
-              <div class="flex items-center gap-2">
-                <i data-lucide="file-code" class="w-6 h-6 text-emerald-600"></i>
-                <h3 class="font-extrabold text-slate-900 text-sm">script_mongodb_evidencia4.js</h3>
+            <span class="px-3 py-1 bg-emerald-50 text-emerald-800 rounded-full text-xs font-bold font-mono">use & createCollection</span>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-4">
+            <!-- Paso 1 -->
+            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="w-6 h-6 rounded-full bg-emerald-600 text-white font-bold text-xs flex items-center justify-center">1</span>
+                <h3 class="font-bold text-slate-900 text-sm">Paso 1: Cree una base de datos NoSQL</h3>
+              </div>
+              <p class="text-xs text-slate-600 mb-3">
+                En MongoDB, una base de datos se activa inmediatamente con el comando <code>use</code>. Se materializa en disco al insertar su primer documento.
+              </p>
+              <div class="p-3 bg-slate-900 rounded-xl font-mono text-xs text-emerald-400">
+                <span class="text-slate-500">// mongosh: Seleccionar o crear BD</span><br>
+                use parqueadero_db;
+              </div>
+              <p class="text-[11px] text-slate-500 mt-2">
+                En Compass: Clic en <strong>"Create Database"</strong> &gt; Database Name: <code>parqueadero_db</code>.
+              </p>
+            </div>
+
+            <!-- Paso 2 -->
+            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="w-6 h-6 rounded-full bg-emerald-600 text-white font-bold text-xs flex items-center justify-center">2</span>
+                <h3 class="font-bold text-slate-900 text-sm">Paso 2: Cree una colección llamada "parque"</h3>
+              </div>
+              <p class="text-xs text-slate-600 mb-3">
+                La guía solicita expresamente el nombre exacto <strong>"parque"</strong>.
+              </p>
+              <div class="p-3 bg-slate-900 rounded-xl font-mono text-xs text-emerald-400">
+                <span class="text-slate-500">// mongosh: Crear colección 'parque'</span><br>
+                db.createCollection("parque");
+              </div>
+              <p class="text-[11px] text-slate-500 mt-2">
+                En Compass: Collection Name: <code>parque</code> al momento de crear la base de datos.
+              </p>
+            </div>
+          </div>
+
+          <!-- Demostración en el video -->
+          <div class="p-4 bg-emerald-50 rounded-2xl border border-emerald-200">
+            <h4 class="text-xs font-bold text-emerald-900 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+              <i data-lucide="video" class="w-4 h-4 text-sena"></i>
+              <span>Qué debe decir el aprendiz en el video para estos 2 pasos:</span>
+            </h4>
+            <p class="text-xs text-emerald-800 italic leading-relaxed">
+              "Buenas tardes, mi nombre es [Nombre del Aprendiz] de la ficha ADSO [Ficha]. En este video desarrollaré la evidencia GA6-220501096-AA1-EV04. Primero conecto a MongoDB, ejecuto <code>use parqueadero_db</code> para crear mi base de datos NoSQL, y a continuación ejecuto <code>db.createCollection('parque')</code> para definir la colección donde registraremos los vehículos según el documento JSON de la evidencia EV03..."
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(2)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(4)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Paso 3 (5 Documentos JSON) <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 5: PASO 3: INSERTAR 5 DOCUMENTOS JSON -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="05. Paso 3: Insertar 5 Documentos JSON">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sena font-mono">Requerimiento 3 de la Guía</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Inserción de Cinco (5) Documentos en <span class="font-mono text-emerald-700">"parque"</span>
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-purple-50 text-purple-700 rounded-full text-xs font-bold font-mono">insertMany()</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-3">
+            Con base en la estructura JSON desarrollada en la evidencia <strong>EV03</strong> (vehículos ingresados al parqueadero), se insertan los 5 registros iniciales:
+          </p>
+
+          <div class="p-3 bg-slate-900 rounded-2xl font-mono text-[11px] text-slate-200 overflow-x-auto max-h-[300px] border border-slate-800">
+            <pre class="leading-relaxed"><code>db.parque.insertMany([
+  {
+    placa: "XYZ-123",
+    tipoVehiculo: "Automóvil",
+    marca: "Mazda",
+    modelo: 2022,
+    color: "Rojo",
+    propietario: { nombre: "Carlos Gómez", documento: "1075283921", telefono: "3104567890" },
+    horaEntrada: new Date("2026-09-29T08:30:00Z"),
+    estado: "Activo"
+  },
+  {
+    placa: "DEF-456",
+    tipoVehiculo: "Motocicleta",
+    marca: "Yamaha",
+    modelo: 2023,
+    color: "Azul",
+    propietario: { nombre: "Laura Martínez", documento: "1083920194", telefono: "3159876543" },
+    horaEntrada: new Date("2026-09-29T09:15:00Z"),
+    estado: "Activo"
+  },
+  {
+    placa: "GHI-789",  <span class="text-rose-400 font-bold">// 3er Documento (Se eliminará en el Paso 6)</span>
+    tipoVehiculo: "Automóvil",
+    marca: "Chevrolet",
+    modelo: 2020,
+    color: "Blanco",
+    propietario: { nombre: "Andrés Silva", documento: "1075192837", telefono: "3201234567" },
+    horaEntrada: new Date("2026-09-29T10:00:00Z"),
+    estado: "Activo"
+  },
+  {
+    placa: "JKL-012",
+    tipoVehiculo: "Camioneta",
+    marca: "Toyota",
+    modelo: 2024,
+    color: "Gris",
+    propietario: { nombre: "Diana Pérez", documento: "1081928374", telefono: "3187654321" },
+    horaEntrada: new Date("2026-09-29T10:45:00Z"),
+    estado: "Activo"
+  },
+  {
+    placa: "MNO-345",  <span class="text-sky-400 font-bold">// 5to y Último Documento (Se actualizará en el Paso 4)</span>
+    tipoVehiculo: "Motocicleta",
+    marca: "Bajaj",
+    modelo: 2021,
+    color: "Negro",
+    propietario: { nombre: "Felipe Castro", documento: "1075849302", telefono: "3123456789" },
+    horaEntrada: new Date("2026-09-29T11:20:00Z"),
+    estado: "Activo"
+  }
+]);</code></pre>
+          </div>
+
+          <div class="mt-3 p-2.5 bg-emerald-50 rounded-xl border border-emerald-200 text-xs text-emerald-900 flex items-center justify-between">
+            <span class="flex items-center gap-2">
+              <i data-lucide="check-circle" class="w-4 h-4 text-sena shrink-0"></i>
+              <span>Resultado esperado en pantalla: <code>{ acknowledged: true, insertedIds: { '0': ..., '1': ..., '2': ..., '3': ..., '4': ... } }</code></span>
+            </span>
+            <span class="font-bold text-[11px] text-emerald-800">5 Documentos Insertados</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-3 border-t border-slate-100">
+          <button onclick="goToSlide(3)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(5)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Paso 4 (Actualizaciones) <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 6: PASO 4: ACTUALIZAR PRIMER Y ÚLTIMO REGISTRO -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="06. Paso 4: Actualizar 1° y Último Registro">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sena font-mono">Requerimiento 4 de la Guía</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Actualizar los Datos del Primer y Último Registro
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-amber-50 text-amber-800 rounded-full text-xs font-bold font-mono">updateOne() + $set</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-4">
+            La guía solicita expresamente: <em>"Actualice los datos del primer y último registro"</em>. Se utiliza el método <code>updateOne()</code> con el operador atómico <code>$set</code> filtrando por la placa de cada vehículo:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
+            <!-- Actualización del 1er Registro -->
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="px-2 py-0.5 rounded-md bg-amber-100 text-amber-800 text-xs font-bold">1er Registro</span>
+                <strong class="text-xs font-mono text-slate-800">Placa: "XYZ-123"</strong>
+              </div>
+              <p class="text-xs text-slate-500 mb-2">Cambiamos el color a "Rojo Metalizado" y actualizamos el teléfono del propietario:</p>
+              <div class="p-3 bg-slate-900 rounded-xl font-mono text-[11px] text-emerald-400">
+                db.parque.updateOne(<br>
+                &nbsp;&nbsp;{ placa: "XYZ-123" },<br>
+                &nbsp;&nbsp;{<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;$set: {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: "Rojo Metalizado",<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"propietario.telefono": "3109998877"<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                &nbsp;&nbsp;}<br>
+                );
+              </div>
+              <p class="text-[10px] text-slate-500 mt-2 font-mono">
+                Respuesta: { matchedCount: 1, modifiedCount: 1 }
+              </p>
+            </div>
+
+            <!-- Actualización del Último (5to) Registro -->
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="px-2 py-0.5 rounded-md bg-amber-100 text-amber-800 text-xs font-bold">Último Registro</span>
+                <strong class="text-xs font-mono text-slate-800">Placa: "MNO-345"</strong>
+              </div>
+              <p class="text-xs text-slate-500 mb-2">Actualizamos el estado a "Salida Registrada" y añadimos la hora de salida:</p>
+              <div class="p-3 bg-slate-900 rounded-xl font-mono text-[11px] text-emerald-400">
+                db.parque.updateOne(<br>
+                &nbsp;&nbsp;{ placa: "MNO-345" },<br>
+                &nbsp;&nbsp;{<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;$set: {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;estado: "Salida Registrada",<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;horaSalida: new Date("2026-09-29T12:00:00Z"),<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;totalPagar: 3500<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                &nbsp;&nbsp;}<br>
+                );
+              </div>
+              <p class="text-[10px] text-slate-500 mt-2 font-mono">
+                Respuesta: { matchedCount: 1, modifiedCount: 1 }
+              </p>
+            </div>
+          </div>
+
+          <div class="p-3 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-900 flex items-center gap-2">
+            <i data-lucide="alert-circle" class="w-4 h-4 text-amber-700 shrink-0"></i>
+            <span><strong>Regla de oro:</strong> En MongoDB, siempre utilice el operador <code>$set</code> para actualizar campos específicos. Si omite <code>$set</code> en versiones anteriores, el documento entero sería reemplazado.</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(4)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(6)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Paso 5 (Listar Colección) <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 7: PASO 5: LISTAR LA COLECCIÓN COMPLETA -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="07. Paso 5: Listar Colección Completa">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sena font-mono">Requerimiento 5 de la Guía</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Liste la Colección Completa
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-sky-50 text-sky-800 rounded-full text-xs font-bold font-mono">db.parque.find()</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-4">
+            El aprendiz debe ejecutar la sentencia de lectura completa para comprobar en pantalla que existen los 5 documentos y que las modificaciones realizadas en el paso 4 se aplicaron con éxito:
+          </p>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 mb-4">
+            <div class="lg:col-span-5 p-4 rounded-2xl bg-slate-900 text-slate-200 font-mono text-xs flex flex-col justify-between">
+              <div>
+                <span class="text-slate-400 text-[10px] uppercase font-bold tracking-wider block mb-2">// Comando mongosh:</span>
+                <div class="text-emerald-400 p-2 bg-slate-950 rounded-lg mb-3">
+                  db.parque.find();
+                </div>
+                <span class="text-slate-400 text-[10px] uppercase font-bold tracking-wider block mb-1">// Con formato legible:</span>
+                <div class="text-sky-300 p-2 bg-slate-950 rounded-lg">
+                  db.parque.find().pretty();
+                </div>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-slate-400">
+                En Compass: basta con hacer clic en el botón <strong>"Find"</strong> o presionar <strong>Reset</strong> en la pestaña "Documents".
+              </div>
+            </div>
+
+            <div class="lg:col-span-7 p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+              <div>
+                <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                  <i data-lucide="eye" class="w-4 h-4 text-sky-600"></i>
+                  <span>Qué verificar y explicar verbalmente en el video:</span>
+                </h3>
+                <ul class="text-xs text-slate-600 space-y-2">
+                  <li class="flex items-start gap-2">
+                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                    <span>Que el <strong>1er documento</strong> (placa <code>XYZ-123</code>) muestre su nuevo color <em>"Rojo Metalizado"</em>.</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                    <span>Que el <strong>3er documento</strong> (placa <code>GHI-789</code>) aún está presente en la colección (antes de su borrado).</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                    <span>Que el <strong>5to documento</strong> (placa <code>MNO-345</code>) muestre su estado <em>"Salida Registrada"</em> y el campo <em>totalPagar</em>.</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                    <span>Total de documentos en este punto: <strong>5 registros</strong>.</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="mt-3 p-2 bg-emerald-50 rounded-lg border border-emerald-200 text-[11px] text-emerald-800 font-medium">
+                Paso indispensable para contrastar con el posterior borrado del paso 6.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(5)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(7)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Paso 6 (Borrar 3° Registro) <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 8: PASO 6: BORRAR EL TERCER DOCUMENTO -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="08. Paso 6: Borrar el 3° Documento">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-rose-600 font-mono">Requerimiento 6 de la Guía</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Borre el Tercer Documento de la Colección <span class="font-mono text-emerald-700">"parque"</span>
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-rose-50 text-rose-700 rounded-full text-xs font-bold font-mono">deleteOne()</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-4">
+            La guía solicita: <em>"Borre el tercer documento de la colección parque"</em>. El tercer vehículo insertado corresponde a la placa <strong>"GHI-789"</strong> (Chevrolet Blanco de Andrés Silva):
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+            <!-- Comando en mongosh -->
+            <div class="p-5 rounded-2xl bg-slate-900 text-slate-100 flex flex-col justify-between">
+              <div>
+                <span class="text-xs font-bold text-rose-400 uppercase font-mono block mb-2">Comando mongosh:</span>
+                <div class="p-3 bg-slate-950 rounded-xl font-mono text-xs text-rose-300 mb-3">
+                  <span class="text-slate-500">// Borrar por placa del 3er documento</span><br>
+                  db.parque.deleteOne({ placa: "GHI-789" });
+                </div>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                  También se puede eliminar por su <code>_id</code> exacto copiado de la consulta previa:
+                </p>
+                <div class="p-2 bg-slate-950 rounded-lg font-mono text-[10px] text-slate-300 mt-2">
+                  db.parque.deleteOne({ _id: ObjectId("...") });
+                </div>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-emerald-400 font-mono">
+                Respuesta: { acknowledged: true, deletedCount: 1 }
+              </div>
+            </div>
+
+            <!-- Explicación en Compass GUI -->
+            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+              <div>
+                <span class="text-xs font-bold text-slate-700 uppercase font-mono block mb-2">Alternativa en MongoDB Compass:</span>
+                <ol class="text-xs text-slate-600 space-y-2 list-decimal list-inside mb-4">
+                  <li>Localizar el 3er documento (vehículo Chevrolet, placa <code>GHI-789</code>).</li>
+                  <li>Hacer hover sobre la tarjeta del documento.</li>
+                  <li>Hacer clic sobre el icono de papelera (<strong>"Delete Document"</strong>).</li>
+                  <li>Confirmar la acción en el cuadro emergente (<strong>"Delete"</strong>).</li>
+                </ol>
+              </div>
+              <div class="p-3 bg-rose-50 rounded-xl border border-rose-200 text-xs text-rose-900">
+                <strong>En el video:</strong> El aprendiz debe mostrar la ejecución del comando y resaltar que la base de datos confirmó la eliminación de 1 registro (<code>deletedCount: 1</code>).
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(6)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(8)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Paso 7 (Verificar 4 Registros) <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 9: PASO 7: LISTAR NUEVAMENTE LA COLECCIÓN COMPLETA -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="09. Paso 7: Listar y Verificar 4 Registros">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sena font-mono">Requerimiento 7 de la Guía</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Liste la Colección Completa (Demostrar 4 Documentos)
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-emerald-50 text-emerald-800 rounded-full text-xs font-bold font-mono">db.parque.find()</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-4">
+            La guía exige explícitamente volver a listar la colección para comprobar que el tercer registro fue borrado y que la colección mantiene la integridad de los cuatro (4) documentos restantes:
+          </p>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5">
+            <div class="p-5 rounded-2xl bg-slate-900 text-slate-200 font-mono text-xs">
+              <span class="text-slate-400 text-[10px] uppercase font-bold tracking-wider block mb-2">// Consulta y Conteo en mongosh:</span>
+              <div class="p-3 bg-slate-950 rounded-xl text-emerald-400 space-y-2 mb-3">
+                <div>db.parque.find();</div>
+                <div class="text-sky-300">db.parque.countDocuments();</div>
+              </div>
+              <span class="text-slate-400 text-[10px] uppercase font-bold tracking-wider block mb-1">// Retorno esperado del conteo:</span>
+              <div class="p-2 bg-slate-950 rounded-lg text-amber-300 font-bold">
+                4
+              </div>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+              <div>
+                <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                  <i data-lucide="check-square" class="w-4 h-4 text-emerald-600"></i>
+                  <span>Estado Final de la Colección en Pantalla:</span>
+                </h3>
+                <div class="space-y-1.5 text-xs text-slate-700">
+                  <div class="p-2 bg-white rounded-lg border border-slate-200 flex justify-between">
+                    <span>1. Placa <strong>XYZ-123</strong> (Mazda)</span>
+                    <span class="text-emerald-700 font-semibold">Actualizado</span>
+                  </div>
+                  <div class="p-2 bg-white rounded-lg border border-slate-200 flex justify-between">
+                    <span>2. Placa <strong>DEF-456</strong> (Yamaha)</span>
+                    <span class="text-slate-500">Intacto</span>
+                  </div>
+                  <div class="p-2 bg-rose-50 rounded-lg border border-rose-200 flex justify-between text-rose-800">
+                    <span>3. Placa <strong>GHI-789</strong> (Chevrolet)</span>
+                    <span class="font-bold line-through">ELIMINADO</span>
+                  </div>
+                  <div class="p-2 bg-white rounded-lg border border-slate-200 flex justify-between">
+                    <span>4. Placa <strong>JKL-012</strong> (Toyota)</span>
+                    <span class="text-slate-500">Intacto</span>
+                  </div>
+                  <div class="p-2 bg-white rounded-lg border border-slate-200 flex justify-between">
+                    <span>5. Placa <strong>MNO-345</strong> (Bajaj)</span>
+                    <span class="text-emerald-700 font-semibold">Actualizado</span>
+                  </div>
+                </div>
+              </div>
+              <p class="text-[11px] text-slate-500 mt-3 italic">
+                En el video el aprendiz resalta: "Como podemos observar, la placa GHI-789 ya no existe y el conteo oficial arroja 4 vehículos".
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(7)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(9)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Paso 8 (Consulta por Placa) <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 10: PASO 8: CONSULTA POR NÚMERO DE PLACA -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="10. Paso 8: Consulta por Número de Placa">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sena font-mono">Requerimiento 8 de la Guía</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Sentencia para Obtener Documento Según Número de Placa
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-sky-50 text-sky-800 rounded-full text-xs font-bold font-mono">findOne({ placa: "..." })</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-4">
+            La guía solicita: <em>"Cree la sentencia que permita obtener un documento, según el número de placa del documento."</em> En MongoDB se utiliza un predicado de filtro directo:
+          </p>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5">
+            <!-- Comando y Sintaxis -->
+            <div class="p-5 rounded-2xl bg-slate-900 text-slate-100 font-mono text-xs flex flex-col justify-between">
+              <div>
+                <span class="text-slate-400 text-[10px] uppercase font-bold tracking-wider block mb-2">// Opción 1: Obtener un solo documento exacto:</span>
+                <div class="p-3 bg-slate-950 rounded-xl text-emerald-400 mb-3">
+                  db.parque.findOne({ placa: "DEF-456" });
+                </div>
+
+                <span class="text-slate-400 text-[10px] uppercase font-bold tracking-wider block mb-2">// Opción 2: Usando find con proyección de datos:</span>
+                <div class="p-3 bg-slate-950 rounded-xl text-sky-300">
+                  db.parque.find(<br>
+                  &nbsp;&nbsp;{ placa: "DEF-456" },<br>
+                  &nbsp;&nbsp;{ placa: 1, marca: 1, propietario: 1, _id: 0 }<br>
+                  );
+                </div>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-slate-400">
+                En Compass: En el campo <strong>FILTER</strong> escribir: <code>{ "placa": "DEF-456" }</code> y pulsar "Find".
+              </div>
+            </div>
+
+            <!-- Retorno del documento -->
+            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+              <div>
+                <span class="text-xs font-bold text-slate-900 uppercase font-mono block mb-2">Documento Único Retornado:</span>
+                <div class="p-3 bg-white rounded-xl border border-slate-200 font-mono text-[11px] text-slate-800">
+                  <pre class="leading-relaxed"><code>{
+  "_id": ObjectId("6515b8a..."),
+  "placa": "DEF-456",
+  "tipoVehiculo": "Motocicleta",
+  "marca": "Yamaha",
+  "modelo": 2023,
+  "color": "Azul",
+  "propietario": {
+    "nombre": "Laura Martínez",
+    "documento": "1083920194",
+    "telefono": "3159876543"
+  },
+  "horaEntrada": ISODate("2026-09-29T09:15:00.000Z"),
+  "estado": "Activo"
+}</code></pre>
+                </div>
+              </div>
+              <div class="p-2.5 bg-emerald-50 rounded-xl border border-emerald-200 text-xs text-emerald-900 mt-3">
+                <strong>Explicación en video:</strong> "Al pasar la condición <code>{ placa: 'DEF-456' }</code>, el motor de búsqueda indexa o escanea la colección y retorna exactamente el registro asociado a dicho vehículo".
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(8)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(10)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Lineamientos del Video MP4 <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 11: LINEAMIENTOS DEL VIDEO (ÚNICO ENTREGABLE MP4) -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="11. Lineamientos del Video (Único Entregable MP4)">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-amber-600 font-mono">Lineamientos Generales de Entrega</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Características del Video Explicativo (MP4)
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-amber-50 text-amber-800 rounded-full text-xs font-bold font-mono">Extensión: MP4</span>
+          </div>
+
+          <!-- Aclaración enfática -->
+          <div class="p-4 bg-amber-50 border border-amber-300 rounded-2xl mb-5 flex items-start gap-3">
+            <i data-lucide="alert-triangle" class="w-5 h-5 text-amber-600 shrink-0 mt-0.5"></i>
+            <div class="text-xs text-amber-900 leading-relaxed">
+              <strong class="font-bold text-amber-800 block text-sm mb-1">¡ATENCIÓN! NO SE PIDEN ARCHIVOS ADICIONALES NI INFORMES ESCRITOS</strong>
+              <span>La guía oficial no solicita informe en PDF, ni documento Word, ni carpeta ZIP. El único producto válido para evaluar esta evidencia es el <strong>video en formato MP4</strong> donde el aprendiz demuestra verbalmente y en pantalla cada uno de los 8 pasos.</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5">
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+              <div class="flex items-center gap-2 mb-2 text-slate-900 font-bold text-xs uppercase">
+                <i data-lucide="mic" class="w-4 h-4 text-emerald-600"></i>
+                <span>1. Presentación y Audio</span>
               </div>
               <p class="text-xs text-slate-600 leading-relaxed">
-                Script ejecutable en <code>mongosh</code> ordenado secuencialmente con:
+                El aprendiz debe presentarse verbalmente al inicio indicando su nombre completo, programa <strong>ADSO</strong>, ficha de caracterización y número de evidencia (EV04).
               </p>
-              <ul class="text-[11.5px] text-slate-700 space-y-1.5 list-disc list-inside">
-                <li>Selección de BD con comando <code>use nombre_bd;</code>.</li>
-                <li>Sentencia <code>db.createCollection()</code> con validación <code>$jsonSchema</code>.</li>
-                <li>Inserción de mínimo <strong>5 documentos variados</strong> por colección (<code>insertMany</code>).</li>
-                <li>Mínimo <strong>4 consultas estructuradas</strong> con operadores (<code>$gt</code>, <code>$in</code>, <code>$regex</code>, proyecciones).</li>
-                <li>Al menos <strong>1 pipeline de agregación</strong> (<code>$match</code>, <code>$group</code>, <code>$sort</code>).</li>
-              </ul>
             </div>
-            <span class="text-[10px] font-mono text-emerald-800 bg-emerald-100/70 p-2 rounded-lg font-bold block text-center">
-              Extensión: .js (Codificación UTF-8)
-            </span>
-          </div>
 
-          <!-- Elemento 2: Informe PDF Técnico -->
-          <div class="p-5 rounded-2xl bg-slate-50 border-2 border-blue-500/30 flex flex-col justify-between space-y-4 relative">
-            <div class="absolute -top-3 left-4 bg-[#00324D] text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full shadow-xs">
-              Elemento 2: Documento Técnico
-            </div>
-            <div class="space-y-2 pt-2">
-              <div class="flex items-center gap-2">
-                <i data-lucide="file-text" class="w-6 h-6 text-blue-600"></i>
-                <h3 class="font-extrabold text-slate-900 text-sm">Informe_Elaboracion_MongoDB_ADSO.pdf</h3>
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+              <div class="flex items-center gap-2 mb-2 text-slate-900 font-bold text-xs uppercase">
+                <i data-lucide="clock" class="w-4 h-4 text-sky-600"></i>
+                <span>2. Duración y Grabación</span>
               </div>
               <p class="text-xs text-slate-600 leading-relaxed">
-                Documento formal que sustenta el desarrollo de la evidencia:
+                Duración sugerida: <strong>4 a 8 minutos</strong>. Puede grabarse con herramientas gratuitas como <strong>OBS Studio, Clipchamp, Loom</strong> o grabación de pantalla de PowerPoint.
               </p>
-              <ul class="text-[11.5px] text-slate-700 space-y-1.5 list-disc list-inside">
-                <li>Portada institucional SENA con datos del aprendiz y ficha.</li>
-                <li>Introducción y alcance del proyecto de software individual.</li>
-                <li><strong>Capturas de pantalla numeradas</strong> de MongoDB Compass y mongosh.</li>
-                <li><strong>Evidencia clave de rechazo:</strong> captura del error al intentar insertar un dato que viola el <code>$jsonSchema</code>.</li>
-                <li>Conclusiones del motor NoSQL y lista de chequeo de auto-evaluación.</li>
-              </ul>
             </div>
-            <span class="text-[10px] font-mono text-blue-800 bg-blue-100/70 p-2 rounded-lg font-bold block text-center">
-              Nomenclatura: GA6_220501096_AA1_EV04_Nombre_Apellido.zip
-            </span>
-          </div>
-        </div>
 
-        <div class="p-3 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-900 flex items-center justify-between gap-3">
-          <div class="flex items-center gap-2">
-            <i data-lucide="alert-circle" class="w-4 h-4 text-amber-600 shrink-0"></i>
-            <span><strong>Recordatorio Obligatorio:</strong> La entrega calificada de este ZIP se realiza únicamente en <strong>Zajuna LMS</strong>.</span>
-          </div>
-          <a href="https://zajuna.sena.edu.co" target="_blank" class="font-bold underline text-amber-950 shrink-0">Ir a Zajuna &rarr;</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======================================================================= -->
-    <!-- SLIDE 3: REQUISITOS PREVIOS Y ENTORNO DE TRABAJO -->
-    <!-- ======================================================================= -->
-    <section class="slide-content hidden min-h-[580px]" data-title="03. Entorno de Trabajo">
-      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
-        <div class="space-y-2">
-          <span class="text-[11px] font-mono font-bold text-sena uppercase bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-100">
-            Fase de Preparación Técnica
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-            Herramientas Oficiales para la Evidencia
-          </h2>
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            El aprendiz puede seleccionar cualquiera de las dos modalidades autorizadas por el SENA para trabajar con MongoDB:
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 my-6">
-          <!-- Modalidad A: Local -->
-          <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
-            <div class="flex items-center justify-between">
-              <span class="text-[10px] font-bold uppercase px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded">Opción Recomendada Local</span>
-              <span class="text-xs font-mono font-bold text-slate-500">Puerto 27017</span>
-            </div>
-            <h3 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
-              <i data-lucide="hard-drive" class="w-5 h-5 text-emerald-600"></i>
-              MongoDB Community Server + Compass
-            </h3>
-            <p class="text-xs text-slate-600 leading-relaxed">
-              Instalado de forma nativa como servicio en Windows, Linux o macOS. Se administra mediante la interfaz gráfica oficial <strong>MongoDB Compass</strong>.
-            </p>
-            <div class="p-2.5 bg-slate-900 rounded-xl text-[11px] font-mono text-emerald-400">
-              mongodb://localhost:27017
-            </div>
-            <p class="text-[11px] text-slate-500">
-              • Descarga gratuita oficial: <a href="https://www.mongodb.com/try/download/community" target="_blank" class="text-emerald-700 underline font-bold">mongodb.com/try/download/community</a>
-            </p>
-          </div>
-
-          <!-- Modalidad B: Cloud Atlas -->
-          <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
-            <div class="flex items-center justify-between">
-              <span class="text-[10px] font-bold uppercase px-2 py-0.5 bg-blue-100 text-blue-800 rounded">Opción Nube Gratuita</span>
-              <span class="text-xs font-mono font-bold text-slate-500">Cluster M0 Free</span>
-            </div>
-            <h3 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
-              <i data-lucide="cloud" class="w-5 h-5 text-blue-600"></i>
-              MongoDB Atlas en la Nube
-            </h3>
-            <p class="text-xs text-slate-600 leading-relaxed">
-              Ideal si el computador del aprendiz tiene recursos limitados o bloqueos de puertos. Se crea un clúster gratuito de 512 MB accesible desde Compass con cadena de conexión segura.
-            </p>
-            <div class="p-2.5 bg-slate-900 rounded-xl text-[11px] font-mono text-blue-400 truncate">
-              mongodb+srv://adso_user:pass@cluster0.mongodb.net/
-            </div>
-            <p class="text-[11px] text-slate-500">
-              • Registro gratuito: <a href="https://www.mongodb.com/cloud/atlas/register" target="_blank" class="text-blue-700 underline font-bold">mongodb.com/cloud/atlas</a>
-            </p>
-          </div>
-        </div>
-
-        <div class="p-4 bg-emerald-50 rounded-2xl border border-emerald-200 flex items-center justify-between text-xs text-emerald-950">
-          <div class="flex items-center gap-2">
-            <i data-lucide="terminal" class="w-5 h-5 text-emerald-700 shrink-0"></i>
-            <span><strong>Dato Clave de Productividad:</strong> En la parte inferior de MongoDB Compass hay un botón llamado <strong>_MONGOSH</strong>. Al hacer clic, se abre directamente la terminal integrada lista para ejecutar comandos sin instalar nada adicional.</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======================================================================= -->
-    <!-- SLIDE 4: PASO 1 - CREAR LA BASE DE DATOS DEL PROYECTO -->
-    <!-- ======================================================================= -->
-    <section class="slide-content hidden min-h-[580px]" data-title="04. Paso 1: Crear BD">
-      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
-        <div class="space-y-2">
-          <span class="text-[11px] font-mono font-bold text-sena uppercase bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-100">
-            Paso 1 Metodológico
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-            Crear la Base de Datos del Proyecto Formativo
-          </h2>
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            Cada aprendiz debe nombrar la base de datos de acuerdo con el dominio de su proyecto (ej. <code>veterinaria_adso_db</code>, <code>taller_mecanico_db</code>, <code>facturacion_pos_db</code>).
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 my-6">
-          <!-- Método 1: En MongoShell -->
-          <div class="p-5 rounded-2xl bg-slate-900 text-slate-100 space-y-3 font-mono text-xs">
-            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
-              <span class="text-emerald-400 font-bold flex items-center gap-1.5"><i data-lucide="terminal" class="w-3.5 h-3.5"></i> Ejecución en MONGOSH</span>
-              <span class="text-[10px] text-slate-400">Consola Shell</span>
-            </div>
-            <p class="text-slate-400 font-sans text-xs">
-              El comando <code>use</code> cambia el contexto activo a la base de datos indicada:
-            </p>
-            <pre class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-emerald-300">
-// 1. Cambiar a la base de datos del proyecto
-use adso_gestion_db;
-
-// Respuesta de la terminal:
-// 'switched to db adso_gestion_db'</pre>
-            <div class="p-2.5 bg-amber-950/60 border border-amber-800/80 rounded-xl text-[11px] text-amber-200 font-sans">
-              <strong>Atención:</strong> En MongoDB, la base de datos no aparecerá en <code>show dbs</code> hasta que se inserte el primer documento o se cree una colección formal.
-            </div>
-          </div>
-
-          <!-- Método 2: En MongoDB Compass -->
-          <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3 flex flex-col justify-between">
-            <div class="space-y-3">
-              <div class="flex items-center justify-between pb-2 border-b border-slate-200">
-                <span class="text-[#00324D] font-extrabold text-xs flex items-center gap-1.5"><i data-lucide="mouse-pointer" class="w-3.5 h-3.5 text-sena"></i> Creación en MongoDB Compass</span>
-                <span class="text-[10px] bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded font-bold uppercase">GUI Visual</span>
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+              <div class="flex items-center gap-2 mb-2 text-slate-900 font-bold text-xs uppercase">
+                <i data-lucide="share-2" class="w-4 h-4 text-purple-600"></i>
+                <span>3. Modalidad de Entrega</span>
               </div>
-              <ol class="space-y-2 text-xs text-slate-700 list-decimal list-inside leading-relaxed">
-                <li>Abrir Compass y conectar a <code>localhost:27017</code>.</li>
-                <li>Hacer clic en el botón verde <strong>"Create database"</strong> en la barra superior.</li>
-                <li>En el modal que aparece, ingresar:
-                  <ul class="list-disc list-inside ml-4 mt-1 font-mono text-[11.5px] text-slate-600">
-                    <li>Database Name: <strong>adso_gestion_db</strong></li>
-                    <li>Collection Name: <strong>clientes</strong></li>
-                  </ul>
-                </li>
-                <li>Hacer clic en <strong>Create Database</strong>.</li>
-              </ol>
-            </div>
-            <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200 text-[11px] text-emerald-900 font-semibold">
-              📸 <strong>Captura para el informe:</strong> Tomar captura de pantalla de MongoDB Compass mostrando la base de datos recién creada en el panel lateral izquierdo.
-            </div>
-          </div>
-        </div>
-
-        <div class="text-[11.5px] text-slate-500 text-center">
-          Paso 1 completado: Contexto de base de datos preparado para la definición de colecciones con esquemas.
-        </div>
-      </div>
-    </section>
-
-    <!-- ======================================================================= -->
-    <!-- SLIDE 5: PASO 2 - VALIDACIÓN FORMAL CON $JSONSCHEMA -->
-    <!-- ======================================================================= -->
-    <section class="slide-content hidden min-h-[580px]" data-title="05. Paso 2: $jsonSchema">
-      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
-        <div class="space-y-2">
-          <span class="text-[11px] font-mono font-bold text-sena uppercase bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-100">
-            Paso 2 Metodológico • Requisito de Integridad
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-            Crear Colecciones con Validador <code>$jsonSchema</code>
-          </h2>
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            El estándar <code>$jsonSchema</code> impone integridad de tipos, listas de obligatoriedad (<code>required</code>) y restricciones de formato en MongoDB:
-          </p>
-        </div>
-
-        <div class="my-4">
-          <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 text-[11px] font-mono text-slate-200 overflow-x-auto max-h-[300px]">
-            <pre class="text-emerald-400">// 2. Creación formal de colección con validación estricta
-db.createCollection("clientes", {
-  validator: {
-    $jsonSchema: {
-      bsonType: "object",
-      required: ["identificacion", "nombres", "email", "telefono", "estado"],
-      properties: {
-        identificacion: {
-          bsonType: "string",
-          description: "Debe ser una cadena de texto y es obligatoria"
-        },
-        nombres: {
-          bsonType: "string",
-          description: "Nombre y apellido obligatorio"
-        },
-        email: {
-          bsonType: "string",
-          pattern: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
-          description: "Debe ser un correo electrónico válido"
-        },
-        telefono: {
-          bsonType: "string",
-          description: "Número telefónico del cliente"
-        },
-        estado: {
-          enum: ["ACTIVO", "INACTIVO", "SUSPENDIDO"],
-          description: "Solo acepta los valores de la lista enum"
-        }
-      }
-    }
-  },
-  validationAction: "error" // Rechaza la transacción si no cumple
-});</pre>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-            <strong class="font-bold text-slate-900 block mb-1">required: [...]</strong>
-            <p class="text-slate-600 text-[11px]">Define los campos que no pueden faltar en ningún documento insertado.</p>
-          </div>
-          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-            <strong class="font-bold text-slate-900 block mb-1">pattern: "^[...]"</strong>
-            <p class="text-slate-600 text-[11px]">Expresión regular para validar formatos específicos (email, teléfono, RFC/NIT).</p>
-          </div>
-          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-            <strong class="font-bold text-slate-900 block mb-1">validationAction: "error"</strong>
-            <p class="text-slate-600 text-[11px]">Bloquea inmediatamente la inserción o actualización de documentos no conformes.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======================================================================= -->
-    <!-- SLIDE 6: PASO 3 - PROBAR EL RECHAZO DE DATOS INVÁLIDOS -->
-    <!-- ======================================================================= -->
-    <section class="slide-content hidden min-h-[580px]" data-title="06. Paso 3: Prueba de Rechazo">
-      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
-        <div class="space-y-2">
-          <span class="text-[11px] font-mono font-bold text-sena uppercase bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-100">
-            Paso 3 Metodológico • Prueba de Seguridad
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-            Demostración de Rechazo de Documentos Inválidos
-          </h2>
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            Esta prueba es <strong>clave para la calificación Aprobada</strong>: demostrar que el motor MongoDB rechaza datos erróneos protegiendo la base de datos.
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 my-6">
-          <!-- Inserción Inválida Provocada -->
-          <div class="p-5 rounded-2xl bg-rose-50/70 border border-rose-200 space-y-3 text-xs">
-            <div class="flex items-center gap-2 font-extrabold text-rose-900">
-              <i data-lucide="x-circle" class="w-4 h-4 text-rose-600"></i>
-              <span>Intento con Errores de Validación:</span>
-            </div>
-            <pre class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-[11px] font-mono text-rose-300 overflow-x-auto">
-db.clientes.insertOne({
-  identificacion: "1075001",
-  nombres: "Carlos Pérez",
-  email: "correo_invalido_sin_arroba", // ERROR: No cumple regex
-  telefono: "3101234567",
-  estado: "PENDIENTE" // ERROR: No está en ['ACTIVO', 'INACTIVO']
-});</pre>
-            <p class="text-[11px] text-rose-800">
-              El aprendiz envía un documento con correo mal estructurado y un estado inexistente en la lista enumerada.
-            </p>
-          </div>
-
-          <!-- Respuesta del Motor MongoDB -->
-          <div class="p-5 rounded-2xl bg-slate-950 text-slate-100 space-y-3 text-xs font-mono">
-            <div class="flex items-center gap-2 font-bold text-amber-400 pb-2 border-b border-slate-800">
-              <i data-lucide="shield-alert" class="w-4 h-4"></i>
-              <span>Respuesta del Servidor MongoDB:</span>
-            </div>
-            <pre class="p-3 bg-slate-900 rounded-xl border border-slate-800 text-[11px] text-rose-400 overflow-x-auto">
-MongoServerError: Document failed validation
-Additional information: {
-  failingDocumentId: ObjectId("..."),
-  details: {
-    operatorName: "$jsonSchema",
-    schemaRulesNotSatisfied: [
-      { propertyName: "email", ... },
-      { propertyName: "estado", ... }
-    ]
-  }
-}</pre>
-            <p class="text-[11px] text-emerald-400 font-sans">
-              ✔ El servidor rechaza la transacción y no almacena basura en disco.
-            </p>
-          </div>
-        </div>
-
-        <div class="p-4 bg-amber-50 rounded-2xl border border-amber-200 text-xs text-amber-950 flex items-center gap-3">
-          <i data-lucide="camera" class="w-5 h-5 text-amber-700 shrink-0"></i>
-          <div>
-            <strong>Obligatorio en el Informe PDF:</strong> Incluir la captura de pantalla de la terminal o Compass mostrando este mensaje en rojo. Es la prueba fehaciente exigida por el instrumento de evaluación <code>IE-GA6-220501096-AA1-EV04</code>.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======================================================================= -->
-    <!-- SLIDE 7: PASO 4 - INSERCIÓN MASIVA DE DOCUMENTOS VÁLIDOS -->
-    <!-- ======================================================================= -->
-    <section class="slide-content hidden min-h-[580px]" data-title="07. Paso 4: insertMany Válido">
-      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
-        <div class="space-y-2">
-          <span class="text-[11px] font-mono font-bold text-sena uppercase bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-100">
-            Paso 4 Metodológico • Poblado de Datos
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-            Inserción de Documentos Válidos con <code>insertMany()</code>
-          </h2>
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            Se deben insertar al menos <strong>5 documentos reales y consistentes</strong> por colección para alimentar las pruebas posteriores:
-          </p>
-        </div>
-
-        <div class="my-4">
-          <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 text-[11px] font-mono text-emerald-300 overflow-x-auto max-h-[300px]">
-            <pre>// 3. Inserción masiva de 5 clientes válidos
-db.clientes.insertMany([
-  {
-    identificacion: "1075234567",
-    nombres: "Ana María Rojas Gómez",
-    email: "ana.rojas@gmail.com",
-    telefono: "3118904532",
-    estado: "ACTIVO",
-    direccion: { ciudad: "Garzón", departamento: "Huila", barrio: "Centro" },
-    fechaRegistro: new Date("2026-02-15")
-  },
-  {
-    identificacion: "1083987654",
-    nombres: "Carlos Eduardo Pardo",
-    email: "carlos.pardo@hotmail.com",
-    telefono: "3154432190",
-    estado: "ACTIVO",
-    direccion: { ciudad: "Neiva", departamento: "Huila", barrio: "Cándido" },
-    fechaRegistro: new Date("2026-03-01")
-  },
-  {
-    identificacion: "1098456123",
-    nombres: "Mariana Silva Vargas",
-    email: "mariana.silva@outlook.com",
-    telefono: "3209876543",
-    estado: "ACTIVO",
-    direccion: { ciudad: "Pitalito", departamento: "Huila", barrio: "Los Sauces" },
-    fechaRegistro: new Date("2026-03-10")
-  },
-  {
-    identificacion: "1077123987",
-    nombres: "Diego Fernando Castro",
-    email: "diego.castro@yahoo.es",
-    telefono: "3186543210",
-    estado: "INACTIVO",
-    direccion: { ciudad: "Garzón", departamento: "Huila", barrio: "La Libertad" },
-    fechaRegistro: new Date("2026-01-20")
-  },
-  {
-    identificacion: "1082567890",
-    nombres: "Laura Marcela Tovar",
-    email: "laura.tovar@gmail.com",
-    telefono: "3127890123",
-    estado: "ACTIVO",
-    direccion: { ciudad: "La Plata", departamento: "Huila", barrio: "San Rafael" },
-    fechaRegistro: new Date("2026-03-18")
-  }
-]);</pre>
-          </div>
-        </div>
-
-        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-between text-xs text-slate-700">
-          <span>Respuesta esperada: <code>{ acknowledged: true, insertedIds: { '0': ObjectId(...), ... } }</code></span>
-          <span class="font-bold text-emerald-700">5 Documentos Insertados con Éxito</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======================================================================= -->
-    <!-- SLIDE 8: SEGUNDA COLECCIÓN (RELACIONES E INCRUSTACIÓN) -->
-    <!-- ======================================================================= -->
-    <section class="slide-content hidden min-h-[580px]" data-title="08. Segunda Colección">
-      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
-        <div class="space-y-2">
-          <span class="text-[11px] font-mono font-bold text-sena uppercase bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-100">
-            Paso 5 Metodológico • Modelo Transaccional
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-            Segunda Colección: Incrustación de Arreglos (Subdocumentos)
-          </h2>
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            Para la segunda colección (ej. <code>pedidos</code>, <code>citas</code>, <code>servicios</code>), se modela el detalle de ítems incrustado como un arreglo de subdocumentos:
-          </p>
-        </div>
-
-        <div class="my-4">
-          <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 text-[11px] font-mono text-slate-200 overflow-x-auto max-h-[300px]">
-            <pre class="text-emerald-400">// Inserción en la colección 'pedidos' con subdocumentos incrustados
-db.pedidos.insertMany([
-  {
-    codigoPedido: "PED-2026-001",
-    clienteIdentificacion: "1075234567", // Referencia por código
-    fecha: new Date("2026-03-20T10:30:00Z"),
-    estado: "COMPLETADO",
-    metodoPago: "TRANSFERENCIA",
-    items: [
-      { producto: "Licencia de Software Antivirus", cantidad: 2, precioUnitario: 45000, subtotal: 90000 },
-      { producto: "Soporte Técnico Especializado", cantidad: 1, precioUnitario: 80000, subtotal: 80000 }
-    ],
-    total: 170000
-  },
-  {
-    codigoPedido: "PED-2026-002",
-    clienteIdentificacion: "1083987654",
-    fecha: new Date("2026-03-21T14:15:00Z"),
-    estado: "COMPLETADO",
-    metodoPago: "EFECTIVO",
-    items: [
-      { producto: "Mantenimiento Preventivo Servidor", cantidad: 1, precioUnitario: 120000, subtotal: 120000 }
-    ],
-    total: 120000
-  },
-  {
-    codigoPedido: "PED-2026-003",
-    clienteIdentificacion: "1098456123",
-    fecha: new Date("2026-03-22T09:00:00Z"),
-    estado: "PENDIENTE",
-    metodoPago: "TARJETA",
-    items: [
-      { producto: "Módulo de Facturación Electrónica", cantidad: 1, precioUnitario: 350000, subtotal: 350000 }
-    ],
-    total: 350000
-  }
-]);</pre>
-          </div>
-        </div>
-
-        <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200 text-xs text-emerald-950 flex items-center justify-between">
-          <span><strong>Ventaja Arquitectónica NoSQL:</strong> Se obtiene la cabecera y el detalle en una sola lectura sin necesidad de <code>JOIN</code> relacional.</span>
-          <span class="font-bold text-emerald-800 font-mono">1 Lectura Atómica</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======================================================================= -->
-    <!-- SLIDE 9: PASO 6 - CONSULTAS AVANZADAS CON FILTROS Y PROYECCIÓN -->
-    <!-- ======================================================================= -->
-    <section class="slide-content hidden min-h-[580px]" data-title="09. Paso 6: Consultas">
-      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
-        <div class="space-y-2">
-          <span class="text-[11px] font-mono font-bold text-sena uppercase bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-100">
-            Paso 6 Metodológico • Manipulación DML
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-            Consultas Avanzadas con Filtros, Operadores y Proyección
-          </h2>
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            La evidencia requiere evidenciar el dominio de operadores de consulta en MongoDB. A continuación se presentan las 4 consultas obligatorias:
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4 text-xs font-mono">
-          <!-- Consulta 1 -->
-          <div class="p-4 bg-slate-950 rounded-2xl border border-slate-800 space-y-2 text-slate-200">
-            <span class="text-[10px] font-bold text-emerald-400 font-sans block uppercase">Consulta 1: Comparación ($gte)</span>
-            <pre class="text-emerald-300">// Pedidos con total mayor o igual a $150.000
-db.pedidos.find(
-  { total: { $gte: 150000 } }
-);</pre>
-            <p class="text-[10.5px] text-slate-400 font-sans">Retorna pedidos de alto valor comercial.</p>
-          </div>
-
-          <!-- Consulta 2 -->
-          <div class="p-4 bg-slate-950 rounded-2xl border border-slate-800 space-y-2 text-slate-200">
-            <span class="text-[10px] font-bold text-emerald-400 font-sans block uppercase">Consulta 2: Búsqueda con Regex ($regex)</span>
-            <pre class="text-emerald-300">// Clientes cuyos nombres inicien por 'ana' o 'carlos'
-db.clientes.find(
-  { nombres: { $regex: /^(ana|carlos)/i } }
-);</pre>
-            <p class="text-[10.5px] text-slate-400 font-sans">Insensible a mayúsculas/minúsculas con flag <code>i</code>.</p>
-          </div>
-
-          <!-- Consulta 3 -->
-          <div class="p-4 bg-slate-950 rounded-2xl border border-slate-800 space-y-2 text-slate-200">
-            <span class="text-[10px] font-bold text-emerald-400 font-sans block uppercase">Consulta 3: Operadores Lógicos ($and) y Campos Anidados</span>
-            <pre class="text-emerald-300">// Clientes ACTIVOS en la ciudad de Garzón
-db.clientes.find({
-  $and: [
-    { estado: "ACTIVO" },
-    { "direccion.ciudad": "Garzón" }
-  ]
-});</pre>
-            <p class="text-[10.5px] text-slate-400 font-sans">Acceso por notación punto a subdocumento <code>direccion.ciudad</code>.</p>
-          </div>
-
-          <!-- Consulta 4 -->
-          <div class="p-4 bg-slate-950 rounded-2xl border border-slate-800 space-y-2 text-slate-200">
-            <span class="text-[10px] font-bold text-emerald-400 font-sans block uppercase">Consulta 4: Proyección Selectiva (Excluir _id)</span>
-            <pre class="text-emerald-300">// Obtener solo nombres y email para mailing
-db.clientes.find(
-  { estado: "ACTIVO" },
-  { _id: 0, nombres: 1, email: 1, telefono: 1 }
-);</pre>
-            <p class="text-[10.5px] text-slate-400 font-sans">El valor <code>0</code> omite el campo y <code>1</code> lo incluye.</p>
-          </div>
-        </div>
-
-        <div class="p-3 bg-slate-100 rounded-xl text-center text-xs text-slate-700">
-          📸 <strong>Captura para el informe:</strong> Tomar captura de pantalla de cada una de las 4 consultas ejecutadas con su salida.
-        </div>
-      </div>
-    </section>
-
-    <!-- ======================================================================= -->
-    <!-- SLIDE 10: PASO 7 - PIPELINE DE AGREGACIÓN ($MATCH, $GROUP, $SORT) -->
-    <!-- ======================================================================= -->
-    <section class="slide-content hidden min-h-[580px]" data-title="10. Paso 7: Agregación">
-      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
-        <div class="space-y-2">
-          <span class="text-[11px] font-mono font-bold text-sena uppercase bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-100">
-            Paso 7 Metodológico • Analítica de Datos NoSQL
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-            Pipeline de Agregación: <code>$match</code>, <code>$group</code> y <code>$sort</code>
-          </h2>
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            El framework de agregación procesa documentos a través de una tubería (pipeline) para generar métricas consolidadas de negocio:
-          </p>
-        </div>
-
-        <div class="my-4">
-          <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 text-[11px] font-mono text-slate-200 overflow-x-auto max-h-[300px]">
-            <pre class="text-emerald-400">// 5. Agregación: Total recaudado por método de pago en pedidos completados
-db.pedidos.aggregate([
-  // Etapa 1: Filtrar solo pedidos completados
-  {
-    $match: {
-      estado: "COMPLETADO"
-    }
-  },
-  // Etapa 2: Agrupar por método de pago, sumar totales y contar transacciones
-  {
-    $group: {
-      _id: "$metodoPago",
-      totalRecaudado: { $sum: "$total" },
-      totalPedidos: { $sum: 1 },
-      ticketPromedio: { $avg: "$total" }
-    }
-  },
-  // Etapa 3: Ordenar de mayor a menor recaudación
-  {
-    $sort: {
-      totalRecaudado: -1
-    }
-  }
-]);</pre>
-          </div>
-        </div>
-
-        <!-- Flujo Visual de la Tubería -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-center">
-          <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200">
-            <span class="text-[10px] font-extrabold uppercase text-emerald-800 block">Etapa 1: $match</span>
-            <p class="text-[11px] text-emerald-950 mt-1">Filtra la colección reduciendo los documentos a procesar.</p>
-          </div>
-          <div class="p-3 bg-blue-50 rounded-xl border border-blue-200">
-            <span class="text-[10px] font-extrabold uppercase text-blue-800 block">Etapa 2: $group</span>
-            <p class="text-[11px] text-blue-950 mt-1">Agrupa por la clave <code>_id</code> y aplica acumuladores (<code>$sum</code>, <code>$avg</code>).</p>
-          </div>
-          <div class="p-3 bg-purple-50 rounded-xl border border-purple-200">
-            <span class="text-[10px] font-extrabold uppercase text-purple-800 block">Etapa 3: $sort</span>
-            <p class="text-[11px] text-purple-950 mt-1">Ordena los resultados (<code>1</code> ascendente, <code>-1</code> descendente).</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======================================================================= -->
-    <!-- SLIDE 11: ESTRUCTURA DEL INFORME PDF FINAL -->
-    <!-- ======================================================================= -->
-    <section class="slide-content hidden min-h-[580px]" data-title="11. Estructura del Informe PDF">
-      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
-        <div class="space-y-2">
-          <span class="text-[11px] font-mono font-bold text-sena uppercase bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-100">
-            Formato del Documento PDF Entregable
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-            Estructura Requerida del Informe Técnico en PDF
-          </h2>
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            El documento PDF que acompaña al script debe construirse bajo el siguiente estándar institucional SENA:
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4 text-xs">
-          <!-- Columna Izquierda: Secciones 1 a 3 -->
-          <div class="space-y-3">
-            <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200 space-y-1">
-              <span class="text-[10px] font-extrabold text-emerald-700 uppercase">1. Portada Institucional SENA</span>
-              <p class="text-slate-700 text-[11.5px]">Nombre del Programa (ADSO), Código de Evidencia (GA6-220501096-AA1-EV04), Título del Proyecto Formativo, Nombre del Aprendiz, Nombre del Instructor (Ing. Hector David Toledo García), Centro CADPH Garzón y Fecha.</p>
-            </div>
-            <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200 space-y-1">
-              <span class="text-[10px] font-extrabold text-emerald-700 uppercase">2. Introducción y Dominio del Software</span>
-              <p class="text-slate-700 text-[11.5px]">Breve descripción del sistema que se está construyendo y justificación de por qué se utiliza MongoDB para estas colecciones.</p>
-            </div>
-            <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200 space-y-1">
-              <span class="text-[10px] font-extrabold text-emerald-700 uppercase">3. Especificación de Colecciones y Esquemas</span>
-              <p class="text-slate-700 text-[11.5px]">Listado de las colecciones creadas con la explicación de los campos obligatorios del <code>$jsonSchema</code>.</p>
-            </div>
-          </div>
-
-          <!-- Columna Derecha: Secciones 4 a 6 -->
-          <div class="space-y-3">
-            <div class="p-3.5 bg-emerald-50 rounded-2xl border border-emerald-200 space-y-1">
-              <span class="text-[10px] font-extrabold text-emerald-800 uppercase">4. Registro Fotográfico Numerado (Capturas)</span>
-              <p class="text-emerald-950 text-[11.5px] leading-relaxed">
-                • <strong>Fig 1:</strong> Conexión y creación de la BD en Compass.<br>
-                • <strong>Fig 2:</strong> <strong>Error en rojo</strong> demostrando el rechazo del dato inválido.<br>
-                • <strong>Fig 3:</strong> Inserción masiva de los 5 documentos válidos.<br>
-                • <strong>Fig 4:</strong> Ejecución de las 4 consultas avanzadas.<br>
-                • <strong>Fig 5:</strong> Resultado del pipeline de agregación.
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Si el archivo MP4 supera el límite de subida en Zajuna (50MB o 100MB), subirlo a <strong>YouTube</strong> (modo no listado) o <strong>Drive/OneDrive SENA</strong> y adjuntar el enlace con acceso público.
               </p>
             </div>
-            <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200 space-y-1">
-              <span class="text-[10px] font-extrabold text-emerald-700 uppercase">5. Conclusiones Técnicas</span>
-              <p class="text-slate-700 text-[11.5px]">Tres aprendizajes concretos sobre la flexibilidad de NoSQL frente a motores SQL relacionales.</p>
-            </div>
-            <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200 space-y-1">
-              <span class="text-[10px] font-extrabold text-emerald-700 uppercase">6. Lista de Chequeo Marcada</span>
-              <p class="text-slate-700 text-[11.5px]">Ficha de autoverificación con todas las casillas marcadas con visto bueno.</p>
-            </div>
+          </div>
+
+          <div class="p-3 bg-slate-100 rounded-xl text-xs text-slate-700 flex items-center justify-between">
+            <span><strong>Espacio oficial de entrega en Zajuna:</strong> GA6-220501096-AA1-EV04: Elaboración de las bases de datos.</span>
+            <span class="font-mono font-bold text-slate-800">100% Calificación 'A'</span>
           </div>
         </div>
 
-        <div class="text-[11px] text-slate-500 text-center">
-          Guardar como PDF listo para comprimir junto al archivo <code>.js</code> en el paquete final ZIP.
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(9)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(11)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Lista de Chequeo Final <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
         </div>
       </div>
     </section>
 
     <!-- ======================================================================= -->
-    <!-- SLIDE 12: LISTA DE CHEQUEO PREVIA A SUBIR A ZAJUNA LMS -->
+    <!-- SLIDE 12: LISTA DE CHEQUEO FINAL DE LOS 8 PASOS OFICIALES -->
     <!-- ======================================================================= -->
-    <section class="slide-content hidden min-h-[580px]" data-title="12. Lista de Chequeo Final">
+    <section class="slide-content hidden min-h-[580px]" data-title="12. Lista de Chequeo Final de los 8 Pasos">
       <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
-        <div class="space-y-2">
-          <div class="flex items-center justify-between flex-wrap gap-2">
-            <span class="text-[11px] font-mono font-bold text-sena uppercase bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-100">
-              Autoverificación de Calidad SENA
-            </span>
-            <span class="text-xs font-bold text-emerald-700 bg-emerald-100/70 px-2.5 py-0.5 rounded-full">Meta: Calificación 'A'</span>
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sena font-mono">Verificación de Criterios de Evaluación</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Lista de Chequeo de los 8 Requerimientos de la Guía
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-emerald-50 text-emerald-800 rounded-full text-xs font-bold">100% Calificado (A)</span>
           </div>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-            Lista de Chequeo Final antes de Subir a Zajuna
-          </h2>
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            Verifica cada ítem para asegurar que tu evidencia cumple con la totalidad de los criterios evaluativos del instructor:
+
+          <p class="text-xs text-slate-600 mb-3">
+            Antes de finalizar y enviar tu video MP4 a Zajuna LMS, verifica que hayas demostrado verbalmente y en pantalla cada uno de estos 8 ítems:
           </p>
-        </div>
 
-        <div class="space-y-3 my-6 text-xs">
-          <label class="flex items-start gap-3 p-3 bg-slate-50 hover:bg-emerald-50/50 rounded-2xl border border-slate-200 cursor-pointer transition-colors">
-            <input type="checkbox" checked class="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4">
-            <div>
-              <strong class="text-slate-900 block font-bold">1. ¿El archivo entregable es un archivo .ZIP debidamente nombrado?</strong>
-              <p class="text-slate-500 text-[11px]">Nomenclatura: <code>GA6_220501096_AA1_EV04_Nombre_Apellido.zip</code> con el script .js y el PDF en su interior.</p>
-            </div>
-          </label>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5 mb-4 text-xs">
+            <label class="flex items-start gap-2.5 p-2 bg-slate-50 hover:bg-emerald-50/50 rounded-xl border border-slate-200 cursor-pointer transition-colors">
+              <input type="checkbox" checked class="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4 shrink-0">
+              <div>
+                <strong class="text-slate-900 block font-bold text-xs">1. Creación de Base de Datos NoSQL</strong>
+                <p class="text-slate-500 text-[11px]">Se muestra la creación de la base de datos en Compass o con <code>use parqueadero_db</code>.</p>
+              </div>
+            </label>
 
-          <label class="flex items-start gap-3 p-3 bg-slate-50 hover:bg-emerald-50/50 rounded-2xl border border-slate-200 cursor-pointer transition-colors">
-            <input type="checkbox" checked class="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4">
-            <div>
-              <strong class="text-slate-900 block font-bold">2. ¿Se aplicó validación formal con <code>$jsonSchema</code>?</strong>
-              <p class="text-slate-500 text-[11px]">La colección tiene reglas de campos obligatorios (<code>required</code>), tipos de datos y control de errores.</p>
-            </div>
-          </label>
+            <label class="flex items-start gap-2.5 p-2 bg-slate-50 hover:bg-emerald-50/50 rounded-xl border border-slate-200 cursor-pointer transition-colors">
+              <input type="checkbox" checked class="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4 shrink-0">
+              <div>
+                <strong class="text-slate-900 block font-bold text-xs">2. Creación de Colección "parque"</strong>
+                <p class="text-slate-500 text-[11px]">Se verifica que la colección tiene el nombre exacto <code>"parque"</code> exigido en la guía.</p>
+              </div>
+            </label>
 
-          <label class="flex items-start gap-3 p-3 bg-slate-50 hover:bg-emerald-50/50 rounded-2xl border border-slate-200 cursor-pointer transition-colors">
-            <input type="checkbox" checked class="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4">
-            <div>
-              <strong class="text-slate-900 block font-bold">3. ¿Se incluye la captura del rechazo de datos erróneos?</strong>
-              <p class="text-slate-500 text-[11px]">El informe PDF contiene la captura donde MongoDB rechaza un documento con error en rojo.</p>
-            </div>
-          </label>
+            <label class="flex items-start gap-2.5 p-2 bg-slate-50 hover:bg-emerald-50/50 rounded-xl border border-slate-200 cursor-pointer transition-colors">
+              <input type="checkbox" checked class="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4 shrink-0">
+              <div>
+                <strong class="text-slate-900 block font-bold text-xs">3. Inserción de 5 Documentos JSON</strong>
+                <p class="text-slate-500 text-[11px]">Se insertan los 5 registros de vehículos con su estructura JSON (placas, modelos, propietarios).</p>
+              </div>
+            </label>
 
-          <label class="flex items-start gap-3 p-3 bg-slate-50 hover:bg-emerald-50/50 rounded-2xl border border-slate-200 cursor-pointer transition-colors">
-            <input type="checkbox" checked class="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4">
-            <div>
-              <strong class="text-slate-900 block font-bold">4. ¿Se insertaron mínimo 5 documentos reales y se probaron 4 consultas + agregación?</strong>
-              <p class="text-slate-500 text-[11px]">Se muestran las consultas con operadores y el resultado del pipeline con <code>$match</code>, <code>$group</code> y <code>$sort</code>.</p>
-            </div>
-          </label>
+            <label class="flex items-start gap-2.5 p-2 bg-slate-50 hover:bg-emerald-50/50 rounded-xl border border-slate-200 cursor-pointer transition-colors">
+              <input type="checkbox" checked class="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4 shrink-0">
+              <div>
+                <strong class="text-slate-900 block font-bold text-xs">4. Actualización del 1° y Último Registro</strong>
+                <p class="text-slate-500 text-[11px]">Se ejecuta <code>updateOne()</code> con <code>$set</code> para el primer y quinto vehículo.</p>
+              </div>
+            </label>
 
-          <label class="flex items-start gap-3 p-3 bg-slate-50 hover:bg-emerald-50/50 rounded-2xl border border-slate-200 cursor-pointer transition-colors">
-            <input type="checkbox" checked class="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4">
-            <div>
-              <strong class="text-slate-900 block font-bold">5. ¿La entrega se realiza a tiempo en la plataforma oficial Zajuna?</strong>
-              <p class="text-slate-500 text-[11px]">Subida directa al enlace oficial de la evidencia antes del cierre del cronograma.</p>
-            </div>
-          </label>
+            <label class="flex items-start gap-2.5 p-2 bg-slate-50 hover:bg-emerald-50/50 rounded-xl border border-slate-200 cursor-pointer transition-colors">
+              <input type="checkbox" checked class="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4 shrink-0">
+              <div>
+                <strong class="text-slate-900 block font-bold text-xs">5. Listar la Colección Completa (5 Documentos)</strong>
+                <p class="text-slate-500 text-[11px]">Se ejecuta <code>db.parque.find()</code> demostrando las actualizaciones previas.</p>
+              </div>
+            </label>
+
+            <label class="flex items-start gap-2.5 p-2 bg-slate-50 hover:bg-emerald-50/50 rounded-xl border border-slate-200 cursor-pointer transition-colors">
+              <input type="checkbox" checked class="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4 shrink-0">
+              <div>
+                <strong class="text-slate-900 block font-bold text-xs">6. Borrar el Tercer Documento de la Colección</strong>
+                <p class="text-slate-500 text-[11px]">Se ejecuta <code>deleteOne()</code> eliminando el 3er vehículo (ej. placa <code>GHI-789</code>).</p>
+              </div>
+            </label>
+
+            <label class="flex items-start gap-2.5 p-2 bg-slate-50 hover:bg-emerald-50/50 rounded-xl border border-slate-200 cursor-pointer transition-colors">
+              <input type="checkbox" checked class="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4 shrink-0">
+              <div>
+                <strong class="text-slate-900 block font-bold text-xs">7. Listar Colección Completa (Restan 4)</strong>
+                <p class="text-slate-500 text-[11px]">Se comprueba con <code>find()</code> que solo quedan 4 registros y el 3° ya no aparece.</p>
+              </div>
+            </label>
+
+            <label class="flex items-start gap-2.5 p-2 bg-slate-50 hover:bg-emerald-50/50 rounded-xl border border-slate-200 cursor-pointer transition-colors">
+              <input type="checkbox" checked class="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4 shrink-0">
+              <div>
+                <strong class="text-slate-900 block font-bold text-xs">8. Sentencia para Obtener Documento por Placa</strong>
+                <p class="text-slate-500 text-[11px]">Se ejecuta y explica <code>db.parque.findOne({ placa: "DEF-456" })</code>.</p>
+              </div>
+            </label>
+          </div>
+
+          <!-- Recordatorio de entrega -->
+          <div class="p-3 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-900 flex items-center justify-between">
+            <span class="flex items-center gap-2">
+              <i data-lucide="video" class="w-4 h-4 text-amber-700 shrink-0"></i>
+              <span><strong>Formato único aceptado:</strong> Archivo de Video en formato <strong>MP4</strong> o enlace público directo a la grabación.</span>
+            </span>
+            <span class="font-bold text-[11px] text-amber-800">Sin documentos escritos adicionales</span>
+          </div>
         </div>
 
         <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-slate-100">
@@ -1020,7 +1215,7 @@ db.pedidos.aggregate([
           </a>
           <a href="https://zajuna.sena.edu.co" target="_blank" class="inline-flex items-center gap-2 bg-[#39A900] hover:bg-[#2D8200] text-white font-bold text-xs px-6 py-2.5 rounded-xl shadow-xs transition-colors">
             <i data-lucide="upload" class="w-4 h-4"></i>
-            <span>Ir a Entregar en Zajuna LMS</span>
+            <span>Ir a Entregar Video en Zajuna LMS</span>
           </a>
         </div>
       </div>

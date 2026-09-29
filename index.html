@@ -164,7 +164,7 @@
           <i data-lucide="presentation" class="w-4 h-4"></i>
           <span>Proyectar Sesión en Aula</span>
         </span>
-        <span class="text-[10px] bg-white/20 px-2 py-0.5 rounded font-mono">4 Disponibles</span>
+        <span class="text-[10px] bg-white/20 px-2 py-0.5 rounded font-mono">5 Disponibles</span>
       </button>
     </div>
   </header>
@@ -865,7 +865,7 @@
             <div class="flex items-center gap-2 mb-1 flex-wrap">
               <span class="px-2.5 py-0.5 rounded text-[10px] font-extrabold uppercase bg-[#00324D] text-white">SENA ADSO</span>
               <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200 uppercase">Modo Aula Virtual</span>
-              <span class="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">4 Sesiones Disponibles</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">5 Sesiones Disponibles</span>
             </div>
             <h2 class="text-lg sm:text-xl font-extrabold text-slate-900 leading-tight">Seleccionar Sesión para Proyección en Aula</h2>
             <p class="text-xs text-slate-500 mt-0.5">Presentaciones interactivas por diapositivas orientadas por el <strong>Ing. Hector David Toledo García</strong>.</p>
@@ -991,6 +991,31 @@
               </div>
             </div>
 
+            <!-- Tarjeta: Evidencia 04 (MongoDB $jsonSchema & mongosh) -->
+            <div class="p-4 rounded-2xl bg-white border border-slate-200 hover:border-emerald-300 transition-all hover:shadow-md flex flex-col justify-between gap-3 group">
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-1.5">
+                  <span class="text-[10px] font-mono font-bold text-sena bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">GA6-AA1-EV04</span>
+                  <span class="text-[10px] font-mono font-bold text-emerald-700 bg-emerald-100/80 px-2 py-0.5 rounded">12 Slides</span>
+                </div>
+                <h4 class="text-sm font-extrabold text-slate-900 group-hover:text-emerald-800 transition-colors">
+                  Evidencia 04: Elaboración de Bases de Datos en MongoDB
+                </h4>
+                <p class="text-[11.5px] text-slate-600 leading-relaxed mt-1">
+                  Validación formal con $jsonSchema estricto, captura del rechazo de datos erróneos, insertMany y pipeline de agregación.
+                </p>
+              </div>
+              <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
+                <span class="text-[10.5px] font-semibold text-emerald-700 flex items-center gap-1">
+                  <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Lista en Aula
+                </span>
+                <a href="guias/guia-06/proyeccion-evidencia-04.html" class="inline-flex items-center gap-1.5 bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-bold py-1.5 px-3 rounded-lg shadow-2xs hover:shadow-xs transition-all">
+                  <span>Proyectar</span>
+                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                </a>
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -1010,10 +1035,6 @@
             </p>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 text-xs">
-              <div class="p-2.5 bg-white/90 rounded-xl border border-amber-100 flex items-center justify-between">
-                <span class="font-medium text-slate-700 truncate mr-2">EV04: Esquemas NoSQL JSON Schema</span>
-                <span class="text-[10px] font-bold text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded shrink-0">Próxima</span>
-              </div>
               <div class="p-2.5 bg-white/90 rounded-xl border border-amber-100 flex items-center justify-between">
                 <span class="font-medium text-slate-700 truncate mr-2">EV05: Sentencias SQL DDL & DML</span>
                 <span class="text-[10px] font-bold text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded shrink-0">Próxima</span>
@@ -1093,6 +1114,7 @@
           <li><a href="guias/guia-06/proyeccion-evidencia-01.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="presentation" class="w-3.5 h-3.5"></i> Sesión Evidencia 1: Normalización</a></li>
           <li><a href="guias/guia-06/proyeccion-evidencia-02.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="presentation" class="w-3.5 h-3.5"></i> Sesión Evidencia 2: MER & Diccionario</a></li>
           <li><a href="guias/guia-06/proyeccion-evidencia-03.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="presentation" class="w-3.5 h-3.5"></i> Sesión Evidencia 3: NoSQL MongoDB</a></li>
+          <li><a href="guias/guia-06/proyeccion-evidencia-04.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="presentation" class="w-3.5 h-3.5"></i> Sesión Evidencia 4: Elaboración MongoDB</a></li>
           <li><a href="guias/guia-06/proyeccion.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="monitor" class="w-3.5 h-3.5"></i> Modo Proyección Sincrónica</a></li>
         </ul>
       </div>
@@ -1254,23 +1276,28 @@
         catName: 'NoSQL MongoDB',
         type: 'Producto',
         hours: '16 Horas',
-        title: 'Definición de esquemas de bases de datos NoSQL',
+        title: 'Elaboración de las bases de datos en MongoDB',
         format: 'ZIP / Scripts JS',
         instrument: 'IE-GA6-220501096-AA1-EV04',
         slideRef: 'slide-5',
+        directProj: 'proyeccion-evidencia-04.html',
+        hasSlides: true,
+        slideCount: '12 slides',
         summary: 'Implementación práctica en MongoDB de colecciones, reglas de validación JSON Schema e inserción de datos de prueba.',
         steps: [
           'Instalar y configurar MongoDB Community Server y MongoDB Compass.',
           'Crear la base de datos y colecciones con reglas de validación (validator con $jsonSchema).',
-          'Insertar documentos de prueba con operaciones insertOne e insertMany.',
-          'Ejecutar consultas con filtros avanzados y proyecciones probando índices.'
+          'Probar el rechazo de inserción enviando un documento inválido (captura de error obligatoria).',
+          'Insertar al menos 5 documentos válidos y variados usando insertMany().',
+          'Ejecutar consultas con filtros avanzados ($gte, $regex), proyecciones y pipeline de agregación.'
         ],
         criteria: 'Aplica validación de esquemas y restricciones en el motor NoSQL.',
         checklist: [
-          'Script .js o capturas de MongoDB Compass con colecciones activas.',
+          'Script .js ejecutable con creación de colecciones, esquemas e inserciones.',
           'Reglas de validación con $jsonSchema comprobadas ante inserciones erróneas.',
-          'Documentos de prueba insertados con tipos variados.',
-          'Consultas documentadas con su salida en terminal o GUI.'
+          'Mínimo 5 documentos de prueba insertados con tipos y formatos variados.',
+          'Consultas documentadas con filtros y pipeline de agregación en mongosh o Compass.',
+          'Informe técnico en PDF con portada institucional SENA y capturas numeradas.'
         ]
       },
       {
@@ -2087,7 +2114,7 @@
               <div class="p-3.5 bg-emerald-50 border border-emerald-200 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-emerald-950">
                 <div class="flex items-center gap-2">
                   <i data-lucide="presentation" class="w-5 h-5 text-emerald-700 shrink-0"></i>
-                  <span><strong>Sesión Interactiva en Diapositivas Disponible:</strong> ${activeEvidence.id === 'ev-01' ? 'Taller completo de Normalización 0FN a 3FN y demostración en MySQL Workbench.' : activeEvidence.id === 'ev-02' ? 'Guía directa de 10 diapositivas: MER, Modelo Relacional, Diccionario de Datos y script SQL.' : 'Taller interactivo de 14 diapositivas: NoSQL MongoDB Compass (+ Create Database) y consola MONGOSH.'}</span>
+                  <span><strong>Sesión Interactiva en Diapositivas Disponible:</strong> ${activeEvidence.id === 'ev-01' ? 'Taller completo de Normalización 0FN a 3FN y demostración en MySQL Workbench.' : activeEvidence.id === 'ev-02' ? 'Guía directa de 10 diapositivas: MER, Modelo Relacional, Diccionario de Datos y script SQL.' : activeEvidence.id === 'ev-03' ? 'Taller interactivo de 14 diapositivas: NoSQL MongoDB Compass (+ Create Database) y consola MONGOSH.' : 'Taller completo de 12 diapositivas: Validación con $jsonSchema, rechazo de errores, insertMany y pipeline de agregación.'}</span>
                 </div>
                 <a href="guias/guia-06/${activeEvidence.directProj}" class="px-3.5 py-1.5 bg-[#39A900] hover:bg-[#2D8200] text-white font-bold rounded-lg shrink-0 transition-colors flex items-center gap-1.5 shadow-2xs">
                   <span>Ver Diapositivas</span>

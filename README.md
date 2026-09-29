@@ -46,7 +46,8 @@ repoVirtual/
     └── guia-06/
         ├── proyeccion-evidencia-01.html # Presentación interactiva de 20 diapositivas para Evidencia 1 (Normalización)
         ├── proyeccion-evidencia-02.html # Presentación interactiva de 10 diapositivas para Evidencia 2 (MER y Diccionario)
-        ├── proyeccion-evidencia-03.html # Presentación interactiva de 10 diapositivas para Evidencia 3 (NoSQL MongoDB)
+        ├── proyeccion-evidencia-03.html # Presentación interactiva de 14 diapositivas para Evidencia 3 (NoSQL MongoDB Compass)
+        ├── proyeccion-evidencia-04.html # Presentación interactiva de 12 diapositivas para Evidencia 4 (Bases de Datos en MongoDB)
         └── proyeccion.html             # Modo Proyección General en Aula (Guía 06)
 ```
 
@@ -65,10 +66,10 @@ repoVirtual/
   * **Guía 06 (Activa):** Bases de Datos Relacionales/NoSQL, Prototipado Figma y Frontend Web (13 evidencias).
   * **Guía 07:** Servicios Backend, APIs REST, ORM/ODM y documentación Swagger/Postman (3 evidencias).
 * **Filtros por Área Técnica:** Selector por categorías (`Bases de Datos SQL`, `NoSQL MongoDB`, `Prototipado UI/UX Figma`, `Frontend Web`, `Backend & APIs`, `Arquitectura UML`).
-* **Buscador en Tiempo Real:** Filtrado reactivo instantáneo por código de evidencia (ej. `AA1-EV01`, `AA1-EV02`, `AA1-EV03`), título, resumen o tecnologías.
+* **Buscador en Tiempo Real:** Filtrado reactivo instantáneo por código de evidencia (ej. `AA1-EV01`, `AA1-EV02`, `AA1-EV03`, `AA1-EV04`), título, resumen o tecnologías.
 * **Paginación Dinámica:** Paginación calibrada a **6 evidencias por página** con navegación previa/siguiente, botones numerados y contador contextual (`Mostrando X a Y de Z evidencias`).
 * **Estado de Disponibilidad de Diapositivas:**
-  * **🟢 Diapositivas Disponibles:** Insignia verde para las evidencias con presentación interactiva activa (EV01, EV02, EV03), permitiendo proyección directa inmediata.
+  * **🟢 Diapositivas Disponibles:** Insignia verde para las evidencias con presentación interactiva activa (EV01, EV02, EV03, EV04), permitiendo proyección directa inmediata.
   * **🟡 En Preparación:** Insignia ámbar para evidencias en desarrollo curricular. Si el aprendiz o docente intenta proyectarlas, el sistema despliega una ventana modal explicativa indicando que el material será orientado en la sesión sincrónica virtual correspondiente por el **Ing. Hector David Toledo García**, guiando al aprendiz hacia el PDF de la guía y los requerimientos preliminares.
 * **Modales Detallados:** Cada evidencia despliega un modal con paso a paso detallado, criterios oficiales de evaluación y checklist interactivo con persistencia local en navegador (`localStorage`).
 * **Estabilidad Visual y Cero Saltos de Diseño (Anti-CLS):** Estandarización de cabeceras fijas (`h-16`), paddings simétricos (`px-4 sm:px-6`), canal de scroll reservado (`scrollbar-gutter: stable`) y dimensiones predefinidas para iconos SVG, garantizando transiciones suaves y fluidas entre páginas sin saltos de elementos.
@@ -93,13 +94,23 @@ repoVirtual/
 
 ### 🟢 Evidencia 3: Creación de Objetos en Base de Datos NoSQL MongoDB (`proyeccion-evidencia-03.html`)
 * **Código Oficial:** `GA6-220501096-AA1-EV03` (16 Horas de Formación Técnica).
-* **10 Diapositivas Directas al Grano (100% en Español):**
+* **14 Diapositivas Directas al Grano (100% en Español):**
   * **Slide 01 - 02:** Portada institucional y qué son las Bases de Datos No Relacionales (NoSQL) con las 4 familias tecnológicas (Documentales, Clave-Valor, Columnas Anchas y Grafos).
   * **Slide 03 - 04:** Tabla de equivalencias conceptuales directa (Tabla $\rightarrow$ Colección, Fila $\rightarrow$ Documento, Columna $\rightarrow$ Campo, PK $\rightarrow$ `_id`) y anatomía de un documento JSON vs BSON.
   * **Slide 05 - 06:** La decisión arquitectónica crítica: **Incrustar (Subdocumentos)** vs **Referenciar (Por ID)**, y el paso a paso metodológico para estructurar las colecciones del proyecto individual.
   * **Slide 07:** Validación formal de esquemas en MongoDB mediante reglas `$jsonSchema` (campos requeridos, tipos de datos y rangos).
   * **Slide 08:** Ejemplo completo resuelto para un sistema de ventas (colección `pedidos` con cliente referenciado e ítems de compra incrustados) y notas de adaptación para Salud/Veterinaria, Talleres y Restaurantes.
   * **Slide 09 - 10:** Herramientas oficiales (*MongoDB Compass*, *MongoDB Atlas* clúster gratuito y *mongosh*), estructura obligatoria del informe PDF y lista de chequeo de 5 puntos para calificación Aprobada ('A') en **Zajuna LMS**.
+
+### 🟢 Evidencia 4: Elaboración de las Bases de Datos en MongoDB (`proyeccion-evidencia-04.html`)
+* **Código Oficial:** `GA6-220501096-AA1-EV04` (16 Horas de Formación Técnica).
+* **12 Diapositivas Directas al Grano (100% en Español):**
+  * **Slide 01 - 02:** Portada institucional y especificación exacta del archivo `.ZIP` (script `.js` ejecutable + informe `.pdf`).
+  * **Slide 03 - 04:** Entorno de trabajo (Community Server vs Atlas M0) y Paso 1: Creación de la base de datos del proyecto (`use`).
+  * **Slide 05 - 06:** Paso 2 y 3: Reglas de validación formal `$jsonSchema` (campos requeridos, regex de correo y enums) y **demostración de rechazo con captura del error en rojo**.
+  * **Slide 07 - 08:** Paso 4 y 5: Inserción masiva de 5 documentos válidos con `insertMany()` y modelado de segunda colección con subdocumentos incrustados.
+  * **Slide 09 - 10:** Paso 6 y 7: Cuatro consultas avanzadas (comparación `$gte`, expresiones regulares `$regex`, operadores lógicos `$and` y proyecciones) y pipeline analítico de agregación (`$match`, `$group`, `$sort`).
+  * **Slide 11 - 12:** Estructura oficial del informe técnico en PDF, capturas numeradas requeridas y lista de chequeo de 5 puntos para calificación Aprobada ('A') en **Zajuna LMS**.
 
 ---
 

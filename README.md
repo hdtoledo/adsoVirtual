@@ -48,6 +48,7 @@ repoVirtual/
         ├── proyeccion-evidencia-02.html # Presentación interactiva de 10 diapositivas para Evidencia 2 (MER y Diccionario)
         ├── proyeccion-evidencia-03.html # Presentación interactiva de 14 diapositivas para Evidencia 3 (NoSQL MongoDB Compass)
         ├── proyeccion-evidencia-04.html # Presentación interactiva de 12 diapositivas para Evidencia 4 (Bases de Datos en MongoDB)
+        ├── proyeccion-evidencia-05.html # Presentación interactiva de 14 diapositivas para Evidencia 5 (Sentencias SQL DDL y DML)
         └── proyeccion.html             # Modo Proyección General en Aula (Guía 06)
 ```
 
@@ -69,7 +70,7 @@ repoVirtual/
 * **Buscador en Tiempo Real:** Filtrado reactivo instantáneo por código de evidencia (ej. `AA1-EV01`, `AA1-EV02`, `AA1-EV03`, `AA1-EV04`), título, resumen o tecnologías.
 * **Paginación Dinámica:** Paginación calibrada a **6 evidencias por página** con navegación previa/siguiente, botones numerados y contador contextual (`Mostrando X a Y de Z evidencias`).
 * **Estado de Disponibilidad de Diapositivas:**
-  * **🟢 Diapositivas Disponibles:** Insignia verde para las evidencias con presentación interactiva activa (EV01, EV02, EV03, EV04), permitiendo proyección directa inmediata.
+  * **🟢 Diapositivas Disponibles:** Insignia verde para las evidencias con presentación interactiva activa (EV01, EV02, EV03, EV04, EV05), permitiendo proyección directa inmediata.
   * **🟡 En Preparación:** Insignia ámbar para evidencias en desarrollo curricular. Si el aprendiz o docente intenta proyectarlas, el sistema despliega una ventana modal explicativa indicando que el material será orientado en la sesión sincrónica virtual correspondiente por el **Ing. Hector David Toledo García**, guiando al aprendiz hacia el PDF de la guía y los requerimientos preliminares.
 * **Modales Detallados:** Cada evidencia despliega un modal con paso a paso detallado, criterios oficiales de evaluación y checklist interactivo con persistencia local en navegador (`localStorage`).
 * **Estabilidad Visual y Cero Saltos de Diseño (Anti-CLS):** Estandarización de cabeceras fijas (`h-16`), paddings simétricos (`px-4 sm:px-6`), canal de scroll reservado (`scrollbar-gutter: stable`) y dimensiones predefinidas para iconos SVG, garantizando transiciones suaves y fluidas entre páginas sin saltos de elementos.
@@ -117,6 +118,24 @@ repoVirtual/
   * **Slide 10:** **Paso 8 de la Guía:** Sentencia que permite obtener un documento según su número de placa (`db.parque.findOne({ placa: "..." })`).
   * **Slide 11:** **Lineamientos Oficiales del Video:** Grabación de pantalla con audio nítido del aprendiz (OBS, Clipchamp, Loom), duración sugerida (4 a 8 min), opciones de envío en Zajuna (subida directa de archivo MP4 o enlace público en YouTube/Drive).
   * **Slide 12:** **Lista de Chequeo Final:** Verificación interactiva de los 8 requerimientos oficiales antes de enviar para obtener calificación Aprobada ('A') en **Zajuna LMS**.
+
+### 🟢 Evidencia 5: Destrezas y conocimientos en el manejo de sentencias DDL y DML de SQL (`proyeccion-evidencia-05.html`)
+* **Código Oficial:** `GA6-220501096-AA2-EV01` (32 Horas de Formación Técnica).
+* **Taller Oficial de la Guía:** Problema - Trabaje con la tabla `"Libreta"`.
+* **Producto a Entregar según la Guía:** **Documento técnico en formato PDF (Extensión Libre)** con portada, introducción, objetivo y desarrollo punto a punto.
+* **14 Diapositivas Directas al Grano (100% en Español):**
+  * **Slide 01 - 02:** Portada institucional y **Fundamentos Teóricos DDL vs DML** en SQL (definición de estructuras con auto-commit vs manipulación de registros y transacciones).
+  * **Slide 03:** **Requerimientos Oficiales de la Guía:** Lectura textual de los 8 puntos del taller sobre la tabla `"libreta"` y lineamientos formales del documento PDF.
+  * **Slide 04:** **Entorno de Trabajo:** Preparación de esquema en *MySQL Workbench* / consola CLI (`CREATE DATABASE agenda_adso; USE agenda_adso;`) y consejos para capturas nítidas con panel Output visible.
+  * **Slide 05:** **Punto 1 del Taller (DDL):** Creación de la tabla `libreta` con campos `nombre varchar(20)`, `domicilio varchar(30)` y `telefono varchar(11)` explicando el ahorro de espacio en disco con `VARCHAR`.
+  * **Slide 06:** **Puntos 2 y 3 del Taller (Metadatos):** Verificación de existencia con `SHOW TABLES;` e inspección detallada de columnas y tipos con `DESCRIBE libreta;`.
+  * **Slide 07:** **Punto 4 del Taller (DML):** Inserción de los registros iniciales solicitados (Alberto Mores y Juan Torres) explicando comillas simples y correspondencia de columnas.
+  * **Slide 08:** **Punto 5 del Taller (DML):** Consulta general con `SELECT * FROM libreta;` y visualización de la cuadrícula de resultados con las dos filas activas.
+  * **Slide 09:** **Punto 6 del Taller (DML):** Actualización de datos insertados mediante `UPDATE` y **advertencia crítica sobre el uso indispensable de la cláusula WHERE** y el modo *Safe Updates* en MySQL.
+  * **Slide 10:** **Punto 7 del Taller (DML):** Inserción en bloque de 5 contactos nuevos acumulando un histórico de 7 registros en la libreta.
+  * **Slide 11:** **Punto 8 del Taller (Agregación):** Conteo de registros con `SELECT COUNT(*) AS total_contactos FROM libreta;` certificando exactamente 7 filas.
+  * **Slide 12 - 13:** **Estructura Formal del Documento PDF:** Plantilla institucional (Portada, Introducción, Objetivo, Sentencias punto a punto con capturas de pantalla, Conclusiones) y buenas prácticas de recorte y formato.
+  * **Slide 14:** **Lista de Chequeo Final:** Autoevaluación interactiva de los 8 puntos del taller antes de subir el PDF a **Zajuna LMS**.
 
 ---
 

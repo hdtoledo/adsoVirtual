@@ -1015,6 +1015,30 @@
                 </a>
               </div>
             </div>
+            <!-- Tarjeta: Evidencia 05 (SQL DDL y DML - Tabla 'libreta') -->
+            <div class="p-4 rounded-2xl bg-white border border-slate-200 hover:border-emerald-300 transition-all hover:shadow-md flex flex-col justify-between gap-3 group">
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-1.5">
+                  <span class="text-[10px] font-mono font-bold text-sena bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">GA6-AA2-EV01</span>
+                  <span class="text-[10px] font-mono font-bold text-emerald-700 bg-emerald-100/80 px-2 py-0.5 rounded">14 Slides</span>
+                </div>
+                <h4 class="text-sm font-extrabold text-slate-900 group-hover:text-emerald-800 transition-colors">
+                  Evidencia 05: Sentencias DDL y DML de SQL
+                </h4>
+                <p class="text-[11.5px] text-slate-600 leading-relaxed mt-1">
+                  Taller oficial con la tabla "libreta": creación de tabla, visualización, estructura, inserciones, consulta, actualización y conteo.
+                </p>
+              </div>
+              <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
+                <span class="text-[10.5px] font-semibold text-emerald-700 flex items-center gap-1">
+                  <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Lista en Aula
+                </span>
+                <a href="guias/guia-06/proyeccion-evidencia-05.html" class="inline-flex items-center gap-1.5 bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-bold py-1.5 px-3 rounded-lg shadow-2xs hover:shadow-xs transition-all">
+                  <span>Proyectar</span>
+                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                </a>
+              </div>
+            </div>
 
           </div>
         </div>
@@ -1035,10 +1059,6 @@
             </p>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 text-xs">
-              <div class="p-2.5 bg-white/90 rounded-xl border border-amber-100 flex items-center justify-between">
-                <span class="font-medium text-slate-700 truncate mr-2">EV05: Sentencias SQL DDL & DML</span>
-                <span class="text-[10px] font-bold text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded shrink-0">Próxima</span>
-              </div>
               <div class="p-2.5 bg-white/90 rounded-xl border border-amber-100 flex items-center justify-between">
                 <span class="font-medium text-slate-700 truncate mr-2">EV06: DDL y DML en Motor Relacional</span>
                 <span class="text-[10px] font-bold text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded shrink-0">Próxima</span>
@@ -1115,6 +1135,7 @@
           <li><a href="guias/guia-06/proyeccion-evidencia-02.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="presentation" class="w-3.5 h-3.5"></i> Sesión Evidencia 2: MER & Diccionario</a></li>
           <li><a href="guias/guia-06/proyeccion-evidencia-03.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="presentation" class="w-3.5 h-3.5"></i> Sesión Evidencia 3: NoSQL MongoDB</a></li>
           <li><a href="guias/guia-06/proyeccion-evidencia-04.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="presentation" class="w-3.5 h-3.5"></i> Sesión Evidencia 4: Elaboración MongoDB</a></li>
+          <li><a href="guias/guia-06/proyeccion-evidencia-05.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="presentation" class="w-3.5 h-3.5"></i> Sesión Evidencia 5: Sentencias SQL DDL y DML</a></li>
           <li><a href="guias/guia-06/proyeccion.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="monitor" class="w-3.5 h-3.5"></i> Modo Proyección Sincrónica</a></li>
         </ul>
       </div>
@@ -1314,28 +1335,41 @@
         guiaName: 'Guía 06',
         fase: 'Ejecución',
         code: 'GA6-220501096-AA2-EV01',
-        activity: 'AA2: Lenguaje SQL',
+        activity: 'AA2: Manipulación SMBD SQL',
         category: 'sql',
         catName: 'Bases de Datos SQL',
         type: 'Conocimiento',
-        hours: '16 Horas',
-        title: 'Taller sobre principios y tipos de sentencias SQL',
-        format: 'PDF',
+        hours: '32 Horas',
+        title: 'Destrezas y conocimientos en el manejo de sentencias DDL y DML de SQL',
+        format: 'Documento (PDF)',
         instrument: 'IE-GA6-220501096-AA2-EV01',
         slideRef: 'slide-6',
-        summary: 'Desarrollo conceptual y práctico de sentencias DDL (CREATE, ALTER, DROP), DML (SELECT, INSERT, UPDATE, DELETE) y DCL.',
+        directProj: 'proyeccion-evidencia-05.html',
+        hasSlides: true,
+        slideCount: '14 slides',
+        summary: 'Informe técnico en PDF (extensión libre) dando solución punto a punto al taller oficial sobre la tabla "libreta" en MySQL: creación de tabla (DDL), visualización (SHOW TABLES), estructura (DESCRIBE), inserción de registros (DML), consulta (SELECT *), actualización con condición WHERE, 5 registros más y conteo final con COUNT(*).',
         steps: [
-          'Estudiar la clasificación formal del estándar SQL ANSI.',
-          'Explicar el propósito y sintaxis de comandos DDL, DML, DCL y TCL.',
-          'Resolver ejercicios prácticos de consultas con JOIN, WHERE, GROUP BY y HAVING.',
-          'Documentar sentencias con capturas de ejecución en MySQL.'
+          '1. Crear la tabla "libreta" con campos: nombre (varchar 20), domicilio (varchar 30) y telefono (varchar 11).',
+          '2. Visualizar las tablas existentes para verificar la creación de "libreta" (SHOW TABLES).',
+          '3. Visualizar la estructura de la tabla "libreta" (DESCRIBE libreta).',
+          '4. Ingresar los registros iniciales: ("Alberto Mores", "Colon 123", "4234567") y ("Juan Torres", "Avellaneda 135", "4458787").',
+          '5. Seleccionar y mostrar todos los registros de la tabla (SELECT * FROM libreta).',
+          '6. Construir las sentencias que actualicen los datos que se acaban de insertar (UPDATE libreta SET ... WHERE ...).',
+          '7. Insertar 5 registros más en la tabla libreta.',
+          '8. Contar cuántos registros se ingresan en total (SELECT COUNT(*) FROM libreta).'
         ],
-        criteria: 'Aplica el lenguaje de consulta estructurado según requerimientos del sistema.',
+        criteria: 'Aplica el lenguaje de consulta estructurado SQL (DDL y DML) según requerimientos del taller técnico.',
         checklist: [
-          'Explicación clara de cada subconjunto SQL (DDL, DML, DCL, TCL).',
-          'Resolución de los ejercicios de consulta propuestos con capturas.',
-          'Uso adecuado de funciones agregadas y ordenamiento.',
-          'Archivo PDF con portada institucional SENA.'
+          'Documento técnico formal en formato PDF con portada, introducción y objetivos.',
+          'Punto 1: Sentencia CREATE TABLE libreta con campos nombre, domicilio y telefono.',
+          'Punto 2: Comando SHOW TABLES evidenciando la creación de la tabla.',
+          'Punto 3: Comando DESCRIBE libreta mostrando tipos de datos VARCHAR.',
+          'Punto 4: Sentencias INSERT con los dos registros iniciales solicitados.',
+          'Punto 5: Consulta SELECT * FROM libreta con captura de la cuadrícula de resultados.',
+          'Punto 6: Sentencias UPDATE modificando los datos con la cláusula condicional WHERE.',
+          'Punto 7: Inserción de 5 registros adicionales completando 7 filas.',
+          'Punto 8: Consulta SELECT COUNT(*) evidenciando el conteo de 7 registros.',
+          'Capturas de pantalla nítidas de MySQL Workbench con confirmación de ejecución verde.'
         ]
       },
       {

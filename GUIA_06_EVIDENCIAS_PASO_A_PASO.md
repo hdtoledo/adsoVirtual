@@ -120,15 +120,26 @@ Este documento es la **hoja de ruta maestra** para instructores y aprendices de 
 
 #### 5. Evidencia `GA6-220501096-AA2-EV01`
 **Nombre:** Destrezas y conocimientos en el manejo de sentencias DDL y DML de SQL.  
-- **Tipo:** Evidencia de Desempeño.
+- **Tipo:** Evidencia de Conocimiento.
 - **Instrumento de Evaluación:** `IE-GA6-220501096-AA2-EV01`.
-- **Descripción:** Demostrar dominio en la escritura de sentencias SQL para definición (`CREATE`, `ALTER`, `DROP`) y manipulación (`INSERT`, `SELECT`, `UPDATE`, `DELETE`) sobre un motor relacional (MySQL, PostgreSQL o MariaDB).
-- **Paso a Paso:**
-  1. Implementar sentencias de manipulación para poblar tablas.
-  2. Construir consultas avanzadas con cláusulas `WHERE`, operadores lógicos (`AND`, `OR`, `BETWEEN`, `LIKE`).
-  3. Aplicar funciones de agregación: `COUNT()`, `SUM()`, `AVG()`, `MIN()`, `MAX()` acompañadas de `GROUP BY` y `HAVING`.
-  4. Realizar cruce de información mediante `INNER JOIN`, `LEFT JOIN` y subconsultas.
-- **Formato de Entrega:** Script `.sql` documentado con comentarios y PDF con capturas del motor SQL demostrando la ejecución exitosa de cada consulta.
+- **Descripción Oficial de la Guía:** Tomando como referencia el taller descrito a continuación, realice un informe técnico con las sentencias SQL realizadas para dar solución a los problemas planteados.  
+  **Problema - Trabaje con la tabla "Libreta"**
+- **Los 8 Pasos Obligatorios del Taller:**
+  1. Cree una tabla llamada "libreta" con los campos: `nombre` (cadena de 20), `domicilio` (cadena de 30) y `telefono` (cadena de 11).
+  2. Visualice las tablas existentes para verificar la creación de "libreta" (`SHOW TABLES;`).
+  3. Visualice la estructura de la tabla "libreta" (`DESCRIBE libreta;`).
+  4. Ingrese los registros iniciales solicitados: `('Alberto Mores','Colon 123','4234567')` y `('Juan Torres','Avellaneda 135','4458787')`.
+  5. Seleccione y muestre todos los registros de la tabla (`SELECT * FROM libreta;`).
+  6. Construya las sentencias que actualicen los datos que acaba de insertar (`UPDATE libreta SET ... WHERE ...`).
+  7. Insertar 5 registros más en la tabla.
+  8. Cuente cuántos registros se ingresan en total (`SELECT COUNT(*) FROM libreta;`).
+- **Normas de Presentación del Documento Escrito:**
+  - Debe contener como mínimo: **Portada institucional**, **Introducción**, **Objetivo**, y las **sentencias punto a punto** de la solución a las preguntas del taller acompañadas de capturas de pantalla de la ejecución en MySQL Workbench / consola.
+- **Lineamientos Generales para la Entrega:**
+  - **Producto a entregar:** Documento técnico.
+  - **Extensión:** Libre.
+  - **Formato:** PDF.
+  - **Espacio de envío en Zajuna LMS:** *Destrezas y conocimientos en el manejo de sentencias DDL y DML de SQL. GA6-220501096-AA2-EV01.*
 
 ---
 

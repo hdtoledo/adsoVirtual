@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-slate-50 antialiased">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evidencia 05: Destrezas en Sentencias DDL y DML de SQL · ADSO Virtual · SENA CADPH Garzón</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sena: {
+              DEFAULT: '#39A900',
+              hover: '#2D8200',
+              light: '#E8F5E9'
+            },
+            cadph: {
+              DEFAULT: '#00324D',
+              dark: '#00263A',
+              light: '#004870'
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../assets/css/presenter.css">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .slide-content.active {
+      display: flex !important;
+      flex-direction: column;
+      justify-content: center;
+    }
+    kbd {
+      font-family: 'JetBrains Mono', monospace;
+    }
+  </style>
+</head>
+<body class="min-h-full flex flex-col bg-slate-50 text-slate-900 font-sans selection:bg-[#39A900] selection:text-white">
+
+  <!-- ========================================================================= -->
+  <!-- BARRA SUPERIOR INSTITUCIONAL (CINTILLO) -->
+  <!-- ========================================================================= -->
+  <div class="bg-[#00324D] text-white text-[11px] py-1.5 px-4 sm:px-6 border-b border-[#00263A]">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2 truncate">
+        <span class="font-extrabold tracking-wide shrink-0">SENA</span>
+        <span class="text-slate-400">|</span>
+        <span class="text-slate-200 truncate font-medium">Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)</span>
+      </div>
+      <div class="flex items-center gap-3 text-slate-300 font-mono text-[11px] shrink-0">
+        <span>Sede Garzón</span>
+        <span class="text-slate-400">•</span>
+        <span class="text-emerald-400 font-semibold">ADSO Virtual • Sesión Técnica en Aula</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- BARRA DE CONTROL DE PRESENTACIÓN (ESTABLE, H-16, ANTI-CLS) -->
+  <!-- ========================================================================= -->
+  <header class="border-b border-slate-200 bg-white sticky top-0 z-40 shadow-xs">
+    <!-- Barra de Progreso Dinámica -->
+    <div class="w-full bg-slate-100 h-1">
+      <div id="presentation-progress" class="bg-[#39A900] h-1 transition-all duration-300 ease-out" style="width: 7.14%;"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+      <!-- Logo y Ruta -->
+      <div class="flex items-center gap-3 min-w-0">
+        <a href="../../index.html" class="flex items-center gap-2.5 group shrink-0">
+          <div class="w-9 h-9 rounded-lg bg-emerald-50 border border-emerald-100 flex items-center justify-center p-1 group-hover:bg-emerald-100 transition-colors shrink-0">
+            <img src="../../assets/logo_green.png" alt="SENA" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/8/83/Sena_Colombia_logo.svg'">
+          </div>
+          <div class="truncate">
+            <span class="font-extrabold text-slate-900 tracking-tight text-sm">FORMACIÓN <span class="text-sena">ADSO</span></span>
+            <span class="text-[11px] font-bold text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded ml-1 uppercase">CADPH</span>
+          </div>
+        </a>
+        <span class="text-slate-300 hidden sm:inline">/</span>
+        <div class="hidden sm:flex items-center gap-2 text-xs truncate">
+          <span class="font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Guía 06</span>
+          <span class="text-slate-600 font-medium truncate">Evidencia 05: Sentencias DDL y DML (Tabla "libreta" · Documento PDF)</span>
+        </div>
+      </div>
+
+      <!-- Controles de Proyección -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Temporizador -->
+        <div class="hidden md:flex items-center gap-1.5 bg-slate-100 px-2.5 py-1 rounded-lg border border-slate-200 font-mono text-xs text-slate-700">
+          <i data-lucide="clock" class="w-3.5 h-3.5 text-slate-500"></i>
+          <span id="timer-display" class="font-bold">00:00</span>
+          <button id="btn-timer-start" class="text-emerald-700 hover:text-emerald-800 font-bold ml-1 text-[11px] uppercase">Iniciar</button>
+          <button id="btn-timer-reset" class="text-slate-400 hover:text-slate-600 ml-1" title="Reiniciar"><i data-lucide="rotate-ccw" class="w-3 h-3"></i></button>
+        </div>
+
+        <!-- Menú de Índice -->
+        <button id="btn-toggle-menu" class="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer" title="Índice de Diapositivas (M)">
+          <i data-lucide="list" class="w-4 h-4"></i>
+        </button>
+
+        <!-- Contador de Diapositiva -->
+        <div class="px-2.5 py-1 bg-slate-100 rounded-lg text-xs font-mono font-bold text-slate-700 border border-slate-200 shrink-0">
+          <span id="slide-counter">1 / 14</span>
+        </div>
+
+        <!-- Botones de Navegación -->
+        <div class="flex items-center gap-1">
+          <button id="btn-prev-slide" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors disabled:opacity-40 cursor-pointer" title="Anterior (Flecha Izq)">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+          </button>
+          <button id="btn-next-slide" class="p-2 rounded-lg bg-[#39A900] hover:bg-[#2D8200] text-white transition-colors cursor-pointer shadow-xs" title="Siguiente (Espacio o Flecha Der)">
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <!-- Pantalla Completa -->
+        <button id="btn-fullscreen" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors cursor-pointer" title="Pantalla Completa (F)">
+          <i data-lucide="maximize" class="w-4 h-4"></i>
+        </button>
+
+        <!-- Ayuda -->
+        <button id="btn-toggle-help" class="p-2 rounded-lg text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors cursor-pointer" title="Atajos de teclado (?)">
+          <i data-lucide="help-circle" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- CAJÓN LATERAL DE ÍNDICE DE DIAPOSITIVAS -->
+  <!-- ========================================================================= -->
+  <aside id="menu-drawer" class="fixed top-0 right-0 h-full w-80 bg-white border-l border-slate-200 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
+    <div class="p-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+      <div class="flex items-center gap-2">
+        <i data-lucide="list" class="w-4 h-4 text-sena"></i>
+        <h3 class="font-extrabold text-sm text-slate-900">Índice de Diapositivas (14)</h3>
+      </div>
+      <button id="btn-close-menu" class="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-200 transition-colors">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+    </div>
+    <div class="overflow-y-auto flex-1 p-3 space-y-1" id="menu-items-list">
+      <!-- Los ítems del menú se inyectan dinámicamente con JavaScript -->
+    </div>
+    <div class="p-3 bg-slate-50 border-t border-slate-200 text-[11px] text-slate-500 text-center">
+      Atajo: Presiona <kbd class="px-1.5 py-0.5 bg-white border rounded font-mono font-bold text-slate-700">M</kbd> para alternar el menú
+    </div>
+  </aside>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL DE AYUDA Y ATAJOS -->
+  <!-- ========================================================================= -->
+  <div id="help-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-100">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <h3 class="font-extrabold text-slate-900 text-base flex items-center gap-2">
+          <i data-lucide="keyboard" class="w-5 h-5 text-sena"></i>
+          <span>Atajos de Teclado del Aula Virtual</span>
+        </h3>
+        <button id="btn-close-help" class="p-1 text-slate-400 hover:text-slate-600 rounded-lg">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+      <div class="py-4 space-y-2 text-xs">
+        <div class="flex justify-between items-center py-1.5 border-b border-slate-50">
+          <span class="text-slate-600">Avanzar Diapositiva:</span>
+          <span class="font-mono font-bold text-slate-800 bg-slate-100 px-2 py-0.5 rounded">Flecha Der / Espacio</span>
+        </div>
+        <div class="flex justify-between items-center py-1.5 border-b border-slate-50">
+          <span class="text-slate-600">Retroceder Diapositiva:</span>
+          <span class="font-mono font-bold text-slate-800 bg-slate-100 px-2 py-0.5 rounded">Flecha Izq / RePág</span>
+        </div>
+        <div class="flex justify-between items-center py-1.5 border-b border-slate-50">
+          <span class="text-slate-600">Abrir / Cerrar Menú Índice:</span>
+          <span class="font-mono font-bold text-slate-800 bg-slate-100 px-2 py-0.5 rounded">M</span>
+        </div>
+        <div class="flex justify-between items-center py-1.5 border-b border-slate-50">
+          <span class="text-slate-600">Alternar Pantalla Completa:</span>
+          <span class="font-mono font-bold text-slate-800 bg-slate-100 px-2 py-0.5 rounded">F</span>
+        </div>
+        <div class="flex justify-between items-center py-1.5 border-b border-slate-50">
+          <span class="text-slate-600">Iniciar / Pausar Temporizador:</span>
+          <span class="font-mono font-bold text-slate-800 bg-slate-100 px-2 py-0.5 rounded">T</span>
+        </div>
+        <div class="flex justify-between items-center py-1.5">
+          <span class="text-slate-600">Cerrar ventanas / modales:</span>
+          <span class="font-mono font-bold text-slate-800 bg-slate-100 px-2 py-0.5 rounded">Esc</span>
+        </div>
+      </div>
+      <button onclick="document.getElementById('help-modal').classList.add('hidden')" class="w-full mt-2 py-2.5 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-slate-800 transition-colors">
+        Entendido
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- CONTENEDOR PRINCIPAL DE DIAPOSITIVAS INTERACTIVAS -->
+  <!-- ========================================================================= -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 flex flex-col justify-center">
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 1: PORTADA INSTITUCIONAL -->
+    <!-- ======================================================================= -->
+    <section class="slide-content active min-h-[580px]" data-title="01. Portada Institucional">
+      <div class="bg-white rounded-3xl border border-slate-200 p-8 sm:p-12 shadow-sm text-center relative overflow-hidden flex flex-col items-center justify-center my-auto">
+        <div class="absolute -top-32 -right-32 w-72 h-72 bg-emerald-50 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-32 -left-32 w-72 h-72 bg-sky-50 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-6">
+          <span class="w-2 h-2 rounded-full bg-[#39A900] animate-pulse"></span>
+          <span>Guía de Aprendizaje 06 • Actividad AA2 • ADSO</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight max-w-4xl leading-tight mb-4">
+          Destrezas y Conocimientos en el Manejo de Sentencias <span class="text-sena">DDL y DML</span> de SQL
+        </h1>
+        <p class="text-sm sm:text-base font-mono font-bold text-slate-500 mb-6">
+          Evidencia Técnica: <span class="text-slate-800">GA6-220501096-AA2-EV01</span> (Problema: Tabla <span class="text-emerald-700">"libreta"</span>)
+        </p>
+
+        <!-- Banner de producto a entregar según la guía -->
+        <div class="mb-8 p-4 bg-sky-50 border border-sky-300 rounded-2xl max-w-2xl text-left flex items-start gap-3">
+          <i data-lucide="file-text" class="w-6 h-6 text-sky-600 shrink-0 mt-0.5"></i>
+          <div class="text-xs text-sky-950">
+            <strong class="block font-bold text-sky-900 text-sm mb-1">PRODUCTO A ENTREGAR SEGÚN LA GUÍA: INFORME TÉCNICO EN FORMATO PDF</strong>
+            <span>La guía de aprendizaje SENA solicita realizar un <strong>informe técnico en formato PDF (extensión libre)</strong> que contenga portada, introducción, objetivo y las sentencias SQL punto a punto de la solución del taller sobre la tabla <strong>"libreta"</strong> con sus respectivas capturas de ejecución.</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full max-w-3xl mb-8">
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col items-center">
+            <i data-lucide="database" class="w-6 h-6 text-sena mb-2"></i>
+            <span class="text-xs text-slate-400 font-bold uppercase">Motor SQL</span>
+            <strong class="text-sm text-slate-800">MySQL / MariaDB</strong>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col items-center">
+            <i data-lucide="table" class="w-6 h-6 text-sky-600 mb-2"></i>
+            <span class="text-xs text-slate-400 font-bold uppercase">Tabla de Taller</span>
+            <strong class="text-sm text-slate-800 font-mono">"libreta"</strong>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col items-center">
+            <i data-lucide="layers" class="w-6 h-6 text-amber-600 mb-2"></i>
+            <span class="text-xs text-slate-400 font-bold uppercase">Comandos</span>
+            <strong class="text-sm text-slate-800">DDL + DML</strong>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col items-center">
+            <i data-lucide="file-check" class="w-6 h-6 text-purple-600 mb-2"></i>
+            <span class="text-xs text-slate-400 font-bold uppercase">Entregable</span>
+            <strong class="text-sm text-slate-800 font-mono">Documento PDF</strong>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <button onclick="goToSlide(1)" class="inline-flex items-center gap-2 bg-[#39A900] hover:bg-[#2D8200] text-white text-xs sm:text-sm font-bold px-6 py-3 rounded-xl shadow-sm transition-all hover:scale-105">
+            <span>Iniciar Explicación del Taller SQL</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <p class="text-[11px] text-slate-400 mt-6">
+          Instructor Técnico: <strong>Ing. Hector David Toledo García</strong> • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)
+        </p>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 2: FUNDAMENTOS TEÓRICOS: DDL VS DML -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="02. Fundamentos: DDL vs DML en SQL">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sena font-mono">Marco Conceptual ANSI SQL</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                ¿Qué es DDL y qué es DML en Bases de Datos Relacionales?
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-emerald-50 text-emerald-800 border border-emerald-200 rounded-full text-xs font-bold">
+              Teoría Obligatoria
+            </span>
+          </div>
+
+          <p class="text-xs sm:text-sm text-slate-600 mb-6">
+            El lenguaje SQL (<em>Structured Query Language</em>) se organiza formalmente en subconjuntos de instrucciones según la acción que realizan sobre el motor de base de datos:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <!-- DDL Card -->
+            <div class="p-6 rounded-2xl bg-sky-50/60 border border-sky-200 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-2.5 mb-3">
+                  <div class="w-9 h-9 rounded-xl bg-sky-600 text-white flex items-center justify-center font-bold">
+                    <i data-lucide="hammer" class="w-5 h-5"></i>
+                  </div>
+                  <div>
+                    <h3 class="font-extrabold text-slate-900 text-base">DDL: Data Definition Language</h3>
+                    <span class="text-xs text-sky-800 font-semibold">Lenguaje de Definición de Datos</span>
+                  </div>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                  Define, modifica y elimina la <strong>estructura física</strong> de los contenedores y objetos de la base de datos (tablas, índices, vistas, schemas). <em>No manipula filas individuales.</em>
+                </p>
+                <div class="space-y-1.5 text-xs font-mono">
+                  <div class="p-2 bg-white rounded-lg border border-sky-100 flex items-center gap-2">
+                    <strong class="text-sky-700">CREATE:</strong>
+                    <span class="text-slate-600">Crea bases de datos, tablas e índices.</span>
+                  </div>
+                  <div class="p-2 bg-white rounded-lg border border-sky-100 flex items-center gap-2">
+                    <strong class="text-sky-700">ALTER:</strong>
+                    <span class="text-slate-600">Modifica columnas, tipos o llaves.</span>
+                  </div>
+                  <div class="p-2 bg-white rounded-lg border border-sky-100 flex items-center gap-2">
+                    <strong class="text-sky-700">DROP / TRUNCATE:</strong>
+                    <span class="text-slate-600">Elimina tablas o vacía su estructura.</span>
+                  </div>
+                  <div class="p-2 bg-white rounded-lg border border-sky-100 flex items-center gap-2">
+                    <strong class="text-sky-700">DESCRIBE / SHOW:</strong>
+                    <span class="text-slate-600">Inspecciona metadatos y esquemas.</span>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-4 pt-3 border-t border-sky-200 text-[11px] text-sky-900 font-semibold">
+                Efecto: Produce confirmación automática (Auto-commit implícito).
+              </div>
+            </div>
+
+            <!-- DML Card -->
+            <div class="p-6 rounded-2xl bg-emerald-50/60 border border-emerald-200 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-2.5 mb-3">
+                  <div class="w-9 h-9 rounded-xl bg-[#39A900] text-white flex items-center justify-center font-bold">
+                    <i data-lucide="database" class="w-5 h-5"></i>
+                  </div>
+                  <div>
+                    <h3 class="font-extrabold text-slate-900 text-base">DML: Data Manipulation Language</h3>
+                    <span class="text-xs text-emerald-800 font-semibold">Lenguaje de Manipulación de Datos</span>
+                  </div>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                  Permite gestionar las <strong>filas y registros de datos</strong> contenidos dentro de las tablas existentes sin alterar la estructura de las columnas.
+                </p>
+                <div class="space-y-1.5 text-xs font-mono">
+                  <div class="p-2 bg-white rounded-lg border border-emerald-100 flex items-center gap-2">
+                    <strong class="text-emerald-700">SELECT:</strong>
+                    <span class="text-slate-600">Consulta y recupera registros (Query).</span>
+                  </div>
+                  <div class="p-2 bg-white rounded-lg border border-emerald-100 flex items-center gap-2">
+                    <strong class="text-emerald-700">INSERT:</strong>
+                    <span class="text-slate-600">Agrega nuevas filas a una tabla.</span>
+                  </div>
+                  <div class="p-2 bg-white rounded-lg border border-emerald-100 flex items-center gap-2">
+                    <strong class="text-emerald-700">UPDATE:</strong>
+                    <span class="text-slate-600">Modifica valores de registros existentes.</span>
+                  </div>
+                  <div class="p-2 bg-white rounded-lg border border-emerald-100 flex items-center gap-2">
+                    <strong class="text-emerald-700">DELETE:</strong>
+                    <span class="text-slate-600">Elimina filas específicas bajo condición WHERE.</span>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-4 pt-3 border-t border-emerald-200 text-[11px] text-emerald-900 font-semibold">
+                Efecto: Puede ser transaccional (COMMIT / ROLLBACK).
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(0)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(2)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Requerimientos Oficiales de la Guía <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 3: REQUERIMIENTOS OFICIALES DE LA GUÍA -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="03. Requerimientos Oficiales de la Guía">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sena font-mono">Guía de Aprendizaje GA6-220501096-AA2-EV01</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Texto Exacto de la Guía: Problema Tabla "Libreta"
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-sky-50 text-sky-800 border border-sky-200 rounded-full text-xs font-bold">
+              8 Puntos a Resolver
+            </span>
+          </div>
+
+          <div class="p-4 bg-slate-50 border-l-4 border-sena rounded-r-xl mb-4 text-xs sm:text-sm text-slate-700 leading-relaxed">
+            <p class="font-bold text-slate-900 mb-1">Enunciado Oficial de la Guía SENA:</p>
+            <p class="italic text-slate-600">
+              "Tomando como referencia el taller descrito a continuación, realice un informe técnico con las sentencias SQL realizadas para dar solución a los problemas planteados.<br>
+              <strong>Problema - Trabaje con la tabla 'Libreta'</strong>"
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+            <div class="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-200 shadow-2xs">
+              <span class="w-6 h-6 rounded-full bg-sky-100 text-sky-800 font-bold text-xs flex items-center justify-center shrink-0">1</span>
+              <div>
+                <strong class="text-xs font-bold text-slate-900">Cree una tabla llamada "libreta".</strong>
+                <p class="text-[11px] text-slate-500">Campos: nombre (varchar 20), domicilio (varchar 30) y teléfono (varchar 11).</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-200 shadow-2xs">
+              <span class="w-6 h-6 rounded-full bg-sky-100 text-sky-800 font-bold text-xs flex items-center justify-center shrink-0">2</span>
+              <div>
+                <strong class="text-xs font-bold text-slate-900">Visualice las tablas existentes.</strong>
+                <p class="text-[11px] text-slate-500">Verificar la creación de "libreta" usando <code>show tables;</code>.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-200 shadow-2xs">
+              <span class="w-6 h-6 rounded-full bg-sky-100 text-sky-800 font-bold text-xs flex items-center justify-center shrink-0">3</span>
+              <div>
+                <strong class="text-xs font-bold text-slate-900">Visualice la estructura de la tabla "libreta".</strong>
+                <p class="text-[11px] text-slate-500">Comando <code>describe libreta;</code> mostrando campos y tipos.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-200 shadow-2xs">
+              <span class="w-6 h-6 rounded-full bg-sky-100 text-sky-800 font-bold text-xs flex items-center justify-center shrink-0">4</span>
+              <div>
+                <strong class="text-xs font-bold text-slate-900">Ingrese los registros iniciales solicitados.</strong>
+                <p class="text-[11px] text-slate-500">('Alberto Mores','Colon 123','4234567') y ('Juan Torres','Avellaneda 135','4458787').</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-200 shadow-2xs">
+              <span class="w-6 h-6 rounded-full bg-sky-100 text-sky-800 font-bold text-xs flex items-center justify-center shrink-0">5</span>
+              <div>
+                <strong class="text-xs font-bold text-slate-900">Seleccione y muestre todos los registros.</strong>
+                <p class="text-[11px] text-slate-500">Sentencia <code>select * from libreta;</code> mostrando las filas.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-200 shadow-2xs">
+              <span class="w-6 h-6 rounded-full bg-sky-100 text-sky-800 font-bold text-xs flex items-center justify-center shrink-0">6</span>
+              <div>
+                <strong class="text-xs font-bold text-slate-900">Construya las sentencias que actualicen los datos.</strong>
+                <p class="text-[11px] text-slate-500">Uso de <code>UPDATE libreta SET ... WHERE ...</code> con precaución.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-200 shadow-2xs">
+              <span class="w-6 h-6 rounded-full bg-sky-100 text-sky-800 font-bold text-xs flex items-center justify-center shrink-0">7</span>
+              <div>
+                <strong class="text-xs font-bold text-slate-900">Insertar 5 registros más.</strong>
+                <p class="text-[11px] text-slate-500">Población con 5 nuevos contactos completando 7 registros.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-200 shadow-2xs">
+              <span class="w-6 h-6 rounded-full bg-sky-100 text-sky-800 font-bold text-xs flex items-center justify-center shrink-0">8</span>
+              <div>
+                <strong class="text-xs font-bold text-slate-900">Cuente cuántos registros se ingresan.</strong>
+                <p class="text-[11px] text-slate-500">Función de agregación <code>select count(*) from libreta;</code>.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-3 bg-sky-50 rounded-xl border border-sky-200 text-xs text-sky-900 flex items-center justify-between">
+            <span class="flex items-center gap-2">
+              <i data-lucide="file-text" class="w-4 h-4 text-sky-700 shrink-0"></i>
+              <span><strong>Formato de entrega:</strong> Documento escrito en <strong>PDF (Extensión libre)</strong> con portada, introducción, objetivo y resolución paso a paso.</span>
+            </span>
+            <span class="font-bold text-sky-800 text-[11px]">Espacio: GA6-220501096-AA2-EV01</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(1)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(3)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Entorno de Trabajo <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 4: ENTORNO DE TRABAJO (MYSQL WORKBENCH / TERMINAL) -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="04. Entorno de Trabajo y Preparación">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sena font-mono">Herramientas Recomendadas</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Preparación del Entorno SQL en MySQL Workbench
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-mono font-bold">Workbench / CLI</span>
+          </div>
+
+          <p class="text-xs sm:text-sm text-slate-600 mb-6">
+            Para ejecutar el taller y tomar las capturas que irán en el informe PDF, el aprendiz puede utilizar <strong>MySQL Workbench</strong> o la consola de comandos de MySQL:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <!-- Opción A: MySQL Workbench -->
+            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-2 mb-3">
+                  <div class="w-8 h-8 rounded-lg bg-sky-100 text-sky-800 flex items-center justify-center font-bold">
+                    <i data-lucide="layout" class="w-4 h-4"></i>
+                  </div>
+                  <h3 class="font-bold text-slate-900 text-sm">Opción A: MySQL Workbench (Recomendada)</h3>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                  Permite escribir las sentencias en el editor SQL, ejecutarlas con el rayo (<kbd class="px-1.5 py-0.5 bg-white border rounded text-[10px]">Ctrl + Enter</kbd>) y capturar simultáneamente la consulta, la cuadrícula de datos y el panel inferior <em>Output</em>.
+                </p>
+                <div class="p-3 bg-white rounded-xl border border-slate-200 font-mono text-[11px] text-slate-700 space-y-1">
+                  <div class="text-slate-400">// 1. Crear y usar la BD del taller</div>
+                  <div class="text-sky-700 font-bold">CREATE DATABASE IF NOT EXISTS agenda_adso;</div>
+                  <div class="text-emerald-700 font-bold">USE agenda_adso;</div>
+                </div>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-200 text-[11px] text-slate-500 font-mono">
+                Visual, estructurada y fácil de documentar para el PDF.
+              </div>
+            </div>
+
+            <!-- Opción B: Consola MySQL CLI -->
+            <div class="p-5 rounded-2xl bg-slate-900 text-slate-100 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-2 mb-3">
+                  <div class="w-8 h-8 rounded-lg bg-emerald-500 text-slate-900 flex items-center justify-center font-bold">
+                    <i data-lucide="terminal" class="w-4 h-4"></i>
+                  </div>
+                  <h3 class="font-bold text-white text-sm">Opción B: Consola MySQL (Terminal CLI)</h3>
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed mb-3">
+                  Cliente de línea de comandos nativo de MySQL o MariaDB. Muestra las tablas en cuadrículas formateadas ASCII ideales para copiar texto o capturar pantalla.
+                </p>
+                <div class="p-3 bg-slate-950 rounded-xl font-mono text-[11px] text-emerald-400 space-y-1">
+                  <div><span class="text-slate-500">&gt;</span> mysql -u root -p</div>
+                  <div><span class="text-slate-500">&gt;</span> CREATE DATABASE agenda_adso;</div>
+                  <div><span class="text-slate-500">&gt;</span> USE agenda_adso;</div>
+                </div>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-emerald-400 font-mono">
+                Rápida y precisa para comprobar sintaxis pura.
+              </div>
+            </div>
+          </div>
+
+          <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200 text-xs text-emerald-900 flex items-center gap-2">
+            <i data-lucide="check-circle" class="w-4 h-4 text-[#39A900] shrink-0"></i>
+            <span><strong>Regla de oro:</strong> Cada vez que ejecutes un paso, toma una captura clara de la pantalla donde se evidencie el comando ejecutado y la respuesta exitosa del motor (icono verde de confirmación).</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(2)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(4)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Paso 1 (CREATE TABLE) <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 5: PASO 1: CREAR TABLA "libreta" (DDL) -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="05. Paso 1: Crear Tabla 'libreta' (DDL)">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sena font-mono">Punto 1 del Taller • Comando DDL</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Creación de la Tabla <span class="text-emerald-700 font-mono">"libreta"</span>
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-sky-50 text-sky-800 rounded-full text-xs font-bold font-mono">CREATE TABLE</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-4">
+            La guía solicita: <em>"Cree una tabla llamada 'libreta'. Debe tener los siguientes campos: nombre (cadena de 20), domicilio (cadena de 30) y teléfono (cadena de 11)"</em>:
+          </p>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 mb-5">
+            <!-- Bloque de Código -->
+            <div class="lg:col-span-7 p-4 rounded-2xl bg-slate-900 text-slate-100 font-mono text-xs flex flex-col justify-between">
+              <div>
+                <span class="text-slate-400 text-[10px] uppercase font-bold tracking-wider block mb-2">// Sentencia SQL exacta:</span>
+                <div class="p-3 bg-slate-950 rounded-xl text-emerald-400 leading-relaxed">
+                  <span class="text-sky-400 font-bold">CREATE TABLE</span> libreta (<br>
+                  &nbsp;&nbsp;nombre <span class="text-amber-300">VARCHAR(20)</span>,<br>
+                  &nbsp;&nbsp;domicilio <span class="text-amber-300">VARCHAR(30)</span>,<br>
+                  &nbsp;&nbsp;telefono <span class="text-amber-300">VARCHAR(11)</span><br>
+                  );
+                </div>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-emerald-400">
+                Resultado: <span class="text-slate-300">0 row(s) affected, 1 warning (o 0.01 sec)</span>
+              </div>
+            </div>
+
+            <!-- Explicación Técnica -->
+            <div class="lg:col-span-5 p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+              <div>
+                <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                  <i data-lucide="info" class="w-4 h-4 text-sky-600"></i>
+                  <span>¿Por qué VARCHAR(n)?</span>
+                </h3>
+                <ul class="text-xs text-slate-600 space-y-2">
+                  <li class="flex items-start gap-2">
+                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                    <span><strong>VARCHAR</strong> almacena solo los caracteres reales más 1 byte de longitud, ahorrando espacio en disco frente a <code>CHAR</code>.</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                    <span><strong>telefono varchar(11):</strong> Es una buena práctica almacenar teléfonos como texto para preservar ceros a la izquierda y caracteres especiales (+, -).</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="mt-3 p-2.5 bg-amber-50 rounded-xl border border-amber-200 text-[11px] text-amber-900">
+                <strong>En el informe PDF:</strong> Pegar el bloque de código SQL y adjuntar la captura de Workbench mostrando el icono verde de ejecución.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(3)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(5)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Pasos 2 y 3 (SHOW & DESCRIBE) <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 6: PASOS 2 Y 3: VERIFICAR Y DESCRIBIR TABLA -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="06. Pasos 2 y 3: SHOW TABLES y DESCRIBE">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sena font-mono">Puntos 2 y 3 del Taller • Metadatos</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Verificar Existencia e Inspeccionar Estructura
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-purple-50 text-purple-700 rounded-full text-xs font-mono font-bold">SHOW & DESCRIBE</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+            <!-- Paso 2: SHOW TABLES -->
+            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="w-6 h-6 rounded-full bg-sky-600 text-white font-bold text-xs flex items-center justify-center">2</span>
+                  <h3 class="font-bold text-slate-900 text-sm">Paso 2: Visualice las tablas existentes</h3>
+                </div>
+                <p class="text-xs text-slate-600 mb-3">
+                  Permite confirmar que la tabla "libreta" fue registrada formalmente en el catálogo:
+                </p>
+                <div class="p-3 bg-slate-900 rounded-xl font-mono text-xs text-emerald-400 mb-3">
+                  <span class="text-sky-400 font-bold">SHOW TABLES</span>;
+                </div>
+                <div class="p-3 bg-white rounded-xl border border-slate-200 font-mono text-xs text-slate-800">
+                  <strong class="block border-b pb-1 text-[11px] text-slate-500">Tables_in_agenda_adso</strong>
+                  <span class="text-emerald-700 font-bold block pt-1">libreta</span>
+                </div>
+              </div>
+              <p class="text-[11px] text-slate-500 mt-2">
+                Respuesta: 1 fila encontrada con el nombre de la tabla.
+              </p>
+            </div>
+
+            <!-- Paso 3: DESCRIBE -->
+            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="w-6 h-6 rounded-full bg-sky-600 text-white font-bold text-xs flex items-center justify-center">3</span>
+                  <h3 class="font-bold text-slate-900 text-sm">Paso 3: Visualice la estructura de la tabla</h3>
+                </div>
+                <p class="text-xs text-slate-600 mb-3">
+                  Comando para inspeccionar los metadatos de las columnas:
+                </p>
+                <div class="p-3 bg-slate-900 rounded-xl font-mono text-xs text-emerald-400 mb-3">
+                  <span class="text-sky-400 font-bold">DESCRIBE</span> libreta;
+                </div>
+                <div class="p-2 bg-white rounded-xl border border-slate-200 font-mono text-[10px] text-slate-700 overflow-x-auto">
+                  <table class="w-full text-left">
+                    <thead>
+                      <tr class="border-b text-slate-400"><th>Field</th><th>Type</th><th>Null</th><th>Key</th><th>Default</th></tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                      <tr><td class="font-bold text-slate-900">nombre</td><td>varchar(20)</td><td>YES</td><td></td><td>NULL</td></tr>
+                      <tr><td class="font-bold text-slate-900">domicilio</td><td>varchar(30)</td><td>YES</td><td></td><td>NULL</td></tr>
+                      <tr><td class="font-bold text-slate-900">telefono</td><td>varchar(11)</td><td>YES</td><td></td><td>NULL</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <p class="text-[11px] text-slate-500 mt-2">
+                También es válido usar el atajo <code>DESC libreta;</code>.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(4)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(6)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Paso 4 (INSERT Iniciales) <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 7: PASO 4: INSERCIÓN DE REGISTROS INICIALES (DML) -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="07. Paso 4: Inserción de Registros Iniciales">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sena font-mono">Punto 4 del Taller • Comando DML</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Inserción de los Primeros Registros en <span class="text-emerald-700 font-mono">"libreta"</span>
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-emerald-50 text-emerald-800 rounded-full text-xs font-bold font-mono">INSERT INTO</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-4">
+            La guía solicita ingresar textualmente los dos siguientes registros:
+          </p>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5">
+            <!-- Sintaxis SQL -->
+            <div class="p-5 rounded-2xl bg-slate-900 text-slate-100 font-mono text-xs flex flex-col justify-between">
+              <div>
+                <span class="text-slate-400 text-[10px] uppercase font-bold tracking-wider block mb-2">// Inserción múltiple atómica:</span>
+                <div class="p-3 bg-slate-950 rounded-xl text-emerald-400 leading-relaxed mb-3">
+                  <span class="text-sky-400 font-bold">INSERT INTO</span> libreta (nombre, domicilio, telefono)<br>
+                  <span class="text-sky-400 font-bold">VALUES</span><br>
+                  &nbsp;&nbsp;(<span class="text-amber-300">'Alberto Mores'</span>, <span class="text-amber-300">'Colon 123'</span>, <span class="text-amber-300">'4234567'</span>),<br>
+                  &nbsp;&nbsp;(<span class="text-amber-300">'Juan Torres'</span>, <span class="text-amber-300">'Avellaneda 135'</span>, <span class="text-amber-300">'4458787'</span>);
+                </div>
+                <p class="text-slate-400 text-[11px] leading-relaxed">
+                  También es 100% válido realizarlas en sentencias <code>INSERT</code> separadas.
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-emerald-400">
+                Resultado esperado: 2 row(s) affected (0.00 sec)
+              </div>
+            </div>
+
+            <!-- Reglas Semánticas -->
+            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+              <div>
+                <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+                  <span>Reglas DML Clave:</span>
+                </h3>
+                <ul class="text-xs text-slate-600 space-y-2.5">
+                  <li>
+                    <strong>Uso de comillas simples (' '):</strong> Todo valor de texto alfanumérico (<code>VARCHAR</code>) debe encerrarse obligatoriamente entre comillas simples en el estándar SQL.
+                  </li>
+                  <li>
+                    <strong>Correspondencia de orden:</strong> El orden de los valores en la cláusula <code>VALUES</code> debe coincidir exactamente con el orden declarado en las columnas <code>(nombre, domicilio, telefono)</code>.
+                  </li>
+                  <li>
+                    <strong>Nombres sin comillas:</strong> El nombre de la tabla y los campos no llevan comillas simples (opcionalmente llevan backticks `libreta`).
+                  </li>
+                </ul>
+              </div>
+              <div class="p-2.5 bg-sky-50 rounded-xl border border-sky-200 text-[11px] text-sky-900 mt-3">
+                <strong>Captura en el informe:</strong> Mostrar la ejecución en MySQL Workbench con el mensaje <em>2 rows affected</em>.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(5)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(7)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Paso 5 (SELECT * FROM libreta) <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 8: PASO 5: SELECCIONAR Y MOSTRAR REGISTROS (DML) -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="08. Paso 5: Consultar Registros (SELECT)">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sena font-mono">Punto 5 del Taller • Consulta DML</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Seleccione y Muestre Todos los Registros
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-sky-50 text-sky-800 rounded-full text-xs font-bold font-mono">SELECT * FROM libreta</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-4">
+            La guía solicita: <em>"Seleccione y muestre todos los registros de la tabla"</em>. Se emplea la sentencia de consulta fundamental de SQL:
+          </p>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 mb-5">
+            <!-- Comando -->
+            <div class="lg:col-span-5 p-5 rounded-2xl bg-slate-900 text-slate-100 font-mono text-xs flex flex-col justify-between">
+              <div>
+                <span class="text-slate-400 text-[10px] uppercase font-bold tracking-wider block mb-2">// Sentencia de recuperación:</span>
+                <div class="p-3 bg-slate-950 rounded-xl text-emerald-400 leading-relaxed mb-3">
+                  <span class="text-sky-400 font-bold">SELECT</span> * <span class="text-sky-400 font-bold">FROM</span> libreta;
+                </div>
+                <p class="text-slate-400 text-[11px] leading-relaxed">
+                  El asterisco (<code>*</code>) actúa como comodín para indicar al motor que proyecte todas las columnas de la tabla.
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-slate-400 font-sans">
+                Equivalente formal:<br>
+                <code class="text-sky-300">SELECT nombre, domicilio, telefono FROM libreta;</code>
+              </div>
+            </div>
+
+            <!-- Tabla de Resultados Esperada -->
+            <div class="lg:col-span-7 p-5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+              <div>
+                <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                  <i data-lucide="table" class="w-4 h-4 text-emerald-600"></i>
+                  <span>Cuadrícula de Resultados en Pantalla (Result Grid):</span>
+                </h3>
+                <div class="bg-white rounded-xl border border-slate-200 overflow-hidden font-mono text-xs">
+                  <table class="w-full text-left">
+                    <thead class="bg-slate-100 text-slate-700 text-[11px] font-bold border-b border-slate-200">
+                      <tr>
+                        <th class="p-2.5">nombre</th>
+                        <th class="p-2.5">domicilio</th>
+                        <th class="p-2.5">telefono</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100 text-slate-800 text-[11px]">
+                      <tr class="hover:bg-slate-50">
+                        <td class="p-2.5 font-semibold">Alberto Mores</td>
+                        <td class="p-2.5 text-slate-600">Colon 123</td>
+                        <td class="p-2.5 text-slate-600">4234567</td>
+                      </tr>
+                      <tr class="hover:bg-slate-50">
+                        <td class="p-2.5 font-semibold">Juan Torres</td>
+                        <td class="p-2.5 text-slate-600">Avellaneda 135</td>
+                        <td class="p-2.5 text-slate-600">4458787</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="p-2.5 bg-emerald-50 rounded-xl border border-emerald-200 text-[11px] text-emerald-900 mt-3">
+                <strong>Captura obligatoria:</strong> Asegúrate de que en la captura se visualice tanto la pestaña SQL con la sentencia como la cuadrícula inferior con las 2 filas devueltas.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(6)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(8)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Paso 6 (UPDATE) <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 9: PASO 6: ACTUALIZACIÓN DE DATOS (DML) -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="09. Paso 6: Actualizar Datos (UPDATE)">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sena font-mono">Punto 6 del Taller • Modificación DML</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Construya las Sentencias que Actualicen los Datos
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-amber-50 text-amber-800 rounded-full text-xs font-bold font-mono">UPDATE libreta SET ... WHERE</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-3">
+            La guía solicita: <em>"Construya las sentencias que actualicen los datos que acaba de insertar"</em>. Dado que la tabla <code>libreta</code> no tiene clave primaria (PK), en <strong>MySQL Workbench</strong> se debe ejecutar previamente <code>SET SQL_SAFE_UPDATES = 0;</code> para evitar el <strong>Error 1175</strong>:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+            <!-- Actualización Registro 1 -->
+            <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200">
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="px-2 py-0.5 rounded bg-amber-100 text-amber-800 text-xs font-bold">Registro 1: Alberto Mores</span>
+                <span class="font-mono text-[11px] text-slate-500">Nuevo domicilio y teléfono</span>
+              </div>
+              <div class="p-3 bg-slate-900 rounded-xl font-mono text-[11px] text-emerald-400">
+                <span class="text-slate-500">// 1. Desactivar Safe Mode en la sesión:</span><br>
+                <span class="text-amber-300 font-bold">SET SQL_SAFE_UPDATES = 0;</span><br><br>
+                <span class="text-slate-500">// 2. Actualizar registro:</span><br>
+                <span class="text-sky-400 font-bold">UPDATE</span> libreta<br>
+                <span class="text-sky-400 font-bold">SET</span> domicilio = <span class="text-amber-300">'Colon 456'</span>,<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;telefono = <span class="text-amber-300">'4239999'</span><br>
+                <span class="text-rose-400 font-bold">WHERE</span> nombre = <span class="text-amber-300">'Alberto Mores'</span>;
+              </div>
+              <p class="text-[10px] text-slate-500 font-mono mt-1.5">Rows matched: 1  Changed: 1  (Query OK)</p>
+            </div>
+
+            <!-- Actualización Registro 2 -->
+            <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200">
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="px-2 py-0.5 rounded bg-amber-100 text-amber-800 text-xs font-bold">Registro 2: Juan Torres</span>
+                <span class="font-mono text-[11px] text-slate-500">Nuevo teléfono</span>
+              </div>
+              <div class="p-3 bg-slate-900 rounded-xl font-mono text-[11px] text-emerald-400">
+                <span class="text-slate-500">// Actualizar teléfono:</span><br>
+                <span class="text-sky-400 font-bold">UPDATE</span> libreta<br>
+                <span class="text-sky-400 font-bold">SET</span> telefono = <span class="text-amber-300">'4450000'</span><br>
+                <span class="text-rose-400 font-bold">WHERE</span> nombre = <span class="text-amber-300">'Juan Torres'</span>;<br><br>
+                <span class="text-slate-500">// (Opcional) Reactivar Safe Mode:</span><br>
+                <span class="text-slate-400">SET SQL_SAFE_UPDATES = 1;</span>
+              </div>
+              <p class="text-[10px] text-slate-500 font-mono mt-1.5">Rows matched: 1  Changed: 1  (Query OK)</p>
+            </div>
+          </div>
+
+          <!-- Solución detallada al Error 1175 -->
+          <div class="p-3.5 bg-amber-50/90 rounded-2xl border border-amber-300 text-xs text-amber-950 space-y-2">
+            <div class="flex items-center gap-2 text-amber-900 font-bold text-xs uppercase">
+              <i data-lucide="shield-alert" class="w-4 h-4 text-amber-700"></i>
+              <span>¿Por qué ocurre el Error Code: 1175 en MySQL Workbench y cómo resolverlo?</span>
+            </div>
+            <p class="leading-relaxed text-[11.5px] text-slate-700">
+              <strong>Causa:</strong> MySQL Workbench tiene activada por defecto la protección <em>"Safe Updates"</em>, la cual rechaza cualquier <code>UPDATE</code> o <code>DELETE</code> si la cláusula <code>WHERE</code> no utiliza una columna que sea <strong>Llave Primaria (Primary Key)</strong>. Como la tabla <code>libreta</code> creada en el taller no tiene llave primaria, el motor bloquea la modificación por seguridad.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] pt-1">
+              <div class="p-2 bg-white rounded-lg border border-amber-200">
+                <strong class="text-amber-900 block font-bold mb-0.5">Solución 1 (Inmediata en SQL - Recomendada):</strong>
+                <span>Ejecutar la línea <code>SET SQL_SAFE_UPDATES = 0;</code> en la misma pestaña de Workbench antes de ejecutar el <code>UPDATE</code>.</span>
+              </div>
+              <div class="p-2 bg-white rounded-lg border border-amber-200">
+                <strong class="text-amber-900 block font-bold mb-0.5">Solución 2 (Permanente en Workbench):</strong>
+                <span>Menú <strong>Edit</strong> &gt; <strong>Preferences...</strong> &gt; <strong>SQL Editor</strong> &gt; desmarcar <em>"Safe Updates (rejects UPDATEs and DELETEs with no key in WHERE)"</em> &gt; <strong>OK</strong> &gt; Menú <strong>Query</strong> &gt; <strong>Reconnect to Server</strong>.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(7)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(9)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Paso 7 (5 Registros Más) <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 10: PASO 7: INSERTAR 5 REGISTROS MÁS (DML) -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="10. Paso 7: Insertar 5 Registros Más">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sena font-mono">Punto 7 del Taller • Población de Datos</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Insertar Cinco (5) Registros Más en la Tabla
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-purple-50 text-purple-700 rounded-full text-xs font-bold font-mono">Total Acumulado: 7 Filas</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-3">
+            La guía solicita: <em>"Insertar 5 registros más"</em>. Poblamos la tabla libreta con cinco nuevos contactos variados:
+          </p>
+
+          <div class="p-3 bg-slate-900 rounded-2xl font-mono text-[11px] text-slate-200 overflow-x-auto max-h-[300px] border border-slate-800 mb-3">
+            <pre class="leading-relaxed"><code><span class="text-sky-400 font-bold">INSERT INTO</span> libreta (nombre, domicilio, telefono) <span class="text-sky-400 font-bold">VALUES</span>
+  (<span class="text-amber-300">'María López'</span>, <span class="text-amber-300">'Carrera 7 # 12-40'</span>, <span class="text-amber-300">'3104561234'</span>),
+  (<span class="text-amber-300">'Carlos Rojas'</span>, <span class="text-amber-300">'Calle 5 # 8-20'</span>, <span class="text-amber-300">'3157894561'</span>),
+  (<span class="text-amber-300">'Diana Castro'</span>, <span class="text-amber-300">'Avenida Pastrana # 10-15'</span>, <span class="text-amber-300">'3201239874'</span>),
+  (<span class="text-amber-300">'Fernando Ruiz'</span>, <span class="text-amber-300">'Carrera 10 # 4-50'</span>, <span class="text-amber-300">'3186547890'</span>),
+  (<span class="text-amber-300">'Patricia Silva'</span>, <span class="text-amber-300">'Calle 12 # 3-25'</span>, <span class="text-amber-300">'3129873456'</span>);</code></pre>
+          </div>
+
+          <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200 text-xs text-emerald-900 flex items-center justify-between">
+            <span class="flex items-center gap-2">
+              <i data-lucide="check-circle" class="w-4 h-4 text-sena shrink-0"></i>
+              <span>Resultado esperado: <strong>5 row(s) affected</strong>. La tabla ahora contiene un histórico completo de 7 contactos.</span>
+            </span>
+            <span class="font-bold text-[11px] text-emerald-800 font-mono">2 Iniciales + 5 Nuevos = 7</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-3 border-t border-slate-100">
+          <button onclick="goToSlide(8)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(10)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Paso 8 (COUNT de Registros) <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 11: PASO 8: CONTEO DE REGISTROS (DML / AGGREGATION) -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="11. Paso 8: Contar Registros (COUNT)">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sena font-mono">Punto 8 del Taller • Función de Agregación</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Cuente Cuántos Registros se Ingresan
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-sky-50 text-sky-800 rounded-full text-xs font-bold font-mono">SELECT COUNT(*)</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-4">
+            La guía solicita: <em>"Cuente cuántos registros se ingresan"</em>. En SQL se emplea la función de agregación estándar <code>COUNT()</code>:
+          </p>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 mb-5">
+            <!-- Comando y Sintaxis -->
+            <div class="lg:col-span-6 p-5 rounded-2xl bg-slate-900 text-slate-100 font-mono text-xs flex flex-col justify-between">
+              <div>
+                <span class="text-slate-400 text-[10px] uppercase font-bold tracking-wider block mb-2">// Consulta con alias personalizado:</span>
+                <div class="p-3 bg-slate-950 rounded-xl text-emerald-400 leading-relaxed mb-3">
+                  <span class="text-sky-400 font-bold">SELECT COUNT</span>(*) <span class="text-sky-400 font-bold">AS</span> total_contactos<br>
+                  <span class="text-sky-400 font-bold">FROM</span> libreta;
+                </div>
+                <p class="text-slate-400 text-[11px] leading-relaxed">
+                  <code>COUNT(*)</code> evalúa el número total de tuplas físicas en la tabla, independientemente de si algún campo individual contiene valores <code>NULL</code>.
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-slate-300 font-mono">
+                La cláusula <code>AS total_contactos</code> asigna un nombre claro a la columna de salida.
+              </div>
+            </div>
+
+            <!-- Retorno de la Consulta -->
+            <div class="lg:col-span-6 p-5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+              <div>
+                <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                  <i data-lucide="calculator" class="w-4 h-4 text-emerald-600"></i>
+                  <span>Resultado Esperado en la Cuadrícula:</span>
+                </h3>
+                <div class="bg-white rounded-xl border border-slate-200 overflow-hidden font-mono text-xs mb-3">
+                  <div class="p-2.5 bg-slate-100 text-slate-700 font-bold border-b border-slate-200 text-center">
+                    total_contactos
+                  </div>
+                  <div class="p-4 text-center text-3xl font-extrabold text-[#39A900]">
+                    7
+                  </div>
+                </div>
+              </div>
+              <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200 text-xs text-emerald-900">
+                <strong>Verificación matemática:</strong> 2 registros del paso 4 + 5 registros del paso 7 = exactamente <strong>7 registros totales</strong>.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(9)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(11)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Estructura del Informe PDF <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 12: ESTRUCTURA FORMAL DEL DOCUMENTO PDF -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="12. Estructura Obligatoria del Documento PDF">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sky-600 font-mono">Normas de Presentación SENA</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Estructura del Informe Técnico (Documento PDF)
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-sky-50 text-sky-800 rounded-full text-xs font-bold font-mono">Formato: PDF • Extensión: Libre</span>
+          </div>
+
+          <div class="p-4 bg-sky-50 border border-sky-300 rounded-2xl mb-5 text-xs text-sky-950 leading-relaxed">
+            <strong class="font-bold text-sky-900 block mb-1">Requisito literal de la guía de aprendizaje:</strong>
+            <p class="italic text-slate-700">
+              "Se deben seguir las normas básicas de presentación de un documento escrito, es decir, debe tener como mínimo una portada, introducción, objetivo, y sentencias punto a punto de la solución de las preguntas del taller SQL."
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-5">
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+              <span class="w-7 h-7 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center mb-2">1</span>
+              <strong class="text-slate-900 block text-xs font-bold uppercase mb-1">Portada Institucional</strong>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Título de la evidencia, nombre del aprendiz, número de ficha ADSO, nombre del instructor y centro (CADPH Garzón).
+              </p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+              <span class="w-7 h-7 rounded-full bg-sky-100 text-sky-800 font-bold text-xs flex items-center justify-center mb-2">2</span>
+              <strong class="text-slate-900 block text-xs font-bold uppercase mb-1">Introducción y Objetivo</strong>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Breve contexto de la importancia de los comandos DDL y DML en SQL y el propósito práctico del taller sobre la tabla libreta.
+              </p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+              <span class="w-7 h-7 rounded-full bg-amber-100 text-amber-800 font-bold text-xs flex items-center justify-center mb-2">3</span>
+              <strong class="text-slate-900 block text-xs font-bold uppercase mb-1">Solución Punto a Punto</strong>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Los 8 puntos numerados del 1 al 8. Cada punto debe incluir la sentencia SQL en texto y la captura de pantalla de su ejecución en MySQL.
+              </p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+              <span class="w-7 h-7 rounded-full bg-purple-100 text-purple-800 font-bold text-xs flex items-center justify-center mb-2">4</span>
+              <strong class="text-slate-900 block text-xs font-bold uppercase mb-1">Conclusiones</strong>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Reflexión técnica sobre las diferencias observadas entre definir estructuras (DDL) y manipular los datos (DML).
+              </p>
+            </div>
+          </div>
+
+          <div class="p-3 bg-slate-100 rounded-xl text-xs text-slate-700 flex items-center justify-between">
+            <span><strong>Nombre recomendado del archivo:</strong> <code>GA6_220501096_AA2_EV01_Nombre_Apellido.pdf</code></span>
+            <span class="font-mono font-bold text-slate-800">Exportar desde Word a PDF</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(10)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(12)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Buenas Prácticas de Capturas <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 13: BUENAS PRÁCTICAS Y CALIDAD DEL INFORME -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="13. Buenas Prácticas para el Informe">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sena font-mono">Calidad y Rigor Técnico</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Buenas Prácticas para las Capturas y Redacción
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-mono font-bold">100% Legibilidad</span>
+          </div>
+
+          <p class="text-xs sm:text-sm text-slate-600 mb-6">
+            Para garantizar la máxima calificación ('A') en la evaluación del instructor, siga estas recomendaciones visuales:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-6">
+            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200">
+              <div class="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold mb-3">
+                <i data-lucide="crop" class="w-4 h-4"></i>
+              </div>
+              <h3 class="font-bold text-slate-900 text-sm mb-1">1. Recorte Preciso</h3>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Utilice la herramienta <em>Recortes de Windows</em> (<kbd class="px-1.5 py-0.5 bg-white border rounded text-[10px]">Win + Shift + S</kbd>) para capturar la ventana activa de MySQL Workbench con buena resolución.
+              </p>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200">
+              <div class="w-9 h-9 rounded-xl bg-sky-100 text-sky-800 flex items-center justify-center font-bold mb-3">
+                <i data-lucide="check-check" class="w-4 h-4"></i>
+              </div>
+              <h3 class="font-bold text-slate-900 text-sm mb-1">2. Panel Output Visible</h3>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Asegúrese de que en la parte inferior de la captura se aprecie el icono verde de ejecución con el mensaje de confirmación (<em>Query OK, rows affected</em>).
+              </p>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200">
+              <div class="w-9 h-9 rounded-xl bg-purple-100 text-purple-800 flex items-center justify-center font-bold mb-3">
+                <i data-lucide="code" class="w-4 h-4"></i>
+              </div>
+              <h3 class="font-bold text-slate-900 text-sm mb-1">3. Código en Texto</h3>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                No pegue únicamente imágenes. Incluya siempre la sentencia SQL en bloque de texto formateado con fuente monoespaciada (Consolas, Courier New o JetBrains Mono).
+              </p>
+            </div>
+          </div>
+
+          <div class="p-3 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-900 flex items-center gap-2">
+            <i data-lucide="alert-circle" class="w-4 h-4 text-amber-700 shrink-0"></i>
+            <span><strong>Recordatorio:</strong> El documento debe subirse directamente como archivo <strong>.PDF</strong> en el espacio correspondiente de Zajuna. Evite enviar archivos editables de Word (.docx) para evitar distorsiones en las imágenes.</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(11)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(13)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Lista de Chequeo Final <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 14: LISTA DE CHEQUEO FINAL DE CALIFICACIÓN APROBADA -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="14. Lista de Chequeo Final de Entrega">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sena font-mono">Verificación de Criterios de Evaluación</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Lista de Chequeo de la Evidencia SQL
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-emerald-50 text-emerald-800 rounded-full text-xs font-bold">100% Calificación 'A'</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-3">
+            Antes de exportar y subir tu documento PDF a Zajuna LMS, verifica que cumplas con cada uno de los siguientes puntos:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5 mb-4 text-xs">
+            <label class="flex items-start gap-2.5 p-2 bg-slate-50 hover:bg-emerald-50/50 rounded-xl border border-slate-200 cursor-pointer transition-colors">
+              <input type="checkbox" checked class="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4 shrink-0">
+              <div>
+                <strong class="text-slate-900 block font-bold text-xs">1. Portada, Introducción y Objetivo</strong>
+                <p class="text-slate-500 text-[11px]">Estructura formal con datos del aprendiz, programa ADSO y contexto técnico.</p>
+              </div>
+            </label>
+
+            <label class="flex items-start gap-2.5 p-2 bg-slate-50 hover:bg-emerald-50/50 rounded-xl border border-slate-200 cursor-pointer transition-colors">
+              <input type="checkbox" checked class="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4 shrink-0">
+              <div>
+                <strong class="text-slate-900 block font-bold text-xs">2. Punto 1: Creación de la tabla "libreta"</strong>
+                <p class="text-slate-500 text-[11px]">Sentencia <code>CREATE TABLE</code> con campos nombre, domicilio y telefono.</p>
+              </div>
+            </label>
+
+            <label class="flex items-start gap-2.5 p-2 bg-slate-50 hover:bg-emerald-50/50 rounded-xl border border-slate-200 cursor-pointer transition-colors">
+              <input type="checkbox" checked class="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4 shrink-0">
+              <div>
+                <strong class="text-slate-900 block font-bold text-xs">3. Puntos 2 y 3: SHOW TABLES y DESCRIBE</strong>
+                <p class="text-slate-500 text-[11px]">Evidencia de verificación y estructura de columnas con sus tipos VARCHAR.</p>
+              </div>
+            </label>
+
+            <label class="flex items-start gap-2.5 p-2 bg-slate-50 hover:bg-emerald-50/50 rounded-xl border border-slate-200 cursor-pointer transition-colors">
+              <input type="checkbox" checked class="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4 shrink-0">
+              <div>
+                <strong class="text-slate-900 block font-bold text-xs">4. Punto 4: Inserción de 2 registros iniciales</strong>
+                <p class="text-slate-500 text-[11px]">Sentencias <code>INSERT</code> con los datos de Alberto Mores y Juan Torres.</p>
+              </div>
+            </label>
+
+            <label class="flex items-start gap-2.5 p-2 bg-slate-50 hover:bg-emerald-50/50 rounded-xl border border-slate-200 cursor-pointer transition-colors">
+              <input type="checkbox" checked class="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4 shrink-0">
+              <div>
+                <strong class="text-slate-900 block font-bold text-xs">5. Punto 5: SELECT * FROM libreta</strong>
+                <p class="text-slate-500 text-[11px]">Captura de la cuadrícula con las dos filas recuperadas del motor.</p>
+              </div>
+            </label>
+
+            <label class="flex items-start gap-2.5 p-2 bg-slate-50 hover:bg-emerald-50/50 rounded-xl border border-slate-200 cursor-pointer transition-colors">
+              <input type="checkbox" checked class="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4 shrink-0">
+              <div>
+                <strong class="text-slate-900 block font-bold text-xs">6. Punto 6: Sentencias UPDATE</strong>
+                <p class="text-slate-500 text-[11px]">Modificación de los datos recién insertados usando la cláusula <code>WHERE</code>.</p>
+              </div>
+            </label>
+
+            <label class="flex items-start gap-2.5 p-2 bg-slate-50 hover:bg-emerald-50/50 rounded-xl border border-slate-200 cursor-pointer transition-colors">
+              <input type="checkbox" checked class="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4 shrink-0">
+              <div>
+                <strong class="text-slate-900 block font-bold text-xs">7. Punto 7: Inserción de 5 registros más</strong>
+                <p class="text-slate-500 text-[11px]">Población de 5 contactos adicionales acumulando 7 registros.</p>
+              </div>
+            </label>
+
+            <label class="flex items-start gap-2.5 p-2 bg-slate-50 hover:bg-emerald-50/50 rounded-xl border border-slate-200 cursor-pointer transition-colors">
+              <input type="checkbox" checked class="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4 shrink-0">
+              <div>
+                <strong class="text-slate-900 block font-bold text-xs">8. Punto 8: Conteo con SELECT COUNT(*)</strong>
+                <p class="text-slate-500 text-[11px]">Sentencia de agregación comprobando que el resultado es 7.</p>
+              </div>
+            </label>
+          </div>
+
+          <!-- Recordatorio de entrega -->
+          <div class="p-3 bg-sky-50 rounded-xl border border-sky-200 text-xs text-sky-900 flex items-center justify-between">
+            <span class="flex items-center gap-2">
+              <i data-lucide="file-check" class="w-4 h-4 text-sky-700 shrink-0"></i>
+              <span><strong>Formato requerido:</strong> Documento en formato <strong>PDF</strong> subido directamente al espacio Zajuna.</span>
+            </span>
+            <span class="font-bold text-[11px] text-sky-800">Espacio: GA6-220501096-AA2-EV01</span>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-slate-100">
+          <a href="../../index.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#00324D] hover:underline">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+            <span>Volver al Repositorio Principal ADSO</span>
+          </a>
+          <a href="https://zajuna.sena.edu.co" target="_blank" class="inline-flex items-center gap-2 bg-[#39A900] hover:bg-[#2D8200] text-white font-bold text-xs px-6 py-2.5 rounded-xl shadow-xs transition-colors">
+            <i data-lucide="upload" class="w-4 h-4"></i>
+            <span>Ir a Entregar Documento PDF en Zajuna LMS</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- MOTOR JAVASCRIPT DE NAVEGACIÓN Y CONTROLES -->
+  <!-- ========================================================================= -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const slides = document.querySelectorAll('.slide-content');
+      const totalSlides = slides.length;
+      let currentSlide = 0;
+
+      const slideCounter = document.getElementById('slide-counter');
+      const progressBar = document.getElementById('presentation-progress');
+      const btnPrev = document.getElementById('btn-prev-slide');
+      const btnNext = document.getElementById('btn-next-slide');
+      const btnFullscreen = document.getElementById('btn-fullscreen');
+      const menuDrawer = document.getElementById('menu-drawer');
+      const btnToggleMenu = document.getElementById('btn-toggle-menu');
+      const btnCloseMenu = document.getElementById('btn-close-menu');
+      const menuItemsList = document.getElementById('menu-items-list');
+      const helpModal = document.getElementById('help-modal');
+      const btnToggleHelp = document.getElementById('btn-toggle-help');
+      const btnCloseHelp = document.getElementById('btn-close-help');
+
+      // Generar Menú de Diapositivas
+      slides.forEach((slide, idx) => {
+        const title = slide.getAttribute('data-title') || `Diapositiva ${idx + 1}`;
+        const item = document.createElement('button');
+        item.className = `w-full text-left p-2.5 rounded-xl text-xs font-semibold transition-colors flex items-center justify-between ${idx === 0 ? 'bg-emerald-50 text-emerald-800 font-bold border border-emerald-200' : 'text-slate-700 hover:bg-slate-100'}`;
+        item.innerHTML = `
+          <span class="truncate mr-2">${title}</span>
+          <span class="text-[10px] font-mono text-slate-400 shrink-0">${idx + 1}/${totalSlides}</span>
+        `;
+        item.addEventListener('click', () => {
+          goToSlide(idx);
+          menuDrawer.classList.add('translate-x-full');
+        });
+        menuItemsList.appendChild(item);
+      });
+
+      function updateSlideUI() {
+        slides.forEach((s, i) => {
+          if (i === currentSlide) {
+            s.classList.remove('hidden');
+            s.classList.add('active');
+          } else {
+            s.classList.add('hidden');
+            s.classList.remove('active');
+          }
+        });
+
+        // Contador
+        if (slideCounter) {
+          slideCounter.textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        // Barra de progreso
+        if (progressBar) {
+          const pct = ((currentSlide + 1) / totalSlides) * 100;
+          progressBar.style.width = `${pct}%`;
+        }
+
+        // Estado botones prev/next
+        if (btnPrev) btnPrev.disabled = currentSlide === 0;
+        if (btnNext) {
+          btnNext.innerHTML = currentSlide === totalSlides - 1 ? '<i data-lucide="check" class="w-4 h-4"></i>' : '<i data-lucide="chevron-right" class="w-4 h-4"></i>';
+        }
+
+        // Actualizar selección en drawer
+        const menuButtons = menuItemsList.querySelectorAll('button');
+        menuButtons.forEach((b, i) => {
+          if (i === currentSlide) {
+            b.className = 'w-full text-left p-2.5 rounded-xl text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 flex items-center justify-between';
+          } else {
+            b.className = 'w-full text-left p-2.5 rounded-xl text-xs font-semibold text-slate-700 hover:bg-slate-100 flex items-center justify-between';
+          }
+        });
+
+        if (window.lucide && typeof window.lucide.createIcons === 'function') {
+          window.lucide.createIcons();
+        }
+      }
+
+      function goToSlide(index) {
+        if (index < 0 || index >= totalSlides) return;
+        currentSlide = index;
+        updateSlideUI();
+      }
+
+      window.goToSlide = goToSlide;
+
+      if (btnPrev) btnPrev.addEventListener('click', () => goToSlide(currentSlide - 1));
+      if (btnNext) btnNext.addEventListener('click', () => goToSlide(currentSlide + 1));
+
+      // Menú lateral
+      if (btnToggleMenu) btnToggleMenu.addEventListener('click', () => menuDrawer.classList.toggle('translate-x-full'));
+      if (btnCloseMenu) btnCloseMenu.addEventListener('click', () => menuDrawer.classList.add('translate-x-full'));
+
+      // Modal de ayuda
+      if (btnToggleHelp) btnToggleHelp.addEventListener('click', () => helpModal.classList.remove('hidden'));
+      if (btnCloseHelp) btnCloseHelp.addEventListener('click', () => helpModal.classList.add('hidden'));
+      if (helpModal) {
+        helpModal.addEventListener('click', (e) => {
+          if (e.target === helpModal) helpModal.classList.add('hidden');
+        });
+      }
+
+      // Pantalla Completa
+      if (btnFullscreen) {
+        btnFullscreen.addEventListener('click', () => {
+          if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch(err => console.log(err));
+          } else {
+            document.exitFullscreen().catch(err => console.log(err));
+          }
+        });
+      }
+
+      // Temporizador de Aula
+      let timerSeconds = 0;
+      let timerInterval = null;
+      let timerRunning = false;
+      const timerDisplay = document.getElementById('timer-display');
+      const btnTimerStart = document.getElementById('btn-timer-start');
+      const btnTimerReset = document.getElementById('btn-timer-reset');
+
+      function formatTime(s) {
+        const mins = Math.floor(s / 60);
+        const secs = s % 60;
+        return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      }
+
+      function toggleTimer() {
+        if (!timerRunning) {
+          timerInterval = setInterval(() => {
+            timerSeconds++;
+            if (timerDisplay) timerDisplay.textContent = formatTime(timerSeconds);
+          }, 1000);
+          timerRunning = true;
+          if (btnTimerStart) {
+            btnTimerStart.textContent = 'Pausa';
+            btnTimerStart.className = 'text-amber-700 hover:text-amber-800 font-bold ml-1 text-[11px] uppercase';
+          }
+        } else {
+          clearInterval(timerInterval);
+          timerRunning = false;
+          if (btnTimerStart) {
+            btnTimerStart.textContent = 'Reanudar';
+            btnTimerStart.className = 'text-emerald-700 hover:text-emerald-800 font-bold ml-1 text-[11px] uppercase';
+          }
+        }
+      }
+
+      if (btnTimerStart) btnTimerStart.addEventListener('click', toggleTimer);
+      if (btnTimerReset) {
+        btnTimerReset.addEventListener('click', () => {
+          clearInterval(timerInterval);
+          timerRunning = false;
+          timerSeconds = 0;
+          if (timerDisplay) timerDisplay.textContent = '00:00';
+          if (btnTimerStart) {
+            btnTimerStart.textContent = 'Iniciar';
+            btnTimerStart.className = 'text-emerald-700 hover:text-emerald-800 font-bold ml-1 text-[11px] uppercase';
+          }
+        });
+      }
+
+      // Navegación con teclado
+      document.addEventListener('keydown', (e) => {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+        if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+          e.preventDefault();
+          goToSlide(currentSlide + 1);
+        } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+          e.preventDefault();
+          goToSlide(currentSlide - 1);
+        } else if (e.key.toLowerCase() === 'm') {
+          menuDrawer.classList.toggle('translate-x-full');
+        } else if (e.key.toLowerCase() === 'f') {
+          if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch(err => console.log(err));
+          } else {
+            document.exitFullscreen().catch(err => console.log(err));
+          }
+        } else if (e.key.toLowerCase() === 't') {
+          toggleTimer();
+        } else if (e.key === '?' || e.key === '¿') {
+          helpModal.classList.toggle('hidden');
+        } else if (e.key === 'Escape') {
+          menuDrawer.classList.add('translate-x-full');
+          helpModal.classList.add('hidden');
+        }
+      });
+
+      // Inicializar iconos y estado inicial
+      updateSlideUI();
+    });
+  </script>
+</body>
+</html>

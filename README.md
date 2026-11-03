@@ -49,6 +49,7 @@ repoVirtual/
         ├── proyeccion-evidencia-03.html # Presentación interactiva de 14 diapositivas para Evidencia 3 (NoSQL MongoDB Compass)
         ├── proyeccion-evidencia-04.html # Presentación interactiva de 12 diapositivas para Evidencia 4 (Bases de Datos en MongoDB)
         ├── proyeccion-evidencia-05.html # Presentación interactiva de 14 diapositivas para Evidencia 5 (Sentencias SQL DDL y DML)
+        ├── proyeccion-evidencia-06.html # Presentación interactiva de 14 diapositivas para Evidencia 6 (Estructura de BD y Restricciones)
         └── proyeccion.html             # Modo Proyección General en Aula (Guía 06)
 ```
 
@@ -136,6 +137,27 @@ repoVirtual/
   * **Slide 11:** **Punto 8 del Taller (Agregación):** Conteo de registros con `SELECT COUNT(*) AS total_contactos FROM libreta;` certificando exactamente 7 filas.
   * **Slide 12 - 13:** **Estructura Formal del Documento PDF:** Plantilla institucional (Portada, Introducción, Objetivo, Sentencias punto a punto con capturas de pantalla, Conclusiones) y buenas prácticas de recorte y formato.
   * **Slide 14:** **Lista de Chequeo Final:** Autoevaluación interactiva de los 8 puntos del taller antes de subir el PDF a **Zajuna LMS**.
+
+### 🟢 Evidencia 6: Creación de la estructura de la BD y aplicación de restricciones (`proyeccion-evidencia-06.html`)
+* **Código Oficial:** `GA6-220501096-AA2-EV02` (16 Horas de Formación Técnica).
+* **Enfoque Obligatorio:** Software a desarrollar en el **Proyecto Formativo** del equipo de aprendices (Caso de negocio o empresa real).
+* **Productos a Entregar según la Guía:** Archivo comprimido en formato **ZIP** que contiene:
+  1. Archivo en **Word (.docx)** con el documento escrito formal (portada, introducción, objetivo, descripción estructural y restricciones).
+  2. Archivos realizados en el programa **MySQL Workbench** con los diseños entidad-relación (modelo nativo `.mwb` y script DDL `.sql`).
+* **14 Diapositivas Prácticas con Caso Real ("AgroTech Colombia S.A.S.")**:
+  * **Slide 01 - 02:** Portada institucional y **Ficha Técnica Oficial** (instrumento `IE-GA6-220501096-AA2-EV02`, 16 horas, paquete ZIP requerido).
+  * **Slide 03:** **El Reto:** Cómo conectar la base de datos con el software de negocio real de su proyecto (selección de 5 a 8 tablas, atributos atómicos y restricciones).
+  * **Slide 04:** **Caso Práctico Modelo:** *AgroTech Colombia S.A.S.* (6 tablas de negocio: `roles`, `usuarios`, `categorias`, `productos`, `pedidos`, `detalle_pedidos`).
+  * **Slide 05:** **El Software Oficial:** *MySQL Workbench 8.0 CE* (explicación de la herramienta visual EER Data Modeling frente al editor SQL y creación del modelo `.mwb`).
+  * **Slide 06:** **Paso 1 en Workbench:** Creación de tablas en el lienzo EER y selección rigurosa de tipos de datos (`DECIMAL(12,2)`, `INT AUTO_INCREMENT`, `DATETIME`, `VARCHAR`).
+  * **Slide 07:** **Paso 2 en Workbench:** Llaves primarias (`PK`) y banderas de columna (`NN`, `UQ`, `AI`, valores `DEFAULT`).
+  * **Slide 08:** **Paso 3 en Workbench:** Trazado de relaciones y llaves foráneas (`FK`) con la herramienta *1:n Non-Identifying Relationship* y configuración de constraints.
+  * **Slide 09:** **Paso 4 en Workbench:** Políticas de integridad referencial (`ON DELETE RESTRICT` para clientes/categorías vs `ON DELETE CASCADE` para detalles de pedidos).
+  * **Slide 10:** **Paso 5 en Workbench:** Restricciones de dominio `CHECK` en MySQL 8+ (validación de reglas de negocio: `precio > 0`, `stock >= 0`, `cantidad > 0`).
+  * **Slide 11:** **Paso 6 en Workbench:** *Forward Engineering* (`Ctrl + G`), compilación visual a DDL SQL y ejecución física exitosa en MySQL Server.
+  * **Slide 12:** **Paso 7 en Workbench:** Pruebas de violación forzada de restricciones (demostración de códigos de error MySQL 1452 y 3819 para evidenciar integridad activa).
+  * **Slide 13:** **Estructura Formal del Documento Word:** Portada, introducción, objetivos, contexto de negocio, diccionario de datos y matriz justificada de restricciones.
+  * **Slide 14:** **Empaquetado en Formato ZIP y Checklist:** Verificación de los 3 archivos obligatorios dentro del `.zip`, nomenclatura oficial y espacio de envío en **Zajuna LMS**.
 
 ---
 

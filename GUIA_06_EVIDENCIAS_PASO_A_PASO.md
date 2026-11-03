@@ -147,13 +147,35 @@ Este documento es la **hoja de ruta maestra** para instructores y aprendices de 
 **Nombre:** Creación de la estructura de la BD y aplicación de restricciones.  
 - **Tipo:** Evidencia de Desempeño.
 - **Instrumento de Evaluación:** `IE-GA6-220501096-AA2-EV02`.
-- **Descripción:** Crear físicamente la base de datos relacional aplicando integridad referencial estricta mediante restricciones: `PRIMARY KEY`, `FOREIGN KEY` (con políticas `ON DELETE CASCADE` o `ON UPDATE RESTRICT`), `UNIQUE`, `CHECK`, `DEFAULT` y `NOT NULL`.
-- **Paso a Paso:**
-  1. Redactar el script DDL con `CREATE DATABASE IF NOT EXISTS`.
-  2. Crear tablas respetando el orden jerárquico de dependencias de llaves foráneas.
-  3. Añadir restricciones de dominio (ej. `CHECK (precio > 0)`, `CHECK (edad >= 18)`).
-  4. Probar violaciones de integridad referencial para evidenciar que el motor rechaza datos inconsistentes.
-- **Formato de Entrega:** Archivo `.sql` con la definición estructural completa y PDF que evidencie la creación de tablas y el testeo de restricciones.
+- **Descripción Oficial de la Guía:** Con base en las características del *software a desarrollar en su proyecto formativo*, cree la estructura de la base de datos, determinando sus tipos de datos, restricciones de llaves primarias y llaves foráneas.
+- **Elementos Obligatorios en el Documento:**
+  - Seguir las normas básicas de presentación de un documento escrito: Portada formal, Introducción, Objetivos (general y específicos), descripción técnica de la estructura de la base de datos, atributos, tipos de datos y restricciones aplicadas.
+  - Creación de los diseños de bases de datos en **MySQL Workbench** (archivo nativo `.mwb` con diagrama EER completo).
+  - Creación y aplicación estricta de las restricciones de bases de datos (`PRIMARY KEY`, `FOREIGN KEY`, `NOT NULL`, `UNIQUE`, `DEFAULT`, `CHECK` y políticas referenciales `ON DELETE` / `ON UPDATE`).
+- **Caso Práctico Empresarial de Referencia (AgroTech Colombia S.A.S.):**
+  - **Contexto:** Sistema de gestión comercial e inventario agroindustrial con 6 tablas relacionadas:
+    1. `roles`: Perfiles de seguridad (`id_rol PK AI`, `nombre_rol VARCHAR(45) UNIQUE NOT NULL`).
+    2. `usuarios`: Cuentas de empleados y clientes (`id_usuario PK AI`, `id_rol FK`, `email UNIQUE NOT NULL`, `password_hash`, `estado DEFAULT 'ACTIVO'`).
+    3. `categorias`: Catálogo de insumos agrícolas (`id_categoria PK AI`, `codigo UNIQUE`, `nombre_categoria NOT NULL`).
+    4. `productos`: Inventario comercial (`id_producto PK AI`, `id_categoria FK`, `sku UNIQUE`, `precio_unitario DECIMAL(12,2) CHECK > 0`, `stock_disponible INT CHECK >= 0`).
+    5. `pedidos`: Facturación y órdenes (`id_pedido PK AI`, `id_usuario FK`, `numero_factura UNIQUE`, `fecha_pedido DEFAULT CURRENT_TIMESTAMP`, `total_neto DECIMAL(12,2) CHECK >= 0`).
+    6. `detalle_pedidos`: Detalle de líneas de pedido (`id_detalle PK AI`, `id_pedido FK ON DELETE CASCADE`, `id_producto FK ON DELETE RESTRICT`, `cantidad INT CHECK > 0`, `precio_unitario DECIMAL(12,2)`).
+- **Paso a Paso de Implementación en MySQL Workbench:**
+  1. Abrir MySQL Workbench e iniciar un nuevo modelo relacional: *File > New Model > Add Diagram*.
+  2. Dibujar las tablas en el lienzo EER asignando tipos de datos técnicos precisos (`DECIMAL(12,2)` para dinero, `INT AUTO_INCREMENT` para IDs, `DATETIME`, `VARCHAR`).
+  3. Activar las banderas de columna: `PK` (Llave primaria), `NN` (Not Null), `UQ` (Unique), `AI` (Auto Increment) y valores `DEFAULT`.
+  4. Trazar relaciones 1:N y N:M con la herramienta de relación foránea (*1:n Non-Identifying Relationship*), configurando en la pestaña *Foreign Keys* las restricciones referenciales: `ON DELETE RESTRICT` (para clientes/categorías) y `ON DELETE CASCADE` (para detalles de pedido).
+  5. Incorporar restricciones de dominio `CHECK` para validar reglas del negocio (precios positivos, stock no negativo).
+  6. Realizar *Forward Engineering* (`Database > Forward Engineer...` o `Ctrl + G`) generando el script DDL `script_estructura_bd.sql` y creándolo en el servidor MySQL local.
+  7. Ejecutar pruebas de inserción y registrar capturas de pantalla de los errores arrojados por MySQL al violar restricciones foráneas (Error 1452) o restricciones CHECK (Error 3819).
+  8. Redactar el documento formal en Word con el diccionario de datos y las justificaciones técnicas.
+- **Lineamientos Generales para la Entrega:**
+  - **Productos a Entregar:** Archivo comprimido en formato **ZIP** que debe contener:
+    1. Archivo en **Word (.docx)** con el documento escrito completo.
+    2. Archivo del modelo en **MySQL Workbench (.mwb)** con los diseños entidad relación.
+    3. Archivo del script SQL (**script_estructura_bd.sql**) ejecutable.
+  - **Formato:** Archivo comprimido `.ZIP` (`GA6-220501096-AA2-EV02_Nombre_Apellido.zip`).
+  - **Espacio de Envío en Zajuna LMS:** *Creación de la estructura de la BD y aplicación de restricciones. GA6-220501096-AA2-EV02.*
 
 ---
 

@@ -1040,6 +1040,31 @@
               </div>
             </div>
 
+            <!-- Tarjeta: Evidencia 06 (Estructura BD y Restricciones - Proyecto Formativo) -->
+            <div class="p-4 rounded-2xl bg-white border border-slate-200 hover:border-emerald-300 transition-all hover:shadow-md flex flex-col justify-between gap-3 group">
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-1.5">
+                  <span class="text-[10px] font-mono font-bold text-sena bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">GA6-AA2-EV02</span>
+                  <span class="text-[10px] font-mono font-bold text-emerald-700 bg-emerald-100/80 px-2 py-0.5 rounded">14 Slides</span>
+                </div>
+                <h4 class="text-sm font-extrabold text-slate-900 group-hover:text-emerald-800 transition-colors">
+                  Evidencia 06: Estructura BD y Restricciones
+                </h4>
+                <p class="text-[11.5px] text-slate-600 leading-relaxed mt-1">
+                  Caso práctico en MySQL Workbench (modelo .mwb), llaves primarias, foráneas, CHECK, integridad referencial y paquete ZIP con Word.
+                </p>
+              </div>
+              <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
+                <span class="text-[10.5px] font-semibold text-emerald-700 flex items-center gap-1">
+                  <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Lista en Aula
+                </span>
+                <a href="guias/guia-06/proyeccion-evidencia-06.html" class="inline-flex items-center gap-1.5 bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-bold py-1.5 px-3 rounded-lg shadow-2xs hover:shadow-xs transition-all">
+                  <span>Proyectar</span>
+                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                </a>
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -1059,10 +1084,6 @@
             </p>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 text-xs">
-              <div class="p-2.5 bg-white/90 rounded-xl border border-amber-100 flex items-center justify-between">
-                <span class="font-medium text-slate-700 truncate mr-2">EV06: DDL y DML en Motor Relacional</span>
-                <span class="text-[10px] font-bold text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded shrink-0">Próxima</span>
-              </div>
               <div class="p-2.5 bg-white/90 rounded-xl border border-amber-100 flex items-center justify-between">
                 <span class="font-medium text-slate-700 truncate mr-2">EV07: Base de Datos del Proyecto</span>
                 <span class="text-[10px] font-bold text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded shrink-0">Próxima</span>
@@ -1136,6 +1157,7 @@
           <li><a href="guias/guia-06/proyeccion-evidencia-03.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="presentation" class="w-3.5 h-3.5"></i> Sesión Evidencia 3: NoSQL MongoDB</a></li>
           <li><a href="guias/guia-06/proyeccion-evidencia-04.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="presentation" class="w-3.5 h-3.5"></i> Sesión Evidencia 4: Elaboración MongoDB</a></li>
           <li><a href="guias/guia-06/proyeccion-evidencia-05.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="presentation" class="w-3.5 h-3.5"></i> Sesión Evidencia 5: Sentencias SQL DDL y DML</a></li>
+          <li><a href="guias/guia-06/proyeccion-evidencia-06.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="presentation" class="w-3.5 h-3.5"></i> Sesión Evidencia 6: Estructura BD & Restricciones</a></li>
           <li><a href="guias/guia-06/proyeccion.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="monitor" class="w-3.5 h-3.5"></i> Modo Proyección Sincrónica</a></li>
         </ul>
       </div>
@@ -1383,23 +1405,35 @@
         catName: 'Bases de Datos SQL',
         type: 'Desempeño',
         hours: '16 Horas',
-        title: 'Bases de datos relacionales - Sentencias DDL y DML',
-        format: 'Script SQL / ZIP',
+        title: 'Creación de la estructura de la BD y aplicación de restricciones',
+        format: 'Archivo Comprimido (.ZIP)',
         instrument: 'IE-GA6-220501096-AA2-EV02',
         slideRef: 'slide-7',
-        summary: 'Construcción y ejecución de script SQL completo con creación de tablas, llaves primarias, foráneas con ON DELETE/UPDATE y datos semilla.',
+        directProj: 'proyeccion-evidencia-06.html',
+        hasSlides: true,
+        slideCount: '14 slides',
+        summary: 'Creación de la estructura física de la base de datos para el software del proyecto formativo en MySQL Workbench (modelo .mwb), determinando tipos de datos precisos, llaves primarias, llaves foráneas y restricciones de integridad. Se entrega un paquete comprimido en ZIP con el documento formal en Word (portada, introducción, objetivos, descripción estructural y restricciones), el archivo .mwb de Workbench y el script SQL DDL ejecutable.',
         steps: [
-          'Diseñar el script DDL con sentencias CREATE DATABASE y CREATE TABLE.',
-          'Definir restricciones PRIMARY KEY, FOREIGN KEY, UNIQUE y CHECK.',
-          'Configurar acciones referenciales en cascada (CASCADE, SET NULL, RESTRICT).',
-          'Insertar registros de prueba y ejecutar consultas multitable con INNER JOIN.'
+          '1. Analizar los requerimientos del software a desarrollar en el proyecto formativo de negocio/empresa real.',
+          '2. Crear el modelo gráfico Entidad-Relación en MySQL Workbench (archivo .mwb) con sus tablas y tipos de datos precisos.',
+          '3. Definir llaves primarias (PK AUTO_INCREMENT), obligatoriedad (NOT NULL) y campos únicos (UNIQUE).',
+          '4. Trazar relaciones de integridad referencial con llaves foráneas (FK) configurando políticas ON DELETE y ON UPDATE.',
+          '5. Incorporar restricciones de dominio CHECK (ej. precios > 0, cantidades > 0, stock >= 0).',
+          '6. Realizar Forward Engineering en MySQL Workbench para compilar y validar el script DDL en el servidor local.',
+          '7. Ejecutar pruebas de inserción válida y violación forzada de restricciones documentando los códigos de error.',
+          '8. Redactar el documento formal en Word con normas básicas y empaquetar el Word + .mwb + .sql en formato .ZIP.'
         ],
-        criteria: 'Construye la base de datos relacional aplicando sentencias DDL y DML.',
+        criteria: 'Crea la estructura física de la base de datos relacional y aplica restricciones de integridad según los requerimientos del proyecto formativo.',
         checklist: [
-          'Archivo .sql libre de errores de sintaxis y listo para ejecutar.',
-          'Restricciones de integridad referencial activas.',
-          'Mínimo 5 registros válidos por tabla.',
-          'Consultas de verificación con INNER JOIN documentadas.'
+          'Archivo comprimido en formato .ZIP con nomenclatura oficial de la evidencia.',
+          'Documento técnico formal en Word (.docx) con portada, introducción y objetivos.',
+          'Descripción detallada de la estructura de la base de datos, entidades y atributos.',
+          'Diccionario de datos con tipos de datos justificados (DECIMAL para moneda, DATETIME, INT, VARCHAR).',
+          'Archivo nativo de MySQL Workbench (.mwb) con el diagrama EER completo.',
+          'Script SQL (.sql) ejecutable y libre de errores de sintaxis.',
+          'Restricciones PRIMARY KEY, FOREIGN KEY, NOT NULL, UNIQUE y CHECK implementadas.',
+          'Políticas ON DELETE (RESTRICT/CASCADE) y ON UPDATE configuradas con justificación de negocio.',
+          'Capturas de pantalla de MySQL Workbench evidenciando el diseño y la ejecución sin errores.'
         ]
       },
       {

@@ -180,16 +180,36 @@ Este documento es la **hoja de ruta maestra** para instructores y aprendices de 
 ---
 
 #### 7. Evidencia `GA6-220501096-AA2-EV03`
-**Nombre:** Script bases de datos del proyecto formativo.  
+**Nombre:** Script bases de datos del proyecto.  
 - **Tipo:** Evidencia de Producto.
 - **Instrumento de Evaluación:** `IE-GA6-220501096-AA2-EV03`.
-- **Descripción:** Entrega del script maestro final de la base de datos del proyecto formativo que el aprendiz está desarrollando. Debe ser completamente reproducible y autónomo (creación de base de datos, tablas, llaves, índices, y datos semilla o *seeders*).
-- **Paso a Paso:**
-  1. Consolidar todas las tablas requeridas por el software del proyecto.
-  2. Incluir cabecera con metadatos: Nombre de proyecto, aprendices, versión, fecha y motor utilizado.
-  3. Incluir sentencias `DROP TABLE IF EXISTS` en orden inverso para permitir re-ejecución limpia.
-  4. Incorporar inserciones de datos iniciales (usuarios administradores, roles, catálogos base).
-- **Formato de Entrega:** Archivo con extensión `.sql` listo para importar en MySQL Workbench, phpMyAdmin o terminal SQL.
+- **Descripción Oficial de la Guía:** Teniendo en cuenta las características del *software a desarrollar en su proyecto formativo* y lo realizado en la evidencia EV02, cree el script de la base de datos.
+- **Elementos para tener en cuenta:**
+  - Realizar todo el modelo físico en una de las herramientas vistas de gestión de bases de datos (**MySQL Workbench**).
+  - Debe cumplir la totalidad de los requisitos funcionales del software del proyecto formativo.
+  - Debe generar el script y exportarlo de manera limpia y autónoma.
+- **Caso Práctico Empresarial de Referencia (AgroTech Colombia S.A.S.):**
+  - **Contexto:** Plataforma web y móvil para distribución e inventario de insumos agropecuarios en el Huila con base de datos `agrotech_db`.
+  - **Estructura del Script Maestro Profesional:**
+    1. *Cabecera y Control de Sesión:* Metadatos del proyecto, directivas `SET NAMES 'utf8mb4'`, `SET time_zone = '-05:00'` y `SET FOREIGN_KEY_CHECKS = 0`.
+    2. *Idempotencia y Creación de BD:* `DROP DATABASE IF EXISTS agrotech_db;`, `CREATE DATABASE agrotech_db CHARACTER SET utf8mb4;` y `USE agrotech_db;`.
+    3. *Bloque DDL Jerárquico:* Tablas independientes (`roles`, `categorias`) seguidas de dependientes (`usuarios`, `productos`) y transaccionales (`pedidos`, `detalle_pedidos`), aplicando restricciones `PRIMARY KEY`, `FOREIGN KEY` (`RESTRICT`/`CASCADE`), `UNIQUE` y `CHECK (precio > 0, stock >= 0)`.
+    4. *Cierre DDL:* Reactivación estricta con `SET FOREIGN_KEY_CHECKS = 1;`.
+    5. *Bloque DML Seeders:* Inserción de catálogos base, usuarios administradores y clientes de prueba, más transacciones comerciales cuadradadas contablemente.
+    6. *Bloque DQL de Verificación:* Consultas multitable con `INNER JOIN` para comprobar la integridad y devolver los reportes de ventas desglosadas.
+- **Paso a Paso de Exportación y Ejecución en MySQL Workbench:**
+  1. Abrir el archivo `.mwb` completado en la evidencia EV02 dentro de MySQL Workbench.
+  2. Exportar el script DDL preliminar desde *File > Export > Forward Engineer SQL CREATE Script...* o *Database > Forward Engineer* (`Ctrl + G`).
+  3. En el Editor SQL de Workbench, ensamblar el script maestro autónomo integrando las directivas iniciales, los `INSERT INTO` (seeders) y las consultas `SELECT` con `INNER JOIN`.
+  4. Ejecutar el script completo con `Ctrl + Shift + Enter` verificando que todo el panel *Action Output* muestre marcas verdes sin ningún código de error.
+  5. Empaquetar el script SQL junto con el modelo `.mwb` y las instrucciones en un archivo comprimido.
+- **Lineamientos Generales para la Entrega:**
+  - **Producto a Entregar:** Archivos en formato SQL con el modelo físico de los datos correspondientes a los diseños hechos en MySQL Workbench.
+  - **Formato:** Archivo comprimido en **ZIP** (`GA6-220501096-AA2-EV03_Nombre_Apellido.zip`) que contiene:
+    1. `script_maestro_agrotech_bd.sql` (Script SQL reproducible y autónomo con DDL + Seeders DML + Consultas DQL).
+    2. `modelo_fisico_workbench.mwb` (Archivo de diseño gráfico original en MySQL Workbench).
+    3. `LEAME_INSTRUCCIONES_EJECUCION.txt` (Guía rápida de ejecución para el instructor evaluador).
+  - **Espacio de Envío en Zajuna LMS:** *Script bases de datos del proyecto. GA6-220501096-AA2-EV03.*
 
 ---
 

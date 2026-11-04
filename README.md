@@ -50,6 +50,7 @@ repoVirtual/
         ├── proyeccion-evidencia-04.html # Presentación interactiva de 12 diapositivas para Evidencia 4 (Bases de Datos en MongoDB)
         ├── proyeccion-evidencia-05.html # Presentación interactiva de 14 diapositivas para Evidencia 5 (Sentencias SQL DDL y DML)
         ├── proyeccion-evidencia-06.html # Presentación interactiva de 14 diapositivas para Evidencia 6 (Estructura de BD y Restricciones)
+        ├── proyeccion-evidencia-07.html # Presentación interactiva de 14 diapositivas para Evidencia 7 (Script de BD del Proyecto)
         └── proyeccion.html             # Modo Proyección General en Aula (Guía 06)
 ```
 
@@ -158,6 +159,28 @@ repoVirtual/
   * **Slide 12:** **Paso 7 en Workbench:** Pruebas de violación forzada de restricciones (demostración de códigos de error MySQL 1452 y 3819 para evidenciar integridad activa).
   * **Slide 13:** **Estructura Formal del Documento Word:** Portada, introducción, objetivos, contexto de negocio, diccionario de datos y matriz justificada de restricciones.
   * **Slide 14:** **Empaquetado en Formato ZIP y Checklist:** Verificación de los 3 archivos obligatorios dentro del `.zip`, nomenclatura oficial y espacio de envío en **Zajuna LMS**.
+
+### 🟢 Evidencia 7: Script bases de datos del proyecto (`proyeccion-evidencia-07.html`)
+* **Código Oficial:** `GA6-220501096-AA2-EV03` (16 Horas de Formación Técnica).
+* **Enfoque Obligatorio:** Implementación del script físico completo del software del **Proyecto Formativo** con base en los diseños realizados en MySQL Workbench.
+* **Productos a Entregar según la Guía:** Archivo comprimido en formato **ZIP** que contiene:
+  1. Script maestro en **formato SQL (`.sql`)** ejecutable y autónomo (DDL estructural + seeders DML + consultas DQL).
+  2. Archivo del modelo en **MySQL Workbench (`.mwb`)** como evidencia del diseño físico nativo.
+  3. Archivo explicativo breve de instrucciones de instalación (**`LEAME.txt`**).
+* **14 Diapositivas Prácticas con Script Maestro Idempotente ("AgroTech Colombia S.A.S.")**:
+  * **Slide 01 - 02:** Portada institucional y **Ficha Técnica Oficial** (instrumento `IE-GA6-220501096-AA2-EV03`, 16 horas, paquete ZIP con archivos SQL).
+  * **Slide 03:** **Anatomía del Script Profesional:** Concepto de idempotencia, directivas de sesión, borrado limpio, orden jerárquico y datos semilla.
+  * **Slide 04:** **Caso Real:** *AgroTech Colombia S.A.S.* (Esquema físico `agrotech_db` con 6 tablas ordenadas: `roles`, `categorias`, `usuarios`, `productos`, `pedidos`, `detalle_pedidos`).
+  * **Slide 05:** **¿En qué Programa lo Hacen?:** *MySQL Workbench* (Exportación DDL Forward Engineering + Consolidación en el Query Editor).
+  * **Slide 06:** **Paso 1 del Script:** Encabezado con metadatos, `SET NAMES 'utf8mb4'`, `SET FOREIGN_KEY_CHECKS = 0`, `DROP DATABASE IF EXISTS` y `CREATE DATABASE`.
+  * **Slide 07:** **Paso 2 del Script:** Bloque DDL de tablas maestras independientes (`roles` y `categorias`) con `ENGINE = InnoDB`.
+  * **Slide 08:** **Paso 3 del Script:** Bloque DDL de tablas dependientes (`usuarios` y `productos`) con llaves foráneas `RESTRICT/CASCADE` y restricciones `CHECK (precio > 0, stock >= 0)`.
+  * **Slide 09:** **Paso 4 del Script:** Bloque DDL de tablas transaccionales (`pedidos` y `detalle_pedidos`) con borrado en cascada (`ON DELETE CASCADE`) y cierre seguro con `SET FOREIGN_KEY_CHECKS = 1`.
+  * **Slide 10:** **Paso 5 del Script:** Bloque DML Seeders (poblado de roles base, usuarios administradores y clientes de prueba).
+  * **Slide 11:** **Paso 6 del Script:** Bloque DML de productos y compras facturadas reales con montos cuadrados matemáticamente.
+  * **Slide 12:** **Paso 7 del Script:** Bloque DQL con consultas de prueba multitable (`INNER JOIN`) para certificar que el modelo cruza datos sin inconsistencias.
+  * **Slide 13:** **Exportación y Prueba Cero Errores:** Métodos de exportación desde Workbench y verificación del log *Action Output* en verde.
+  * **Slide 14:** **Empaquetado en Formato ZIP y Checklist:** Estructura de los 3 archivos dentro del `.zip`, nomenclatura oficial y espacio de entrega en **Zajuna LMS**.
 
 ---
 

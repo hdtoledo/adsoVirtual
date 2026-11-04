@@ -1065,6 +1065,31 @@
               </div>
             </div>
 
+            <!-- Tarjeta: Evidencia 07 (Script BD del Proyecto - Formato SQL / ZIP) -->
+            <div class="p-4 rounded-2xl bg-white border border-slate-200 hover:border-emerald-300 transition-all hover:shadow-md flex flex-col justify-between gap-3 group">
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-1.5">
+                  <span class="text-[10px] font-mono font-bold text-sena bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">GA6-AA2-EV03</span>
+                  <span class="text-[10px] font-mono font-bold text-emerald-700 bg-emerald-100/80 px-2 py-0.5 rounded">14 Slides</span>
+                </div>
+                <h4 class="text-sm font-extrabold text-slate-900 group-hover:text-emerald-800 transition-colors">
+                  Evidencia 07: Script Bases de Datos del Proyecto
+                </h4>
+                <p class="text-[11.5px] text-slate-600 leading-relaxed mt-1">
+                  Script maestro SQL ejecutable (DDL + datos semilla DML + consultas JOIN de verificación) y empaquetado en formato ZIP.
+                </p>
+              </div>
+              <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
+                <span class="text-[10.5px] font-semibold text-emerald-700 flex items-center gap-1">
+                  <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Lista en Aula
+                </span>
+                <a href="guias/guia-06/proyeccion-evidencia-07.html" class="inline-flex items-center gap-1.5 bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-bold py-1.5 px-3 rounded-lg shadow-2xs hover:shadow-xs transition-all">
+                  <span>Proyectar</span>
+                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                </a>
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -1084,10 +1109,6 @@
             </p>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 text-xs">
-              <div class="p-2.5 bg-white/90 rounded-xl border border-amber-100 flex items-center justify-between">
-                <span class="font-medium text-slate-700 truncate mr-2">EV07: Base de Datos del Proyecto</span>
-                <span class="text-[10px] font-bold text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded shrink-0">Próxima</span>
-              </div>
               <div class="p-2.5 bg-white/90 rounded-xl border border-amber-100 flex items-center justify-between">
                 <span class="font-medium text-slate-700 truncate mr-2">EV08-EV10: Prototipado UI/UX Figma</span>
                 <span class="text-[10px] font-bold text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded shrink-0">Próxima</span>
@@ -1158,6 +1179,7 @@
           <li><a href="guias/guia-06/proyeccion-evidencia-04.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="presentation" class="w-3.5 h-3.5"></i> Sesión Evidencia 4: Elaboración MongoDB</a></li>
           <li><a href="guias/guia-06/proyeccion-evidencia-05.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="presentation" class="w-3.5 h-3.5"></i> Sesión Evidencia 5: Sentencias SQL DDL y DML</a></li>
           <li><a href="guias/guia-06/proyeccion-evidencia-06.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="presentation" class="w-3.5 h-3.5"></i> Sesión Evidencia 6: Estructura BD & Restricciones</a></li>
+          <li><a href="guias/guia-06/proyeccion-evidencia-07.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="presentation" class="w-3.5 h-3.5"></i> Sesión Evidencia 7: Script BD del Proyecto</a></li>
           <li><a href="guias/guia-06/proyeccion.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="monitor" class="w-3.5 h-3.5"></i> Modo Proyección Sincrónica</a></li>
         </ul>
       </div>
@@ -1447,23 +1469,34 @@
         catName: 'Bases de Datos SQL',
         type: 'Producto',
         hours: '16 Horas',
-        title: 'Base de datos para el proyecto formativo',
-        format: 'ZIP (Script SQL + Doc)',
+        title: 'Script bases de datos del proyecto',
+        format: 'Archivo Comprimido (.ZIP)',
         instrument: 'IE-GA6-220501096-AA2-EV03',
         slideRef: 'slide-8',
-        summary: 'Implementación física en MySQL o PostgreSQL de la base de datos oficial del sistema de software que desarrolla el equipo de trabajo.',
+        directProj: 'proyeccion-evidencia-07.html',
+        hasSlides: true,
+        slideCount: '14 slides',
+        summary: 'Generación, exportación y prueba del script SQL maestro del modelo físico de la base de datos correspondiente a los diseños hechos en MySQL Workbench para el software del proyecto formativo. El script incluye encabezado de sesión, borrado limpio idempotente (DROP/CREATE), bloque DDL con restricciones (PK, FK, CHECK), datos semilla iniciales DML (Seeders) y consultas de verificación con INNER JOIN. Entrega en archivo comprimido ZIP.',
         steps: [
-          'Revisar el modelo relacional aprobado del proyecto formativo.',
-          'Generar el script SQL definitivo para producción con convenciones institucionales.',
-          'Cargar el script en el motor de bases de datos seleccionado.',
-          'Redactar el manual técnico de instalación y diccionario de datos final.'
+          '1. Abrir el modelo físico (.mwb) realizado en la evidencia EV02 en MySQL Workbench.',
+          '2. Verificar que la estructura cubra la totalidad de los requisitos del software del proyecto formativo.',
+          '3. Exportar el script DDL mediante Forward Engineer (File > Export > Forward Engineer SQL CREATE Script).',
+          '4. Estructurar el script maestro con directivas idempotentes (SET NAMES, SET FOREIGN_KEY_CHECKS, DROP/CREATE DATABASE).',
+          '5. Incorporar el bloque DDL ordenado jerárquicamente por dependencias de llaves foráneas.',
+          '6. Redactar el bloque DML con datos semilla (roles, usuarios administrativos, catálogos e ítems de prueba).',
+          '7. Agregar consultas de verificación DQL con INNER JOIN al final del script para comprobar la consistencia.',
+          '8. Probar la ejecución completa con cero errores en MySQL Workbench y empaquetar en formato .ZIP.'
         ],
-        criteria: 'Verifica la estructura y funcionamiento de la base de datos del proyecto.',
+        criteria: 'Verifica la estructura y funcionamiento del script físico de base de datos del proyecto formativo.',
         checklist: [
-          'Script SQL completo del proyecto formativo.',
-          'Documento técnico con diagrama relacional exportado.',
-          'Poblado de datos representativo de todos los módulos.',
-          'Pruebas de integridad y consultas clave ejecutadas exitosamente.'
+          'Archivo comprimido en formato .ZIP con nomenclatura oficial (GA6-220501096-AA2-EV03_Nombre_Apellido.zip).',
+          'Script SQL ejecutable de principio a fin sin errores de sintaxis (Action Output con checks verdes).',
+          'Bloque DDL con definición de tablas, tipos de datos, llaves primarias, foráneas y restricciones CHECK.',
+          'Idempotencia: incluye DROP DATABASE IF EXISTS y CREATE DATABASE con codificación utf8mb4.',
+          'Bloque DML con datos semilla (seeders) coherentes y representativos del negocio real.',
+          'Consultas DQL con INNER JOIN demostrando integridad referencial y cruce de datos.',
+          'Archivo fuente nativo de MySQL Workbench (.mwb) incluido como respaldo técnico.',
+          'Archivo LEAME.txt con instrucciones de instalación para el evaluador.'
         ]
       },
       {

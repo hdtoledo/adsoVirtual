@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-slate-50 antialiased">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evidencia 07: Script Bases de Datos del Proyecto · ADSO Virtual · SENA CADPH Garzón</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sena: {
+              DEFAULT: '#39A900',
+              hover: '#2D8200',
+              light: '#E8F5E9'
+            },
+            cadph: {
+              DEFAULT: '#00324D',
+              dark: '#00263A',
+              light: '#004870'
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../assets/css/presenter.css">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .slide-content.active {
+      display: flex !important;
+      flex-direction: column;
+      justify-content: center;
+    }
+    kbd {
+      font-family: 'JetBrains Mono', monospace;
+    }
+  </style>
+</head>
+<body class="min-h-full flex flex-col bg-slate-50 text-slate-900 font-sans selection:bg-[#39A900] selection:text-white">
+
+  <!-- ========================================================================= -->
+  <!-- BARRA SUPERIOR INSTITUCIONAL (CINTILLO) -->
+  <!-- ========================================================================= -->
+  <div class="bg-[#00324D] text-white text-[11px] py-1.5 px-4 sm:px-6 border-b border-[#00263A]">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2 truncate">
+        <span class="font-extrabold tracking-wide shrink-0">SENA</span>
+        <span class="text-slate-400">|</span>
+        <span class="text-slate-200 truncate font-medium">Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)</span>
+      </div>
+      <div class="flex items-center gap-3 text-slate-300 font-mono text-[11px] shrink-0">
+        <span>Sede Garzón</span>
+        <span class="text-slate-400">•</span>
+        <span class="text-emerald-400 font-semibold">ADSO Virtual • Sesión Técnica en Aula</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- BARRA DE CONTROL DE PRESENTACIÓN (ESTABLE, H-16, ANTI-CLS) -->
+  <!-- ========================================================================= -->
+  <header class="border-b border-slate-200 bg-white sticky top-0 z-40 shadow-xs">
+    <!-- Barra de Progreso Dinámica -->
+    <div class="w-full bg-slate-100 h-1">
+      <div id="presentation-progress" class="bg-[#39A900] h-1 transition-all duration-300 ease-out" style="width: 7.14%;"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+      <!-- Logo y Ruta -->
+      <div class="flex items-center gap-3 min-w-0">
+        <a href="../../index.html" class="flex items-center gap-2.5 group shrink-0">
+          <div class="w-9 h-9 rounded-lg bg-emerald-50 border border-emerald-100 flex items-center justify-center p-1 group-hover:bg-emerald-100 transition-colors shrink-0">
+            <img src="../../assets/logo_green.png" alt="SENA" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/8/83/Sena_Colombia_logo.svg'">
+          </div>
+          <div class="truncate">
+            <span class="font-extrabold text-slate-900 tracking-tight text-sm">FORMACIÓN <span class="text-sena">ADSO</span></span>
+            <span class="text-[11px] font-bold text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded ml-1 uppercase">CADPH</span>
+          </div>
+        </a>
+        <span class="text-slate-300 hidden sm:inline">/</span>
+        <div class="hidden sm:flex items-center gap-2 text-xs truncate">
+          <span class="font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Guía 06</span>
+          <span class="text-slate-600 font-medium truncate">Evidencia 07: Script Bases de Datos del Proyecto (Archivos SQL · Formato ZIP)</span>
+        </div>
+      </div>
+
+      <!-- Controles de Proyección -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Temporizador -->
+        <div class="hidden md:flex items-center gap-1.5 bg-slate-100 px-2.5 py-1 rounded-lg border border-slate-200 font-mono text-xs text-slate-700">
+          <i data-lucide="clock" class="w-3.5 h-3.5 text-slate-500"></i>
+          <span id="timer-display" class="font-bold">00:00</span>
+          <button id="btn-timer-start" class="text-emerald-700 hover:text-emerald-800 font-bold ml-1 text-[11px] uppercase">Iniciar</button>
+          <button id="btn-timer-reset" class="text-slate-400 hover:text-slate-600 ml-1" title="Reiniciar"><i data-lucide="rotate-ccw" class="w-3 h-3"></i></button>
+        </div>
+
+        <!-- Menú de Índice -->
+        <button id="btn-toggle-menu" class="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer" title="Índice de Diapositivas (M)">
+          <i data-lucide="list" class="w-4 h-4"></i>
+        </button>
+
+        <!-- Contador de Diapositiva -->
+        <div class="px-2.5 py-1 bg-slate-100 rounded-lg text-xs font-mono font-bold text-slate-700 border border-slate-200 shrink-0">
+          <span id="slide-counter">1 / 14</span>
+        </div>
+
+        <!-- Botones de Navegación -->
+        <div class="flex items-center gap-1">
+          <button id="btn-prev-slide" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors disabled:opacity-40 cursor-pointer" title="Anterior (Flecha Izq)">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+          </button>
+          <button id="btn-next-slide" class="p-2 rounded-lg bg-[#39A900] hover:bg-[#2D8200] text-white transition-colors cursor-pointer shadow-xs" title="Siguiente (Espacio o Flecha Der)">
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <!-- Pantalla Completa -->
+        <button id="btn-fullscreen" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors cursor-pointer" title="Pantalla Completa (F)">
+          <i data-lucide="maximize" class="w-4 h-4"></i>
+        </button>
+
+        <!-- Ayuda -->
+        <button id="btn-toggle-help" class="p-2 rounded-lg text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors cursor-pointer" title="Atajos de teclado (?)">
+          <i data-lucide="help-circle" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- CAJÓN LATERAL DE ÍNDICE DE DIAPOSITIVAS -->
+  <!-- ========================================================================= -->
+  <aside id="menu-drawer" class="fixed top-0 right-0 h-full w-80 bg-white border-l border-slate-200 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
+    <div class="p-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+      <div class="flex items-center gap-2">
+        <i data-lucide="list" class="w-4 h-4 text-sena"></i>
+        <h3 class="font-extrabold text-sm text-slate-900">Índice de Diapositivas (14)</h3>
+      </div>
+      <button id="btn-close-menu" class="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-200 transition-colors">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+    </div>
+    <div class="overflow-y-auto flex-1 p-3 space-y-1" id="menu-items-list">
+      <!-- Los ítems del menú se inyectan dinámicamente con JavaScript -->
+    </div>
+    <div class="p-3 bg-slate-50 border-t border-slate-200 text-[11px] text-slate-500 text-center">
+      Atajo: Presiona <kbd class="px-1.5 py-0.5 bg-white border rounded font-mono font-bold text-slate-700">M</kbd> para alternar el menú
+    </div>
+  </aside>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL DE AYUDA Y ATAJOS -->
+  <!-- ========================================================================= -->
+  <div id="help-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-100">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <h3 class="font-extrabold text-slate-900 text-base flex items-center gap-2">
+          <i data-lucide="keyboard" class="w-5 h-5 text-sena"></i>
+          <span>Atajos de Teclado del Aula Virtual</span>
+        </h3>
+        <button id="btn-close-help" class="p-1 text-slate-400 hover:text-slate-600 rounded-lg">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+      <div class="py-4 space-y-2 text-xs">
+        <div class="flex justify-between items-center py-1.5 border-b border-slate-50">
+          <span class="text-slate-600">Avanzar Diapositiva:</span>
+          <span class="font-mono font-bold text-slate-800 bg-slate-100 px-2 py-0.5 rounded">Flecha Der / Espacio</span>
+        </div>
+        <div class="flex justify-between items-center py-1.5 border-b border-slate-50">
+          <span class="text-slate-600">Retroceder Diapositiva:</span>
+          <span class="font-mono font-bold text-slate-800 bg-slate-100 px-2 py-0.5 rounded">Flecha Izq / RePág</span>
+        </div>
+        <div class="flex justify-between items-center py-1.5 border-b border-slate-50">
+          <span class="text-slate-600">Abrir / Cerrar Menú Índice:</span>
+          <span class="font-mono font-bold text-slate-800 bg-slate-100 px-2 py-0.5 rounded">M</span>
+        </div>
+        <div class="flex justify-between items-center py-1.5 border-b border-slate-50">
+          <span class="text-slate-600">Alternar Pantalla Completa:</span>
+          <span class="font-mono font-bold text-slate-800 bg-slate-100 px-2 py-0.5 rounded">F</span>
+        </div>
+        <div class="flex justify-between items-center py-1.5 border-b border-slate-50">
+          <span class="text-slate-600">Iniciar / Pausar Temporizador:</span>
+          <span class="font-mono font-bold text-slate-800 bg-slate-100 px-2 py-0.5 rounded">T</span>
+        </div>
+        <div class="flex justify-between items-center py-1.5">
+          <span class="text-slate-600">Cerrar ventanas / modales:</span>
+          <span class="font-mono font-bold text-slate-800 bg-slate-100 px-2 py-0.5 rounded">Esc</span>
+        </div>
+      </div>
+      <button onclick="document.getElementById('help-modal').classList.add('hidden')" class="w-full mt-2 py-2.5 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-slate-800 transition-colors">
+        Entendido
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- CONTENEDOR PRINCIPAL DE DIAPOSITIVAS INTERACTIVAS -->
+  <!-- ========================================================================= -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 flex flex-col justify-center">
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 1: PORTADA INSTITUCIONAL -->
+    <!-- ======================================================================= -->
+    <section class="slide-content active min-h-[580px]" data-title="01. Portada Institucional">
+      <div class="bg-white rounded-3xl border border-slate-200 p-8 sm:p-12 shadow-sm text-center relative overflow-hidden flex flex-col items-center justify-center my-auto">
+        <div class="absolute -top-32 -right-32 w-72 h-72 bg-emerald-50 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-32 -left-32 w-72 h-72 bg-sky-50 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-6">
+          <span class="w-2 h-2 rounded-full bg-[#39A900] animate-pulse"></span>
+          <span>Guía de Aprendizaje 06 • Actividad AA2 • ADSO</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight max-w-4xl leading-tight mb-4">
+          Script Bases de Datos del <span class="text-sena">Proyecto Formativo</span>
+        </h1>
+        <p class="text-sm sm:text-base font-mono font-bold text-slate-500 mb-6">
+          Evidencia Técnica: <span class="text-slate-800">GA6-220501096-AA2-EV03</span> • Modelo Físico Ejecutable
+        </p>
+
+        <!-- Banner de producto a entregar según la guía -->
+        <div class="mb-8 p-4 bg-sky-50 border border-sky-300 rounded-2xl max-w-2xl text-left flex items-start gap-3">
+          <i data-lucide="file-code-2" class="w-6 h-6 text-sky-600 shrink-0 mt-0.5"></i>
+          <div class="text-xs text-sky-950">
+            <strong class="block font-bold text-sky-900 text-sm mb-1">PRODUCTO A ENTREGAR SEGÚN LA GUÍA: ARCHIVOS SQL EN FORMATO .ZIP</strong>
+            <span>La guía de aprendizaje exige: <em>"Archivos formato SQL con el modelo físico de los datos que corresponden a los diseños hechos en MySQL Workbench. Formato: documento en formato ZIP"</em>. El script debe ser 100% autónomo, reproducible, libre de errores y contener la estructura DDL completa, restricciones y datos iniciales de prueba (Seeders).</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full max-w-3xl mb-8">
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col items-center">
+            <i data-lucide="database" class="w-6 h-6 text-sena mb-2"></i>
+            <span class="text-xs text-slate-400 font-medium">Motor Relacional</span>
+            <strong class="text-xs sm:text-sm font-bold text-slate-800">MySQL 8.0 InnoDB</strong>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col items-center">
+            <i data-lucide="file-text" class="w-6 h-6 text-sky-600 mb-2"></i>
+            <span class="text-xs text-slate-400 font-medium">Insumo Base</span>
+            <strong class="text-xs sm:text-sm font-bold text-slate-800">Diseño EER de la EV02</strong>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col items-center">
+            <i data-lucide="archive" class="w-6 h-6 text-amber-600 mb-2"></i>
+            <span class="text-xs text-slate-400 font-medium">Formato Obligatorio</span>
+            <strong class="text-xs sm:text-sm font-bold text-slate-800">Archivo .ZIP (Scripts SQL)</strong>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col items-center">
+            <i data-lucide="check-circle-2" class="w-6 h-6 text-emerald-600 mb-2"></i>
+            <span class="text-xs text-slate-400 font-medium">Requisito Clave</span>
+            <strong class="text-xs sm:text-sm font-bold text-slate-800">Ejecución Limpia (0 Errores)</strong>
+          </div>
+        </div>
+
+        <div class="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between w-full max-w-3xl text-xs text-slate-500 gap-2">
+          <span>Instructor: <strong>Ing. Hector David Toledo García</strong></span>
+          <span class="font-mono">Centro Agroempresarial y Desarrollo Pecuario del Huila</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 2: FICHA TÉCNICA Y LINEAMIENTOS OFICIALES -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="02. Ficha Técnica y Lineamientos">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sena font-mono">Ficha Técnica Oficial</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Lineamientos de la Guía de Aprendizaje (GFPI-F-135)
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-emerald-50 text-emerald-800 rounded-full text-xs font-bold font-mono">GA6-220501096-AA2-EV03</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
+            <!-- Columna Izquierda: Requisitos Literales -->
+            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+              <div>
+                <h3 class="font-bold text-slate-900 text-sm mb-3 flex items-center gap-2">
+                  <i data-lucide="file-check" class="w-4 h-4 text-sena"></i>
+                  <span>Instrucción Oficial de la Guía:</span>
+                </h3>
+                <p class="text-xs text-slate-600 leading-relaxed mb-4 italic bg-white p-3 rounded-xl border border-slate-200">
+                  "Teniendo en cuenta las características del software a desarrollar en su proyecto formativo y lo realizado en la evidencia EV02, cree el script de la base de datos."
+                </p>
+                <div class="space-y-2 text-xs">
+                  <div class="flex items-start gap-2 text-slate-700">
+                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                    <span><strong>Modelo físico completo:</strong> Realizar todo el modelo físico en MySQL Workbench con todas las tablas del sistema.</span>
+                  </div>
+                  <div class="flex items-start gap-2 text-slate-700">
+                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                    <span><strong>Cumplimiento de requisitos:</strong> Debe responder exactamente a las necesidades operativas de la empresa/negocio del proyecto formativo.</span>
+                  </div>
+                  <div class="flex items-start gap-2 text-slate-700">
+                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                    <span><strong>Generar y exportar el script:</strong> Obtener el script DDL y DML estructurado y reproducible.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Columna Derecha: Parámetros de Entrega -->
+            <div class="p-5 rounded-2xl bg-sky-50/70 border border-sky-200 flex flex-col justify-between">
+              <div>
+                <h3 class="font-bold text-sky-950 text-sm mb-3 flex items-center gap-2">
+                  <i data-lucide="package" class="w-4 h-4 text-sky-700"></i>
+                  <span>Lineamientos Generales para la Entrega:</span>
+                </h3>
+                <div class="space-y-3 text-xs text-slate-700">
+                  <div class="p-3 bg-white rounded-xl border border-sky-100">
+                    <strong class="text-sky-900 block font-bold mb-1">1. Producto a Entregar: Archivos formato SQL</strong>
+                    <span>Archivos con extensión <code>.sql</code> con el modelo físico correspondiente a los diseños hechos en MySQL Workbench.</span>
+                  </div>
+                  <div class="p-3 bg-white rounded-xl border border-sky-100">
+                    <strong class="text-sky-900 block font-bold mb-1">2. Formato de Envío: Archivo Comprimido .ZIP</strong>
+                    <span>Todo el paquete técnico empaquetado en un archivo <strong>ZIP</strong> nombrado con la convención oficial de la ficha.</span>
+                  </div>
+                  <div class="p-3 bg-white rounded-xl border border-sky-100">
+                    <strong class="text-sky-900 block font-bold mb-1">3. Plataforma de Calificación</strong>
+                    <span>Espacio oficial en Zajuna LMS: <em>"Script bases de datos del proyecto. GA6-220501096-AA2-EV03"</em>.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(0)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(2)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Anatomía del Script Profesional <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 3: ANATOMÍA DE UN SCRIPT MAESTRO PROFESIONAL -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="03. Anatomía de un Script Profesional">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sena font-mono">Buenas Prácticas de Ingeniería de Software</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Anatomía de un Script Maestro (Idempotente y Autónomo)
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-purple-50 text-purple-700 rounded-full text-xs font-bold font-mono">100% Reproducible</span>
+          </div>
+
+          <p class="text-xs sm:text-sm text-slate-600 mb-5 leading-relaxed">
+            Un script de base de datos para producción debe ser <strong>idempotente</strong>: poder ejecutarse 1, 10 o 100 veces en cualquier máquina sin fallar, dejando siempre la base de datos en un estado limpio, consistente y listo para funcionar:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-3 mb-5 text-xs">
+            <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+              <div>
+                <span class="w-7 h-7 rounded-xl bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center mb-2">1</span>
+                <strong class="text-slate-900 block font-bold mb-1">Cabecera y Sesión</strong>
+                <p class="text-slate-600 text-[11px] leading-relaxed">
+                  Metadatos (autor, fecha, versión), codificación <code>utf8mb4</code> y desactivación temporal de <code>FOREIGN_KEY_CHECKS</code>.
+                </p>
+              </div>
+            </div>
+
+            <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+              <div>
+                <span class="w-7 h-7 rounded-xl bg-sky-100 text-sky-800 font-bold flex items-center justify-center mb-2">2</span>
+                <strong class="text-slate-900 block font-bold mb-1">Borrado y Creación DDL</strong>
+                <p class="text-slate-600 text-[11px] leading-relaxed">
+                  <code>DROP DATABASE IF EXISTS</code>, creación del esquema y sentencias <code>CREATE TABLE</code> ordenadas por jerarquía referencial.
+                </p>
+              </div>
+            </div>
+
+            <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+              <div>
+                <span class="w-7 h-7 rounded-xl bg-purple-100 text-purple-800 font-bold flex items-center justify-center mb-2">3</span>
+                <strong class="text-slate-900 block font-bold mb-1">Datos Semilla (Seeders)</strong>
+                <p class="text-slate-600 text-[11px] leading-relaxed">
+                  Poblado inicial DML: roles base, usuarios administradores, catálogos y transacciones de prueba coherentes.
+                </p>
+              </div>
+            </div>
+
+            <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+              <div>
+                <span class="w-7 h-7 rounded-xl bg-amber-100 text-amber-800 font-bold flex items-center justify-center mb-2">4</span>
+                <strong class="text-slate-900 block font-bold mb-1">Consultas DQL (Test)</strong>
+                <p class="text-slate-600 text-[11px] leading-relaxed">
+                  Consultas multitable con <code>INNER JOIN</code> al final del script para certificar que las relaciones devuelven datos reales.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-3.5 bg-emerald-50 rounded-2xl border border-emerald-200 text-xs text-emerald-950 flex items-center gap-3">
+            <i data-lucide="check-check" class="w-5 h-5 text-emerald-700 shrink-0"></i>
+            <div>
+              <strong>Criterio de Evaluación:</strong> El instructor abrirá el script en una instancia limpia de MySQL Workbench y presionará el rayo de ejecución. Si el script falla por orden incorrecto de tablas o llaves inexistentes, la evidencia no podrá ser aprobada.
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(1)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(3)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Caso Real AgroTech <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 4: CASO PRÁCTICO REAL: AGROTECH COLOMBIA S.A.S. -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="04. Caso Real: AgroTech Colombia">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sena font-mono">Caso de Referencia Empresarial</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Software Modelo: "AgroTech Colombia S.A.S."
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-emerald-50 text-emerald-800 rounded-full text-xs font-bold font-mono">Esquema: agrotech_db</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+            Consolidamos el script maestro para la plataforma web y móvil de gestión comercial e inventario de <strong>AgroTech Colombia S.A.S.</strong>, integrando el diseño EER de la EV02 en un archivo SQL físico completo:
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-4 text-xs font-mono">
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <span class="text-sena font-bold block mb-1">1. roles (Maestra)</span>
+              <p class="text-slate-500 font-sans text-[11px]">Catálogo de accesos: <code>ADMIN</code>, <code>VENDEDOR</code>, <code>CLIENTE</code>. Sin dependencias externas.</p>
+            </div>
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <span class="text-purple-600 font-bold block mb-1">2. categorias (Maestra)</span>
+              <p class="text-slate-500 font-sans text-[11px]">Líneas de producto: Semillas, Fertilizantes, Herramientas, Riego. Sin dependencias externas.</p>
+            </div>
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <span class="text-sky-600 font-bold block mb-1">3. usuarios (Dependiente)</span>
+              <p class="text-slate-500 font-sans text-[11px]">Clientes y personal. Depende de <code>roles(id_rol)</code>. Restricción <code>email UNIQUE</code>.</p>
+            </div>
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <span class="text-amber-600 font-bold block mb-1">4. productos (Dependiente)</span>
+              <p class="text-slate-500 font-sans text-[11px]">Catálogo comercial. Depende de <code>categorias(id_categoria)</code>. <code>CHECK precio > 0</code>.</p>
+            </div>
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <span class="text-emerald-600 font-bold block mb-1">5. pedidos (Transaccional)</span>
+              <p class="text-slate-500 font-sans text-[11px]">Facturación. Depende de <code>usuarios(id_usuario)</code>. <code>numero_factura UNIQUE</code>.</p>
+            </div>
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <span class="text-rose-600 font-bold block mb-1">6. detalle_pedidos (Asociativa)</span>
+              <p class="text-slate-500 font-sans text-[11px]">Líneas de venta N:M. Depende de <code>pedidos</code> y <code>productos</code>. <code>CHECK cantidad > 0</code>.</p>
+            </div>
+          </div>
+
+          <div class="p-3 bg-slate-900 text-slate-300 rounded-xl font-mono text-xs flex items-center justify-between">
+            <span>Regla de Orden DDL: Crear primero tablas independientes $ightarrow$ luego tablas dependientes.</span>
+            <span class="text-emerald-400 font-bold">Inverso para DROP</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(2)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(4)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: ¿En qué Programa lo Hacen? <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 5: PROGRAMA OFICIAL: MYSQL WORKBENCH -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="05. Programa Oficial: MySQL Workbench">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sena font-mono">Herramienta Oficial de Desarrollo</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                ¿En qué Programa lo Hacen? MySQL Workbench
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-sky-50 text-sky-800 rounded-full text-xs font-bold font-mono">Versión 8.0 CE</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+            La guía solicita: <em>"Realizar todo el modelo físico en una de las herramientas vistas de gestión de bases de datos [...] que corresponden a los diseños hechos en MySQL Workbench"</em>. En Workbench se integran dos flujos:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div class="p-4 rounded-2xl bg-emerald-50/60 border border-emerald-200">
+              <div class="flex items-center gap-2 mb-2">
+                <div class="w-8 h-8 rounded-lg bg-[#39A900] text-white flex items-center justify-center font-bold">
+                  <i data-lucide="share-2" class="w-4 h-4"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-slate-900 text-sm">Flujo A: Exportar desde el Modelo EER</h3>
+                  <span class="text-[11px] text-emerald-800 font-semibold">Forward Engineering a Archivo .sql</span>
+                </div>
+              </div>
+              <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                Abre tu archivo <code>.mwb</code> de la evidencia EV02, presiona <code>Ctrl + G</code> o ve a <strong>File &gt; Export &gt; Forward Engineer SQL CREATE Script</strong> para obtener el esqueleto DDL de tablas y llaves.
+              </p>
+              <div class="p-2 bg-white rounded-lg border border-emerald-100 font-mono text-[11px] text-slate-700">
+                Resultado: Archivo DDL limpio con sentencias CREATE TABLE.
+              </div>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-sky-50/60 border border-sky-200">
+              <div class="flex items-center gap-2 mb-2">
+                <div class="w-8 h-8 rounded-lg bg-sky-700 text-white flex items-center justify-center font-bold">
+                  <i data-lucide="terminal" class="w-4 h-4"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-slate-900 text-sm">Flujo B: SQL Query Editor (Consolidación)</h3>
+                  <span class="text-[11px] text-sky-800 font-semibold">Integración de Seeders y Verificación</span>
+                </div>
+              </div>
+              <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                En el editor de consultas de Workbench, ensamblas el script maestro: agregas los encabezados, los datos semilla (<code>INSERT</code>) y las consultas <code>JOIN</code> de verificación, ejecutando todo con <code>Ctrl + Shift + Enter</code>.
+              </p>
+              <div class="p-2 bg-white rounded-lg border border-sky-100 font-mono text-[11px] text-slate-700">
+                Resultado: Script maestro ejecutable sin intervención manual.
+              </div>
+            </div>
+          </div>
+
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-700 flex items-center gap-2">
+            <i data-lucide="info" class="w-4 h-4 text-slate-500 shrink-0"></i>
+            <span><strong>Requisito clave:</strong> Todo el script debe probarse en el servidor local de MySQL Workbench para garantizar que el panel inferior <em>Action Output</em> muestre todos los iconos en verde.</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(3)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(5)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Paso 1 - Encabezado y Sesión <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 6: PASO 1 DEL SCRIPT: ENCABEZADO Y CONFIGURACIÓN IDEMPOTENTE -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="06. Paso 1: Encabezado y Sesión">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sena font-mono">Estructura del Script SQL • Paso 1</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Encabezado, Parámetros de Sesión y Creación de BD
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-emerald-50 text-emerald-800 rounded-full text-xs font-bold font-mono">Control de Entorno</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+            Todo script profesional comienza con una cabecera de metadatos institucionales y directivas de control de sesión para garantizar compatibilidad multiplataforma y caracteres especiales (acentos y letra ñ):
+          </p>
+
+          <div class="p-4 bg-slate-900 rounded-2xl font-mono text-[11px] text-slate-200 border border-slate-800 mb-3 max-h-[300px] overflow-y-auto">
+            <span class="text-slate-500">-- =======================================================================</span><br>
+            <span class="text-slate-500">-- PROYECTO FORMATIVO: AgroTech Colombia S.A.S. (Plataforma Comercial e Inventario)</span><br>
+            <span class="text-slate-500">-- EVIDENCIA: GA6-220501096-AA2-EV03: Script bases de datos del proyecto</span><br>
+            <span class="text-slate-500">-- PROGRAMA: Tecnología en Análisis y Desarrollo de Software (ADSO Virtual - Ficha 228118)</span><br>
+            <span class="text-slate-500">-- CENTRO: CADPH Garzón • Regional Huila • SENA</span><br>
+            <span class="text-slate-500">-- MOTOR: MySQL Community Server 8.0+ | Engine: InnoDB | Charset: utf8mb4</span><br>
+            <span class="text-slate-500">-- =======================================================================</span><br><br>
+
+            <span class="text-slate-400">-- 1. Parámetros de Sesión Segura e Idempotencia:</span><br>
+            <span class="text-sky-400 font-bold">SET NAMES</span> <span class="text-amber-300">'utf8mb4'</span>;<br>
+            <span class="text-sky-400 font-bold">SET</span> time_zone = <span class="text-amber-300">'-05:00'</span>; <span class="text-slate-500">-- Zona horaria Colombia</span><br>
+            <span class="text-sky-400 font-bold">SET</span> FOREIGN_KEY_CHECKS = <span class="text-amber-300 font-bold">0</span>; <span class="text-slate-500">-- Evita bloqueos en borrado inicial</span><br><br>
+
+            <span class="text-slate-400">-- 2. Borrado Limpio y Creación de la Base de Datos:</span><br>
+            <span class="text-sky-400 font-bold">DROP DATABASE IF EXISTS</span> `agrotech_db`;<br>
+            <span class="text-sky-400 font-bold">CREATE DATABASE</span> `agrotech_db`<br>
+            &nbsp;&nbsp;<span class="text-sky-400 font-bold">DEFAULT CHARACTER SET</span> utf8mb4<br>
+            &nbsp;&nbsp;<span class="text-sky-400 font-bold">DEFAULT COLLATE</span> utf8mb4_unicode_ci;<br><br>
+
+            <span class="text-sky-400 font-bold">USE</span> `agrotech_db`;
+          </div>
+
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-700">
+            <strong>Explicación:</strong> <code>FOREIGN_KEY_CHECKS = 0</code> permite eliminar y recrear el esquema sin disparar bloqueos por tablas secundarias. Al final del script se vuelve a activar con <code>1</code>.
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(4)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(6)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Paso 2 - Tablas Maestras DDL <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 7: PASO 2 DEL SCRIPT: BLOQUE DDL - TABLAS MAESTRAS -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="07. Paso 2: Tablas Maestras DDL">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sena font-mono">Estructura del Script SQL • Paso 2</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Bloque DDL: Creación de Tablas Maestras e Independientes
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-purple-50 text-purple-700 rounded-full text-xs font-bold font-mono">roles y categorias</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+            Las primeras tablas que se deben crear son aquellas que <strong>no tienen llaves foráneas</strong> hacia otras tablas (entidades fuertes o de catálogo base):
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+            <!-- Tabla roles -->
+            <div class="p-3.5 bg-slate-900 rounded-2xl font-mono text-[11px] text-slate-200 border border-slate-800">
+              <span class="text-slate-400">-- 1. Tabla de Roles de Seguridad:</span><br>
+              <span class="text-sky-400 font-bold">CREATE TABLE</span> `roles` (<br>
+              &nbsp;&nbsp;`id_rol` <span class="text-sky-300">INT</span> <span class="text-rose-400 font-bold">NOT NULL</span> <span class="text-amber-300 font-bold">AUTO_INCREMENT</span>,<br>
+              &nbsp;&nbsp;`nombre_rol` <span class="text-sky-300">VARCHAR(45)</span> <span class="text-rose-400 font-bold">NOT NULL</span>,<br>
+              &nbsp;&nbsp;`descripcion` <span class="text-sky-300">VARCHAR(150)</span> <span class="text-slate-400">NULL</span>,<br>
+              &nbsp;&nbsp;<span class="text-sky-400 font-bold">PRIMARY KEY</span> (`id_rol`),<br>
+              &nbsp;&nbsp;<span class="text-purple-400 font-bold">UNIQUE INDEX</span> `uq_rol_nombre` (`nombre_rol` <span class="text-slate-400">ASC</span>)<br>
+              ) <span class="text-emerald-400 font-bold">ENGINE = InnoDB</span>;<br>
+              <span class="text-slate-500 text-[10px]">-- Almacena perfiles de acceso autorizados</span>
+            </div>
+
+            <!-- Tabla categorias -->
+            <div class="p-3.5 bg-slate-900 rounded-2xl font-mono text-[11px] text-slate-200 border border-slate-800">
+              <span class="text-slate-400">-- 2. Tabla de Categorías de Insumos:</span><br>
+              <span class="text-sky-400 font-bold">CREATE TABLE</span> `categorias` (<br>
+              &nbsp;&nbsp;`id_categoria` <span class="text-sky-300">INT</span> <span class="text-rose-400 font-bold">NOT NULL</span> <span class="text-amber-300 font-bold">AUTO_INCREMENT</span>,<br>
+              &nbsp;&nbsp;`codigo_categoria` <span class="text-sky-300">VARCHAR(20)</span> <span class="text-rose-400 font-bold">NOT NULL</span>,<br>
+              &nbsp;&nbsp;`nombre_categoria` <span class="text-sky-300">VARCHAR(80)</span> <span class="text-rose-400 font-bold">NOT NULL</span>,<br>
+              &nbsp;&nbsp;`activo` <span class="text-sky-300">TINYINT(1)</span> <span class="text-rose-400 font-bold">NOT NULL</span> <span class="text-emerald-300">DEFAULT 1</span>,<br>
+              &nbsp;&nbsp;<span class="text-sky-400 font-bold">PRIMARY KEY</span> (`id_categoria`),<br>
+              &nbsp;&nbsp;<span class="text-purple-400 font-bold">UNIQUE INDEX</span> `uq_cat_codigo` (`codigo_categoria` <span class="text-slate-400">ASC</span>)<br>
+              ) <span class="text-emerald-400 font-bold">ENGINE = InnoDB</span>;<br>
+              <span class="text-slate-500 text-[10px]">-- Clasificación del catálogo agroempresarial</span>
+            </div>
+          </div>
+
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-700">
+            <strong>Detalle Técnico:</strong> Siempre especifica explícitamente <code>ENGINE = InnoDB</code>. InnoDB es el motor estándar de MySQL que garantiza transacciones ACID y verificación real de llaves foráneas.
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(5)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(7)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Paso 3 - Tablas con Llaves Foráneas <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 8: PASO 3 DEL SCRIPT: TABLAS DEPENDIENTES CON LLAVES FORÁNEAS -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="08. Paso 3: Tablas Dependientes (FK)">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sena font-mono">Estructura del Script SQL • Paso 3</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Bloque DDL: Tablas con Integridad Referencial (FK y CHECK)
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-sky-50 text-sky-800 rounded-full text-xs font-bold font-mono">usuarios y productos</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+            Una vez creadas las maestras, se definen las tablas que apuntan hacia ellas con cláusulas <code>CONSTRAINT FOREIGN KEY</code> y políticas de restricción:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+            <!-- Tabla usuarios -->
+            <div class="p-3.5 bg-slate-900 rounded-2xl font-mono text-[11px] text-slate-200 border border-slate-800">
+              <span class="text-sky-400 font-bold">CREATE TABLE</span> `usuarios` (<br>
+              &nbsp;&nbsp;`id_usuario` <span class="text-sky-300">INT NOT NULL AUTO_INCREMENT</span>,<br>
+              &nbsp;&nbsp;`id_rol` <span class="text-sky-300">INT NOT NULL</span>,<br>
+              &nbsp;&nbsp;`nombre_completo` <span class="text-sky-300">VARCHAR(100) NOT NULL</span>,<br>
+              &nbsp;&nbsp;`email` <span class="text-sky-300">VARCHAR(120) NOT NULL</span>,<br>
+              &nbsp;&nbsp;`password_hash` <span class="text-sky-300">VARCHAR(255) NOT NULL</span>,<br>
+              &nbsp;&nbsp;`estado` <span class="text-sky-300">VARCHAR(15) DEFAULT 'ACTIVO'</span>,<br>
+              &nbsp;&nbsp;<span class="text-sky-400 font-bold">PRIMARY KEY</span> (`id_usuario`),<br>
+              &nbsp;&nbsp;<span class="text-purple-400 font-bold">UNIQUE INDEX</span> `uq_usr_email` (`email`),<br>
+              &nbsp;&nbsp;<span class="text-sky-400 font-bold">CONSTRAINT</span> `fk_usuarios_roles`<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-sky-400 font-bold">FOREIGN KEY</span> (`id_rol`)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-sky-400 font-bold">REFERENCES</span> `roles` (`id_rol`)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-amber-400 font-bold">ON DELETE RESTRICT</span> <span class="text-emerald-400 font-bold">ON UPDATE CASCADE</span><br>
+              ) <span class="text-emerald-400 font-bold">ENGINE = InnoDB</span>;
+            </div>
+
+            <!-- Tabla productos -->
+            <div class="p-3.5 bg-slate-900 rounded-2xl font-mono text-[11px] text-slate-200 border border-slate-800">
+              <span class="text-sky-400 font-bold">CREATE TABLE</span> `productos` (<br>
+              &nbsp;&nbsp;`id_producto` <span class="text-sky-300">INT NOT NULL AUTO_INCREMENT</span>,<br>
+              &nbsp;&nbsp;`id_categoria` <span class="text-sky-300">INT NOT NULL</span>,<br>
+              &nbsp;&nbsp;`sku` <span class="text-sky-300">VARCHAR(30) NOT NULL</span>,<br>
+              &nbsp;&nbsp;`nombre_producto` <span class="text-sky-300">VARCHAR(120) NOT NULL</span>,<br>
+              &nbsp;&nbsp;`precio_unitario` <span class="text-sky-300">DECIMAL(12,2) NOT NULL</span>,<br>
+              &nbsp;&nbsp;`stock_disponible` <span class="text-sky-300">INT NOT NULL</span>,<br>
+              &nbsp;&nbsp;<span class="text-sky-400 font-bold">PRIMARY KEY</span> (`id_producto`),<br>
+              &nbsp;&nbsp;<span class="text-purple-400 font-bold">UNIQUE INDEX</span> `uq_prod_sku` (`sku`),<br>
+              &nbsp;&nbsp;<span class="text-purple-400 font-bold">CONSTRAINT</span> `chk_prod_precio` <span class="text-purple-400 font-bold">CHECK</span> (`precio_unitario` &gt; 0),<br>
+              &nbsp;&nbsp;<span class="text-purple-400 font-bold">CONSTRAINT</span> `chk_prod_stock` <span class="text-purple-400 font-bold">CHECK</span> (`stock_disponible` &gt;= 0),<br>
+              &nbsp;&nbsp;<span class="text-sky-400 font-bold">CONSTRAINT</span> `fk_productos_categorias`<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-sky-400 font-bold">FOREIGN KEY</span> (`id_categoria`)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-sky-400 font-bold">REFERENCES</span> `categorias` (`id_categoria`)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-amber-400 font-bold">ON DELETE RESTRICT</span> <span class="text-emerald-400 font-bold">ON UPDATE CASCADE</span><br>
+              ) <span class="text-emerald-400 font-bold">ENGINE = InnoDB</span>;
+            </div>
+          </div>
+
+          <div class="p-3 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-950">
+            <strong>Protección RESTRICT:</strong> Si un usuario tiene el rol 'VENDEDOR', la base de datos rechaza cualquier intento de borrar dicho rol mientras existan usuarios con esa referencia.
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(6)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(8)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Paso 4 - Tablas Transaccionales y Cascada <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 9: PASO 4 DEL SCRIPT: TABLAS TRANSACCIONALES Y CASCADA -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="09. Paso 4: Tablas Transaccionales">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sena font-mono">Estructura del Script SQL • Paso 4</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Bloque DDL: Tablas Transaccionales y Acción en Cascada
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-amber-50 text-amber-800 rounded-full text-xs font-bold font-mono">pedidos y detalle_pedidos</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+            Se definen las tablas de ventas. Notar cómo <code>detalle_pedidos</code> aplica <strong>CASCADE</strong> hacia <code>pedidos</code> y <strong>RESTRICT</strong> hacia <code>productos</code>:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+            <!-- Tabla pedidos -->
+            <div class="p-3.5 bg-slate-900 rounded-2xl font-mono text-[11px] text-slate-200 border border-slate-800">
+              <span class="text-sky-400 font-bold">CREATE TABLE</span> `pedidos` (<br>
+              &nbsp;&nbsp;`id_pedido` <span class="text-sky-300">INT NOT NULL AUTO_INCREMENT</span>,<br>
+              &nbsp;&nbsp;`id_usuario` <span class="text-sky-300">INT NOT NULL</span>,<br>
+              &nbsp;&nbsp;`numero_factura` <span class="text-sky-300">VARCHAR(25) NOT NULL</span>,<br>
+              &nbsp;&nbsp;`fecha_pedido` <span class="text-sky-300">DATETIME DEFAULT CURRENT_TIMESTAMP</span>,<br>
+              &nbsp;&nbsp;`total_neto` <span class="text-sky-300">DECIMAL(12,2) NOT NULL DEFAULT 0.00</span>,<br>
+              &nbsp;&nbsp;`estado_pedido` <span class="text-sky-300">VARCHAR(20) DEFAULT 'PENDIENTE'</span>,<br>
+              &nbsp;&nbsp;<span class="text-sky-400 font-bold">PRIMARY KEY</span> (`id_pedido`),<br>
+              &nbsp;&nbsp;<span class="text-purple-400 font-bold">UNIQUE INDEX</span> `uq_ped_factura` (`numero_factura`),<br>
+              &nbsp;&nbsp;<span class="text-purple-400 font-bold">CONSTRAINT</span> `chk_ped_total` <span class="text-purple-400 font-bold">CHECK</span> (`total_neto` &gt;= 0),<br>
+              &nbsp;&nbsp;<span class="text-sky-400 font-bold">CONSTRAINT</span> `fk_pedidos_usuarios`<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-sky-400 font-bold">FOREIGN KEY</span> (`id_usuario`)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-sky-400 font-bold">REFERENCES</span> `usuarios` (`id_usuario`)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-amber-400 font-bold">ON DELETE RESTRICT</span> <span class="text-emerald-400 font-bold">ON UPDATE CASCADE</span><br>
+              ) <span class="text-emerald-400 font-bold">ENGINE = InnoDB</span>;
+            </div>
+
+            <!-- Tabla detalle_pedidos -->
+            <div class="p-3.5 bg-slate-900 rounded-2xl font-mono text-[11px] text-slate-200 border border-slate-800">
+              <span class="text-sky-400 font-bold">CREATE TABLE</span> `detalle_pedidos` (<br>
+              &nbsp;&nbsp;`id_detalle` <span class="text-sky-300">INT NOT NULL AUTO_INCREMENT</span>,<br>
+              &nbsp;&nbsp;`id_pedido` <span class="text-sky-300">INT NOT NULL</span>,<br>
+              &nbsp;&nbsp;`id_producto` <span class="text-sky-300">INT NOT NULL</span>,<br>
+              &nbsp;&nbsp;`cantidad` <span class="text-sky-300">INT NOT NULL</span>,<br>
+              &nbsp;&nbsp;`precio_unitario` <span class="text-sky-300">DECIMAL(12,2) NOT NULL</span>,<br>
+              &nbsp;&nbsp;`subtotal` <span class="text-sky-300">DECIMAL(12,2) NOT NULL</span>,<br>
+              &nbsp;&nbsp;<span class="text-sky-400 font-bold">PRIMARY KEY</span> (`id_detalle`),<br>
+              &nbsp;&nbsp;<span class="text-purple-400 font-bold">CONSTRAINT</span> `chk_det_cantidad` <span class="text-purple-400 font-bold">CHECK</span> (`cantidad` &gt; 0),<br>
+              &nbsp;&nbsp;<span class="text-sky-400 font-bold">CONSTRAINT</span> `fk_det_pedidos`<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-sky-400 font-bold">FOREIGN KEY</span> (`id_pedido`) <span class="text-sky-400 font-bold">REFERENCES</span> `pedidos` (`id_pedido`)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-rose-400 font-bold">ON DELETE CASCADE</span> <span class="text-emerald-400 font-bold">ON UPDATE CASCADE</span>,<br>
+              &nbsp;&nbsp;<span class="text-sky-400 font-bold">CONSTRAINT</span> `fk_det_productos`<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-sky-400 font-bold">FOREIGN KEY</span> (`id_producto`) <span class="text-sky-400 font-bold">REFERENCES</span> `productos` (`id_producto`)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-amber-400 font-bold">ON DELETE RESTRICT</span> <span class="text-emerald-400 font-bold">ON UPDATE CASCADE</span><br>
+              ) <span class="text-emerald-400 font-bold">ENGINE = InnoDB</span>;
+            </div>
+          </div>
+
+          <div class="p-3 bg-slate-900 rounded-xl font-mono text-[11px] text-emerald-400 flex items-center justify-between">
+            <span>SET FOREIGN_KEY_CHECKS = 1; -- Cierre del bloque DDL y reactivación de chequeos</span>
+            <span class="text-sky-300 font-bold">Estructura Física Completa (6 Tablas)</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(7)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(9)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Paso 5 - Datos Semilla (Seeders) <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 10: PASO 5 DEL SCRIPT: BLOQUE DML - DATOS SEMILLA (SEEDERS) -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="10. Paso 5: Datos Semilla (Seeders)">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sena font-mono">Estructura del Script SQL • Paso 5</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Bloque DML: Poblado con Datos Semilla (Seeders)
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-emerald-50 text-emerald-800 rounded-full text-xs font-bold font-mono">Catálogos y Usuarios Base</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+            Un script de base de datos nunca se entrega vacío: debe incluir registros iniciales para que el sistema cuente con roles, cuentas administrativas y catálogo de prueba al iniciar:
+          </p>
+
+          <div class="p-3.5 bg-slate-900 rounded-2xl font-mono text-[11px] text-slate-200 border border-slate-800 mb-3 max-h-[300px] overflow-y-auto">
+            <span class="text-slate-400">-- 1. Poblar Roles del Sistema:</span><br>
+            <span class="text-sky-400 font-bold">INSERT INTO</span> `roles` (`id_rol`, `nombre_rol`, `descripcion`) <span class="text-sky-400 font-bold">VALUES</span><br>
+            &nbsp;&nbsp;(1, <span class="text-amber-300">'ADMINISTRADOR'</span>, <span class="text-amber-300">'Acceso total al sistema y configuraciones'</span>),<br>
+            &nbsp;&nbsp;(2, <span class="text-amber-300">'VENDEDOR'</span>, <span class="text-amber-300">'Gestión de catálogo, cotizaciones y pedidos'</span>),<br>
+            &nbsp;&nbsp;(3, <span class="text-amber-300">'CLIENTE'</span>, <span class="text-amber-300">'Comprador agropecuario registrado'</span>);<br><br>
+
+            <span class="text-slate-400">-- 2. Poblar Categorías de Insumos:</span><br>
+            <span class="text-sky-400 font-bold">INSERT INTO</span> `categorias` (`id_categoria`, `codigo_categoria`, `nombre_categoria`, `activo`) <span class="text-sky-400 font-bold">VALUES</span><br>
+            &nbsp;&nbsp;(1, <span class="text-amber-300">'SEM-01'</span>, <span class="text-amber-300">'Semillas Certificadas (Café, Cacao, Frutales)'</span>, 1),<br>
+            &nbsp;&nbsp;(2, <span class="text-amber-300">'FERT-02'</span>, <span class="text-amber-300">'Fertilizantes y Nutrición Foliar'</span>, 1),<br>
+            &nbsp;&nbsp;(3, <span class="text-amber-300">'RIE-03'</span>, <span class="text-amber-300">'Sistemas de Riego Tecnificado y Goteo'</span>, 1);<br><br>
+
+            <span class="text-slate-400">-- 3. Poblar Usuarios de Prueba:</span><br>
+            <span class="text-sky-400 font-bold">INSERT INTO</span> `usuarios` (`id_usuario`, `id_rol`, `nombre_completo`, `email`, `password_hash`, `estado`) <span class="text-sky-400 font-bold">VALUES</span><br>
+            &nbsp;&nbsp;(1, 1, <span class="text-amber-300">'Hector Toledo'</span>, <span class="text-amber-300">'admin@agrotech.com'</span>, <span class="text-amber-300">'$2b$12$e8x...hashSeguro'</span>, <span class="text-amber-300">'ACTIVO'</span>),<br>
+            &nbsp;&nbsp;(2, 2, <span class="text-amber-300">'María Camila Rojas'</span>, <span class="text-amber-300">'ventas.huila@agrotech.com'</span>, <span class="text-amber-300">'$2b$12$9qL...hashSeguro'</span>, <span class="text-amber-300">'ACTIVO'</span>),<br>
+            &nbsp;&nbsp;(3, 3, <span class="text-amber-300">'Finca Villa Esperanza'</span>, <span class="text-amber-300">'gerencia@villaesperanza.co'</span>, <span class="text-amber-300">'$2b$12$1mP...hashSeguro'</span>, <span class="text-amber-300">'ACTIVO'</span>);
+          </div>
+
+          <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200 text-xs text-emerald-950">
+            <strong>Buenas Prácticas:</strong> Al insertar datos semilla en llaves primarias <code>AUTO_INCREMENT</code>, explicitar los IDs (1, 2, 3...) garantiza que las referencias foráneas posteriores apunten a filas exactas y predecibles.
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(8)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(10)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Paso 6 - Transacciones de Prueba <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 11: PASO 6 DEL SCRIPT: BLOQUE DML - TRANSACCIONES DE PRUEBA -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="11. Paso 6: Transacciones de Prueba">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sena font-mono">Estructura del Script SQL • Paso 6</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Bloque DML: Inserción de Productos y Pedidos Reales
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-purple-50 text-purple-700 rounded-full text-xs font-bold font-mono">Prueba Operacional</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+            Poblamos el inventario comercial y registramos una orden de compra completa para demostrar el funcionamiento de la tabla asociativa <code>detalle_pedidos</code>:
+          </p>
+
+          <div class="p-3.5 bg-slate-900 rounded-2xl font-mono text-[11px] text-slate-200 border border-slate-800 mb-3 max-h-[300px] overflow-y-auto">
+            <span class="text-slate-400">-- 4. Catálogo de Productos con Stock y Precios:</span><br>
+            <span class="text-sky-400 font-bold">INSERT INTO</span> `productos` (`id_producto`, `id_categoria`, `sku`, `nombre_producto`, `precio_unitario`, `stock_disponible`) <span class="text-sky-400 font-bold">VALUES</span><br>
+            &nbsp;&nbsp;(1, 1, <span class="text-amber-300">'SEM-CAF-01'</span>, <span class="text-amber-300">'Semilla Café Castillo Tambo (Kilo)'</span>, 45000.00, 150),<br>
+            &nbsp;&nbsp;(2, 2, <span class="text-amber-300">'FERT-URE-50'</span>, <span class="text-amber-300">'Urea Agrícola Granulada 50kg'</span>, 135000.00, 80),<br>
+            &nbsp;&nbsp;(3, 3, <span class="text-amber-300">'RIE-ASP-01'</span>, <span class="text-amber-300">'Aspersor Sectorial Metálico 3/4 pulg'</span>, 28000.00, 200);<br><br>
+
+            <span class="text-slate-400">-- 5. Cabecera de Pedido Facturado:</span><br>
+            <span class="text-sky-400 font-bold">INSERT INTO</span> `pedidos` (`id_pedido`, `id_usuario`, `numero_factura`, `fecha_pedido`, `total_neto`, `estado_pedido`) <span class="text-sky-400 font-bold">VALUES</span><br>
+            &nbsp;&nbsp;(1, 3, <span class="text-amber-300">'FACT-2026-0001'</span>, <span class="text-amber-300">'2026-11-04 10:30:00'</span>, 400000.00, <span class="text-amber-300">'PAGADO'</span>);<br><br>
+
+            <span class="text-slate-400">-- 6. Líneas de Detalle del Pedido (2 bultos de urea + 1 kilo café + 2 aspersores = $400.000):</span><br>
+            <span class="text-sky-400 font-bold">INSERT INTO</span> `detalle_pedidos` (`id_pedido`, `id_producto`, `cantidad`, `precio_unitario`, `subtotal`) <span class="text-sky-400 font-bold">VALUES</span><br>
+            &nbsp;&nbsp;(1, 2, 2, 135000.00, 270000.00),<br>
+            &nbsp;&nbsp;(1, 1, 1, 45000.00, 45000.00),<br>
+            &nbsp;&nbsp;(1, 3, 3, 28000.00, 84000.00); <span class="text-slate-500">-- Total acumulado cuadrado</span>
+          </div>
+
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-700">
+            <strong>Coherencia de Datos:</strong> Todos los datos de prueba deben ser financieramente verosímiles y respetar las restricciones <code>CHECK</code> (precios mayores a 0, stock no negativo).
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(9)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(11)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Paso 7 - Consultas de Verificación (JOIN) <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 12: PASO 7 DEL SCRIPT: BLOQUE DQL - CONSULTAS CON JOIN -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="12. Paso 7: Consultas de Verificación">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sena font-mono">Estructura del Script SQL • Paso 7</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Bloque DQL: Consultas de Verificación con INNER JOIN
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-sky-50 text-sky-800 rounded-full text-xs font-bold font-mono">Validación de Relaciones</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+            Al final del script maestro, incluir 2 o 3 consultas <code>SELECT</code> con <code>INNER JOIN</code> para certificar que el modelo físico cruza los datos correctamente:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+            <!-- Consulta 1 -->
+            <div class="p-3.5 bg-slate-900 rounded-2xl font-mono text-[11px] text-slate-200 border border-slate-800">
+              <span class="text-slate-400">-- Consulta A: Catálogo con su Categoría:</span><br>
+              <span class="text-sky-400 font-bold">SELECT</span><br>
+              &nbsp;&nbsp;p.sku,<br>
+              &nbsp;&nbsp;p.nombre_producto,<br>
+              &nbsp;&nbsp;c.nombre_categoria,<br>
+              &nbsp;&nbsp;CONCAT(<span class="text-amber-300">'$ '</span>, FORMAT(p.precio_unitario, 2)) <span class="text-sky-400 font-bold">AS</span> precio,<br>
+              &nbsp;&nbsp;p.stock_disponible<br>
+              <span class="text-sky-400 font-bold">FROM</span> productos p<br>
+              <span class="text-sky-400 font-bold">INNER JOIN</span> categorias c <span class="text-sky-400 font-bold">ON</span> p.id_categoria = c.id_categoria<br>
+              <span class="text-sky-400 font-bold">ORDER BY</span> c.nombre_categoria <span class="text-slate-400">ASC</span>;
+            </div>
+
+            <!-- Consulta 2 -->
+            <div class="p-3.5 bg-slate-900 rounded-2xl font-mono text-[11px] text-slate-200 border border-slate-800">
+              <span class="text-slate-400">-- Consulta B: Factura Desglosada (Doble JOIN):</span><br>
+              <span class="text-sky-400 font-bold">SELECT</span><br>
+              &nbsp;&nbsp;ped.numero_factura,<br>
+              &nbsp;&nbsp;u.nombre_completo <span class="text-sky-400 font-bold">AS</span> cliente,<br>
+              &nbsp;&nbsp;pr.nombre_producto,<br>
+              &nbsp;&nbsp;det.cantidad,<br>
+              &nbsp;&nbsp;det.precio_unitario,<br>
+              &nbsp;&nbsp;det.subtotal<br>
+              <span class="text-sky-400 font-bold">FROM</span> detalle_pedidos det<br>
+              <span class="text-sky-400 font-bold">INNER JOIN</span> pedidos ped <span class="text-sky-400 font-bold">ON</span> det.id_pedido = ped.id_pedido<br>
+              <span class="text-sky-400 font-bold">INNER JOIN</span> usuarios u <span class="text-sky-400 font-bold">ON</span> ped.id_usuario = u.id_usuario<br>
+              <span class="text-sky-400 font-bold">INNER JOIN</span> productos pr <span class="text-sky-400 font-bold">ON</span> det.id_producto = pr.id_producto;
+            </div>
+          </div>
+
+          <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200 text-xs text-emerald-950">
+            <strong>Certificación de Calidad:</strong> Cuando el instructor ejecute el script completo, estas consultas mostrarán tablas estructuradas en el panel *Result Grid*, comprobando que la base de datos está 100% viva y operativa.
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(10)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(12)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Exportación desde Workbench <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 13: EXPORTACIÓN Y VALIDACIÓN EN EL SERVIDOR LOCAL -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="13. Exportación y Validación Local">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sena font-mono">Técnicas de Exportación</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Exportación del Script y Prueba de Cero Errores
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-emerald-50 text-emerald-800 rounded-full text-xs font-bold font-mono">MySQL Workbench</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+            La guía exige explícitamente: <em>"Debe generar el script y exportarlo"</em>. Existen dos formas de obtener el archivo SQL final:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 text-xs">
+            <!-- Método 1 -->
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+              <div class="flex items-center gap-2 mb-2 font-bold text-slate-900">
+                <i data-lucide="file-output" class="w-4 h-4 text-sena"></i>
+                <span>Método 1: Desde el Modelo Gráfico (EER)</span>
+              </div>
+              <ol class="space-y-1.5 text-slate-600 pl-4 list-decimal text-[11px] mb-3">
+                <li>Abre el modelo <code>.mwb</code> en Workbench.</li>
+                <li>Menú: <strong>File &gt; Export &gt; Forward Engineer SQL CREATE Script...</strong></li>
+                <li>Elige la ruta de guardado: <code>script_estructura_bd.sql</code>.</li>
+                <li>Marca: <em>"Generate INSERT Statements for Tables"</em> si ya definiste datos en la pestaña Inserts.</li>
+                <li>Finaliza y guarda el archivo.</li>
+              </ol>
+            </div>
+
+            <!-- Método 2 -->
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+              <div class="flex items-center gap-2 mb-2 font-bold text-slate-900">
+                <i data-lucide="save" class="w-4 h-4 text-sky-600"></i>
+                <span>Método 2: Desde el Editor de Consultas SQL</span>
+              </div>
+              <ol class="space-y-1.5 text-slate-600 pl-4 list-decimal text-[11px] mb-3">
+                <li>Copia y pega la estructura DDL, seeders y consultas en una pestaña nueva.</li>
+                <li>Presiona <code>Ctrl + Shift + Enter</code> para ejecutar de inicio a fin.</li>
+                <li>Verifica que todas las filas del <strong>Action Output</strong> muestren check verde.</li>
+                <li>Menú: <strong>File &gt; Save Script As...</strong> guardándolo como <code>script_maestro_bd.sql</code>.</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="p-3.5 bg-emerald-50/80 rounded-2xl border border-emerald-300 text-xs text-emerald-950 flex items-center gap-3">
+            <i data-lucide="shield-check" class="w-5 h-5 text-emerald-700 shrink-0"></i>
+            <div>
+              <strong>Regla de Aprobación:</strong> Antes de comprimir en ZIP, abre una pestaña nueva en Workbench, carga tu archivo <code>.sql</code> y ejecútalo completo. Si no arroja ninguna marca roja (Error Code), tu evidencia está lista para entregar.
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(11)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(13)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Empaque ZIP y Checklist <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 14: EMPAQUETADO EN FORMATO ZIP Y LISTA DE CHEQUEO -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="14. Empaquetado ZIP y Checklist">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sena font-mono">Cierre y Entrega Oficial</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Empaquetado en Formato ZIP y Rúbrica de Calificación
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-emerald-50 text-emerald-800 rounded-full text-xs font-bold font-mono">Formato Obligatorio: .ZIP</span>
+          </div>
+
+          <!-- Estructura del Archivo ZIP -->
+          <div class="p-4 bg-slate-900 text-slate-200 rounded-2xl mb-4 font-mono text-xs border border-slate-800">
+            <div class="text-emerald-400 font-bold mb-2 flex items-center gap-2">
+              <i data-lucide="folder-archive" class="w-4 h-4"></i>
+              <span>Contenido exacto del archivo comprimido (.ZIP):</span>
+            </div>
+            <div class="space-y-1 pl-4 border-l border-slate-700 text-[11px]">
+              <div>📦 <strong class="text-amber-300">GA6-220501096-AA2-EV03_Nombre_Apellido.zip</strong></div>
+              <div class="pl-4">├── 📜 <span class="text-sky-300">script_maestro_agrotech_bd.sql</span> (Script SQL completo: DDL + DML Seeders + Consultas JOIN)</div>
+              <div class="pl-4">├── 📊 <span class="text-emerald-300">modelo_fisico_workbench.mwb</span> (Archivo fuente nativo del diseño en MySQL Workbench)</div>
+              <div class="pl-4">└── 📄 <span class="text-purple-300">LEAME_INSTRUCCIONES_EJECUCION.txt</span> (Breve guía de orden de ejecución para el instructor)</div>
+            </div>
+          </div>
+
+          <!-- Lista de Chequeo Final -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4 text-xs">
+            <div class="p-3 bg-emerald-50/70 rounded-xl border border-emerald-200 space-y-1.5">
+              <strong class="text-emerald-900 block font-bold mb-1 flex items-center gap-1.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-sena"></i> Lista de Verificación Técnica:
+              </strong>
+              <div class="flex items-center gap-2 text-slate-700">
+                <input type="checkbox" checked disabled class="accent-[#39A900]">
+                <span>El script modela el software del proyecto formativo real.</span>
+              </div>
+              <div class="flex items-center gap-2 text-slate-700">
+                <input type="checkbox" checked disabled class="accent-[#39A900]">
+                <span>Incluye DROP DATABASE IF EXISTS y CREATE DATABASE limpio.</span>
+              </div>
+              <div class="flex items-center gap-2 text-slate-700">
+                <input type="checkbox" checked disabled class="accent-[#39A900]">
+                <span>Tablas ordenadas por dependencias jerárquicas (0 fallos).</span>
+              </div>
+            </div>
+
+            <div class="p-3 bg-emerald-50/70 rounded-xl border border-emerald-200 space-y-1.5">
+              <strong class="text-emerald-900 block font-bold mb-1 flex items-center gap-1.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-sena"></i> Requisitos de Entrega:
+              </strong>
+              <div class="flex items-center gap-2 text-slate-700">
+                <input type="checkbox" checked disabled class="accent-[#39A900]">
+                <span>Contiene datos semilla DML para pruebas inmediatas.</span>
+              </div>
+              <div class="flex items-center gap-2 text-slate-700">
+                <input type="checkbox" checked disabled class="accent-[#39A900]">
+                <span>Incluye consultas con INNER JOIN demostrando datos cruzados.</span>
+              </div>
+              <div class="flex items-center gap-2 text-slate-700">
+                <input type="checkbox" checked disabled class="accent-[#39A900]">
+                <span>Archivo comprimido en formato .ZIP con nomenclatura oficial.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-600 flex items-center justify-between">
+            <span>Espacio Zajuna: <strong>Script bases de datos del proyecto. GA6-220501096-AA2-EV03</strong></span>
+            <span class="text-sena font-bold">¡Muchos éxitos en su entrega!</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(12)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <a href="../../index.html" class="inline-flex items-center gap-2 px-4 py-2 bg-[#00324D] hover:bg-[#00263A] text-white rounded-xl text-xs font-bold transition-all shadow-sm">
+            <i data-lucide="home" class="w-4 h-4"></i> Volver al Portal Principal
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- SCRIPTS DE NAVEGACIÓN Y FUNCIONALIDAD INTERACTIVA -->
+  <!-- ========================================================================= -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const slides = document.querySelectorAll('.slide-content');
+      const totalSlides = slides.length;
+      let currentSlide = 0;
+
+      // Elementos UI
+      const progressBar = document.getElementById('presentation-progress');
+      const slideCounter = document.getElementById('slide-counter');
+      const btnPrev = document.getElementById('btn-prev-slide');
+      const btnNext = document.getElementById('btn-next-slide');
+      const btnToggleMenu = document.getElementById('btn-toggle-menu');
+      const btnCloseMenu = document.getElementById('btn-close-menu');
+      const menuDrawer = document.getElementById('menu-drawer');
+      const menuItemsList = document.getElementById('menu-items-list');
+      const btnFullscreen = document.getElementById('btn-fullscreen');
+      const btnToggleHelp = document.getElementById('btn-toggle-help');
+      const btnCloseHelp = document.getElementById('btn-close-help');
+      const helpModal = document.getElementById('help-modal');
+
+      // Generar elementos del menú drawer
+      slides.forEach((slide, idx) => {
+        const title = slide.getAttribute('data-title') || `Diapositiva ${idx + 1}`;
+        const item = document.createElement('button');
+        item.className = `w-full text-left px-3 py-2.5 rounded-xl text-xs font-medium transition-all flex items-center justify-between group ${
+          idx === currentSlide ? 'bg-emerald-50 text-emerald-800 font-bold border border-emerald-200' : 'text-slate-600 hover:bg-slate-100'
+        }`;
+        item.innerHTML = `
+          <span class="truncate">${title}</span>
+          <span class="text-[10px] font-mono text-slate-400 group-hover:text-slate-600">${idx + 1}</span>
+        `;
+        item.addEventListener('click', () => {
+          goToSlide(idx);
+          menuDrawer.classList.add('translate-x-full');
+        });
+        menuItemsList.appendChild(item);
+      });
+
+      function updateSlideUI() {
+        slides.forEach((slide, idx) => {
+          if (idx === currentSlide) {
+            slide.classList.remove('hidden');
+            slide.classList.add('active');
+          } else {
+            slide.classList.add('hidden');
+            slide.classList.remove('active');
+          }
+        });
+
+        // Barra de progreso
+        const progressPct = ((currentSlide + 1) / totalSlides) * 100;
+        progressBar.style.width = `${progressPct}%`;
+
+        // Contador
+        slideCounter.textContent = `${currentSlide + 1} / ${totalSlides}`;
+
+        // Botones anterior/siguiente
+        btnPrev.disabled = currentSlide === 0;
+        btnNext.disabled = currentSlide === totalSlides - 1;
+
+        // Actualizar estados del drawer
+        const drawerItems = menuItemsList.querySelectorAll('button');
+        drawerItems.forEach((btn, idx) => {
+          if (idx === currentSlide) {
+            btn.className = 'w-full text-left px-3 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center justify-between group bg-emerald-50 text-emerald-800 border border-emerald-200';
+          } else {
+            btn.className = 'w-full text-left px-3 py-2.5 rounded-xl text-xs font-medium transition-all flex items-center justify-between group text-slate-600 hover:bg-slate-100';
+          }
+        });
+
+        // Re-inicializar iconos de Lucide
+        if (window.lucide) {
+          lucide.createIcons();
+        }
+      }
+
+      window.goToSlide = function(idx) {
+        if (idx >= 0 && idx < totalSlides) {
+          currentSlide = idx;
+          updateSlideUI();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      };
+
+      btnPrev.addEventListener('click', () => goToSlide(currentSlide - 1));
+      btnNext.addEventListener('click', () => goToSlide(currentSlide + 1));
+
+      // Menú Drawer
+      btnToggleMenu.addEventListener('click', () => {
+        menuDrawer.classList.toggle('translate-x-full');
+      });
+      btnCloseMenu.addEventListener('click', () => {
+        menuDrawer.classList.add('translate-x-full');
+      });
+
+      // Pantalla Completa
+      btnFullscreen.addEventListener('click', () => {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(err => console.log(err));
+        } else {
+          document.exitFullscreen().catch(err => console.log(err));
+        }
+      });
+
+      // Ayuda / Atajos
+      btnToggleHelp.addEventListener('click', () => {
+        helpModal.classList.remove('hidden');
+      });
+      btnCloseHelp.addEventListener('click', () => {
+        helpModal.classList.add('hidden');
+      });
+
+      // Temporizador
+      let timerSeconds = 0;
+      let timerInterval = null;
+      let timerRunning = false;
+      const timerDisplay = document.getElementById('timer-display');
+      const btnTimerStart = document.getElementById('btn-timer-start');
+      const btnTimerReset = document.getElementById('btn-timer-reset');
+
+      function formatTime(s) {
+        const mins = Math.floor(s / 60);
+        const secs = s % 60;
+        return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      }
+
+      function toggleTimer() {
+        if (!timerRunning) {
+          timerInterval = setInterval(() => {
+            timerSeconds++;
+            if (timerDisplay) timerDisplay.textContent = formatTime(timerSeconds);
+          }, 1000);
+          timerRunning = true;
+          if (btnTimerStart) {
+            btnTimerStart.textContent = 'Pausa';
+            btnTimerStart.className = 'text-amber-700 hover:text-amber-800 font-bold ml-1 text-[11px] uppercase';
+          }
+        } else {
+          clearInterval(timerInterval);
+          timerRunning = false;
+          if (btnTimerStart) {
+            btnTimerStart.textContent = 'Reanudar';
+            btnTimerStart.className = 'text-emerald-700 hover:text-emerald-800 font-bold ml-1 text-[11px] uppercase';
+          }
+        }
+      }
+
+      if (btnTimerStart) btnTimerStart.addEventListener('click', toggleTimer);
+      if (btnTimerReset) {
+        btnTimerReset.addEventListener('click', () => {
+          clearInterval(timerInterval);
+          timerRunning = false;
+          timerSeconds = 0;
+          if (timerDisplay) timerDisplay.textContent = '00:00';
+          if (btnTimerStart) {
+            btnTimerStart.textContent = 'Iniciar';
+            btnTimerStart.className = 'text-emerald-700 hover:text-emerald-800 font-bold ml-1 text-[11px] uppercase';
+          }
+        });
+      }
+
+      // Navegación con teclado
+      document.addEventListener('keydown', (e) => {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+        if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+          e.preventDefault();
+          goToSlide(currentSlide + 1);
+        } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+          e.preventDefault();
+          goToSlide(currentSlide - 1);
+        } else if (e.key.toLowerCase() === 'm') {
+          menuDrawer.classList.toggle('translate-x-full');
+        } else if (e.key.toLowerCase() === 'f') {
+          if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch(err => console.log(err));
+          } else {
+            document.exitFullscreen().catch(err => console.log(err));
+          }
+        } else if (e.key.toLowerCase() === 't') {
+          toggleTimer();
+        } else if (e.key === '?' || e.key === '¿') {
+          helpModal.classList.toggle('hidden');
+        } else if (e.key === 'Escape') {
+          menuDrawer.classList.add('translate-x-full');
+          helpModal.classList.add('hidden');
+        }
+      });
+
+      // Inicializar
+      updateSlideUI();
+    });
+  </script>
+</body>
+</html>

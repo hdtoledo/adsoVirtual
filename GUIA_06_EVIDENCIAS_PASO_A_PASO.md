@@ -256,14 +256,45 @@ Este documento es la **hoja de ruta maestra** para instructores y aprendices de 
 #### 9. Evidencia `GA6-220501096-AA3-EV02`
 **Nombre:** Crear el diseño del sitio web y/o móviles utilizando sus componentes y tecnologías respectivas.  
 - **Tipo:** Evidencia de Desempeño.
+- **Horas Sugeridas:** 12 Horas (enmarcada en la Actividad de Aprendizaje AA3 de 48 horas).
 - **Instrumento de Evaluación:** `IE-GA6-220501096-AA3-EV02`.
-- **Descripción:** Elaboración de los *wireframes* y flujos de navegación interactivos (Mockups de media fidelidad) que representen la arquitectura de información del software.
-- **Paso a Paso:**
-  1. Diseñar el mapa de navegación (Home, Login, Dashboard, Módulos CRUD, Reportes, Perfil).
-  2. Definir layout responsive (Mobile first y versión escritorio).
-  3. Conectar pantallas mediante transiciones interactivas (clic en botón login lleva al dashboard).
-  4. Redactar documento con descripción de componentes y experiencia de usuario esperada.
-- **Formato de Entrega:** Archivo comprimido ZIP con documento formal (portada, objetivos, capturas y enlace interactivo al prototipo).
+- **Diapositivas de Proyección:** Disponible en [proyeccion-evidencia-09.html](guias/guia-06/proyeccion-evidencia-09.html) (14 slides interactivas para clase sincrónica).
+- **Descripción Oficial de la Guía:**
+  > *"Teniendo en cuenta las características del software a desarrollar y tomando como referencia las herramientas de prototipado vistas en los componentes formativos, realice los mockups de navegación de aplicaciones web/o móvil cumpliendo con los requerimientos del software."*
+- **Elementos para tener en cuenta en el documento según la Guía:**
+  - Se deben seguir las normas básicas de presentación de un documento escrito, es decir, debe tener como mínimo una portada, introducción, objetivo, pantallazos de los mockups y descripción de cada interfaz.
+  - El prototipo debe contener navegación que muestra la funcionalidad, según características del software a desarrollar.
+- **Caso Práctico Institucional:** **AgroTech Colombia S.A.S.** (Comercializadora y distribuidora de insumos agrícolas y asistencia técnica en el Huila).
+  - **Flujo de Pantallas Diseñadas (Mobile First & Portal Web):**
+    1. *Pantalla 1 - Splash / Bienvenida:* Identidad de marca, logo, eslogan e inicialización de sesión.
+    2. *Pantalla 2 - Autenticación / Login:* Formulario con estados, validaciones y recuperación de contraseña.
+    3. *Pantalla 3 - Dashboard Principal:* Menú de navegación inferior/lateral, resumen de actividad y métricas clave.
+    4. *Pantalla 4 - Catálogo de Productos / Módulo Operativo:* Búsqueda en vivo, chips de categorías y tarjetas de productos.
+    5. *Pantalla 5 - Detalle de Producto / Carrito:* Selector de cantidades, desglose de costos y botón de acción principal.
+    6. *Pantalla 6 - Confirmación de Pedido / Modal:* Ventana emergente (*Overlay*) con resumen de orden y botón de retorno al inicio.
+- **Paso a Paso para el Aprendiz:**
+  1. **Levantar Requerimientos y Flujos de Usuario:** Identificar los casos de uso clave del software formativo (rutas críticas del cliente/asesor y del administrador).
+  2. **Configurar el Entorno en Figma:** Crear el archivo de trabajo, definir el marco base (ej. iPhone 14 / Desktop 1440px) y grillas de maquetación (*Layout Grids*).
+  3. **Construir Componentes UI con Variantes:** Botones primarios/secundarios, campos de texto interactivos, cabeceras y tarjetas con *Auto Layout*.
+  4. **Diseñar las 6 Interfaces Clave:** Maquetar la secuencia completa cuidando jerarquía visual, espaciados y contraste tipográfico (normas WCAG).
+  5. **Conectar la Navegación Interactiva (Prototipo):**
+     - En el panel *Prototype*, enlazar botones y elementos mediante nodos con evento `On tap` / `On click`.
+     - Aplicar transiciones dinámicas como `Smart Animate` y `Open Overlay` (centrado con fondo oscurecido para modales).
+     - Configurar retorno atrás (`Back`) y botón de reinicio del flujo.
+  6. **Probar y Validar la Experiencia:** Ejecutar el prototipo interactivo en el modo *Presentación* de Figma o en la app móvil *Figma Mirror*.
+  7. **Redactar el Documento Técnico en Word (.docx):**
+     - Portada formal institucional (SENA, Regional Huila, CADPH, Ficha 228118, Aprendiz e Instructor).
+     - Introducción y Objetivos claros del diseño y la experiencia de usuario.
+     - Ficha técnica por cada pantalla con pantallazo nítido, descripción del propósito funcional, componentes empleados y acciones de usuario.
+     - Sección de arquitectura y mapa de navegación del sistema.
+     - Enlace público con permisos de visualización/edición al archivo en Figma.
+  8. **Exportar y Empaquetar:** Exportar el archivo fuente local **.fig** (menú Figma $\rightarrow$ *File* $\rightarrow$ *Save local copy*) y comprimir junto con el Word en un archivo **ZIP**.
+- **Lineamientos Generales para la Entrega:**
+  - **Productos a Entregar:** Carpeta comprimida en un solo archivo **ZIP** que debe contener:
+    1. Archivo en **Word (.docx)** con el documento escrito formal (portada, introducción, objetivo, pantallazos de los mockups y descripción de cada interfaz).
+    2. Archivo donde se realice el prototipado (archivo fuente nativo **.fig** de Figma o archivo de texto con el enlace URL interactivo verificado).
+  - **Formato:** Archivo comprimido en **ZIP** (`GA6-220501096-AA3-EV02_Nombre_Apellido.zip`).
+  - **Espacio de Envío en Zajuna LMS:** *Crear el diseño del sitio web y/o móviles utilizando sus componentes y tecnologías respectivas. GA6-220501096-AA3-EV02.*
 
 ---
 

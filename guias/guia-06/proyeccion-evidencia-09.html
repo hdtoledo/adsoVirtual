@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-slate-50 antialiased">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evidencia 09: Diseño de Interfaces Web y Móviles con Navegación · ADSO Virtual · SENA CADPH Garzón</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sena: {
+              DEFAULT: '#39A900',
+              hover: '#2D8200',
+              light: '#E8F5E9'
+            },
+            cadph: {
+              DEFAULT: '#00324D',
+              dark: '#00263A',
+              light: '#004870'
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../assets/css/presenter.css">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .slide-content.active {
+      display: flex !important;
+      flex-direction: column;
+      justify-content: center;
+    }
+    kbd {
+      font-family: 'JetBrains Mono', monospace;
+    }
+  </style>
+</head>
+<body class="min-h-full flex flex-col bg-slate-50 text-slate-900 font-sans selection:bg-[#39A900] selection:text-white">
+
+  <!-- ========================================================================= -->
+  <!-- BARRA SUPERIOR INSTITUCIONAL (CINTILLO) -->
+  <!-- ========================================================================= -->
+  <div class="bg-[#00324D] text-white text-[11px] py-1.5 px-4 sm:px-6 border-b border-[#00263A]">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2 truncate">
+        <span class="font-extrabold tracking-wide shrink-0">SENA</span>
+        <span class="text-slate-400">|</span>
+        <span class="text-slate-200 truncate font-medium">Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)</span>
+      </div>
+      <div class="flex items-center gap-3 text-slate-300 font-mono text-[11px] shrink-0">
+        <span>Sede Garzón</span>
+        <span class="text-slate-400">•</span>
+        <span class="text-emerald-400 font-semibold">ADSO Virtual • Sesión Técnica en Aula</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- BARRA DE CONTROL DE PRESENTACIÓN (ESTABLE, H-16, ANTI-CLS) -->
+  <!-- ========================================================================= -->
+  <header class="border-b border-slate-200 bg-white sticky top-0 z-40 shadow-xs">
+    <!-- Barra de Progreso Dinámica -->
+    <div class="w-full bg-slate-100 h-1">
+      <div id="presentation-progress" class="bg-[#39A900] h-1 transition-all duration-300 ease-out" style="width: 7.14%;"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+      <!-- Logo y Ruta -->
+      <div class="flex items-center gap-3 min-w-0">
+        <a href="../../index.html" class="flex items-center gap-2.5 group shrink-0">
+          <div class="w-9 h-9 rounded-lg bg-emerald-50 border border-emerald-100 flex items-center justify-center p-1 group-hover:bg-emerald-100 transition-colors shrink-0">
+            <img src="../../assets/logo_green.png" alt="SENA" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/8/83/Sena_Colombia_logo.svg'">
+          </div>
+          <div class="truncate">
+            <span class="font-extrabold text-slate-900 tracking-tight text-sm">FORMACIÓN <span class="text-sena">ADSO</span></span>
+            <span class="text-[11px] font-bold text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded ml-1 uppercase">CADPH</span>
+          </div>
+        </a>
+        <span class="text-slate-300 hidden sm:inline">/</span>
+        <div class="hidden sm:flex items-center gap-2 text-xs truncate">
+          <span class="font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded border border-purple-200">Guía 06 • AA3</span>
+          <span class="text-slate-600 font-medium truncate">Evidencia 09: Diseño Web y Móvil con Navegación (Mockups · Figma · ZIP)</span>
+        </div>
+      </div>
+
+      <!-- Controles de Proyección -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Temporizador -->
+        <div class="hidden md:flex items-center gap-1.5 bg-slate-100 px-2.5 py-1 rounded-lg border border-slate-200 font-mono text-xs text-slate-700">
+          <i data-lucide="clock" class="w-3.5 h-3.5 text-slate-500"></i>
+          <span id="timer-display" class="font-bold">00:00</span>
+          <button id="btn-timer-start" class="text-emerald-700 hover:text-emerald-800 font-bold ml-1 text-[11px] uppercase">Iniciar</button>
+          <button id="btn-timer-reset" class="text-slate-400 hover:text-slate-600 ml-1" title="Reiniciar"><i data-lucide="rotate-ccw" class="w-3 h-3"></i></button>
+        </div>
+
+        <!-- Menú de Índice -->
+        <button id="btn-toggle-menu" class="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer" title="Índice de Diapositivas (M)">
+          <i data-lucide="list" class="w-4 h-4"></i>
+        </button>
+
+        <!-- Contador de Diapositiva -->
+        <div class="px-2.5 py-1 bg-slate-100 rounded-lg text-xs font-mono font-bold text-slate-700 border border-slate-200 shrink-0">
+          <span id="slide-counter">1 / 14</span>
+        </div>
+
+        <!-- Botones de Navegación -->
+        <div class="flex items-center gap-1">
+          <button id="btn-prev-slide" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors disabled:opacity-40 cursor-pointer" title="Anterior (Flecha Izq)">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+          </button>
+          <button id="btn-next-slide" class="p-2 rounded-lg bg-[#39A900] hover:bg-[#2D8200] text-white transition-colors cursor-pointer shadow-xs" title="Siguiente (Espacio o Flecha Der)">
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <!-- Pantalla Completa -->
+        <button id="btn-fullscreen" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors cursor-pointer" title="Pantalla Completa (F)">
+          <i data-lucide="maximize" class="w-4 h-4"></i>
+        </button>
+
+        <!-- Ayuda -->
+        <button id="btn-toggle-help" class="p-2 rounded-lg text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors cursor-pointer" title="Atajos de teclado (?)">
+          <i data-lucide="help-circle" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- CAJÓN LATERAL DE ÍNDICE DE DIAPOSITIVAS -->
+  <!-- ========================================================================= -->
+  <aside id="menu-drawer" class="fixed top-0 right-0 h-full w-80 bg-white border-l border-slate-200 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
+    <div class="p-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+      <div class="flex items-center gap-2">
+        <i data-lucide="list" class="w-4 h-4 text-sena"></i>
+        <h3 class="font-extrabold text-sm text-slate-900">Índice de Diapositivas (14)</h3>
+      </div>
+      <button id="btn-close-menu" class="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-200 transition-colors">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+    </div>
+    <div class="overflow-y-auto flex-1 p-3 space-y-1" id="menu-items-list">
+      <!-- Inyectados por JavaScript -->
+    </div>
+    <div class="p-3 bg-slate-50 border-t border-slate-200 text-[11px] text-slate-500 text-center">
+      Atajo: Presiona <kbd class="px-1.5 py-0.5 bg-white border rounded font-mono font-bold text-slate-700">M</kbd> para alternar el menú
+    </div>
+  </aside>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL DE AYUDA Y ATAJOS -->
+  <!-- ========================================================================= -->
+  <div id="help-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-100">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <h3 class="font-extrabold text-slate-900 text-base flex items-center gap-2">
+          <i data-lucide="keyboard" class="w-5 h-5 text-sena"></i>
+          <span>Atajos de Teclado del Aula Virtual</span>
+        </h3>
+        <button id="btn-close-help" class="p-1 text-slate-400 hover:text-slate-600 rounded-lg">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+      <div class="py-4 space-y-2 text-xs">
+        <div class="flex justify-between items-center py-1.5 border-b border-slate-50">
+          <span class="text-slate-600">Avanzar Diapositiva:</span>
+          <span class="font-mono font-bold text-slate-800 bg-slate-100 px-2 py-0.5 rounded">Flecha Der / Espacio</span>
+        </div>
+        <div class="flex justify-between items-center py-1.5 border-b border-slate-50">
+          <span class="text-slate-600">Retroceder Diapositiva:</span>
+          <span class="font-mono font-bold text-slate-800 bg-slate-100 px-2 py-0.5 rounded">Flecha Izq / RePág</span>
+        </div>
+        <div class="flex justify-between items-center py-1.5 border-b border-slate-50">
+          <span class="text-slate-600">Abrir / Cerrar Menú Índice:</span>
+          <span class="font-mono font-bold text-slate-800 bg-slate-100 px-2 py-0.5 rounded">M</span>
+        </div>
+        <div class="flex justify-between items-center py-1.5 border-b border-slate-50">
+          <span class="text-slate-600">Alternar Pantalla Completa:</span>
+          <span class="font-mono font-bold text-slate-800 bg-slate-100 px-2 py-0.5 rounded">F</span>
+        </div>
+        <div class="flex justify-between items-center py-1.5 border-b border-slate-50">
+          <span class="text-slate-600">Iniciar / Pausar Temporizador:</span>
+          <span class="font-mono font-bold text-slate-800 bg-slate-100 px-2 py-0.5 rounded">T</span>
+        </div>
+        <div class="flex justify-between items-center py-1.5">
+          <span class="text-slate-600">Cerrar ventanas / modales:</span>
+          <span class="font-mono font-bold text-slate-800 bg-slate-100 px-2 py-0.5 rounded">Esc</span>
+        </div>
+      </div>
+      <button onclick="document.getElementById('help-modal').classList.add('hidden')" class="w-full mt-2 py-2.5 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-slate-800 transition-colors">
+        Entendido
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- CONTENEDOR PRINCIPAL DE DIAPOSITIVAS INTERACTIVAS -->
+  <!-- ========================================================================= -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 flex flex-col justify-center">
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 1: PORTADA INSTITUCIONAL -->
+    <!-- ======================================================================= -->
+    <section class="slide-content active min-h-[580px]" data-title="01. Portada Institucional">
+      <div class="bg-white rounded-3xl border border-slate-200 p-8 sm:p-12 shadow-sm text-center relative overflow-hidden flex flex-col items-center justify-center my-auto">
+        <div class="absolute -top-32 -right-32 w-72 h-72 bg-sky-50 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-32 -left-32 w-72 h-72 bg-purple-50 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 border border-sky-200 text-sky-800 text-xs font-bold uppercase tracking-wider mb-6">
+          <span class="w-2 h-2 rounded-full bg-sky-600 animate-pulse"></span>
+          <span>Guía 06 • Actividad de Aprendizaje GA6-220501096-AA3 • Evidencia de Desempeño</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight max-w-4xl leading-tight mb-4">
+          Diseño del Sitio Web y/o Móviles con <span class="text-sky-600">Navegación Funcional</span>
+        </h1>
+        <p class="text-sm sm:text-base font-mono font-bold text-slate-500 mb-6">
+          Evidencia Técnica: <span class="text-slate-800">GA6-220501096-AA3-EV02</span> • Mockups y Prototipado Interactivo
+        </p>
+
+        <!-- Banner de producto a entregar según la guía -->
+        <div class="mb-8 p-4 bg-sky-50 border border-sky-200 rounded-2xl max-w-2xl text-left flex items-start gap-3">
+          <i data-lucide="navigation" class="w-6 h-6 text-sky-600 shrink-0 mt-0.5"></i>
+          <div class="text-xs text-sky-950">
+            <strong class="block font-bold text-sky-900 text-sm mb-1">PRODUCTO A ENTREGAR SEGÚN LA GUÍA: CARPETA ZIP CON WORD Y PROTOTIPO</strong>
+            <span>La guía exige: <em>"Realice los mockups de navegación de aplicaciones web/o móvil cumpliendo con los requerimientos del software. El prototipo debe contener navegación que muestra la funcionalidad. Entrega en carpeta Zip con documento en Word y el archivo donde se realice el prototipado"</em>.</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full max-w-3xl mb-8">
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col items-center">
+            <i data-lucide="layout-template" class="w-6 h-6 text-sky-600 mb-2"></i>
+            <span class="text-xs text-slate-400 font-medium">Entregable Visual</span>
+            <strong class="text-xs sm:text-sm font-bold text-slate-800">Mockups de Navegación</strong>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col items-center">
+            <i data-lucide="route" class="w-6 h-6 text-purple-600 mb-2"></i>
+            <span class="text-xs text-slate-400 font-medium">Requisito Clave</span>
+            <strong class="text-xs sm:text-sm font-bold text-slate-800">Flujo Funcional Real</strong>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col items-center">
+            <i data-lucide="file-text" class="w-6 h-6 text-emerald-600 mb-2"></i>
+            <span class="text-xs text-slate-400 font-medium">Documentación</span>
+            <strong class="text-xs sm:text-sm font-bold text-slate-800">Word con Descripción</strong>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col items-center">
+            <i data-lucide="archive" class="w-6 h-6 text-amber-600 mb-2"></i>
+            <span class="text-xs text-slate-400 font-medium">Formato de Envío</span>
+            <strong class="text-xs sm:text-sm font-bold text-slate-800">Carpeta .ZIP (Word + FIG)</strong>
+          </div>
+        </div>
+
+        <div class="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between w-full max-w-3xl text-xs text-slate-500 gap-2">
+          <span>Instructor: <strong>Ing. Hector David Toledo García</strong></span>
+          <span class="font-mono">Centro Agroempresarial y Desarrollo Pecuario del Huila</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 2: FICHA TÉCNICA Y LINEAMIENTOS OFICIALES -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="02. Ficha Técnica y Lineamientos">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sky-700 font-mono">Ficha Técnica Oficial</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Lineamientos de la Guía de Aprendizaje (AA3-EV02)
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-sky-50 text-sky-800 rounded-full text-xs font-bold font-mono">GA6-220501096-AA3-EV02</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
+            <!-- Instrucción Oficial -->
+            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+              <div>
+                <h3 class="font-bold text-slate-900 text-sm mb-3 flex items-center gap-2">
+                  <i data-lucide="file-check" class="w-4 h-4 text-sky-600"></i>
+                  <span>Instrucción Oficial de la Guía:</span>
+                </h3>
+                <p class="text-xs text-slate-600 leading-relaxed mb-4 italic bg-white p-3 rounded-xl border border-slate-200">
+                  "Teniendo en cuenta las características del software a desarrollar y tomando como referencia las herramientas de prototipado vistas en los componentes formativos, realice los <strong>mockups de navegación de aplicaciones web/o móvil</strong> cumpliendo con los requerimientos del software."
+                </p>
+                <div class="space-y-2 text-xs">
+                  <div class="flex items-start gap-2 text-slate-700">
+                    <i data-lucide="check" class="w-4 h-4 text-sky-600 shrink-0 mt-0.5"></i>
+                    <span><strong>Normas de documento escrito:</strong> Portada, introducción, objetivo, pantallazos de los mockups y descripción de cada interfaz.</span>
+                  </div>
+                  <div class="flex items-start gap-2 text-slate-700">
+                    <i data-lucide="check" class="w-4 h-4 text-sky-600 shrink-0 mt-0.5"></i>
+                    <span><strong>Navegación interactiva funcional:</strong> El prototipo debe poder recorrerse entre pantallas evidenciando la funcionalidad del negocio.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Parámetros de Entrega -->
+            <div class="p-5 rounded-2xl bg-sky-50/70 border border-sky-200 flex flex-col justify-between">
+              <div>
+                <h3 class="font-bold text-sky-950 text-sm mb-3 flex items-center gap-2">
+                  <i data-lucide="package" class="w-4 h-4 text-sky-700"></i>
+                  <span>Lineamientos Generales para la Entrega:</span>
+                </h3>
+                <div class="space-y-3 text-xs text-slate-700">
+                  <div class="p-3 bg-white rounded-xl border border-sky-100">
+                    <strong class="text-sky-900 block font-bold mb-1">1. Documento en Word (.docx)</strong>
+                    <span>Documento con normas básicas, descripción de las interfaces, mapas de navegación y capturas ordenadas.</span>
+                  </div>
+                  <div class="p-3 bg-white rounded-xl border border-sky-100">
+                    <strong class="text-sky-900 block font-bold mb-1">2. Archivo del Prototipado (.fig o enlace)</strong>
+                    <span>Archivo fuente exportado de Figma (<code>.fig</code>) y/o enlace URL público interactivo compartido.</span>
+                  </div>
+                  <div class="p-3 bg-white rounded-xl border border-sky-100">
+                    <strong class="text-sky-900 block font-bold mb-1">3. Formato y Plataforma</strong>
+                    <span>Carpeta comprimida en <strong>ZIP</strong> enviada al espacio: <em>Crear el diseño del sitio web y/o móviles utilizando sus componentes y tecnologías respectivas. GA6-220501096-AA3-EV02</em>.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(0)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(2)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: ¿Qué es un Mockup Navegable? <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 3: DIFERENCIA WIREFRAME VS MOCKUP VS PROTOTIPO -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="03. Wireframe vs Mockup vs Prototipo">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sky-700 font-mono">Evolución del Diseño UI/UX</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                De Wireframe a Mockup y Prototipo Navegable
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-purple-50 text-purple-700 rounded-full text-xs font-bold font-mono">Niveles de Fidelidad</span>
+          </div>
+
+          <p class="text-xs sm:text-sm text-slate-600 mb-5 leading-relaxed">
+            Para cumplir con la evidencia, los aprendices deben comprender el nivel exacto que exige la guía (<strong>Mockup con Navegación</strong>):
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-5 text-xs">
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+              <div>
+                <span class="px-2 py-0.5 rounded bg-slate-200 text-slate-700 font-bold text-[10px] block w-fit mb-2">Baja Fidelidad</span>
+                <strong class="text-slate-900 block font-bold text-sm mb-1">1. Wireframe</strong>
+                <p class="text-slate-600 text-[11px] leading-relaxed">
+                  Esquema estructural en blanco y negro ("cajas grises"). Define la posición del contenido sin color, tipografía definitiva ni imágenes.
+                </p>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-sky-50/70 border border-sky-200 flex flex-col justify-between">
+              <div>
+                <span class="px-2 py-0.5 rounded bg-sky-200 text-sky-800 font-bold text-[10px] block w-fit mb-2">Media / Alta Fidelidad</span>
+                <strong class="text-sky-950 block font-bold text-sm mb-1">2. Mockup Visual</strong>
+                <p class="text-slate-600 text-[11px] leading-relaxed">
+                  Representación estática fiel del diseño final: incorpora la paleta de colores corporativa, tipografía real, iconos, fotos y componentes UI.
+                </p>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-emerald-50/70 border-2 border-emerald-400 flex flex-col justify-between">
+              <div>
+                <span class="px-2 py-0.5 rounded bg-emerald-200 text-emerald-900 font-bold text-[10px] block w-fit mb-2">Objetivo de la Evidencia</span>
+                <strong class="text-emerald-950 block font-bold text-sm mb-1">3. Prototipo Navegable</strong>
+                <p class="text-slate-700 text-[11px] leading-relaxed">
+                  El mockup cobra vida: se interconectan las pantallas con transiciones interactivas (clics, taps, scrolls), simulando el funcionamiento real del software.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-3 bg-slate-900 text-slate-300 rounded-xl font-mono text-xs flex items-center justify-between">
+            <span>Requisito Oficial: La evidencia solicita "Mockups con Navegación" = Prototipo interactivo funcional.</span>
+            <span class="text-emerald-400 font-bold">Figma Prototype Mode</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(1)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(3)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Mapa de Navegación y Flujo <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 4: MAPA DE NAVEGACIÓN Y ARQUITECTURA DE INFORMACIÓN -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="04. Mapa de Navegación (User Flow)">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sky-700 font-mono">Arquitectura de Información</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Mapa de Navegación del Usuario (User Flow)
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-emerald-50 text-emerald-800 rounded-full text-xs font-bold font-mono">Rutas de Navegación</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+            Antes de conectar flechas en Figma, los aprendices deben estructurar en su documento de Word el <strong>mapa de navegación</strong> del software de su proyecto formativo:
+          </p>
+
+          <div class="p-4 bg-slate-900 rounded-2xl font-mono text-xs text-slate-200 border border-slate-800 mb-4 overflow-x-auto">
+            <div class="text-emerald-400 font-bold mb-2">// Flujo Principal de Navegación (AgroTech Colombia):</div>
+            <div class="space-y-1 text-[11px] leading-relaxed">
+              <span class="text-sky-300">[1. Landing / Bienvenida]</span> $longrightarrow$ 
+              <span class="text-amber-300">[2. Iniciar Sesión (Login)]</span> $longrightarrow$ 
+              <span class="text-emerald-300">[3. Dashboard Principal]</span><br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├──► <span class="text-purple-300">[4. Catálogo de Insumos]</span> $ightarrow$ <span class="text-purple-300">[5. Detalle de Producto]</span> $ightarrow$ <span class="text-amber-300">[6. Carrito]</span><br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├──► <span class="text-sky-300">[7. Registro de Factura / Checkout]</span> $ightarrow$ <span class="text-emerald-400">[8. Éxito / Comprobante]</span><br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──► <span class="text-rose-300">[9. Perfil de Usuario / Cerrar Sesión]</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <strong class="text-slate-900 block font-bold mb-1">Rutas Principales (Happy Path):</strong>
+              <p class="text-slate-600 text-[11px]">El camino directo y sin obstáculos que sigue el usuario para cumplir su meta principal (ej. cotizar o comprar insumos agrícolas).</p>
+            </div>
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <strong class="text-slate-900 block font-bold mb-1">Rutas Secundarias y Modales:</strong>
+              <p class="text-slate-600 text-[11px]">Interacciones contextuales: ventanas modales de confirmación, menús desplegables y alertas de stock bajo.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(2)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(4)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Caso Real AgroTech <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 5: CASO REAL AGROTECH: ARQUITECTURA DE PANTALLAS -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="05. Caso Real: AgroTech Colombia">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sky-700 font-mono">Proyecto Formativo de Referencia</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Ecosistema de Interfaces: "AgroTech Colombia S.A.S."
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-emerald-50 text-emerald-800 rounded-full text-xs font-bold font-mono">Web & Móvil</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+            Para la evidencia, diseñamos en Figma el flujo completo de <strong>6 interfaces esenciales</strong> que solucionan la operación comercial de la empresa:
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-4 text-xs">
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <span class="text-sky-700 font-bold block mb-1">Pantalla 1: Bienvenida / Splash</span>
+              <p class="text-slate-600 text-[11px]">Presentación de marca, slogan y botón primario "Iniciar Operación".</p>
+            </div>
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <span class="text-sky-700 font-bold block mb-1">Pantalla 2: Autenticación (Login)</span>
+              <p class="text-slate-600 text-[11px]">Inputs de correo, contraseña, selector de rol y enlace de recuperación.</p>
+            </div>
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <span class="text-sky-700 font-bold block mb-1">Pantalla 3: Dashboard Principal</span>
+              <p class="text-slate-600 text-[11px]">Métricas del día, accesos rápidos y navegación fija (*Bottom Nav* o *Sidebar*).</p>
+            </div>
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <span class="text-sky-700 font-bold block mb-1">Pantalla 4: Catálogo de Insumos</span>
+              <p class="text-slate-600 text-[11px]">Buscador en tiempo real, filtros por categoría y tarjetas de productos.</p>
+            </div>
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <span class="text-sky-700 font-bold block mb-1">Pantalla 5: Detalle y Carrito</span>
+              <p class="text-slate-600 text-[11px]">Ficha técnica del insumo, existencias, selector de cantidad y subtotal.</p>
+            </div>
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <span class="text-sky-700 font-bold block mb-1">Pantalla 6: Checkout / Factura</span>
+              <p class="text-slate-600 text-[11px]">Datos de facturación, método de pago y confirmación con modal de éxito.</p>
+            </div>
+          </div>
+
+          <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200 text-xs text-emerald-950">
+            <strong>Paleta y Tipografía Unificada:</strong> Verde Agro (#2E7D32), Azul Navy (#00324D), Ámbar (#F59E0B), Fondo (#F8FAFC) y tipografía Plus Jakarta Sans.
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(3)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(5)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Pantallas 1 y 2 - Acceso <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 6: PANTALLAS 1 Y 2: BIENVENIDA Y AUTENTICACIÓN -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="06. Pantallas: Bienvenida y Login">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sky-700 font-mono">Diseño de Interfaces • Módulo 1</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Pantalla 1 (Bienvenida) y Pantalla 2 (Login)
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-sky-50 text-sky-800 rounded-full text-xs font-bold font-mono">Puerta de Entrada</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+            Las primeras pantallas deben generar confianza inmediata y guiar al usuario hacia la autenticación sin fricciones:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+            <!-- Pantalla 1: Bienvenida -->
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+              <div class="flex items-center justify-between mb-2">
+                <strong class="text-slate-900 text-xs font-bold">1. Pantalla de Bienvenida (Splash)</strong>
+                <span class="text-[10px] font-mono text-slate-500">Frame Móvil</span>
+              </div>
+              <ul class="space-y-1.5 text-[11px] text-slate-600">
+                <li>• <strong>Identidad:</strong> Logotipo oficial de AgroTech con fondo verde esmeralda.</li>
+                <li>• <strong>Propuesta de Valor:</strong> Texto conciso: <em>"Insumos agrícolas certificados al alcance del productor"</em>.</li>
+                <li>• <strong>Call To Action (CTA):</strong> Botón primario grande con Auto Layout: <em>"Comenzar"</em>.</li>
+                <li>• <strong>Interacción Prototype:</strong> Al presionar <em>"Comenzar"</em> $ightarrow$ Navega con <em>Smart Animate</em> a Pantalla 2.</li>
+              </ul>
+            </div>
+
+            <!-- Pantalla 2: Login -->
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+              <div class="flex items-center justify-between mb-2">
+                <strong class="text-slate-900 text-xs font-bold">2. Pantalla de Autenticación (Login)</strong>
+                <span class="text-[10px] font-mono text-slate-500">Frame Móvil / Web</span>
+              </div>
+              <ul class="space-y-1.5 text-[11px] text-slate-600">
+                <li>• <strong>Campos de Formulario:</strong> Inputs para Correo Electrónico y Contraseña con icono de visibilidad.</li>
+                <li>• <strong>Validaciones:</strong> Estado visual del botón deshabilitado hasta ingresar datos válidos.</li>
+                <li>• <strong>Botón Primario:</strong> <em>"Iniciar Sesión"</em>.</li>
+                <li>• <strong>Interacción Prototype:</strong> Al presionar <em>"Iniciar Sesión"</em> $ightarrow$ Navega a Pantalla 3 (Dashboard).</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="p-3 bg-slate-900 text-slate-300 rounded-xl font-mono text-xs flex items-center justify-between">
+            <span>Accesibilidad WCAG: El contraste de color entre el botón verde y el texto blanco debe superar el ratio 4.5:1.</span>
+            <span class="text-emerald-400 font-bold">Ratio 5.8:1 Aprobado</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(4)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(6)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Pantalla 3 - Dashboard Principal <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 7: PANTALLA 3: DASHBOARD PRINCIPAL Y NAVEGACIÓN -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="07. Pantalla: Dashboard Principal">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sky-700 font-mono">Diseño de Interfaces • Módulo 2</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Pantalla 3: Dashboard Principal y Navegación
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-emerald-50 text-emerald-800 rounded-full text-xs font-bold font-mono">Centro Operativo</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+            El Dashboard centraliza el control del usuario mediante una navegación intuitiva y tarjetas de resumen diseñadas con Auto Layout:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4 text-xs">
+            <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200">
+              <strong class="text-slate-900 block font-bold mb-1">A. Header de Usuario</strong>
+              <p class="text-slate-600 text-[11px] leading-relaxed">
+                Saludo personalizado con nombre del asesor/cliente, foto de avatar y campana de notificaciones activas con badge rojo.
+              </p>
+            </div>
+
+            <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200">
+              <strong class="text-slate-900 block font-bold mb-1">B. Tarjetas Métricas (KPIs)</strong>
+              <p class="text-slate-600 text-[11px] leading-relaxed">
+                Tres cards horizontales: <em>Ventas del Mes ($)</em>, <em>Pedidos Pendientes</em> y <em>Alertas de Stock</em> con iconos temáticos.
+              </p>
+            </div>
+
+            <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200">
+              <strong class="text-slate-900 block font-bold mb-1">C. Barra de Navegación Fija</strong>
+              <p class="text-slate-600 text-[11px] leading-relaxed">
+                <em>Bottom Nav Bar</em> con 4 iconos: Inicio, Catálogo, Pedidos y Perfil. En web se convierte en Sidebar lateral.
+              </p>
+            </div>
+          </div>
+
+          <div class="p-3.5 bg-sky-50 rounded-2xl border border-sky-200 text-xs text-sky-950 flex items-center justify-between">
+            <div>
+              <strong>Conexión Interactiva en Figma:</strong> Al hacer tap sobre el icono o botón <em>"Ver Catálogo"</em> $ightarrow$ Navega inmediatamente a la <strong>Pantalla 4</strong>.
+            </div>
+            <span class="px-2 py-1 rounded bg-sky-200 text-sky-900 font-bold text-[10px]">On Tap $ightarrow$ Navigate</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(5)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(7)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Pantalla 4 - Catálogo de Insumos <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 8: PANTALLA 4: CATÁLOGO DE INSUMOS Y FILTRADO -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="08. Pantalla: Catálogo de Insumos">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sky-700 font-mono">Diseño de Interfaces • Módulo 3</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Pantalla 4: Catálogo Comercial de Productos
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-purple-50 text-purple-700 rounded-full text-xs font-bold font-mono">Búsqueda y Filtros</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+            El catálogo es la pantalla más dinámica del software: combina búsqueda, filtros por categoría y un grid de tarjetas adaptativas:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3 text-xs">
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+              <strong class="text-slate-900 block font-bold mb-2">Componentes de Búsqueda y Filtro:</strong>
+              <ul class="space-y-1.5 text-slate-600 text-[11px]">
+                <li>• <strong>Search Bar:</strong> Campo de búsqueda con icono de lupa y botón para limpiar texto.</li>
+                <li>• <strong>Filter Chips Horizontales:</strong> Botones tipo pastilla con scroll horizontal: <em>Todos</em>, <em>Semillas</em>, <em>Fertilizantes</em>, <em>Riego</em>.</li>
+                <li>• <strong>Indicador de Resultados:</strong> Texto dinámico: <em>"Mostrando 24 productos disponibles"</em>.</li>
+              </ul>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+              <strong class="text-slate-900 block font-bold mb-2">Diseño de la Tarjeta de Producto (Card):</strong>
+              <ul class="space-y-1.5 text-slate-600 text-[11px]">
+                <li>• <strong>Imagen de Producto:</strong> Proporción 1:1 con esquinas redondeadas (8px).</li>
+                <li>• <strong>Etiqueta de Stock:</strong> Badge verde <em>"En Stock (80 bultos)"</em>.</li>
+                <li>• <strong>Precios Claros:</strong> Tipografía destacada en negrita: <em>$ 135.000 COP</em>.</li>
+                <li>• <strong>Interacción Prototype:</strong> Al tocar la card $ightarrow$ Navega a la <strong>Pantalla 5 (Detalle)</strong>.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="p-3 bg-purple-50 rounded-xl border border-purple-200 text-xs text-purple-950">
+            <strong>Buenas Prácticas UI:</strong> La cuadrícula en móvil es de 1 o 2 columnas; en web de escritorio se expande automáticamente a 3 o 4 columnas gracias al auto-layout de Figma.
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(6)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(8)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Pantallas 5 y 6 - Carrito y Checkout <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 9: PANTALLAS 5 Y 6: DETALLE, CARRITO Y CHECKOUT -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="09. Pantallas: Carrito y Checkout">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sky-700 font-mono">Diseño de Interfaces • Módulo 4</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Pantalla 5 (Carrito) y Pantalla 6 (Checkout Factura)
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-emerald-50 text-emerald-800 rounded-full text-xs font-bold font-mono">Cierre de Venta</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+            El flujo transaccional completa la experiencia del usuario y evidencia el cierre de la orden de compra:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3 text-xs">
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+              <strong class="text-slate-900 block font-bold mb-2">Pantalla 5: Carrito de Compras:</strong>
+              <ul class="space-y-1.5 text-slate-600 text-[11px]">
+                <li>• Lista de insumos seleccionados con selector numérico (+ / -).</li>
+                <li>• Desglose financiero: Subtotal, IVA 19% y Total a Pagar.</li>
+                <li>• Botón secundario: <em>"Seguir Comprando"</em> (regresa al catálogo).</li>
+                <li>• Botón primario: <em>"Continuar al Pago"</em> $ightarrow$ Navega a Checkout.</li>
+              </ul>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+              <strong class="text-slate-900 block font-bold mb-2">Pantalla 6: Checkout y Confirmación:</strong>
+              <ul class="space-y-1.5 text-slate-600 text-[11px]">
+                <li>• Datos del cliente y dirección de despacho en finca.</li>
+                <li>• Métodos de pago (Efectivo contra-entrega, Transferencia PSE, Tarjeta).</li>
+                <li>• Botón de confirmación final: <em>"Emitir Factura"</em>.</li>
+                <li>• <strong>Overlay Interactivo:</strong> Despliega un modal flotante de <em>"¡Pedido Registrado con Éxito!"</em> con número de factura.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200 text-xs text-emerald-950">
+            <strong>Experiencia de Usuario (UX):</strong> El usuario nunca debe quedar atrapado. Todas las pantallas cuentan con botón de regreso ($leftarrow$) y acceso directo al Home.
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(7)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(9)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Configurar la Navegación Interactiva <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 10: CONFIGURACIÓN DE LA NAVEGACIÓN EN FIGMA -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="10. Configurar Navegación en Figma">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sky-700 font-mono">Técnicas de Prototipado en Figma</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Cómo Enlazar y Configurar la Navegación en Figma
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-purple-50 text-purple-700 rounded-full text-xs font-bold font-mono">Prototype Mode</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+            La guía exige explícitamente: <em>"El prototipo debe contener navegación que muestra la funcionalidad"</em>. Procedimiento paso a paso:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-3 mb-4 text-xs">
+            <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200">
+              <span class="w-6 h-6 rounded-lg bg-purple-100 text-purple-800 font-bold flex items-center justify-center mb-1.5">1</span>
+              <strong class="text-slate-900 block font-bold mb-1">Pestaña Prototype</strong>
+              <p class="text-slate-600 text-[11px]">En la esquina superior derecha de Figma, cambia de <em>Design</em> a <em>Prototype</em>.</p>
+            </div>
+
+            <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200">
+              <span class="w-6 h-6 rounded-lg bg-sky-100 text-sky-800 font-bold flex items-center justify-center mb-1.5">2</span>
+              <strong class="text-slate-900 block font-bold mb-1">Trazar Conector</strong>
+              <p class="text-slate-600 text-[11px]">Pasa el cursor sobre el botón o card y arrastra el círculo azul hacia la pantalla de destino.</p>
+            </div>
+
+            <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200">
+              <span class="w-6 h-6 rounded-lg bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center mb-1.5">3</span>
+              <strong class="text-slate-900 block font-bold mb-1">Elegir Trigger</strong>
+              <p class="text-slate-600 text-[11px]">Selecciona <em>On click</em> (para web) o <em>On tap</em> (para móvil) y acción <em>Navigate to</em>.</p>
+            </div>
+
+            <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200">
+              <span class="w-6 h-6 rounded-lg bg-amber-100 text-amber-800 font-bold flex items-center justify-center mb-1.5">4</span>
+              <strong class="text-slate-900 block font-bold mb-1">Smart Animate</strong>
+              <p class="text-slate-600 text-[11px]">Activa <em>Smart Animate</em> con curva <em>Ease Out (300ms)</em> para lograr transiciones suaves y realistas.</p>
+            </div>
+          </div>
+
+          <div class="p-3.5 bg-slate-900 text-slate-200 rounded-2xl font-mono text-[11px] border border-slate-800">
+            <span class="text-purple-400 font-bold">// Captura Obligatoria para el Informe:</span><br>
+            Toma una captura panorámica del lienzo de Figma donde se vean todas las pantallas conectadas con sus <strong>flechas azules de navegación</strong>. Esto certifica que la evidencia no es un conjunto de imágenes sueltas sino un prototipo navegable.
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(8)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(10)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Principios de Usabilidad y Accesibilidad <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 11: PRINCIPIOS DE USABILIDAD Y ACCESIBILIDAD -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="11. Usabilidad y Accesibilidad (UI/UX)">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sky-700 font-mono">Calidad del Diseño</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Principios de Usabilidad, Accesibilidad y Ergonomía
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-amber-50 text-amber-800 rounded-full text-xs font-bold font-mono">Normas WCAG 2.1 AA</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+            Un buen prototipo no solo debe verse bonito, debe ser intuitivo, accesible y ergonómico para cualquier usuario:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4 text-xs">
+            <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200">
+              <strong class="text-slate-900 block font-bold mb-1">1. Áreas Táctiles Mínimas</strong>
+              <p class="text-slate-600 text-[11px] leading-relaxed">
+                Todo botón, icono o elemento interactivo en móvil debe medir al menos <strong>44 x 44 px</strong> (directriz Apple/Google) para evitar toques accidentales con el pulgar.
+              </p>
+            </div>
+
+            <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200">
+              <strong class="text-slate-900 block font-bold mb-1">2. Contraste de Color (WCAG)</strong>
+              <p class="text-slate-600 text-[11px] leading-relaxed">
+                El texto normal debe tener un ratio de contraste de al menos <strong>4.5:1</strong> respecto a su color de fondo para asegurar legibilidad a personas con visión reducida.
+              </p>
+            </div>
+
+            <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200">
+              <strong class="text-slate-900 block font-bold mb-1">3. Ley de Jakob (Familiaridad)</strong>
+              <p class="text-slate-600 text-[11px] leading-relaxed">
+                Los usuarios esperan que tu aplicación funcione igual que las apps que ya conocen: carrito arriba a la derecha, botón atrás arriba a la izquierda y menú inferior.
+              </p>
+            </div>
+          </div>
+
+          <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200 text-xs text-emerald-950">
+            <strong>Requisito para el informe de Word:</strong> Explicar cómo aplicaron estos principios en la selección de fuentes legibles (mínimo 14px en móvil) y en la paleta de colores de su proyecto formativo.
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(9)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(11)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Simulación en Vivo del Prototipo <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 12: SIMULACIÓN EN VIVO Y VALIDACIÓN DEL PROTOTIPO -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="12. Simulación en Vivo y Validación">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sky-700 font-mono">Validación de Desempeño</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Simulación en Vivo y Prueba con Usuarios
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-emerald-50 text-emerald-800 rounded-full text-xs font-bold font-mono">Figma Presenter Mode</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+            Antes de comprimir la entrega, el equipo de aprendices debe validar que el prototipo se ejecute fluidamente:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3 text-xs">
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+              <div class="flex items-center gap-2 mb-2 font-bold text-slate-900">
+                <i data-lucide="play-circle" class="w-4 h-4 text-emerald-600"></i>
+                <span>Modo Presentación en Navegador (Presenter):</span>
+              </div>
+              <p class="text-slate-600 text-[11px] leading-relaxed mb-2">
+                Presiona el icono ▶ <strong>Present</strong> en Figma. Se abrirá una pestaña especial que enmarca la app dentro del chasis de un celular real o un monitor de escritorio.
+              </p>
+              <div class="p-2 bg-white rounded-lg border border-slate-200 text-[10.5px] text-slate-500 font-mono">
+                Atajo rápido: Ctrl + Alt + Enter
+              </div>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+              <div class="flex items-center gap-2 mb-2 font-bold text-slate-900">
+                <i data-lucide="share" class="w-4 h-4 text-sky-600"></i>
+                <span>Generar Enlace Público para el Instructor:</span>
+              </div>
+              <p class="text-slate-600 text-[11px] leading-relaxed mb-2">
+                Haz clic en el botón azul superior <strong>"Share"</strong>, asegúrate de que el permiso esté en: <em>"Anyone with the link can view"</em> y copia el enlace.
+              </p>
+              <div class="p-2 bg-sky-50 rounded-lg border border-sky-200 text-[10.5px] text-sky-900 font-bold">
+                Permite al instructor interactuar directamente desde su navegador.
+              </div>
+            </div>
+          </div>
+
+          <div class="p-3 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-950">
+            <strong>Verificación Crítica:</strong> Verifica que no existan "pantallas huérfanas" (vistas a las que no se pueda acceder ni regresar). Todo el flujo debe ser continuo.
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(10)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(12)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Estructura del Documento Word <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 13: ESTRUCTURA FORMAL DEL DOCUMENTO EN WORD -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="13. Estructura del Documento Word">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sky-700 font-mono">Normas Básicas de Presentación SENA</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Estructura del Documento Escrito en Word (.docx)
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-sky-50 text-sky-800 rounded-full text-xs font-bold font-mono">Documento Formal Obligatorio</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+            La guía de aprendizaje exige literalmente: <em>"debe tener como mínimo una portada, introducción, objetivo, pantallazos de los mockups y descripción de cada interfaz"</em>:
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-4 text-xs">
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <strong class="text-slate-900 block font-bold mb-1">1. Portada Institucional</strong>
+              <p class="text-slate-600 text-[11px]">Título de la evidencia, ficha ADSO 228118, nombres de aprendices, nombre del instructor y centro CADPH Garzón.</p>
+            </div>
+
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <strong class="text-slate-900 block font-bold mb-1">2. Introducción y Objetivos</strong>
+              <p class="text-slate-600 text-[11px]">Propósito del diseño de interfaces para el software del proyecto formativo y metas de usabilidad.</p>
+            </div>
+
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <strong class="text-slate-900 block font-bold mb-1">3. Arquitectura y User Flow</strong>
+              <p class="text-slate-600 text-[11px]">Diagrama del mapa de navegación con explicación de las rutas principales y secundarias.</p>
+            </div>
+
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <strong class="text-slate-900 block font-bold mb-1">4. Fichas de Interfaz con Capturas</strong>
+              <p class="text-slate-600 text-[11px]">Por cada pantalla: captura en alta resolución, nombre, propósito de negocio y descripción de cada componente.</p>
+            </div>
+
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <strong class="text-slate-900 block font-bold mb-1">5. Mapa General de Conexiones</strong>
+              <p class="text-slate-600 text-[11px]">Captura panorámica en modo Prototype mostrando las flechas de interacción que unen las pantallas.</p>
+            </div>
+
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <strong class="text-slate-900 block font-bold mb-1">6. Enlace Público al Prototipo</strong>
+              <p class="text-slate-600 text-[11px]">Enlace directo de Figma para que el instructor evalúe la fluidez de las animaciones en vivo.</p>
+            </div>
+          </div>
+
+          <div class="p-3 bg-sky-50 rounded-xl border border-sky-200 text-xs text-sky-950">
+            <strong>Requisito Clave:</strong> No basta con pegar imágenes; cada mockup debe llevar una ficha descriptiva explicando para qué sirve y qué acción detona cada botón.
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(11)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(13)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Empaque .ZIP y Entrega <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 14: EMPAQUETADO EN CARPETA ZIP Y CHECKLIST FINAL -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="14. Empaquetado ZIP y Checklist">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-sky-700 font-mono">Cierre y Entrega Oficial</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Empaquetado en Carpeta ZIP y Rúbrica Final
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-emerald-50 text-emerald-800 rounded-full text-xs font-bold font-mono">Formato Obligatorio: .ZIP</span>
+          </div>
+
+          <!-- Estructura del Archivo ZIP -->
+          <div class="p-4 bg-slate-900 text-slate-200 rounded-2xl mb-4 font-mono text-xs border border-slate-800">
+            <div class="text-sky-400 font-bold mb-2 flex items-center gap-2">
+              <i data-lucide="folder-archive" class="w-4 h-4"></i>
+              <span>Contenido exacto del archivo comprimido (.ZIP):</span>
+            </div>
+            <div class="space-y-1 pl-4 border-l border-slate-700 text-[11px]">
+              <div>📦 <strong class="text-amber-300">GA6-220501096-AA3-EV02_Nombre_Apellido.zip</strong></div>
+              <div class="pl-4">├── 📄 <span class="text-sky-300">Documento_Diseno_Interfaces_Mockups_Navegables.docx</span> (Documento formal en Word)</div>
+              <div class="pl-4">├── 🎨 <span class="text-purple-300">Prototipo_Navegable_AgroTech.fig</span> (Archivo exportado nativo de Figma)</div>
+              <div class="pl-4">└── 🔗 <span class="text-emerald-300">ENLACE_PROTOTIPO_FIGMA.txt</span> (Enlace URL público de Figma con permisos de visualización)</div>
+            </div>
+          </div>
+
+          <!-- Checklist -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4 text-xs">
+            <div class="p-3 bg-sky-50/70 rounded-xl border border-sky-200 space-y-1.5">
+              <strong class="text-sky-900 block font-bold mb-1 flex items-center gap-1.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-sky-700"></i> Lista de Verificación (Checklist):
+              </strong>
+              <div class="flex items-center gap-2 text-slate-700">
+                <input type="checkbox" checked disabled class="accent-sky-600">
+                <span>Documento Word formal con portada, introducción y objetivos.</span>
+              </div>
+              <div class="flex items-center gap-2 text-slate-700">
+                <input type="checkbox" checked disabled class="accent-sky-600">
+                <span>Mapa de navegación (User Flow) del software del proyecto.</span>
+              </div>
+              <div class="flex items-center gap-2 text-slate-700">
+                <input type="checkbox" checked disabled class="accent-sky-600">
+                <span>Pantallazos de los mockups con ficha descriptiva de cada interfaz.</span>
+              </div>
+            </div>
+
+            <div class="p-3 bg-sky-50/70 rounded-xl border border-sky-200 space-y-1.5">
+              <strong class="text-sky-900 block font-bold mb-1 flex items-center gap-1.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-sky-700"></i> Criterios de Aprobación:
+              </strong>
+              <div class="flex items-center gap-2 text-slate-700">
+                <input type="checkbox" checked disabled class="accent-sky-600">
+                <span>Prototipo interactivo navegable funcional (conexiones activas).</span>
+              </div>
+              <div class="flex items-center gap-2 text-slate-700">
+                <input type="checkbox" checked disabled class="accent-sky-600">
+                <span>Archivo nativo (.fig) y enlace público en el paquete ZIP.</span>
+              </div>
+              <div class="flex items-center gap-2 text-slate-700">
+                <input type="checkbox" checked disabled class="accent-sky-600">
+                <span>Subida correcta en el espacio correspondiente de Zajuna LMS.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-600 flex items-center justify-between">
+            <span>Espacio Zajuna: <strong>Crear el diseño del sitio web y/o móviles utilizando sus componentes y tecnologías respectivas. GA6-220501096-AA3-EV02</strong></span>
+            <span class="text-sky-700 font-bold">¡Muchos éxitos en su diseño UI/UX!</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(12)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <a href="../../index.html" class="inline-flex items-center gap-2 px-4 py-2 bg-[#00324D] hover:bg-[#00263A] text-white rounded-xl text-xs font-bold transition-all shadow-sm">
+            <i data-lucide="home" class="w-4 h-4"></i> Volver al Portal Principal
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- SCRIPTS DE NAVEGACIÓN Y FUNCIONALIDAD INTERACTIVA -->
+  <!-- ========================================================================= -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const slides = document.querySelectorAll('.slide-content');
+      const totalSlides = slides.length;
+      let currentSlide = 0;
+
+      // Elementos UI
+      const progressBar = document.getElementById('presentation-progress');
+      const slideCounter = document.getElementById('slide-counter');
+      const btnPrev = document.getElementById('btn-prev-slide');
+      const btnNext = document.getElementById('btn-next-slide');
+      const btnToggleMenu = document.getElementById('btn-toggle-menu');
+      const btnCloseMenu = document.getElementById('btn-close-menu');
+      const menuDrawer = document.getElementById('menu-drawer');
+      const menuItemsList = document.getElementById('menu-items-list');
+      const btnFullscreen = document.getElementById('btn-fullscreen');
+      const btnToggleHelp = document.getElementById('btn-toggle-help');
+      const btnCloseHelp = document.getElementById('btn-close-help');
+      const helpModal = document.getElementById('help-modal');
+
+      // Generar elementos del menú drawer
+      slides.forEach((slide, idx) => {
+        const title = slide.getAttribute('data-title') || `Diapositiva ${idx + 1}`;
+        const item = document.createElement('button');
+        item.className = `w-full text-left px-3 py-2.5 rounded-xl text-xs font-medium transition-all flex items-center justify-between group ${
+          idx === currentSlide ? 'bg-sky-50 text-sky-800 font-bold border border-sky-200' : 'text-slate-600 hover:bg-slate-100'
+        }`;
+        item.innerHTML = `
+          <span class="truncate">${title}</span>
+          <span class="text-[10px] font-mono text-slate-400 group-hover:text-slate-600">${idx + 1}</span>
+        `;
+        item.addEventListener('click', () => {
+          goToSlide(idx);
+          menuDrawer.classList.add('translate-x-full');
+        });
+        menuItemsList.appendChild(item);
+      });
+
+      function updateSlideUI() {
+        slides.forEach((slide, idx) => {
+          if (idx === currentSlide) {
+            slide.classList.remove('hidden');
+            slide.classList.add('active');
+          } else {
+            slide.classList.add('hidden');
+            slide.classList.remove('active');
+          }
+        });
+
+        // Barra de progreso
+        const progressPct = ((currentSlide + 1) / totalSlides) * 100;
+        progressBar.style.width = `${progressPct}%`;
+
+        // Contador
+        slideCounter.textContent = `${currentSlide + 1} / ${totalSlides}`;
+
+        // Botones anterior/siguiente
+        btnPrev.disabled = currentSlide === 0;
+        btnNext.disabled = currentSlide === totalSlides - 1;
+
+        // Actualizar estados del drawer
+        const drawerItems = menuItemsList.querySelectorAll('button');
+        drawerItems.forEach((btn, idx) => {
+          if (idx === currentSlide) {
+            btn.className = 'w-full text-left px-3 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center justify-between group bg-sky-50 text-sky-800 border border-sky-200';
+          } else {
+            btn.className = 'w-full text-left px-3 py-2.5 rounded-xl text-xs font-medium transition-all flex items-center justify-between group text-slate-600 hover:bg-slate-100';
+          }
+        });
+
+        // Re-inicializar iconos de Lucide
+        if (window.lucide) {
+          lucide.createIcons();
+        }
+      }
+
+      window.goToSlide = function(idx) {
+        if (idx >= 0 && idx < totalSlides) {
+          currentSlide = idx;
+          updateSlideUI();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      };
+
+      btnPrev.addEventListener('click', () => goToSlide(currentSlide - 1));
+      btnNext.addEventListener('click', () => goToSlide(currentSlide + 1));
+
+      // Menú Drawer
+      btnToggleMenu.addEventListener('click', () => {
+        menuDrawer.classList.toggle('translate-x-full');
+      });
+      btnCloseMenu.addEventListener('click', () => {
+        menuDrawer.classList.add('translate-x-full');
+      });
+
+      // Pantalla Completa
+      btnFullscreen.addEventListener('click', () => {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(err => console.log(err));
+        } else {
+          document.exitFullscreen().catch(err => console.log(err));
+        }
+      });
+
+      // Ayuda / Atajos
+      btnToggleHelp.addEventListener('click', () => {
+        helpModal.classList.remove('hidden');
+      });
+      btnCloseHelp.addEventListener('click', () => {
+        helpModal.classList.add('hidden');
+      });
+
+      // Temporizador
+      let timerSeconds = 0;
+      let timerInterval = null;
+      let timerRunning = false;
+      const timerDisplay = document.getElementById('timer-display');
+      const btnTimerStart = document.getElementById('btn-timer-start');
+      const btnTimerReset = document.getElementById('btn-timer-reset');
+
+      function formatTime(s) {
+        const mins = Math.floor(s / 60);
+        const secs = s % 60;
+        return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      }
+
+      function toggleTimer() {
+        if (!timerRunning) {
+          timerInterval = setInterval(() => {
+            timerSeconds++;
+            if (timerDisplay) timerDisplay.textContent = formatTime(timerSeconds);
+          }, 1000);
+          timerRunning = true;
+          if (btnTimerStart) {
+            btnTimerStart.textContent = 'Pausa';
+            btnTimerStart.className = 'text-amber-700 hover:text-amber-800 font-bold ml-1 text-[11px] uppercase';
+          }
+        } else {
+          clearInterval(timerInterval);
+          timerRunning = false;
+          if (btnTimerStart) {
+            btnTimerStart.textContent = 'Reanudar';
+            btnTimerStart.className = 'text-emerald-700 hover:text-emerald-800 font-bold ml-1 text-[11px] uppercase';
+          }
+        }
+      }
+
+      if (btnTimerStart) btnTimerStart.addEventListener('click', toggleTimer);
+      if (btnTimerReset) {
+        btnTimerReset.addEventListener('click', () => {
+          clearInterval(timerInterval);
+          timerRunning = false;
+          timerSeconds = 0;
+          if (timerDisplay) timerDisplay.textContent = '00:00';
+          if (btnTimerStart) {
+            btnTimerStart.textContent = 'Iniciar';
+            btnTimerStart.className = 'text-emerald-700 hover:text-emerald-800 font-bold ml-1 text-[11px] uppercase';
+          }
+        });
+      }
+
+      // Navegación con teclado
+      document.addEventListener('keydown', (e) => {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+        if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+          e.preventDefault();
+          goToSlide(currentSlide + 1);
+        } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+          e.preventDefault();
+          goToSlide(currentSlide - 1);
+        } else if (e.key.toLowerCase() === 'm') {
+          menuDrawer.classList.toggle('translate-x-full');
+        } else if (e.key.toLowerCase() === 'f') {
+          if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch(err => console.log(err));
+          } else {
+            document.exitFullscreen().catch(err => console.log(err));
+          }
+        } else if (e.key.toLowerCase() === 't') {
+          toggleTimer();
+        } else if (e.key === '?' || e.key === '¿') {
+          helpModal.classList.toggle('hidden');
+        } else if (e.key === 'Escape') {
+          menuDrawer.classList.add('translate-x-full');
+          helpModal.classList.add('hidden');
+        }
+      });
+
+      // Inicializar
+      updateSlideUI();
+    });
+  </script>
+</body>
+</html>

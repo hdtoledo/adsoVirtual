@@ -1115,6 +1115,31 @@
               </div>
             </div>
 
+            <!-- Card Evidencia 09: Prototipo Navegable Web y Móvil -->
+            <div class="p-3.5 bg-gradient-to-br from-indigo-50/60 via-white to-purple-50/40 rounded-2xl border border-indigo-200/80 hover:border-indigo-400 transition-all shadow-2xs hover:shadow-xs flex flex-col justify-between group">
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-1.5">
+                  <span class="text-[10px] font-mono font-bold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-100">GA6-AA3-EV02</span>
+                  <span class="text-[10px] font-mono font-bold text-indigo-700 bg-indigo-100/80 px-2 py-0.5 rounded">14 Slides</span>
+                </div>
+                <h4 class="text-sm font-extrabold text-slate-900 group-hover:text-indigo-800 transition-colors">
+                  Evidencia 09: Diseño Web y Móvil con Componentes y Navegación
+                </h4>
+                <p class="text-[11.5px] text-slate-600 leading-relaxed mt-1">
+                  Mockups de navegación funcionales para app móvil y dashboard web en Figma, flujos interactivos y entrega en paquete ZIP.
+                </p>
+              </div>
+              <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
+                <span class="text-[10.5px] font-semibold text-emerald-700 flex items-center gap-1">
+                  <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Lista en Aula
+                </span>
+                <a href="guias/guia-06/proyeccion-evidencia-09.html" class="inline-flex items-center gap-1.5 bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-bold py-1.5 px-3 rounded-lg shadow-2xs hover:shadow-xs transition-all">
+                  <span>Proyectar</span>
+                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                </a>
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -1135,7 +1160,7 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 text-xs">
               <div class="p-2.5 bg-white/90 rounded-xl border border-amber-100 flex items-center justify-between">
-                <span class="font-medium text-slate-700 truncate mr-2">EV09-EV10: Diseño Web y Móvil (Figma)</span>
+                <span class="font-medium text-slate-700 truncate mr-2">EV10: Interfaces Gráficas y Prototipo Final UI (Figma)</span>
                 <span class="text-[10px] font-bold text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded shrink-0">Próxima</span>
               </div>
               <div class="p-2.5 bg-white/90 rounded-xl border border-amber-100 flex items-center justify-between">
@@ -1206,6 +1231,7 @@
           <li><a href="guias/guia-06/proyeccion-evidencia-06.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="presentation" class="w-3.5 h-3.5"></i> Sesión Evidencia 6: Estructura BD & Restricciones</a></li>
           <li><a href="guias/guia-06/proyeccion-evidencia-07.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="presentation" class="w-3.5 h-3.5"></i> Sesión Evidencia 7: Script BD del Proyecto</a></li>
           <li><a href="guias/guia-06/proyeccion-evidencia-08.html" class="hover:text-purple-400 transition-colors flex items-center gap-1.5"><i data-lucide="presentation" class="w-3.5 h-3.5"></i> Sesión Evidencia 8: Herramientas de Prototipado (UI/UX)</a></li>
+          <li><a href="guias/guia-06/proyeccion-evidencia-09.html" class="hover:text-indigo-400 transition-colors flex items-center gap-1.5"><i data-lucide="presentation" class="w-3.5 h-3.5"></i> Sesión Evidencia 9: Diseño Web/Móvil con Navegación</a></li>
           <li><a href="guias/guia-06/proyeccion.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="monitor" class="w-3.5 h-3.5"></i> Modo Proyección Sincrónica</a></li>
         </ul>
       </div>
@@ -1576,24 +1602,34 @@
         category: 'uiux',
         catName: 'Prototipado UI/UX',
         type: 'Desempeño',
-        hours: '11 Horas',
-        title: 'Diseño de la estructura y mapa de navegación del software',
-        format: 'PDF / Enlace Prototipo',
+        hours: '12 Horas',
+        title: 'Crear el diseño del sitio web y/o móviles utilizando sus componentes y tecnologías respectivas',
+        format: 'Carpeta ZIP (Word + Prototipo)',
         instrument: 'IE-GA6-220501096-AA3-EV02',
         slideRef: 'slide-10',
-        summary: 'Arquitectura de información, mapa de navegación jerárquico y wireframes de baja y media fidelidad para los flujos principales del usuario.',
+        directProj: 'proyeccion-evidencia-09.html',
+        hasSlides: true,
+        slideCount: '14 slides',
+        summary: 'Construcción de mockups de navegación funcionales para aplicaciones web y/o móviles del software del proyecto formativo, utilizando componentes y tecnologías de prototipado en Figma. Se articulan pantallas clave (Splash, Autenticación, Dashboard, Catálogo, Detalle y Transacción) con transiciones interactivas (On Click, Smart Animate, Overlays) y se entrega en paquete ZIP con documento Word y archivo del prototipo (.fig o enlace público).',
         steps: [
-          'Definir el mapa de navegación del sitio/aplicación (Home, Login, Dashboard, Módulos).',
-          'Diseñar wireframes en escala de grises para vistas de escritorio y dispositivos móviles.',
-          'Establecer la jerarquía visual de elementos interactivos (botones, formularios, tablas).',
-          'Documentar las rutas de usuario (User Flow).'
+          '1. Analizar los requerimientos funcionales del software formativo (AgroTech Colombia S.A.S. o el proyecto real del aprendiz).',
+          '2. Diseñar el mapa de navegación e inventario de vistas (Mobile First y Dashboard Web).',
+          '3. Construir la biblioteca de componentes UI reutilizables (botones, campos de texto, tarjetas de producto y barras de navegación).',
+          '4. Maquetar los 6 mockups clave: Splash, Autenticación, Dashboard, Catálogo con filtros, Detalle/Carrito y Confirmación modal.',
+          '5. Conectar el flujo interactivo en Figma Prototype configurando triggers (On Click, On Drag) y animaciones (Smart Animate, Slide In).',
+          '6. Testear el prototipo en vista Presentación (Figma Mirror / Web) validando flujos de usuario completos.',
+          '7. Redactar el documento formal en Word (.docx) con normas básicas (portada, introducción, objetivos, capturas y ficha técnica de cada interfaz).',
+          '8. Exportar el archivo local .fig o generar enlace público editable y empaquetar ambos productos en una carpeta ZIP.'
         ],
-        criteria: 'Estructura la navegación y la disposición de interfaces cumpliendo patrones de UX.',
+        criteria: 'Crea el diseño y prototipo navegable de aplicaciones web o móviles cumpliendo los requerimientos del software.',
         checklist: [
-          'Mapa de navegación jerárquico completo del software.',
-          'Wireframes de baja fidelidad para todas las pantallas clave.',
-          'Flujo de navegación entre pantallas diagramado.',
-          'Documento explicativo con justificación UX.'
+          'Carpeta comprimida en formato .ZIP con nomenclatura oficial (GA6-220501096-AA3-EV02_Nombre_Apellido.zip).',
+          'Documento escrito en Word (.docx) con normas básicas: portada, introducción y objetivos.',
+          'Descripción detallada y ficha técnica de cada interfaz diseñada (propósito, componentes y acciones).',
+          'Pantallazos nítidos y organizados de cada uno de los mockups (vistas móviles y/o web).',
+          'Prototipo interactivo en Figma con conexiones de navegación visibles y funcionales entre pantallas.',
+          'Archivo fuente nativo (.fig) o enlace URL público editable verificado en modo incógnito.',
+          'Entrega formal en el espacio correspondiente de Zajuna LMS.'
         ]
       },
       {

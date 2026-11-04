@@ -52,6 +52,7 @@ repoVirtual/
         ├── proyeccion-evidencia-06.html # Presentación interactiva de 14 diapositivas para Evidencia 6 (Estructura de BD y Restricciones)
         ├── proyeccion-evidencia-07.html # Presentación interactiva de 14 diapositivas para Evidencia 7 (Script de BD del Proyecto)
         ├── proyeccion-evidencia-08.html # Presentación interactiva de 14 diapositivas para Evidencia 8 (Selección de Herramientas de Prototipado)
+        ├── proyeccion-evidencia-09.html # Presentación interactiva de 14 diapositivas para Evidencia 9 (Diseño Web y Móvil con Componentes y Navegación)
         └── proyeccion.html             # Modo Proyección General en Aula (Guía 06)
 ```
 
@@ -206,6 +207,28 @@ repoVirtual/
   * **Slide 12:** **Ejemplo de Interfaz Diseñado:** Flujo de 4 pantallas (Login, Dashboard, Catálogo y Facturación).
   * **Slide 13:** **Estructura Formal del Documento Word:** Portada, introducción, objetivos, pantallazos explicativos y enlace público de Figma.
   * **Slide 14:** **Empaquetado en Carpeta ZIP y Checklist:** Organización de los archivos, nomenclatura oficial y criterios de aprobación en **Zajuna LMS**.
+
+### 🟢 Evidencia 9: Crear el diseño del sitio web y/o móviles utilizando sus componentes y tecnologías respectivas (`proyeccion-evidencia-09.html`)
+* **Código Oficial:** `GA6-220501096-AA3-EV02` (12 Horas de Formación Técnica • Actividad AA3 de 48 Horas).
+* **Descripción Oficial de la Guía:**
+  > *"Teniendo en cuenta las características del software a desarrollar y tomando como referencia las herramientas de prototipado vistas en los componentes formativos, realice los mockups de navegación de aplicaciones web/o móvil cumpliendo con los requerimientos del software."*
+* **Productos a Entregar según la Guía:** Carpeta comprimida en formato **ZIP** que contiene:
+  1. Archivo en **Word (.docx)** con el documento escrito formal (portada, introducción, objetivo, pantallazos de los mockups y descripción de cada interfaz).
+  2. Archivo donde se realice el prototipado (archivo fuente nativo **.fig** de Figma o enlace URL público interactivo editable).
+* **14 Diapositivas Pedagógicas con Caso Real ("AgroTech Colombia S.A.S.")**:
+  * **Slide 01 - 02:** Portada institucional y **Ficha Técnica Oficial** (instrumento `IE-GA6-220501096-AA3-EV02`, requerimientos del software, navegación interactiva obligatoria, entrega en ZIP).
+  * **Slide 03:** **Caso Práctico Empresarial:** Contexto de *AgroTech Colombia S.A.S.* (sistema de pedidos agrícolas, actores clave: Asesor de campo móvil y Administrador web, requerimientos RF-01 a RF-05).
+  * **Slide 04:** **Mapa de Navegación y Arquitectura de Información:** Diagrama de árbol jerárquico (*Information Architecture*), flujos de usuario (*Happy Path*) y matriz de 6 pantallas clave.
+  * **Slide 05:** **Biblioteca de Componentes UI y Design System:** Tokens de color institucional (#2D8200, #39A900, #1E293B), escala tipográfica, campos de texto interactivos y botones con variantes en Auto Layout.
+  * **Slide 06:** **Mockup 1 & 2 - Splash y Autenticación:** Diseño visual de la pantalla de bienvenida y login con validaciones, *feedback* de error y enlace de recuperación.
+  * **Slide 07:** **Mockup 3 - Dashboard Principal:** Navegación por pestañas (*Bottom Navigation Bar*), widgets de métricas (pedidos pendientes, clientes, ventas) y accesos directos.
+  * **Slide 08:** **Mockup 4 - Catálogo y Búsqueda Operativa:** Buscador en tiempo real, chips de filtro horizontal por categorías (Semillas, Fertilizantes, Herramientas) y grilla de tarjetas de producto con botón "Agregar".
+  * **Slide 09:** **Mockup 5 & 6 - Detalle de Producto, Carrito y Modal de Éxito:** Selector de cantidades, desglose de subtotal/IVA/total y ventana modal (*Overlay*) de orden confirmada con ID de pedido.
+  * **Slide 10:** **Prototipado Interactivo en Figma (Prototype):** Configuración técnica paso a paso: triggers (`On tap`), acciones (`Navigate to`, `Open overlay`), animaciones (`Smart Animate`, `Ease In and Out`) y enlaces bidireccionales.
+  * **Slide 11:** **Pruebas de Usabilidad y Flujo en Vivo:** Validación en tiempo de ejecución con *Figma Mirror* y vista de presentación, heurísticas de Nielsen y corrección de flujos rotos.
+  * **Slide 12:** **Estructura Formal del Documento Word (.docx):** Normas básicas (portada, introducción, objetivos, fichas técnicas con propósito, componentes y acciones de cada interfaz).
+  * **Slide 13:** **Exportación del Archivo .fig y Generación de Enlace Web:** Exportación local de la copia `.fig` desde Figma (*File > Save local copy*) y configuración de permisos públicos (*Anyone with the link can view/edit*).
+  * **Slide 14:** **Empaquetado en Carpeta ZIP y Checklist de Aprobación:** Estructura de carpetas internas, nomenclatura institucional (`GA6-220501096-AA3-EV02_Nombre_Apellido.zip`) y rúbrica de evaluación en **Zajuna LMS**.
 
 ---
 

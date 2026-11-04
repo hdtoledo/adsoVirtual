@@ -214,18 +214,42 @@ Este documento es la **hoja de ruta maestra** para instructores y aprendices de 
 ---
 
 ### Actividad de Aprendizaje GA6-220501096-AA3
-**Prototipar las interfaces gráficas de usuario, de acuerdo con las especificaciones del diseño (32 Horas)**
+**Crear interfaces gráficas de usuario en aplicaciones de escritorio, web y móviles, de acuerdo con el diseño (48 Horas)**
+
+- **Enfoque de la Actividad:** Aplicación de principios de diseño y uso de herramientas de prototipado para el desarrollo de aplicaciones web y móviles.
+- **Componentes Formativos Clave:**
+  1. *Arquitectura aplicaciones móviles nativas:* Ecosistemas Android (Kotlin) e iOS (Swift), acceso al hardware, rendimiento a 60/120 FPS y patrones arquitectónicos MVVM / Clean Architecture.
+  2. *Herramientas para el diseño y desarrollo móvil híbrido:* Filosofía de código base único (*Single Codebase*) con Flutter (Google), React Native (Meta) e Ionic/Capacitor.
+  3. *Desarrollo web con HTML, CSS y JavaScript:* Estructura semántica con HTML5, estilos responsivos con CSS3 (Flexbox/Grid/Tailwind) e interactividad dinámica con JavaScript ES6+ (DOM y APIs REST).
 
 #### 8. Evidencia `GA6-220501096-AA3-EV01`
 **Nombre:** Selección herramientas para prototipado.  
 - **Tipo:** Evidencia de Conocimiento.
 - **Instrumento de Evaluación:** `IE-GA6-220501096-AA3-EV01`.
-- **Descripción:** Cuadro comparativo y análisis técnico de herramientas de prototipado del mercado (Figma, Adobe XD, Penpot, Balsamiq, Marvel, Sketch).
-- **Paso a Paso:**
-  1. Comparar criterios: Tipo de licencia (gratuita/paga/open-source), curva de aprendizaje, colaboración en tiempo real, soporte de plugins, componentes interactivos y exportación de especificaciones de diseño (*Design Tokens*).
-  2. Argumentar técnicamente la herramienta seleccionada para el proyecto formativo.
-  3. Incluir un prototipo de prueba elemental desarrollado en la herramienta elegida.
-- **Formato de Entrega:** Carpeta ZIP que contenga documento en Word/PDF y el archivo de diseño o enlace público editable de la herramienta.
+- **Descripción Oficial de la Guía:** Seleccionar herramientas de prototipado, donde pruebe las principales funcionalidades de la herramienta, realizando un ejemplo de creación de interfaz con algunos elementos.
+- **Normas Básicas de Presentación del Documento:**
+  - Portada formal institucional SENA.
+  - Introducción y Objetivos (general y específicos).
+  - Justificación y cuadro comparativo de herramientas (Figma vs Penpot vs Balsamiq).
+  - Pantallazos de las principales funciones probadas en la herramienta (Frames, Auto Layout, Componentes y Variantes, Prototipado Interactivo).
+  - Pantallazos del ejemplo de creación de interfaz funcional aplicada al software del proyecto formativo (app móvil o portal web).
+  - Enlace público editable al archivo de prototipo.
+- **Caso Práctico Empresarial de Referencia (AgroTech Colombia S.A.S.):**
+  - Diseño de la App Móvil para asesores de campo (catálogo de insumos agrícolas, carrito y checkout) y Dashboard Web administrativo en Figma.
+- **Paso a Paso de Desarrollo:**
+  1. Estudiar los tres componentes formativos de arquitectura nativa, híbrida y web.
+  2. Evaluar y seleccionar la herramienta líder del mercado (**Figma**).
+  3. Probar en Figma las 4 funciones maestras: Frames con grillas de columnas, Auto Layout (`Shift + A`), Componentes maestros (`Ctrl + Alt + K`) y Flujos de prototipado con Smart Animate.
+  4. Diseñar el flujo de pantallas representativo para la empresa del proyecto formativo.
+  5. Redactar el documento formal en Word (.docx) integrando las capturas ordenadas y las explicaciones técnicas.
+  6. Exportar el archivo local `.fig` de Figma (o generar enlace público con permisos de visualización).
+  7. Comprimir el documento Word y el prototipo en una carpeta ZIP.
+- **Lineamientos Generales para la Entrega:**
+  - **Productos a Entregar:** Carpeta Zip que contenga:
+    1. Archivo en **Word (.docx)** con el documento escrito y pantallazos estructurados.
+    2. Archivo donde se realice el prototipado (archivo fuente nativo **.fig** de Figma o archivo de texto con el enlace URL público editable).
+  - **Extensión:** Archivo comprimido en **ZIP** (`GA6-220501096-AA3-EV01_Nombre_Apellido.zip`).
+  - **Espacio de Envío en Zajuna LMS:** *Selección herramientas para prototipado. GA6-220501096-AA3-EV01.*
 
 ---
 

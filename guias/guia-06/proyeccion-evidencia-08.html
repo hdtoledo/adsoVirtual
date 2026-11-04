@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-slate-50 antialiased">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evidencia 08: Selección de Herramientas para Prototipado · ADSO Virtual · SENA CADPH Garzón</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sena: {
+              DEFAULT: '#39A900',
+              hover: '#2D8200',
+              light: '#E8F5E9'
+            },
+            cadph: {
+              DEFAULT: '#00324D',
+              dark: '#00263A',
+              light: '#004870'
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../assets/css/presenter.css">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .slide-content.active {
+      display: flex !important;
+      flex-direction: column;
+      justify-content: center;
+    }
+    kbd {
+      font-family: 'JetBrains Mono', monospace;
+    }
+  </style>
+</head>
+<body class="min-h-full flex flex-col bg-slate-50 text-slate-900 font-sans selection:bg-[#39A900] selection:text-white">
+
+  <!-- ========================================================================= -->
+  <!-- BARRA SUPERIOR INSTITUCIONAL (CINTILLO) -->
+  <!-- ========================================================================= -->
+  <div class="bg-[#00324D] text-white text-[11px] py-1.5 px-4 sm:px-6 border-b border-[#00263A]">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2 truncate">
+        <span class="font-extrabold tracking-wide shrink-0">SENA</span>
+        <span class="text-slate-400">|</span>
+        <span class="text-slate-200 truncate font-medium">Regional Huila • Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón)</span>
+      </div>
+      <div class="flex items-center gap-3 text-slate-300 font-mono text-[11px] shrink-0">
+        <span>Sede Garzón</span>
+        <span class="text-slate-400">•</span>
+        <span class="text-emerald-400 font-semibold">ADSO Virtual • Sesión Técnica en Aula</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- BARRA DE CONTROL DE PRESENTACIÓN (ESTABLE, H-16, ANTI-CLS) -->
+  <!-- ========================================================================= -->
+  <header class="border-b border-slate-200 bg-white sticky top-0 z-40 shadow-xs">
+    <!-- Barra de Progreso Dinámica -->
+    <div class="w-full bg-slate-100 h-1">
+      <div id="presentation-progress" class="bg-[#39A900] h-1 transition-all duration-300 ease-out" style="width: 7.14%;"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+      <!-- Logo y Ruta -->
+      <div class="flex items-center gap-3 min-w-0">
+        <a href="../../index.html" class="flex items-center gap-2.5 group shrink-0">
+          <div class="w-9 h-9 rounded-lg bg-emerald-50 border border-emerald-100 flex items-center justify-center p-1 group-hover:bg-emerald-100 transition-colors shrink-0">
+            <img src="../../assets/logo_green.png" alt="SENA" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/8/83/Sena_Colombia_logo.svg'">
+          </div>
+          <div class="truncate">
+            <span class="font-extrabold text-slate-900 tracking-tight text-sm">FORMACIÓN <span class="text-sena">ADSO</span></span>
+            <span class="text-[11px] font-bold text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded ml-1 uppercase">CADPH</span>
+          </div>
+        </a>
+        <span class="text-slate-300 hidden sm:inline">/</span>
+        <div class="hidden sm:flex items-center gap-2 text-xs truncate">
+          <span class="font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded border border-purple-200">Guía 06 • AA3</span>
+          <span class="text-slate-600 font-medium truncate">Evidencia 08: Selección de Herramientas para Prototipado (Figma · Word · ZIP)</span>
+        </div>
+      </div>
+
+      <!-- Controles de Proyección -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Temporizador -->
+        <div class="hidden md:flex items-center gap-1.5 bg-slate-100 px-2.5 py-1 rounded-lg border border-slate-200 font-mono text-xs text-slate-700">
+          <i data-lucide="clock" class="w-3.5 h-3.5 text-slate-500"></i>
+          <span id="timer-display" class="font-bold">00:00</span>
+          <button id="btn-timer-start" class="text-emerald-700 hover:text-emerald-800 font-bold ml-1 text-[11px] uppercase">Iniciar</button>
+          <button id="btn-timer-reset" class="text-slate-400 hover:text-slate-600 ml-1" title="Reiniciar"><i data-lucide="rotate-ccw" class="w-3 h-3"></i></button>
+        </div>
+
+        <!-- Menú de Índice -->
+        <button id="btn-toggle-menu" class="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer" title="Índice de Diapositivas (M)">
+          <i data-lucide="list" class="w-4 h-4"></i>
+        </button>
+
+        <!-- Contador de Diapositiva -->
+        <div class="px-2.5 py-1 bg-slate-100 rounded-lg text-xs font-mono font-bold text-slate-700 border border-slate-200 shrink-0">
+          <span id="slide-counter">1 / 14</span>
+        </div>
+
+        <!-- Botones de Navegación -->
+        <div class="flex items-center gap-1">
+          <button id="btn-prev-slide" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors disabled:opacity-40 cursor-pointer" title="Anterior (Flecha Izq)">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+          </button>
+          <button id="btn-next-slide" class="p-2 rounded-lg bg-[#39A900] hover:bg-[#2D8200] text-white transition-colors cursor-pointer shadow-xs" title="Siguiente (Espacio o Flecha Der)">
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <!-- Pantalla Completa -->
+        <button id="btn-fullscreen" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors cursor-pointer" title="Pantalla Completa (F)">
+          <i data-lucide="maximize" class="w-4 h-4"></i>
+        </button>
+
+        <!-- Ayuda -->
+        <button id="btn-toggle-help" class="p-2 rounded-lg text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors cursor-pointer" title="Atajos de teclado (?)">
+          <i data-lucide="help-circle" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- CAJÓN LATERAL DE ÍNDICE DE DIAPOSITIVAS -->
+  <!-- ========================================================================= -->
+  <aside id="menu-drawer" class="fixed top-0 right-0 h-full w-80 bg-white border-l border-slate-200 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
+    <div class="p-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+      <div class="flex items-center gap-2">
+        <i data-lucide="list" class="w-4 h-4 text-sena"></i>
+        <h3 class="font-extrabold text-sm text-slate-900">Índice de Diapositivas (14)</h3>
+      </div>
+      <button id="btn-close-menu" class="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-200 transition-colors">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+    </div>
+    <div class="overflow-y-auto flex-1 p-3 space-y-1" id="menu-items-list">
+      <!-- Inyectados por JavaScript -->
+    </div>
+    <div class="p-3 bg-slate-50 border-t border-slate-200 text-[11px] text-slate-500 text-center">
+      Atajo: Presiona <kbd class="px-1.5 py-0.5 bg-white border rounded font-mono font-bold text-slate-700">M</kbd> para alternar el menú
+    </div>
+  </aside>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL DE AYUDA Y ATAJOS -->
+  <!-- ========================================================================= -->
+  <div id="help-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-100">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <h3 class="font-extrabold text-slate-900 text-base flex items-center gap-2">
+          <i data-lucide="keyboard" class="w-5 h-5 text-sena"></i>
+          <span>Atajos de Teclado del Aula Virtual</span>
+        </h3>
+        <button id="btn-close-help" class="p-1 text-slate-400 hover:text-slate-600 rounded-lg">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+      <div class="py-4 space-y-2 text-xs">
+        <div class="flex justify-between items-center py-1.5 border-b border-slate-50">
+          <span class="text-slate-600">Avanzar Diapositiva:</span>
+          <span class="font-mono font-bold text-slate-800 bg-slate-100 px-2 py-0.5 rounded">Flecha Der / Espacio</span>
+        </div>
+        <div class="flex justify-between items-center py-1.5 border-b border-slate-50">
+          <span class="text-slate-600">Retroceder Diapositiva:</span>
+          <span class="font-mono font-bold text-slate-800 bg-slate-100 px-2 py-0.5 rounded">Flecha Izq / RePág</span>
+        </div>
+        <div class="flex justify-between items-center py-1.5 border-b border-slate-50">
+          <span class="text-slate-600">Abrir / Cerrar Menú Índice:</span>
+          <span class="font-mono font-bold text-slate-800 bg-slate-100 px-2 py-0.5 rounded">M</span>
+        </div>
+        <div class="flex justify-between items-center py-1.5 border-b border-slate-50">
+          <span class="text-slate-600">Alternar Pantalla Completa:</span>
+          <span class="font-mono font-bold text-slate-800 bg-slate-100 px-2 py-0.5 rounded">F</span>
+        </div>
+        <div class="flex justify-between items-center py-1.5 border-b border-slate-50">
+          <span class="text-slate-600">Iniciar / Pausar Temporizador:</span>
+          <span class="font-mono font-bold text-slate-800 bg-slate-100 px-2 py-0.5 rounded">T</span>
+        </div>
+        <div class="flex justify-between items-center py-1.5">
+          <span class="text-slate-600">Cerrar ventanas / modales:</span>
+          <span class="font-mono font-bold text-slate-800 bg-slate-100 px-2 py-0.5 rounded">Esc</span>
+        </div>
+      </div>
+      <button onclick="document.getElementById('help-modal').classList.add('hidden')" class="w-full mt-2 py-2.5 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-slate-800 transition-colors">
+        Entendido
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- CONTENEDOR PRINCIPAL DE DIAPOSITIVAS INTERACTIVAS -->
+  <!-- ========================================================================= -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 flex flex-col justify-center">
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 1: PORTADA INSTITUCIONAL -->
+    <!-- ======================================================================= -->
+    <section class="slide-content active min-h-[580px]" data-title="01. Portada Institucional">
+      <div class="bg-white rounded-3xl border border-slate-200 p-8 sm:p-12 shadow-sm text-center relative overflow-hidden flex flex-col items-center justify-center my-auto">
+        <div class="absolute -top-32 -right-32 w-72 h-72 bg-purple-50 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-32 -left-32 w-72 h-72 bg-emerald-50 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 border border-purple-200 text-purple-800 text-xs font-bold uppercase tracking-wider mb-6">
+          <span class="w-2 h-2 rounded-full bg-purple-600 animate-pulse"></span>
+          <span>Guía 06 • Actividad de Aprendizaje GA6-220501096-AA3 • 48 Horas</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight max-w-4xl leading-tight mb-4">
+          Selección de Herramientas para <span class="text-purple-600">Prototipado UI/UX</span>
+        </h1>
+        <p class="text-sm sm:text-base font-mono font-bold text-slate-500 mb-6">
+          Evidencia Técnica: <span class="text-slate-800">GA6-220501096-AA3-EV01</span> • Diseño de Interfaces Web y Móviles
+        </p>
+
+        <!-- Banner de producto a entregar según la guía -->
+        <div class="mb-8 p-4 bg-purple-50 border border-purple-200 rounded-2xl max-w-2xl text-left flex items-start gap-3">
+          <i data-lucide="figma" class="w-6 h-6 text-purple-600 shrink-0 mt-0.5"></i>
+          <div class="text-xs text-purple-950">
+            <strong class="block font-bold text-purple-900 text-sm mb-1">PRODUCTO A ENTREGAR SEGÚN LA GUÍA: CARPETA ZIP CON WORD Y PROTOTIPO</strong>
+            <span>La guía de aprendizaje exige: <em>"La entrega se debe realizar en una carpeta Zip que contenga el documento en Word, y el archivo donde se realice el prototipado"</em>. El aprendiz debe probar las funcionalidades de la herramienta (Figma), diseñar un ejemplo de interfaz funcional y documentar el proceso con capturas estructuradas.</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full max-w-3xl mb-8">
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col items-center">
+            <i data-lucide="smartphone" class="w-6 h-6 text-purple-600 mb-2"></i>
+            <span class="text-xs text-slate-400 font-medium">Fundamento 1</span>
+            <strong class="text-xs sm:text-sm font-bold text-slate-800">Apps Móviles Nativas</strong>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col items-center">
+            <i data-lucide="layers" class="w-6 h-6 text-sky-600 mb-2"></i>
+            <span class="text-xs text-slate-400 font-medium">Fundamento 2</span>
+            <strong class="text-xs sm:text-sm font-bold text-slate-800">Desarrollo Híbrido</strong>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col items-center">
+            <i data-lucide="globe" class="w-6 h-6 text-amber-600 mb-2"></i>
+            <span class="text-xs text-slate-400 font-medium">Fundamento 3</span>
+            <strong class="text-xs sm:text-sm font-bold text-slate-800">Web HTML/CSS/JS</strong>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col items-center">
+            <i data-lucide="layout" class="w-6 h-6 text-sena mb-2"></i>
+            <span class="text-xs text-slate-400 font-medium">Herramienta UI</span>
+            <strong class="text-xs sm:text-sm font-bold text-slate-800">Figma Profesional</strong>
+          </div>
+        </div>
+
+        <div class="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between w-full max-w-3xl text-xs text-slate-500 gap-2">
+          <span>Instructor: <strong>Ing. Hector David Toledo García</strong></span>
+          <span class="font-mono">Centro Agroempresarial y Desarrollo Pecuario del Huila</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 2: FICHA TÉCNICA Y LINEAMIENTOS OFICIALES -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="02. Ficha Técnica y Lineamientos">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-purple-700 font-mono">Ficha Técnica Oficial</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Lineamientos de la Guía de Aprendizaje (AA3)
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-purple-50 text-purple-800 rounded-full text-xs font-bold font-mono">GA6-220501096-AA3-EV01</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
+            <!-- Instrucción Oficial -->
+            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+              <div>
+                <h3 class="font-bold text-slate-900 text-sm mb-3 flex items-center gap-2">
+                  <i data-lucide="file-check" class="w-4 h-4 text-purple-600"></i>
+                  <span>Instrucción Oficial de la Guía:</span>
+                </h3>
+                <p class="text-xs text-slate-600 leading-relaxed mb-4 italic bg-white p-3 rounded-xl border border-slate-200">
+                  "Seleccionar herramientas de prototipado, donde pruebe las principales funcionalidades de la herramienta, realizando un ejemplo de creación de interfaz con algunos elementos."
+                </p>
+                <div class="space-y-2 text-xs">
+                  <div class="flex items-start gap-2 text-slate-700">
+                    <i data-lucide="check" class="w-4 h-4 text-purple-600 shrink-0 mt-0.5"></i>
+                    <span><strong>Normas básicas de documento escrito:</strong> Portada, introducción, objetivo, pantallazos de las funciones de la herramienta y pantallazos del ejemplo de interfaz.</span>
+                  </div>
+                  <div class="flex items-start gap-2 text-slate-700">
+                    <i data-lucide="check" class="w-4 h-4 text-purple-600 shrink-0 mt-0.5"></i>
+                    <span><strong>Prueba práctica de funciones:</strong> Probar frames, auto layout, componentes y simulación interactiva.</span>
+                  </div>
+                  <div class="flex items-start gap-2 text-slate-700">
+                    <i data-lucide="check" class="w-4 h-4 text-purple-600 shrink-0 mt-0.5"></i>
+                    <span><strong>Ejemplo aplicado a proyecto real:</strong> Diseñar la interfaz móvil o web representativa de su negocio.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Materiales y Entregables -->
+            <div class="p-5 rounded-2xl bg-purple-50/70 border border-purple-200 flex flex-col justify-between">
+              <div>
+                <h3 class="font-bold text-purple-950 text-sm mb-3 flex items-center gap-2">
+                  <i data-lucide="book-open" class="w-4 h-4 text-purple-700"></i>
+                  <span>Materiales Formativos y Lineamientos de Entrega:</span>
+                </h3>
+                <div class="space-y-3 text-xs text-slate-700">
+                  <div class="p-3 bg-white rounded-xl border border-purple-100">
+                    <strong class="text-purple-900 block font-bold mb-1">Componentes Formativos a Consultar:</strong>
+                    <ul class="list-disc pl-4 space-y-0.5 text-[11px] text-slate-600">
+                      <li>"Arquitectura aplicaciones móviles nativas"</li>
+                      <li>"Herramientas para el diseño y desarrollo móvil híbrido"</li>
+                      <li>"Desarrollo web con HTML, CSS y JavaScript"</li>
+                    </ul>
+                  </div>
+                  <div class="p-3 bg-white rounded-xl border border-purple-100">
+                    <strong class="text-purple-900 block font-bold mb-1">Productos a Entregar en Carpeta ZIP:</strong>
+                    <span>1. Documento en <strong>Word (.docx)</strong> con estructura formal y capturas.<br>2. Archivo del prototipado (<strong>.fig</strong> de Figma o enlace público editable).</span>
+                  </div>
+                  <div class="p-3 bg-white rounded-xl border border-purple-100">
+                    <strong class="text-purple-900 block font-bold mb-1">Espacio de Carga:</strong>
+                    <span>Zajuna LMS: <em>Selección herramientas para prototipado. GA6-220501096-AA3-EV01</em>.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(0)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(2)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Apps Móviles Nativas <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 3: COMPONENTE 1: ARQUITECTURA APLICACIONES MÓVILES NATIVAS -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="03. Arquitectura Apps Nativas">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-purple-700 font-mono">Componente Formativo 1</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Arquitectura de Aplicaciones Móviles Nativas
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-emerald-50 text-emerald-800 rounded-full text-xs font-bold font-mono">Android (Kotlin) • iOS (Swift)</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+            Una <strong>aplicación móvil nativa</strong> es aquella desarrollada específicamente para un sistema operativo móvil utilizando los lenguajes, herramientas de compilación y SDKs oficiales provistos por Google o Apple:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4 text-xs">
+            <!-- Columna Android -->
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+              <div class="flex items-center gap-2 mb-2">
+                <i data-lucide="smartphone" class="w-5 h-5 text-emerald-600"></i>
+                <h3 class="font-extrabold text-slate-900 text-sm">Ecosistema Android</h3>
+              </div>
+              <ul class="space-y-1.5 text-slate-600 text-[11px]">
+                <li><strong>Lenguaje:</strong> Kotlin (preferente) o Java.</li>
+                <li><strong>UI Toolkit:</strong> Jetpack Compose (declarativo) o XML Views tradicional.</li>
+                <li><strong>Entorno (IDE):</strong> Android Studio con Gradle.</li>
+                <li><strong>Ejecución:</strong> Android Runtime (ART) compilando a bytecode DEX nativo.</li>
+              </ul>
+            </div>
+
+            <!-- Columna iOS -->
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+              <div class="flex items-center gap-2 mb-2">
+                <i data-lucide="apple" class="w-5 h-5 text-slate-800"></i>
+                <h3 class="font-extrabold text-slate-900 text-sm">Ecosistema iOS</h3>
+              </div>
+              <ul class="space-y-1.5 text-slate-600 text-[11px]">
+                <li><strong>Lenguaje:</strong> Swift (moderno) u Objective-C.</li>
+                <li><strong>UI Toolkit:</strong> SwiftUI (declarativo reactivo) o UIKit con Storyboards.</li>
+                <li><strong>Entorno (IDE):</strong> Xcode en macOS.</li>
+                <li><strong>Ejecución:</strong> Código binario ARM compilado con LLVM directamente para el chip.</li>
+              </ul>
+            </div>
+
+            <!-- Columna Ventajas y Arquitectura -->
+            <div class="p-4 rounded-2xl bg-purple-50/70 border border-purple-200">
+              <div class="flex items-center gap-2 mb-2">
+                <i data-lucide="cpu" class="w-5 h-5 text-purple-700"></i>
+                <h3 class="font-extrabold text-purple-950 text-sm">Ventajas Técnicas</h3>
+              </div>
+              <ul class="space-y-1.5 text-purple-900 text-[11px]">
+                <li><strong>Rendimiento Máximo:</strong> 60 a 120 FPS sin puentes de intermediación.</li>
+                <li><strong>Hardware 100%:</strong> Acceso pleno a GPS, cámara, Bluetooth, sensores y biometría.</li>
+                <li><strong>Patrón de Diseño:</strong> MVVM (Model-View-ViewModel) con Clean Architecture.</li>
+                <li><strong>Experiencia de Usuario:</strong> Respeta al 100% las guías HIG (Apple) y Material Design (Google).</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Diagrama Arquitectónico Nativo -->
+          <div class="p-3 bg-slate-900 text-slate-300 rounded-xl font-mono text-xs flex items-center justify-between">
+            <span>[Código App Nativo] $ightarrow$ [APIs Nativas del OS] $ightarrow$ [Kernel Linux / Darwin] $ightarrow$ [Hardware Móvil]</span>
+            <span class="text-emerald-400 font-bold">Cero Capas de Interpretación</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(1)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(3)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Desarrollo Móvil Híbrido <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 4: COMPONENTE 2: HERRAMIENTAS DESARROLLO MÓVIL HÍBRIDO -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="04. Móvil Híbrido y Multiplataforma">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-purple-700 font-mono">Componente Formativo 2</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Herramientas para Desarrollo Móvil Híbrido y Multiplataforma
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-sky-50 text-sky-800 rounded-full text-xs font-bold font-mono">Single Codebase: Flutter • React Native • Ionic</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+            Permiten escribir <strong>un único código base (Single Codebase)</strong> y compilar o empaquetar aplicaciones para Android, iOS y la Web simultáneamente, reduciendo drásticamente costos y tiempos de desarrollo:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4 text-xs">
+            <!-- Flutter -->
+            <div class="p-4 rounded-2xl bg-sky-50/70 border border-sky-200">
+              <div class="flex items-center gap-2 mb-1.5 font-bold text-sky-950 text-sm">
+                <i data-lucide="feather" class="w-4 h-4 text-sky-600"></i>
+                <span>Flutter (Google)</span>
+              </div>
+              <p class="text-slate-600 text-[11px] leading-relaxed mb-2">
+                Utiliza el lenguaje <strong>Dart</strong>. No usa componentes nativos ni WebViews: dibuja cada píxel en pantalla con su propio motor gráfico acelerado por GPU (<strong>Skia / Impeller</strong>).
+              </p>
+              <span class="px-2 py-0.5 rounded bg-sky-100 text-sky-800 text-[10px] font-bold">Rendimiento Excelente • UI Idéntica</span>
+            </div>
+
+            <!-- React Native -->
+            <div class="p-4 rounded-2xl bg-emerald-50/70 border border-emerald-200">
+              <div class="flex items-center gap-2 mb-1.5 font-bold text-emerald-950 text-sm">
+                <i data-lucide="atom" class="w-4 h-4 text-emerald-600"></i>
+                <span>React Native (Meta)</span>
+              </div>
+              <p class="text-slate-600 text-[11px] leading-relaxed mb-2">
+                Utiliza <strong>JavaScript / TypeScript</strong> y la filosofía React. Se comunica mediante la nueva arquitectura JSI con widgets y vistas nativas del sistema operativo.
+              </p>
+              <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">Look & Feel 100% Nativo • Ecosistema JS</span>
+            </div>
+
+            <!-- Ionic / Capacitor -->
+            <div class="p-4 rounded-2xl bg-amber-50/70 border border-amber-200">
+              <div class="flex items-center gap-2 mb-1.5 font-bold text-amber-950 text-sm">
+                <i data-lucide="globe-2" class="w-4 h-4 text-amber-600"></i>
+                <span>Ionic + Capacitor</span>
+              </div>
+              <p class="text-slate-600 text-[11px] leading-relaxed mb-2">
+                Desarrollo web puro (HTML, CSS y Angular/React/Vue) ejecutado dentro de un <strong>WebView nativo</strong> optimizado, conectándose al hardware mediante plugins de Capacitor.
+              </p>
+              <span class="px-2 py-0.5 rounded bg-amber-100 text-amber-800 text-[10px] font-bold">Reutilización Web Total • Curva Mínima</span>
+            </div>
+          </div>
+
+          <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200 text-xs text-slate-700">
+            <strong>¿Cuándo elegir Híbrido vs Nativo?:</strong> Si el software del proyecto formativo requiere desarrollo ágil para múltiples tiendas con presupuesto ajustado, las herramientas multiplataforma (Flutter / React Native) son ideales. Si requiere cómputo gráfico pesado o acceso a periféricos muy especializados, se prefiere nativo.
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(2)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(4)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Desarrollo Web HTML/CSS/JS <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 5: COMPONENTE 3: DESARROLLO WEB CON HTML, CSS Y JAVASCRIPT -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="05. Desarrollo Web HTML/CSS/JS">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-purple-700 font-mono">Componente Formativo 3</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Desarrollo Web con HTML, CSS y JavaScript
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-amber-50 text-amber-800 rounded-full text-xs font-bold font-mono">El Tridente Fundamental de la Web</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+            Todo diseño visual concebido en las herramientas de prototipado cobra vida en el navegador gracias a tres capas de tecnología complementarias e independientes:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4 text-xs">
+            <!-- HTML5 -->
+            <div class="p-4 rounded-2xl bg-orange-50/60 border border-orange-200">
+              <div class="flex items-center gap-2 mb-2 font-bold text-orange-950 text-sm">
+                <i data-lucide="code" class="w-4 h-4 text-orange-600"></i>
+                <span>HTML5: Estructura y Semántica</span>
+              </div>
+              <p class="text-slate-600 text-[11px] leading-relaxed mb-2">
+                Define el esqueleto y significado de los elementos: encabezados (<code>&lt;header&gt;</code>), navegación (<code>&lt;nav&gt;</code>), formularios, tablas, imágenes y botones accesibles.
+              </p>
+              <div class="p-2 bg-white rounded-lg border border-orange-100 font-mono text-[10px] text-slate-700">
+                &lt;button class="btn-primary"&gt;Pagar&lt;/button&gt;
+              </div>
+            </div>
+
+            <!-- CSS3 -->
+            <div class="p-4 rounded-2xl bg-sky-50/60 border border-sky-200">
+              <div class="flex items-center gap-2 mb-2 font-bold text-sky-950 text-sm">
+                <i data-lucide="palette" class="w-4 h-4 text-sky-600"></i>
+                <span>CSS3: Estilos y Responsividad</span>
+              </div>
+              <p class="text-slate-600 text-[11px] leading-relaxed mb-2">
+                Controla la estética visual: colores, tipografía, márgenes, sombras, transiciones y maquetación fluida mediante <strong>Flexbox</strong>, <strong>CSS Grid</strong> y <strong>Media Queries</strong>.
+              </p>
+              <div class="p-2 bg-white rounded-lg border border-sky-100 font-mono text-[10px] text-slate-700">
+                display: flex; gap: 1rem; border-radius: 12px;
+              </div>
+            </div>
+
+            <!-- JavaScript -->
+            <div class="p-4 rounded-2xl bg-amber-50/60 border border-amber-200">
+              <div class="flex items-center gap-2 mb-2 font-bold text-amber-950 text-sm">
+                <i data-lucide="zap" class="w-4 h-4 text-amber-600"></i>
+                <span>JavaScript ES6+: Interactividad</span>
+              </div>
+              <p class="text-slate-600 text-[11px] leading-relaxed mb-2">
+                Otorga dinamismo: captura eventos de usuario (clics, teclado), valida formularios en tiempo real, manipula el DOM y consume APIs REST mediante <code>fetch</code> asíncrono.
+              </p>
+              <div class="p-2 bg-white rounded-lg border border-amber-100 font-mono text-[10px] text-slate-700">
+                btn.addEventListener('click', procesarPago);
+              </div>
+            </div>
+          </div>
+
+          <div class="p-3 bg-slate-900 text-slate-300 rounded-xl font-mono text-xs flex items-center justify-between">
+            <span>Del Prototipo al Código: Figma entrega las propiedades exactas de CSS (colores, espaciados y tipografías).</span>
+            <span class="text-purple-400 font-bold">Dev Mode UI</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(3)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(5)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Ecosistema de Herramientas de Prototipado <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 6: ECOSISTEMA DE HERRAMIENTAS DE PROTOTIPADO -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="06. Ecosistema de Prototipado">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-purple-700 font-mono">Comparativa de Mercado</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Herramientas de Prototipado: Comparativa Profesional
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-purple-50 text-purple-800 rounded-full text-xs font-bold font-mono">Figma vs Penpot vs Balsamiq</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+            La evidencia exige <em>"Seleccionar herramientas de prototipado donde pruebe las principales funcionalidades"</em>. Evaluamos las principales opciones del mercado:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4 text-xs">
+            <!-- Figma -->
+            <div class="p-4 rounded-2xl bg-purple-50/80 border-2 border-purple-400 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-1.5 font-extrabold text-purple-950 text-sm">
+                    <i data-lucide="figma" class="w-4 h-4 text-purple-600"></i>
+                    <span>Figma (Recomendada)</span>
+                  </div>
+                  <span class="px-2 py-0.5 rounded bg-purple-200 text-purple-900 text-[10px] font-bold">Estándar Mundial</span>
+                </div>
+                <p class="text-slate-600 text-[11px] leading-relaxed mb-3">
+                  Basada 100% en la nube y colaborativa en tiempo real. Soporta Auto Layout, componentes con variantes, simulación interactiva con Smart Animate y modo desarrollador (Dev Mode).
+                </p>
+                <div class="space-y-1 text-[11px] text-slate-700">
+                  <div><strong>Licencia:</strong> Gratuita (Free tier generoso).</div>
+                  <div><strong>Plataforma:</strong> Web, Windows, macOS, Linux.</div>
+                  <div><strong>Fidelidad:</strong> Alta (High-Fidelity) e Interactiva.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Penpot -->
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-1.5 font-bold text-slate-900 text-sm">
+                    <i data-lucide="box" class="w-4 h-4 text-emerald-600"></i>
+                    <span>Penpot</span>
+                  </div>
+                  <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">Open Source</span>
+                </div>
+                <p class="text-slate-600 text-[11px] leading-relaxed mb-3">
+                  La alternativa libre y de código abierto. Diseñada nativamente sobre estándares web (SVG y CSS Grid nativo). Excelente para equipos con servidores autoalojados.
+                </p>
+                <div class="space-y-1 text-[11px] text-slate-700">
+                  <div><strong>Licencia:</strong> Código abierto (Open Source).</div>
+                  <div><strong>Plataforma:</strong> Web / Docker Self-hosted.</div>
+                  <div><strong>Fidelidad:</strong> Media-Alta fidelidad.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Balsamiq -->
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-1.5 font-bold text-slate-900 text-sm">
+                    <i data-lucide="pen-tool" class="w-4 h-4 text-amber-600"></i>
+                    <span>Balsamiq Mockups</span>
+                  </div>
+                  <span class="px-2 py-0.5 rounded bg-amber-100 text-amber-800 text-[10px] font-bold">Baja Fidelidad</span>
+                </div>
+                <p class="text-slate-600 text-[11px] leading-relaxed mb-3">
+                  Especializada en <em>Wireframing</em> de baja fidelidad estilo boceto a mano alzada. Ideal para lluvia de ideas inicial y arquitectura de información previa al diseño estético.
+                </p>
+                <div class="space-y-1 text-[11px] text-slate-700">
+                  <div><strong>Licencia:</strong> Comercial (Trial 30 días).</div>
+                  <div><strong>Plataforma:</strong> Web / Desktop.</div>
+                  <div><strong>Fidelidad:</strong> Baja fidelidad (Bocetos rápidos).</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200 text-xs text-emerald-950">
+            <strong>Veredicto de Selección:</strong> Seleccionamos <strong>Figma</strong> por ser la herramienta más demandada en la industria tecnológica mundial, permitiendo exportar el archivo nativo <code>.fig</code> y compartir enlaces públicos directos de prototipado interactivo.
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(4)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(6)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Caso Real AgroTech en Figma <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 7: CASO PRÁCTICO: DISEÑO UI EN FIGMA PARA AGROTECH -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="07. Caso Práctico: AgroTech en Figma">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-purple-700 font-mono">Caso Práctico en Proyecto Real</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Caso Real: Prototipo UI para "AgroTech Colombia S.A.S."
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-emerald-50 text-emerald-800 rounded-full text-xs font-bold font-mono">App Móvil & Portal Web</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+            Aplicamos la herramienta seleccionada (Figma) al diseño de las dos interfaces centrales del software de nuestra empresa modelo:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+            <!-- Interfaz Móvil -->
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+              <div class="flex items-center gap-2 mb-2 font-bold text-slate-900 text-sm">
+                <i data-lucide="smartphone" class="w-4 h-4 text-emerald-600"></i>
+                <span>1. App Móvil de Toma de Pedidos (Asesores de Campo)</span>
+              </div>
+              <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                Diseñada para teléfonos Android / iPhone en terreno rural. Contiene:
+              </p>
+              <ul class="space-y-1 text-[11px] text-slate-600 pl-4 list-disc">
+                <li>Header con perfil del asesor y botón de carrito de compras.</li>
+                <li>Barra de búsqueda con filtro de insumos (Semillas, Fertilizantes).</li>
+                <li>Cards de productos con imagen, SKU, precio unitario y selector de cantidad.</li>
+                <li>Barra de navegación inferior fija (Bottom Navigation Bar).</li>
+              </ul>
+            </div>
+
+            <!-- Interfaz Web -->
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+              <div class="flex items-center gap-2 mb-2 font-bold text-slate-900 text-sm">
+                <i data-lucide="monitor" class="w-4 h-4 text-sky-600"></i>
+                <span>2. Portal Web Administrativo (Dashboard de Ventas)</span>
+              </div>
+              <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                Diseñado para pantallas de escritorio (Desktop 1440px). Contiene:
+              </p>
+              <ul class="space-y-1 text-[11px] text-slate-600 pl-4 list-disc">
+                <li>Sidebar lateral con navegación modular (Ventas, Inventario, Clientes).</li>
+                <li>Métricas clave (KPIs de ventas diarias, pedidos pendientes, alertas de stock).</li>
+                <li>Tabla de órdenes recientes con estado de pago y acciones rápidas.</li>
+                <li>Paleta de colores oficial: Verde Agro (#2E7D32), Azul Navy (#00324D) y Ámbar (#F59E0B).</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="p-3 bg-purple-50 rounded-xl border border-purple-200 text-xs text-purple-950 flex items-center gap-2">
+            <i data-lucide="palette" class="w-4 h-4 text-purple-700 shrink-0"></i>
+            <span><strong>Design Tokens Base:</strong> Tipografía <em>Plus Jakarta Sans</em> / <em>Inter</em>. Espaciados múltiplos de 4px y 8px (regla universal de diseño UI).</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(5)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(7)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Función 1 en Figma - Frames y Grillas <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 8: FUNCIÓN 1 EN FIGMA: FRAMES, FORMAS Y JERARQUÍA -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="08. Función 1: Frames y Jerarquía">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-purple-700 font-mono">Paso a Paso en Figma • Función 1</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Creación de Frames, Grillas de Diseño y Formas Base
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-purple-50 text-purple-700 rounded-full text-xs font-bold font-mono">Atajo: F (Frame)</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+            La evidencia pide probar las funciones principales y capturar pantallas. La primera función básica es la preparación del lienzo de diseño:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4 text-xs">
+            <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200">
+              <span class="w-6 h-6 rounded-lg bg-purple-100 text-purple-800 font-bold flex items-center justify-center mb-2">1</span>
+              <strong class="text-slate-900 block font-bold mb-1">Presets de Dispositivos</strong>
+              <p class="text-slate-600 text-[11px] leading-relaxed">
+                Presiona la tecla <code>F</code> y elige en el panel lateral derecho los presets oficiales: <em>Android Large (360x800)</em>, <em>iPhone 14 (393x852)</em> o <em>Desktop (1440x1024)</em>.
+              </p>
+            </div>
+
+            <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200">
+              <span class="w-6 h-6 rounded-lg bg-sky-100 text-sky-800 font-bold flex items-center justify-center mb-2">2</span>
+              <strong class="text-slate-900 block font-bold mb-1">Layout Grid (Grilla de Diseño)</strong>
+              <p class="text-slate-600 text-[11px] leading-relaxed">
+                Activa una grilla de columnas para alinear elementos: 4 columnas con márgenes de 16px para móvil y 12 columnas para interfaces de escritorio web.
+              </p>
+            </div>
+
+            <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200">
+              <span class="w-6 h-6 rounded-lg bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center mb-2">3</span>
+              <strong class="text-slate-900 block font-bold mb-1">Jerarquía Visual</strong>
+              <p class="text-slate-600 text-[11px] leading-relaxed">
+                Uso de capas organizadas en el panel izquierdo (Layers), agrupando cabeceras, tarjetas y barras de navegación con nombres descriptivos.
+              </p>
+            </div>
+          </div>
+
+          <!-- Muestra de Figma UI -->
+          <div class="p-3.5 bg-slate-900 rounded-2xl font-mono text-[11px] text-slate-300 border border-slate-800">
+            <div class="text-purple-400 font-bold mb-1">// Tip para el Documento en Word:</div>
+            <p class="text-slate-400 leading-relaxed">
+              Toma captura del área de trabajo mostrando la barra de herramientas superior, el panel de capas a la izquierda y las propiedades del Frame seleccionado a la derecha. Explica para qué sirve cada panel.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(6)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(8)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Función 2 - Auto Layout <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 9: FUNCIÓN 2 EN FIGMA: AUTO LAYOUT Y ADAPTABILIDAD -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="09. Función 2: Auto Layout">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-purple-700 font-mono">Paso a Paso en Figma • Función 2</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Auto Layout: El Motor de Interfaces Flexibles
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-purple-50 text-purple-700 rounded-full text-xs font-bold font-mono">Atajo: Shift + A</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+            <strong>Auto Layout</strong> es la característica más potente de Figma: emula el comportamiento de <strong>Flexbox en CSS</strong>, permitiendo que botones, listas y tarjetas se redimensionen automáticamente según su contenido:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3 text-xs">
+            <!-- Tarjeta Explicativa -->
+            <div class="p-4 rounded-2xl bg-purple-50/70 border border-purple-200">
+              <h3 class="font-extrabold text-purple-950 text-sm mb-2 flex items-center gap-1.5">
+                <i data-lucide="layout-grid" class="w-4 h-4 text-purple-700"></i>
+                <span>Parámetros Fundamentales de Auto Layout:</span>
+              </h3>
+              <ul class="space-y-2 text-slate-700 text-[11px]">
+                <li><strong>Dirección:</strong> Flujo Horizontal $ightarrow$ o Flujo Vertical $downarrow$.</li>
+                <li><strong>Gap (Espaciado entre ítems):</strong> Separación exacta en píxeles (ej. 12px entre imagen y texto).</li>
+                <li><strong>Padding (Relleno interno):</strong> Márgenes superior, inferior, izquierdo y derecho dentro del contenedor.</li>
+                <li><strong>Resizing:</strong> <code>Hug contents</code> (se ajusta al texto interno) o <code>Fill container</code> (se expande para ocupar todo el ancho disponible).</li>
+              </ul>
+            </div>
+
+            <!-- Caso Práctico: Card de Producto -->
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+              <div>
+                <span class="text-[10px] font-mono font-bold text-emerald-700 uppercase block mb-1">Ejemplo Práctico en AgroTech:</span>
+                <strong class="text-slate-900 block text-xs font-bold mb-1">Tarjeta de Producto Automática (Product Card)</strong>
+                <p class="text-slate-600 text-[11px] leading-relaxed mb-3">
+                  Al agrupar la foto del bulto de urea, el título, el precio y el botón con <code>Shift + A</code>, si el nombre del producto es más largo o cambia de precio, toda la tarjeta se acomoda automáticamente sin romperse.
+                </p>
+              </div>
+              <div class="p-2 bg-emerald-100/70 rounded-xl text-emerald-950 font-bold text-[11px] text-center">
+                Equivalente CSS: display: flex; flex-direction: column; gap: 8px;
+              </div>
+            </div>
+          </div>
+
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-700">
+            <strong>Captura para el informe:</strong> Muestra el panel lateral de propiedades con la sección de Auto Layout resaltada, indicando los valores de padding y gap configurados.
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(7)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(9)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Función 3 - Componentes y Variantes <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 10: FUNCIÓN 3 EN FIGMA: COMPONENTES Y VARIANTES -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="10. Función 3: Componentes y Variantes">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-purple-700 font-mono">Paso a Paso en Figma • Función 3</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Componentes Reutilizables y Sistema de Variantes
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-purple-50 text-purple-700 rounded-full text-xs font-bold font-mono">Atajo: Ctrl + Alt + K</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+            Los <strong>Componentes</strong> son elementos de interfaz maestros que pueden clonarse como instancias a lo largo de todo el proyecto. Si modificas el componente principal (*Master Component*), los cambios se propagan a todas sus instancias:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4 text-xs">
+            <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200">
+              <div class="w-7 h-7 rounded-xl bg-purple-100 text-purple-800 font-bold flex items-center justify-center mb-2">
+                <i data-lucide="component" class="w-4 h-4"></i>
+              </div>
+              <strong class="text-slate-900 block font-bold mb-1">1. Componente Maestro</strong>
+              <p class="text-slate-600 text-[11px] leading-relaxed">
+                Crea un botón o barra de navegación y presiona <code>Ctrl + Alt + K</code> (icono de 4 rombos morados). Se convierte en la fuente de verdad del diseño.
+              </p>
+            </div>
+
+            <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200">
+              <div class="w-7 h-7 rounded-xl bg-sky-100 text-sky-800 font-bold flex items-center justify-center mb-2">
+                <i data-lucide="copy" class="w-4 h-4"></i>
+              </div>
+              <strong class="text-slate-900 block font-bold mb-1">2. Instancias Hijas</strong>
+              <p class="text-slate-600 text-[11px] leading-relaxed">
+                Duplica el componente en varias pantallas (rombo hueco). Puedes cambiar el texto o ícono sin perder el estilo global ni la posición.
+              </p>
+            </div>
+
+            <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200">
+              <div class="w-7 h-7 rounded-xl bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center mb-2">
+                <i data-lucide="sliders" class="w-4 h-4"></i>
+              </div>
+              <strong class="text-slate-900 block font-bold mb-1">3. Variantes de Estado</strong>
+              <p class="text-slate-600 text-[11px] leading-relaxed">
+                Crea variantes para diferentes estados interactivos: botón <em>Primary</em>, <em>Secondary</em>, estado <em>Default</em>, <em>Hover</em> y <em>Disabled</em>.
+              </p>
+            </div>
+          </div>
+
+          <div class="p-3 bg-purple-50 rounded-xl border border-purple-200 text-xs text-purple-950 flex items-center gap-2">
+            <i data-lucide="sparkles" class="w-4 h-4 text-purple-700 shrink-0"></i>
+            <span><strong>Impacto en Desarrollo:</strong> Esta funcionalidad sienta las bases de un <strong>Design System</strong> profesional, facilitando la futura maquetación en React, Vue o HTML/CSS.</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(8)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(10)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Función 4 - Prototipado Interactivo <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 11: FUNCIÓN 4 EN FIGMA: PROTOTIPADO INTERACTIVO Y FLUJOS -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="11. Función 4: Prototipado Interactivo">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-purple-700 font-mono">Paso a Paso en Figma • Función 4</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Prototipado Interactivo: Conexión de Pantallas y Flujos
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-purple-50 text-purple-700 rounded-full text-xs font-bold font-mono">Pestaña Prototype</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+            El prototipado interactivo convierte pantallas estáticas en una experiencia navegable simulada que el usuario puede tocar y probar en su teléfono o navegador:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4 text-xs">
+            <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200">
+              <strong class="text-slate-900 block font-bold mb-1">1. Conexiones (Nodos)</strong>
+              <p class="text-slate-600 text-[11px] leading-relaxed">
+                Selecciona un botón o elemento y arrastra la flecha azul circular hacia la pantalla de destino (ej. del botón "Ingresar" hacia el Dashboard).
+              </p>
+            </div>
+
+            <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200">
+              <strong class="text-slate-900 block font-bold mb-1">2. Disparadores (Triggers)</strong>
+              <p class="text-slate-600 text-[11px] leading-relaxed">
+                Configura el evento de activación: <em>On click / On tap</em> (al pulsar), <em>While hovering</em> (al pasar el ratón) o <em>On drag</em> (al deslizar).
+              </p>
+            </div>
+
+            <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200">
+              <strong class="text-slate-900 block font-bold mb-1">3. Transiciones y Animación</strong>
+              <p class="text-slate-600 text-[11px] leading-relaxed">
+                Elige el efecto visual: <em>Instant</em>, <em>Dissolve</em> o <strong>Smart Animate</strong> (animación fluida inteligente de componentes).
+              </p>
+            </div>
+          </div>
+
+          <div class="p-3 bg-slate-900 text-slate-300 rounded-xl font-mono text-xs flex items-center justify-between">
+            <span>Vista Previa en Vivo: Presiona el botón ▶ 'Present' para probar la app dentro de un mock de celular real.</span>
+            <span class="text-emerald-400 font-bold">Figma Mirror App</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(9)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(11)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Ejemplo de Interfaz Creado <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 12: EL EJEMPLO DE INTERFAZ DEL PROYECTO FORMATIVO -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="12. Ejemplo de Interfaz Diseñado">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-purple-700 font-mono">Requisito Obligatorio de la Guía</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                El Ejemplo de Interfaz: Componentes Clave Diseñados
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-emerald-50 text-emerald-800 rounded-full text-xs font-bold font-mono">AgroTech Colombia</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+            La guía exige <em>"realizando un ejemplo de creación de interfaz con algunos elementos"</em>. Para AgroTech se construyó el siguiente flujo completo:
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-4 text-xs font-mono">
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <strong class="text-purple-700 block mb-1">Pantalla A</strong>
+              <span class="text-slate-900 font-bold block mb-1 font-sans">Login / Autenticación</span>
+              <p class="text-[11px] text-slate-500 font-sans">Logo corporativo, inputs de email/contraseña y botón primario con Auto Layout.</p>
+            </div>
+
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <strong class="text-sky-700 block mb-1">Pantalla B</strong>
+              <span class="text-slate-900 font-bold block mb-1 font-sans">Dashboard Resumen</span>
+              <p class="text-[11px] text-slate-500 font-sans">Métricas de ventas, pedidos del día y acceso rápido al catálogo de insumos.</p>
+            </div>
+
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <strong class="text-emerald-700 block mb-1">Pantalla C</strong>
+              <span class="text-slate-900 font-bold block mb-1 font-sans">Catálogo de Productos</span>
+              <p class="text-[11px] text-slate-500 font-sans">Filtro de categorías, lista de cards con stock y botón "Añadir al Pedido".</p>
+            </div>
+
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <strong class="text-amber-700 block mb-1">Pantalla D</strong>
+              <span class="text-slate-900 font-bold block mb-1 font-sans">Confirmar Factura</span>
+              <p class="text-[11px] text-slate-500 font-sans">Detalle de líneas de compra, subtotal, IVA y botón interactivo de despacho.</p>
+            </div>
+          </div>
+
+          <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200 text-xs text-emerald-950">
+            <strong>Recomendación para los aprendices:</strong> Diseñar mínimo 2 o 3 pantallas vinculadas entre sí con interacciones funcionales para evidenciar el dominio integral de la herramienta de prototipado.
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(10)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(12)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Estructura del Documento Word <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 13: ESTRUCTURA OBLIGATORIA DEL DOCUMENTO EN WORD -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="13. Estructura del Documento Word">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-purple-700 font-mono">Normas Básicas de Presentación SENA</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Estructura del Documento Escrito en Word (.docx)
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-purple-50 text-purple-800 rounded-full text-xs font-bold font-mono">Archivo Word Obligatorio</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+            La guía de aprendizaje exige literalmente: <em>"debe tener como mínimo una portada, introducción, objetivo, pantallazos de las principales funciones de la herramienta de prototipado y pantallazos del ejemplo"</em>:
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-4 text-xs">
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <strong class="text-slate-900 block font-bold mb-1">1. Portada Institucional</strong>
+              <p class="text-slate-600 text-[11px]">Título de la evidencia, ficha ADSO 228118, nombres completos de los integrantes, instructor y centro CADPH Garzón.</p>
+            </div>
+
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <strong class="text-slate-900 block font-bold mb-1">2. Introducción y Objetivos</strong>
+              <p class="text-slate-600 text-[11px]">Fundamentos de la arquitectura móvil y web, y objetivos del diseño de interfaz para el software del proyecto.</p>
+            </div>
+
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <strong class="text-slate-900 block font-bold mb-1">3. Cuadro Comparativo</strong>
+              <p class="text-slate-600 text-[11px]">Comparativa técnica de herramientas (Figma vs Penpot vs Balsamiq) y justificación de la selección.</p>
+            </div>
+
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <strong class="text-slate-900 block font-bold mb-1">4. Pantallazos de Funciones</strong>
+              <p class="text-slate-600 text-[11px]">Capturas nítidas explicando: Frames y Grillas, Auto Layout, Componentes / Variantes y Prototipado Interactivo.</p>
+            </div>
+
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <strong class="text-slate-900 block font-bold mb-1">5. Pantallazos del Ejemplo</strong>
+              <p class="text-slate-600 text-[11px]">Vistas completas de las pantallas diseñadas para el software de su negocio con descripción de cada elemento.</p>
+            </div>
+
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <strong class="text-slate-900 block font-bold mb-1">6. Enlace Público al Prototipo</strong>
+              <p class="text-slate-600 text-[11px]">Enlace URL editable o de visualización de Figma para que el instructor interactúe directamente con el prototipo.</p>
+            </div>
+          </div>
+
+          <div class="p-3 bg-purple-50 rounded-xl border border-purple-200 text-xs text-purple-950">
+            <strong>Recomendación de Capturas:</strong> Recortar las imágenes de forma limpia, mostrando el contexto de Figma (panel de capas y propiedades) para evidenciar autoría propia del aprendiz.
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(11)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="goToSlide(13)" class="text-xs font-bold text-sena hover:underline flex items-center gap-1">
+            Siguiente: Empaque .ZIP y Entrega <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE 14: EMPAQUETADO EN FORMATO ZIP Y LISTA DE CHEQUEO -->
+    <!-- ======================================================================= -->
+    <section class="slide-content hidden min-h-[580px]" data-title="14. Empaquetado ZIP y Checklist">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm flex flex-col justify-between my-auto">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-purple-700 font-mono">Cierre y Entrega Oficial</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Empaquetado en Carpeta ZIP y Rúbrica Final
+              </h2>
+            </div>
+            <span class="px-3 py-1 bg-emerald-50 text-emerald-800 rounded-full text-xs font-bold font-mono">Formato Obligatorio: .ZIP</span>
+          </div>
+
+          <!-- Estructura del Archivo ZIP -->
+          <div class="p-4 bg-slate-900 text-slate-200 rounded-2xl mb-4 font-mono text-xs border border-slate-800">
+            <div class="text-purple-400 font-bold mb-2 flex items-center gap-2">
+              <i data-lucide="folder-archive" class="w-4 h-4"></i>
+              <span>Contenido exacto del archivo comprimido (.ZIP):</span>
+            </div>
+            <div class="space-y-1 pl-4 border-l border-slate-700 text-[11px]">
+              <div>📦 <strong class="text-amber-300">GA6-220501096-AA3-EV01_Nombre_Apellido.zip</strong></div>
+              <div class="pl-4">├── 📄 <span class="text-sky-300">Documento_Seleccion_Herramientas_Prototipado.docx</span> (Documento formal en Word)</div>
+              <div class="pl-4">├── 🎨 <span class="text-purple-300">Prototipo_AgroTech_App_Web.fig</span> (Archivo exportado nativo de Figma)</div>
+              <div class="pl-4">└── 🔗 <span class="text-emerald-300">ENLACE_FIGMA_ONLINE.txt</span> (Enlace URL público de Figma listo para probar en navegador)</div>
+            </div>
+          </div>
+
+          <!-- Checklist -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4 text-xs">
+            <div class="p-3 bg-purple-50/70 rounded-xl border border-purple-200 space-y-1.5">
+              <strong class="text-purple-900 block font-bold mb-1 flex items-center gap-1.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-purple-700"></i> Lista de Verificación (Checklist):
+              </strong>
+              <div class="flex items-center gap-2 text-slate-700">
+                <input type="checkbox" checked disabled class="accent-purple-600">
+                <span>Documento Word con portada, introducción y objetivos.</span>
+              </div>
+              <div class="flex items-center gap-2 text-slate-700">
+                <input type="checkbox" checked disabled class="accent-purple-600">
+                <span>Cuadro comparativo y justificación técnica de Figma.</span>
+              </div>
+              <div class="flex items-center gap-2 text-slate-700">
+                <input type="checkbox" checked disabled class="accent-purple-600">
+                <span>Pantallazos de las funciones principales probadas.</span>
+              </div>
+            </div>
+
+            <div class="p-3 bg-purple-50/70 rounded-xl border border-purple-200 space-y-1.5">
+              <strong class="text-purple-900 block font-bold mb-1 flex items-center gap-1.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-purple-700"></i> Criterios del Instrumento IE:
+              </strong>
+              <div class="flex items-center gap-2 text-slate-700">
+                <input type="checkbox" checked disabled class="accent-purple-600">
+                <span>Pantallazos del ejemplo de interfaz del proyecto formativo.</span>
+              </div>
+              <div class="flex items-center gap-2 text-slate-700">
+                <input type="checkbox" checked disabled class="accent-purple-600">
+                <span>Archivo nativo (.fig) o enlace interactivo compartido.</span>
+              </div>
+              <div class="flex items-center gap-2 text-slate-700">
+                <input type="checkbox" checked disabled class="accent-purple-600">
+                <span>Carpeta comprimida en formato .ZIP lista para Zajuna.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-600 flex items-center justify-between">
+            <span>Espacio Zajuna: <strong>Selección herramientas para prototipado. GA6-220501096-AA3-EV01</strong></span>
+            <span class="text-purple-700 font-bold">¡Muchos éxitos en su diseño UI/UX!</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="goToSlide(12)" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <a href="../../index.html" class="inline-flex items-center gap-2 px-4 py-2 bg-[#00324D] hover:bg-[#00263A] text-white rounded-xl text-xs font-bold transition-all shadow-sm">
+            <i data-lucide="home" class="w-4 h-4"></i> Volver al Portal Principal
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- SCRIPTS DE NAVEGACIÓN Y FUNCIONALIDAD INTERACTIVA -->
+  <!-- ========================================================================= -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const slides = document.querySelectorAll('.slide-content');
+      const totalSlides = slides.length;
+      let currentSlide = 0;
+
+      // Elementos UI
+      const progressBar = document.getElementById('presentation-progress');
+      const slideCounter = document.getElementById('slide-counter');
+      const btnPrev = document.getElementById('btn-prev-slide');
+      const btnNext = document.getElementById('btn-next-slide');
+      const btnToggleMenu = document.getElementById('btn-toggle-menu');
+      const btnCloseMenu = document.getElementById('btn-close-menu');
+      const menuDrawer = document.getElementById('menu-drawer');
+      const menuItemsList = document.getElementById('menu-items-list');
+      const btnFullscreen = document.getElementById('btn-fullscreen');
+      const btnToggleHelp = document.getElementById('btn-toggle-help');
+      const btnCloseHelp = document.getElementById('btn-close-help');
+      const helpModal = document.getElementById('help-modal');
+
+      // Generar elementos del menú drawer
+      slides.forEach((slide, idx) => {
+        const title = slide.getAttribute('data-title') || `Diapositiva ${idx + 1}`;
+        const item = document.createElement('button');
+        item.className = `w-full text-left px-3 py-2.5 rounded-xl text-xs font-medium transition-all flex items-center justify-between group ${
+          idx === currentSlide ? 'bg-purple-50 text-purple-800 font-bold border border-purple-200' : 'text-slate-600 hover:bg-slate-100'
+        }`;
+        item.innerHTML = `
+          <span class="truncate">${title}</span>
+          <span class="text-[10px] font-mono text-slate-400 group-hover:text-slate-600">${idx + 1}</span>
+        `;
+        item.addEventListener('click', () => {
+          goToSlide(idx);
+          menuDrawer.classList.add('translate-x-full');
+        });
+        menuItemsList.appendChild(item);
+      });
+
+      function updateSlideUI() {
+        slides.forEach((slide, idx) => {
+          if (idx === currentSlide) {
+            slide.classList.remove('hidden');
+            slide.classList.add('active');
+          } else {
+            slide.classList.add('hidden');
+            slide.classList.remove('active');
+          }
+        });
+
+        // Barra de progreso
+        const progressPct = ((currentSlide + 1) / totalSlides) * 100;
+        progressBar.style.width = `${progressPct}%`;
+
+        // Contador
+        slideCounter.textContent = `${currentSlide + 1} / ${totalSlides}`;
+
+        // Botones anterior/siguiente
+        btnPrev.disabled = currentSlide === 0;
+        btnNext.disabled = currentSlide === totalSlides - 1;
+
+        // Actualizar estados del drawer
+        const drawerItems = menuItemsList.querySelectorAll('button');
+        drawerItems.forEach((btn, idx) => {
+          if (idx === currentSlide) {
+            btn.className = 'w-full text-left px-3 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center justify-between group bg-purple-50 text-purple-800 border border-purple-200';
+          } else {
+            btn.className = 'w-full text-left px-3 py-2.5 rounded-xl text-xs font-medium transition-all flex items-center justify-between group text-slate-600 hover:bg-slate-100';
+          }
+        });
+
+        // Re-inicializar iconos de Lucide
+        if (window.lucide) {
+          lucide.createIcons();
+        }
+      }
+
+      window.goToSlide = function(idx) {
+        if (idx >= 0 && idx < totalSlides) {
+          currentSlide = idx;
+          updateSlideUI();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      };
+
+      btnPrev.addEventListener('click', () => goToSlide(currentSlide - 1));
+      btnNext.addEventListener('click', () => goToSlide(currentSlide + 1));
+
+      // Menú Drawer
+      btnToggleMenu.addEventListener('click', () => {
+        menuDrawer.classList.toggle('translate-x-full');
+      });
+      btnCloseMenu.addEventListener('click', () => {
+        menuDrawer.classList.add('translate-x-full');
+      });
+
+      // Pantalla Completa
+      btnFullscreen.addEventListener('click', () => {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(err => console.log(err));
+        } else {
+          document.exitFullscreen().catch(err => console.log(err));
+        }
+      });
+
+      // Ayuda / Atajos
+      btnToggleHelp.addEventListener('click', () => {
+        helpModal.classList.remove('hidden');
+      });
+      btnCloseHelp.addEventListener('click', () => {
+        helpModal.classList.add('hidden');
+      });
+
+      // Temporizador
+      let timerSeconds = 0;
+      let timerInterval = null;
+      let timerRunning = false;
+      const timerDisplay = document.getElementById('timer-display');
+      const btnTimerStart = document.getElementById('btn-timer-start');
+      const btnTimerReset = document.getElementById('btn-timer-reset');
+
+      function formatTime(s) {
+        const mins = Math.floor(s / 60);
+        const secs = s % 60;
+        return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      }
+
+      function toggleTimer() {
+        if (!timerRunning) {
+          timerInterval = setInterval(() => {
+            timerSeconds++;
+            if (timerDisplay) timerDisplay.textContent = formatTime(timerSeconds);
+          }, 1000);
+          timerRunning = true;
+          if (btnTimerStart) {
+            btnTimerStart.textContent = 'Pausa';
+            btnTimerStart.className = 'text-amber-700 hover:text-amber-800 font-bold ml-1 text-[11px] uppercase';
+          }
+        } else {
+          clearInterval(timerInterval);
+          timerRunning = false;
+          if (btnTimerStart) {
+            btnTimerStart.textContent = 'Reanudar';
+            btnTimerStart.className = 'text-emerald-700 hover:text-emerald-800 font-bold ml-1 text-[11px] uppercase';
+          }
+        }
+      }
+
+      if (btnTimerStart) btnTimerStart.addEventListener('click', toggleTimer);
+      if (btnTimerReset) {
+        btnTimerReset.addEventListener('click', () => {
+          clearInterval(timerInterval);
+          timerRunning = false;
+          timerSeconds = 0;
+          if (timerDisplay) timerDisplay.textContent = '00:00';
+          if (btnTimerStart) {
+            btnTimerStart.textContent = 'Iniciar';
+            btnTimerStart.className = 'text-emerald-700 hover:text-emerald-800 font-bold ml-1 text-[11px] uppercase';
+          }
+        });
+      }
+
+      // Navegación con teclado
+      document.addEventListener('keydown', (e) => {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+        if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+          e.preventDefault();
+          goToSlide(currentSlide + 1);
+        } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+          e.preventDefault();
+          goToSlide(currentSlide - 1);
+        } else if (e.key.toLowerCase() === 'm') {
+          menuDrawer.classList.toggle('translate-x-full');
+        } else if (e.key.toLowerCase() === 'f') {
+          if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch(err => console.log(err));
+          } else {
+            document.exitFullscreen().catch(err => console.log(err));
+          }
+        } else if (e.key.toLowerCase() === 't') {
+          toggleTimer();
+        } else if (e.key === '?' || e.key === '¿') {
+          helpModal.classList.toggle('hidden');
+        } else if (e.key === 'Escape') {
+          menuDrawer.classList.add('translate-x-full');
+          helpModal.classList.add('hidden');
+        }
+      });
+
+      // Inicializar
+      updateSlideUI();
+    });
+  </script>
+</body>
+</html>

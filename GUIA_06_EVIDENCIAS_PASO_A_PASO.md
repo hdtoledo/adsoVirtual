@@ -226,24 +226,32 @@ Este documento es la **hoja de ruta maestra** para instructores y aprendices de 
 **Nombre:** Selección herramientas para prototipado.  
 - **Tipo:** Evidencia de Conocimiento.
 - **Instrumento de Evaluación:** `IE-GA6-220501096-AA3-EV01`.
+- **Diapositivas de Proyección:** Disponible en [proyeccion-evidencia-08.html](guias/guia-06/proyeccion-evidencia-08.html) (19 slides interactivas para clase sincrónica con enlaces directos a cada plataforma).
 - **Descripción Oficial de la Guía:** Seleccionar herramientas de prototipado, donde pruebe las principales funcionalidades de la herramienta, realizando un ejemplo de creación de interfaz con algunos elementos.
+- **Ecosistema de las 4 Herramientas de Prototipado Vigentes Estudiadas:**
+  1. **Figma** ([figma.com](https://www.figma.com)): Estándar de la industria para diseño UI/UX colaborativo en la nube, Auto Layout, sistemas de diseño (Tokens), componentes con variantes y modo desarrollador (Dev Mode).
+  2. **Canva** ([canva.com](https://www.canva.com) / [canva.com/websites/](https://www.canva.com/websites/)): Prototipado ágil sin código (*No-Code*), diseño de sitios web navegables, pizarras colaborativas (*Whiteboard*) y generador de mockups 3D de dispositivos para validación rápida con clientes.
+  3. **Penpot** ([penpot.app](https://penpot.app)): La alternativa *Open Source* líder en el mundo basada en estándares web (SVG nativo, CSS Flexbox y CSS Grid nativo), gratuita y autoalojable en servidores locales mediante Docker.
+  4. **Framer** ([framer.com](https://www.framer.com)): Plataforma de prototipado interactivo avanzado basada en React y Framer Motion con microinteracciones de alta fidelidad, animaciones físicas y publicación a producción con un clic.
+  * *Referencia complementaria de baja fidelidad:* **Balsamiq Mockups** ([balsamiq.com](https://balsamiq.com)) para wireframing rápido y bocetos conceptuales a mano alzada.
 - **Normas Básicas de Presentación del Documento:**
-  - Portada formal institucional SENA.
+  - Portada formal institucional SENA (CADPH Garzón, ADSO Virtual, Aprendiz e Instructor).
   - Introducción y Objetivos (general y específicos).
-  - Justificación y cuadro comparativo de herramientas (Figma vs Penpot vs Balsamiq).
-  - Pantallazos de las principales funciones probadas en la herramienta (Frames, Auto Layout, Componentes y Variantes, Prototipado Interactivo).
-  - Pantallazos del ejemplo de creación de interfaz funcional aplicada al software del proyecto formativo (app móvil o portal web).
+  - Justificación técnica y cuadro comparativo multicriterio de las herramientas vigentes.
+  - Pantallazos de las principales funciones probadas en la herramienta seleccionada (**Figma**): Frames con grillas, Auto Layout, Componentes con Variantes y Prototipado Interactivo.
+  - Pantallazos del ejemplo de creación de interfaz funcional aplicada al software del proyecto formativo (app móvil y/o portal web para *AgroTech Colombia S.A.S.* o la empresa real del aprendiz).
   - Enlace público editable al archivo de prototipo.
 - **Caso Práctico Empresarial de Referencia (AgroTech Colombia S.A.S.):**
   - Diseño de la App Móvil para asesores de campo (catálogo de insumos agrícolas, carrito y checkout) y Dashboard Web administrativo en Figma.
 - **Paso a Paso de Desarrollo:**
   1. Estudiar los tres componentes formativos de arquitectura nativa, híbrida y web.
-  2. Evaluar y seleccionar la herramienta líder del mercado (**Figma**).
-  3. Probar en Figma las 4 funciones maestras: Frames con grillas de columnas, Auto Layout (`Shift + A`), Componentes maestros (`Ctrl + Alt + K`) y Flujos de prototipado con Smart Animate.
-  4. Diseñar el flujo de pantallas representativo para la empresa del proyecto formativo.
-  5. Redactar el documento formal en Word (.docx) integrando las capturas ordenadas y las explicaciones técnicas.
-  6. Exportar el archivo local `.fig` de Figma (o generar enlace público con permisos de visualización).
-  7. Comprimir el documento Word y el prototipo en una carpeta ZIP.
+  2. Evaluar y comparar las 4 herramientas de prototipado vigentes (Figma, Canva, Penpot, Framer).
+  3. Seleccionar formalmente **Figma** por su estándar en el sector productivo y soporte de exportación `.fig`.
+  4. Probar en Figma las 4 funciones maestras: Frames con grillas de columnas, Auto Layout (`Shift + A`), Componentes maestros (`Ctrl + Alt + K`) y Flujos de prototipado con Smart Animate.
+  5. Diseñar el flujo de pantallas representativo para la empresa del proyecto formativo.
+  6. Redactar el documento formal en Word (.docx) integrando las capturas ordenadas y las explicaciones técnicas.
+  7. Exportar el archivo local `.fig` de Figma (o generar enlace público con permisos de visualización).
+  8. Comprimir el documento Word y el prototipo en una carpeta ZIP.
 - **Lineamientos Generales para la Entrega:**
   - **Productos a Entregar:** Carpeta Zip que contenga:
     1. Archivo en **Word (.docx)** con el documento escrito y pantallazos estructurados.

@@ -51,7 +51,7 @@ repoVirtual/
         ├── proyeccion-evidencia-05.html # Presentación interactiva de 14 diapositivas para Evidencia 5 (Sentencias SQL DDL y DML)
         ├── proyeccion-evidencia-06.html # Presentación interactiva de 14 diapositivas para Evidencia 6 (Estructura de BD y Restricciones)
         ├── proyeccion-evidencia-07.html # Presentación interactiva de 14 diapositivas para Evidencia 7 (Script de BD del Proyecto)
-        ├── proyeccion-evidencia-08.html # Presentación interactiva de 14 diapositivas para Evidencia 8 (Selección de Herramientas de Prototipado)
+        ├── proyeccion-evidencia-08.html # Presentación interactiva de 19 diapositivas para Evidencia 8 (Herramientas de Prototipado: Figma, Canva, Penpot, Framer)
         ├── proyeccion-evidencia-09.html # Presentación interactiva de 14 diapositivas para Evidencia 9 (Diseño Web y Móvil con Componentes y Navegación)
         └── proyeccion.html             # Modo Proyección General en Aula (Guía 06)
 ```
@@ -190,23 +190,34 @@ repoVirtual/
   1. *Arquitectura aplicaciones móviles nativas* (Android Kotlin / iOS Swift, rendimiento 60/120 FPS, acceso a hardware y patrón MVVM).
   2. *Herramientas para diseño y desarrollo móvil híbrido* (Single Codebase con Flutter, React Native e Ionic/Capacitor).
   3. *Desarrollo web con HTML, CSS y JavaScript* (Estructura semántica HTML5, estilos responsivos CSS3 Flexbox/Grid e interactividad DOM con JS).
+* **4 Herramientas Vigentes de Prototipado Estudiadas con Enlaces:**
+  1. **Figma** ([figma.com](https://www.figma.com)): Estándar de la industria para diseño UI/UX colaborativo, Auto Layout, sistemas de diseño y Dev Mode.
+  2. **Canva** ([canva.com](https://www.canva.com)): Prototipado visual rápido, constructor de sitios web navegables, pizarras colaborativas y smartmockups 3D.
+  3. **Penpot** ([penpot.app](https://penpot.app)): La alternativa Open Source líder basada en estándares web (SVG nativo, CSS Flexbox y CSS Grid nativo), autoalojable en servidores propios.
+  4. **Framer** ([framer.com](https://www.framer.com)): Prototipado interactivo avanzado de diseño a producción impulsado por React y Framer Motion con microinteracciones de alta gama.
+  * *Referencia complementaria:* **Balsamiq** ([balsamiq.com](https://balsamiq.com)) para wireframing rápido de baja fidelidad.
 * **Productos a Entregar según la Guía:** Carpeta comprimida en formato **ZIP** que contiene:
-  1. Archivo en **Word (.docx)** con documento escrito formal (portada, introducción, objetivo, pantallazos de las funciones de la herramienta y pantallazos del ejemplo de interfaz).
+  1. Archivo en **Word (.docx)** con documento escrito formal (portada, introducción, objetivo, cuadro comparativo, pantallazos de las funciones de la herramienta y pantallazos del ejemplo de interfaz).
   2. Archivo donde se realice el prototipado (archivo fuente nativo **.fig** de Figma o enlace URL público editable).
-* **14 Diapositivas Pedagógicas con Caso Real ("AgroTech Colombia S.A.S.")**:
+* **19 Diapositivas Pedagógicas con Caso Real ("AgroTech Colombia S.A.S.")**:
   * **Slide 01 - 02:** Portada institucional y **Ficha Técnica Oficial** (instrumento `IE-GA6-220501096-AA3-EV01`, 48h de la AA3, carpeta ZIP).
   * **Slide 03:** **Componente Formativo 1:** Arquitectura de aplicaciones móviles nativas (Android Kotlin vs iOS Swift, SDKs, ciclo de vida y rendimiento sin puentes).
   * **Slide 04:** **Componente Formativo 2:** Herramientas para desarrollo móvil híbrido y multiplataforma (Flutter con Skia/Impeller, React Native con JSI e Ionic con WebViews).
   * **Slide 05:** **Componente Formativo 3:** Desarrollo web con HTML, CSS y JavaScript (tríada estructural, estilos responsivos con Flexbox/Grid e interactividad con el DOM).
-  * **Slide 06:** **Ecosistema de Herramientas de Prototipado:** Comparativa de mercado (Figma vs Penpot vs Balsamiq: costos, colaboración, fidelidad y plataformas).
-  * **Slide 07:** **Caso Práctico en Figma:** Diseño UI para *AgroTech Colombia S.A.S.* (App móvil para asesores rurales y portal web administrativo con paleta de color institucional).
-  * **Slide 08:** **Función Clave 1 en Figma:** Creación de Frames (`F`), presets móviles/web, grillas de diseño (*Layout Grids*) y jerarquía de capas.
-  * **Slide 09:** **Función Clave 2 en Figma:** *Auto Layout* (`Shift + A`) para tarjetas de productos y formularios dinámicos con padding, gap y resizing flexible.
-  * **Slide 10:** **Función Clave 3 en Figma:** Componentes maestros (`Ctrl + Alt + K`), instancias y variantes de estado (*Default*, *Hover*, *Active*).
-  * **Slide 11:** **Función Clave 4 en Figma:** Prototipado interactivo (pestaña Prototype, nodos de conexión, triggers *On tap/click* y transiciones *Smart Animate*).
-  * **Slide 12:** **Ejemplo de Interfaz Diseñado:** Flujo de 4 pantallas (Login, Dashboard, Catálogo y Facturación).
-  * **Slide 13:** **Estructura Formal del Documento Word:** Portada, introducción, objetivos, pantallazos explicativos y enlace público de Figma.
-  * **Slide 14:** **Empaquetado en Carpeta ZIP y Checklist:** Organización de los archivos, nomenclatura oficial y criterios de aprobación en **Zajuna LMS**.
+  * **Slide 06:** **Panorama del Ecosistema de Prototipado:** Niveles de fidelidad (Baja, Media, Alta) y presentación de las 4 soluciones líderes del mercado 2026.
+  * **Slide 07:** **Herramienta 1: Figma:** Explicación técnica a fondo, arquitectura WebAssembly/WebGL, Auto Layout, variantes, Dev Mode y enlace directo a [figma.com](https://www.figma.com).
+  * **Slide 08:** **Herramienta 2: Canva:** Módulo de sitios web navegables, Smartmockups 3D de dispositivos, pizarras visuales de ideación y enlace directo a [canva.com](https://www.canva.com).
+  * **Slide 09:** **Herramienta 3: Penpot:** La alternativa 100% Open Source, lienzo en SVG puro, CSS Flexbox y CSS Grid nativos, soberanía de datos y enlace a [penpot.app](https://penpot.app).
+  * **Slide 10:** **Herramienta 4: Framer:** De diseño a código de producción, motor React y Framer Motion, microinteracciones avanzadas y enlace a [framer.com](https://www.framer.com).
+  * **Slide 11:** **Matriz Comparativa y Selección Técnica:** Evaluación multicriterio y justificación oficial de la elección de Figma para la práctica del proyecto.
+  * **Slide 12:** **Caso Práctico en Figma:** Diseño UI para *AgroTech Colombia S.A.S.* (App móvil para asesores rurales y portal web administrativo con paleta de color institucional).
+  * **Slide 13:** **Función Clave 1 en Figma:** Creación de Frames (`F`), presets móviles/web, grillas de diseño (*Layout Grids*) y jerarquía de capas.
+  * **Slide 14:** **Función Clave 2 en Figma:** *Auto Layout* (`Shift + A`) para tarjetas de productos y formularios dinámicos con padding, gap y resizing flexible.
+  * **Slide 15:** **Función Clave 3 en Figma:** Componentes maestros (`Ctrl + Alt + K`), instancias y variantes de estado (*Default*, *Hover*, *Active*).
+  * **Slide 16:** **Función Clave 4 en Figma:** Prototipado interactivo (pestaña Prototype, nodos de conexión, triggers *On tap/click* y transiciones *Smart Animate*).
+  * **Slide 17:** **Ejemplo de Interfaz Diseñado:** Flujo de 4 pantallas (Login, Dashboard, Catálogo y Facturación).
+  * **Slide 18:** **Estructura Formal del Documento Word:** Portada, introducción, objetivos, pantallazos explicativos y enlace público de Figma.
+  * **Slide 19:** **Empaquetado en Carpeta ZIP y Checklist:** Organización de los archivos, nomenclatura oficial y criterios de aprobación en **Zajuna LMS**.
 
 ### 🟢 Evidencia 9: Crear el diseño del sitio web y/o móviles utilizando sus componentes y tecnologías respectivas (`proyeccion-evidencia-09.html`)
 * **Código Oficial:** `GA6-220501096-AA3-EV02` (12 Horas de Formación Técnica • Actividad AA3 de 48 Horas).

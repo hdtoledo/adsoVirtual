@@ -51,7 +51,7 @@ repoVirtual/
         ├── proyeccion-evidencia-05.html # Presentación interactiva de 14 diapositivas para Evidencia 5 (Sentencias SQL DDL y DML)
         ├── proyeccion-evidencia-06.html # Presentación interactiva de 14 diapositivas para Evidencia 6 (Estructura de BD y Restricciones)
         ├── proyeccion-evidencia-07.html # Presentación interactiva de 14 diapositivas para Evidencia 7 (Script de BD del Proyecto)
-        ├── proyeccion-evidencia-08.html # Presentación interactiva de 19 diapositivas para Evidencia 8 (Herramientas de Prototipado: Figma, Canva, Penpot, Framer)
+        ├── proyeccion-evidencia-08.html # Presentación interactiva de 13 diapositivas para Evidencia 8 (Herramientas de Prototipado: Figma, Canva, Penpot, Framer)
         ├── proyeccion-evidencia-09.html # Presentación interactiva de 14 diapositivas para Evidencia 9 (Diseño Web y Móvil con Componentes y Navegación)
         └── proyeccion.html             # Modo Proyección General en Aula (Guía 06)
 ```
@@ -196,11 +196,9 @@ repoVirtual/
   3. **Penpot** ([penpot.app](https://penpot.app)): La alternativa Open Source líder basada en estándares web (SVG nativo, CSS Flexbox y CSS Grid nativo), autoalojable en servidores propios.
   4. **Framer** ([framer.com](https://www.framer.com)): Prototipado interactivo avanzado de diseño a producción impulsado por React y Framer Motion con microinteracciones de alta gama.
   * *Referencia complementaria:* **Balsamiq** ([balsamiq.com](https://balsamiq.com)) para wireframing rápido de baja fidelidad.
-* **Productos a Entregar según la Guía:** Carpeta comprimida en formato **ZIP** que contiene:
-  1. Archivo en **Word (.docx)** con documento escrito formal (portada, introducción, objetivo, cuadro comparativo, pantallazos de las funciones de la herramienta y pantallazos del ejemplo de interfaz).
-  2. Archivo donde se realice el prototipado (archivo fuente nativo **.fig** de Figma o enlace URL público editable).
-* **19 Diapositivas Pedagógicas con Caso Real ("AgroTech Colombia S.A.S.")**:
-  * **Slide 01 - 02:** Portada institucional y **Ficha Técnica Oficial** (instrumento `IE-GA6-220501096-AA3-EV01`, 48h de la AA3, carpeta ZIP).
+* **Producto a Entregar:** Archivo en **Word (.docx)** o comprimido en **ZIP** con documento formal estructurado con 4 apartados (1. Portada, 2. Introducción y Objetivos, 3. Cuadro Comparativo y Justificación, 4. Pantallazos de Exploración de las herramientas). *(Nota: El diseño de prototipos completos del proyecto formativo y los enlaces interactivos se evaluarán en la siguiente evidencia).*
+* **13 Diapositivas Pedagógicas**:
+  * **Slide 01 - 02:** Portada institucional y **Ficha Técnica Oficial** (instrumento `IE-GA6-220501096-AA3-EV01`, 48h de la AA3, entrega de documento).
   * **Slide 03:** **Componente Formativo 1:** Arquitectura de aplicaciones móviles nativas (Android Kotlin vs iOS Swift, SDKs, ciclo de vida y rendimiento sin puentes).
   * **Slide 04:** **Componente Formativo 2:** Herramientas para desarrollo móvil híbrido y multiplataforma (Flutter con Skia/Impeller, React Native con JSI e Ionic con WebViews).
   * **Slide 05:** **Componente Formativo 3:** Desarrollo web con HTML, CSS y JavaScript (tríada estructural, estilos responsivos con Flexbox/Grid e interactividad con el DOM).
@@ -209,15 +207,9 @@ repoVirtual/
   * **Slide 08:** **Herramienta 2: Canva:** Módulo de sitios web navegables, Smartmockups 3D de dispositivos, pizarras visuales de ideación y enlace directo a [canva.com](https://www.canva.com).
   * **Slide 09:** **Herramienta 3: Penpot:** La alternativa 100% Open Source, lienzo en SVG puro, CSS Flexbox y CSS Grid nativos, soberanía de datos y enlace a [penpot.app](https://penpot.app).
   * **Slide 10:** **Herramienta 4: Framer:** De diseño a código de producción, motor React y Framer Motion, microinteracciones avanzadas y enlace a [framer.com](https://www.framer.com).
-  * **Slide 11:** **Matriz Comparativa y Selección Técnica:** Evaluación multicriterio y justificación oficial de la elección de Figma para la práctica del proyecto.
-  * **Slide 12:** **Caso Práctico en Figma:** Diseño UI para *AgroTech Colombia S.A.S.* (App móvil para asesores rurales y portal web administrativo con paleta de color institucional).
-  * **Slide 13:** **Función Clave 1 en Figma:** Creación de Frames (`F`), presets móviles/web, grillas de diseño (*Layout Grids*) y jerarquía de capas.
-  * **Slide 14:** **Función Clave 2 en Figma:** *Auto Layout* (`Shift + A`) para tarjetas de productos y formularios dinámicos con padding, gap y resizing flexible.
-  * **Slide 15:** **Función Clave 3 en Figma:** Componentes maestros (`Ctrl + Alt + K`), instancias y variantes de estado (*Default*, *Hover*, *Active*).
-  * **Slide 16:** **Función Clave 4 en Figma:** Prototipado interactivo (pestaña Prototype, nodos de conexión, triggers *On tap/click* y transiciones *Smart Animate*).
-  * **Slide 17:** **Ejemplo de Interfaz Diseñado:** Flujo de 4 pantallas (Login, Dashboard, Catálogo y Facturación).
-  * **Slide 18:** **Estructura Formal del Documento Word:** Portada, introducción, objetivos, pantallazos explicativos y enlace público de Figma.
-  * **Slide 19:** **Empaquetado en Carpeta ZIP y Checklist:** Organización de los archivos, nomenclatura oficial y criterios de aprobación en **Zajuna LMS**.
+  * **Slide 11:** **Matriz Comparativa y Selección Técnica:** Evaluación multicriterio y justificación de selección para el proyecto.
+  * **Slide 12:** **Estructura del Documento Escrito en Word (.docx):** Los 4 puntos requeridos (Portada, Introducción/Objetivos, Cuadro Comparativo, Pantallazos de Herramientas) con nota aclaratoria de que prototipos y enlaces se desarrollan en la próxima evidencia.
+  * **Slide 13:** **Lineamientos de Entrega y Checklist:** Estructura del documento, nomenclatura oficial y criterios de aprobación en **Zajuna LMS**.
 
 ### 🟢 Evidencia 9: Crear el diseño del sitio web y/o móviles utilizando sus componentes y tecnologías respectivas (`proyeccion-evidencia-09.html`)
 * **Código Oficial:** `GA6-220501096-AA3-EV02` (12 Horas de Formación Técnica • Actividad AA3 de 48 Horas).

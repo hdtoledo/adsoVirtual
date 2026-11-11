@@ -7,62 +7,36 @@
   <meta name="description" content="Repositorio técnico oficial para la descarga de guías y consulta de material explicativo paso a paso de evidencias de desarrollo de software. SENA Regional Huila - Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón). Desarrollado por el Ing. Hector David Toledo García.">
   <link rel="icon" type="image/png" href="assets/logo_green.png">
 
-  <!-- OpenGraph Metadata -->
+  <link rel="canonical" href="https://hdtoledo.github.io/adsoVirtual/">
+
+  <!-- Open Graph / Twitter -->
   <meta property="og:title" content="ADSO Virtual · Repositorio Técnico & Guías de Aprendizaje · SENA CADPH Garzón">
   <meta property="og:description" content="Centro de descarga de guías y material explicativo para las sesiones sincrónicas de desarrollo de software. Instructor: Ing. Hector David Toledo García.">
-  <meta property="og:image" content="assets/logo_green.png">
+  <meta property="og:image" content="https://hdtoledo.github.io/adsoVirtual/assets/logo_green.png">
+  <meta property="og:url" content="https://hdtoledo.github.io/adsoVirtual/">
   <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_CO">
+  <meta name="twitter:card" content="summary">
 
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            sena: {
-              green: '#39A900',
-              'green-hover': '#2D8200',
-              navy: '#00324D',
-              'navy-dark': '#00263A',
-              'navy-light': '#004164'
-            }
-          },
-          fontFamily: {
-            sans: ['Plus Jakarta Sans', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace']
-          }
-        }
-      }
-    }
-  </script>
-
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-
-  <!-- Google Fonts -->
+  <!-- Fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="assets/css/presenter.css">
-  <style>
-    .card-hover {
-      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease;
-    }
-    .card-hover:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 14px 28px -10px rgba(0, 50, 77, 0.12);
-      border-color: #39A900;
-    }
-  </style>
+  <!-- Tailwind (Play CDN, versión fijada) + configuración compartida de marca -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="assets/js/tailwind.config.js"></script>
+
+  <!-- Iconografía Lucide (versión fijada) -->
+  <script src="https://unpkg.com/lucide@1.60.0/dist/umd/lucide.min.js"></script>
+
+  <link rel="stylesheet" href="assets/css/base.css">
 </head>
 <body class="min-h-full flex flex-col bg-slate-50/60 text-slate-900 font-sans selection:bg-[#39A900] selection:text-white">
 
   <!-- ========================================================================= -->
   <!-- 1. CINTILLO INSTITUCIONAL SENA CADPH GARZÓN -->
-  <!-- ============================================================  <!-- 1. CINTILLO INSTITUCIONAL SENA CADPH GARZÓN -->
+  <!-- ========================================================================= -->
   <div class="bg-[#00324D] text-white text-[11px] py-1.5 px-4 sm:px-6 border-b border-[#00263A]">
     <div class="max-w-7xl mx-auto flex items-center justify-between gap-3">
       <div class="flex items-center gap-2 truncate">
@@ -117,6 +91,10 @@
             <i data-lucide="download" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
             <span>Descargar Guías</span>
           </a>
+          <a href="#ruta-guia-06" class="px-3 py-1.5 rounded-lg hover:text-sena hover:bg-slate-100 transition-colors flex items-center gap-1.5 whitespace-nowrap">
+            <i data-lucide="route" class="w-3.5 h-3.5 text-[#00324D] shrink-0"></i>
+            <span>Ruta Guía 06</span>
+          </a>
           <a href="#evidencias-section" class="px-3 py-1.5 rounded-lg hover:text-sena hover:bg-slate-100 transition-colors flex items-center gap-1.5 whitespace-nowrap">
             <i data-lucide="layers" class="w-3.5 h-3.5 text-blue-600 shrink-0"></i>
             <span>Explorador de Evidencias</span>
@@ -150,6 +128,10 @@
         <i data-lucide="download" class="w-4 h-4 text-emerald-600"></i>
         <span>Descargar Guías de Aprendizaje</span>
       </a>
+      <a href="#ruta-guia-06" class="flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-100">
+        <i data-lucide="route" class="w-4 h-4 text-[#00324D]"></i>
+        <span>Ruta de Aprendizaje Guía 06</span>
+      </a>
       <a href="#evidencias-section" class="flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-100">
         <i data-lucide="layers" class="w-4 h-4 text-blue-600"></i>
         <span>Explorador de Evidencias Técnicas</span>
@@ -164,7 +146,7 @@
           <i data-lucide="presentation" class="w-4 h-4"></i>
           <span>Proyectar Sesión en Aula</span>
         </span>
-        <span class="text-[10px] bg-white/20 px-2 py-0.5 rounded font-mono">5 Disponibles</span>
+        <span class="text-[10px] bg-white/20 px-2 py-0.5 rounded font-mono"><span data-sesiones-count>–</span> Disponibles</span>
       </button>
     </div>
   </header>
@@ -475,6 +457,85 @@
   </section>
 
   <!-- ========================================================================= -->
+  <!-- 5.1 RUTA DE APRENDIZAJE GUÍA 06 (GENERADA DESDE assets/js/catalogo.js) -->
+  <!-- ========================================================================= -->
+  <section id="ruta-guia-06" class="py-12 bg-white border-b border-slate-200 scroll-mt-20" aria-labelledby="ruta-title">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
+        <div class="max-w-3xl">
+          <span class="text-xs font-extrabold uppercase tracking-widest text-sena bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            Ruta de Aprendizaje · Guía 06
+          </span>
+          <h2 id="ruta-title" class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mt-2">
+            Las evidencias técnicas en el orden en que se trabajan
+          </h2>
+          <p class="text-sm text-slate-600 mt-1">
+            Cada actividad de aprendizaje (AA) agrupa sus evidencias. Abre el <strong>paso a paso</strong> para preparar tu entrega en Zajuna
+            o <strong>proyecta la sesión</strong> explicativa correspondiente.
+          </p>
+        </div>
+
+        <div class="w-full lg:w-80 bg-slate-50 border border-slate-200 rounded-2xl p-4 shadow-sm shrink-0">
+          <div class="flex items-center justify-between text-xs mb-2">
+            <span class="font-bold text-slate-700 flex items-center gap-1.5"><i data-lucide="presentation" class="w-4 h-4 text-sena"></i> Sesiones publicadas</span>
+            <span id="ruta-progress-label" class="font-mono font-bold text-[#00324D]">–</span>
+          </div>
+          <div class="h-2 rounded-full bg-slate-200 overflow-hidden" role="progressbar" aria-label="Sesiones publicadas de la Guía 06" aria-valuemin="0" id="ruta-progressbar">
+            <div id="ruta-progress-bar" class="h-2 rounded-full bg-[#39A900] transition-[width] duration-500 ease-out motion-reduce:transition-none" style="width:0%"></div>
+          </div>
+          <a href="guias/guia-06/proyeccion.html" class="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-[#00324D] hover:text-sena transition-colors">
+            <i data-lucide="monitor-play" class="w-3.5 h-3.5"></i> Empezar por la visión general de la guía
+          </a>
+        </div>
+      </div>
+
+      <div id="ruta-actividades" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="bg-slate-50/60 border border-slate-200 rounded-2xl p-5 shadow-sm animate-pulse motion-reduce:animate-none" aria-hidden="true">
+          <div class="flex items-start gap-3 mb-5">
+            <div class="w-11 h-11 rounded-xl bg-slate-200"></div>
+            <div class="flex-1 space-y-2 pt-1"><div class="h-3 bg-slate-200 rounded w-4/5"></div><div class="h-2.5 bg-slate-200 rounded w-2/5"></div></div>
+          </div>
+          <div class="space-y-3">
+            <div class="h-20 bg-white border border-slate-200 rounded-xl"></div>
+            <div class="h-20 bg-white border border-slate-200 rounded-xl"></div>
+          </div>
+        </div>
+        <div class="bg-slate-50/60 border border-slate-200 rounded-2xl p-5 shadow-sm animate-pulse motion-reduce:animate-none" aria-hidden="true">
+          <div class="flex items-start gap-3 mb-5">
+            <div class="w-11 h-11 rounded-xl bg-slate-200"></div>
+            <div class="flex-1 space-y-2 pt-1"><div class="h-3 bg-slate-200 rounded w-4/5"></div><div class="h-2.5 bg-slate-200 rounded w-2/5"></div></div>
+          </div>
+          <div class="space-y-3">
+            <div class="h-20 bg-white border border-slate-200 rounded-xl"></div>
+            <div class="h-20 bg-white border border-slate-200 rounded-xl"></div>
+          </div>
+        </div>
+        <div class="bg-slate-50/60 border border-slate-200 rounded-2xl p-5 shadow-sm animate-pulse motion-reduce:animate-none" aria-hidden="true">
+          <div class="flex items-start gap-3 mb-5">
+            <div class="w-11 h-11 rounded-xl bg-slate-200"></div>
+            <div class="flex-1 space-y-2 pt-1"><div class="h-3 bg-slate-200 rounded w-4/5"></div><div class="h-2.5 bg-slate-200 rounded w-2/5"></div></div>
+          </div>
+          <div class="space-y-3">
+            <div class="h-20 bg-white border border-slate-200 rounded-xl"></div>
+            <div class="h-20 bg-white border border-slate-200 rounded-xl"></div>
+          </div>
+        </div>
+        <div class="bg-slate-50/60 border border-slate-200 rounded-2xl p-5 shadow-sm animate-pulse motion-reduce:animate-none" aria-hidden="true">
+          <div class="flex items-start gap-3 mb-5">
+            <div class="w-11 h-11 rounded-xl bg-slate-200"></div>
+            <div class="flex-1 space-y-2 pt-1"><div class="h-3 bg-slate-200 rounded w-4/5"></div><div class="h-2.5 bg-slate-200 rounded w-2/5"></div></div>
+          </div>
+          <div class="space-y-3">
+            <div class="h-20 bg-white border border-slate-200 rounded-xl"></div>
+            <div class="h-20 bg-white border border-slate-200 rounded-xl"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
   <!-- 6. METODOLOGÍA FORMATIVA EN 3 BLOQUES (SESIONES VIRTUALES TÉCNICAS) -->
   <!-- ========================================================================= -->
   <section id="metodologia" class="py-12 bg-white border-b border-slate-200">
@@ -706,7 +767,43 @@
 
       <!-- Grilla de Tarjetas de Evidencias Técnicas -->
       <div id="evidence-grid" class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Generado dinámicamente vía JavaScript con soporte de paginación -->
+        <!-- Generado por assets/js/portal.js (skeletons mientras carga) -->
+        <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm animate-pulse motion-reduce:animate-none space-y-3" aria-hidden="true">
+          <div class="flex justify-between"><div class="h-4 w-28 bg-slate-200 rounded-full"></div><div class="h-4 w-20 bg-slate-200 rounded-full"></div></div>
+          <div class="h-4 bg-slate-200 rounded w-11/12"></div><div class="h-4 bg-slate-200 rounded w-3/5"></div>
+          <div class="h-3 bg-slate-100 rounded"></div><div class="h-3 bg-slate-100 rounded w-4/5"></div>
+          <div class="h-9 bg-slate-100 rounded-lg mt-4"></div>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm animate-pulse motion-reduce:animate-none space-y-3" aria-hidden="true">
+          <div class="flex justify-between"><div class="h-4 w-28 bg-slate-200 rounded-full"></div><div class="h-4 w-20 bg-slate-200 rounded-full"></div></div>
+          <div class="h-4 bg-slate-200 rounded w-11/12"></div><div class="h-4 bg-slate-200 rounded w-3/5"></div>
+          <div class="h-3 bg-slate-100 rounded"></div><div class="h-3 bg-slate-100 rounded w-4/5"></div>
+          <div class="h-9 bg-slate-100 rounded-lg mt-4"></div>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm animate-pulse motion-reduce:animate-none space-y-3" aria-hidden="true">
+          <div class="flex justify-between"><div class="h-4 w-28 bg-slate-200 rounded-full"></div><div class="h-4 w-20 bg-slate-200 rounded-full"></div></div>
+          <div class="h-4 bg-slate-200 rounded w-11/12"></div><div class="h-4 bg-slate-200 rounded w-3/5"></div>
+          <div class="h-3 bg-slate-100 rounded"></div><div class="h-3 bg-slate-100 rounded w-4/5"></div>
+          <div class="h-9 bg-slate-100 rounded-lg mt-4"></div>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm animate-pulse motion-reduce:animate-none space-y-3" aria-hidden="true">
+          <div class="flex justify-between"><div class="h-4 w-28 bg-slate-200 rounded-full"></div><div class="h-4 w-20 bg-slate-200 rounded-full"></div></div>
+          <div class="h-4 bg-slate-200 rounded w-11/12"></div><div class="h-4 bg-slate-200 rounded w-3/5"></div>
+          <div class="h-3 bg-slate-100 rounded"></div><div class="h-3 bg-slate-100 rounded w-4/5"></div>
+          <div class="h-9 bg-slate-100 rounded-lg mt-4"></div>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm animate-pulse motion-reduce:animate-none space-y-3" aria-hidden="true">
+          <div class="flex justify-between"><div class="h-4 w-28 bg-slate-200 rounded-full"></div><div class="h-4 w-20 bg-slate-200 rounded-full"></div></div>
+          <div class="h-4 bg-slate-200 rounded w-11/12"></div><div class="h-4 bg-slate-200 rounded w-3/5"></div>
+          <div class="h-3 bg-slate-100 rounded"></div><div class="h-3 bg-slate-100 rounded w-4/5"></div>
+          <div class="h-9 bg-slate-100 rounded-lg mt-4"></div>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm animate-pulse motion-reduce:animate-none space-y-3" aria-hidden="true">
+          <div class="flex justify-between"><div class="h-4 w-28 bg-slate-200 rounded-full"></div><div class="h-4 w-20 bg-slate-200 rounded-full"></div></div>
+          <div class="h-4 bg-slate-200 rounded w-11/12"></div><div class="h-4 bg-slate-200 rounded w-3/5"></div>
+          <div class="h-3 bg-slate-100 rounded"></div><div class="h-3 bg-slate-100 rounded w-4/5"></div>
+          <div class="h-9 bg-slate-100 rounded-lg mt-4"></div>
+        </div>
       </div>
 
       <!-- Estado Vacío (Sin Resultados) -->
@@ -865,7 +962,7 @@
             <div class="flex items-center gap-2 mb-1 flex-wrap">
               <span class="px-2.5 py-0.5 rounded text-[10px] font-extrabold uppercase bg-[#00324D] text-white">SENA ADSO</span>
               <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200 uppercase">Modo Aula Virtual</span>
-              <span class="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">5 Sesiones Disponibles</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200"><span data-sesiones-count>–</span> Sesiones Disponibles</span>
             </div>
             <h2 class="text-lg sm:text-xl font-extrabold text-slate-900 leading-tight">Seleccionar Sesión para Proyección en Aula</h2>
             <p class="text-xs text-slate-500 mt-0.5">Presentaciones interactivas por diapositivas orientadas por el <strong>Ing. Hector David Toledo García</strong>.</p>
@@ -878,308 +975,42 @@
 
       <!-- Contenido scrolleable -->
       <div class="p-5 sm:p-6 overflow-y-auto space-y-6 flex-1 text-slate-700">
-        
-        <!-- SECCIÓN 1: SESIONES LISTAS Y DISPONIBLES AHORA -->
-        <div>
+
+        <!-- SECCIÓN 1: SESIONES DISPONIBLES (portal.js) -->
+        <section aria-labelledby="proj-available-title">
           <div class="flex items-center justify-between mb-3">
-            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-900 flex items-center gap-2">
-              <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span>Sesiones Interactivas Listas para Proyectar (Disponibles):</span>
+            <h3 id="proj-available-title" class="text-xs font-bold uppercase tracking-wider text-slate-900 flex items-center gap-2">
+              <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse motion-reduce:animate-none"></span>
+              <span>Sesiones interactivas listas para proyectar</span>
             </h3>
-            <span class="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Acceso Inmediato</span>
+            <span class="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Acceso inmediato</span>
           </div>
+          <div id="proj-available-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3.5"></div>
+        </section>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
-            
-            <!-- Tarjeta: Sesión General Guía 06 -->
-            <div class="p-4 rounded-2xl bg-gradient-to-br from-slate-50 to-emerald-50/40 border border-emerald-200/80 hover:border-emerald-300 transition-all hover:shadow-md flex flex-col justify-between gap-3 group">
-              <div>
-                <div class="flex items-center justify-between gap-2 mb-1.5">
-                  <span class="text-[10px] font-extrabold px-2 py-0.5 rounded bg-[#00324D] text-white uppercase">Guía 06</span>
-                  <span class="text-[10px] font-mono font-bold text-emerald-700 bg-emerald-100/80 px-2 py-0.5 rounded">16 Slides</span>
-                </div>
-                <h4 class="text-sm font-extrabold text-slate-900 group-hover:text-emerald-800 transition-colors">
-                  Visión General & Lanzamiento de Fase Ejecución
-                </h4>
-                <p class="text-[11.5px] text-slate-600 leading-relaxed mt-1">
-                  Apertura formal de la guía: 192 horas técnicas, cronograma oficial, arquitectura de 13 evidencias y checklist.
-                </p>
-              </div>
-              <div class="pt-2 border-t border-slate-200/60 flex items-center justify-between">
-                <span class="text-[10.5px] font-semibold text-emerald-700 flex items-center gap-1">
-                  <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Lista en Aula
-                </span>
-                <a href="guias/guia-06/proyeccion.html" class="inline-flex items-center gap-1.5 bg-[#00324D] hover:bg-[#00263A] text-white text-xs font-bold py-1.5 px-3 rounded-lg shadow-2xs hover:shadow-xs transition-all">
-                  <span>Proyectar</span>
-                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                </a>
-              </div>
-            </div>
-
-            <!-- Tarjeta: Evidencia 01 (SQL Normalización) -->
-            <div class="p-4 rounded-2xl bg-white border border-slate-200 hover:border-emerald-300 transition-all hover:shadow-md flex flex-col justify-between gap-3 group">
-              <div>
-                <div class="flex items-center justify-between gap-2 mb-1.5">
-                  <span class="text-[10px] font-mono font-bold text-sena bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">GA6-AA1-EV01</span>
-                  <span class="text-[10px] font-mono font-bold text-emerald-700 bg-emerald-100/80 px-2 py-0.5 rounded">20 Slides</span>
-                </div>
-                <h4 class="text-sm font-extrabold text-slate-900 group-hover:text-emerald-800 transition-colors">
-                  Evidencia 01: Normalización de Datos & MySQL Workbench
-                </h4>
-                <p class="text-[11.5px] text-slate-600 leading-relaxed mt-1">
-                  Taller paso a paso: anomalías en 0FN, paso a 1FN, 2FN, 3FN, descarga de MySQL en Windows y Forward Engineering.
-                </p>
-              </div>
-              <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
-                <span class="text-[10.5px] font-semibold text-emerald-700 flex items-center gap-1">
-                  <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Lista en Aula
-                </span>
-                <a href="guias/guia-06/proyeccion-evidencia-01.html" class="inline-flex items-center gap-1.5 bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-bold py-1.5 px-3 rounded-lg shadow-2xs hover:shadow-xs transition-all">
-                  <span>Proyectar</span>
-                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                </a>
-              </div>
-            </div>
-
-            <!-- Tarjeta: Evidencia 02 (SQL MER y Diccionario) -->
-            <div class="p-4 rounded-2xl bg-white border border-slate-200 hover:border-emerald-300 transition-all hover:shadow-md flex flex-col justify-between gap-3 group">
-              <div>
-                <div class="flex items-center justify-between gap-2 mb-1.5">
-                  <span class="text-[10px] font-mono font-bold text-sena bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">GA6-AA1-EV02</span>
-                  <span class="text-[10px] font-mono font-bold text-emerald-700 bg-emerald-100/80 px-2 py-0.5 rounded">10 Slides</span>
-                </div>
-                <h4 class="text-sm font-extrabold text-slate-900 group-hover:text-emerald-800 transition-colors">
-                  Evidencia 02: Modelo Entidad-Relación (MER) & Diccionario
-                </h4>
-                <p class="text-[11.5px] text-slate-600 leading-relaxed mt-1">
-                  100% en español: Chen a Pata de Gallo, 3 reglas de cardinalidad (1:1, 1:N, N:M), Diccionario de Datos SENA y ejemplo resuelto.
-                </p>
-              </div>
-              <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
-                <span class="text-[10.5px] font-semibold text-emerald-700 flex items-center gap-1">
-                  <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Lista en Aula
-                </span>
-                <a href="guias/guia-06/proyeccion-evidencia-02.html" class="inline-flex items-center gap-1.5 bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-bold py-1.5 px-3 rounded-lg shadow-2xs hover:shadow-xs transition-all">
-                  <span>Proyectar</span>
-                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                </a>
-              </div>
-            </div>
-
-            <!-- Tarjeta: Evidencia 03 (NoSQL MongoDB) -->
-            <div class="p-4 rounded-2xl bg-white border border-slate-200 hover:border-emerald-300 transition-all hover:shadow-md flex flex-col justify-between gap-3 group">
-              <div>
-                <div class="flex items-center justify-between gap-2 mb-1.5">
-                  <span class="text-[10px] font-mono font-bold text-sena bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">GA6-AA1-EV03</span>
-                  <span class="text-[10px] font-mono font-bold text-emerald-700 bg-emerald-100/80 px-2 py-0.5 rounded">14 Slides</span>
-                </div>
-                <h4 class="text-sm font-extrabold text-slate-900 group-hover:text-emerald-800 transition-colors">
-                  Evidencia 03: Objetos NoSQL MongoDB Compass & MONGOSH
-                </h4>
-                <p class="text-[11.5px] text-slate-600 leading-relaxed mt-1">
-                  NoSQL documental: Incrustación vs Referenciación, botón Create Database en Compass, inserción de documentos y comandos shell.
-                </p>
-              </div>
-              <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
-                <span class="text-[10.5px] font-semibold text-emerald-700 flex items-center gap-1">
-                  <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Lista en Aula
-                </span>
-                <a href="guias/guia-06/proyeccion-evidencia-03.html" class="inline-flex items-center gap-1.5 bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-bold py-1.5 px-3 rounded-lg shadow-2xs hover:shadow-xs transition-all">
-                  <span>Proyectar</span>
-                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                </a>
-              </div>
-            </div>
-
-            <!-- Tarjeta: Evidencia 04 (MongoDB Colección 'parque' - Video MP4) -->
-            <div class="p-4 rounded-2xl bg-white border border-slate-200 hover:border-emerald-300 transition-all hover:shadow-md flex flex-col justify-between gap-3 group">
-              <div>
-                <div class="flex items-center justify-between gap-2 mb-1.5">
-                  <span class="text-[10px] font-mono font-bold text-sena bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">GA6-AA1-EV04</span>
-                  <span class="text-[10px] font-mono font-bold text-emerald-700 bg-emerald-100/80 px-2 py-0.5 rounded">12 Slides</span>
-                </div>
-                <h4 class="text-sm font-extrabold text-slate-900 group-hover:text-emerald-800 transition-colors">
-                  Evidencia 04: Elaboración de las bases de datos
-                </h4>
-                <p class="text-[11.5px] text-slate-600 leading-relaxed mt-1">
-                  Sustentación en video (MP4): creación de BD NoSQL, colección "parque", 5 documentos JSON, actualización del 1° y último, listados, borrado del 3° y consulta por placa.
-                </p>
-              </div>
-              <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
-                <span class="text-[10.5px] font-semibold text-emerald-700 flex items-center gap-1">
-                  <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Lista en Aula
-                </span>
-                <a href="guias/guia-06/proyeccion-evidencia-04.html" class="inline-flex items-center gap-1.5 bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-bold py-1.5 px-3 rounded-lg shadow-2xs hover:shadow-xs transition-all">
-                  <span>Proyectar</span>
-                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                </a>
-              </div>
-            </div>
-            <!-- Tarjeta: Evidencia 05 (SQL DDL y DML - Tabla 'libreta') -->
-            <div class="p-4 rounded-2xl bg-white border border-slate-200 hover:border-emerald-300 transition-all hover:shadow-md flex flex-col justify-between gap-3 group">
-              <div>
-                <div class="flex items-center justify-between gap-2 mb-1.5">
-                  <span class="text-[10px] font-mono font-bold text-sena bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">GA6-AA2-EV01</span>
-                  <span class="text-[10px] font-mono font-bold text-emerald-700 bg-emerald-100/80 px-2 py-0.5 rounded">14 Slides</span>
-                </div>
-                <h4 class="text-sm font-extrabold text-slate-900 group-hover:text-emerald-800 transition-colors">
-                  Evidencia 05: Sentencias DDL y DML de SQL
-                </h4>
-                <p class="text-[11.5px] text-slate-600 leading-relaxed mt-1">
-                  Taller oficial con la tabla "libreta": creación de tabla, visualización, estructura, inserciones, consulta, actualización y conteo.
-                </p>
-              </div>
-              <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
-                <span class="text-[10.5px] font-semibold text-emerald-700 flex items-center gap-1">
-                  <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Lista en Aula
-                </span>
-                <a href="guias/guia-06/proyeccion-evidencia-05.html" class="inline-flex items-center gap-1.5 bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-bold py-1.5 px-3 rounded-lg shadow-2xs hover:shadow-xs transition-all">
-                  <span>Proyectar</span>
-                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                </a>
-              </div>
-            </div>
-
-            <!-- Tarjeta: Evidencia 06 (Estructura BD y Restricciones - Proyecto Formativo) -->
-            <div class="p-4 rounded-2xl bg-white border border-slate-200 hover:border-emerald-300 transition-all hover:shadow-md flex flex-col justify-between gap-3 group">
-              <div>
-                <div class="flex items-center justify-between gap-2 mb-1.5">
-                  <span class="text-[10px] font-mono font-bold text-sena bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">GA6-AA2-EV02</span>
-                  <span class="text-[10px] font-mono font-bold text-emerald-700 bg-emerald-100/80 px-2 py-0.5 rounded">14 Slides</span>
-                </div>
-                <h4 class="text-sm font-extrabold text-slate-900 group-hover:text-emerald-800 transition-colors">
-                  Evidencia 06: Estructura BD y Restricciones
-                </h4>
-                <p class="text-[11.5px] text-slate-600 leading-relaxed mt-1">
-                  Caso práctico en MySQL Workbench (modelo .mwb), llaves primarias, foráneas, CHECK, integridad referencial y paquete ZIP con Word.
-                </p>
-              </div>
-              <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
-                <span class="text-[10.5px] font-semibold text-emerald-700 flex items-center gap-1">
-                  <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Lista en Aula
-                </span>
-                <a href="guias/guia-06/proyeccion-evidencia-06.html" class="inline-flex items-center gap-1.5 bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-bold py-1.5 px-3 rounded-lg shadow-2xs hover:shadow-xs transition-all">
-                  <span>Proyectar</span>
-                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                </a>
-              </div>
-            </div>
-
-            <!-- Tarjeta: Evidencia 07 (Script BD del Proyecto - Formato SQL / ZIP) -->
-            <div class="p-4 rounded-2xl bg-white border border-slate-200 hover:border-emerald-300 transition-all hover:shadow-md flex flex-col justify-between gap-3 group">
-              <div>
-                <div class="flex items-center justify-between gap-2 mb-1.5">
-                  <span class="text-[10px] font-mono font-bold text-sena bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">GA6-AA2-EV03</span>
-                  <span class="text-[10px] font-mono font-bold text-emerald-700 bg-emerald-100/80 px-2 py-0.5 rounded">14 Slides</span>
-                </div>
-                <h4 class="text-sm font-extrabold text-slate-900 group-hover:text-emerald-800 transition-colors">
-                  Evidencia 07: Script Bases de Datos del Proyecto
-                </h4>
-                <p class="text-[11.5px] text-slate-600 leading-relaxed mt-1">
-                  Script maestro SQL ejecutable (DDL + datos semilla DML + consultas JOIN de verificación) y empaquetado en formato ZIP.
-                </p>
-              </div>
-              <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
-                <span class="text-[10.5px] font-semibold text-emerald-700 flex items-center gap-1">
-                  <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Lista en Aula
-                </span>
-                <a href="guias/guia-06/proyeccion-evidencia-07.html" class="inline-flex items-center gap-1.5 bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-bold py-1.5 px-3 rounded-lg shadow-2xs hover:shadow-xs transition-all">
-                  <span>Proyectar</span>
-                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                </a>
-              </div>
-            </div>
-
-            <!-- Tarjeta: Evidencia 08 (Selección Herramientas de Prototipado - UI/UX) -->
-            <div class="p-4 rounded-2xl bg-white border border-slate-200 hover:border-purple-300 transition-all hover:shadow-md flex flex-col justify-between gap-3 group">
-              <div>
-                <div class="flex items-center justify-between gap-2 mb-1.5">
-                  <span class="text-[10px] font-mono font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded border border-purple-100">GA6-AA3-EV01</span>
-                  <span class="text-[10px] font-mono font-bold text-purple-700 bg-purple-100/80 px-2 py-0.5 rounded">13 Slides</span>
-                </div>
-                <h4 class="text-sm font-extrabold text-slate-900 group-hover:text-purple-800 transition-colors">
-                  Evidencia 08: Selección de Herramientas para Prototipado
-                </h4>
-                <p class="text-[11.5px] text-slate-600 leading-relaxed mt-1">
-                  Ecosistema de prototipado vigente (Figma, Canva, Penpot, Framer), matriz comparativa y documento formal con capturas de exploración.
-                </p>
-              </div>
-              <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
-                <span class="text-[10.5px] font-semibold text-emerald-700 flex items-center gap-1">
-                  <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Lista en Aula
-                </span>
-                <a href="guias/guia-06/proyeccion-evidencia-08.html" class="inline-flex items-center gap-1.5 bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-bold py-1.5 px-3 rounded-lg shadow-2xs hover:shadow-xs transition-all">
-                  <span>Proyectar</span>
-                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                </a>
-              </div>
-            </div>
-
-            <!-- Card Evidencia 09: Prototipo Navegable Web y Móvil -->
-            <div class="p-3.5 bg-gradient-to-br from-indigo-50/60 via-white to-purple-50/40 rounded-2xl border border-indigo-200/80 hover:border-indigo-400 transition-all shadow-2xs hover:shadow-xs flex flex-col justify-between group">
-              <div>
-                <div class="flex items-center justify-between gap-2 mb-1.5">
-                  <span class="text-[10px] font-mono font-bold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-100">GA6-AA3-EV02</span>
-                  <span class="text-[10px] font-mono font-bold text-indigo-700 bg-indigo-100/80 px-2 py-0.5 rounded">14 Slides</span>
-                </div>
-                <h4 class="text-sm font-extrabold text-slate-900 group-hover:text-indigo-800 transition-colors">
-                  Evidencia 09: Diseño Web y Móvil con Componentes y Navegación
-                </h4>
-                <p class="text-[11.5px] text-slate-600 leading-relaxed mt-1">
-                  Mockups de navegación funcionales para app móvil y dashboard web en Figma, flujos interactivos y entrega en paquete ZIP.
-                </p>
-              </div>
-              <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
-                <span class="text-[10.5px] font-semibold text-emerald-700 flex items-center gap-1">
-                  <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Lista en Aula
-                </span>
-                <a href="guias/guia-06/proyeccion-evidencia-09.html" class="inline-flex items-center gap-1.5 bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-bold py-1.5 px-3 rounded-lg shadow-2xs hover:shadow-xs transition-all">
-                  <span>Proyectar</span>
-                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                </a>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- SECCIÓN 2: PRÓXIMAS SESIONES (EN PREPARACIÓN) -->
-        <div class="pt-4 border-t border-slate-200">
+        <!-- SECCIÓN 2: PRÓXIMAS SESIONES (portal.js) -->
+        <section class="pt-4 border-t border-slate-200" aria-labelledby="proj-pending-title">
           <div class="flex items-center justify-between mb-3">
-            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-2">
+            <h3 id="proj-pending-title" class="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-2">
               <i data-lucide="clock" class="w-4 h-4 text-amber-500"></i>
-              <span>Próximas Sesiones Curriculares (En Preparación):</span>
+              <span>Próximas sesiones (en preparación)</span>
             </h3>
-            <span class="text-[11px] font-bold text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">Próximas Clases</span>
+            <span class="text-[11px] font-bold text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">Próximas clases</span>
           </div>
-
           <div class="p-4 bg-amber-50/70 rounded-2xl border border-amber-200/80 space-y-3">
             <p class="text-xs text-amber-950 leading-relaxed">
-              Las diapositivas interactivas de las siguientes evidencias técnicas serán explicadas paso a paso por el <strong>Ing. Hector David Toledo García</strong> en sus respectivas sesiones sincrónicas, quedando disponibles en este repositorio inmediatamente después:
+              Estas evidencias se explicarán paso a paso en sus sesiones sincrónicas y quedarán publicadas aquí inmediatamente después:
             </p>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 text-xs">
-              <div class="p-2.5 bg-white/90 rounded-xl border border-amber-100 flex items-center justify-between">
-                <span class="font-medium text-slate-700 truncate mr-2">EV10: Interfaces Gráficas y Prototipo Final UI (Figma)</span>
-                <span class="text-[10px] font-bold text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded shrink-0">Próxima</span>
-              </div>
-              <div class="p-2.5 bg-white/90 rounded-xl border border-amber-100 flex items-center justify-between">
-                <span class="font-medium text-slate-700 truncate mr-2">EV11-EV13: Frontend Web HTML/CSS/JS</span>
-                <span class="text-[10px] font-bold text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded shrink-0">Próxima</span>
-              </div>
-            </div>
-
-            <div class="pt-2 flex items-center justify-between">
-              <span class="text-[11px] text-amber-900">
-                ¿Deseas consultar los requisitos oficiales de estas evidencias ahora?
-              </span>
-              <a href="#evidencias-section" onclick="closeProjectionSelectorModal()" class="text-xs font-bold text-[#00324D] hover:underline flex items-center gap-1">
-                <span>Ver en Explorador de Evidencias</span>
+            <div id="proj-pending-list" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs"></div>
+            <div class="pt-2 flex flex-wrap items-center justify-between gap-2">
+              <span class="text-[11px] text-amber-900">¿Quieres consultar ya los requisitos oficiales?</span>
+              <a href="#ruta-guia-06" data-close-modal="projection-selector-modal" class="text-xs font-bold text-[#00324D] hover:underline flex items-center gap-1">
+                <span>Ver la ruta de aprendizaje</span>
                 <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
               </a>
             </div>
           </div>
-        </div>
+        </section>
 
       </div>
 
@@ -1220,19 +1051,9 @@
       <!-- Descargas y Recursos -->
       <div>
         <h4 class="font-bold text-white uppercase text-[11px] tracking-wider mb-3">Recursos Técnicos</h4>
-        <ul class="space-y-2 text-slate-400">
+        <ul id="footer-resources" class="space-y-2 text-slate-400">
           <li><a href="guias/Guia_aprendizaje_6.pdf" download class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="download" class="w-3.5 h-3.5"></i> Descargar Guía 6 PDF</a></li>
           <li><a href="#evidencias-section" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="layout-grid" class="w-3.5 h-3.5"></i> Catálogo Visual de Evidencias</a></li>
-          <li><a href="guias/guia-06/proyeccion-evidencia-01.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="presentation" class="w-3.5 h-3.5"></i> Sesión Evidencia 1: Normalización</a></li>
-          <li><a href="guias/guia-06/proyeccion-evidencia-02.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="presentation" class="w-3.5 h-3.5"></i> Sesión Evidencia 2: MER & Diccionario</a></li>
-          <li><a href="guias/guia-06/proyeccion-evidencia-03.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="presentation" class="w-3.5 h-3.5"></i> Sesión Evidencia 3: NoSQL MongoDB</a></li>
-          <li><a href="guias/guia-06/proyeccion-evidencia-04.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="presentation" class="w-3.5 h-3.5"></i> Sesión Evidencia 4: Elaboración MongoDB</a></li>
-          <li><a href="guias/guia-06/proyeccion-evidencia-05.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="presentation" class="w-3.5 h-3.5"></i> Sesión Evidencia 5: Sentencias SQL DDL y DML</a></li>
-          <li><a href="guias/guia-06/proyeccion-evidencia-06.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="presentation" class="w-3.5 h-3.5"></i> Sesión Evidencia 6: Estructura BD & Restricciones</a></li>
-          <li><a href="guias/guia-06/proyeccion-evidencia-07.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="presentation" class="w-3.5 h-3.5"></i> Sesión Evidencia 7: Script BD del Proyecto</a></li>
-          <li><a href="guias/guia-06/proyeccion-evidencia-08.html" class="hover:text-purple-400 transition-colors flex items-center gap-1.5"><i data-lucide="presentation" class="w-3.5 h-3.5"></i> Sesión Evidencia 8: Herramientas de Prototipado (UI/UX)</a></li>
-          <li><a href="guias/guia-06/proyeccion-evidencia-09.html" class="hover:text-indigo-400 transition-colors flex items-center gap-1.5"><i data-lucide="presentation" class="w-3.5 h-3.5"></i> Sesión Evidencia 9: Diseño Web/Móvil con Navegación</a></li>
-          <li><a href="guias/guia-06/proyeccion.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="monitor" class="w-3.5 h-3.5"></i> Modo Proyección Sincrónica</a></li>
         </ul>
       </div>
 
@@ -1260,7 +1081,7 @@
         <div class="mt-3 space-y-1">
           <div class="flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-            <span class="text-slate-300 font-mono text-[11px]">Branch: main • GitHub Pages ready</span>
+            <span class="text-slate-300 font-mono text-[11px]">Branch: master • GitHub Pages</span>
           </div>
           <div class="text-[11px] text-slate-500">
             Regional Huila • Sede Garzón
@@ -1277,1268 +1098,9 @@
   </footer>
 
   <!-- ========================================================================= -->
-  <!-- 10. DATOS Y LÓGICA INTERACTIVA EN JAVASCRIPT (CATÁLOGO MULTI-GUÍA & PAGINACIÓN) -->
+  <!-- 10. DATOS (catalogo.js) Y LÓGICA DEL PORTAL (portal.js) -->
   <!-- ========================================================================= -->
-  <script>
-    // Catálogo general de evidencias técnicas de software organizadas por Guía de Aprendizaje
-    const evidenciasTecnicas = [
-      // ================= GUÍA 06 (ACTIVA) =================
-      {
-        id: 'ev-01',
-        guia: 'guia-06',
-        guiaName: 'Guía 06',
-        fase: 'Ejecución',
-        code: 'GA6-220501096-AA1-EV01',
-        activity: 'AA1: Modelo de Base de Datos',
-        category: 'sql',
-        catName: 'Bases de Datos SQL',
-        type: 'Conocimiento',
-        hours: '16 Horas',
-        title: 'Resolución de problemas aplicando el modelo relacional, cardinalidad y normalización',
-        format: 'PDF',
-        instrument: 'IE-GA6-220501096-AA1-EV01',
-        slideRef: 'slide-2',
-        directProj: 'proyeccion-evidencia-01.html',
-        hasSlides: true,
-        slideCount: '20 slides',
-        summary: 'Aplicación práctica de reglas de normalización (1FN, 2FN, 3FN) sobre casos de estudio de facturación o gestión para eliminar anomalías.',
-        steps: [
-          'Analizar el caso de estudio propuesto con datos planos desnormalizados.',
-          'Aplicar 1FN: eliminar grupos repetitivos y garantizar atomicidad en cada columna.',
-          'Aplicar 2FN: comprobar dependencia funcional total respecto a la clave primaria.',
-          'Aplicar 3FN: eliminar dependencias transitivas entre campos no clave.',
-          'Definir reglas de cardinalidad (1:1, 1:N, N:M) y documentar claves foráneas.'
-        ],
-        criteria: 'Define esquemas de seguridad y normalización en la base de datos para mantener la integridad de la información.',
-        checklist: [
-          'Documento con portada formal, introducción y objetivos claros.',
-          'Tabla en estado 0FN con identificación de redundancias.',
-          'Desglose paso a paso de la transformación a 1FN, 2FN y 3FN.',
-          'Diagrama resultante con claves primarias (PK) y foráneas (FK).'
-        ]
-      },
-      {
-        id: 'ev-02',
-        guia: 'guia-06',
-        guiaName: 'Guía 06',
-        fase: 'Ejecución',
-        code: 'GA6-220501096-AA1-EV02',
-        activity: 'AA1: Modelo de Base de Datos',
-        category: 'sql',
-        catName: 'Bases de Datos SQL',
-        type: 'Producto',
-        hours: '16 Horas',
-        title: 'Modelo entidad relación de caso',
-        format: 'PDF / Diagrama',
-        instrument: 'IE-GA6-220501096-AA1-EV02',
-        slideRef: 'slide-3',
-        directProj: 'proyeccion-evidencia-02.html',
-        hasSlides: true,
-        slideCount: '10 slides',
-        summary: 'Diseño conceptual MER y lógico MR para el sistema de información del proyecto formativo, con diccionario de datos exhaustivo.',
-        steps: [
-          'Identificar entidades, atributos y relaciones a partir de requerimientos de software.',
-          'Elaborar el diagrama conceptual MER con notación Chen o Crow\'s Foot.',
-          'Transformar el MER en modelo lógico relacional (MR).',
-          'Construir el diccionario de datos detallando tipo de dato, longitud, nulabilidad y restricciones.'
-        ],
-        criteria: 'Modela la base de datos a partir de las especificaciones y requerimientos del sistema.',
-        checklist: [
-          'Diagrama MER conceptual legible y completo.',
-          'Transformación lógica a Modelo Relacional (MR).',
-          'Diccionario de datos diligenciado con tipos y restricciones.',
-          'Alineación total con los requerimientos del proyecto formativo.'
-        ]
-      },
-      {
-        id: 'ev-03',
-        guia: 'guia-06',
-        guiaName: 'Guía 06',
-        fase: 'Ejecución',
-        code: 'GA6-220501096-AA1-EV03',
-        activity: 'AA1: Modelo NoSQL',
-        category: 'nosql',
-        catName: 'NoSQL MongoDB',
-        type: 'Conocimiento',
-        hours: '16 Horas',
-        title: 'Creación de los objetos de la base de datos NoSQL',
-        format: 'PDF',
-        instrument: 'IE-GA6-220501096-AA1-EV03',
-        slideRef: 'slide-4',
-        directProj: 'proyeccion-evidencia-03.html',
-        hasSlides: true,
-        slideCount: '14 slides',
-        summary: 'Diseño estructural de colecciones y documentos en MongoDB con decisiones de incrustación (embedding) vs referenciación.',
-        steps: [
-          'Seleccionar el módulo del sistema adecuado para almacenamiento documental NoSQL.',
-          'Definir la estructura de colecciones y documentos JSON/BSON.',
-          'Justificar técnicamente el uso de incrustación vs referenciación de documentos.',
-          'Documentar patrones de acceso de lectura y escritura optimizados.'
-        ],
-        criteria: 'Construye la base de datos NoSQL de acuerdo con los requerimientos del sistema.',
-        checklist: [
-          'Estructura JSON formal de los documentos de cada colección.',
-          'Justificación de elecciones arquitectónicas (embedding vs referencing).',
-          'Estrategia de índices y consultas más frecuentes identificadas.'
-        ]
-      },
-      {
-        id: 'ev-04',
-        guia: 'guia-06',
-        guiaName: 'Guía 06',
-        fase: 'Ejecución',
-        code: 'GA6-220501096-AA1-EV04',
-        activity: 'AA1: Modelo NoSQL',
-        category: 'nosql',
-        catName: 'NoSQL MongoDB',
-        type: 'Producto',
-        hours: '16 Horas',
-        title: 'Elaboración de las bases de datos',
-        format: 'Video (MP4)',
-        instrument: 'IE-GA6-220501096-AA1-EV04',
-        slideRef: 'slide-5',
-        directProj: 'proyeccion-evidencia-04.html',
-        hasSlides: true,
-        slideCount: '12 slides',
-        summary: 'Sustentación exclusiva en video explicativo (formato MP4) demostrando en vivo la creación y manipulación de la base de datos NoSQL y la colección "parque", cumpliendo con los 8 requerimientos exactos de la guía de aprendizaje.',
-        steps: [
-          '1. Crear una base de datos NoSQL en MongoDB Compass o terminal mongosh (use parqueadero_db).',
-          '2. Crear una colección de datos llamada exactamente "parque".',
-          '3. Insertar cinco (5) documentos con la estructura JSON creada en la evidencia EV03 (vehículos con placas, tipos, modelos y propietarios).',
-          '4. Actualizar los datos del primer y último registro utilizando updateOne() con el operador atómico $set.',
-          '5. Listar la colección completa con db.parque.find() comprobando los 5 documentos en pantalla.',
-          '6. Borrar el tercer documento de la colección parque mediante deleteOne() especificando su placa.',
-          '7. Listar la colección de datos completa verificando en vivo que ahora restan cuatro (4) registros.',
-          '8. Crear la sentencia que permita obtener un documento específico según su número de placa (db.parque.findOne({ placa: "..." })).'
-        ],
-        criteria: 'Elabora y manipula bases de datos NoSQL según los requerimientos técnicos de la guía de aprendizaje.',
-        checklist: [
-          'Producto único entregado: Archivo de video en formato MP4 (o enlace accesible en YouTube / Google Drive / OneDrive SENA).',
-          'Presentación verbal del aprendiz indicando nombre, ficha ADSO y evidencia técnica.',
-          'Demostración en video del Paso 1: Creación de la base de datos NoSQL.',
-          'Demostración en video del Paso 2: Creación de la colección "parque".',
-          'Demostración en video del Paso 3: Inserción de los 5 documentos JSON.',
-          'Demostración en video del Paso 4: Actualización del primer y último registro con $set.',
-          'Demostración en video del Paso 5: Listado completo inicial con db.parque.find().',
-          'Demostración en video del Paso 6: Borrado puntual del tercer documento con deleteOne().',
-          'Demostración en video del Paso 7: Listado completo demostrando que restan 4 registros.',
-          'Demostración en video del Paso 8: Sentencia para obtener un documento según número de placa.'
-        ]
-      },
-      {
-        id: 'ev-05',
-        guia: 'guia-06',
-        guiaName: 'Guía 06',
-        fase: 'Ejecución',
-        code: 'GA6-220501096-AA2-EV01',
-        activity: 'AA2: Manipulación SMBD SQL',
-        category: 'sql',
-        catName: 'Bases de Datos SQL',
-        type: 'Conocimiento',
-        hours: '32 Horas',
-        title: 'Destrezas y conocimientos en el manejo de sentencias DDL y DML de SQL',
-        format: 'Documento (PDF)',
-        instrument: 'IE-GA6-220501096-AA2-EV01',
-        slideRef: 'slide-6',
-        directProj: 'proyeccion-evidencia-05.html',
-        hasSlides: true,
-        slideCount: '14 slides',
-        summary: 'Informe técnico en PDF (extensión libre) dando solución punto a punto al taller oficial sobre la tabla "libreta" en MySQL: creación de tabla (DDL), visualización (SHOW TABLES), estructura (DESCRIBE), inserción de registros (DML), consulta (SELECT *), actualización con condición WHERE, 5 registros más y conteo final con COUNT(*).',
-        steps: [
-          '1. Crear la tabla "libreta" con campos: nombre (varchar 20), domicilio (varchar 30) y telefono (varchar 11).',
-          '2. Visualizar las tablas existentes para verificar la creación de "libreta" (SHOW TABLES).',
-          '3. Visualizar la estructura de la tabla "libreta" (DESCRIBE libreta).',
-          '4. Ingresar los registros iniciales: ("Alberto Mores", "Colon 123", "4234567") y ("Juan Torres", "Avellaneda 135", "4458787").',
-          '5. Seleccionar y mostrar todos los registros de la tabla (SELECT * FROM libreta).',
-          '6. Construir las sentencias que actualicen los datos que se acaban de insertar (UPDATE libreta SET ... WHERE ...).',
-          '7. Insertar 5 registros más en la tabla libreta.',
-          '8. Contar cuántos registros se ingresan en total (SELECT COUNT(*) FROM libreta).'
-        ],
-        criteria: 'Aplica el lenguaje de consulta estructurado SQL (DDL y DML) según requerimientos del taller técnico.',
-        checklist: [
-          'Documento técnico formal en formato PDF con portada, introducción y objetivos.',
-          'Punto 1: Sentencia CREATE TABLE libreta con campos nombre, domicilio y telefono.',
-          'Punto 2: Comando SHOW TABLES evidenciando la creación de la tabla.',
-          'Punto 3: Comando DESCRIBE libreta mostrando tipos de datos VARCHAR.',
-          'Punto 4: Sentencias INSERT con los dos registros iniciales solicitados.',
-          'Punto 5: Consulta SELECT * FROM libreta con captura de la cuadrícula de resultados.',
-          'Punto 6: Sentencias UPDATE modificando los datos con la cláusula condicional WHERE.',
-          'Punto 7: Inserción de 5 registros adicionales completando 7 filas.',
-          'Punto 8: Consulta SELECT COUNT(*) evidenciando el conteo de 7 registros.',
-          'Capturas de pantalla nítidas de MySQL Workbench con confirmación de ejecución verde.'
-        ]
-      },
-      {
-        id: 'ev-06',
-        guia: 'guia-06',
-        guiaName: 'Guía 06',
-        fase: 'Ejecución',
-        code: 'GA6-220501096-AA2-EV02',
-        activity: 'AA2: Lenguaje SQL',
-        category: 'sql',
-        catName: 'Bases de Datos SQL',
-        type: 'Desempeño',
-        hours: '16 Horas',
-        title: 'Creación de la estructura de la BD y aplicación de restricciones',
-        format: 'Archivo Comprimido (.ZIP)',
-        instrument: 'IE-GA6-220501096-AA2-EV02',
-        slideRef: 'slide-7',
-        directProj: 'proyeccion-evidencia-06.html',
-        hasSlides: true,
-        slideCount: '14 slides',
-        summary: 'Creación de la estructura física de la base de datos para el software del proyecto formativo en MySQL Workbench (modelo .mwb), determinando tipos de datos precisos, llaves primarias, llaves foráneas y restricciones de integridad. Se entrega un paquete comprimido en ZIP con el documento formal en Word (portada, introducción, objetivos, descripción estructural y restricciones), el archivo .mwb de Workbench y el script SQL DDL ejecutable.',
-        steps: [
-          '1. Analizar los requerimientos del software a desarrollar en el proyecto formativo de negocio/empresa real.',
-          '2. Crear el modelo gráfico Entidad-Relación en MySQL Workbench (archivo .mwb) con sus tablas y tipos de datos precisos.',
-          '3. Definir llaves primarias (PK AUTO_INCREMENT), obligatoriedad (NOT NULL) y campos únicos (UNIQUE).',
-          '4. Trazar relaciones de integridad referencial con llaves foráneas (FK) configurando políticas ON DELETE y ON UPDATE.',
-          '5. Incorporar restricciones de dominio CHECK (ej. precios > 0, cantidades > 0, stock >= 0).',
-          '6. Realizar Forward Engineering en MySQL Workbench para compilar y validar el script DDL en el servidor local.',
-          '7. Ejecutar pruebas de inserción válida y violación forzada de restricciones documentando los códigos de error.',
-          '8. Redactar el documento formal en Word con normas básicas y empaquetar el Word + .mwb + .sql en formato .ZIP.'
-        ],
-        criteria: 'Crea la estructura física de la base de datos relacional y aplica restricciones de integridad según los requerimientos del proyecto formativo.',
-        checklist: [
-          'Archivo comprimido en formato .ZIP con nomenclatura oficial de la evidencia.',
-          'Documento técnico formal en Word (.docx) con portada, introducción y objetivos.',
-          'Descripción detallada de la estructura de la base de datos, entidades y atributos.',
-          'Diccionario de datos con tipos de datos justificados (DECIMAL para moneda, DATETIME, INT, VARCHAR).',
-          'Archivo nativo de MySQL Workbench (.mwb) con el diagrama EER completo.',
-          'Script SQL (.sql) ejecutable y libre de errores de sintaxis.',
-          'Restricciones PRIMARY KEY, FOREIGN KEY, NOT NULL, UNIQUE y CHECK implementadas.',
-          'Políticas ON DELETE (RESTRICT/CASCADE) y ON UPDATE configuradas con justificación de negocio.',
-          'Capturas de pantalla de MySQL Workbench evidenciando el diseño y la ejecución sin errores.'
-        ]
-      },
-      {
-        id: 'ev-07',
-        guia: 'guia-06',
-        guiaName: 'Guía 06',
-        fase: 'Ejecución',
-        code: 'GA6-220501096-AA2-EV03',
-        activity: 'AA2: Lenguaje SQL',
-        category: 'sql',
-        catName: 'Bases de Datos SQL',
-        type: 'Producto',
-        hours: '16 Horas',
-        title: 'Script bases de datos del proyecto',
-        format: 'Archivo Comprimido (.ZIP)',
-        instrument: 'IE-GA6-220501096-AA2-EV03',
-        slideRef: 'slide-8',
-        directProj: 'proyeccion-evidencia-07.html',
-        hasSlides: true,
-        slideCount: '14 slides',
-        summary: 'Generación, exportación y prueba del script SQL maestro del modelo físico de la base de datos correspondiente a los diseños hechos en MySQL Workbench para el software del proyecto formativo. El script incluye encabezado de sesión, borrado limpio idempotente (DROP/CREATE), bloque DDL con restricciones (PK, FK, CHECK), datos semilla iniciales DML (Seeders) y consultas de verificación con INNER JOIN. Entrega en archivo comprimido ZIP.',
-        steps: [
-          '1. Abrir el modelo físico (.mwb) realizado en la evidencia EV02 en MySQL Workbench.',
-          '2. Verificar que la estructura cubra la totalidad de los requisitos del software del proyecto formativo.',
-          '3. Exportar el script DDL mediante Forward Engineer (File > Export > Forward Engineer SQL CREATE Script).',
-          '4. Estructurar el script maestro con directivas idempotentes (SET NAMES, SET FOREIGN_KEY_CHECKS, DROP/CREATE DATABASE).',
-          '5. Incorporar el bloque DDL ordenado jerárquicamente por dependencias de llaves foráneas.',
-          '6. Redactar el bloque DML con datos semilla (roles, usuarios administrativos, catálogos e ítems de prueba).',
-          '7. Agregar consultas de verificación DQL con INNER JOIN al final del script para comprobar la consistencia.',
-          '8. Probar la ejecución completa con cero errores en MySQL Workbench y empaquetar en formato .ZIP.'
-        ],
-        criteria: 'Verifica la estructura y funcionamiento del script físico de base de datos del proyecto formativo.',
-        checklist: [
-          'Archivo comprimido en formato .ZIP con nomenclatura oficial (GA6-220501096-AA2-EV03_Nombre_Apellido.zip).',
-          'Script SQL ejecutable de principio a fin sin errores de sintaxis (Action Output con checks verdes).',
-          'Bloque DDL con definición de tablas, tipos de datos, llaves primarias, foráneas y restricciones CHECK.',
-          'Idempotencia: incluye DROP DATABASE IF EXISTS y CREATE DATABASE con codificación utf8mb4.',
-          'Bloque DML con datos semilla (seeders) coherentes y representativos del negocio real.',
-          'Consultas DQL con INNER JOIN demostrando integridad referencial y cruce de datos.',
-          'Archivo fuente nativo de MySQL Workbench (.mwb) incluido como respaldo técnico.',
-          'Archivo LEAME.txt con instrucciones de instalación para el evaluador.'
-        ]
-      },
-      {
-        id: 'ev-08',
-        guia: 'guia-06',
-        guiaName: 'Guía 06',
-        fase: 'Ejecución',
-        code: 'GA6-220501096-AA3-EV01',
-        activity: 'AA3: Prototipado UI/UX',
-        category: 'uiux',
-        catName: 'Prototipado UI/UX',
-        type: 'Conocimiento',
-        hours: '12 Horas',
-        title: 'Selección herramientas para prototipado',
-        format: 'Documento Word (.docx) / ZIP',
-        instrument: 'IE-GA6-220501096-AA3-EV01',
-        slideRef: 'slide-9',
-        directProj: 'proyeccion-evidencia-08.html',
-        hasSlides: true,
-        slideCount: '13 slides',
-        summary: 'Selección técnica y justificación de herramientas de prototipado vigentes en la industria (Figma, Canva, Penpot, Framer). El aprendiz analiza los componentes de arquitectura móvil y web, elabora un cuadro comparativo y presenta un documento formal en Word con normas básicas y pantallazos de la exploración de las herramientas probadas. (El diseño completo de prototipos del proyecto se evaluará en la siguiente evidencia).',
-        steps: [
-          '1. Revisar los componentes formativos de Arquitectura Móvil Nativa, Desarrollo Híbrido y Desarrollo Web HTML/CSS/JS.',
-          '2. Evaluar y comparar las 4 herramientas de prototipado vigentes (Figma, Canva, Penpot, Framer) según licenciamiento, colaboración, fidelidad y estándares web.',
-          '3. Seleccionar la herramienta más adecuada y justificar su elección para las necesidades del proyecto formativo.',
-          '4. Realizar pruebas prácticas de exploración dentro de las herramientas en el lienzo de trabajo.',
-          '5. Tomar capturas de pantalla nítidas y organizadas evidenciando la interacción real con las herramientas.',
-          '6. Redactar el documento técnico formal en Word (.docx) con normas básicas: 1. Portada, 2. Introducción y Objetivos, 3. Cuadro Comparativo y Justificación, 4. Pantallazos de las herramientas.',
-          '7. Realizar la entrega formal del documento en el espacio asignado en Zajuna LMS.'
-        ],
-        criteria: 'Selecciona herramientas de diseño de interfaces según necesidades del proyecto formativo.',
-        checklist: [
-          'Documento formal en Word (.docx) o comprimido en .ZIP con nomenclatura oficial.',
-          'Portada formal institucional con datos de la ficha ADSO 228118 y centro CADPH Garzón.',
-          'Introducción sobre arquitecturas móviles y web, y objetivos claros de la actividad.',
-          'Cuadro comparativo técnico de las 4 herramientas de prototipado vigentes.',
-          'Justificación técnica de la selección de herramientas para el proyecto formativo.',
-          'Pantallazos nítidos y propios de la exploración práctica en las herramientas de prototipado.',
-          'Entrega formal en el espacio asignado en Zajuna LMS.'
-        ]
-      },
-      {
-        id: 'ev-09',
-        guia: 'guia-06',
-        guiaName: 'Guía 06',
-        fase: 'Ejecución',
-        code: 'GA6-220501096-AA3-EV02',
-        activity: 'AA3: Prototipado UI/UX',
-        category: 'uiux',
-        catName: 'Prototipado UI/UX',
-        type: 'Desempeño',
-        hours: '12 Horas',
-        title: 'Crear el diseño del sitio web y/o móviles utilizando sus componentes y tecnologías respectivas',
-        format: 'Carpeta ZIP (Word + Prototipo)',
-        instrument: 'IE-GA6-220501096-AA3-EV02',
-        slideRef: 'slide-10',
-        directProj: 'proyeccion-evidencia-09.html',
-        hasSlides: true,
-        slideCount: '14 slides',
-        summary: 'Construcción de mockups de navegación funcionales para aplicaciones web y/o móviles del software del proyecto formativo, utilizando componentes y tecnologías de prototipado en Figma. Se articulan pantallas clave (Splash, Autenticación, Dashboard, Catálogo, Detalle y Transacción) con transiciones interactivas (On Click, Smart Animate, Overlays) y se entrega en paquete ZIP con documento Word y archivo del prototipo (.fig o enlace público).',
-        steps: [
-          '1. Analizar los requerimientos funcionales del software formativo (AgroTech Colombia S.A.S. o el proyecto real del aprendiz).',
-          '2. Diseñar el mapa de navegación e inventario de vistas (Mobile First y Dashboard Web).',
-          '3. Construir la biblioteca de componentes UI reutilizables (botones, campos de texto, tarjetas de producto y barras de navegación).',
-          '4. Maquetar los 6 mockups clave: Splash, Autenticación, Dashboard, Catálogo con filtros, Detalle/Carrito y Confirmación modal.',
-          '5. Conectar el flujo interactivo en Figma Prototype configurando triggers (On Click, On Drag) y animaciones (Smart Animate, Slide In).',
-          '6. Testear el prototipo en vista Presentación (Figma Mirror / Web) validando flujos de usuario completos.',
-          '7. Redactar el documento formal en Word (.docx) con normas básicas (portada, introducción, objetivos, capturas y ficha técnica de cada interfaz).',
-          '8. Exportar el archivo local .fig o generar enlace público editable y empaquetar ambos productos en una carpeta ZIP.'
-        ],
-        criteria: 'Crea el diseño y prototipo navegable de aplicaciones web o móviles cumpliendo los requerimientos del software.',
-        checklist: [
-          'Carpeta comprimida en formato .ZIP con nomenclatura oficial (GA6-220501096-AA3-EV02_Nombre_Apellido.zip).',
-          'Documento escrito en Word (.docx) con normas básicas: portada, introducción y objetivos.',
-          'Descripción detallada y ficha técnica de cada interfaz diseñada (propósito, componentes y acciones).',
-          'Pantallazos nítidos y organizados de cada uno de los mockups (vistas móviles y/o web).',
-          'Prototipo interactivo en Figma con conexiones de navegación visibles y funcionales entre pantallas.',
-          'Archivo fuente nativo (.fig) o enlace URL público editable verificado en modo incógnito.',
-          'Entrega formal en el espacio correspondiente de Zajuna LMS.'
-        ]
-      },
-      {
-        id: 'ev-10',
-        guia: 'guia-06',
-        guiaName: 'Guía 06',
-        fase: 'Ejecución',
-        code: 'GA6-220501096-AA3-EV03',
-        activity: 'AA3: Prototipado UI/UX',
-        category: 'uiux',
-        catName: 'Prototipado UI/UX',
-        type: 'Producto',
-        hours: '11 Horas',
-        title: 'Prototipo del proyecto de software y evaluación',
-        format: 'Enlace Figma / PDF',
-        instrument: 'IE-GA6-220501096-AA3-EV03',
-        slideRef: 'slide-11',
-        summary: 'Prototipo interactivo navegable de alta fidelidad en Figma con sistema de diseño (Design Tokens, colores, tipografía, componentes) y microinteracciones.',
-        steps: [
-          'Crear el Design System en Figma (paleta de colores, escalas tipográficas y componentes reutilizables).',
-          'Diseñar las pantallas de alta fidelidad con contenido real representativo.',
-          'Vincular eventos interactivos (OnClick, Navigate to, Overlays) para crear el flujo navegable.',
-          'Ejecutar pruebas de usabilidad y documentar retroalimentación.'
-        ],
-        criteria: 'Construye prototipos interactivos funcionales evaluando accesibilidad y usabilidad.',
-        checklist: [
-          'Enlace público de Figma con permisos de visualización habilitados.',
-          'Flujo interactivo navegable funcional entre vistas.',
-          'Sistema de diseño documentado en el archivo.',
-          'Informe de evaluación con usuarios finales o pares.'
-        ]
-      },
-      {
-        id: 'ev-11',
-        guia: 'guia-06',
-        guiaName: 'Guía 06',
-        fase: 'Ejecución',
-        code: 'GA6-220501096-AA4-EV01',
-        activity: 'AA4: Frontend Web',
-        category: 'frontend',
-        catName: 'Frontend Web',
-        type: 'Conocimiento',
-        hours: '16 Horas',
-        title: 'Desarrollo de interfaces web con HTML5, CSS3 y JavaScript',
-        format: 'PDF',
-        instrument: 'IE-GA6-220501096-AA4-EV01',
-        slideRef: 'slide-12',
-        summary: 'Guía técnica y desarrollo práctico de maquetación semántica con HTML5, hojas de estilos CSS3 (Flexbox/Grid) y dinamismo con JavaScript vanilla.',
-        steps: [
-          'Estudiar las etiquetas semánticas de HTML5 (header, nav, main, section, article, aside, footer).',
-          'Aplicar modelos de caja, selectores avanzados y sistemas de layout modernos (Flexbox y Grid).',
-          'Implementar scripts JS para manipulación del DOM y captura de eventos.',
-          'Consolidar ejemplos y capturas en el documento entregable.'
-        ],
-        criteria: 'Aplica conceptos de maquetación semántica y diseño adaptable con CSS y JavaScript.',
-        checklist: [
-          'Explicación conceptual de la semántica HTML5.',
-          'Ejemplos de maquetación con Flexbox y CSS Grid documentados.',
-          'Scripts JS para manipulación del DOM probados.',
-          'Documento en formato PDF formal.'
-        ]
-      },
-      {
-        id: 'ev-12',
-        guia: 'guia-06',
-        guiaName: 'Guía 06',
-        fase: 'Ejecución',
-        code: 'GA6-220501096-AA4-EV02',
-        activity: 'AA4: Frontend Web',
-        category: 'frontend',
-        catName: 'Frontend Web',
-        type: 'Desempeño',
-        hours: '16 Horas',
-        title: 'Maquetación de interfaces web responsive',
-        format: 'ZIP / Repositorio Git',
-        instrument: 'IE-GA6-220501096-AA4-EV02',
-        slideRef: 'slide-13',
-        summary: 'Codificación frontend adaptable a dispositivos móviles, tablets y escritorio mediante Media Queries, diseño responsive y accesibilidad WCAG.',
-        steps: [
-          'Estructurar el layout del proyecto siguiendo enfoque Mobile-First.',
-          'Configurar Media Queries para breakpoints estándar (sm: 640px, md: 768px, lg: 1024px).',
-          'Verificar contrastes cromáticos y accesibilidad para lectores de pantalla.',
-          'Comprobar adaptabilidad en modo responsive de las herramientas de desarrollador.'
-        ],
-        criteria: 'Construye interfaces web responsive garantizando usabilidad en múltiples pantallas.',
-        checklist: [
-          'Código HTML5 semántico validado por W3C.',
-          'Hojas de estilo CSS con Media Queries activas.',
-          'Adaptación fluida sin desbordamientos en móvil y escritorio.',
-          'Archivos organizados y comprimidos en formato ZIP.'
-        ]
-      },
-      {
-        id: 'ev-13',
-        guia: 'guia-06',
-        guiaName: 'Guía 06',
-        fase: 'Ejecución',
-        code: 'GA6-220501096-AA4-EV03',
-        activity: 'AA4: Frontend Web',
-        category: 'frontend',
-        catName: 'Frontend Web',
-        type: 'Producto',
-        hours: '16 Horas',
-        title: 'Diseño front-end que cumpla con los requerimientos del proyecto formativo',
-        format: 'ZIP / GitHub Pages',
-        instrument: 'IE-GA6-220501096-AA4-EV03',
-        slideRef: 'slide-14',
-        summary: 'Código fuente frontend funcional completo del proyecto formativo, maquetado fielmente a los prototipos de Figma, responsive y publicado.',
-        steps: [
-          'Codificar las vistas clave del sistema (Inicio, Login, Dashboard de módulos y formularios).',
-          'Aplicar diseño responsive adaptable a móviles, tablets y monitores de escritorio.',
-          'Implementar validaciones de formulario en el lado del cliente con feedback visual.',
-          'Publicar el sitio web en GitHub Pages o desplegar en hosting estático.'
-        ],
-        criteria: 'Genera plantillas y estilos de acuerdo con el diseño establecido.',
-        checklist: [
-          'Vistas maquetadas y funcionales según prototipo de alta fidelidad.',
-          'Diseño responsive sin desbordamientos horizontales.',
-          'Código modular, limpio y documentado.',
-          'Enlace activo a GitHub Pages o carpeta ZIP completa con todos los assets.'
-        ]
-      },
-
-      // ================= GUÍA 05 (ANÁLISIS & ARQUITECTURA) =================
-      {
-        id: 'ev-ga5-01',
-        guia: 'guia-05',
-        guiaName: 'Guía 05',
-        fase: 'Análisis',
-        code: 'GA5-220501095-AA1-EV01',
-        activity: 'AA1: Requisitos de Software',
-        category: 'uml',
-        catName: 'Arquitectura UML',
-        type: 'Producto',
-        hours: '16 Horas',
-        title: 'Especificación de los requisitos funcionales y no funcionales del software',
-        format: 'PDF (Estándar IEEE 830)',
-        instrument: 'IE-GA5-220501095-AA1-EV01',
-        slideRef: 'slide-1',
-        summary: 'Documento formal de especificación de requisitos de software (SRS) clasificando requerimientos funcionales, no funcionales y reglas de negocio según IEEE 830.',
-        steps: [
-          'Realizar levantamiento de requerimientos a partir de las necesidades del cliente.',
-          'Clasificar requerimientos funcionales (RF) con codificación única y priorización MoSCoW.',
-          'Documentar requerimientos no funcionales (RNF) de rendimiento, seguridad y disponibilidad.',
-          'Definir criterios de aceptación y matriz de trazabilidad de requisitos.'
-        ],
-        criteria: 'Especifica los requisitos del software según estándares de ingeniería y necesidades del cliente.',
-        checklist: [
-          'Estructura bajo estándar formal IEEE 830.',
-          'Mínimo 15 requerimientos funcionales codificados con detalle.',
-          'Requerimientos no funcionales y métricas de calidad.',
-          'Matriz de trazabilidad validada por el equipo.'
-        ]
-      },
-      {
-        id: 'ev-ga5-02',
-        guia: 'guia-05',
-        guiaName: 'Guía 05',
-        fase: 'Análisis',
-        code: 'GA5-220501095-AA1-EV02',
-        activity: 'AA1: Modelado del Negocio',
-        category: 'uml',
-        catName: 'Arquitectura UML',
-        type: 'Desempeño',
-        hours: '16 Horas',
-        title: 'Diagramas de casos de uso y modelo de dominio del sistema',
-        format: 'PDF / StarUML',
-        instrument: 'IE-GA5-220501095-AA1-EV02',
-        slideRef: 'slide-1',
-        summary: 'Construcción de diagramas de casos de uso del sistema con sus respectivas descripciones narrativas detalladas (actores, precondiciones, flujo básico y alternos).',
-        steps: [
-          'Identificar los actores del sistema (roles humanos y sistemas externos).',
-          'Modelar los casos de uso principales con relaciones de inclusión (<<include>>) y extensión (<<extend>>).',
-          'Elaborar la ficha descriptiva de cada caso de uso con flujo normal y flujos de excepción.',
-          'Diagramar el modelo de dominio conceptual con clases de negocio asociadas.'
-        ],
-        criteria: 'Elabora diagramas de casos de uso representando las interacciones del sistema con usuarios.',
-        checklist: [
-          'Diagrama general de casos de uso por módulo.',
-          'Fichas de especificación textual de casos de uso diligenciadas.',
-          'Uso correcto de relaciones <<include>> y <<extend>>.',
-          'Diagrama de dominio conceptual.'
-        ]
-      },
-      {
-        id: 'ev-ga5-03',
-        guia: 'guia-05',
-        guiaName: 'Guía 05',
-        fase: 'Planeación',
-        code: 'GA5-220501095-AA2-EV01',
-        activity: 'AA2: Arquitectura del Software',
-        category: 'uml',
-        catName: 'Arquitectura UML',
-        type: 'Producto',
-        hours: '16 Horas',
-        title: 'Diagrama de clases y arquitectura general del software',
-        format: 'PDF / PlantUML',
-        instrument: 'IE-GA5-220501095-AA2-EV01',
-        slideRef: 'slide-1',
-        summary: 'Diseño estructural orientado a objetos modelando clases, atributos, métodos, multiplicidades, herencia, interfaces y dependencias arquitectónicas.',
-        steps: [
-          'Mapear entidades del dominio a clases de software con visibilidad (+, -, #).',
-          'Definir tipos de relaciones: asociación, agregación, composición y generalización.',
-          'Incorporar patrones de arquitectura (MVC, capas, repositorio).',
-          'Generar diagrama en herramienta CASE (StarUML, Visual Paradigm o PlantUML).'
-        ],
-        criteria: 'Diseña la estructura del sistema aplicando los principios del paradigma orientado a objetos.',
-        checklist: [
-          'Diagrama de clases con especificación de atributos y métodos.',
-          'Relaciones con cardinalidades explícitas en ambos extremos.',
-          'Separación clara de responsabilidades por capas arquitectónicas.',
-          'Documento explicativo del patrón adoptado.'
-        ]
-      },
-
-      // ================= GUÍA 07 (BACKEND & APIS REST) =================
-      {
-        id: 'ev-ga7-01',
-        guia: 'guia-07',
-        guiaName: 'Guía 07',
-        fase: 'Ejecución',
-        code: 'GA7-220501096-AA1-EV01',
-        activity: 'AA1: Servicios Web',
-        category: 'backend',
-        catName: 'Backend & APIs',
-        type: 'Producto',
-        hours: '24 Horas',
-        title: 'Construcción de API RESTful con Node.js / Express o Spring Boot',
-        format: 'ZIP / Repositorio Git',
-        instrument: 'IE-GA7-220501096-AA1-EV01',
-        slideRef: 'slide-1',
-        summary: 'Desarrollo de servicios backend con endpoints REST (GET, POST, PUT, DELETE), control de rutas, middlewares y códigos de estado HTTP estándar.',
-        steps: [
-          'Configurar el proyecto backend con estructura modular (controladores, servicios, modelos, rutas).',
-          'Implementar operaciones CRUD completas sobre las entidades principales.',
-          'Aplicar middlewares de manejo de errores, parseo de JSON y CORS.',
-          'Verificar respuestas con códigos de estado HTTP semánticos (200, 201, 400, 404, 500).'
-        ],
-        criteria: 'Construye servicios web backend aplicando el estilo arquitectónico RESTful.',
-        checklist: [
-          'Código backend limpio con dependencias instaladas y configuradas.',
-          'Rutas RESTful estructuradas respetando plurales y métodos HTTP.',
-          'Manejo global de excepciones sin caída del servidor.',
-          'Enlace a repositorio Git o carpeta ZIP comprimida.'
-        ]
-      },
-      {
-        id: 'ev-ga7-02',
-        guia: 'guia-07',
-        guiaName: 'Guía 07',
-        fase: 'Ejecución',
-        code: 'GA7-220501096-AA1-EV02',
-        activity: 'AA1: Persistencia Backend',
-        category: 'backend',
-        catName: 'Backend & APIs',
-        type: 'Desempeño',
-        hours: '20 Horas',
-        title: 'Integración del backend con base de datos mediante ORM/ODM',
-        format: 'Código Fuente / ZIP',
-        instrument: 'IE-GA7-220501096-AA1-EV02',
-        slideRef: 'slide-1',
-        summary: 'Conexión de la API a MySQL o MongoDB utilizando capas de acceso a datos (Prisma / Mongoose / Sequelize), validaciones y transacciones seguras.',
-        steps: [
-          'Configurar variables de entorno y cadena de conexión a la base de datos.',
-          'Definir esquemas de datos del ORM/ODM con tipos y validaciones de campo.',
-          'Implementar consultas de persistencia (creación, lectura, actualización y borrado).',
-          'Probar concurrencia e integridad transaccional en operaciones complejas.'
-        ],
-        criteria: 'Integra la capa de persistencia de datos con los servicios del backend mediante mapeadores objeto-relacional.',
-        checklist: [
-          'Conexión exitosa a motor de base de datos relacional o NoSQL.',
-          'Uso de ORM (Prisma / Sequelize) u ODM (Mongoose) documentado.',
-          'Operaciones asíncronas con promesas o async/await gestionadas.',
-          'Capturas de base de datos con registros creados desde los endpoints.'
-        ]
-      },
-      {
-        id: 'ev-ga7-03',
-        guia: 'guia-07',
-        guiaName: 'Guía 07',
-        fase: 'Ejecución',
-        code: 'GA7-220501096-AA2-EV01',
-        activity: 'AA2: Pruebas y Documentación',
-        category: 'backend',
-        catName: 'Backend & APIs',
-        type: 'Producto',
-        hours: '16 Horas',
-        title: 'Documentación y pruebas de endpoints con Postman y Swagger/OpenAPI',
-        format: 'JSON / PDF',
-        instrument: 'IE-GA7-220501096-AA2-EV01',
-        slideRef: 'slide-1',
-        summary: 'Especificación de contratos de API con Swagger UI / OpenAPI 3.0 y batería de pruebas automáticas de peticiones y respuestas en Postman.',
-        steps: [
-          'Integrar Swagger UI en la aplicación backend con anotaciones OpenAPI.',
-          'Exportar la colección de pruebas de Postman con variables de entorno.',
-          'Escribir tests automáticos en Postman verificando status codes y payloads JSON.',
-          'Generar informe de pruebas con evidencias de ejecución exitosa.'
-        ],
-        criteria: 'Documenta y valida los servicios web aplicando herramientas de prueba y especificación de contratos.',
-        checklist: [
-          'Interfaz Swagger accesible en ruta local /api-docs.',
-          'Colección de Postman exportada en formato JSON v2.1.',
-          'Tests automáticos de aserción (pm.test) implementados.',
-          'Informe PDF con resultados de pruebas y tiempos de respuesta.'
-        ]
-      }
-    ];
-
-    // Variables de Estado de Filtros y Paginación
-    let currentGuiaFilter = 'all';
-    let currentCatFilter = 'all';
-    let currentSearchQuery = '';
-    let currentPage = 1;
-    const itemsPerPage = 6;
-
-    // Función de Filtrado General (Guía, Categoría y Búsqueda)
-    function getFilteredEvidencias() {
-      return evidenciasTecnicas.filter(ev => {
-        const matchGuia = currentGuiaFilter === 'all' || ev.guia === currentGuiaFilter;
-        const matchCat = currentCatFilter === 'all' || ev.category === currentCatFilter;
-        const query = currentSearchQuery.toLowerCase().trim();
-        const matchSearch = !query || (
-          ev.code.toLowerCase().includes(query) ||
-          ev.title.toLowerCase().includes(query) ||
-          ev.summary.toLowerCase().includes(query) ||
-          ev.format.toLowerCase().includes(query) ||
-          ev.catName.toLowerCase().includes(query) ||
-          ev.guiaName.toLowerCase().includes(query) ||
-          ev.activity.toLowerCase().includes(query)
-        );
-        return matchGuia && matchCat && matchSearch;
-      });
-    }
-
-    // Función Principal de Renderizado con Paginación
-    function renderEvidencias() {
-      const filtered = getFilteredEvidencias();
-      const container = document.getElementById('evidence-grid');
-      const noResults = document.getElementById('no-results');
-      const countBadge = document.getElementById('evidence-count-badge');
-
-      countBadge.textContent = `${filtered.length} de ${evidenciasTecnicas.length}`;
-
-      if (filtered.length === 0) {
-        container.innerHTML = '';
-        noResults.classList.remove('hidden');
-        renderPagination(0);
-        return;
-      }
-
-      noResults.classList.add('hidden');
-
-      const totalPages = Math.ceil(filtered.length / itemsPerPage) || 1;
-      if (currentPage > totalPages) currentPage = 1;
-
-      const startIndex = (currentPage - 1) * itemsPerPage;
-      const endIndex = Math.min(startIndex + itemsPerPage, filtered.length);
-      const pageItems = filtered.slice(startIndex, endIndex);
-
-      container.innerHTML = pageItems.map(ev => {
-        // Colores de Categoría
-        let catBadge = 'bg-blue-50 text-blue-700 border-blue-200';
-        if (ev.category === 'nosql') catBadge = 'bg-emerald-50 text-emerald-700 border-emerald-200';
-        else if (ev.category === 'uiux') catBadge = 'bg-purple-50 text-purple-700 border-purple-200';
-        else if (ev.category === 'frontend') catBadge = 'bg-amber-50 text-amber-800 border-amber-200';
-        else if (ev.category === 'backend') catBadge = 'bg-indigo-50 text-indigo-700 border-indigo-200';
-        else if (ev.category === 'uml') catBadge = 'bg-cyan-50 text-cyan-800 border-cyan-200';
-
-        // Badge de Guía
-        let guiaBadge = 'bg-[#00324D] text-white';
-        if (ev.guia === 'guia-05') guiaBadge = 'bg-slate-700 text-white';
-        else if (ev.guia === 'guia-07') guiaBadge = 'bg-teal-700 text-white';
-
-        return `
-          <div class="bg-white border border-slate-200 rounded-xl p-5 card-hover flex flex-col justify-between shadow-2xs group relative animate-in fade-in duration-150">
-            <div>
-              <!-- Header de la Tarjeta con Guía y Categoría -->
-              <div class="flex items-start justify-between gap-2 mb-3">
-                <div class="flex items-center gap-1.5 flex-wrap">
-                  <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full ${guiaBadge} shrink-0">
-                    ${ev.guiaName}
-                  </span>
-                  <span class="font-mono text-[11px] font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded border border-slate-200 truncate max-w-[145px]" title="${ev.code}">
-                    ${ev.code}
-                  </span>
-                </div>
-                <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full border ${catBadge} shrink-0">
-                  ${ev.catName}
-                </span>
-              </div>
-
-              <!-- Título de la Evidencia Técnica -->
-              <h3 class="text-sm sm:text-base font-bold text-slate-900 leading-snug group-hover:text-sena transition-colors line-clamp-2" title="${ev.title}">
-                ${ev.title}
-              </h3>
-
-              <!-- Resumen -->
-              <p class="text-xs text-slate-500 mt-2 line-clamp-3 leading-relaxed">
-                ${ev.summary}
-              </p>
-
-              <!-- Metadatos de la Evidencia -->
-              <div class="grid grid-cols-2 gap-2 mt-4 pt-3 border-t border-slate-100 text-[11px] text-slate-600">
-                <div>
-                  <span class="text-slate-400 block text-[10px] uppercase font-semibold">Tipo</span>
-                  <span class="font-medium text-slate-800">${ev.type}</span>
-                </div>
-                <div>
-                  <span class="text-slate-400 block text-[10px] uppercase font-semibold">Formato</span>
-                  <span class="font-medium text-emerald-700 font-mono truncate block" title="${ev.format}">${ev.format}</span>
-                </div>
-              </div>
-
-              <!-- Estado de Diapositivas de Explicación -->
-              <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-[11px]">
-                <span class="text-slate-400 font-medium">Sesión en Aula:</span>
-                ${ev.hasSlides ? `
-                  <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                    Diapositivas Disponibles
-                  </span>
-                ` : `
-                  <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium bg-amber-50 text-amber-800 border border-amber-200">
-                    <i data-lucide="clock" class="w-3 h-3 text-amber-600"></i>
-                    En Preparación
-                  </span>
-                `}
-              </div>
-            </div>
-
-            <!-- Acciones -->
-            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
-              <button onclick="openEvidenceModal('${ev.id}')" class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-xs font-bold border border-emerald-200 transition-colors">
-                <i data-lucide="eye" class="w-3.5 h-3.5"></i>
-                <span>Ver Paso a Paso</span>
-              </button>
-
-              ${ev.hasSlides ? `
-                <a href="guias/guia-06/${ev.directProj}" class="p-2 rounded-lg bg-[#39A900] hover:bg-[#2D8200] text-white transition-colors shadow-2xs flex items-center justify-center" title="Proyectar sesión interactiva (${ev.code})">
-                  <i data-lucide="presentation" class="w-4 h-4"></i>
-                </a>
-              ` : `
-                <button onclick="showNotAvailableModal('${ev.id}')" class="p-2 rounded-lg bg-slate-100 hover:bg-amber-50 hover:text-amber-800 text-slate-400 border border-slate-200 hover:border-amber-300 transition-colors flex items-center justify-center" title="Material interactivo en preparación para la próxima clase">
-                  <i data-lucide="presentation" class="w-4 h-4"></i>
-                </button>
-              `}
-            </div>
-          </div>
-        `;
-      }).join('');
-
-      renderPagination(filtered.length);
-
-      if (window.lucide && typeof window.lucide.createIcons === 'function') {
-        window.lucide.createIcons();
-      }
-    }
-
-    // Render de Controles de Paginación Dinámica
-    function renderPagination(totalFiltered) {
-      const container = document.getElementById('pagination-container');
-      const buttonsContainer = document.getElementById('pagination-buttons');
-      const pagStart = document.getElementById('pag-start');
-      const pagEnd = document.getElementById('pag-end');
-      const pagTotal = document.getElementById('pag-total');
-
-      if (totalFiltered === 0) {
-        container.classList.add('hidden');
-        return;
-      }
-
-      container.classList.remove('hidden');
-      pagTotal.textContent = totalFiltered;
-
-      const totalPages = Math.ceil(totalFiltered / itemsPerPage);
-      const startIdx = (currentPage - 1) * itemsPerPage + 1;
-      const endIdx = Math.min(currentPage * itemsPerPage, totalFiltered);
-
-      pagStart.textContent = startIdx;
-      pagEnd.textContent = endIdx;
-
-      let html = '';
-
-      // Botón Anterior
-      const isFirst = currentPage === 1;
-      html += `
-        <button onclick="goToPage(${currentPage - 1})" ${isFirst ? 'disabled class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-300 cursor-not-allowed border border-slate-200"' : 'class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition-colors"'} title="Página anterior">
-          &larr; Anterior
-        </button>
-      `;
-
-      // Botones de Páginas Numeradas
-      for (let i = 1; i <= totalPages; i++) {
-        const isActive = i === currentPage;
-        html += `
-          <button onclick="goToPage(${i})" class="w-8 h-8 rounded-lg text-xs font-bold transition-all ${isActive ? 'bg-[#00324D] text-white shadow-xs' : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'}">
-            ${i}
-          </button>
-        `;
-      }
-
-      // Botón Siguiente
-      const isLast = currentPage === totalPages;
-      html += `
-        <button onclick="goToPage(${currentPage + 1})" ${isLast ? 'disabled class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-300 cursor-not-allowed border border-slate-200"' : 'class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition-colors"'} title="Página siguiente">
-          Siguiente &rarr;
-        </button>
-      `;
-
-      buttonsContainer.innerHTML = html;
-    }
-
-    function goToPage(pageNum) {
-      const filtered = getFilteredEvidencias();
-      const totalPages = Math.ceil(filtered.length / itemsPerPage);
-      if (pageNum < 1 || pageNum > totalPages) return;
-      currentPage = pageNum;
-      renderEvidencias();
-      document.getElementById('evidencias-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-
-    // Modal de Evidencia Detallada
-    let activeEvidence = null;
-    let activeTab = 'pasos';
-
-    function openEvidenceModal(id) {
-      const ev = evidenciasTecnicas.find(e => e.id === id);
-      if (!ev) return;
-      activeEvidence = ev;
-      activeTab = 'pasos';
-
-      const badgeGuia = document.getElementById('modal-badge-guia');
-      if (badgeGuia) badgeGuia.textContent = ev.guiaName;
-
-      document.getElementById('modal-code').textContent = ev.code;
-      document.getElementById('modal-title').textContent = ev.title;
-      document.getElementById('modal-badge-cat').textContent = ev.catName;
-      document.getElementById('modal-badge-type').textContent = ev.type;
-      document.getElementById('modal-badge-hours').textContent = ev.hours;
-
-      // Configuración del botón de proyección según disponibilidad
-      const btnModalProj = document.getElementById('modal-proj-link');
-      if (ev.hasSlides) {
-        btnModalProj.href = `guias/guia-06/${ev.directProj}`;
-        btnModalProj.className = 'inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#39A900] hover:bg-[#2D8200] text-white font-bold text-xs shadow-xs transition-all';
-        btnModalProj.innerHTML = '<i data-lucide="presentation" class="w-4 h-4"></i><span>Proyectar en Aula</span>';
-        btnModalProj.onclick = null;
-      } else {
-        btnModalProj.href = 'javascript:void(0)';
-        btnModalProj.className = 'inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300 font-bold text-xs transition-all';
-        btnModalProj.innerHTML = '<i data-lucide="clock" class="w-4 h-4 text-amber-600"></i><span>Diapositivas en Preparación</span>';
-        btnModalProj.onclick = () => {
-          closeEvidenceModal();
-          showNotAvailableModal(ev.id);
-        };
-      }
-
-      renderModalTabContent();
-
-      const modal = document.getElementById('evidence-modal');
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-      document.body.style.overflow = 'hidden';
-
-      if (window.lucide && typeof window.lucide.createIcons === 'function') {
-        window.lucide.createIcons();
-      }
-    }
-
-    function closeEvidenceModal() {
-      const modal = document.getElementById('evidence-modal');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-      document.body.style.overflow = 'auto';
-    }
-
-    // Modal informativo para evidencias cuyas diapositivas aún están en preparación
-    function showNotAvailableModal(id) {
-      const ev = evidenciasTecnicas.find(e => e.id === id);
-      if (!ev) return;
-
-      document.getElementById('na-modal-code').textContent = ev.code;
-      document.getElementById('na-modal-title').textContent = ev.title;
-      document.getElementById('na-modal-guia').textContent = ev.guiaName;
-      document.getElementById('na-modal-cat').textContent = ev.catName;
-
-      const naModal = document.getElementById('not-available-modal');
-      naModal.classList.remove('hidden');
-      naModal.classList.add('flex');
-      document.body.style.overflow = 'hidden';
-
-      const btnOpenSteps = document.getElementById('na-btn-view-steps');
-      if (btnOpenSteps) {
-        btnOpenSteps.onclick = () => {
-          closeNotAvailableModal();
-          openEvidenceModal(ev.id);
-        };
-      }
-
-      if (window.lucide && typeof window.lucide.createIcons === 'function') {
-        window.lucide.createIcons();
-      }
-    }
-
-    function closeNotAvailableModal() {
-      const naModal = document.getElementById('not-available-modal');
-      naModal.classList.add('hidden');
-      naModal.classList.remove('flex');
-      document.body.style.overflow = 'auto';
-    }
-
-    function openProjectionSelectorModal() {
-      const modal = document.getElementById('projection-selector-modal');
-      if (modal) {
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-        document.body.style.overflow = 'hidden';
-        if (window.lucide && typeof window.lucide.createIcons === 'function') {
-          window.lucide.createIcons();
-        }
-      }
-    }
-
-    function closeProjectionSelectorModal() {
-      const modal = document.getElementById('projection-selector-modal');
-      if (modal) {
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-        document.body.style.overflow = 'auto';
-      }
-    }
-
-    function renderModalTabContent() {
-      if (!activeEvidence) return;
-      const content = document.getElementById('modal-content-area');
-      const btnPasos = document.getElementById('tab-btn-pasos');
-      const btnCrit = document.getElementById('tab-btn-criterios');
-      const btnCheck = document.getElementById('tab-btn-checklist');
-
-      btnPasos.className = activeTab === 'pasos' ? 'py-3 border-b-2 border-sena text-sena' : 'py-3 border-b-2 border-transparent text-slate-500 hover:text-slate-800';
-      btnCrit.className = activeTab === 'criterios' ? 'py-3 border-b-2 border-sena text-sena' : 'py-3 border-b-2 border-transparent text-slate-500 hover:text-slate-800';
-      btnCheck.className = activeTab === 'checklist' ? 'py-3 border-b-2 border-sena text-sena' : 'py-3 border-b-2 border-transparent text-slate-500 hover:text-slate-800';
-
-      if (activeTab === 'pasos') {
-        content.innerHTML = `
-          <div class="space-y-4">
-            <div class="p-3.5 bg-emerald-50 rounded-xl border border-emerald-200 text-xs text-emerald-900 leading-relaxed">
-              <strong>Propósito pedagógico (${activeEvidence.guiaName}):</strong> ${activeEvidence.summary}
-            </div>
-
-            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900 flex items-center gap-2">
-              <i data-lucide="list-ordered" class="w-4 h-4 text-sena"></i> Paso a Paso para Desarrollar la Evidencia Técnica:
-            </h4>
-            <ol class="space-y-2.5">
-              ${activeEvidence.steps.map((step, idx) => `
-                <li class="flex items-start gap-3 p-2.5 bg-slate-50 rounded-lg border border-slate-100 text-xs text-slate-700">
-                  <span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 font-extrabold flex items-center justify-center shrink-0 text-[11px]">${idx + 1}</span>
-                  <span class="pt-0.5">${step}</span>
-                </li>
-              `).join('')}
-            </ol>
-
-            ${activeEvidence.hasSlides ? `
-              <div class="p-3.5 bg-emerald-50 border border-emerald-200 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-emerald-950">
-                <div class="flex items-center gap-2">
-                  <i data-lucide="presentation" class="w-5 h-5 text-emerald-700 shrink-0"></i>
-                  <span><strong>Sesión Interactiva en Diapositivas Disponible:</strong> ${activeEvidence.id === 'ev-01' ? 'Taller completo de Normalización 0FN a 3FN y demostración en MySQL Workbench.' : activeEvidence.id === 'ev-02' ? 'Guía directa de 10 diapositivas: MER, Modelo Relacional, Diccionario de Datos y script SQL.' : activeEvidence.id === 'ev-03' ? 'Taller interactivo de 14 diapositivas: NoSQL MongoDB Compass (+ Create Database) y consola MONGOSH.' : 'Taller completo de 12 diapositivas: Validación con $jsonSchema, rechazo de errores, insertMany y pipeline de agregación.'}</span>
-                </div>
-                <a href="guias/guia-06/${activeEvidence.directProj}" class="px-3.5 py-1.5 bg-[#39A900] hover:bg-[#2D8200] text-white font-bold rounded-lg shrink-0 transition-colors flex items-center gap-1.5 shadow-2xs">
-                  <span>Ver Diapositivas</span>
-                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                </a>
-              </div>
-            ` : `
-              <div class="p-3.5 bg-amber-50/90 border border-amber-200 rounded-xl flex items-start gap-2.5 text-xs text-amber-950">
-                <i data-lucide="clock" class="w-4 h-4 text-amber-600 shrink-0 mt-0.5"></i>
-                <div>
-                  <strong class="font-bold text-amber-900 block mb-0.5">Diapositivas en Preparación (Próxima Sesión Sincrónica):</strong>
-                  <span>El material interactivo y las diapositivas paso a paso para esta evidencia técnica serán orientados por el <strong>Ing. Hector David Toledo García</strong> durante la sesión virtual correspondiente. Una vez impartida la clase, quedarán publicadas en este repositorio para tu consulta y desarrollo práctico.</span>
-                </div>
-              </div>
-            `}
-
-            <div class="pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between text-xs text-slate-500 gap-2">
-              <span>Formato de entrega: <strong class="text-slate-800 font-mono">${activeEvidence.format}</strong></span>
-              <span>Instrumento SENA: <strong class="text-slate-800 font-mono">${activeEvidence.instrument}</strong></span>
-            </div>
-          </div>
-        `;
-      } else if (activeTab === 'criterios') {
-        content.innerHTML = `
-          <div class="space-y-4">
-            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
-              <span class="text-[10px] font-bold uppercase text-slate-400 tracking-wider block mb-1">Criterio de Evaluación Oficial SENA</span>
-              <p class="text-sm font-semibold text-slate-800 leading-relaxed">${activeEvidence.criteria}</p>
-            </div>
-
-            <div class="p-4 bg-amber-50 rounded-xl border border-amber-200 space-y-2 text-xs text-amber-900">
-              <div class="flex items-center gap-2 font-bold text-amber-950">
-                <i data-lucide="alert-circle" class="w-4 h-4 text-amber-600"></i> Recomendaciones del Ing. Hector David Toledo García:
-              </div>
-              <p>• La entrega oficial y evaluada se realiza únicamente en la plataforma <strong>Zajuna</strong> antes de la fecha límite.</p>
-              <p>• Nombra tus archivos con la convención estándar: <code>${activeEvidence.code}_Nombre_Apellido.${activeEvidence.format.toLowerCase().includes('pdf') ? 'pdf' : 'zip'}</code></p>
-              <p>• Valida tu código en tu entorno local antes de comprimir y cargar.</p>
-            </div>
-          </div>
-        `;
-      } else if (activeTab === 'checklist') {
-        const savedChecks = JSON.parse(localStorage.getItem(`check_${activeEvidence.id}`) || '[]');
-
-        content.innerHTML = `
-          <div class="space-y-4">
-            <p class="text-xs text-slate-500">
-              Marca cada requerimiento a medida que lo completes. El avance se almacena automáticamente en tu navegador para el seguimiento personal antes de subir a <strong>Zajuna</strong>.
-            </p>
-            <div class="space-y-2.5">
-              ${activeEvidence.checklist.map((item, idx) => {
-                const isChecked = savedChecks.includes(idx);
-                return `
-                  <label class="flex items-start gap-3 p-3 bg-slate-50 hover:bg-emerald-50/50 rounded-xl border border-slate-200 cursor-pointer transition-colors text-xs text-slate-700">
-                    <input type="checkbox" data-idx="${idx}" onchange="toggleCheckItem('${activeEvidence.id}', ${idx})" ${isChecked ? 'checked' : ''} class="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4">
-                    <span class="${isChecked ? 'line-through text-slate-400' : ''}">${item}</span>
-                  </label>
-                `;
-              }).join('')}
-            </div>
-          </div>
-        `;
-      }
-
-      if (window.lucide && typeof window.lucide.createIcons === 'function') {
-        window.lucide.createIcons();
-      }
-    }
-
-    function toggleCheckItem(evidenceId, itemIndex) {
-      let saved = JSON.parse(localStorage.getItem(`check_${evidenceId}`) || '[]');
-      if (saved.includes(itemIndex)) {
-        saved = saved.filter(i => i !== itemIndex);
-      } else {
-        saved.push(itemIndex);
-      }
-      localStorage.setItem(`check_${evidenceId}`, JSON.stringify(saved));
-      renderModalTabContent();
-    }
-
-    // Inicialización al cargar el DOM
-    document.addEventListener('DOMContentLoaded', () => {
-      // Fecha en vivo para el cintillo institucional
-      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-      const today = new Date().toLocaleDateString('es-ES', options);
-      const capToday = today.charAt(0).toUpperCase() + today.slice(1);
-      
-      const elCintillo = document.getElementById('cintillo-fecha');
-      if (elCintillo) elCintillo.textContent = capToday;
-
-      // Render inicial de las evidencias con paginación
-      renderEvidencias();
-
-      // Filtro 1: Botones de Guías de Aprendizaje
-      const guiaFilterBtns = document.querySelectorAll('.guia-filter-btn');
-      guiaFilterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          guiaFilterBtns.forEach(b => {
-            b.classList.remove('bg-[#00324D]', 'text-white', 'shadow-xs');
-            b.classList.add('bg-white', 'text-slate-700');
-          });
-          btn.classList.add('bg-[#00324D]', 'text-white', 'shadow-xs');
-          btn.classList.remove('bg-white', 'text-slate-700');
-
-          currentGuiaFilter = btn.getAttribute('data-guia');
-          currentPage = 1;
-          renderEvidencias();
-        });
-      });
-
-      // Filtro 2: Botones por Área Técnica
-      const catFilterBtns = document.querySelectorAll('.cat-filter-btn');
-      catFilterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          catFilterBtns.forEach(b => {
-            b.classList.remove('bg-slate-800', 'text-white', 'shadow-2xs');
-            b.classList.add('bg-white', 'text-slate-700');
-          });
-          btn.classList.add('bg-slate-800', 'text-white', 'shadow-2xs');
-          btn.classList.remove('bg-white', 'text-slate-700');
-
-          currentCatFilter = btn.getAttribute('data-cat');
-          currentPage = 1;
-          renderEvidencias();
-        });
-      });
-
-      // Búsqueda interactiva en vivo
-      const searchInput = document.getElementById('evidence-search');
-      searchInput.addEventListener('input', (e) => {
-        currentSearchQuery = e.target.value;
-        currentPage = 1;
-        renderEvidencias();
-      });
-
-      // Botón restablecer búsqueda y filtros
-      const resetBtn = document.getElementById('reset-filter-btn');
-      if (resetBtn) {
-        resetBtn.addEventListener('click', () => {
-          searchInput.value = '';
-          currentSearchQuery = '';
-          currentGuiaFilter = 'all';
-          currentCatFilter = 'all';
-          currentPage = 1;
-
-          guiaFilterBtns.forEach(b => {
-            b.classList.remove('bg-[#00324D]', 'text-white', 'shadow-xs');
-            b.classList.add('bg-white', 'text-slate-700');
-          });
-          if (guiaFilterBtns[0]) {
-            guiaFilterBtns[0].classList.add('bg-[#00324D]', 'text-white', 'shadow-xs');
-            guiaFilterBtns[0].classList.remove('bg-white', 'text-slate-700');
-          }
-
-          catFilterBtns.forEach(b => {
-            b.classList.remove('bg-slate-800', 'text-white', 'shadow-2xs');
-            b.classList.add('bg-white', 'text-slate-700');
-          });
-          if (catFilterBtns[0]) {
-            catFilterBtns[0].classList.add('bg-slate-800', 'text-white', 'shadow-2xs');
-            catFilterBtns[0].classList.remove('bg-white', 'text-slate-700');
-          }
-
-          renderEvidencias();
-        });
-      }
-
-      // Control del Banner Informativo de Transversales
-      const btnTransversales = document.getElementById('btn-transversales-info');
-      const bannerTransversales = document.getElementById('transversales-banner');
-      const closeBannerTrans = document.getElementById('close-transversales-banner');
-
-      if (btnTransversales && bannerTransversales) {
-        btnTransversales.addEventListener('click', () => {
-          bannerTransversales.classList.toggle('hidden');
-          if (!bannerTransversales.classList.contains('hidden')) {
-            bannerTransversales.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-          }
-        });
-      }
-
-      if (closeBannerTrans && bannerTransversales) {
-        closeBannerTrans.addEventListener('click', () => {
-          bannerTransversales.classList.add('hidden');
-        });
-      }
-
-      // Eventos del modal de detalle
-      document.getElementById('modal-close-btn').addEventListener('click', closeEvidenceModal);
-      document.getElementById('modal-ok-btn').addEventListener('click', closeEvidenceModal);
-      document.getElementById('evidence-modal').addEventListener('click', (e) => {
-        if (e.target.id === 'evidence-modal') closeEvidenceModal();
-      });
-
-      // Eventos del modal de evidencia no disponible aún
-      const naModal = document.getElementById('not-available-modal');
-      if (naModal) {
-        naModal.addEventListener('click', (e) => {
-          if (e.target.id === 'not-available-modal') closeNotAvailableModal();
-        });
-      }
-
-      // Eventos del modal selector de proyección
-      const projModal = document.getElementById('projection-selector-modal');
-      if (projModal) {
-        projModal.addEventListener('click', (e) => {
-          if (e.target.id === 'projection-selector-modal') closeProjectionSelectorModal();
-        });
-      }
-
-      // Control del Menú Móvil / Tablet
-      const btnMobileMenu = document.getElementById('btn-mobile-menu');
-      const mobileDrawer = document.getElementById('mobile-menu-drawer');
-      if (btnMobileMenu && mobileDrawer) {
-        btnMobileMenu.addEventListener('click', () => {
-          mobileDrawer.classList.toggle('hidden');
-        });
-
-        // Cerrar menú móvil al hacer clic en un enlace
-        mobileDrawer.querySelectorAll('a').forEach(link => {
-          link.addEventListener('click', () => {
-            mobileDrawer.classList.add('hidden');
-          });
-        });
-      }
-
-      // Tabs del modal
-      document.getElementById('tab-btn-pasos').addEventListener('click', () => { activeTab = 'pasos'; renderModalTabContent(); });
-      document.getElementById('tab-btn-criterios').addEventListener('click', () => { activeTab = 'criterios'; renderModalTabContent(); });
-      document.getElementById('tab-btn-checklist').addEventListener('click', () => { activeTab = 'checklist'; renderModalTabContent(); });
-
-      // Tecla ESC para cerrar cualquiera de los modales
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          closeEvidenceModal();
-          closeNotAvailableModal();
-          closeProjectionSelectorModal();
-        }
-      });
-
-      // Iconos Lucide
-      if (window.lucide && typeof window.lucide.createIcons === 'function') {
-        window.lucide.createIcons();
-      }
-    });
-  </script>
+  <script src="assets/js/catalogo.js"></script>
+  <script src="assets/js/portal.js"></script>
 </body>
 </html>

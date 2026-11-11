@@ -29,32 +29,54 @@
 
 ```text
 repoVirtual/
-├── .nojekyll                           # Despliegue continuo en GitHub Pages sin procesamiento Jekyll
-├── 404.html                            # Página de redirección institucional amigable
-├── README.md                           # Documentación técnica, alcance y guía del repositorio
-├── index.html                          # Portal principal: Descarga de Guías y Explorador Multi-Guía con Paginación
-├── GUIA_06_EVIDENCIAS_PASO_A_PASO.md   # Referencia documental de evidencias y criterios
+├── .nojekyll                         # GitHub Pages sin procesamiento Jekyll
+├── 404.html                          # Página de error autocontenida (rutas resueltas en tiempo de ejecución)
+├── index.html                        # Portal: descarga de guías, ruta de aprendizaje y explorador de evidencias
+├── README.md
+├── GUIA_06_EVIDENCIAS_PASO_A_PASO.md # Referencia documental de evidencias y criterios
 ├── assets/
-│   ├── logo_green.png                  # Logo institucional SENA (Verde)
-│   ├── logo_sena.png                   # Variante de logotipo SENA
+│   ├── logo_green.png · logo_sena.png · logo_hd.png
 │   ├── css/
-│   │   └── presenter.css               # Estilos visuales optimizados para proyección en aula
+│   │   ├── base.css                  # Tokens SENA, tipografía, foco accesible, anti-CLS, reduced-motion
+│   │   └── presenter.css             # Diapositivas, índice off-canvas e impresión a PDF
 │   └── js/
-│       └── presenter.js                # Motor interactivo de diapositivas para sesiones virtuales
+│       ├── tailwind.config.js        # Configuración ÚNICA de Tailwind (colores sena / cadph, fuentes)
+│       ├── catalogo.js               # FUENTE ÚNICA DE DATOS: guías, actividades, evidencias y sesiones
+│       ├── portal.js                 # Lógica del portal (ruta, filtros, paginación, modales, checklist)
+│       └── presenter.js              # Motor ÚNICO de presentaciones (genera toda la interfaz común)
 └── guias/
-    ├── Guia_aprendizaje_6.pdf          # PDF oficial emitido por la Dirección de Formación SENA
+    ├── Guia_aprendizaje_6.pdf        # PDF oficial SENA
+    ├── _plantilla/
+    │   └── proyeccion-plantilla.html # Punto de partida para nuevas sesiones
     └── guia-06/
-        ├── proyeccion-evidencia-01.html # Presentación interactiva de 20 diapositivas para Evidencia 1 (Normalización)
-        ├── proyeccion-evidencia-02.html # Presentación interactiva de 10 diapositivas para Evidencia 2 (MER y Diccionario)
-        ├── proyeccion-evidencia-03.html # Presentación interactiva de 14 diapositivas para Evidencia 3 (NoSQL MongoDB Compass)
-        ├── proyeccion-evidencia-04.html # Presentación interactiva de 12 diapositivas para Evidencia 4 (Bases de Datos en MongoDB)
-        ├── proyeccion-evidencia-05.html # Presentación interactiva de 14 diapositivas para Evidencia 5 (Sentencias SQL DDL y DML)
-        ├── proyeccion-evidencia-06.html # Presentación interactiva de 14 diapositivas para Evidencia 6 (Estructura de BD y Restricciones)
-        ├── proyeccion-evidencia-07.html # Presentación interactiva de 14 diapositivas para Evidencia 7 (Script de BD del Proyecto)
-        ├── proyeccion-evidencia-08.html # Presentación interactiva de 13 diapositivas para Evidencia 8 (Herramientas de Prototipado: Figma, Canva, Penpot, Framer)
-        ├── proyeccion-evidencia-09.html # Presentación interactiva de 14 diapositivas para Evidencia 9 (Diseño Web y Móvil con Componentes y Navegación)
-        └── proyeccion.html             # Modo Proyección General en Aula (Guía 06)
+        ├── proyeccion.html           # Sesión general de la Guía 06 (16 diapositivas)
+        ├── proyeccion-evidencia-01…09.html  # Una sesión por evidencia (solo contenido)
+        └── proyeccion-evidencia-09-10.html  # Sesión compartida AA3-EV02 + EV03 (Figma)
 ```
+
+---
+
+## 🏗️ Arquitectura
+
+Sitio 100 % estático (GitHub Pages), sin paso de compilación. Tres principios:
+
+1. **Una sola fuente de datos.** `assets/js/catalogo.js` define guías, actividades (AA), evidencias y sus sesiones. El portal (ruta, explorador, selector de proyección, pie de página) y la cabecera de cada presentación se generan desde ahí: ya no hay listas duplicadas a mano.
+2. **Un solo motor de presentaciones.** Cada `proyeccion-*.html` contiene **solo sus diapositivas**. `presenter.js` genera cintillo, barra de progreso, migas de pan (Guía › AA › categoría), índice lateral agrupado por bloques, cronómetro / cuenta regresiva, ayuda de atajos y la navegación a la sesión anterior / siguiente según el orden del catálogo.
+3. **Una sola identidad visual.** `tailwind.config.js` + `base.css` concentran la paleta SENA (`#39A900`, `#00324D`), tipografías y utilidades. Tailwind (Play CDN 3.4.17) y Lucide (1.60.0) usan versiones fijadas para que una actualización externa no rompa las clases.
+
+### Publicar una nueva sesión (3 pasos)
+
+1. Copiar `guias/_plantilla/proyeccion-plantilla.html` a `guias/guia-06/proyeccion-evidencia-NN.html` y escribir las diapositivas (`<section class="slide-content" data-title="…" data-section="…">`).
+2. En `catalogo.js`, agregar a la evidencia: `session: { file, slides, title, blurb }`.
+3. Ajustar `data-evidencia="ev-NN"` en el `<body>` de la presentación. Si una sesión cubre varias evidencias, se listan separadas por espacio (`data-evidencia="ev-09 ev-10"`) y ambas evidencias apuntan al mismo `session.file`; el portal y la navegación la muestran una sola vez.
+
+La tarjeta, la ruta de aprendizaje, el selector de proyección, el pie de página y el enlace "Siguiente sesión" de la presentación anterior se actualizan solos.
+
+### Enlaces útiles
+
+* `index.html#ev-05` abre directamente el paso a paso de una evidencia.
+* `proyeccion-evidencia-01.html#slide-12` abre una diapositiva concreta.
+* Desde el índice de cualquier presentación, **Guardar PDF** imprime todas las diapositivas (una por página) para consulta offline.
 
 ---
 
@@ -65,7 +87,11 @@ repoVirtual/
 * Tarjetas informativas de fase con desglose de horas técnicas y competencias curriculares.
 * Módulos preparados para la integración de las guías subsiguientes (**Guía 05** y **Guía 07**).
 
-### 2. Explorador General Multi-Guía con Filtros y Paginación Dinámica
+### 2. Ruta de Aprendizaje de la Guía Activa
+* Las evidencias técnicas agrupadas por **actividad de aprendizaje (AA1–AA4)**, en el orden en que se trabajan, con horas, tipo, formato de entrega y estado de la sesión.
+* Barra de progreso de sesiones publicadas y acceso directo al **paso a paso** o a la **proyección** de cada evidencia.
+
+### 3. Explorador General Multi-Guía con Filtros y Paginación Dinámica
 * **Orientación Multi-Guía:** Permite filtrar y explorar evidencias de distintas guías de formación ADSO:
   * **Guía 05:** Análisis de Requerimientos y Modelado de Arquitectura UML (3 evidencias).
   * **Guía 06 (Activa):** Bases de Datos Relacionales/NoSQL, Prototipado Figma y Frontend Web (13 evidencias).
@@ -74,7 +100,7 @@ repoVirtual/
 * **Buscador en Tiempo Real:** Filtrado reactivo instantáneo por código de evidencia (ej. `AA1-EV01`, `AA1-EV02`, `AA1-EV03`, `AA1-EV04`), título, resumen o tecnologías.
 * **Paginación Dinámica:** Paginación calibrada a **6 evidencias por página** con navegación previa/siguiente, botones numerados y contador contextual (`Mostrando X a Y de Z evidencias`).
 * **Estado de Disponibilidad de Diapositivas:**
-  * **🟢 Diapositivas Disponibles:** Insignia verde para las evidencias con presentación interactiva activa (EV01, EV02, EV03, EV04, EV05), permitiendo proyección directa inmediata.
+  * **🟢 Diapositivas Disponibles:** Insignia verde con el número de diapositivas para cada evidencia que tiene sesión publicada en `catalogo.js`, permitiendo proyección directa inmediata.
   * **🟡 En Preparación:** Insignia ámbar para evidencias en desarrollo curricular. Si el aprendiz o docente intenta proyectarlas, el sistema despliega una ventana modal explicativa indicando que el material será orientado en la sesión sincrónica virtual correspondiente por el **Ing. Hector David Toledo García**, guiando al aprendiz hacia el PDF de la guía y los requerimientos preliminares.
 * **Modales Detallados:** Cada evidencia despliega un modal con paso a paso detallado, criterios oficiales de evaluación y checklist interactivo con persistencia local en navegador (`localStorage`).
 * **Estabilidad Visual y Cero Saltos de Diseño (Anti-CLS):** Estandarización de cabeceras fijas (`h-16`), paddings simétricos (`px-4 sm:px-6`), canal de scroll reservado (`scrollbar-gutter: stable`) y dimensiones predefinidas para iconos SVG, garantizando transiciones suaves y fluidas entre páginas sin saltos de elementos.
@@ -211,33 +237,33 @@ repoVirtual/
   * **Slide 12:** **Estructura del Documento Escrito en Word (.docx):** Los 4 puntos requeridos (Portada, Introducción/Objetivos, Cuadro Comparativo, Pantallazos de Herramientas) con nota aclaratoria de que prototipos y enlaces se desarrollan en la próxima evidencia.
   * **Slide 13:** **Lineamientos de Entrega y Checklist:** Estructura del documento, nomenclatura oficial y criterios de aprobación en **Zajuna LMS**.
 
-### 🟢 Evidencia 9: Crear el diseño del sitio web y/o móviles utilizando sus componentes y tecnologías respectivas (`proyeccion-evidencia-09.html`)
-* **Código Oficial:** `GA6-220501096-AA3-EV02` (12 Horas de Formación Técnica • Actividad AA3 de 48 Horas).
-* **Descripción Oficial de la Guía:**
-  > *"Teniendo en cuenta las características del software a desarrollar y tomando como referencia las herramientas de prototipado vistas en los componentes formativos, realice los mockups de navegación de aplicaciones web/o móvil cumpliendo con los requerimientos del software."*
-* **Productos a Entregar según la Guía:** Carpeta comprimida en formato **ZIP** que contiene:
-  1. Archivo en **Word (.docx)** con el documento escrito formal (portada, introducción, objetivo, pantallazos de los mockups y descripción de cada interfaz).
-  2. Archivo donde se realice el prototipado (archivo fuente nativo **.fig** de Figma o enlace URL público interactivo editable).
-* **14 Diapositivas Pedagógicas con Caso Real ("AgroTech Colombia S.A.S.")**:
-  * **Slide 01 - 02:** Portada institucional y **Ficha Técnica Oficial** (instrumento `IE-GA6-220501096-AA3-EV02`, requerimientos del software, navegación interactiva obligatoria, entrega en ZIP).
-  * **Slide 03:** **Caso Práctico Empresarial:** Contexto de *AgroTech Colombia S.A.S.* (sistema de pedidos agrícolas, actores clave: Asesor de campo móvil y Administrador web, requerimientos RF-01 a RF-05).
-  * **Slide 04:** **Mapa de Navegación y Arquitectura de Información:** Diagrama de árbol jerárquico (*Information Architecture*), flujos de usuario (*Happy Path*) y matriz de 6 pantallas clave.
-  * **Slide 05:** **Biblioteca de Componentes UI y Design System:** Tokens de color institucional (#2D8200, #39A900, #1E293B), escala tipográfica, campos de texto interactivos y botones con variantes en Auto Layout.
-  * **Slide 06:** **Mockup 1 & 2 - Splash y Autenticación:** Diseño visual de la pantalla de bienvenida y login con validaciones, *feedback* de error y enlace de recuperación.
-  * **Slide 07:** **Mockup 3 - Dashboard Principal:** Navegación por pestañas (*Bottom Navigation Bar*), widgets de métricas (pedidos pendientes, clientes, ventas) y accesos directos.
-  * **Slide 08:** **Mockup 4 - Catálogo y Búsqueda Operativa:** Buscador en tiempo real, chips de filtro horizontal por categorías (Semillas, Fertilizantes, Herramientas) y grilla de tarjetas de producto con botón "Agregar".
-  * **Slide 09:** **Mockup 5 & 6 - Detalle de Producto, Carrito y Modal de Éxito:** Selector de cantidades, desglose de subtotal/IVA/total y ventana modal (*Overlay*) de orden confirmada con ID de pedido.
-  * **Slide 10:** **Prototipado Interactivo en Figma (Prototype):** Configuración técnica paso a paso: triggers (`On tap`), acciones (`Navigate to`, `Open overlay`), animaciones (`Smart Animate`, `Ease In and Out`) y enlaces bidireccionales.
-  * **Slide 11:** **Pruebas de Usabilidad y Flujo en Vivo:** Validación en tiempo de ejecución con *Figma Mirror* y vista de presentación, heurísticas de Nielsen y corrección de flujos rotos.
-  * **Slide 12:** **Estructura Formal del Documento Word (.docx):** Normas básicas (portada, introducción, objetivos, fichas técnicas con propósito, componentes y acciones de cada interfaz).
-  * **Slide 13:** **Exportación del Archivo .fig y Generación de Enlace Web:** Exportación local de la copia `.fig` desde Figma (*File > Save local copy*) y configuración de permisos públicos (*Anyone with the link can view/edit*).
-  * **Slide 14:** **Empaquetado en Carpeta ZIP y Checklist de Aprobación:** Estructura de carpetas internas, nomenclatura institucional (`GA6-220501096-AA3-EV02_Nombre_Apellido.zip`) y rúbrica de evaluación en **Zajuna LMS**.
+### 🟢 Evidencias 9 y 10 · Sesión única AA3-EV02 + AA3-EV03: Login y Registro en Figma (`proyeccion-evidencia-09-10.html`)
+* **Códigos oficiales:** `GA6-220501096-AA3-EV02` (desempeño: mockups de navegación) y `GA6-220501096-AA3-EV03` (producto: interfaz gráfica con colores, usabilidad, estilos y menús). Criterio común: *“Crea interfaces de usuario aplicando buenas prácticas de usabilidad y accesibilidad.”*
+* **Caso de estudio ficticio:** *AromaSur Café S.A.S.* (Garzón, Huila), tostadora de café especial que vende al por mayor. Requerimientos RF01–RF04 y RNF01–RNF02 para Login y Registro.
+* **24 diapositivas en 5 bloques:**
+  * **Bloque 1 · Contexto (01–04):** qué pide cada evidencia según la guía, caso AromaSur y mapa de navegación móvil/web.
+  * **Bloque 2 · Guía de estilos EV03 (05–07):** paleta con roles y contraste WCAG verificado, escala tipográfica (Poppins + Inter), espaciado de 8 px y 6 decisiones de usabilidad con ejemplos de qué hacer y qué evitar.
+  * **Bloque 3 · Figma paso a paso (08–17):** simulación de la interfaz de Figma con marcadores numerados que coinciden con cada instrucción: archivo y páginas, zonas de la interfaz, estilos de color y texto, frames iPhone 16 / Desktop 1440 con *Layout guide*, componentes con *Auto layout* y variantes (botón y campo), Login y Registro móvil y vistas web con menú superior.
+  * **Bloque 4 · Prototipo EV02 (18–21):** conexión con el *noodle* en la pestaña Prototype, *Interaction details* (On click → Navigate to → Smart animate, 300 ms), regreso, *Flow starting point*, Present y Share, y **demo interactiva** de Login ↔ Registro en móvil y web con zonas clicables.
+  * **Bloque 5 · Entrega (22–24):** cómo adaptarlo al proyecto propio, equivalencias de menús de Figma en español, exportación (PNG 2x, .fig, enlaces), estructura de los dos ZIP y checklist final.
+* **Material complementario:** la sesión anterior de la EV02 (caso *AgroTech Colombia S.A.S.*, 6 mockups) sigue disponible en `proyeccion-evidencia-09.html`.
 
 ---
 
 ## ⌨️ Atajos de Navegación en el Modo Proyección
 | Atajo | Función |
 |---|---|
+| <kbd>Espacio</kbd> · <kbd>→</kbd> · <kbd>AvPág</kbd> | Siguiente diapositiva |
+| <kbd>←</kbd> · <kbd>RePág</kbd> | Diapositiva anterior |
+| <kbd>Inicio</kbd> · <kbd>Fin</kbd> | Primera / última diapositiva |
+| <kbd>M</kbd> | Índice lateral (agrupado por bloques, con sesión anterior / siguiente) |
+| <kbd>F</kbd> | Pantalla completa |
+| <kbd>T</kbd> | Iniciar / pausar cronómetro (el menú ⌄ ofrece cuenta regresiva de 5–30 min) |
+| <kbd>?</kbd> · <kbd>H</kbd> | Ayuda de atajos |
+| <kbd>Esc</kbd> | Cerrar paneles |
+| Deslizar ← → | Navegación en pantallas táctiles |
+
+---|---|
 | <kbd>Espacio</kbd> o <kbd>→</kbd> | Avanzar a la siguiente diapositiva |
 | <kbd>←</kbd> o <kbd>RePág</kbd> | Retroceder a la diapositiva anterior |
 | <kbd>F</kbd> | Alternar modo pantalla completa |

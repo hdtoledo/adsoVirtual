@@ -6,7 +6,7 @@
   <title>Página No Encontrada · 404 · SENA ADSO Virtual</title>
   
   <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script>
     tailwind.config = {
       theme: {
@@ -33,7 +33,7 @@
   </script>
 
   <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://unpkg.com/lucide@1.60.0/dist/umd/lucide.min.js"></script>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -114,7 +114,7 @@
           <i data-lucide="home" class="w-4 h-4"></i>
           <span>Volver al Portal Principal</span>
         </a>
-        <a id="btn-evidencias" href="index.html#explorador-evidencias" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs px-5 py-3 rounded-xl transition-all active:scale-98 border border-slate-200">
+        <a id="btn-evidencias" href="index.html#evidencias-section" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs px-5 py-3 rounded-xl transition-all active:scale-98 border border-slate-200">
           <i data-lucide="layers" class="w-4 h-4 text-slate-600"></i>
           <span>Explorador de Evidencias</span>
         </a>
@@ -161,8 +161,15 @@
         btnHome.href = repoRoot + 'index.html';
       }
       if (btnEvidencias) {
-        btnEvidencias.href = repoRoot + 'index.html#explorador-evidencias';
+        btnEvidencias.href = repoRoot + 'index.html#evidencias-section';
       }
+
+      // Favicon con la ruta base correcta (la 404 se sirve desde cualquier profundidad)
+      const icon = document.createElement('link');
+      icon.rel = 'icon';
+      icon.type = 'image/png';
+      icon.href = repoRoot + 'assets/logo_green.png';
+      document.head.appendChild(icon);
 
       // Contador de redirección automática
       let seconds = 12;

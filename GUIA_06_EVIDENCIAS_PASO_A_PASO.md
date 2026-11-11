@@ -258,7 +258,7 @@ Este documento es la **hoja de ruta maestra** para instructores y aprendices de 
 - **Tipo:** Evidencia de Desempeño.
 - **Horas Sugeridas:** 12 Horas (enmarcada en la Actividad de Aprendizaje AA3 de 48 horas).
 - **Instrumento de Evaluación:** `IE-GA6-220501096-AA3-EV02`.
-- **Diapositivas de Proyección:** Disponible en [proyeccion-evidencia-09.html](guias/guia-06/proyeccion-evidencia-09.html) (14 slides interactivas para clase sincrónica).
+- **Diapositivas de Proyección:** Sesión compartida con la EV03 en [proyeccion-evidencia-09-10.html](guias/guia-06/proyeccion-evidencia-09-10.html) (24 slides: Login y Registro en Figma, móvil y web, caso AromaSur Café S.A.S.). Material complementario: [proyeccion-evidencia-09.html](guias/guia-06/proyeccion-evidencia-09.html) (caso AgroTech).
 - **Descripción Oficial de la Guía:**
   > *"Teniendo en cuenta las características del software a desarrollar y tomando como referencia las herramientas de prototipado vistas en los componentes formativos, realice los mockups de navegación de aplicaciones web/o móvil cumpliendo con los requerimientos del software."*
 - **Elementos para tener en cuenta en el documento según la Guía:**
@@ -299,16 +299,23 @@ Este documento es la **hoja de ruta maestra** para instructores y aprendices de 
 ---
 
 #### 10. Evidencia `GA6-220501096-AA3-EV03`
-**Nombre:** Interfaces gráficas según requerimientos del proyecto formativo.  
+**Nombre:** Interfaces gráficas según requerimientos del proyecto.  
 - **Tipo:** Evidencia de Producto.
-- **Instrumento de Evaluación:** `IE-GA6-220501096-AA3-EV03`.
-- **Descripción:** Prototipo navegable de alta fidelidad (UI Design) del proyecto formativo completo, aplicando sistema de diseño formal, guía de estilos, tipografía, paleta cromática accesible (WCAG) y componentes reusables.
+- **Instrumento de Evaluación:** `IE-GA6-220501096-AA3-EV03` (lista de chequeo). Criterio: *Crea interfaces de usuario aplicando buenas prácticas de usabilidad y accesibilidad.*
+- **Diapositivas de Proyección:** Sesión compartida con la EV02 en [proyeccion-evidencia-09-10.html](guias/guia-06/proyeccion-evidencia-09-10.html).
+- **Descripción Oficial de la Guía:**
+  > *"Tomando como referencia el prototipo realizado en la evidencia EV02, según las necesidades del software a desarrollar realice el diseño web y/o móvil utilizando componentes y tecnologías vistas en los componentes formativos, se debe crear la interfaz gráfica definiendo colores, usabilidad, estilos, menús cumpliendo con las necesidades del software a desarrollar."*
 - **Paso a Paso:**
-  1. Definir sistema de diseño: Tokens de color (primario, secundario, neutrales, alertas), tipografía, espaciados e iconografía.
-  2. Diseñar todas las pantallas principales y casos borde (estados vacíos, modales, alertas de error).
-  3. Configurar micro-interacciones (hover, estados activos, loaders).
-  4. Validar contraste de colores según norma WCAG 2.1 AA.
-- **Formato de Entrega:** Carpeta ZIP con especificación técnica y enlace con permisos de previsualización al prototipo en Figma o Penpot.
+  1. Partir del prototipo de la EV02 y de los requerimientos del software.
+  2. Definir la paleta (primario, secundario, neutros y estados) verificando contraste WCAG 2.1 AA (4.5:1 en texto, 3:1 en bordes de campos).
+  3. Crear en Figma estilos de color y de texto, y componentes con estados (botón, campo de texto).
+  4. Aplicar criterios de usabilidad: etiquetas visibles, errores claros, un único botón principal y áreas táctiles de 48 px.
+  5. Diseñar los menús de navegación (barra superior en web; barra inferior o menú en móvil).
+  6. Exportar las pantallas (PNG 2x), la guía de estilos y el archivo .fig.
+- **Lineamientos Generales para la Entrega:**
+  - **Producto a Entregar:** interfaz gráfica del software en una carpeta comprimida con sus respectivos archivos.
+  - **Formato:** **ZIP** (`GA6-220501096-AA3-EV03_Nombre_Apellido.zip`).
+  - **Espacio de Envío en Zajuna LMS:** *Interfaces gráficas según requerimientos del proyecto. GA6-220501096-AA3-EV03.*
 
 ---
 

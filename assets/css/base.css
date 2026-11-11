@@ -1,0 +1,105 @@
+/* ==============================================================================
+   BASE COMPARTIDA · IDENTIDAD INSTITUCIONAL SENA
+   Portal, página 404 y presentaciones.
+   - Verde SENA Principal: #39A900 (PANTONE 361 C)
+   - Verde SENA Hover:     #2D8200
+   - Azul Institucional:   #00324D
+   - Azul Oscuro / Borde:  #00263A
+   Las fuentes se cargan con <link> en cada página (display=swap).
+   ============================================================================== */
+
+:root {
+  --sena-green: #39A900;
+  --sena-green-hover: #2D8200;
+  --sena-navy: #00324D;
+  --sena-navy-dark: #00263A;
+  --sena-navy-light: #004164;
+  --sena-bg-light: #F8FAFC;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code, pre, kbd, .font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Anti-CLS ------------------------------------------------------------------- */
+html {
+  scrollbar-gutter: stable;
+  scroll-behavior: smooth;
+}
+
+/* Reserva el espacio del icono antes de que Lucide reemplace <i data-lucide>.
+   :where() deja la especificidad en 0 para que las clases w-N / h-N de Tailwind sí apliquen. */
+:where(i[data-lucide], svg.lucide) {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+header nav a,
+.nav-link {
+  white-space: nowrap;
+}
+
+/* Utilidades institucionales ------------------------------------------------- */
+.border-sena { border-color: var(--sena-green); }
+.bg-sena { background-color: var(--sena-green); }
+.text-sena { color: var(--sena-green); }
+.bg-sena-navy { background-color: var(--sena-navy); }
+.border-sena-navy { border-color: var(--sena-navy); }
+
+.glow-sena-green { box-shadow: 0 0 25px rgba(57, 169, 0, 0.25); }
+
+.glow-danger {
+  box-shadow: 0 0 35px rgba(239, 68, 68, 0.35);
+  animation: pulse-danger-sena 2.2s infinite ease-in-out;
+}
+
+@keyframes pulse-danger-sena {
+  0%, 100% { box-shadow: 0 0 20px rgba(239, 68, 68, 0.3); border-color: rgba(239, 68, 68, 0.7); }
+  50% { box-shadow: 0 0 40px rgba(239, 68, 68, 0.6); border-color: rgba(239, 68, 68, 1); }
+}
+
+/* Tarjetas interactivas del portal */
+.card-hover {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px -10px rgba(0, 50, 77, 0.12);
+  border-color: var(--sena-green);
+}
+
+/* Foco visible accesible y consistente */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--sena-green);
+  outline-offset: 2px;
+  border-radius: 0.5rem;
+}
+
+/* Scrollbars institucionales ------------------------------------------------- */
+::-webkit-scrollbar { width: 7px; height: 7px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+.dark ::-webkit-scrollbar-track { background: var(--sena-navy-dark); }
+.dark ::-webkit-scrollbar-thumb { background: var(--sena-navy-light); }
+.dark ::-webkit-scrollbar-thumb:hover { background: var(--sena-green); }
+
+/* Accesibilidad: movimiento reducido ----------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

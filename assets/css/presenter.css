@@ -1,62 +1,16 @@
 /* ==============================================================================
-   IDENTIDAD INSTITUCIONAL SENA - GUÍA UI/UX OFICIAL
-   Colores Institucionales:
-   - Verde SENA Principal: #39A900 (PANTONE 361 C)
-   - Verde SENA Hover: #2D8200
-   - Azul Institucional SENA (Navy): #00324D
-   - Azul Oscuro Borde / Cintillo: #00263A
-   - Gris Fondo Institucional: #F8FAFC
+   MOTOR DE PRESENTACIONES · ESTILOS
+   Requiere base.css. La interfaz común (cintillo, barra de control, índice,
+   ayuda y barra inferior) la genera assets/js/presenter.js.
    ============================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+/* Reserva el alto del cintillo + barra de control mientras el motor la genera */
+[data-presenter="top"] { min-height: 6.0625rem; }
+[data-presenter="bottom"] { min-height: 3rem; }
 
-:root {
-  --sena-green: #39A900;
-  --sena-green-hover: #2D8200;
-  --sena-navy: #00324D;
-  --sena-navy-dark: #00263A;
-  --sena-navy-light: #004164;
-  --sena-bg-light: #F8FAFC;
-}
-
-body {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code, pre, .font-mono {
-  font-family: 'JetBrains Mono', monospace;
-}
-
-/* ==============================================================================
-   ESTABILIZACIÓN DE DISEÑO Y PREVENCIÓN DE SALTOS VISUALES (ANTI-CLS)
-   ============================================================================== */
-html {
-  scrollbar-gutter: stable;
-  scroll-behavior: smooth;
-}
-
-/* Evita que los iconos de Lucide salten antes de que se ejecute createIcons() */
-i[data-lucide], svg.lucide {
-  display: inline-block;
-  width: 1rem;
-  height: 1rem;
-  min-width: 1rem;
-  min-height: 1rem;
-  vertical-align: middle;
-  flex-shrink: 0;
-}
-
-/* Evita el quiebre de texto en menús y barras de navegación */
-header nav a,
-.nav-link {
-  white-space: nowrap;
-}
-
-/* Transición suave entre diapositivas y ocupación óptima de pantalla */
+/* Contenedor de diapositivas ------------------------------------------------- */
 .slide-container {
-  min-height: calc(100vh - 5.5rem);
+  min-height: calc(100vh - 9.5rem);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -70,81 +24,55 @@ header nav a,
   display: none;
   width: 100%;
   flex: 1;
+  scroll-margin-top: 6rem;
 }
 
 .slide-content.active {
   opacity: 1;
   transform: translateY(0) scale(1);
-  display: flex;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
 }
 
-/* Widescreen 16:9 enhancements for Video-beam projection */
 @media (min-width: 1536px) {
-  .slide-container {
-    padding-top: 1.25rem;
-    padding-bottom: 1.25rem;
+  .slide-container { padding-top: 1.25rem; padding-bottom: 1.25rem; }
+}
+
+/* Índice lateral (off-canvas) ------------------------------------------------ */
+.presenter-drawer {
+  transform: translateX(100%);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.presenter-drawer[data-open="true"] { transform: translateX(0); }
+
+.presenter-backdrop {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
+}
+.presenter-backdrop[data-open="true"] { opacity: 1; pointer-events: auto; }
+
+/* Cronómetro en cuenta regresiva por terminar */
+.timer-warning { color: #dc2626 !important; animation: pulse 1.2s ease-in-out infinite; }
+
+/* Impresión / Guardar como PDF: todas las diapositivas, una por página ------- */
+@media print {
+  @page { size: A4 landscape; margin: 10mm; }
+  .presenter-chrome,
+  [data-presenter] { display: none !important; }
+  body { background: #fff !important; }
+  main { padding: 0 !important; max-width: none !important; }
+  .slide-content,
+  .slide-content.hidden {
+    display: flex !important;
+    flex-direction: column;
+    opacity: 1 !important;
+    transform: none !important;
+    break-after: page;
+    page-break-after: always;
+    min-height: auto !important;
   }
-}
-
-/* Resaltado institucional SENA */
-.border-sena {
-  border-color: #39A900;
-}
-
-.bg-sena {
-  background-color: #39A900;
-}
-
-.text-sena {
-  color: #39A900;
-}
-
-.bg-sena-navy {
-  background-color: #00324D;
-}
-
-.border-sena-navy {
-  border-color: #00324D;
-}
-
-/* Efectos de proyección para videobeam */
-.glow-sena-green {
-  box-shadow: 0 0 25px rgba(57, 169, 0, 0.25);
-}
-
-.glow-danger {
-  box-shadow: 0 0 35px rgba(239, 68, 68, 0.35);
-  animation: pulse-danger-sena 2.2s infinite ease-in-out;
-}
-
-@keyframes pulse-danger-sena {
-  0%, 100% { box-shadow: 0 0 20px rgba(239, 68, 68, 0.3); border-color: rgba(239, 68, 68, 0.7); }
-  50% { box-shadow: 0 0 40px rgba(239, 68, 68, 0.6); border-color: rgba(239, 68, 68, 1); }
-}
-
-/* Scrollbars institucionales */
-::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
-}
-::-webkit-scrollbar-track {
-  background: #f1f5f9;
-}
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
-}
-
-/* Soporte para modo oscuro en videobeam */
-.dark ::-webkit-scrollbar-track {
-  background: #00263A;
-}
-.dark ::-webkit-scrollbar-thumb {
-  background: #004164;
-}
-.dark ::-webkit-scrollbar-thumb:hover {
-  background: #39A900;
+  .slide-content:last-child { break-after: auto; page-break-after: auto; }
+  .shadow-sm, .shadow-md, .shadow-lg, .shadow-xl, .shadow-2xl { box-shadow: none !important; }
 }

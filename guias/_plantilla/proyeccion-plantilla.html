@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<!--
+  PLANTILLA DE PRESENTACIÓN · ADSO Virtual
+  ---------------------------------------------------------------------------
+  Para crear una sesión nueva:
+    1. Copia este archivo a guias/guia-XX/proyeccion-evidencia-NN.html
+       (misma profundidad: las rutas ../../assets siguen funcionando).
+    2. En assets/js/catalogo.js, agrega a la evidencia el objeto `session`:
+         session: { file: 'proyeccion-evidencia-NN.html', slides: 12,
+                    title: 'Evidencia NN: …', blurb: 'Resumen de la sesión' }
+    3. Cambia data-evidencia en <body> por el id de la evidencia (ej. ev-10).
+    4. Escribe las diapositivas: una <section class="slide-content"> por cada una,
+       con data-title (índice lateral) y, opcionalmente, data-section (bloque).
+  No agregues cabecera, menú ni scripts de navegación: presenter.js los genera
+  (cintillo, progreso, índice, cronómetro, atajos y enlace a la siguiente sesión).
+-->
+<html lang="es" class="h-full bg-slate-50 antialiased">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evidencia NN: Título de la sesión · ADSO Virtual · SENA CADPH Garzón</title>
+  <meta name="description" content="Presentación interactiva para explicar la evidencia GAX-XXXXXXXXX-AAX-EVXX. Instructor: Ing. Hector David Toledo García.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/png" href="../../assets/logo_green.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind (Play CDN, versión fijada) + configuración compartida de marca -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="../../assets/js/tailwind.config.js"></script>
+
+  <!-- Iconografía Lucide (versión fijada) -->
+  <script src="https://unpkg.com/lucide@1.60.0/dist/umd/lucide.min.js"></script>
+
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/presenter.css">
+</head>
+<body class="min-h-full flex flex-col bg-slate-50 text-slate-900 font-sans selection:bg-[#39A900] selection:text-white" data-evidencia="ev-10">
+
+  <!-- Interfaz común (cintillo + barra de control): la genera assets/js/presenter.js -->
+  <div data-presenter="top"></div>
+
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 flex flex-col justify-center">
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 1 · PORTADA                                               -->
+    <!-- ===================================================================== -->
+    <section class="slide-content active min-h-[580px]" data-title="Portada y objetivos" data-section="Bloque 1: Contexto">
+      <div class="bg-white rounded-3xl border border-slate-200 p-8 sm:p-12 shadow-sm text-center relative overflow-hidden flex flex-col items-center justify-center my-auto">
+        <div class="absolute -top-32 -right-32 w-72 h-72 bg-emerald-50 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-32 -left-32 w-72 h-72 bg-sky-50 rounded-full blur-3xl pointer-events-none"></div>
+
+        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-6">
+          <span class="w-2 h-2 rounded-full bg-[#39A900]"></span>
+          Guía de Aprendizaje XX • Fase de Ejecución • ADSO
+        </span>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight max-w-4xl leading-tight mb-4">
+          Título de la evidencia con <span class="text-sena">palabra clave</span>
+        </h1>
+        <p class="text-sm sm:text-base font-mono font-bold text-slate-500 mb-8">
+          Evidencia oficial: <span class="text-slate-800">GAX-XXXXXXXXX-AAX-EVXX</span>
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-3xl text-left">
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+            <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Objetivo</p>
+            <p class="text-sm font-semibold text-slate-800 mt-1">Qué aprenderá el aprendiz</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+            <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Entregable</p>
+            <p class="text-sm font-semibold text-slate-800 mt-1">Formato exacto (PDF, ZIP…)</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+            <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Herramientas</p>
+            <p class="text-sm font-semibold text-slate-800 mt-1">Software requerido</p>
+          </div>
+        </div>
+
+        <button type="button" onclick="presenter.nextSlide()" class="mt-8 inline-flex items-center gap-2 bg-[#39A900] hover:bg-[#2D8200] text-white font-bold px-6 py-3 rounded-xl text-sm shadow-md transition-colors">
+          Iniciar explicación <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 2 · CONCEPTO + CÓDIGO                                      -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Concepto clave con ejemplo" data-section="Bloque 2: Desarrollo paso a paso">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 my-auto">
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+          <span class="text-xs font-extrabold uppercase tracking-widest text-sena">Paso 1</span>
+          <h2 class="text-2xl font-extrabold text-slate-900">Explicación del concepto</h2>
+          <p class="text-sm text-slate-600 leading-relaxed">Describe el concepto con un ejemplo del proyecto formativo.</p>
+          <ul class="space-y-2 text-sm text-slate-700">
+            <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i> Idea principal 1</li>
+            <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i> Idea principal 2</li>
+          </ul>
+        </div>
+
+        <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden">
+          <div class="flex items-center justify-between px-4 py-2.5 border-b border-white/10">
+            <span class="font-mono text-[11px] text-slate-300">ejemplo.sql</span>
+            <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto text-[13px] leading-relaxed text-emerald-200"><code>-- El botón .copy-btn copia este bloque automáticamente
+SELECT * FROM tabla;</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 3 · CHECKLIST DE ENTREGA                                   -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Checklist de entrega en Zajuna" data-section="Bloque 3: Entrega">
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm my-auto max-w-3xl mx-auto w-full">
+        <h2 class="text-2xl font-extrabold text-slate-900 mb-1">Antes de subir a Zajuna</h2>
+        <p class="text-sm text-slate-500 mb-6">Verifica cada punto del instrumento de evaluación.</p>
+        <ol class="space-y-3 text-sm text-slate-700">
+          <li class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100"><span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">1</span> Requisito 1 del checklist</li>
+          <li class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100"><span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">2</span> Requisito 2 del checklist</li>
+          <li class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100"><span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">3</span> Nomenclatura: <code class="font-mono text-xs">GAX-…-EVXX_Nombre_Apellido.zip</code></li>
+        </ol>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Barra inferior, índice y ayuda: los genera assets/js/presenter.js -->
+  <div data-presenter="bottom"></div>
+
+  <script src="../../assets/js/catalogo.js"></script>
+  <script src="../../assets/js/presenter.js"></script>
+</body>
+</html>

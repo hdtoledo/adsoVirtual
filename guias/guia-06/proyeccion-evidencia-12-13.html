@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<!-- Archivo generado. Sesión AA4-EV02 + AA4-EV03 con la demo demos/aa4-ev02-ev03-aromasur/ -->
+<html lang="es" class="h-full bg-slate-50 antialiased">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evidencias 12 y 13: Componentes y diseño front-end · ADSO Virtual · SENA CADPH Garzón</title>
+  <meta name="description" content="Sesión compartida de las evidencias GA6-220501096-AA4-EV02 y AA4-EV03: documento de componentes front-end y construcción del front-end del proyecto con HTML, CSS y JS, caso AromaSur Café.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/png" href="../../assets/logo_green.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="../../assets/js/tailwind.config.js"></script>
+  <script src="https://unpkg.com/lucide@1.60.0/dist/umd/lucide.min.js"></script>
+
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/presenter.css">
+  <style>
+    /* Código sin ligaduras: los aprendices deben ver <!-- y => tal como se escriben */
+    pre, code { font-variant-ligatures: none; }
+    /* Visor en vivo (diapositiva 23) */
+    .visor-btn { border-color: #cbd5e1; background: #fff; color: #334155; }
+    .visor-btn[aria-pressed="true"] { border-color: #39A900; background: #ecfdf5; color: #14532d; }
+  </style>
+</head>
+<body class="min-h-full flex flex-col bg-slate-50 text-slate-900 font-sans selection:bg-[#39A900] selection:text-white" data-evidencia="ev-12 ev-13">
+
+  <!-- Interfaz común (cintillo + barra de control): la genera assets/js/presenter.js -->
+  <div data-presenter="top"></div>
+
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 flex flex-col justify-center">
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 1 · PORTADA Y OBJETIVOS DE LA SESIÓN -->
+    <!-- ===================================================================== -->
+    <section class="slide-content active min-h-[580px]" data-title="Portada y objetivos de la sesión" data-section="Bloque 1: Contexto y caso">
+      <div class="my-auto w-full space-y-5">
+        <div class="bg-white rounded-3xl border border-slate-200 p-8 sm:p-12 shadow-sm text-center relative overflow-hidden flex flex-col items-center">
+          <div class="absolute -top-32 -right-32 w-72 h-72 bg-violet-50 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="absolute -bottom-32 -left-32 w-72 h-72 bg-amber-50 rounded-full blur-3xl pointer-events-none"></div>
+          <span class="relative inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-6">
+            <span class="w-2 h-2 rounded-full bg-[#39A900]"></span> Guía de Aprendizaje 06 • AA4 • Frontend Web
+          </span>
+          <h1 class="relative text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight max-w-4xl leading-tight mb-4">
+            De los componentes al <span class="text-sena">front-end</span> del proyecto
+          </h1>
+          <p class="relative text-sm sm:text-base font-mono font-bold text-slate-500 mb-8">
+            <span class="text-slate-800">GA6-220501096-AA4-EV02</span> + <span class="text-slate-800">AA4-EV03</span>
+          </p>
+          <div class="relative grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-4xl text-left">
+            <div class="p-5 rounded-2xl bg-sky-50 border border-sky-100">
+              <p class="flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-wider text-sky-800"><i data-lucide="file-text" class="w-4 h-4"></i> EV02 · Desempeño · el plano</p>
+              <p class="text-base font-bold text-slate-900 mt-1">Establecer los componentes front-end de la aplicación web</p>
+              <p class="text-sm text-slate-600 mt-1">Documento que especifica los componentes y los elementos HTML del diseño. Entrega en ZIP.</p>
+            </div>
+            <div class="p-5 rounded-2xl bg-violet-50 border border-violet-100">
+              <p class="flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-wider text-violet-800"><i data-lucide="code-xml" class="w-4 h-4"></i> EV03 · Producto · la construcción</p>
+              <p class="text-base font-bold text-slate-900 mt-1">Diseño front-end que cumpla con los requerimientos del proyecto</p>
+              <p class="text-sm text-slate-600 mt-1">Pantallas en HTML, CSS y JS que aplican el diseño de las evidencias anteriores. Carpeta en ZIP.</p>
+            </div>
+          </div>
+          <div class="relative mt-6 flex flex-wrap justify-center gap-2 text-xs font-bold">
+            <span class="px-3 py-1 rounded-full bg-amber-50 text-amber-900 border border-amber-200">Caso: AromaSur Café S.A.S. (ficticio)</span>
+            <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200">Continúa el prototipo de Figma de las EV09–10</span>
+          </div>
+          <div class="relative mt-8 flex flex-wrap justify-center gap-3">
+            <button type="button" onclick="presenter.nextSlide()" class="inline-flex items-center gap-2 bg-[#00324D] hover:bg-[#00263A] text-white font-bold px-6 py-3 rounded-xl text-sm shadow-md transition-colors">Iniciar explicación <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+            <a href="demos/aa4-ev02-ev03-aromasur/index.html" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-[#39A900] hover:bg-[#2D8200] text-white font-bold px-4 py-2.5 rounded-xl text-sm shadow-sm transition-colors"><i data-lucide="external-link" class="w-4 h-4"></i> Abrir la aplicación demo</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 2 · QUÉ PIDEN LA EV02 Y LA EV03 -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Qué piden la EV02 y la EV03" data-section="Bloque 1: Contexto y caso">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-emerald-50 border-emerald-200 text-emerald-800"><i data-lucide="clipboard-list" class="w-3.5 h-3.5"></i> Requisitos oficiales</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Dos evidencias, un mismo hilo: primero se planea, luego se construye</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">La EV02 responde <strong>qué piezas</strong> tendrá la interfaz y con qué HTML se harán. La EV03 las <strong>construye</strong> y las une en pantallas que funcionan.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-3">
+            <p class="flex items-center gap-2"><span class="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-extrabold uppercase tracking-wider bg-sky-100 text-sky-800">EV02</span> <span class="font-mono text-xs font-bold text-slate-500">GA6-220501096-AA4-EV02</span></p>
+            <blockquote class="border-l-4 border-sky-300 pl-3 text-sm text-slate-700 italic">"Con base en las características del software a desarrollar, realice un documento donde especifique la estructura de componentes que se van a utilizar para cumplir con las necesidades del software a desarrollar."</blockquote>
+            <ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sky-600 mt-0.5"></i><span>Normas básicas de un documento: <strong>portada, introducción, objetivo</strong>.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sky-600 mt-0.5"></i><span><strong>Definición de elementos HTML</strong> a utilizar en el diseño front-end.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sky-600 mt-0.5"></i><span>Producto: <strong>documento de componentes</strong> · Formato: <strong>ZIP</strong>.</span></li></ul>
+          </div>
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-3">
+            <p class="flex items-center gap-2"><span class="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-extrabold uppercase tracking-wider bg-violet-100 text-violet-800">EV03</span> <span class="font-mono text-xs font-bold text-slate-500">GA6-220501096-AA4-EV03</span></p>
+            <blockquote class="border-l-4 border-violet-300 pl-3 text-sm text-slate-700 italic">"Teniendo en cuenta las características del software a desarrollar, realice el diseño front-end cumpliendo con los requisitos del proyecto, aplicando lo visto en el componente formativo."</blockquote>
+            <ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-violet-600 mt-0.5"></i><span>Aplicar los conceptos de <strong>usabilidad y diseño</strong> de las evidencias anteriores (Figma).</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-violet-600 mt-0.5"></i><span>Usar <strong>HTML, CSS y JS</strong> para el diseño front-end.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-violet-600 mt-0.5"></i><span>Producto: <strong>carpeta con todos los archivos</strong> del front-end comprimida en <strong>ZIP</strong>.</span></li></ul>
+          </div>
+        </div>
+        
+          <div class="flex items-start gap-3 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-sm text-emerald-950">
+            <i data-lucide="lightbulb" class="w-5 h-5 text-emerald-700 mt-0.5"></i>
+            <p><strong>Coherencia entre evidencias.</strong> El documento de la EV02 es el plano y el código de la EV03 es la obra. Si el plano dice que el botón primario mide 48 px y usa <code class="font-mono">&lt;button&gt;</code>, el código debe cumplirlo. El instructor revisará que ambos coincidan.</p>
+          </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 3 · RUTA DEL PROYECTO Y REQUERIMIENTOS -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Ruta del proyecto y requerimientos" data-section="Bloque 1: Contexto y caso">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-emerald-50 border-emerald-200 text-emerald-800"><i data-lucide="route" class="w-3.5 h-3.5"></i> Caso AromaSur Café</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Seguimos con el mismo software: ahora le sumamos el pedido</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">AromaSur es una tostadora del Huila que vende café al por mayor a cafeterías y tiendas. Al Login y Registro de Figma les agregamos la pantalla principal: el catálogo para hacer pedidos.</p>
+        </header>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-2">
+          <div class="relative p-3 rounded-xl border border-slate-200 bg-white shadow-sm"><p class="flex items-center gap-2"><span class="w-8 h-8 rounded-lg bg-amber-100 text-amber-900 flex items-center justify-center"><i data-lucide="pen-tool" class="w-4 h-4"></i></span><span class="text-sm font-extrabold text-slate-900">EV09–10</span></p><p class="text-xs text-slate-600 mt-1">Prototipo y guía de estilos en Figma</p><span class="hidden lg:flex absolute -right-3 top-1/2 -translate-y-1/2 z-10 w-6 h-6 rounded-full bg-[#39A900] text-white items-center justify-center"><i data-lucide="chevron-right" class="w-4 h-4"></i></span></div><div class="relative p-3 rounded-xl border border-slate-200 bg-white shadow-sm"><p class="flex items-center gap-2"><span class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-900 flex items-center justify-center"><i data-lucide="file-code-2" class="w-4 h-4"></i></span><span class="text-sm font-extrabold text-slate-900">EV11</span></p><p class="text-xs text-slate-600 mt-1">Fundamentos de HTML, CSS y JS</p><span class="hidden lg:flex absolute -right-3 top-1/2 -translate-y-1/2 z-10 w-6 h-6 rounded-full bg-[#39A900] text-white items-center justify-center"><i data-lucide="chevron-right" class="w-4 h-4"></i></span></div><div class="relative p-3 rounded-xl border border-slate-200 bg-white shadow-sm"><p class="flex items-center gap-2"><span class="w-8 h-8 rounded-lg bg-sky-100 text-sky-900 flex items-center justify-center"><i data-lucide="file-text" class="w-4 h-4"></i></span><span class="text-sm font-extrabold text-slate-900">EV12 (AA4-EV02)</span></p><p class="text-xs text-slate-600 mt-1">Documento de componentes</p><span class="hidden lg:flex absolute -right-3 top-1/2 -translate-y-1/2 z-10 w-6 h-6 rounded-full bg-[#39A900] text-white items-center justify-center"><i data-lucide="chevron-right" class="w-4 h-4"></i></span></div><div class="relative p-3 rounded-xl border border-slate-200 bg-white shadow-sm"><p class="flex items-center gap-2"><span class="w-8 h-8 rounded-lg bg-violet-100 text-violet-900 flex items-center justify-center"><i data-lucide="code-xml" class="w-4 h-4"></i></span><span class="text-sm font-extrabold text-slate-900">EV13 (AA4-EV03)</span></p><p class="text-xs text-slate-600 mt-1">Front-end del proyecto</p></div>
+        </div>
+        
+          <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-x-auto ">
+            <table class="w-full text-sm min-w-[560px]">
+              <thead class="bg-slate-50"><tr><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Código</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Requerimiento</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Pantalla</th></tr></thead>
+              <tbody class="divide-y divide-slate-100"><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top"><span class="font-mono">RF01</span></th><td class="px-3 py-2 text-slate-600 align-top">Iniciar sesión con correo y contraseña.</td><td class="px-3 py-2 text-slate-600 align-top">Login</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top"><span class="font-mono">RF02</span></th><td class="px-3 py-2 text-slate-600 align-top">Registrarse con nombre, correo, teléfono, tipo de cliente y contraseña.</td><td class="px-3 py-2 text-slate-600 align-top">Registro</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top"><span class="font-mono">RF03</span></th><td class="px-3 py-2 text-slate-600 align-top">Ir de Login a Registro y viceversa.</td><td class="px-3 py-2 text-slate-600 align-top">Ambas</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top"><span class="font-mono">RF04</span></th><td class="px-3 py-2 text-slate-600 align-top">Aceptar la política de datos (Ley 1581 de 2012).</td><td class="px-3 py-2 text-slate-600 align-top">Registro</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top"><span class="font-mono">RF05</span> <span class="ml-1 px-1.5 py-0.5 rounded bg-amber-100 text-amber-900 text-[10px] font-extrabold uppercase">nuevo</span></th><td class="px-3 py-2 text-slate-600 align-top">Consultar el catálogo de cafés con búsqueda y filtro por perfil.</td><td class="px-3 py-2 text-slate-600 align-top">Catálogo</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top"><span class="font-mono">RF06</span> <span class="ml-1 px-1.5 py-0.5 rounded bg-amber-100 text-amber-900 text-[10px] font-extrabold uppercase">nuevo</span></th><td class="px-3 py-2 text-slate-600 align-top">Agregar cafés al pedido y ver el resumen con el total.</td><td class="px-3 py-2 text-slate-600 align-top">Catálogo</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top"><span class="font-mono">RF07</span> <span class="ml-1 px-1.5 py-0.5 rounded bg-amber-100 text-amber-900 text-[10px] font-extrabold uppercase">nuevo</span></th><td class="px-3 py-2 text-slate-600 align-top">Confirmar el pedido y consultar los pedidos anteriores.</td><td class="px-3 py-2 text-slate-600 align-top">Catálogo</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top"><span class="font-mono">RNF01</span></th><td class="px-3 py-2 text-slate-600 align-top">Interfaz adaptable a celular y escritorio.</td><td class="px-3 py-2 text-slate-600 align-top">Todas</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top"><span class="font-mono">RNF02</span></th><td class="px-3 py-2 text-slate-600 align-top">Contraste WCAG 2.1 AA y áreas táctiles de 48 px.</td><td class="px-3 py-2 text-slate-600 align-top">Todas</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top"><span class="font-mono">RNF03</span> <span class="ml-1 px-1.5 py-0.5 rounded bg-amber-100 text-amber-900 text-[10px] font-extrabold uppercase">nuevo</span></th><td class="px-3 py-2 text-slate-600 align-top">Uso completo con teclado y lector de pantalla.</td><td class="px-3 py-2 text-slate-600 align-top">Todas</td></tr></tbody>
+            </table>
+          </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 4 · MAPA DE PANTALLAS Y NAVEGACIÓN -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Mapa de pantallas y navegación" data-section="Bloque 1: Contexto y caso">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-emerald-50 border-emerald-200 text-emerald-800"><i data-lucide="git-branch" class="w-3.5 h-3.5"></i> Antes de codificar</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Tres pantallas, un diálogo y una guía de componentes</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Igual que en Figma, primero se define el flujo. Cada flecha será un enlace <code class="font-mono">&lt;a href&gt;</code> o una acción de JavaScript.</p>
+        </header>
+        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm overflow-x-auto">
+          <div class="flex items-center justify-center gap-2 min-w-[760px]">
+            <div class="p-3 rounded-xl border-2 border-amber-300 bg-white text-center min-w-[8.5rem]"><p class="flex items-center justify-center gap-1.5 text-sm font-extrabold text-slate-900"><i data-lucide="log-in" class="w-4 h-4"></i> Login</p><p class="text-[11px] text-slate-500 mt-0.5">index.html · RF01</p></div>
+            <div class="flex flex-col items-center text-[10px] font-bold text-slate-500 px-1"><i data-lucide="arrow-left-right" class="w-5 h-5 text-[#39A900]"></i><span class="text-center leading-tight">Regístrate / Inicia sesión</span></div>
+            <div class="p-3 rounded-xl border-2 border-amber-300 bg-white text-center min-w-[8.5rem]"><p class="flex items-center justify-center gap-1.5 text-sm font-extrabold text-slate-900"><i data-lucide="user-plus" class="w-4 h-4"></i> Registro</p><p class="text-[11px] text-slate-500 mt-0.5">registro.html · RF02, RF04</p></div>
+            <div class="w-px h-16 bg-slate-200 mx-2"></div>
+            <div class="p-3 rounded-xl border-2 border-slate-200 bg-white text-center min-w-[8.5rem]"><p class="flex items-center justify-center gap-1.5 text-sm font-extrabold text-slate-900"><i data-lucide="log-in" class="w-4 h-4"></i> Login</p><p class="text-[11px] text-slate-500 mt-0.5">clic en Ingresar</p></div>
+            <div class="flex flex-col items-center text-[10px] font-bold text-slate-500 px-1"><i data-lucide="arrow-right" class="w-5 h-5 text-[#39A900]"></i><span class="text-center leading-tight">valida y navega</span></div>
+            <div class="p-3 rounded-xl border-2 border-violet-300 bg-white text-center min-w-[8.5rem]"><p class="flex items-center justify-center gap-1.5 text-sm font-extrabold text-slate-900"><i data-lucide="layout-grid" class="w-4 h-4"></i> Catálogo</p><p class="text-[11px] text-slate-500 mt-0.5">catalogo.html · RF05</p></div>
+            <div class="flex flex-col items-center text-[10px] font-bold text-slate-500 px-1"><i data-lucide="arrow-right" class="w-5 h-5 text-[#39A900]"></i><span class="text-center leading-tight">Pedido</span></div>
+            <div class="p-3 rounded-xl border-2 border-violet-300 bg-white text-center min-w-[8.5rem]"><p class="flex items-center justify-center gap-1.5 text-sm font-extrabold text-slate-900"><i data-lucide="shopping-bag" class="w-4 h-4"></i> Diálogo pedido</p><p class="text-[11px] text-slate-500 mt-0.5">&lt;dialog&gt; · RF06, RF07</p></div>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+          
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="log-in" class="w-5 h-5 text-sena"></i>Login</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p>Formulario de 2 campos, mostrar contraseña y enlace a Registro.</p></div>
+          </div>
+          
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="user-plus" class="w-5 h-5 text-sena"></i>Registro</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p>6 campos con validación, tipo de cliente y aceptación de datos.</p></div>
+          </div>
+          
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="layout-grid" class="w-5 h-5 text-sena"></i>Catálogo</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p>Búsqueda, filtros, tarjetas, pedido en diálogo y tabla de pedidos.</p></div>
+          </div>
+          
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="swatch-book" class="w-5 h-5 text-sena"></i>Guía de componentes</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p>Página viva con cada componente y sus estados: el insumo de la EV02.</p></div>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-2"><a href="demos/aa4-ev02-ev03-aromasur/index.html" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-[#00324D] border border-slate-300 font-bold px-3 py-2 rounded-xl text-sm transition-colors "><i data-lucide="log-in" class="w-4 h-4"></i> Login</a> <a href="demos/aa4-ev02-ev03-aromasur/registro.html" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-[#00324D] border border-slate-300 font-bold px-3 py-2 rounded-xl text-sm transition-colors "><i data-lucide="user-plus" class="w-4 h-4"></i> Registro</a> <a href="demos/aa4-ev02-ev03-aromasur/catalogo.html" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-[#00324D] border border-slate-300 font-bold px-3 py-2 rounded-xl text-sm transition-colors "><i data-lucide="layout-grid" class="w-4 h-4"></i> Catálogo</a> <a href="demos/aa4-ev02-ev03-aromasur/componentes.html" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-[#00324D] border border-slate-300 font-bold px-3 py-2 rounded-xl text-sm transition-colors "><i data-lucide="swatch-book" class="w-4 h-4"></i> Guía de componentes</a></div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 5 · QUÉ ES UN COMPONENTE: ATOMIC DESIGN -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Qué es un componente: Atomic Design" data-section="Bloque 2: EV02 · Documento de componentes">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-sky-50 border-sky-200 text-sky-800"><i data-lucide="blocks" class="w-3.5 h-3.5"></i> EV02 · Concepto</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Una interfaz se arma como un juego de bloques</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Un <strong>componente</strong> es una pieza de interfaz reutilizable con una función, una estructura HTML, unos estilos y unos estados definidos. La metodología <strong>Atomic Design</strong> los ordena de lo más simple a lo más complejo.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+          <div class="lg:col-span-2 space-y-2">
+            
+            <div class="grid grid-cols-[6.5rem_1fr] sm:grid-cols-[9rem_1fr_1.3fr] gap-3 items-center p-3 rounded-xl border bg-sky-50 border-sky-200 text-sky-900">
+              <p class="font-extrabold text-sm"><span class="font-mono text-[11px] opacity-70">1</span><br>Átomos</p>
+              <p class="text-xs text-slate-700">La pieza mínima; no se puede dividir sin perder sentido.</p>
+              <p class="text-xs font-semibold text-slate-900 col-span-2 sm:col-span-1">Botón · insignia · casilla · contador</p>
+            </div>
+            
+            <div class="grid grid-cols-[6.5rem_1fr] sm:grid-cols-[9rem_1fr_1.3fr] gap-3 items-center p-3 rounded-xl border bg-emerald-50 border-emerald-200 text-emerald-900">
+              <p class="font-extrabold text-sm"><span class="font-mono text-[11px] opacity-70">2</span><br>Moléculas</p>
+              <p class="text-xs text-slate-700">Átomos que trabajan juntos para una tarea.</p>
+              <p class="text-xs font-semibold text-slate-900 col-span-2 sm:col-span-1">Campo de texto (etiqueta + control + error) · tarjeta de producto · chips</p>
+            </div>
+            
+            <div class="grid grid-cols-[6.5rem_1fr] sm:grid-cols-[9rem_1fr_1.3fr] gap-3 items-center p-3 rounded-xl border bg-amber-50 border-amber-200 text-amber-900">
+              <p class="font-extrabold text-sm"><span class="font-mono text-[11px] opacity-70">3</span><br>Organismos</p>
+              <p class="text-xs text-slate-700">Secciones completas formadas por moléculas.</p>
+              <p class="text-xs font-semibold text-slate-900 col-span-2 sm:col-span-1">Barra de navegación · formulario de Login · rejilla del catálogo · diálogo del pedido</p>
+            </div>
+            
+            <div class="grid grid-cols-[6.5rem_1fr] sm:grid-cols-[9rem_1fr_1.3fr] gap-3 items-center p-3 rounded-xl border bg-violet-50 border-violet-200 text-violet-900">
+              <p class="font-extrabold text-sm"><span class="font-mono text-[11px] opacity-70">4</span><br>Plantillas</p>
+              <p class="text-xs text-slate-700">La distribución de los organismos en la pantalla, sin contenido real.</p>
+              <p class="text-xs font-semibold text-slate-900 col-span-2 sm:col-span-1">Plantilla de autenticación (2 columnas) · plantilla de aplicación</p>
+            </div>
+            
+            <div class="grid grid-cols-[6.5rem_1fr] sm:grid-cols-[9rem_1fr_1.3fr] gap-3 items-center p-3 rounded-xl border bg-rose-50 border-rose-200 text-rose-900">
+              <p class="font-extrabold text-sm"><span class="font-mono text-[11px] opacity-70">5</span><br>Páginas</p>
+              <p class="text-xs text-slate-700">La plantilla con contenido real: lo que ve el usuario.</p>
+              <p class="text-xs font-semibold text-slate-900 col-span-2 sm:col-span-1">Login · Registro · Catálogo</p>
+            </div>
+          </div>
+          <div class="space-y-3">
+            
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="lightbulb" class="w-5 h-5 text-sena"></i>¿Por qué pensar en componentes?</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Se diseña y se programa <strong>una vez</strong> y se usa en muchas pantallas.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Un cambio (por ejemplo el color del botón) se hace en <strong>un solo lugar</strong>.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>La interfaz es <strong>consistente</strong>: el usuario aprende una vez cómo funciona.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Prepara el camino a React o Angular, donde todo es un componente.</span></li></ul></div>
+          </div>
+            <p class="text-xs text-slate-500">En Figma ya lo hiciste: los <em>components</em> con variantes de la EV09–10 son exactamente esto.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 6 · INVENTARIO: COMPONENTES POR PANTALLA -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Inventario: componentes por pantalla" data-section="Bloque 2: EV02 · Documento de componentes">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-sky-50 border-sky-200 text-sky-800"><i data-lucide="table-2" class="w-3.5 h-3.5"></i> EV02 · Paso 1</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Recorre tus mockups y lista cada pieza que se repite</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Abre el prototipo de Figma, pantalla por pantalla, y anota cada componente. La matriz componente × pantalla va en el documento: demuestra que cada pieza tiene un uso real.</p>
+        </header>
+        
+          <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-x-auto ">
+            <table class="w-full text-sm min-w-[640px]">
+              <thead class="bg-slate-50"><tr><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Componente</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Nivel</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Login</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Registro</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Catálogo</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Diálogo pedido</th></tr></thead>
+              <tbody class="divide-y divide-slate-100"><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Botón</th><td class="px-3 py-2 text-slate-600 align-top"><span class="text-xs font-bold text-slate-500">Átomo</span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="inline-flex w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 items-center justify-center"><i data-lucide="check" class="w-3.5 h-3.5"></i></span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="inline-flex w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 items-center justify-center"><i data-lucide="check" class="w-3.5 h-3.5"></i></span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="inline-flex w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 items-center justify-center"><i data-lucide="check" class="w-3.5 h-3.5"></i></span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="inline-flex w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 items-center justify-center"><i data-lucide="check" class="w-3.5 h-3.5"></i></span></td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Campo de texto</th><td class="px-3 py-2 text-slate-600 align-top"><span class="text-xs font-bold text-slate-500">Molécula</span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="inline-flex w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 items-center justify-center"><i data-lucide="check" class="w-3.5 h-3.5"></i></span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="inline-flex w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 items-center justify-center"><i data-lucide="check" class="w-3.5 h-3.5"></i></span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="inline-flex w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 items-center justify-center"><i data-lucide="check" class="w-3.5 h-3.5"></i></span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="text-slate-300">—</span></td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Casilla de verificación</th><td class="px-3 py-2 text-slate-600 align-top"><span class="text-xs font-bold text-slate-500">Átomo</span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="text-slate-300">—</span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="inline-flex w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 items-center justify-center"><i data-lucide="check" class="w-3.5 h-3.5"></i></span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="text-slate-300">—</span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="text-slate-300">—</span></td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Insignia</th><td class="px-3 py-2 text-slate-600 align-top"><span class="text-xs font-bold text-slate-500">Átomo</span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="text-slate-300">—</span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="text-slate-300">—</span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="inline-flex w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 items-center justify-center"><i data-lucide="check" class="w-3.5 h-3.5"></i></span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="text-slate-300">—</span></td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Chips de filtro</th><td class="px-3 py-2 text-slate-600 align-top"><span class="text-xs font-bold text-slate-500">Molécula</span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="text-slate-300">—</span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="text-slate-300">—</span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="inline-flex w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 items-center justify-center"><i data-lucide="check" class="w-3.5 h-3.5"></i></span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="text-slate-300">—</span></td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Tarjeta de producto</th><td class="px-3 py-2 text-slate-600 align-top"><span class="text-xs font-bold text-slate-500">Molécula</span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="text-slate-300">—</span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="text-slate-300">—</span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="inline-flex w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 items-center justify-center"><i data-lucide="check" class="w-3.5 h-3.5"></i></span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="text-slate-300">—</span></td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Encabezado de autenticación</th><td class="px-3 py-2 text-slate-600 align-top"><span class="text-xs font-bold text-slate-500">Organismo</span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="inline-flex w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 items-center justify-center"><i data-lucide="check" class="w-3.5 h-3.5"></i></span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="inline-flex w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 items-center justify-center"><i data-lucide="check" class="w-3.5 h-3.5"></i></span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="text-slate-300">—</span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="text-slate-300">—</span></td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Barra de navegación</th><td class="px-3 py-2 text-slate-600 align-top"><span class="text-xs font-bold text-slate-500">Organismo</span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="text-slate-300">—</span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="text-slate-300">—</span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="inline-flex w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 items-center justify-center"><i data-lucide="check" class="w-3.5 h-3.5"></i></span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="text-slate-300">—</span></td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Diálogo (modal)</th><td class="px-3 py-2 text-slate-600 align-top"><span class="text-xs font-bold text-slate-500">Organismo</span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="text-slate-300">—</span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="text-slate-300">—</span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="text-slate-300">—</span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="inline-flex w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 items-center justify-center"><i data-lucide="check" class="w-3.5 h-3.5"></i></span></td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Toast (notificación)</th><td class="px-3 py-2 text-slate-600 align-top"><span class="text-xs font-bold text-slate-500">Molécula</span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="inline-flex w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 items-center justify-center"><i data-lucide="check" class="w-3.5 h-3.5"></i></span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="inline-flex w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 items-center justify-center"><i data-lucide="check" class="w-3.5 h-3.5"></i></span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="inline-flex w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 items-center justify-center"><i data-lucide="check" class="w-3.5 h-3.5"></i></span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="inline-flex w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 items-center justify-center"><i data-lucide="check" class="w-3.5 h-3.5"></i></span></td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Tabla de datos</th><td class="px-3 py-2 text-slate-600 align-top"><span class="text-xs font-bold text-slate-500">Organismo</span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="text-slate-300">—</span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="text-slate-300">—</span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="inline-flex w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 items-center justify-center"><i data-lucide="check" class="w-3.5 h-3.5"></i></span></td><td class="px-3 py-2 text-slate-600 align-top"><span class="text-slate-300">—</span></td></tr></tbody>
+            </table>
+          </div>
+        
+          <div class="flex items-start gap-3 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-sm text-emerald-950">
+            <i data-lucide="lightbulb" class="w-5 h-5 text-emerald-700 mt-0.5"></i>
+            <p><strong>Regla práctica:</strong> Si un componente aparece en una sola pantalla y es muy específico, no lo fuerces a ser genérico. Si aparece en dos o más (como el botón o el campo), documéntalo con todas sus variantes.</p>
+          </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 7 · FICHA TÉCNICA DE UN COMPONENTE: EL BOTÓN -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Ficha técnica de un componente: el botón" data-section="Bloque 2: EV02 · Documento de componentes">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-sky-50 border-sky-200 text-sky-800"><i data-lucide="file-text" class="w-3.5 h-3.5"></i> EV02 · Paso 2</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Cada componente se documenta con la misma ficha</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Usa siempre los mismos 8 campos. Así el documento es fácil de leer y cualquier desarrollador del equipo construye el componente igual.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-5">
+          <div class="lg:col-span-3 bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+            <table class="w-full text-sm">
+              <tbody class="divide-y divide-slate-100">
+                <tr><th scope="row" class="w-36 px-4 py-2.5 text-left text-xs font-extrabold uppercase tracking-wider text-sky-800 bg-sky-50 align-top">Nombre</th><td class="px-4 py-2.5 text-slate-700">Botón</td></tr><tr><th scope="row" class="w-36 px-4 py-2.5 text-left text-xs font-extrabold uppercase tracking-wider text-sky-800 bg-sky-50 align-top">Propósito</th><td class="px-4 py-2.5 text-slate-700">Ejecutar una acción: enviar, agregar, abrir o confirmar.</td></tr><tr><th scope="row" class="w-36 px-4 py-2.5 text-left text-xs font-extrabold uppercase tracking-wider text-sky-800 bg-sky-50 align-top">Elementos HTML</th><td class="px-4 py-2.5 text-slate-700"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;button type=&quot;submit&quot;&gt;</code> en formularios, <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;button type=&quot;button&quot;&gt;</code> para acciones y <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;a href&gt;</code> si navega a otra página.</td></tr><tr><th scope="row" class="w-36 px-4 py-2.5 text-left text-xs font-extrabold uppercase tracking-wider text-sky-800 bg-sky-50 align-top">Clases CSS</th><td class="px-4 py-2.5 text-slate-700"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">.boton</code> + <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">--primario</code> <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">--secundario</code> <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">--texto</code> <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">--icono</code> <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">--bloque</code></td></tr><tr><th scope="row" class="w-36 px-4 py-2.5 text-left text-xs font-extrabold uppercase tracking-wider text-sky-800 bg-sky-50 align-top">Variantes</th><td class="px-4 py-2.5 text-slate-700">Primario (acción principal, una por pantalla), secundario, de texto y solo icono.</td></tr><tr><th scope="row" class="w-36 px-4 py-2.5 text-left text-xs font-extrabold uppercase tracking-wider text-sky-800 bg-sky-50 align-top">Estados</th><td class="px-4 py-2.5 text-slate-700">Normal, hover, foco, deshabilitado y cargando.</td></tr><tr><th scope="row" class="w-36 px-4 py-2.5 text-left text-xs font-extrabold uppercase tracking-wider text-sky-800 bg-sky-50 align-top">Accesibilidad</th><td class="px-4 py-2.5 text-slate-700">Alto mínimo 48 px; foco visible; <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">aria-label</code> si solo tiene icono; <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">aria-busy</code> mientras carga.</td></tr><tr><th scope="row" class="w-36 px-4 py-2.5 text-left text-xs font-extrabold uppercase tracking-wider text-sky-800 bg-sky-50 align-top">Se usa en</th><td class="px-4 py-2.5 text-slate-700">Login, Registro, Catálogo, Diálogo del pedido.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="lg:col-span-2 space-y-3">
+            <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-3" style="font-family:Inter,system-ui,sans-serif">
+              <p class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Variantes</p>
+              <div class="flex flex-wrap gap-2"><span class="inline-flex items-center justify-center gap-2 h-12 px-5 rounded-xl text-sm font-semibold" style="background:#5B3A29;color:#fff;border:2px solid #5B3A29">Ingresar</span><span class="inline-flex items-center justify-center gap-2 h-12 px-5 rounded-xl text-sm font-semibold" style="background:transparent;color:#5B3A29;border:2px solid #5B3A29">Agregar</span><span class="inline-flex items-center justify-center gap-2 h-12 px-5 rounded-xl text-sm font-semibold" style="background:transparent;color:#8B5E3C;border:2px solid transparent;text-decoration:underline">¿Olvidaste tu contraseña?</span></div>
+              <p class="text-xs font-extrabold uppercase tracking-wider text-slate-500 pt-2">Estados del primario</p>
+              <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-500 text-center">
+                <div class="space-y-1"><span class="inline-flex items-center justify-center gap-2 h-12 px-5 rounded-xl text-sm font-semibold" style="background:#5B3A29;color:#fff;border:2px solid #5B3A29">Normal</span><p>normal</p></div>
+                <div class="space-y-1"><span class="inline-flex items-center justify-center gap-2 h-12 px-5 rounded-xl text-sm font-semibold" style="background:#45291C;color:#fff;border:2px solid #45291C">Hover</span><p>:hover</p></div>
+                <div class="space-y-1"><span class="inline-flex items-center justify-center gap-2 h-12 px-5 rounded-xl text-sm font-semibold" style="background:#5B3A29;color:#fff;border:2px solid #5B3A29;outline:3px solid #B4532A;outline-offset:2px">Foco</span><p>:focus-visible</p></div>
+                <div class="space-y-1"><span class="inline-flex items-center justify-center gap-2 h-12 px-5 rounded-xl text-sm font-semibold" style="background:#5B3A29;color:#fff;border:2px solid #5B3A29;opacity:.55">Inactivo</span><p>:disabled</p></div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-500">Para el documento, toma las capturas desde la <a href="demos/aa4-ev02-ev03-aromasur/componentes.html#boton" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-[#00324D] border border-slate-300 font-bold px-3 py-2 rounded-xl text-sm transition-colors !px-2 !py-1 !text-xs"><i data-lucide="swatch-book" class="w-4 h-4"></i> Guía de componentes</a>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 8 · FICHA DEL CAMPO DE TEXTO: ANATOMÍA Y ESTADOS -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Ficha del campo de texto: anatomía y estados" data-section="Bloque 2: EV02 · Documento de componentes">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-sky-50 border-sky-200 text-sky-800"><i data-lucide="text-cursor-input" class="w-3.5 h-3.5"></i> EV02 · Paso 3</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">El campo de texto es la molécula más importante de un formulario</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">En el documento, describe su <strong>anatomía</strong> (de qué partes está hecho) y dibuja cada <strong>estado</strong>. Son los mismos estados del componente de Figma.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-4">
+            <p class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Anatomía</p>
+            <div class="relative rounded-xl bg-slate-50 p-4 space-y-1" style="font-family:Inter,system-ui,sans-serif">
+              <p class="text-[12px] font-semibold flex items-center gap-2" style="color:#1F1A17"><span class="w-5 h-5 rounded-full bg-sky-600 text-white text-[10px] font-extrabold flex items-center justify-center">1</span>Teléfono celular</p>
+              <div class="h-11 rounded-xl px-3 flex items-center justify-between text-[13px] bg-white" style="border:1.5px solid #8F8176"><span>3001234567</span><span class="w-5 h-5 rounded-full bg-sky-600 text-white text-[10px] font-extrabold flex items-center justify-center">2</span></div>
+              <p class="text-[11px] flex items-center gap-2" style="color:#6F6259"><span class="w-5 h-5 rounded-full bg-sky-600 text-white text-[10px] font-extrabold flex items-center justify-center">3</span>10 dígitos, por ejemplo 3001234567.</p>
+              <p class="text-[11px] font-semibold flex items-center gap-2" style="color:#B42318"><span class="w-5 h-5 rounded-full bg-sky-600 text-white text-[10px] font-extrabold flex items-center justify-center">4</span>Mensaje de error (vacío si todo está bien)</p>
+            </div>
+            <ol class="space-y-2 text-sm">
+              <li class="flex items-start gap-3"><span class="w-6 h-6 rounded-full bg-sky-600 text-white text-xs font-extrabold flex items-center justify-center shrink-0">1</span><span><strong class="text-slate-900">Etiqueta</strong> <span class="text-slate-600"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;label for=&quot;telefono&quot;&gt;</code> siempre visible.</span></span></li>
+              <li class="flex items-start gap-3"><span class="w-6 h-6 rounded-full bg-sky-600 text-white text-xs font-extrabold flex items-center justify-center shrink-0">2</span><span><strong class="text-slate-900">Control</strong> <span class="text-slate-600"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;input id=&quot;telefono&quot; type=&quot;tel&quot;&gt;</code> con <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">autocomplete</code> e <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">inputmode</code>.</span></span></li>
+              <li class="flex items-start gap-3"><span class="w-6 h-6 rounded-full bg-sky-600 text-white text-xs font-extrabold flex items-center justify-center shrink-0">3</span><span><strong class="text-slate-900">Ayuda</strong> <span class="text-slate-600"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;p class=&quot;campo__ayuda&quot;&gt;</code> explica el formato antes del error.</span></span></li>
+              <li class="flex items-start gap-3"><span class="w-6 h-6 rounded-full bg-sky-600 text-white text-xs font-extrabold flex items-center justify-center shrink-0">4</span><span><strong class="text-slate-900">Error</strong> <span class="text-slate-600"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;p class=&quot;campo__error&quot;&gt;</code> conectado con <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">aria-describedby</code>.</span></span></li>
+            </ol>
+          </div>
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-4">
+            <p class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Estados</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div><div class="space-y-1" style="font-family:Inter,system-ui,sans-serif"><p class="text-[12px] font-semibold" style="color:#1F1A17">Vacío</p><div class="h-11 rounded-xl px-3 flex items-center text-[13px]" style="border:1.5px solid #8F8176;background:#fff;color:#1F1A17"><span style="color:#6F6259">nombre@negocio.com</span></div><p class="text-[11px]" style="color:#6F6259">&nbsp;</p></div><p class="text-[11px] font-mono text-slate-400 mt-1">placeholder solo de ejemplo</p></div>
+              <div><div class="space-y-1" style="font-family:Inter,system-ui,sans-serif"><p class="text-[12px] font-semibold" style="color:#1F1A17">Con foco</p><div class="h-11 rounded-xl px-3 flex items-center text-[13px]" style="border:1.5px solid #5B3A29;background:#fff;color:#1F1A17;box-shadow:0 0 0 3px rgb(180 83 42 / .35)">laura@</div><p class="text-[11px]" style="color:#6F6259">&nbsp;</p></div><p class="text-[11px] font-mono text-slate-400 mt-1">:focus · anillo de acento</p></div>
+              <div><div class="space-y-1" style="font-family:Inter,system-ui,sans-serif"><p class="text-[12px] font-semibold" style="color:#1F1A17">Con error</p><div class="h-11 rounded-xl px-3 flex items-center text-[13px]" style="border:1.5px solid #B42318;background:#fff;color:#1F1A17">300 12</div><p class="text-[11px] font-semibold" style="color:#B42318">Escribe 10 dígitos que empiecen por 3.</p></div><p class="text-[11px] font-mono text-slate-400 mt-1">aria-invalid="true"</p></div>
+              <div><div class="space-y-1" style="font-family:Inter,system-ui,sans-serif"><p class="text-[12px] font-semibold" style="color:#1F1A17">Deshabilitado</p><div class="h-11 rounded-xl px-3 flex items-center text-[13px]" style="border:1.5px solid #8F8176;background:#FAF7F2;color:#6F6259">No editable</div><p class="text-[11px]" style="color:#6F6259">&nbsp;</p></div><p class="text-[11px] font-mono text-slate-400 mt-1">disabled</p></div>
+            </div>
+            
+          <div class="flex items-start gap-3 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-sm text-emerald-950">
+            <i data-lucide="lightbulb" class="w-5 h-5 text-emerald-700 mt-0.5"></i>
+            <p><strong>Accesibilidad:</strong> El error no se comunica solo con el color rojo: siempre hay un texto que explica cómo corregir. Así lo entienden personas daltónicas y lectores de pantalla.</p>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 9 · FICHAS RESUMIDAS DEL RESTO DE COMPONENTES -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Fichas resumidas del resto de componentes" data-section="Bloque 2: EV02 · Documento de componentes">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-sky-50 border-sky-200 text-sky-800"><i data-lucide="boxes" class="w-3.5 h-3.5"></i> EV02 · Paso 4</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Una ficha por componente del inventario</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Estas son las fichas resumidas de los demás componentes de AromaSur. En tu documento cada una lleva además su captura.</p>
+        </header>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+          
+          <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm space-y-2">
+            <p class="flex items-center gap-2 font-extrabold text-slate-900"><i data-lucide="shopping-bag" class="w-5 h-5 text-sky-600"></i> Tarjeta de producto <span class="ml-auto text-[10px] font-bold uppercase tracking-wider text-slate-400">Molécula</span></p>
+            <dl class="text-xs space-y-1.5"><div><dt class="inline font-bold text-slate-700">HTML:</dt> <dd class="inline text-slate-600"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;article&gt;</code>, <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;img alt&gt;</code>, <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;h3&gt;</code>, <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;p&gt;</code>, insignia y botón</dd></div><div><dt class="inline font-bold text-slate-700">Estados:</dt> <dd class="inline text-slate-600">Normal; botón con hover y foco</dd></div><div><dt class="inline font-bold text-slate-700">Accesibilidad:</dt> <dd class="inline text-slate-600"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">aria-label=&quot;Agregar Huila Supremo al pedido&quot;</code></dd></div><div><dt class="inline font-bold text-slate-700">Uso:</dt> <dd class="inline text-slate-600">Catálogo (generada con JS desde un template)</dd></div></dl>
+          </div>
+          
+          <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm space-y-2">
+            <p class="flex items-center gap-2 font-extrabold text-slate-900"><i data-lucide="navigation" class="w-5 h-5 text-sky-600"></i> Barra de navegación <span class="ml-auto text-[10px] font-bold uppercase tracking-wider text-slate-400">Organismo</span></p>
+            <dl class="text-xs space-y-1.5"><div><dt class="inline font-bold text-slate-700">HTML:</dt> <dd class="inline text-slate-600"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;nav aria-label=&quot;Principal&quot;&gt;</code>, <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;ul&gt;</code>, <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;a&gt;</code></dd></div><div><dt class="inline font-bold text-slate-700">Variantes:</dt> <dd class="inline text-slate-600">Inferior fija en móvil; superior en escritorio</dd></div><div><dt class="inline font-bold text-slate-700">Estados:</dt> <dd class="inline text-slate-600">Actual con <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">aria-current=&quot;page&quot;</code></dd></div><div><dt class="inline font-bold text-slate-700">Uso:</dt> <dd class="inline text-slate-600">Pantallas internas</dd></div></dl>
+          </div>
+          
+          <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm space-y-2">
+            <p class="flex items-center gap-2 font-extrabold text-slate-900"><i data-lucide="message-square" class="w-5 h-5 text-sky-600"></i> Diálogo (modal) <span class="ml-auto text-[10px] font-bold uppercase tracking-wider text-slate-400">Organismo</span></p>
+            <dl class="text-xs space-y-1.5"><div><dt class="inline font-bold text-slate-700">HTML:</dt> <dd class="inline text-slate-600"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;dialog&gt;</code> con <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;h2&gt;</code>, cuerpo y acciones</dd></div><div><dt class="inline font-bold text-slate-700">Comportamiento:</dt> <dd class="inline text-slate-600"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">showModal()</code>, cierra con Esc, atrapa el foco</dd></div><div><dt class="inline font-bold text-slate-700">Accesibilidad:</dt> <dd class="inline text-slate-600"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">aria-labelledby</code> al título</dd></div><div><dt class="inline font-bold text-slate-700">Uso:</dt> <dd class="inline text-slate-600">Resumen y confirmación del pedido</dd></div></dl>
+          </div>
+          
+          <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm space-y-2">
+            <p class="flex items-center gap-2 font-extrabold text-slate-900"><i data-lucide="bell" class="w-5 h-5 text-sky-600"></i> Toast <span class="ml-auto text-[10px] font-bold uppercase tracking-wider text-slate-400">Molécula</span></p>
+            <dl class="text-xs space-y-1.5"><div><dt class="inline font-bold text-slate-700">HTML:</dt> <dd class="inline text-slate-600">Región <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">role=&quot;status&quot;</code> + <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">aria-live=&quot;polite&quot;</code></dd></div><div><dt class="inline font-bold text-slate-700">Variantes:</dt> <dd class="inline text-slate-600">Info, éxito y error</dd></div><div><dt class="inline font-bold text-slate-700">Comportamiento:</dt> <dd class="inline text-slate-600">Aparece abajo y se va a los 3,5 s</dd></div><div><dt class="inline font-bold text-slate-700">Uso:</dt> <dd class="inline text-slate-600">Confirmar acciones en todas las pantallas</dd></div></dl>
+          </div>
+          
+          <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm space-y-2">
+            <p class="flex items-center gap-2 font-extrabold text-slate-900"><i data-lucide="filter" class="w-5 h-5 text-sky-600"></i> Chips de filtro <span class="ml-auto text-[10px] font-bold uppercase tracking-wider text-slate-400">Molécula</span></p>
+            <dl class="text-xs space-y-1.5"><div><dt class="inline font-bold text-slate-700">HTML:</dt> <dd class="inline text-slate-600"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;fieldset&gt;</code>, <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;legend&gt;</code>, <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;input type=&quot;radio&quot;&gt;</code></dd></div><div><dt class="inline font-bold text-slate-700">Estados:</dt> <dd class="inline text-slate-600">Seleccionado (<code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">:checked</code>) y foco</dd></div><div><dt class="inline font-bold text-slate-700">Accesibilidad:</dt> <dd class="inline text-slate-600">Flechas del teclado para cambiar de opción</dd></div><div><dt class="inline font-bold text-slate-700">Uso:</dt> <dd class="inline text-slate-600">Filtro por perfil de taza</dd></div></dl>
+          </div>
+          
+          <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm space-y-2">
+            <p class="flex items-center gap-2 font-extrabold text-slate-900"><i data-lucide="table-2" class="w-5 h-5 text-sky-600"></i> Tabla de datos <span class="ml-auto text-[10px] font-bold uppercase tracking-wider text-slate-400">Organismo</span></p>
+            <dl class="text-xs space-y-1.5"><div><dt class="inline font-bold text-slate-700">HTML:</dt> <dd class="inline text-slate-600"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;table&gt;</code>, <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;caption&gt;</code>, <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;th scope&gt;</code></dd></div><div><dt class="inline font-bold text-slate-700">Responsive:</dt> <dd class="inline text-slate-600">Contenedor con scroll horizontal</dd></div><div><dt class="inline font-bold text-slate-700">Accesibilidad:</dt> <dd class="inline text-slate-600"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">tabindex=&quot;0&quot;</code> para desplazarla con teclado</dd></div><div><dt class="inline font-bold text-slate-700">Uso:</dt> <dd class="inline text-slate-600">Mis pedidos</dd></div></dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 10 · DEFINICIÓN DE ELEMENTOS HTML A UTILIZAR -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Definición de elementos HTML a utilizar" data-section="Bloque 2: EV02 · Documento de componentes">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-sky-50 border-sky-200 text-sky-800"><i data-lucide="code-xml" class="w-3.5 h-3.5"></i> EV02 · Requisito explícito</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Qué etiqueta HTML usará cada parte del diseño</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">La guía pide expresamente la <strong>definición de elementos HTML</strong>. Preséntala como una tabla: elemento, para qué se usa y en qué componente.</p>
+        </header>
+        
+          <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-x-auto ">
+            <table class="w-full text-sm min-w-[680px]">
+              <thead class="bg-slate-50"><tr><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Elemento HTML</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Para qué se usa</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Componente / pantalla</th></tr></thead>
+              <tbody class="divide-y divide-slate-100"><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;header&gt;</code> <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;main&gt;</code> <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;footer&gt;</code></th><td class="px-3 py-2 text-slate-600 align-top">Regiones de cada página</td><td class="px-3 py-2 text-slate-600 align-top">Encabezados de autenticación y de la app</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;nav&gt;</code> <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;ul&gt;</code> <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;a&gt;</code></th><td class="px-3 py-2 text-slate-600 align-top">Navegación y enlaces entre pantallas</td><td class="px-3 py-2 text-slate-600 align-top">Barra de navegación, RF03</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;section&gt;</code> <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;aside&gt;</code></th><td class="px-3 py-2 text-slate-600 align-top">Agrupar contenido con título / contenido complementario</td><td class="px-3 py-2 text-slate-600 align-top">Catálogo, Mis pedidos, panel de marca</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;form&gt;</code> <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;label&gt;</code></th><td class="px-3 py-2 text-slate-600 align-top">Formularios con etiquetas asociadas</td><td class="px-3 py-2 text-slate-600 align-top">Login, Registro</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;input type=&quot;email|password|tel|search&quot;&gt;</code></th><td class="px-3 py-2 text-slate-600 align-top">Captura de datos con el teclado correcto en el celular</td><td class="px-3 py-2 text-slate-600 align-top">Campo de texto, buscador</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;input type=&quot;checkbox|radio&quot;&gt;</code> <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;fieldset&gt;</code> <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;legend&gt;</code></th><td class="px-3 py-2 text-slate-600 align-top">Aceptaciones y opciones excluyentes</td><td class="px-3 py-2 text-slate-600 align-top">Casilla RF04, chips de filtro</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;select&gt;</code> <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;option&gt;</code></th><td class="px-3 py-2 text-slate-600 align-top">Elegir de una lista cerrada</td><td class="px-3 py-2 text-slate-600 align-top">Tipo de cliente</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;button&gt;</code></th><td class="px-3 py-2 text-slate-600 align-top">Acciones (enviar, agregar, abrir)</td><td class="px-3 py-2 text-slate-600 align-top">Botón, mostrar contraseña</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;article&gt;</code> <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;img&gt;</code> <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;h3&gt;</code></th><td class="px-3 py-2 text-slate-600 align-top">Contenido autónomo con imagen y título</td><td class="px-3 py-2 text-slate-600 align-top">Tarjeta de producto</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;template&gt;</code></th><td class="px-3 py-2 text-slate-600 align-top">Molde HTML que JS clona</td><td class="px-3 py-2 text-slate-600 align-top">Tarjeta de producto</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;dialog&gt;</code></th><td class="px-3 py-2 text-slate-600 align-top">Ventana modal nativa</td><td class="px-3 py-2 text-slate-600 align-top">Diálogo del pedido</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;table&gt;</code> <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;caption&gt;</code> <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;th scope&gt;</code></th><td class="px-3 py-2 text-slate-600 align-top">Datos tabulares</td><td class="px-3 py-2 text-slate-600 align-top">Mis pedidos</td></tr></tbody>
+            </table>
+          </div>
+        <p class="text-xs text-slate-500">Criterio para elegir: usa la etiqueta que <strong>describe</strong> el contenido. Un botón que parece enlace sigue siendo <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;button&gt;</code> si ejecuta una acción, y un enlace que parece botón sigue siendo <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;a&gt;</code> si lleva a otra página.</p>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 11 · TOKENS, NOMBRES Y REGLAS COMUNES -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Tokens, nombres y reglas comunes" data-section="Bloque 2: EV02 · Documento de componentes">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-sky-50 border-sky-200 text-sky-800"><i data-lucide="swatch-book" class="w-3.5 h-3.5"></i> EV02 · Paso 5</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Los estilos de Figma se vuelven variables de código</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Documenta la relación entre cada estilo de Figma y su variable CSS (<em>token</em>). También define cómo se nombran las clases y las reglas que cumplen todos los componentes.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-5">
+          
+          <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-x-auto lg:col-span-3">
+            <table class="w-full text-sm min-w-[460px]">
+              <thead class="bg-slate-50"><tr><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Estilo en Figma</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Variable CSS</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Valor</th></tr></thead>
+              <tbody class="divide-y divide-slate-100"><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Marca/Primario 700</th><td class="px-3 py-2 text-slate-600 align-top"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">--color-primario-700</code></td><td class="px-3 py-2 text-slate-600 align-top"><span class="inline-block w-4 h-4 rounded align-middle" style="background:#5B3A29"></span> #5B3A29</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Marca/Acento</th><td class="px-3 py-2 text-slate-600 align-top"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">--color-acento</code></td><td class="px-3 py-2 text-slate-600 align-top"><span class="inline-block w-4 h-4 rounded align-middle" style="background:#B4532A"></span> #B4532A</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Neutro/Borde campo</th><td class="px-3 py-2 text-slate-600 align-top"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">--color-borde-campo</code></td><td class="px-3 py-2 text-slate-600 align-top"><span class="inline-block w-4 h-4 rounded align-middle" style="background:#8F8176"></span> #8F8176</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Título/H1</th><td class="px-3 py-2 text-slate-600 align-top"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">--texto-h1</code></td><td class="px-3 py-2 text-slate-600 align-top">Poppins SemiBold 24 → 32 px</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Texto/Cuerpo</th><td class="px-3 py-2 text-slate-600 align-top"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">--texto-cuerpo</code></td><td class="px-3 py-2 text-slate-600 align-top">Inter 16 px</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Auto layout 16</th><td class="px-3 py-2 text-slate-600 align-top"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">--espacio-4</code></td><td class="px-3 py-2 text-slate-600 align-top">1rem = 16 px</td></tr></tbody>
+            </table>
+          </div>
+          <div class="lg:col-span-2 space-y-3">
+            
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="tag" class="w-5 h-5 text-sky-600"></i>Nombres de clases: BEM</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p><strong>B</strong>loque, <strong>E</strong>lemento, <strong>M</strong>odificador:</p><p class="font-mono text-xs bg-slate-50 rounded-lg p-2 mt-1">.campo · .campo__error · .boton--primario</p><p>Al leer la clase sabes a qué componente pertenece y qué variante es.</p></div>
+          </div>
+            
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="shield-check" class="w-5 h-5 text-sky-600"></i>Reglas para todos</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sky-600 mt-0.5"></i><span>Contraste 4.5:1 en textos y 3:1 en bordes.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sky-600 mt-0.5"></i><span>Áreas táctiles de 48 px.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sky-600 mt-0.5"></i><span>Foco visible con el color de acento.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sky-600 mt-0.5"></i><span>Nada de colores escritos a mano: solo tokens.</span></li></ul></div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 12 · ESTRUCTURA DEL DOCUMENTO DE LA EV02 -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Estructura del documento de la EV02" data-section="Bloque 2: EV02 · Documento de componentes">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-sky-50 border-sky-200 text-sky-800"><i data-lucide="file-check-2" class="w-3.5 h-3.5"></i> EV02 · Documento</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">El documento de componentes, sección por sección</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Las tres primeras secciones las exige la guía como normas básicas de presentación; las demás demuestran que especificaste la estructura de componentes.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-5">
+          <ol class="lg:col-span-3 space-y-2">
+            <li class="flex items-start gap-3 p-3 rounded-xl bg-white border border-slate-200 shadow-sm"><span class="w-7 h-7 rounded-full bg-sky-600 text-white font-extrabold text-xs flex items-center justify-center shrink-0">1</span><div><p class="text-sm font-extrabold text-slate-900">Portada</p><p class="text-xs text-slate-600">Título de la evidencia, código GA6-220501096-AA4-EV02, nombre del software, aprendiz, ficha, instructor y centro.</p></div></li><li class="flex items-start gap-3 p-3 rounded-xl bg-white border border-slate-200 shadow-sm"><span class="w-7 h-7 rounded-full bg-sky-600 text-white font-extrabold text-xs flex items-center justify-center shrink-0">2</span><div><p class="text-sm font-extrabold text-slate-900">Introducción</p><p class="text-xs text-slate-600">Qué es el software, a quién sirve y para qué sirve este documento.</p></div></li><li class="flex items-start gap-3 p-3 rounded-xl bg-white border border-slate-200 shadow-sm"><span class="w-7 h-7 rounded-full bg-sky-600 text-white font-extrabold text-xs flex items-center justify-center shrink-0">3</span><div><p class="text-sm font-extrabold text-slate-900">Objetivo</p><p class="text-xs text-slate-600">Ej.: "Especificar los componentes front-end y los elementos HTML que se usarán en el diseño del software AromaSur".</p></div></li><li class="flex items-start gap-3 p-3 rounded-xl bg-white border border-slate-200 shadow-sm"><span class="w-7 h-7 rounded-full bg-sky-100 text-sky-800 font-extrabold text-xs flex items-center justify-center shrink-0">4</span><div><p class="text-sm font-extrabold text-slate-900">Requerimientos</p><p class="text-xs text-slate-600">Tabla RF/RNF que justifican los componentes (de tu análisis de requisitos).</p></div></li><li class="flex items-start gap-3 p-3 rounded-xl bg-white border border-slate-200 shadow-sm"><span class="w-7 h-7 rounded-full bg-sky-100 text-sky-800 font-extrabold text-xs flex items-center justify-center shrink-0">5</span><div><p class="text-sm font-extrabold text-slate-900">Tokens de diseño</p><p class="text-xs text-slate-600">Paleta con contraste, tipografía y espaciado (relación Figma → CSS).</p></div></li><li class="flex items-start gap-3 p-3 rounded-xl bg-white border border-slate-200 shadow-sm"><span class="w-7 h-7 rounded-full bg-sky-600 text-white font-extrabold text-xs flex items-center justify-center shrink-0">6</span><div><p class="text-sm font-extrabold text-slate-900">Definición de elementos HTML</p><p class="text-xs text-slate-600">La tabla elemento → uso → componente. <strong>Requisito explícito de la guía.</strong></p></div></li><li class="flex items-start gap-3 p-3 rounded-xl bg-white border border-slate-200 shadow-sm"><span class="w-7 h-7 rounded-full bg-sky-100 text-sky-800 font-extrabold text-xs flex items-center justify-center shrink-0">7</span><div><p class="text-sm font-extrabold text-slate-900">Catálogo de componentes</p><p class="text-xs text-slate-600">Una ficha de 8 campos por componente, con su captura.</p></div></li><li class="flex items-start gap-3 p-3 rounded-xl bg-white border border-slate-200 shadow-sm"><span class="w-7 h-7 rounded-full bg-sky-100 text-sky-800 font-extrabold text-xs flex items-center justify-center shrink-0">8</span><div><p class="text-sm font-extrabold text-slate-900">Matriz componente × pantalla</p><p class="text-xs text-slate-600">Dónde se usa cada componente.</p></div></li><li class="flex items-start gap-3 p-3 rounded-xl bg-white border border-slate-200 shadow-sm"><span class="w-7 h-7 rounded-full bg-sky-100 text-sky-800 font-extrabold text-xs flex items-center justify-center shrink-0">9</span><div><p class="text-sm font-extrabold text-slate-900">Conclusiones y referencias</p><p class="text-xs text-slate-600">Lo aprendido y las fuentes consultadas (MDN, WCAG).</p></div></li>
+          </ol>
+          <div class="lg:col-span-2 space-y-3">
+            
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="swatch-book" class="w-5 h-5 text-sky-600"></i>Usa la guía viva</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p>Abre la <a class="font-bold text-sky-700 underline" href="demos/aa4-ev02-ev03-aromasur/componentes.html" target="_blank" rel="noopener">Guía de componentes</a> de la demo: tiene una ficha por componente con sus estados listos para capturar. Haz la tuya con los componentes de <strong>tu</strong> proyecto.</p></div>
+          </div>
+            
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="package-check" class="w-5 h-5 text-sky-600"></i>Entrega EV02</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sky-600 mt-0.5"></i><span>Documento en Word o PDF dentro de un <strong>ZIP</strong>.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sky-600 mt-0.5"></i><span>Nombre: <code class="font-mono text-xs">GA6-220501096-AA4-EV02_Nombre_Apellido.zip</code></span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sky-600 mt-0.5"></i><span>Espacio en Zajuna: <em>Establecer los componentes front-end de la aplicación web. GA6-220501096-AA4-EV02.</em></span></li></ul></div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 13 · ARQUITECTURA DEL PROYECTO FRONT-END -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Arquitectura del proyecto front-end" data-section="Bloque 3: EV03 · Arquitectura y estilos">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-violet-50 border-violet-200 text-violet-800"><i data-lucide="folder-tree" class="w-3.5 h-3.5"></i> EV03 · Paso 1</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Los archivos se organizan igual que los componentes</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">CSS en capas de lo general a lo específico y JavaScript separado por responsabilidad: lo compartido en un archivo, lo propio de cada pantalla en otro.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>estructura del proyecto</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de estructura del proyecto">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[12px] leading-relaxed text-slate-100 flex-1 "><code>aa4-ev02-ev03-aromasur/
+├── index.html          ← Login (RF01)
+├── registro.html       ← Registro (RF02, RF04)
+├── catalogo.html       ← Catálogo y pedido (RF05–RF07)
+├── componentes.html    ← Guía viva de componentes
+├── css/
+│   ├── tokens.css      ← 1. variables (colores, tipografía, espacios)
+│   ├── base.css        ← 2. reset, tipografía base, utilidades
+│   ├── componentes.css ← 3. botón, campo, tarjeta, diálogo…
+│   └── layouts.css     ← 4. plantillas de pantalla
+├── js/
+│   ├── ui.js           ← toast, mostrar contraseña, estado de carga
+│   ├── validacion.js   ← validación reutilizable de formularios
+│   ├── login.js · registro.js · catalogo.js  ← uno por pantalla
+│   └── guia.js
+└── img/                ← logo y bolsas de café (SVG)</code></pre>
+          </div>
+          <div class="space-y-3">
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>index.html · orden de carga</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de index.html · orden de carga">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11.5px] leading-relaxed text-slate-100 flex-1 "><code>&lt;!-- Estilos por capas: tokens → base → componentes → layouts --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;css/tokens.css&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;css/base.css&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;css/componentes.css&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;css/layouts.css&quot;&gt;
+
+&lt;!-- Scripts: primero los compartidos, luego el de la página --&gt;
+&lt;script src=&quot;js/ui.js&quot; defer&gt;&lt;/script&gt;
+&lt;script src=&quot;js/validacion.js&quot; defer&gt;&lt;/script&gt;
+&lt;script src=&quot;js/login.js&quot; defer&gt;&lt;/script&gt;</code></pre>
+          </div>
+            
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="layers" class="w-5 h-5 text-violet-600"></i>Decisiones de arquitectura</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-violet-600 mt-0.5"></i><span><strong>Capas de CSS</strong>: cada archivo puede usar lo del anterior, nunca al revés.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-violet-600 mt-0.5"></i><span><strong>JS compartido primero</strong> (<code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">ui.js</code>, <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">validacion.js</code>) y luego el de la pantalla. <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">defer</code> respeta ese orden.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-violet-600 mt-0.5"></i><span>Objetos globales (<code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">AromaUI</code>, <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">Validacion</code>) en lugar de <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">import</code>: los módulos ES no funcionan al abrir el HTML con doble clic (<code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">file://</code>).</span></li></ul></div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 14 · TOKENS: EL DISEÑO DE FIGMA EN VARIABLES CSS -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Tokens: el diseño de Figma en variables CSS" data-section="Bloque 3: EV03 · Arquitectura y estilos">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-violet-50 border-violet-200 text-violet-800"><i data-lucide="palette" class="w-3.5 h-3.5"></i> EV03 · Paso 2</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">tokens.css: una sola fuente de verdad para el diseño</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Cada estilo de Figma tiene su variable. Los comentarios guardan el contraste verificado: quien cambie un color sabe qué debe seguir cumpliendo.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-5">
+          
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 lg:col-span-3">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>css/tokens.css</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de css/tokens.css">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11.5px] leading-relaxed text-slate-100 flex-1 max-h-[470px]"><code><span class="text-amber-200">:root </span>{
+  <span class="text-slate-400 italic">/* Color · marca (Figma: Marca/Primario 700, 500, 100) */</span>
+  <span class="text-violet-300">--color-primario-700</span>: <span class="text-orange-300">#5B3A29</span>;  <span class="text-slate-400 italic">/* botones, títulos       · 10.09:1 sobre blanco */</span>
+  <span class="text-violet-300">--color-primario-800</span>: <span class="text-orange-300">#45291C</span>;  <span class="text-slate-400 italic">/* hover del botón         */</span>
+  <span class="text-violet-300">--color-primario-500</span>: <span class="text-orange-300">#8B5E3C</span>;  <span class="text-slate-400 italic">/* enlaces                 · 5.58:1  */</span>
+  <span class="text-violet-300">--color-primario-100</span>: <span class="text-orange-300">#F1E6DC</span>;  <span class="text-slate-400 italic">/* fondos suaves           */</span>
+
+  <span class="text-slate-400 italic">/* Tipografía (Figma: Título/H1, Título/H2, Texto/Cuerpo, Texto/Etiqueta) */</span>
+<span class="text-sky-300">  --fuente-titulos</span>: <span class="text-emerald-300">&quot;Poppins&quot;</span>, system-ui, sans-serif;
+<span class="text-sky-300">  --fuente-texto</span>: <span class="text-emerald-300">&quot;Inter&quot;</span>, system-ui, -apple-system, <span class="text-emerald-300">&quot;Segoe UI&quot;</span>, sans-serif;
+  <span class="text-violet-300">--texto-h1</span>: clamp(1.5rem, 1.1rem + 1.5vw, 2rem);   <span class="text-slate-400 italic">/* 24 → 32 px */</span>
+  <span class="text-violet-300">--texto-h2</span>: clamp(1.25rem, 1.05rem + 0.8vw, 1.5rem); <span class="text-slate-400 italic">/* 20 → 24 px */</span>
+
+  <span class="text-slate-400 italic">/* Espaciado · escala de 8 px (Figma: Auto layout 8, 16, 24, 32…) */</span>
+  <span class="text-violet-300">--espacio-1</span>: 0.25rem;  <span class="text-slate-400 italic">/*  4 px */</span>
+  <span class="text-violet-300">--espacio-2</span>: 0.5rem;   <span class="text-slate-400 italic">/*  8 px */</span>
+  <span class="text-violet-300">--espacio-3</span>: 0.75rem;  <span class="text-slate-400 italic">/* 12 px */</span>
+  <span class="text-violet-300">--espacio-4</span>: 1rem;     <span class="text-slate-400 italic">/* 16 px */</span>
+  <span class="text-violet-300">--espacio-6</span>: 1.5rem;   <span class="text-slate-400 italic">/* 24 px */</span>
+  <span class="text-slate-400 italic">/* … */</span>
+}</code></pre>
+          </div>
+          <div class="lg:col-span-2 space-y-3">
+            <div class="grid grid-cols-4 gap-1.5"><span class="h-10 rounded-lg border border-slate-200" style="background:#5B3A29" title="#5B3A29"></span><span class="h-10 rounded-lg border border-slate-200" style="background:#8B5E3C" title="#8B5E3C"></span><span class="h-10 rounded-lg border border-slate-200" style="background:#F1E6DC" title="#F1E6DC"></span><span class="h-10 rounded-lg border border-slate-200" style="background:#2F6B3A" title="#2F6B3A"></span><span class="h-10 rounded-lg border border-slate-200" style="background:#B4532A" title="#B4532A"></span><span class="h-10 rounded-lg border border-slate-200" style="background:#1F1A17" title="#1F1A17"></span><span class="h-10 rounded-lg border border-slate-200" style="background:#6F6259" title="#6F6259"></span><span class="h-10 rounded-lg border border-slate-200" style="background:#8F8176" title="#8F8176"></span></div>
+            
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="paintbrush" class="w-5 h-5 text-violet-600"></i>Cómo se usan</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p>Los componentes nunca escriben un color:</p><p class="font-mono text-xs bg-slate-50 rounded-lg p-2">background-color: var(--color-primario-700);</p></div>
+          </div>
+            
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="type" class="w-5 h-5 text-violet-600"></i>clamp() en la tipografía</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">clamp(1.5rem, 1.1rem + 1.5vw, 2rem)</code> hace que el h1 pase de 24 px en el celular a 32 px en escritorio, igual que los dos tamaños definidos en Figma.</p></div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 15 · COMPONENTE BOTÓN EN HTML Y CSS -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Componente botón en HTML y CSS" data-section="Bloque 3: EV03 · Arquitectura y estilos">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-violet-50 border-violet-200 text-violet-800"><i data-lucide="rectangle-horizontal" class="w-3.5 h-3.5"></i> EV03 · Paso 3</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Del componente de Figma al botón en código</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Una clase base (<code class="font-mono">.boton</code>) con lo común y modificadores para cada variante. El Auto layout de Figma se traduce en <code class="font-mono">inline-flex</code> + <code class="font-mono">gap</code> + <code class="font-mono">padding</code>.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <div class="space-y-3">
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>HTML · uso del componente</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de HTML · uso del componente">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11.5px] leading-relaxed text-slate-100 flex-1 "><code><span class="text-slate-400 italic">&lt;!-- Acción principal del formulario --&gt;</span>
+<span class="text-sky-300">&lt;button</span><span class="text-amber-200"> class</span>=<span class="text-emerald-300">&quot;boton boton--primario boton--bloque&quot;</span><span class="text-amber-200"> type</span>=<span class="text-emerald-300">&quot;submit&quot;</span><span class="text-sky-300">&gt;</span>Ingresar<span class="text-sky-300">&lt;/button</span><span class="text-sky-300">&gt;</span>
+
+<span class="text-slate-400 italic">&lt;!-- Navega a otra página: es un enlace con apariencia de botón --&gt;</span>
+<span class="text-sky-300">&lt;a</span><span class="text-amber-200"> class</span>=<span class="text-emerald-300">&quot;boton boton--secundario&quot;</span><span class="text-amber-200"> href</span>=<span class="text-emerald-300">&quot;registro.html&quot;</span><span class="text-sky-300">&gt;</span>Registrarse<span class="text-sky-300">&lt;/a</span><span class="text-sky-300">&gt;</span>
+
+<span class="text-slate-400 italic">&lt;!-- Solo icono: necesita aria-label --&gt;</span>
+<span class="text-sky-300">&lt;button</span><span class="text-amber-200"> class</span>=<span class="text-emerald-300">&quot;boton boton--icono boton--secundario&quot;</span><span class="text-amber-200"> type</span>=<span class="text-emerald-300">&quot;button&quot;</span><span class="text-amber-200"> aria-label</span>=<span class="text-emerald-300">&quot;Cerrar&quot;</span><span class="text-sky-300">&gt;</span>…<span class="text-sky-300">&lt;/button</span><span class="text-sky-300">&gt;</span></code></pre>
+          </div>
+            
+          <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-x-auto ">
+            <table class="w-full text-sm min-w-[360px]">
+              <thead class="bg-slate-50"><tr><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Figma</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">CSS</th></tr></thead>
+              <tbody class="divide-y divide-slate-100"><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Auto layout horizontal</th><td class="px-3 py-2 text-slate-600 align-top"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">display: inline-flex</code></td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Spacing between items 8</th><td class="px-3 py-2 text-slate-600 align-top"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">gap: var(--espacio-2)</code></td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Padding 12 / 24</th><td class="px-3 py-2 text-slate-600 align-top"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">padding: var(--espacio-3) var(--espacio-6)</code></td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Height 48 (fixed)</th><td class="px-3 py-2 text-slate-600 align-top"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">min-height: var(--alto-control)</code></td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Variante "Hover"</th><td class="px-3 py-2 text-slate-600 align-top"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">.boton--primario:hover</code></td></tr></tbody>
+            </table>
+          </div>
+          </div>
+          
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>css/componentes.css</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de css/componentes.css">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11.5px] leading-relaxed text-slate-100 flex-1 max-h-[500px]"><code><span class="text-amber-200">.boton </span>{
+<span class="text-sky-300">  display</span>: inline-flex;
+<span class="text-sky-300">  align-items</span>: center;
+<span class="text-sky-300">  justify-content</span>: center;
+<span class="text-sky-300">  gap</span>: var(<span class="text-violet-300">--espacio-2</span>);
+<span class="text-sky-300">  min-height</span>: var(<span class="text-violet-300">--alto-control</span>);          <span class="text-slate-400 italic">/* 48 px: área táctil (RNF02) */</span>
+<span class="text-sky-300">  padding</span>: var(<span class="text-violet-300">--espacio-3</span>) var(<span class="text-violet-300">--espacio-6</span>);
+<span class="text-sky-300">  border</span>: 2px solid transparent;
+<span class="text-sky-300">  border-radius</span>: var(<span class="text-violet-300">--radio-md</span>);
+<span class="text-sky-300">  font-weight</span>: 600;
+<span class="text-sky-300">  line-height</span>: 1.2;
+<span class="text-sky-300">  text-decoration</span>: none;
+<span class="text-sky-300">  cursor</span>: pointer;
+<span class="text-sky-300">  transition</span>: background-color var(<span class="text-violet-300">--transicion</span>), border-color var(<span class="text-violet-300">--transicion</span>), color var(<span class="text-violet-300">--transicion</span>);
+}
+
+<span class="text-amber-200">.boton--primario </span>{
+<span class="text-sky-300">  background-color</span>: var(<span class="text-violet-300">--color-primario-700</span>);
+<span class="text-sky-300">  color</span>: var(<span class="text-violet-300">--color-superficie</span>);
+}
+
+<span class="text-amber-200">.boton[aria-busy=&quot;true&quot;]::before </span>{           <span class="text-slate-400 italic">/* indicador de carga dentro del botón */</span>
+<span class="text-sky-300">  content</span>: <span class="text-emerald-300">&quot;&quot;</span>;
+<span class="text-sky-300">  width</span>: 1rem;
+<span class="text-sky-300">  height</span>: 1rem;
+<span class="text-sky-300">  border</span>: 2px solid currentColor;
+<span class="text-sky-300">  border-right-color</span>: transparent;
+<span class="text-sky-300">  border-radius</span>: 50%;
+<span class="text-sky-300">  animation</span>: girar 0.7s linear infinite;
+}</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 16 · COMPONENTE CAMPO Y VALIDACIÓN REUTILIZABLE -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Componente campo y validación reutilizable" data-section="Bloque 3: EV03 · Arquitectura y estilos">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-violet-50 border-violet-200 text-violet-800"><i data-lucide="text-cursor-input" class="w-3.5 h-3.5"></i> EV03 · Paso 4</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Las reglas viven en el HTML; la validación es una sola función</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">El campo declara qué exige (<code class="font-mono">required</code>, <code class="font-mono">type</code>, <code class="font-mono">pattern</code>, <code class="font-mono">minlength</code>) y sus mensajes en <code class="font-mono">data-msg-*</code>. Un solo archivo JS valida <strong>todos</strong> los formularios del proyecto.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>index.html · campo de correo</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de index.html · campo de correo">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11.5px] leading-relaxed text-slate-100 flex-1 "><code>&lt;div class=&quot;campo&quot;&gt;
+  &lt;label class=&quot;campo__etiqueta&quot; for=&quot;correo&quot;&gt;Correo electrónico&lt;/label&gt;
+  &lt;input class=&quot;campo__control&quot; id=&quot;correo&quot; name=&quot;correo&quot; type=&quot;email&quot;
+         autocomplete=&quot;email&quot; placeholder=&quot;nombre@negocio.com&quot; required
+         aria-describedby=&quot;correo-error&quot;
+         data-msg-requerido=&quot;Escribe tu correo electrónico.&quot;
+         data-msg-formato=&quot;Escribe un correo válido, por ejemplo nombre@negocio.com.&quot;&gt;
+  &lt;p class=&quot;campo__error&quot; id=&quot;correo-error&quot;&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+          <div class="space-y-3">
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>js/validacion.js</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de js/validacion.js">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11.5px] leading-relaxed text-slate-100 flex-1 "><code><span class="text-pink-300">function</span> validarCampo(campo) {
+  <span class="text-pink-300">let</span> mensaje = <span class="text-emerald-300">''</span>;
+  for (<span class="text-pink-300">const</span> [estado, atributo, porDefecto] of MENSAJES) {
+    <span class="text-pink-300">if</span> (campo.validity[estado]) {
+      mensaje = campo.dataset[atributo] || porDefecto;
+      break;
+    }
+  }
+
+  <span class="text-pink-300">const</span> error = <span class="text-violet-300">document</span>.getElementById(<span class="text-emerald-300">`${campo.id}-error`</span>);
+  <span class="text-pink-300">if</span> (error) error.textContent = mensaje;
+  campo.setAttribute(<span class="text-emerald-300">'aria-invalid'</span>, String(mensaje !== <span class="text-emerald-300">''</span>));
+  <span class="text-pink-300">return</span> mensaje === <span class="text-emerald-300">''</span>;
+}</code></pre>
+          </div>
+            <ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-violet-600 mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">validity</code> es una API del navegador: ya sabe si el campo está vacío (<code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">valueMissing</code>) o mal escrito (<code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">typeMismatch</code>).</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-violet-600 mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">dataset.msgRequerido</code> lee el atributo <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">data-msg-requerido</code>.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-violet-600 mt-0.5"></i><span>Login y Registro solo llaman <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">Validacion.conectar(formulario, alEnviar)</code>.</span></li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 17 · PLANTILLA DE AUTENTICACIÓN: LOGIN RESPONSIVE -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Plantilla de autenticación: Login responsive" data-section="Bloque 4: EV03 · Pantallas y comportamiento">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-violet-50 border-violet-200 text-violet-800"><i data-lucide="log-in" class="w-3.5 h-3.5"></i> EV03 · Paso 5</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Una plantilla para Login y Registro</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">En el celular solo se ve el formulario (como el mockup móvil). En escritorio aparece el panel de marca a la izquierda (como el mockup web de 1440 px).</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <div class="space-y-3">
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>index.html · estructura</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de index.html · estructura">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11.5px] leading-relaxed text-slate-100 flex-1 "><code><span class="text-sky-300">&lt;header</span><span class="text-amber-200"> class</span>=<span class="text-emerald-300">&quot;auth-encabezado&quot;</span><span class="text-sky-300">&gt;</span>…logo + botón Registrarse…<span class="text-sky-300">&lt;/header</span><span class="text-sky-300">&gt;</span>
+
+<span class="text-sky-300">&lt;div</span><span class="text-amber-200"> class</span>=<span class="text-emerald-300">&quot;layout-auth&quot;</span><span class="text-sky-300">&gt;</span>
+  <span class="text-sky-300">&lt;main</span><span class="text-amber-200"> class</span>=<span class="text-emerald-300">&quot;auth-formulario&quot;</span><span class="text-amber-200"> id</span>=<span class="text-emerald-300">&quot;contenido&quot;</span><span class="text-sky-300">&gt;</span>
+    <span class="text-sky-300">&lt;h1</span><span class="text-sky-300">&gt;</span>Bienvenido de nuevo<span class="text-sky-300">&lt;/h1</span><span class="text-sky-300">&gt;</span>
+    <span class="text-sky-300">&lt;form</span><span class="text-amber-200"> class</span>=<span class="text-emerald-300">&quot;formulario&quot;</span><span class="text-amber-200"> id</span>=<span class="text-emerald-300">&quot;form-login&quot;</span><span class="text-sky-300">&gt;</span>…<span class="text-sky-300">&lt;/form</span><span class="text-sky-300">&gt;</span>
+    <span class="text-sky-300">&lt;p</span><span class="text-sky-300">&gt;</span>¿No tienes cuenta? <span class="text-sky-300">&lt;a</span><span class="text-amber-200"> href</span>=<span class="text-emerald-300">&quot;registro.html&quot;</span><span class="text-sky-300">&gt;</span>Regístrate<span class="text-sky-300">&lt;/a</span><span class="text-sky-300">&gt;</span><span class="text-sky-300">&lt;/p</span><span class="text-sky-300">&gt;</span>
+  <span class="text-sky-300">&lt;/main</span><span class="text-sky-300">&gt;</span>
+
+  <span class="text-slate-400 italic">&lt;!-- Después del main: el contenido importante primero --&gt;</span>
+  <span class="text-sky-300">&lt;aside</span><span class="text-amber-200"> class</span>=<span class="text-emerald-300">&quot;auth-panel&quot;</span><span class="text-amber-200"> aria-label</span>=<span class="text-emerald-300">&quot;Beneficios de AromaSur&quot;</span><span class="text-sky-300">&gt;</span>…<span class="text-sky-300">&lt;/aside</span><span class="text-sky-300">&gt;</span>
+<span class="text-sky-300">&lt;/div</span><span class="text-sky-300">&gt;</span></code></pre>
+          </div>
+            
+          <div class="flex items-start gap-3 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-sm text-emerald-950">
+            <i data-lucide="lightbulb" class="w-5 h-5 text-emerald-700 mt-0.5"></i>
+            <p><strong>Orden accesible:</strong> En el HTML el formulario va antes del panel de marca: el lector de pantalla y el teclado llegan primero a lo importante. El CSS lo reordena visualmente con <code class="font-mono">order: -1</code>.</p>
+          </div>
+          </div>
+          <div class="space-y-3">
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>css/layouts.css</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de css/layouts.css">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11.5px] leading-relaxed text-slate-100 flex-1 "><code><span class="text-amber-200">.layout-auth </span>{
+<span class="text-sky-300">  display</span>: grid;
+<span class="text-sky-300">  min-height</span>: calc(100vh - 4.6rem);
+}
+
+<span class="text-slate-400 italic">/* Panel de marca: oculto en el celular */</span>
+<span class="text-amber-200">.auth-panel </span>{
+<span class="text-sky-300">  display</span>: none;
+}
+
+<span class="text-pink-300">@media</span> (min-width: 64rem) {
+<span class="text-amber-200">  .layout-auth </span>{
+<span class="text-sky-300">    grid-template-columns</span>: 1fr 1fr;
+  }
+
+<span class="text-amber-200">  .auth-panel </span>{
+<span class="text-sky-300">    order</span>: -1;          <span class="text-slate-400 italic">/* a la izquierda, aunque en el HTML va después */</span>
+<span class="text-sky-300">    display</span>: flex;
+  }
+}</code></pre>
+          </div>
+            <div class="flex flex-wrap gap-2"><a href="demos/aa4-ev02-ev03-aromasur/index.html" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-[#00324D] border border-slate-300 font-bold px-3 py-2 rounded-xl text-sm transition-colors "><i data-lucide="log-in" class="w-4 h-4"></i> Abrir Login</a> <a href="demos/aa4-ev02-ev03-aromasur/registro.html" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-[#00324D] border border-slate-300 font-bold px-3 py-2 rounded-xl text-sm transition-colors "><i data-lucide="user-plus" class="w-4 h-4"></i> Abrir Registro</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 18 · COMPORTAMIENTO DEL LOGIN CON JAVASCRIPT -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Comportamiento del Login con JavaScript" data-section="Bloque 4: EV03 · Pantallas y comportamiento">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-violet-50 border-violet-200 text-violet-800"><i data-lucide="zap" class="w-3.5 h-3.5"></i> EV03 · Paso 6</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Validar, mostrar el estado de carga y navegar</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Cuando el formulario es válido, el botón cambia a "Ingresando…" (estado <em>cargando</em> del componente) y luego se navega al catálogo, como en la conexión <em>Navigate to</em> de Figma.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <div class="space-y-3">
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>js/login.js</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de js/login.js">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11.5px] leading-relaxed text-slate-100 flex-1 "><code>Validacion.conectar(formularioLogin, (datos) =&gt; {
+  AromaUI.cargando(botonIngresar, <span class="text-pink-300">true</span>, <span class="text-emerald-300">'Ingresando…'</span>);
+
+  <span class="text-slate-400 italic">// Simulación de la petición al servidor (800 ms)</span>
+  setTimeout(() =&gt; {
+    <span class="text-pink-300">try</span> {
+      sessionStorage.setItem(<span class="text-emerald-300">'aromasur:correo'</span>, datos.correo); <span class="text-slate-400 italic">// solo el correo, para saludar</span>
+    } <span class="text-pink-300">catch</span> (error) {
+      <span class="text-slate-400 italic">// Almacenamiento bloqueado: la demo continúa sin el saludo</span>
+    }
+    <span class="text-violet-300">window</span>.location.href = <span class="text-emerald-300">'catalogo.html'</span>;
+  }, 800);
+});</code></pre>
+          </div>
+            <div class="flex items-start gap-3 p-4 rounded-2xl bg-amber-50 border border-amber-200 text-sm text-amber-950">
+              <i data-lucide="triangle-alert" class="w-5 h-5 text-amber-700 mt-0.5"></i>
+              <p><strong>Seguridad:</strong> esta demo simula el servidor. En el proyecto real las credenciales se envían a la API por HTTPS y el <strong>servidor</strong> las valida. Nunca guardes contraseñas en <code class="font-mono">localStorage</code> ni en el código.</p>
+            </div>
+          </div>
+          <div class="space-y-3">
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>js/ui.js · mostrar contraseña</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de js/ui.js · mostrar contraseña">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11.5px] leading-relaxed text-slate-100 flex-1 "><code>function activarMostrarClave() {
+  document.querySelectorAll('[data-mostrar-clave]').forEach((boton) =&gt; {
+    const campo = document.getElementById(boton.getAttribute('aria-controls'));
+    boton.addEventListener('click', () =&gt; {
+      const visible = campo.type === 'text';
+      campo.type = visible ? 'password' : 'text';
+      boton.setAttribute('aria-pressed', String(!visible));
+      boton.setAttribute('aria-label', visible ? 'Mostrar contraseña' : 'Ocultar contraseña');
+    });
+  });
+}</code></pre>
+          </div>
+            <ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-violet-600 mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">aria-pressed</code> indica si el interruptor está activo y el CSS cambia el icono (ojo / ojo tachado).</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-violet-600 mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">aria-label</code> cambia entre "Mostrar" y "Ocultar contraseña".</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-violet-600 mt-0.5"></i><span>Se activa solo en cualquier página que tenga <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">data-mostrar-clave</code>: es un comportamiento del componente, no de la pantalla.</span></li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 19 · REGISTRO: CAMPOS CON REGLAS Y ACEPTACIÓN DE DATOS -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Registro: campos con reglas y aceptación de datos" data-section="Bloque 4: EV03 · Pantallas y comportamiento">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-violet-50 border-violet-200 text-violet-800"><i data-lucide="user-plus" class="w-3.5 h-3.5"></i> EV03 · Paso 7</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">El Registro reutiliza los mismos componentes</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Nada nuevo en CSS ni en la validación: solo HTML con las reglas de cada dato. Así se comprueba que los componentes de la EV02 sí eran reutilizables.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <div class="space-y-3">
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>registro.html · teléfono</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de registro.html · teléfono">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11.5px] leading-relaxed text-slate-100 flex-1 "><code>&lt;label class=&quot;campo__etiqueta&quot; for=&quot;telefono&quot;&gt;Teléfono celular&lt;/label&gt;
+&lt;input class=&quot;campo__control&quot; id=&quot;telefono&quot; name=&quot;telefono&quot; type=&quot;tel&quot;
+       inputmode=&quot;numeric&quot; autocomplete=&quot;tel-national&quot; pattern=&quot;3[0-9]{9}&quot; required
+       aria-describedby=&quot;telefono-ayuda telefono-error&quot;
+       data-msg-requerido=&quot;Escribe tu número de celular.&quot;
+       data-msg-formato=&quot;Escribe 10 dígitos que empiecen por 3, sin espacios.&quot;&gt;
+&lt;p class=&quot;campo__ayuda&quot; id=&quot;telefono-ayuda&quot;&gt;10 dígitos, por ejemplo 3001234567.&lt;/p&gt;
+&lt;p class=&quot;campo__error&quot; id=&quot;telefono-error&quot;&gt;&lt;/p&gt;</code></pre>
+          </div>
+            <ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-violet-600 mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">type=&quot;tel&quot;</code> + <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">inputmode=&quot;numeric&quot;</code>: el celular muestra el teclado numérico.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-violet-600 mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">pattern=&quot;3[0-9]{9}&quot;</code>: 10 dígitos que empiezan por 3 (celular en Colombia).</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-violet-600 mt-0.5"></i><span>El texto de ayuda se ve <strong>antes</strong> de equivocarse; <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">aria-describedby</code> une ayuda y error.</span></li></ul>
+          </div>
+          <div class="space-y-3">
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>registro.html · tipo de cliente</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de registro.html · tipo de cliente">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11.5px] leading-relaxed text-slate-100 flex-1 "><code>&lt;select class=&quot;campo__control&quot; id=&quot;tipo&quot; name=&quot;tipo&quot; required aria-describedby=&quot;tipo-error&quot;
+        data-msg-requerido=&quot;Elige el tipo de negocio.&quot;&gt;
+  &lt;option value=&quot;&quot;&gt;Selecciona una opción&lt;/option&gt;
+  &lt;option value=&quot;cafeteria&quot;&gt;Cafetería&lt;/option&gt;
+  &lt;option value=&quot;tienda&quot;&gt;Tienda&lt;/option&gt;
+  &lt;option value=&quot;distribuidor&quot;&gt;Distribuidor&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+          </div>
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>registro.html · RF04 (Ley 1581 de 2012)</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de registro.html · RF04 (Ley 1581 de 2012)">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11.5px] leading-relaxed text-slate-100 flex-1 "><code>&lt;label class=&quot;casilla&quot;&gt;
+  &lt;input id=&quot;acepto&quot; name=&quot;acepto&quot; type=&quot;checkbox&quot; required aria-describedby=&quot;acepto-error&quot;
+         data-msg-requerido=&quot;Debes aceptar la política de tratamiento de datos para continuar.&quot;&gt;
+  &lt;span&gt;Acepto la política de tratamiento de datos personales (Ley 1581 de 2012).&lt;/span&gt;
+&lt;/label&gt;</code></pre>
+          </div>
+            <p class="text-xs text-slate-500">En pantallas de 640 px o más, nombre y teléfono van en dos columnas con <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">.formulario__fila</code> (Grid <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">1fr 1fr</code>).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 20 · PLANTILLA DE APLICACIÓN: NAVEGACIÓN ADAPTABLE -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Plantilla de aplicación: navegación adaptable" data-section="Bloque 4: EV03 · Pantallas y comportamiento">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-violet-50 border-violet-200 text-violet-800"><i data-lucide="navigation" class="w-3.5 h-3.5"></i> EV03 · Paso 8</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Un solo menú, dos presentaciones</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">El menú de la EV03 de Figma tenía barra inferior en el celular y menú superior en la web. No se escriben dos menús: es <strong>el mismo HTML</strong> y el CSS cambia su posición.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <div class="space-y-3">
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>catalogo.html</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de catalogo.html">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11.5px] leading-relaxed text-slate-100 flex-1 "><code><span class="text-sky-300">&lt;nav</span><span class="text-amber-200"> class</span>=<span class="text-emerald-300">&quot;app-nav&quot;</span><span class="text-amber-200"> aria-label</span>=<span class="text-emerald-300">&quot;Principal&quot;</span><span class="text-sky-300">&gt;</span>
+  <span class="text-sky-300">&lt;ul</span><span class="text-amber-200"> class</span>=<span class="text-emerald-300">&quot;app-nav__lista&quot;</span><span class="text-sky-300">&gt;</span>
+    <span class="text-sky-300">&lt;li</span><span class="text-sky-300">&gt;</span>
+      <span class="text-sky-300">&lt;a</span><span class="text-amber-200"> class</span>=<span class="text-emerald-300">&quot;app-nav__enlace&quot;</span><span class="text-amber-200"> href</span>=<span class="text-emerald-300">&quot;catalogo.html&quot;</span><span class="text-amber-200"> aria-current</span>=<span class="text-emerald-300">&quot;page&quot;</span><span class="text-sky-300">&gt;</span>
+        <span class="text-sky-300">&lt;svg</span><span class="text-amber-200"> aria-hidden</span>=<span class="text-emerald-300">&quot;true&quot;</span><span class="text-sky-300">&gt;</span>…<span class="text-sky-300">&lt;/svg</span><span class="text-sky-300">&gt;</span> Catálogo
+      <span class="text-sky-300">&lt;/a</span><span class="text-sky-300">&gt;</span>
+    <span class="text-sky-300">&lt;/li</span><span class="text-sky-300">&gt;</span>
+    <span class="text-sky-300">&lt;li</span><span class="text-sky-300">&gt;</span><span class="text-sky-300">&lt;a</span><span class="text-amber-200"> class</span>=<span class="text-emerald-300">&quot;app-nav__enlace&quot;</span><span class="text-amber-200"> href</span>=<span class="text-emerald-300">&quot;#pedidos&quot;</span><span class="text-sky-300">&gt;</span>…Mis pedidos<span class="text-sky-300">&lt;/a</span><span class="text-sky-300">&gt;</span><span class="text-sky-300">&lt;/li</span><span class="text-sky-300">&gt;</span>
+    <span class="text-sky-300">&lt;li</span><span class="text-sky-300">&gt;</span><span class="text-sky-300">&lt;a</span><span class="text-amber-200"> class</span>=<span class="text-emerald-300">&quot;app-nav__enlace&quot;</span><span class="text-amber-200"> href</span>=<span class="text-emerald-300">&quot;index.html&quot;</span><span class="text-sky-300">&gt;</span>…Salir<span class="text-sky-300">&lt;/a</span><span class="text-sky-300">&gt;</span><span class="text-sky-300">&lt;/li</span><span class="text-sky-300">&gt;</span>
+  <span class="text-sky-300">&lt;/ul</span><span class="text-sky-300">&gt;</span>
+<span class="text-sky-300">&lt;/nav</span><span class="text-sky-300">&gt;</span></code></pre>
+          </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div class="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
+                <p class="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-2">Móvil</p>
+                <div class="mx-auto w-28 h-44 rounded-2xl border-2 border-slate-300 relative overflow-hidden bg-[#FAF7F2]">
+                  <div class="h-5 bg-white border-b border-slate-200"></div>
+                  <div class="absolute bottom-0 inset-x-0 h-7 bg-white border-t border-slate-200 flex justify-around items-center"><i data-lucide="layout-grid" class="w-3.5 h-3.5 text-[#5B3A29]"></i><i data-lucide="receipt" class="w-3.5 h-3.5 text-slate-400"></i><i data-lucide="log-out" class="w-3.5 h-3.5 text-slate-400"></i></div>
+                </div>
+              </div>
+              <div class="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
+                <p class="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-2">Escritorio</p>
+                <div class="w-full h-28 rounded-lg border-2 border-slate-300 overflow-hidden bg-[#FAF7F2]">
+                  <div class="h-6 bg-white border-b border-slate-200 flex items-center justify-end gap-1.5 px-2"><span class="h-2.5 w-8 rounded bg-[#F1E6DC]"></span><span class="h-2 w-6 rounded bg-slate-200"></span><span class="h-2 w-5 rounded bg-slate-200"></span><span class="h-3.5 w-8 rounded bg-[#5B3A29]"></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="space-y-3">
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>css/layouts.css</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de css/layouts.css">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11.5px] leading-relaxed text-slate-100 flex-1 "><code><span class="text-slate-400 italic">/* Móvil: barra inferior fija, al alcance del pulgar */</span>
+<span class="text-amber-200">.app-nav </span>{
+<span class="text-sky-300">  position</span>: fixed;
+<span class="text-sky-300">  right</span>: 0;
+<span class="text-sky-300">  bottom</span>: 0;
+<span class="text-sky-300">  left</span>: 0;
+<span class="text-sky-300">  z-index</span>: var(<span class="text-violet-300">--z-navegacion</span>);
+<span class="text-sky-300">  border-top</span>: 1px solid var(<span class="text-violet-300">--color-borde</span>);
+<span class="text-sky-300">  background-color</span>: var(<span class="text-violet-300">--color-superficie</span>);
+}
+
+<span class="text-slate-400 italic">/* Escritorio: la misma nav sube a la barra superior */</span>
+<span class="text-pink-300">@media</span> (min-width: 64rem) {
+<span class="text-amber-200">  .app-nav </span>{
+<span class="text-sky-300">    position</span>: static;
+<span class="text-sky-300">    border-top</span>: 0;
+<span class="text-sky-300">    background</span>: none;
+  }
+
+<span class="text-amber-200">  .app-nav__enlace </span>{
+<span class="text-sky-300">    flex-direction</span>: row;      <span class="text-slate-400 italic">/* icono y texto en línea */</span>
+  }
+}</code></pre>
+          </div>
+            <ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-violet-600 mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">aria-current=&quot;page&quot;</code> marca la pantalla actual para el lector de pantalla <strong>y</strong> sirve de selector CSS para resaltarla.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-violet-600 mt-0.5"></i><span>La barra inferior es estándar en apps móviles: queda donde llega el pulgar.</span></li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 21 · CATÁLOGO: DATOS, PLANTILLA Y FILTROS -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Catálogo: datos, plantilla y filtros" data-section="Bloque 4: EV03 · Pantallas y comportamiento">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-violet-50 border-violet-200 text-violet-800"><i data-lucide="layout-grid" class="w-3.5 h-3.5"></i> EV03 · Paso 9</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Las tarjetas se generan desde los datos</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Los productos son un arreglo de objetos (en el proyecto real llegan de la API). JavaScript clona el <code class="font-mono">&lt;template&gt;</code> por cada producto y vuelve a pintar cuando cambia un filtro.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div class="space-y-3">
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>catalogo.html · molde</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de catalogo.html · molde">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11px] leading-relaxed text-slate-100 flex-1 max-h-[300px]"><code>&lt;template id=&quot;plantilla-producto&quot;&gt;
+  &lt;article class=&quot;tarjeta-producto&quot;&gt;
+    &lt;div class=&quot;tarjeta-producto__media&quot;&gt;
+      &lt;img src=&quot;&quot; alt=&quot;&quot; width=&quot;400&quot; height=&quot;300&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;tarjeta-producto__cuerpo&quot;&gt;
+      &lt;p class=&quot;tarjeta-producto__origen&quot;&gt;&lt;/p&gt;
+      &lt;h3 class=&quot;tarjeta-producto__titulo&quot;&gt;&lt;/h3&gt;
+      &lt;p&gt;&lt;span class=&quot;insignia&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+      &lt;p class=&quot;tarjeta-producto__notas&quot;&gt;&lt;/p&gt;
+      &lt;div class=&quot;tarjeta-producto__pie&quot;&gt;
+        &lt;p class=&quot;tarjeta-producto__precio&quot;&gt;&lt;span data-precio&gt;&lt;/span&gt; &lt;small&gt;Bolsa de 2,5 kg&lt;/small&gt;&lt;/p&gt;
+        &lt;button class=&quot;boton boton--secundario&quot; type=&quot;button&quot; data-agregar&gt;Agregar&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/article&gt;
+&lt;/template&gt;</code></pre>
+          </div>
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>js/catalogo.js · filtrar y pintar</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de js/catalogo.js · filtrar y pintar">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11px] leading-relaxed text-slate-100 flex-1 "><code>function renderizarCatalogo() {
+  const lista = productosVisibles();
+  rejilla.replaceChildren(...lista.map(crearTarjeta));
+  document.querySelector('#sin-resultados').hidden = lista.length &gt; 0;
+  resultado.textContent = `${lista.length} ${lista.length === 1 ? 'café encontrado' : 'cafés encontrados'}`;
+}
+
+document.querySelector('#filtro-perfil').addEventListener('change', (evento) =&gt; {
+  estado.perfil = evento.target.value;
+  renderizarCatalogo();
+});</code></pre>
+          </div>
+          </div>
+          <div class="space-y-3">
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>js/catalogo.js · crear tarjeta</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de js/catalogo.js · crear tarjeta">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11px] leading-relaxed text-slate-100 flex-1 "><code>function crearTarjeta(producto) {
+  const tarjeta = plantilla.content.cloneNode(true); // copia del &lt;template&gt; definido en el HTML
+  const img = tarjeta.querySelector('img');
+  img.src = `img/bolsa-${producto.perfil}.svg`;
+  img.alt = `Bolsa de café ${producto.nombre}`;
+  tarjeta.querySelector('.tarjeta-producto__titulo').textContent = producto.nombre;
+  tarjeta.querySelector('.tarjeta-producto__origen').textContent = producto.origen;
+  tarjeta.querySelector('.tarjeta-producto__notas').textContent = producto.notas;
+
+  const insignia = tarjeta.querySelector('.insignia');
+  insignia.textContent = PERFILES[producto.perfil];
+  insignia.classList.add(`insignia--${producto.perfil}`);
+
+  tarjeta.querySelector('[data-precio]').textContent = pesos.format(producto.precio);
+  const boton = tarjeta.querySelector('[data-agregar]');
+  boton.dataset.agregar = producto.id;
+  boton.setAttribute('aria-label', `Agregar ${producto.nombre} al pedido`);
+  return tarjeta;
+}</code></pre>
+          </div>
+            <div class="flex items-start gap-3 p-3 rounded-2xl bg-amber-50 border border-amber-200 text-xs text-amber-950">
+              <i data-lucide="shield-check" class="w-5 h-5 text-amber-700"></i>
+              <p><strong>textContent, no innerHTML:</strong> si un nombre de producto trajera código malicioso, <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">textContent</code> lo muestra como texto. Con <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">innerHTML</code> se ejecutaría (ataque XSS).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 22 · PEDIDO: DIÁLOGO, TOAST Y FORMATO DE MONEDA -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Pedido: diálogo, toast y formato de moneda" data-section="Bloque 4: EV03 · Pantallas y comportamiento">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-violet-50 border-violet-200 text-violet-800"><i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i> EV03 · Paso 10</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Agregar, revisar y confirmar el pedido</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Tres componentes trabajan juntos: el botón de la tarjeta, el <strong>toast</strong> que confirma y el <strong>diálogo</strong> que resume el pedido con el total en pesos colombianos.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div class="space-y-2">
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>js/catalogo.js · agregar</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de js/catalogo.js · agregar">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11px] leading-relaxed text-slate-100 flex-1 "><code>rejilla.addEventListener('click', (evento) =&gt; {
+  const boton = evento.target.closest('[data-agregar]');
+  if (!boton) return;
+  const producto = PRODUCTOS.find((p) =&gt; p.id === boton.dataset.agregar);
+  estado.pedido.set(producto.id, (estado.pedido.get(producto.id) || 0) + 1);
+  actualizarContador();
+  AromaUI.toast(`${producto.nombre} agregado al pedido.`, 'exito');
+});</code></pre>
+          </div>
+            <p class="text-xs text-slate-600"><strong>Delegación de eventos:</strong> un solo listener en la rejilla atiende los botones de todas las tarjetas, incluso las que se crean después.</p>
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>js/catalogo.js · moneda</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de js/catalogo.js · moneda">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11px] leading-relaxed text-slate-100 flex-1 "><code>const pesos = new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 });</code></pre>
+          </div>
+            <p class="text-xs text-slate-600"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">Intl.NumberFormat</code> escribe <strong>$ 145.000</strong> con el formato de Colombia.</p>
+          </div>
+          <div class="space-y-2">
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>js/catalogo.js · abrir diálogo</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de js/catalogo.js · abrir diálogo">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11px] leading-relaxed text-slate-100 flex-1 "><code>document.querySelector('#abrir-pedido').addEventListener('click', () =&gt; {
+  renderizarPedido();
+  dialogo.showModal();                           // modal nativo: atrapa el foco y se cierra con Esc
+});</code></pre>
+          </div>
+            <p class="text-xs text-slate-600"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">showModal()</code> oscurece el fondo, atrapa el foco y cierra con <kbd class="font-mono text-[11px] font-bold px-1.5 py-0.5 rounded border border-slate-300 bg-white text-slate-700 shadow-sm">Esc</kbd>.</p>
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>js/ui.js · toast</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de js/ui.js · toast">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11px] leading-relaxed text-slate-100 flex-1 "><code>function toast(mensaje, tipo = 'info') {
+  const aviso = document.createElement('div');
+  aviso.className = `toast toast--${tipo}`;
+  aviso.textContent = mensaje;                  // textContent evita inyección de HTML (XSS)
+  obtenerRegion().append(aviso);
+
+  setTimeout(() =&gt; {
+    aviso.dataset.saliendo = '';
+    setTimeout(() =&gt; aviso.remove(), 200);
+  }, 3500);
+}</code></pre>
+          </div>
+            <p class="text-xs text-slate-600">La región del toast tiene <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">aria-live=&quot;polite&quot;</code>: el lector de pantalla anuncia cada mensaje sin mover el foco.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 23 · DEMOSTRACIÓN EN VIVO: PANTALLAS Y DISPOSITIVOS -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Demostración en vivo: pantallas y dispositivos" data-section="Bloque 5: Calidad y entrega">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-emerald-50 border-emerald-200 text-emerald-800"><i data-lucide="monitor-smartphone" class="w-3.5 h-3.5"></i> Demostración</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Prueba la aplicación en celular y escritorio</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Elige una pantalla y un dispositivo. Prueba enviar el Login vacío, filtrar el catálogo, agregar cafés y abrir el pedido. Todo es interactivo.</p>
+        </header>
+        <div class="space-y-3" data-visor>
+          <div class="flex flex-wrap items-center gap-2">
+            <button type="button" data-visor-page="index.html" aria-pressed="true" class="visor-btn inline-flex items-center gap-2 px-3 py-2 rounded-xl border text-sm font-bold transition-colors"><i data-lucide="log-in" class="w-4 h-4"></i> Login</button> <button type="button" data-visor-page="registro.html" aria-pressed="false" class="visor-btn inline-flex items-center gap-2 px-3 py-2 rounded-xl border text-sm font-bold transition-colors"><i data-lucide="user-plus" class="w-4 h-4"></i> Registro</button> <button type="button" data-visor-page="catalogo.html" aria-pressed="false" class="visor-btn inline-flex items-center gap-2 px-3 py-2 rounded-xl border text-sm font-bold transition-colors"><i data-lucide="layout-grid" class="w-4 h-4"></i> Catálogo</button> <button type="button" data-visor-page="componentes.html" aria-pressed="false" class="visor-btn inline-flex items-center gap-2 px-3 py-2 rounded-xl border text-sm font-bold transition-colors"><i data-lucide="swatch-book" class="w-4 h-4"></i> Componentes</button>
+            <span class="hidden sm:block w-px h-8 bg-slate-200 mx-1"></span>
+            <button type="button" data-visor-width="390" aria-pressed="true" class="visor-btn inline-flex items-center gap-2 px-3 py-2 rounded-xl border text-sm font-bold transition-colors"><i data-lucide="smartphone" class="w-4 h-4"></i> Móvil</button> <button type="button" data-visor-width="1280" aria-pressed="false" class="visor-btn inline-flex items-center gap-2 px-3 py-2 rounded-xl border text-sm font-bold transition-colors"><i data-lucide="monitor" class="w-4 h-4"></i> Escritorio</button>
+            <span class="ml-auto font-mono text-xs text-slate-500" data-visor-label></span>
+          </div>
+          <div data-visor-stage class="relative h-[470px] rounded-2xl border border-slate-300 bg-slate-200 overflow-hidden flex justify-center">
+            <iframe src="demos/aa4-ev02-ev03-aromasur/index.html" data-base="demos/aa4-ev02-ev03-aromasur/" title="Aplicación demo de AromaSur Café" loading="lazy" class="origin-top bg-white shadow-xl border-0 shrink-0"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 24 · USABILIDAD Y ACCESIBILIDAD APLICADAS -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Usabilidad y accesibilidad aplicadas" data-section="Bloque 5: Calidad y entrega">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-emerald-50 border-emerald-200 text-emerald-800"><i data-lucide="accessibility" class="w-3.5 h-3.5"></i> Calidad</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Las decisiones de Figma se cumplen en el código</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">La guía pide que el front-end aplique los conceptos de usabilidad y diseño de las evidencias anteriores. Esta es la trazabilidad: decisión de diseño → cómo se implementó.</p>
+        </header>
+        
+          <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-x-auto ">
+            <table class="w-full text-sm min-w-[620px]">
+              <thead class="bg-slate-50"><tr><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Decisión de diseño (EV09–10)</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Implementación en la EV03</th></tr></thead>
+              <tbody class="divide-y divide-slate-100"><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Etiquetas visibles en todos los campos</th><td class="px-3 py-2 text-slate-600 align-top"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;label for&gt;</code> en cada campo; el placeholder es solo un ejemplo.</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Un único botón principal por pantalla</th><td class="px-3 py-2 text-slate-600 align-top">Solo "Ingresar", "Crear cuenta" o "Confirmar pedido" usan <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">.boton--primario</code>.</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Errores claros y junto al campo</th><td class="px-3 py-2 text-slate-600 align-top"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">.campo__error</code> + <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">aria-invalid</code> + foco al primer error + toast de resumen.</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Áreas táctiles de 48 px</th><td class="px-3 py-2 text-slate-600 align-top"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">--alto-control: 3rem</code> en botones, campos y chips.</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Contraste AA verificado</th><td class="px-3 py-2 text-slate-600 align-top">Los tokens documentan la relación de contraste de cada color.</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Retroalimentación inmediata</th><td class="px-3 py-2 text-slate-600 align-top">Estado de carga en botones, toast al agregar y al confirmar, contador del pedido.</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Teclado y lector de pantalla (RNF03)</th><td class="px-3 py-2 text-slate-600 align-top">Enlace de salto, foco visible, <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;dialog&gt;</code>, <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">aria-live</code>, radios en los filtros.</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Responsive (RNF01)</th><td class="px-3 py-2 text-slate-600 align-top">Plantillas mobile-first con media queries en 40, 48 y 64rem.</td></tr></tbody>
+            </table>
+          </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
+          
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="keyboard" class="w-5 h-5 text-sena"></i>Prueba con teclado</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p><kbd class="font-mono text-[11px] font-bold px-1.5 py-0.5 rounded border border-slate-300 bg-white text-slate-700 shadow-sm">Tab</kbd> recorre todo, <kbd class="font-mono text-[11px] font-bold px-1.5 py-0.5 rounded border border-slate-300 bg-white text-slate-700 shadow-sm">Enter</kbd> envía, <kbd class="font-mono text-[11px] font-bold px-1.5 py-0.5 rounded border border-slate-300 bg-white text-slate-700 shadow-sm">Esc</kbd> cierra el diálogo, las flechas cambian el filtro.</p></div>
+          </div>
+          
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="gauge" class="w-5 h-5 text-sena"></i>Lighthouse</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p>DevTools → Lighthouse → Accesibilidad. Meta: 90 o más en cada pantalla.</p></div>
+          </div>
+          
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="badge-check" class="w-5 h-5 text-sena"></i>Validador W3C</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p>validator.w3.org → sube cada HTML. Meta: 0 errores.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 25 · ADAPTA EL EJERCICIO A TU PROYECTO -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Adapta el ejercicio a tu proyecto" data-section="Bloque 5: Calidad y entrega">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-emerald-50 border-emerald-200 text-emerald-800"><i data-lucide="compass" class="w-3.5 h-3.5"></i> Tu proyecto</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">El mismo proceso, con tu software</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">AromaSur es solo el ejemplo. Tu documento y tu front-end deben corresponder a <strong>tu</strong> proyecto formativo y a sus requerimientos.</p>
+        </header>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="flex items-center gap-2 text-sm font-extrabold text-slate-900"><span class="w-7 h-7 rounded-full bg-sky-100 text-sky-800 text-xs flex items-center justify-center">1</span>Parte de tu prototipo</p><p class="text-xs text-slate-600 mt-1.5">Usa las pantallas y la guía de estilos que hiciste en Figma para tu proyecto formativo.</p></div><div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="flex items-center gap-2 text-sm font-extrabold text-slate-900"><span class="w-7 h-7 rounded-full bg-sky-100 text-sky-800 text-xs flex items-center justify-center">2</span>Haz el inventario</p><p class="text-xs text-slate-600 mt-1.5">Lista los componentes de tus pantallas y arma la matriz componente × pantalla.</p></div><div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="flex items-center gap-2 text-sm font-extrabold text-slate-900"><span class="w-7 h-7 rounded-full bg-sky-100 text-sky-800 text-xs flex items-center justify-center">3</span>Documenta (EV02)</p><p class="text-xs text-slate-600 mt-1.5">Una ficha por componente + la tabla de elementos HTML. Entrega el ZIP.</p></div><div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="flex items-center gap-2 text-sm font-extrabold text-slate-900"><span class="w-7 h-7 rounded-full bg-violet-100 text-violet-800 text-xs flex items-center justify-center">4</span>Crea los tokens</p><p class="text-xs text-slate-600 mt-1.5">Pasa tus colores, tipografías y espacios de Figma a tokens.css.</p></div><div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="flex items-center gap-2 text-sm font-extrabold text-slate-900"><span class="w-7 h-7 rounded-full bg-violet-100 text-violet-800 text-xs flex items-center justify-center">5</span>Construye los componentes</p><p class="text-xs text-slate-600 mt-1.5">Primero en una guía de componentes (como componentes.html), luego en las pantallas.</p></div><div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="flex items-center gap-2 text-sm font-extrabold text-slate-900"><span class="w-7 h-7 rounded-full bg-violet-100 text-violet-800 text-xs flex items-center justify-center">6</span>Arma las pantallas (EV03)</p><p class="text-xs text-slate-600 mt-1.5">Mínimo las pantallas de tu prototipo con navegación real entre ellas.</p></div><div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="flex items-center gap-2 text-sm font-extrabold text-slate-900"><span class="w-7 h-7 rounded-full bg-violet-100 text-violet-800 text-xs flex items-center justify-center">7</span>Agrega el comportamiento</p><p class="text-xs text-slate-600 mt-1.5">Validación de formularios, mensajes y la acción principal de tu software.</p></div><div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="flex items-center gap-2 text-sm font-extrabold text-slate-900"><span class="w-7 h-7 rounded-full bg-violet-100 text-violet-800 text-xs flex items-center justify-center">8</span>Prueba y entrega</p><p class="text-xs text-slate-600 mt-1.5">Celular, escritorio, teclado, Lighthouse y W3C. Comprime y sube el ZIP.</p></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="triangle-alert" class="w-5 h-5 text-rose-600"></i>Errores frecuentes</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="x" class="w-4 h-4 text-rose-600 mt-0.5"></i><span>Copiar la demo de AromaSur en lugar de construir la propia.</span></li><li class="flex items-start gap-2"><i data-lucide="x" class="w-4 h-4 text-rose-600 mt-0.5"></i><span>Usar <code class="font-mono">&lt;div onclick&gt;</code> en lugar de <code class="font-mono">&lt;button&gt;</code>.</span></li><li class="flex items-start gap-2"><i data-lucide="x" class="w-4 h-4 text-rose-600 mt-0.5"></i><span>Campos sin <code class="font-mono">&lt;label&gt;</code> (solo placeholder).</span></li><li class="flex items-start gap-2"><i data-lucide="x" class="w-4 h-4 text-rose-600 mt-0.5"></i><span>Rutas absolutas (<code class="font-mono">C:\Users\…</code>) que se rompen en otro equipo.</span></li><li class="flex items-start gap-2"><i data-lucide="x" class="w-4 h-4 text-rose-600 mt-0.5"></i><span>Documento EV02 que no coincide con el código de la EV03.</span></li></ul></div>
+          </div>
+          
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="info" class="w-5 h-5 text-sena"></i>Si tu proyecto usa un framework</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p>Si ya trabajas con Tailwind, Bootstrap o React, puedes usarlo, pero la guía exige <strong>HTML, CSS y JS</strong>: explica en el documento qué componentes construiste y con qué elementos HTML, y entrega todos los archivos.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 26 · ENTREGA DE LOS DOS ZIP EN ZAJUNA -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Entrega de los dos ZIP en Zajuna" data-section="Bloque 5: Calidad y entrega">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-emerald-50 border-emerald-200 text-emerald-800"><i data-lucide="package-check" class="w-3.5 h-3.5"></i> Entrega</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Dos evidencias, dos entregas independientes</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Cada evidencia tiene su propio espacio en Zajuna. Revisa la lista antes de subir.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <div class="space-y-3">
+            <p class="flex items-center gap-2"><span class="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-extrabold uppercase tracking-wider bg-sky-100 text-sky-800">EV02</span> <span class="text-sm font-extrabold text-slate-900">Documento de componentes</span></p>
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>contenido del ZIP</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de contenido del ZIP">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[12px] leading-relaxed text-slate-100 flex-1 "><code>GA6-220501096-AA4-EV02_Nombre_Apellido.zip
+└── Documento_componentes.docx (o .pdf)</code></pre>
+          </div>
+            
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="list-checks" class="w-5 h-5 text-sky-600"></i>Checklist EV02</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sky-600 mt-0.5"></i><span>Portada, introducción y objetivo.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sky-600 mt-0.5"></i><span>Definición de elementos HTML a utilizar (tabla).</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sky-600 mt-0.5"></i><span>Una ficha por componente con captura.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sky-600 mt-0.5"></i><span>Matriz componente × pantalla y tokens de diseño.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sky-600 mt-0.5"></i><span>Espacio: <em>Establecer los componentes front-end de la aplicación web. GA6-220501096-AA4-EV02.</em></span></li></ul></div>
+          </div>
+          </div>
+          <div class="space-y-3">
+            <p class="flex items-center gap-2"><span class="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-extrabold uppercase tracking-wider bg-violet-100 text-violet-800">EV03</span> <span class="text-sm font-extrabold text-slate-900">Diseño front-end</span></p>
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>contenido del ZIP</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de contenido del ZIP">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[12px] leading-relaxed text-slate-100 flex-1 "><code>GA6-220501096-AA4-EV03_Nombre_Apellido.zip
+└── mi-proyecto/
+    ├── index.html · registro.html · …
+    ├── css/  (tokens, base, componentes, layouts)
+    ├── js/
+    └── img/</code></pre>
+          </div>
+            
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="list-checks" class="w-5 h-5 text-violet-600"></i>Checklist EV03</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-violet-600 mt-0.5"></i><span>Pantallas del prototipo en HTML, CSS y JS con navegación entre ellas.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-violet-600 mt-0.5"></i><span>Colores, tipografía y menús iguales a la guía de estilos.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-violet-600 mt-0.5"></i><span>Responsive en celular y escritorio, sin scroll horizontal.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-violet-600 mt-0.5"></i><span>Formularios validados y accesibles con teclado.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-violet-600 mt-0.5"></i><span>Se abre con doble clic en index.html después de descomprimir.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-violet-600 mt-0.5"></i><span>Espacio: <em>Diseño front-end que cumpla con los requerimientos del proyecto. GA6-220501096-AA4-EV03.</em></span></li></ul></div>
+          </div>
+          </div>
+        </div>
+        <div class="flex flex-wrap items-center gap-3">
+          
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 flex-1 min-w-[280px]">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>PowerShell · comprimir</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de PowerShell · comprimir">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[12px] leading-relaxed text-slate-100 flex-1 "><code>Compress-Archive -Path .\mi-proyecto -DestinationPath .\GA6-220501096-AA4-EV03_Nombre_Apellido.zip</code></pre>
+          </div>
+          <a href="demos/aa4-ev02-ev03-aromasur/index.html" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-[#39A900] hover:bg-[#2D8200] text-white font-bold px-4 py-2.5 rounded-xl text-sm shadow-sm transition-colors"><i data-lucide="external-link" class="w-4 h-4"></i> Abrir la demo</a> <a href="https://github.com/hdtoledo/adsoVirtual/tree/master/guias/guia-06/demos/aa4-ev02-ev03-aromasur" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-[#00324D] border border-slate-300 font-bold px-4 py-2.5 rounded-xl text-sm transition-colors"><i data-lucide="folder-git-2" class="w-4 h-4"></i> Ver el código fuente</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Barra inferior, índice y ayuda: los genera assets/js/presenter.js -->
+  <div data-presenter="bottom"></div>
+
+  <script src="../../assets/js/catalogo.js"></script>
+  <script src="../../assets/js/presenter.js"></script>
+  <script>
+    // Visor en vivo de la demo AromaSur (diapositiva 23): pantalla × ancho de dispositivo.
+    (function () {
+      const visor = document.querySelector('[data-visor]');
+      if (!visor) return;
+      const stage = visor.querySelector('[data-visor-stage]');
+      const frame = visor.querySelector('iframe');
+      const label = visor.querySelector('[data-visor-label]');
+      const base = frame.dataset.base;
+      let width = 390;
+
+      const fit = () => {
+        const scale = Math.min(1, stage.clientWidth / width);
+        frame.style.width = width + 'px';
+        frame.style.height = (stage.clientHeight / scale) + 'px';
+        frame.style.transform = 'scale(' + scale + ')';
+        label.textContent = width + ' px · escala ' + Math.round(scale * 100) + '%';
+      };
+
+      visor.querySelectorAll('[data-visor-width]').forEach((btn) => btn.addEventListener('click', () => {
+        width = Number(btn.dataset.visorWidth);
+        visor.querySelectorAll('[data-visor-width]').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+        fit();
+      }));
+
+      visor.querySelectorAll('[data-visor-page]').forEach((btn) => btn.addEventListener('click', () => {
+        frame.src = base + btn.dataset.visorPage;
+        visor.querySelectorAll('[data-visor-page]').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+      }));
+
+      window.addEventListener('resize', fit);
+      new ResizeObserver(fit).observe(stage);
+    })();
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ingresar | AromaSur Café</title>
+  <meta name="description" content="Ingresa a la plataforma de pedidos mayoristas de AromaSur Café.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+
+  <!-- Tipografías del diseño en Figma: Poppins (títulos) e Inter (textos) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+  <!-- Estilos por capas: tokens → base → componentes → layouts -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/layouts.css">
+
+  <!-- Scripts: primero los compartidos, luego el de la página -->
+  <script src="js/ui.js" defer></script>
+  <script src="js/validacion.js" defer></script>
+  <script src="js/login.js" defer></script>
+</head>
+<body>
+  <a class="enlace-salto" href="#contenido">Saltar al formulario</a>
+
+  <header class="auth-encabezado">
+    <a class="marca" href="index.html">
+      <img src="img/logo.svg" alt="" width="36" height="36">
+      AromaSur
+    </a>
+    <a class="boton boton--secundario" href="registro.html">Registrarse</a>
+  </header>
+
+  <div class="layout-auth">
+    <main class="auth-formulario" id="contenido">
+      <div class="auth-formulario__titulo">
+        <h1>Bienvenido de nuevo</h1>
+        <p>Ingresa para gestionar tus pedidos de café especial.</p>
+      </div>
+
+      <form class="formulario" id="form-login" action="#" method="post">
+        <!-- Componente: campo de texto -->
+        <div class="campo">
+          <label class="campo__etiqueta" for="correo">Correo electrónico</label>
+          <input class="campo__control" id="correo" name="correo" type="email"
+                 autocomplete="email" placeholder="nombre@negocio.com" required
+                 aria-describedby="correo-error"
+                 data-msg-requerido="Escribe tu correo electrónico."
+                 data-msg-formato="Escribe un correo válido, por ejemplo nombre@negocio.com.">
+          <p class="campo__error" id="correo-error"></p>
+        </div>
+
+        <!-- Componente: campo de contraseña con botón mostrar/ocultar -->
+        <div class="campo">
+          <label class="campo__etiqueta" for="clave">Contraseña</label>
+          <div class="campo__envoltura">
+            <input class="campo__control" id="clave" name="clave" type="password"
+                   autocomplete="current-password" minlength="8" required
+                   aria-describedby="clave-error"
+                   data-msg-requerido="Escribe tu contraseña."
+                   data-msg-corto="La contraseña tiene mínimo 8 caracteres.">
+            <button class="campo__accion" type="button" data-mostrar-clave aria-controls="clave"
+                    aria-pressed="false" aria-label="Mostrar contraseña">
+              <svg class="icono-mostrar" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+              <svg class="icono-ocultar" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 3 18 18"/><path d="M10.6 5.1A10.4 10.4 0 0 1 12 5c6.5 0 10 7 10 7a17 17 0 0 1-3 3.9"/><path d="M6.6 6.6A17 17 0 0 0 2 12s3.5 7 10 7a9.7 9.7 0 0 0 5.4-1.6"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>
+            </button>
+          </div>
+          <p class="campo__error" id="clave-error"></p>
+        </div>
+
+        <div class="formulario__extra">
+          <button class="boton boton--texto" type="button" id="olvido-clave">¿Olvidaste tu contraseña?</button>
+        </div>
+
+        <!-- Un solo botón principal por pantalla -->
+        <button class="boton boton--primario boton--bloque" type="submit">Ingresar</button>
+      </form>
+
+      <!-- RF03: navegación Login → Registro -->
+      <p class="auth-formulario__cambio">¿No tienes cuenta? <a href="registro.html">Regístrate</a></p>
+    </main>
+
+    <!-- Panel de marca: va DESPUÉS del formulario en el HTML (el contenido principal primero
+         para lectores de pantalla); en escritorio el CSS lo ubica a la izquierda con order -->
+    <aside class="auth-panel" aria-label="Beneficios de AromaSur">
+      <span class="auth-panel__etiqueta">Café especial del Huila</span>
+      <p class="auth-panel__titulo">Del cafetal huilense a tu negocio</p>
+      <ul class="auth-panel__lista">
+        <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Envíos a todo Colombia</li>
+        <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Lotes seleccionados con trazabilidad</li>
+        <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Facturación electrónica</li>
+      </ul>
+    </aside>
+  </div>
+</body>
+</html>

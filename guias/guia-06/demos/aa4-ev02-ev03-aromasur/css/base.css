@@ -1,0 +1,113 @@
+/* ==========================================================================
+   2. BASE · reset mínimo, tipografía y utilidades globales
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1, h2, h3, p, figure, fieldset, dl, dd {
+  margin: 0;
+}
+
+fieldset {
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--fuente-texto);
+  font-size: var(--texto-cuerpo);
+  line-height: 1.5;
+  color: var(--color-texto);
+  background-color: var(--color-fondo);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--fuente-titulos);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--color-texto);
+}
+
+h1 { font-size: var(--texto-h1); }
+h2 { font-size: var(--texto-h2); }
+h3 { font-size: 1.125rem; }
+
+a {
+  color: var(--color-primario-500);
+  font-weight: 600;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  color: var(--color-primario-700);
+}
+
+/* Foco visible y consistente en TODOS los elementos interactivos */
+:focus-visible {
+  outline: 3px solid var(--color-acento);
+  outline-offset: 2px;
+}
+
+/* ---------- Utilidades ---------- */
+.contenedor {
+  width: min(100% - 2rem, 72rem);
+  margin-inline: auto;
+}
+
+.solo-lectores {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.enlace-salto {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: var(--z-toast);
+  padding: var(--espacio-3) var(--espacio-4);
+  border-radius: var(--radio-sm);
+  background: var(--color-primario-700);
+  color: var(--color-superficie);
+}
+
+.enlace-salto:focus {
+  top: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

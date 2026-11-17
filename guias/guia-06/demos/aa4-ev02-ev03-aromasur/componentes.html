@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guía de componentes | AromaSur Café</title>
+  <meta name="description" content="Catálogo vivo de los componentes front-end de AromaSur Café: tokens, botones, campos, tarjetas, navegación, diálogo y notificaciones.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/layouts.css">
+
+  <script src="js/ui.js" defer></script>
+  <script src="js/guia.js" defer></script>
+</head>
+<body>
+  <a class="enlace-salto" href="#contenido">Saltar al contenido</a>
+
+  <header class="auth-encabezado">
+    <a class="marca" href="index.html">
+      <img src="img/logo.svg" alt="" width="36" height="36">
+      AromaSur · Componentes
+    </a>
+    <a class="boton boton--secundario" href="index.html">Ver la aplicación</a>
+  </header>
+
+  <main class="contenedor guia" id="contenido">
+    <div class="guia__intro">
+      <h1>Guía de componentes front-end</h1>
+      <p>
+        Catálogo vivo de la interfaz de AromaSur Café. Cada ficha documenta para qué sirve el
+        componente, qué elementos HTML lo forman, sus variantes, sus estados y sus reglas de
+        accesibilidad. Es la base del documento de la evidencia AA4-EV02.
+      </p>
+    </div>
+
+    <nav aria-label="Componentes">
+      <ul class="guia__indice">
+        <li><a href="#tokens">Tokens</a></li>
+        <li><a href="#boton">Botón</a></li>
+        <li><a href="#campo">Campo de texto</a></li>
+        <li><a href="#casilla">Casilla</a></li>
+        <li><a href="#insignia">Insignia</a></li>
+        <li><a href="#chips">Chips de filtro</a></li>
+        <li><a href="#tarjeta">Tarjeta de producto</a></li>
+        <li><a href="#navegacion">Navegación</a></li>
+        <li><a href="#dialogo">Diálogo</a></li>
+        <li><a href="#toast">Toast</a></li>
+        <li><a href="#tabla">Tabla</a></li>
+      </ul>
+    </nav>
+
+    <!-- ========================= TOKENS ========================= -->
+    <section class="ficha" id="tokens" aria-labelledby="t-tokens">
+      <h2 id="t-tokens">Tokens de diseño</h2>
+      <p class="ficha__descripcion">Variables de <code>css/tokens.css</code> que traducen los estilos de Figma. Ningún componente escribe un color directamente.</p>
+      <dl class="ficha__datos">
+        <dt>Tipografía</dt><dd>Poppins SemiBold para títulos; Inter para textos y formularios.</dd>
+        <dt>Espaciado</dt><dd>Escala de 8 px: <code>--espacio-2</code> (8) a <code>--espacio-12</code> (48).</dd>
+        <dt>Contraste</dt><dd>Texto 4.5:1 como mínimo; borde de campos 3:1 (WCAG 2.1 AA).</dd>
+      </dl>
+      <div class="ficha__muestra">
+        <div class="paleta">
+          <div class="paleta__color"><span style="background:#5B3A29"></span><p><strong>primario-700</strong><br>#5B3A29 · 10.09:1</p></div>
+          <div class="paleta__color"><span style="background:#8B5E3C"></span><p><strong>primario-500</strong><br>#8B5E3C · 5.58:1</p></div>
+          <div class="paleta__color"><span style="background:#2F6B3A"></span><p><strong>secundario</strong><br>#2F6B3A · 6.39:1</p></div>
+          <div class="paleta__color"><span style="background:#B4532A"></span><p><strong>acento</strong><br>#B4532A · 4.99:1</p></div>
+          <div class="paleta__color"><span style="background:#1F1A17"></span><p><strong>texto</strong><br>#1F1A17 · 17.24:1</p></div>
+          <div class="paleta__color"><span style="background:#6F6259"></span><p><strong>texto-suave</strong><br>#6F6259 · 5.89:1</p></div>
+          <div class="paleta__color"><span style="background:#B42318"></span><p><strong>error</strong><br>#B42318 · 6.57:1</p></div>
+          <div class="paleta__color"><span style="background:#1F7A3A"></span><p><strong>exito</strong><br>#1F7A3A · 5.38:1</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= BOTÓN ========================= -->
+    <section class="ficha" id="boton" aria-labelledby="t-boton">
+      <h2 id="t-boton">Botón</h2>
+      <p class="ficha__descripcion">Ejecuta una acción (enviar, agregar, abrir). Si lleva a otra página, se usa un enlace <code>&lt;a&gt;</code> con la misma apariencia.</p>
+      <dl class="ficha__datos">
+        <dt>Elementos HTML</dt><dd><code>&lt;button type="submit|button"&gt;</code> o <code>&lt;a href&gt;</code></dd>
+        <dt>Clases</dt><dd><code>.boton</code> + <code>--primario</code>, <code>--secundario</code>, <code>--texto</code>, <code>--icono</code>, <code>--bloque</code></dd>
+        <dt>Estados</dt><dd>Normal, hover, foco visible, deshabilitado y cargando (<code>aria-busy="true"</code>).</dd>
+        <dt>Accesibilidad</dt><dd>Alto mínimo de 48 px; si solo tiene icono, lleva <code>aria-label</code>. Un único botón primario por pantalla.</dd>
+        <dt>Se usa en</dt><dd>Login, Registro, Catálogo y Diálogo del pedido.</dd>
+      </dl>
+      <div class="ficha__muestra">
+        <button class="boton boton--primario" type="button">Primario</button>
+        <button class="boton boton--secundario" type="button">Secundario</button>
+        <button class="boton boton--texto" type="button">Botón de texto</button>
+        <button class="boton boton--primario" type="button" disabled>Deshabilitado</button>
+        <button class="boton boton--primario" type="button" aria-busy="true" disabled>Cargando…</button>
+      </div>
+    </section>
+
+    <!-- ========================= CAMPO ========================= -->
+    <section class="ficha" id="campo" aria-labelledby="t-campo">
+      <h2 id="t-campo">Campo de texto</h2>
+      <p class="ficha__descripcion">Captura un dato del usuario con su etiqueta visible, texto de ayuda y mensaje de error.</p>
+      <dl class="ficha__datos">
+        <dt>Elementos HTML</dt><dd><code>&lt;label for&gt;</code>, <code>&lt;input&gt;</code> o <code>&lt;select&gt;</code>, <code>&lt;p&gt;</code> de ayuda y de error.</dd>
+        <dt>Clases</dt><dd><code>.campo</code>, <code>__etiqueta</code>, <code>__control</code>, <code>__ayuda</code>, <code>__error</code>, <code>__envoltura</code>, <code>__accion</code></dd>
+        <dt>Estados</dt><dd>Vacío, foco, con error (<code>aria-invalid="true"</code>) y deshabilitado.</dd>
+        <dt>Accesibilidad</dt><dd>La etiqueta nunca se reemplaza por el placeholder; <code>aria-describedby</code> conecta ayuda y error; <code>autocomplete</code> según el dato.</dd>
+        <dt>Se usa en</dt><dd>Login, Registro y buscador del Catálogo.</dd>
+      </dl>
+      <div class="ficha__muestra">
+        <div class="campo">
+          <label class="campo__etiqueta" for="demo-normal">Correo electrónico</label>
+          <input class="campo__control" id="demo-normal" type="email" placeholder="nombre@negocio.com" aria-describedby="demo-normal-ayuda">
+          <p class="campo__ayuda" id="demo-normal-ayuda">Usa el correo de tu negocio.</p>
+        </div>
+        <div class="campo">
+          <label class="campo__etiqueta" for="demo-error">Teléfono celular</label>
+          <input class="campo__control" id="demo-error" type="tel" value="300 12" aria-invalid="true" aria-describedby="demo-error-error">
+          <p class="campo__error" id="demo-error-error">Escribe 10 dígitos que empiecen por 3, sin espacios.</p>
+        </div>
+        <div class="campo">
+          <label class="campo__etiqueta" for="demo-clave">Contraseña</label>
+          <div class="campo__envoltura">
+            <input class="campo__control" id="demo-clave" type="password" value="cafe2026">
+            <button class="campo__accion" type="button" data-mostrar-clave aria-controls="demo-clave" aria-pressed="false" aria-label="Mostrar contraseña">
+              <svg class="icono-mostrar" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+              <svg class="icono-ocultar" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 3 18 18"/><path d="M10.6 5.1A10.4 10.4 0 0 1 12 5c6.5 0 10 7 10 7a17 17 0 0 1-3 3.9"/><path d="M6.6 6.6A17 17 0 0 0 2 12s3.5 7 10 7a9.7 9.7 0 0 0 5.4-1.6"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="campo">
+          <label class="campo__etiqueta" for="demo-off">Campo deshabilitado</label>
+          <input class="campo__control" id="demo-off" type="text" value="No editable" disabled>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= CASILLA ========================= -->
+    <section class="ficha" id="casilla" aria-labelledby="t-casilla">
+      <h2 id="t-casilla">Casilla de verificación</h2>
+      <p class="ficha__descripcion">Confirma una aceptación o una opción de sí/no.</p>
+      <dl class="ficha__datos">
+        <dt>Elementos HTML</dt><dd><code>&lt;label&gt;</code> que envuelve <code>&lt;input type="checkbox"&gt;</code> y el texto.</dd>
+        <dt>Accesibilidad</dt><dd>Todo el texto es clicable; con <code>required</code> se valida como cualquier campo.</dd>
+        <dt>Se usa en</dt><dd>Registro (RF04, Ley 1581 de 2012).</dd>
+      </dl>
+      <div class="ficha__muestra">
+        <label class="casilla"><input type="checkbox" checked> <span>Acepto la política de tratamiento de datos personales.</span></label>
+      </div>
+    </section>
+
+    <!-- ========================= INSIGNIA ========================= -->
+    <section class="ficha" id="insignia" aria-labelledby="t-insignia">
+      <h2 id="t-insignia">Insignia</h2>
+      <p class="ficha__descripcion">Etiqueta corta que clasifica o informa un estado.</p>
+      <dl class="ficha__datos">
+        <dt>Elementos HTML</dt><dd><code>&lt;span&gt;</code> dentro del texto al que pertenece.</dd>
+        <dt>Variantes</dt><dd><code>--suave</code>, <code>--balanceado</code>, <code>--intenso</code> (también usadas para estados del pedido).</dd>
+        <dt>Accesibilidad</dt><dd>El significado está en el texto, no solo en el color.</dd>
+      </dl>
+      <div class="ficha__muestra">
+        <span class="insignia insignia--suave">Suave</span>
+        <span class="insignia insignia--balanceado">Balanceado</span>
+        <span class="insignia insignia--intenso">Intenso</span>
+      </div>
+    </section>
+
+    <!-- ========================= CHIPS ========================= -->
+    <section class="ficha" id="chips" aria-labelledby="t-chips">
+      <h2 id="t-chips">Chips de filtro</h2>
+      <p class="ficha__descripcion">Permiten elegir un filtro entre varias opciones excluyentes.</p>
+      <dl class="ficha__datos">
+        <dt>Elementos HTML</dt><dd><code>&lt;fieldset&gt;</code> + <code>&lt;legend&gt;</code> y un <code>&lt;input type="radio"&gt;</code> por opción.</dd>
+        <dt>Estados</dt><dd>Seleccionado (<code>:checked</code>) y foco visible.</dd>
+        <dt>Accesibilidad</dt><dd>Al ser radios reales se navegan con las flechas del teclado y el lector anuncia "1 de 4".</dd>
+        <dt>Se usa en</dt><dd>Catálogo (perfil de taza).</dd>
+      </dl>
+      <div class="ficha__muestra">
+        <fieldset class="chips">
+          <legend>Perfil de taza</legend>
+          <label class="chip"><input type="radio" name="demo-perfil" checked><span>Todos</span></label>
+          <label class="chip"><input type="radio" name="demo-perfil"><span>Suave</span></label>
+          <label class="chip"><input type="radio" name="demo-perfil"><span>Intenso</span></label>
+        </fieldset>
+      </div>
+    </section>
+
+    <!-- ========================= TARJETA ========================= -->
+    <section class="ficha" id="tarjeta" aria-labelledby="t-tarjeta">
+      <h2 id="t-tarjeta">Tarjeta de producto</h2>
+      <p class="ficha__descripcion">Resume un café del catálogo y permite agregarlo al pedido.</p>
+      <dl class="ficha__datos">
+        <dt>Elementos HTML</dt><dd><code>&lt;article&gt;</code>, <code>&lt;img alt&gt;</code>, <code>&lt;h3&gt;</code>, <code>&lt;p&gt;</code>, insignia y botón.</dd>
+        <dt>Composición</dt><dd>Molécula: reutiliza <em>insignia</em> y <em>botón</em>. Se genera con JS desde un <code>&lt;template&gt;</code>.</dd>
+        <dt>Accesibilidad</dt><dd>El botón dice qué agrega: <code>aria-label="Agregar Huila Supremo al pedido"</code>.</dd>
+        <dt>Se usa en</dt><dd>Catálogo.</dd>
+      </dl>
+      <div class="ficha__muestra">
+        <article class="tarjeta-producto" style="width: 16rem">
+          <div class="tarjeta-producto__media"><img src="img/bolsa-balanceado.svg" alt="Bolsa de café Huila Supremo" width="400" height="300"></div>
+          <div class="tarjeta-producto__cuerpo">
+            <p class="tarjeta-producto__origen">Pitalito, Huila</p>
+            <h3 class="tarjeta-producto__titulo">Huila Supremo</h3>
+            <p><span class="insignia insignia--balanceado">Balanceado</span></p>
+            <p class="tarjeta-producto__notas">Caramelo, panela y cítricos</p>
+            <div class="tarjeta-producto__pie">
+              <p class="tarjeta-producto__precio">$ 145.000 <small>Bolsa de 2,5 kg</small></p>
+              <button class="boton boton--secundario" type="button">Agregar</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========================= NAVEGACIÓN ========================= -->
+    <section class="ficha" id="navegacion" aria-labelledby="t-navegacion">
+      <h2 id="t-navegacion">Barra de navegación</h2>
+      <p class="ficha__descripcion">Menú principal de la aplicación. Un solo HTML con dos presentaciones según el ancho de pantalla.</p>
+      <dl class="ficha__datos">
+        <dt>Elementos HTML</dt><dd><code>&lt;header&gt;</code>, <code>&lt;nav aria-label="Principal"&gt;</code>, <code>&lt;ul&gt;</code>, <code>&lt;a&gt;</code> con icono y texto.</dd>
+        <dt>Variantes</dt><dd>Móvil: barra inferior fija (alcance del pulgar). Escritorio: menú en la barra superior.</dd>
+        <dt>Estados</dt><dd>Página actual con <code>aria-current="page"</code>, hover y foco.</dd>
+        <dt>Se usa en</dt><dd>Pantallas internas (Catálogo y Mis pedidos).</dd>
+      </dl>
+      <div class="ficha__muestra">
+        <p>Mírala funcionando en el <a href="catalogo.html">Catálogo</a> y cambia el ancho de la ventana.</p>
+      </div>
+    </section>
+
+    <!-- ========================= DIÁLOGO ========================= -->
+    <section class="ficha" id="dialogo" aria-labelledby="t-dialogo">
+      <h2 id="t-dialogo">Diálogo (modal)</h2>
+      <p class="ficha__descripcion">Ventana que pide atención o confirmación sin salir de la pantalla.</p>
+      <dl class="ficha__datos">
+        <dt>Elementos HTML</dt><dd><code>&lt;dialog&gt;</code> nativo con cabecera (<code>&lt;h2&gt;</code> + cerrar), cuerpo y pie de acciones.</dd>
+        <dt>Comportamiento</dt><dd><code>showModal()</code> oscurece el fondo, atrapa el foco y se cierra con <kbd>Esc</kbd>.</dd>
+        <dt>Accesibilidad</dt><dd><code>aria-labelledby</code> apunta al título; el botón cerrar tiene <code>aria-label</code>.</dd>
+        <dt>Se usa en</dt><dd>Resumen y confirmación del pedido.</dd>
+      </dl>
+      <div class="ficha__muestra">
+        <button class="boton boton--secundario" type="button" data-demo-dialogo>Abrir diálogo de ejemplo</button>
+      </div>
+    </section>
+
+    <!-- ========================= TOAST ========================= -->
+    <section class="ficha" id="toast" aria-labelledby="t-toast">
+      <h2 id="t-toast">Toast (notificación)</h2>
+      <p class="ficha__descripcion">Mensaje breve que confirma una acción y desaparece solo.</p>
+      <dl class="ficha__datos">
+        <dt>Elementos HTML</dt><dd>Contenedor con <code>role="status"</code> y <code>aria-live="polite"</code>; lo crea <code>AromaUI.toast()</code>.</dd>
+        <dt>Variantes</dt><dd><code>--info</code>, <code>--exito</code>, <code>--error</code>.</dd>
+        <dt>Accesibilidad</dt><dd>El lector lo anuncia sin mover el foco; dura 3,5 s y nunca contiene acciones obligatorias.</dd>
+      </dl>
+      <div class="ficha__muestra">
+        <button class="boton boton--secundario" type="button" data-demo-toast="exito">Toast de éxito</button>
+        <button class="boton boton--secundario" type="button" data-demo-toast="error">Toast de error</button>
+        <button class="boton boton--secundario" type="button" data-demo-toast="info">Toast informativo</button>
+      </div>
+    </section>
+
+    <!-- ========================= TABLA ========================= -->
+    <section class="ficha" id="tabla" aria-labelledby="t-tabla">
+      <h2 id="t-tabla">Tabla de datos</h2>
+      <p class="ficha__descripcion">Muestra registros comparables, como el historial de pedidos.</p>
+      <dl class="ficha__datos">
+        <dt>Elementos HTML</dt><dd><code>&lt;table&gt;</code>, <code>&lt;caption&gt;</code>, <code>&lt;thead&gt;</code>, <code>&lt;th scope&gt;</code>, <code>&lt;tbody&gt;</code>.</dd>
+        <dt>Responsive</dt><dd>Contenedor con desplazamiento horizontal y <code>tabindex="0"</code> para usarlo con teclado.</dd>
+        <dt>Se usa en</dt><dd>Mis pedidos.</dd>
+      </dl>
+      <div class="ficha__muestra">
+        <div class="tabla-contenedor" style="width: 100%" tabindex="0" role="region" aria-label="Ejemplo de tabla">
+          <table class="tabla">
+            <caption class="solo-lectores">Ejemplo de pedidos</caption>
+            <thead><tr><th scope="col">Pedido</th><th scope="col">Fecha</th><th scope="col" class="numero">Total</th><th scope="col">Estado</th></tr></thead>
+            <tbody><tr><th scope="row">PED-1042</th><td>12/11/2026</td><td class="numero">$ 1.160.000</td><td><span class="insignia insignia--balanceado">En preparación</span></td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="dialogo" id="dialogo-demo" aria-labelledby="titulo-dialogo-demo">
+    <div class="dialogo__cabecera">
+      <h2 id="titulo-dialogo-demo">Diálogo de ejemplo</h2>
+      <button class="boton boton--icono boton--secundario" type="button" data-cerrar-dialogo aria-label="Cerrar">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="dialogo__cuerpo">
+      <p>Prueba presionar <kbd>Tab</kbd>: el foco no sale del diálogo. Con <kbd>Esc</kbd> se cierra.</p>
+    </div>
+    <div class="dialogo__pie">
+      <span></span>
+      <button class="boton boton--primario" type="button" data-cerrar-dialogo>Entendido</button>
+    </div>
+  </dialog>
+</body>
+</html>

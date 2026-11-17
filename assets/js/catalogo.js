@@ -575,25 +575,34 @@ window.ADSO_CATALOGO = {
       catName: "Frontend Web",
       type: "Desempeño",
       hours: "16 Horas",
-      title: "Maquetación de interfaces web responsive",
-      format: "ZIP / Repositorio Git",
+      title: "Establecer los componentes front-end de la aplicación web",
+      format: "ZIP (documento de componentes)",
       instrument: "IE-GA6-220501096-AA4-EV02",
-      summary: "Codificación frontend adaptable a dispositivos móviles, tablets y escritorio mediante Media Queries, diseño responsive y accesibilidad WCAG.",
+      summary: "Documento que especifica la estructura de componentes front-end que usará el software y la definición de los elementos HTML del diseño. Se explica junto con la EV03 a partir del caso AromaSur Café S.A.S. Entrega: documento de componentes en ZIP.",
       steps: [
-        "Estructurar el layout del proyecto siguiendo enfoque Mobile-First.",
-        "Configurar Media Queries para breakpoints estándar (sm: 640px, md: 768px, lg: 1024px).",
-        "Verificar contrastes cromáticos y accesibilidad para lectores de pantalla.",
-        "Comprobar adaptabilidad en modo responsive de las herramientas de desarrollador."
+        "Revisar los requerimientos del software y el prototipo de Figma de las evidencias anteriores.",
+        "Hacer el inventario de componentes por pantalla y clasificarlos (átomos, moléculas, organismos, plantillas y páginas).",
+        "Documentar cada componente con una ficha: propósito, elementos HTML, clases, variantes, estados, accesibilidad y pantallas donde se usa.",
+        "Elaborar la tabla de definición de elementos HTML a utilizar (elemento, uso y componente).",
+        "Registrar los tokens de diseño (colores con contraste, tipografía y espaciado) y la convención de nombres.",
+        "Redactar el documento con portada, introducción y objetivo, y comprimirlo en ZIP."
       ],
-      criteria: "Construye interfaces web responsive garantizando usabilidad en múltiples pantallas.",
+      criteria: "Establece los componentes front-end del software de acuerdo con sus requerimientos.",
       checklist: [
-        "Código HTML5 semántico validado por W3C.",
-        "Hojas de estilo CSS con Media Queries activas.",
-        "Adaptación fluida sin desbordamientos en móvil y escritorio.",
-        "Archivos organizados y comprimidos en formato ZIP."
+        "ZIP con nomenclatura oficial: GA6-220501096-AA4-EV02_Nombre_Apellido.zip.",
+        "Documento con portada, introducción y objetivo.",
+        "Definición de los elementos HTML a utilizar en el diseño front-end.",
+        "Fichas de componentes con variantes, estados y accesibilidad.",
+        "Matriz de componentes por pantalla coherente con el prototipo.",
+        "Entrega formal en el espacio de la evidencia en Zajuna LMS."
       ],
       activityId: "AA4",
-      session: null
+      session: {
+        file: "proyeccion-evidencia-12-13.html",
+        slides: 26,
+        title: "AA4-EV02 + EV03: Componentes y diseño front-end (AromaSur)",
+        blurb: "Una sola sesión para las dos evidencias: Atomic Design, inventario y fichas de componentes, definición de elementos HTML y estructura del documento (EV02); arquitectura por capas, tokens, componentes, Login, Registro y Catálogo con pedido en HTML, CSS y JS (EV03), con demo en vivo."
+      }
     },
     {
       id: "ev-13",
@@ -606,25 +615,34 @@ window.ADSO_CATALOGO = {
       catName: "Frontend Web",
       type: "Producto",
       hours: "16 Horas",
-      title: "Diseño front-end que cumpla con los requerimientos del proyecto formativo",
-      format: "ZIP / GitHub Pages",
+      title: "Diseño front-end que cumpla con los requerimientos del proyecto",
+      format: "ZIP (carpeta con los archivos del front-end)",
       instrument: "IE-GA6-220501096-AA4-EV03",
-      summary: "Código fuente frontend funcional completo del proyecto formativo, maquetado fielmente a los prototipos de Figma, responsive y publicado.",
+      summary: "Diseño front-end del software en HTML, CSS y JS que cumple los requisitos del proyecto y aplica la usabilidad y el diseño de las evidencias anteriores. Se explica junto con la EV02 con la demo AromaSur Café (Login, Registro y Catálogo con pedido). Entrega: carpeta comprimida en ZIP.",
       steps: [
-        "Codificar las vistas clave del sistema (Inicio, Login, Dashboard de módulos y formularios).",
-        "Aplicar diseño responsive adaptable a móviles, tablets y monitores de escritorio.",
-        "Implementar validaciones de formulario en el lado del cliente con feedback visual.",
-        "Publicar el sitio web en GitHub Pages o desplegar en hosting estático."
+        "Organizar el proyecto: páginas HTML, CSS por capas (tokens, base, componentes, layouts), JS por responsabilidad e imágenes.",
+        "Pasar los estilos de Figma a variables CSS (tokens) y construir los componentes documentados en la EV02.",
+        "Maquetar las pantallas del prototipo con plantillas responsive (mobile-first) y la navegación entre ellas.",
+        "Implementar el comportamiento con JavaScript: validación accesible de formularios, mensajes (toast) y la acción principal del software.",
+        "Verificar usabilidad y accesibilidad: teclado, contraste, Lighthouse y validador W3C, en celular y escritorio.",
+        "Comprimir la carpeta con todos los archivos en ZIP y entregarla en Zajuna."
       ],
       criteria: "Genera plantillas y estilos de acuerdo con el diseño establecido.",
       checklist: [
-        "Vistas maquetadas y funcionales según prototipo de alta fidelidad.",
-        "Diseño responsive sin desbordamientos horizontales.",
-        "Código modular, limpio y documentado.",
-        "Enlace activo a GitHub Pages o carpeta ZIP completa con todos los assets."
+        "ZIP con nomenclatura oficial: GA6-220501096-AA4-EV03_Nombre_Apellido.zip.",
+        "Pantallas del prototipo en HTML, CSS y JS con navegación funcional.",
+        "Colores, tipografía y menús coherentes con la guía de estilos.",
+        "Diseño responsive sin desbordamientos en celular y escritorio.",
+        "Formularios validados y accesibles con teclado.",
+        "Entrega formal en el espacio de la evidencia en Zajuna LMS."
       ],
       activityId: "AA4",
-      session: null
+      session: {
+        file: "proyeccion-evidencia-12-13.html",
+        slides: 26,
+        title: "AA4-EV02 + EV03: Componentes y diseño front-end (AromaSur)",
+        blurb: "Una sola sesión para las dos evidencias: Atomic Design, inventario y fichas de componentes, definición de elementos HTML y estructura del documento (EV02); arquitectura por capas, tokens, componentes, Login, Registro y Catálogo con pedido en HTML, CSS y JS (EV03), con demo en vivo."
+      }
     },
     {
       id: "ev-ga5-01",

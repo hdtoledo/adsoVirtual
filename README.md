@@ -53,10 +53,16 @@ repoVirtual/
         ├── proyeccion-evidencia-01…09.html  # Una sesión por evidencia (solo contenido)
         ├── proyeccion-evidencia-09-10.html  # Sesión compartida AA3-EV02 + EV03 (Figma)
         ├── proyeccion-evidencia-11.html     # AA4-EV01: fundamentos HTML, CSS y JS (26 diapositivas)
+        ├── proyeccion-evidencia-12-13.html  # Sesión compartida AA4-EV02 + EV03 (26 diapositivas)
         └── demos/
-            └── aa4-ev01-cafe/        # Página demo en HTML/CSS/JS puro que explica la EV11
-                ├── index.html · css/styles.css · js/main.js
-                └── img/              # Ilustraciones SVG propias
+            ├── aa4-ev01-cafe/        # Página demo en HTML/CSS/JS puro que explica la EV11
+            │   ├── index.html · css/styles.css · js/main.js
+            │   └── img/              # Ilustraciones SVG propias
+            └── aa4-ev02-ev03-aromasur/  # App demo por componentes que explica las EV12–13
+                ├── index.html · registro.html · catalogo.html · componentes.html
+                ├── css/              # tokens → base → componentes → layouts
+                ├── js/               # ui, validacion + un archivo por pantalla
+                └── img/
 ```
 
 ---
@@ -269,6 +275,36 @@ La tarjeta, la ruta de aprendizaje, el selector de proyección, el pie de págin
   * **Bloque 5 · Responsive (20–21):** mobile-first, breakpoints y unidades fluidas, más un **visor en vivo** de la demo en móvil, tablet y escritorio.
   * **Bloque 6 · JavaScript (22–24):** el patrón seleccionar → escuchar → reaccionar sobre el DOM, el menú móvil con `aria-expanded`, el modo oscuro y la validación accesible.
   * **Bloque 7 · Calidad y entrega (25–26):** WCAG (POUR), pruebas con teclado, Lighthouse y el validador W3C, la lista de chequeo y el comprimido en PowerShell.
+
+### 🟢 Evidencias 12 y 13 · Sesión única AA4-EV02 + AA4-EV03: componentes y diseño front-end (`proyeccion-evidencia-12-13.html`)
+* **Códigos oficiales:**
+  * `GA6-220501096-AA4-EV02` (desempeño): documento de componentes con portada, introducción, objetivo y definición de los elementos HTML.
+  * `GA6-220501096-AA4-EV03` (producto): diseño front-end en HTML, CSS y JS que aplica la usabilidad y el diseño de las evidencias anteriores.
+  * Las dos se entregan en ZIP.
+* **App demo:** [`guias/guia-06/demos/aa4-ev02-ev03-aromasur/`](guias/guia-06/demos/aa4-ev02-ev03-aromasur/index.html). Continúa el prototipo de Figma de *AromaSur Café S.A.S.* de las EV09–10.
+  * **Pantallas:** Login (RF01), Registro (RF02, RF04), y Catálogo con búsqueda, filtros, pedido en `<dialog>` y tabla de pedidos (RF05–RF07).
+  * **Guía de componentes:** una página viva que sirve de insumo para el documento de la EV02.
+  * **CSS en capas:** `tokens.css` → `base.css` → `componentes.css` → `layouts.css`.
+  * **JS compartido:** `AromaUI` para toasts, estado de carga y mostrar contraseña, y `Validacion` para la validación por atributos `data-msg-*`.
+  * Funciona abriendo los archivos con doble clic, sin servidor.
+* **26 diapositivas en 5 bloques.** Los fragmentos de código se extraen de la demo, así que siempre coinciden con ella.
+  * **Bloque 1 · Contexto (01–04):** requisitos oficiales de las dos evidencias, ruta EV09 → EV13, requerimientos RF01–RF07 / RNF01–RNF03 y mapa de pantallas.
+  * **Bloque 2 · EV02 Documento de componentes (05–12):**
+    * Atomic Design.
+    * Matriz componente × pantalla.
+    * Ficha técnica de 8 campos (botón), anatomía y estados del campo de texto, y fichas resumidas.
+    * Tabla de definición de elementos HTML.
+    * Tokens y BEM.
+    * Estructura del documento y entrega.
+  * **Bloque 3 · EV03 Arquitectura y estilos (13–16):** estructura por capas, `tokens.css`, componente botón (equivalencias de Auto layout a CSS) y campo con validación reutilizable.
+  * **Bloque 4 · EV03 Pantallas (17–22):**
+    * Plantilla de autenticación (orden accesible con `order`).
+    * Login con estado de carga.
+    * Registro con `pattern`, `select` y Ley 1581.
+    * Navegación adaptable (barra inferior y superior).
+    * Catálogo con `<template>` y `textContent` (prevención de XSS).
+    * Pedido con `<dialog>`, toast e `Intl.NumberFormat`.
+  * **Bloque 5 · Calidad y entrega (23–26):** **visor en vivo** (4 pantallas × móvil/escritorio), trazabilidad de las decisiones de usabilidad, cómo adaptarlo al proyecto propio y entrega de los dos ZIP.
 
 ---
 

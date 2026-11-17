@@ -27,8 +27,8 @@ Este documento es la **hoja de ruta maestra** para instructores y aprendices de 
 | **09** | `GA6-220501096-AA3-EV02` | Desempeño | Crear diseño web/móvil con componentes y tecnologías | Técnica (UI/UX) | 12h | ZIP (Mockup + Doc) |
 | **10** | `GA6-220501096-AA3-EV03` | Producto | Interfaces gráficas según requerimientos del proyecto | Técnica (UI/UX) | 12h | ZIP (Figma / Web) |
 | **11** | `GA6-220501096-AA4-EV01` | Conocimiento | Fundamentos de componentes front-end (HTML, CSS, JS) | Técnica (Frontend) | 16h | ZIP (HTML + CSS + JS) |
-| **12** | `GA6-220501096-AA4-EV02` | Desempeño | Establecer componentes front-end de la aplicación web | Técnica (Frontend) | 16h | ZIP (Doc técnico) |
-| **13** | `GA6-220501096-AA4-EV03` | Producto | Diseño front-end que cumpla con el proyecto formativo | Técnica (Frontend) | 16h | ZIP (Código Frontend) |
+| **12** | `GA6-220501096-AA4-EV02` | Desempeño | Establecer componentes front-end de la aplicación web | Técnica (Frontend) | 16h | ZIP (documento de componentes) |
+| **13** | `GA6-220501096-AA4-EV03` | Producto | Diseño front-end que cumpla con los requerimientos del proyecto | Técnica (Frontend) | 16h | ZIP (carpeta front-end) |
 | **14** | `GA6-230101507-AA1-EV01` | Desempeño | Foro: Técnicas de coordinación motriz | Transversal (Física) | 12h | Plataforma LMS |
 | **15** | `GA6-230101507-AA2-EV01` | Producto | Infografía: Estilos de vida saludable y ergonomía | Transversal (Física) | 12h | PDF / Imagen |
 | **16** | `GA6-230101507-AA3-EV01` | Producto | Ficha antropométrica y plan de acondicionamiento | Transversal (Física) | 12h | PDF / Excel |
@@ -354,30 +354,61 @@ Este documento es la **hoja de ruta maestra** para instructores y aprendices de 
 ---
 
 #### 12. Evidencia `GA6-220501096-AA4-EV02`
-**Nombre:** Establecer los componentes front-end de la aplicación web.  
+**Nombre:** Establecer los componentes front-end de la aplicación web.
 - **Tipo:** Evidencia de Desempeño.
 - **Instrumento de Evaluación:** `IE-GA6-220501096-AA4-EV02`.
-- **Descripción:** Documento de especificación arquitectónica del frontend donde se cataloga cada uno de los componentes de interfaz que se usarán en el proyecto formativo (Navbar, Sidebar, Cards, Tablas de datos, Formularios, Modales, Botones).
+- **Diapositivas de Proyección:** sesión compartida con la EV03 en [proyeccion-evidencia-12-13.html](guias/guia-06/proyeccion-evidencia-12-13.html) (26 slides, caso AromaSur Café S.A.S.).
+- **Material de apoyo:** [Guía de componentes de la demo](guias/guia-06/demos/aa4-ev02-ev03-aromasur/componentes.html). Tiene una ficha por componente con sus estados, lista para tomar capturas.
+- **Descripción Oficial de la Guía:**
+  > *"Con base en las características del software a desarrollar, realice un documento donde especifique la estructura de componentes que se van a utilizar para cumplir con las necesidades del software a desarrollar. Se deben seguir las normas básicas de presentación de un documento escrito, es decir, el documento debe tener como mínimo una portada, introducción, objetivo, definición de elementos HTML a utilizar en el diseño frontend del software a desarrollar."*
 - **Paso a Paso:**
-  1. Listar los componentes requeridos por módulo de negocio.
-  2. Especificar las propiedades (props/atributos) y estados esperados de cada componente.
-  3. Definir la tecnología base (HTML semántico, Tailwind CSS / Vanilla CSS, JavaScript).
-  4. Documentar normas de accesibilidad aplicadas (atributos `aria-*`, roles y accesibilidad por teclado).
-- **Formato de Entrega:** Documento técnico en PDF comprimido en ZIP.
+  1. Revisar los requerimientos del software y el prototipo de Figma (EV09–10).
+  2. Hacer el inventario de componentes por pantalla y clasificarlos con *Atomic Design*: átomos, moléculas, organismos, plantillas y páginas.
+  3. Documentar cada componente con una ficha de 8 campos: nombre, propósito, elementos HTML, clases CSS, variantes, estados, accesibilidad y pantallas donde se usa.
+  4. Elaborar la tabla de **definición de elementos HTML** a utilizar: elemento, uso y componente.
+  5. Registrar los tokens de diseño (estilo de Figma → variable CSS) y la convención de nombres BEM.
+  6. Redactar el documento:
+     - portada, introducción y objetivo;
+     - requerimientos y tokens;
+     - definición de elementos HTML;
+     - catálogo de componentes;
+     - matriz componente × pantalla;
+     - conclusiones y referencias.
+- **Lineamientos Generales para la Entrega:**
+  - **Producto a Entregar:** documento de componentes.
+  - **Formato:** **ZIP** (`GA6-220501096-AA4-EV02_Nombre_Apellido.zip`).
+  - **Espacio de Envío en Zajuna LMS:** *Establecer los componentes front-end de la aplicación web. GA6-220501096-AA4-EV02.*
 
 ---
 
 #### 13. Evidencia `GA6-220501096-AA4-EV03`
-**Nombre:** Diseño front-end que cumpla con los requerimientos del proyecto formativo.  
+**Nombre:** Diseño front-end que cumpla con los requerimientos del proyecto.
 - **Tipo:** Evidencia de Producto.
 - **Instrumento de Evaluación:** `IE-GA6-220501096-AA4-EV03`.
-- **Descripción:** Código fuente funcional del frontend del proyecto formativo, maquetado fielmente a partir de los prototipos aprobados en la actividad AA3, responsive, interactivo y listo para integrarse con servicios backend.
+- **Diapositivas de Proyección:** sesión compartida con la EV02 en [proyeccion-evidencia-12-13.html](guias/guia-06/proyeccion-evidencia-12-13.html).
+- **Demo de referencia:** [aa4-ev02-ev03-aromasur](guias/guia-06/demos/aa4-ev02-ev03-aromasur/index.html). Incluye Login, Registro, Catálogo con pedido y la Guía de componentes, en HTML, CSS y JS sin frameworks.
+- **Descripción Oficial de la Guía:**
+  > *"Teniendo en cuenta las características del software a desarrollar, realice el diseño front-end cumpliendo con los requisitos del proyecto, aplicando lo visto en el componente formativo."*
+- **Elementos para tener en cuenta según la Guía:**
+  - El diseño front-end debe aplicar los conceptos de usabilidad y diseño propuesto en las anteriores evidencias.
+  - Se debe aplicar HTML, CSS y JS para el diseño front-end.
 - **Paso a Paso:**
-  1. Maquetar las vistas principales del sistema (Landing, Login, Dashboard, Tablas y Formularios).
-  2. Garantizar adaptabilidad en pantallas móviles, tablets y monitores de escritorio.
-  3. Validar entradas de usuario en formularios mediante validación nativa y JavaScript.
-  4. Organizar la estructura de carpetas (`assets/`, `css/`, `js/`, `views/`).
-- **Formato de Entrega:** Repositorio en GitHub publicado en GitHub Pages o archivo ZIP con todo el código fuente listo para ejecución.
+  1. Organizar el proyecto:
+     - una página HTML por pantalla;
+     - CSS en capas: `tokens.css` → `base.css` → `componentes.css` → `layouts.css`;
+     - JS compartido (`ui.js`, `validacion.js`) más un archivo por pantalla;
+     - carpeta `img/`.
+  2. Pasar los estilos de Figma a variables CSS (tokens) y construir los componentes documentados en la EV02.
+  3. Maquetar las pantallas del prototipo con plantillas *mobile-first* y la navegación real entre ellas. En la demo, la navegación va en una barra inferior en el celular y en una barra superior en el escritorio.
+  4. Implementar el comportamiento:
+     - validación accesible (`validity`, `aria-invalid`, `aria-describedby`);
+     - estados de carga y mensajes con `aria-live`;
+     - la acción principal del software.
+  5. Verificar usabilidad y accesibilidad: teclado, contraste AA, Lighthouse ≥ 90 y validador W3C, en celular y escritorio.
+- **Lineamientos Generales para la Entrega:**
+  - **Productos a Entregar:** archivo ZIP: crear una carpeta con todos los archivos del diseño front-end y comprimirla.
+  - **Formato:** **ZIP** (`GA6-220501096-AA4-EV03_Nombre_Apellido.zip`).
+  - **Espacio de Envío en Zajuna LMS:** *Diseño front-end que cumpla con los requerimientos del proyecto. GA6-220501096-AA4-EV03.*
 
 ---
 

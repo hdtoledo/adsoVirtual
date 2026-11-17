@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo de cafés | AromaSur Café</title>
+  <meta name="description" content="Catálogo de cafés especiales del Huila para pedidos mayoristas de AromaSur Café.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/layouts.css">
+
+  <script src="js/ui.js" defer></script>
+  <script src="js/catalogo.js" defer></script>
+</head>
+<body class="app">
+  <a class="enlace-salto" href="#contenido">Saltar al contenido</a>
+
+  <!-- ============ Organismo: barra de la aplicación ============ -->
+  <header class="app-barra">
+    <div class="contenedor app-barra__contenido">
+      <a class="marca" href="catalogo.html">
+        <img src="img/logo.svg" alt="" width="36" height="36">
+        AromaSur
+      </a>
+
+      <!-- Misma navegación en todos los tamaños: en el celular el CSS la fija abajo -->
+      <nav class="app-nav" aria-label="Principal">
+        <ul class="app-nav__lista">
+          <li>
+            <a class="app-nav__enlace" href="catalogo.html" aria-current="page">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+              Catálogo
+            </a>
+          </li>
+          <li>
+            <a class="app-nav__enlace" href="#pedidos">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l3-2 3 2 3-2 3 2 3-2 1 .7V2l-1 .7-3-2-3 2-3-2-3 2-3-2z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+              Mis pedidos
+            </a>
+          </li>
+          <li>
+            <a class="app-nav__enlace" href="index.html">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg>
+              Salir
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="boton boton--primario" type="button" id="abrir-pedido" aria-haspopup="dialog">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        Pedido
+        <span class="contador" id="contador-pedido" hidden>0</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="contenedor app-main" id="contenido">
+    <!-- ============ RF05: catálogo con búsqueda y filtros ============ -->
+    <section class="app-seccion" aria-labelledby="titulo-catalogo">
+      <div class="app-main__encabezado">
+        <h1 id="titulo-catalogo">Catálogo de cafés</h1>
+        <p id="saludo">Elige los cafés para tu próximo pedido mayorista.</p>
+      </div>
+
+      <div class="barra-herramientas">
+        <div class="campo campo--icono">
+          <label class="campo__etiqueta" for="buscar">Buscar café</label>
+          <div class="campo__envoltura">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <input class="campo__control" id="buscar" type="search" placeholder="Nombre, municipio o nota" autocomplete="off">
+          </div>
+        </div>
+
+        <!-- Los chips son radios: un solo filtro activo y navegables con las flechas -->
+        <fieldset class="chips" id="filtro-perfil">
+          <legend>Perfil de taza</legend>
+          <label class="chip"><input type="radio" name="perfil" value="todos" checked><span>Todos</span></label>
+          <label class="chip"><input type="radio" name="perfil" value="suave"><span>Suave</span></label>
+          <label class="chip"><input type="radio" name="perfil" value="balanceado"><span>Balanceado</span></label>
+          <label class="chip"><input type="radio" name="perfil" value="intenso"><span>Intenso</span></label>
+        </fieldset>
+      </div>
+
+      <!-- Anuncia cuántos resultados hay cada vez que cambia el filtro -->
+      <p class="campo__ayuda" id="resultado-filtro" role="status" aria-live="polite"></p>
+
+      <div class="rejilla-productos" id="rejilla-productos"></div>
+      <p class="estado-vacio" id="sin-resultados" hidden>No encontramos cafés con ese filtro. Prueba con otra palabra o elige “Todos”.</p>
+    </section>
+
+    <!-- ============ Historial de pedidos (tabla) ============ -->
+    <section class="app-seccion" aria-labelledby="titulo-pedidos" id="pedidos">
+      <h2 id="titulo-pedidos">Mis pedidos</h2>
+      <div class="tabla-contenedor" tabindex="0" role="region" aria-labelledby="titulo-pedidos">
+        <table class="tabla">
+          <caption class="solo-lectores">Pedidos recientes con fecha, cantidad, total y estado</caption>
+          <thead>
+            <tr>
+              <th scope="col">Pedido</th>
+              <th scope="col">Fecha</th>
+              <th scope="col" class="numero">Bolsas</th>
+              <th scope="col" class="numero">Total</th>
+              <th scope="col">Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">PED-1042</th><td>12/11/2026</td><td class="numero">8</td><td class="numero">$ 1.160.000</td><td><span class="insignia insignia--balanceado">En preparación</span></td></tr>
+            <tr><th scope="row">PED-1035</th><td>28/10/2026</td><td class="numero">12</td><td class="numero">$ 1.716.000</td><td><span class="insignia insignia--suave">Entregado</span></td></tr>
+            <tr><th scope="row">PED-1021</th><td>10/10/2026</td><td class="numero">6</td><td class="numero">$ 828.000</td><td><span class="insignia insignia--suave">Entregado</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ Molécula: tarjeta de producto (plantilla que clona JS) ============ -->
+  <template id="plantilla-producto">
+    <article class="tarjeta-producto">
+      <div class="tarjeta-producto__media">
+        <img src="" alt="" width="400" height="300" loading="lazy">
+      </div>
+      <div class="tarjeta-producto__cuerpo">
+        <p class="tarjeta-producto__origen"></p>
+        <h3 class="tarjeta-producto__titulo"></h3>
+        <p><span class="insignia"></span></p>
+        <p class="tarjeta-producto__notas"></p>
+        <div class="tarjeta-producto__pie">
+          <p class="tarjeta-producto__precio"><span data-precio></span> <small>Bolsa de 2,5 kg</small></p>
+          <button class="boton boton--secundario" type="button" data-agregar>Agregar</button>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <!-- ============ Organismo: diálogo del pedido (RF06 y RF07) ============ -->
+  <dialog class="dialogo" id="dialogo-pedido" aria-labelledby="titulo-dialogo">
+    <div class="dialogo__cabecera">
+      <h2 id="titulo-dialogo">Tu pedido</h2>
+      <button class="boton boton--icono boton--secundario" type="button" data-cerrar-dialogo aria-label="Cerrar">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="dialogo__cuerpo">
+      <ul class="pedido-lista" id="lista-pedido"></ul>
+      <p class="estado-vacio" id="pedido-vacio">Aún no agregas cafés. Usa el botón “Agregar” de cada tarjeta.</p>
+    </div>
+    <div class="dialogo__pie">
+      <p class="pedido-total">Total: <span id="total-pedido">$ 0</span></p>
+      <div class="dialogo__acciones">
+        <button class="boton boton--secundario" type="button" data-cerrar-dialogo>Seguir comprando</button>
+        <button class="boton boton--primario" type="button" id="confirmar-pedido">Confirmar pedido</button>
+      </div>
+    </div>
+  </dialog>
+</body>
+</html>

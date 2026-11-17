@@ -1,0 +1,422 @@
+/* ==========================================================================
+   4. LAYOUTS (plantillas) · cómo se ubican los componentes en cada pantalla
+   - .layout-auth : Login y Registro (1 columna en móvil, 2 en escritorio)
+   - .layout-app  : pantallas internas (barra superior + navegación que en
+                    el celular se convierte en barra inferior)
+   - .guia        : página de la guía de componentes
+   ========================================================================== */
+
+/* ---------- Plantilla de autenticación ---------- */
+.auth-encabezado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espacio-4);
+  padding: var(--espacio-3) var(--espacio-4);
+  border-bottom: 1px solid var(--color-borde);
+  background-color: var(--color-superficie);
+}
+
+.layout-auth {
+  display: grid;
+  min-height: calc(100vh - 4.6rem);
+}
+
+/* Panel de marca: en el celular se oculta para priorizar el formulario */
+.auth-panel {
+  display: none;
+}
+
+.auth-formulario {
+  display: grid;
+  align-content: center;
+  gap: var(--espacio-6);
+  width: min(100% - 2rem, 26rem);
+  margin-inline: auto;
+  padding-block: var(--espacio-8);
+}
+
+.auth-formulario__titulo p {
+  margin-top: var(--espacio-1);
+  color: var(--color-texto-suave);
+}
+
+.formulario {
+  display: grid;
+  gap: var(--espacio-3);
+}
+
+.formulario__fila {                            /* dos campos lado a lado desde tablet */
+  display: grid;
+  gap: var(--espacio-3);
+}
+
+.formulario__extra {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.auth-formulario__cambio {
+  color: var(--color-texto-suave);
+  text-align: center;
+}
+
+@media (min-width: 40rem) {
+  .formulario__fila {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 64rem) {
+  .layout-auth {
+    grid-template-columns: 1fr 1fr;            /* panel de marca | formulario */
+  }
+
+  .auth-panel {
+    order: -1;                                 /* visualmente a la izquierda, en el HTML va después */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--espacio-6);
+    padding: var(--espacio-12);
+    background-color: var(--color-primario-700);
+    color: var(--color-superficie);
+  }
+
+  .auth-panel__titulo {
+    max-width: 18ch;
+    font-family: var(--fuente-titulos);
+    font-size: 2.5rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .auth-panel__lista {
+    display: grid;
+    gap: var(--espacio-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .auth-panel__lista li {
+    display: flex;
+    align-items: center;
+    gap: var(--espacio-3);
+  }
+
+  .auth-panel__lista svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: #F0B48F;
+  }
+
+  .auth-panel__etiqueta {
+    align-self: flex-start;
+    padding: var(--espacio-1) var(--espacio-3);
+    border-radius: var(--radio-pildora);
+    background-color: var(--color-acento);
+    font-size: var(--texto-pequeno);
+    font-weight: 600;
+  }
+}
+
+/* ---------- Plantilla de aplicación ---------- */
+.app {
+  --alto-barra-inferior: 4.5rem;               /* lo usa el toast para no quedar tapado */
+  padding-bottom: var(--alto-barra-inferior);
+}
+
+/* Las barras fijas no deben tapar el elemento enfocado (WCAG 2.4.11):
+   al desplazarse con Tab o con anclas se reserva su espacio */
+:root:has(body.app) {
+  scroll-padding-top: 5rem;
+  scroll-padding-bottom: 5.5rem;
+}
+
+.app-barra {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-navegacion);
+  border-bottom: 1px solid var(--color-borde);
+  background-color: var(--color-superficie);
+}
+
+.app-barra__contenido {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-3);
+  min-height: 4rem;
+}
+
+.app-barra__contenido .marca {
+  margin-right: auto;
+}
+
+/* Navegación principal: barra inferior fija en el celular (patrón de app móvil) */
+.app-nav {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: var(--z-navegacion);
+  border-top: 1px solid var(--color-borde);
+  background-color: var(--color-superficie);
+}
+
+.app-nav__lista {
+  display: flex;
+  justify-content: space-around;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.app-nav__enlace {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.125rem;
+  min-width: 4.5rem;
+  min-height: var(--alto-barra-inferior);
+  justify-content: center;
+  color: var(--color-texto-suave);
+  font-size: var(--texto-mini);
+  text-decoration: none;
+}
+
+.app-nav__enlace svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.app-nav__enlace[aria-current="page"] {        /* la página actual se marca con aria-current */
+  color: var(--color-primario-700);
+}
+
+.app-main {
+  display: grid;
+  gap: var(--espacio-8);
+  padding-block: var(--espacio-6) var(--espacio-12);
+}
+
+.app-seccion {
+  display: grid;
+  gap: var(--espacio-4);
+}
+
+.app-main__encabezado p {
+  margin-top: var(--espacio-1);
+  color: var(--color-texto-suave);
+}
+
+.barra-herramientas {
+  display: grid;
+  gap: var(--espacio-4);
+}
+
+.rejilla-productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+  gap: var(--espacio-6);
+}
+
+.pedido-lista {
+  display: grid;
+  gap: var(--espacio-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pedido-lista li {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--espacio-3);
+}
+
+.pedido-total {
+  font-family: var(--fuente-titulos);
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+@media (min-width: 48rem) {
+  .barra-herramientas {
+    grid-template-columns: minmax(0, 20rem) 1fr;
+    align-items: end;
+  }
+}
+
+/* Escritorio: la navegación sube a la barra superior */
+@media (min-width: 64rem) {
+  .app {
+    --alto-barra-inferior: 0px;
+    padding-bottom: 0;
+  }
+
+  :root:has(body.app) {
+    scroll-padding-bottom: 1rem;
+  }
+
+  .app-nav {
+    position: static;
+    border-top: 0;
+    background: none;
+  }
+
+  .app-nav__lista {
+    gap: var(--espacio-2);
+  }
+
+  .app-nav__enlace {
+    flex-direction: row;
+    gap: var(--espacio-2);
+    min-height: 2.75rem;
+    padding-inline: var(--espacio-3);
+    border-radius: var(--radio-md);
+    font-size: var(--texto-pequeno);
+    font-weight: 600;
+  }
+
+  .app-nav__enlace svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .app-nav__enlace:hover {
+    background-color: var(--color-fondo);
+    color: var(--color-primario-700);
+  }
+
+  .app-nav__enlace[aria-current="page"] {
+    background-color: var(--color-primario-100);
+  }
+}
+
+/* ---------- Guía de componentes ---------- */
+.guia {
+  display: grid;
+  gap: var(--espacio-8);
+  padding-block: var(--espacio-8) var(--espacio-12);
+}
+
+.guia__intro p {
+  max-width: 65ch;
+  margin-top: var(--espacio-2);
+  color: var(--color-texto-suave);
+}
+
+.guia__indice {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.guia__indice a {
+  display: inline-flex;
+  padding: var(--espacio-1) var(--espacio-3);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-pildora);
+  background-color: var(--color-superficie);
+  font-size: var(--texto-pequeno);
+  text-decoration: none;
+}
+
+.ficha {
+  display: grid;
+  gap: var(--espacio-4);
+  padding: var(--espacio-6);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-lg);
+  background-color: var(--color-superficie);
+  scroll-margin-top: var(--espacio-4);
+}
+
+.ficha > * {
+  min-width: 0;                                /* evita que la tabla ensanche la ficha en móvil */
+}
+
+.ficha__descripcion {
+  color: var(--color-texto-suave);
+}
+
+.ficha__datos {
+  display: grid;
+  gap: var(--espacio-3);
+  font-size: var(--texto-pequeno);
+}
+
+.ficha__datos dt {
+  font-weight: 700;
+}
+
+.ficha__datos dd {
+  color: var(--color-texto-suave);
+}
+
+.ficha__datos code,
+.guia code {
+  padding: 0.0625rem 0.3rem;
+  border-radius: 0.25rem;
+  background-color: var(--color-fondo);
+  font-size: 0.85em;
+}
+
+.ficha__muestra {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--espacio-4);
+  padding: var(--espacio-6);
+  border-radius: var(--radio-md);
+  background-color: var(--color-fondo);
+}
+
+.ficha__muestra > .campo {
+  flex: 1 1 14rem;
+}
+
+.ficha__muestra > .tabla-contenedor {
+  flex: 1 1 100%;
+  min-width: 0;
+}
+
+.paleta {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  gap: var(--espacio-3);
+  width: 100%;
+}
+
+.paleta__color {
+  overflow: hidden;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-md);
+  background-color: var(--color-superficie);
+  font-size: var(--texto-mini);
+}
+
+.paleta__color span {
+  display: block;
+  height: 3.5rem;
+}
+
+.paleta__color p {
+  padding: var(--espacio-2);
+}
+
+@media (min-width: 64rem) {
+  .ficha {
+    grid-template-columns: 18rem 1fr;
+    align-items: start;
+  }
+
+  .ficha > h2,
+  .ficha > .ficha__descripcion {
+    grid-column: 1 / -1;
+  }
+}

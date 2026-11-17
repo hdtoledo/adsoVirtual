@@ -1,0 +1,70 @@
+/* ==========================================================================
+   1. TOKENS DE DISEÑO · AromaSur Café
+   Traducen a CSS los estilos creados en Figma (EV09-10): cada estilo de
+   color o de texto tiene aquí una variable con el mismo nombre.
+   Si mañana cambia el color de marca, se cambia SOLO en este archivo.
+   ========================================================================== */
+
+:root {
+  /* Color · marca (Figma: Marca/Primario 700, 500, 100) */
+  --color-primario-700: #5B3A29;  /* botones, títulos       · 10.09:1 sobre blanco */
+  --color-primario-800: #45291C;  /* hover del botón         */
+  --color-primario-500: #8B5E3C;  /* enlaces                 · 5.58:1  */
+  --color-primario-100: #F1E6DC;  /* fondos suaves           */
+
+  /* Color · apoyo (Figma: Marca/Secundario y Marca/Acento) */
+  --color-secundario: #2F6B3A;    /* verde cafetal           · 6.39:1  */
+  --color-secundario-100: #E3F0E5;
+  --color-acento: #B4532A;        /* terracota, detalles     · 4.99:1  */
+  --color-acento-100: #F8E4DA;
+
+  /* Color · neutros (Figma: Neutro/…) */
+  --color-texto: #1F1A17;         /* 17.24:1 */
+  --color-texto-suave: #6F6259;   /* 5.89:1  */
+  --color-borde-campo: #8F8176;   /* 3.77:1: borde de campos (mínimo 3:1) */
+  --color-borde: #E7DED3;         /* separadores decorativos */
+  --color-fondo: #FAF7F2;
+  --color-superficie: #FFFFFF;
+
+  /* Color · estados */
+  --color-error: #B42318;         /* 6.57:1 */
+  --color-error-100: #FDECEA;
+  --color-exito: #1F7A3A;         /* 5.38:1 */
+  --color-exito-100: #E6F4EA;
+
+  /* Tipografía (Figma: Título/H1, Título/H2, Texto/Cuerpo, Texto/Etiqueta) */
+  --fuente-titulos: "Poppins", system-ui, sans-serif;
+  --fuente-texto: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --texto-h1: clamp(1.5rem, 1.1rem + 1.5vw, 2rem);   /* 24 → 32 px */
+  --texto-h2: clamp(1.25rem, 1.05rem + 0.8vw, 1.5rem); /* 20 → 24 px */
+  --texto-cuerpo: 1rem;                                /* 16 px */
+  --texto-pequeno: 0.875rem;                           /* 14 px */
+  --texto-mini: 0.75rem;                               /* 12 px */
+
+  /* Espaciado · escala de 8 px (Figma: Auto layout 8, 16, 24, 32…) */
+  --espacio-1: 0.25rem;  /*  4 px */
+  --espacio-2: 0.5rem;   /*  8 px */
+  --espacio-3: 0.75rem;  /* 12 px */
+  --espacio-4: 1rem;     /* 16 px */
+  --espacio-6: 1.5rem;   /* 24 px */
+  --espacio-8: 2rem;     /* 32 px */
+  --espacio-12: 3rem;    /* 48 px */
+
+  /* Forma y profundidad */
+  --radio-sm: 0.5rem;
+  --radio-md: 0.75rem;
+  --radio-lg: 1rem;
+  --radio-pildora: 999px;
+  --sombra-sm: 0 1px 2px rgb(31 26 23 / 0.06);
+  --sombra-md: 0 8px 24px rgb(91 58 41 / 0.10);
+
+  /* Tamaños de interacción (RNF02: áreas táctiles de 48 px) */
+  --alto-control: 3rem;
+
+  /* Capas */
+  --z-navegacion: 50;
+  --z-toast: 100;
+
+  /* Movimiento */
+  --transicion: 0.2s ease-in-out;
+}

@@ -532,25 +532,37 @@ window.ADSO_CATALOGO = {
       catName: "Frontend Web",
       type: "Conocimiento",
       hours: "16 Horas",
-      title: "Desarrollo de interfaces web con HTML5, CSS3 y JavaScript",
-      format: "PDF",
+      title: "Fundamentos en la implementación de componentes front-end, HTML, CSS, JS",
+      format: "Carpeta ZIP (archivos HTML, CSS, JS e imágenes)",
       instrument: "IE-GA6-220501096-AA4-EV01",
-      summary: "Guía técnica y desarrollo práctico de maquetación semántica con HTML5, hojas de estilos CSS3 (Flexbox/Grid) y dinamismo con JavaScript vanilla.",
+      summary: "Página web que enseña un pequeño tutorial sobre un tema de libre elección: título, lista ordenada con enlaces a cada tema y, por tema, su título, imagen y descripción. Aplica HTML semántico, CSS con Flexbox, Grid y media queries, accesibilidad y JavaScript. Se explica con la demo AromaSur Café (métodos de preparación de café).",
       steps: [
-        "Estudiar las etiquetas semánticas de HTML5 (header, nav, main, section, article, aside, footer).",
-        "Aplicar modelos de caja, selectores avanzados y sistemas de layout modernos (Flexbox y Grid).",
-        "Implementar scripts JS para manipulación del DOM y captura de eventos.",
-        "Consolidar ejemplos y capturas en el documento entregable."
+        "Elegir el tema del tutorial y definir de 4 a 5 conceptos con su título, imagen y descripción.",
+        "Crear la estructura del proyecto: index.html, css/styles.css, js/main.js e img/ con nombres en minúscula y rutas relativas.",
+        "Escribir el HTML semántico: header, nav, main, section, article, aside y footer, con un único h1 y jerarquía de títulos.",
+        "Agregar el temario como lista ordenada (<ol>) con enlaces internos (href=\"#id\") a cada tema, y un enlace de regreso en cada tema.",
+        "Maquetar cada tema como <article> con <h3>, <figure>/<img> con alt, width y height, y la descripción.",
+        "Estilizar con CSS mobile-first: variables, Flexbox para componentes en línea, Grid para el layout y las rejillas, y media queries.",
+        "Agregar interactividad con JavaScript externo (menú móvil, modo oscuro o validación de formulario) usando el DOM y eventos.",
+        "Probar con teclado, Lighthouse y el validador W3C; comprimir la carpeta en ZIP y entregarla en Zajuna."
       ],
       criteria: "Aplica conceptos de maquetación semántica y diseño adaptable con CSS y JavaScript.",
       checklist: [
-        "Explicación conceptual de la semántica HTML5.",
-        "Ejemplos de maquetación con Flexbox y CSS Grid documentados.",
-        "Scripts JS para manipulación del DOM probados.",
-        "Documento en formato PDF formal."
+        "ZIP con nomenclatura oficial: GA6-220501096-AA4-EV01_Nombre_Apellido.zip.",
+        "Título de la página y un único h1 visible.",
+        "Lista ordenada con enlaces internos a cada tema del tutorial.",
+        "Cada tema con su título, imagen (con texto alternativo) y descripción.",
+        "Hoja de estilos CSS externa con Flexbox, Grid y diseño responsive.",
+        "Etiquetas semánticas y JavaScript con al menos una interacción.",
+        "Entrega formal en el espacio de la evidencia en Zajuna LMS."
       ],
       activityId: "AA4",
-      session: null
+      session: {
+        file: "proyeccion-evidencia-11.html",
+        slides: 26,
+        title: "AA4-EV01: Fundamentos front-end con HTML, CSS y JS",
+        blurb: "Tutorial web paso a paso con la demo AromaSur Café: arquitectura de carpetas, HTML semántico, lista ordenada con anclas, CSS con Flexbox y Grid aplicado en cada sección, mobile-first, accesibilidad y JavaScript (menú, modo oscuro y validación)."
+      }
     },
     {
       id: "ev-12",

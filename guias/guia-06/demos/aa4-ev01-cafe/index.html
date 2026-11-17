@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+<head>
+  <!-- 1. Metadatos: codificación, vista móvil, título y descripción -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tutorial: prepara café de especialidad en casa | AromaSur Café</title>
+  <meta name="description" content="Tutorial paso a paso de AromaSur Café: cómo moler el grano y preparar café con prensa francesa, filtro V60, cafetera moka y cold brew.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+
+  <!-- 2. Antes de pintar: marca que JS está activo y aplica el tema guardado (evita parpadeos) -->
+  <script>
+    document.documentElement.classList.replace('no-js', 'js');
+    let tema = null;
+    try { tema = localStorage.getItem('tema'); } catch (e) { /* almacenamiento bloqueado */ }
+    // Sin preferencia guardada, se respeta la del sistema operativo
+    if (!tema) tema = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.dataset.theme = tema;
+  </script>
+
+  <!-- 3. Estilos y comportamiento en archivos externos (separación de responsabilidades) -->
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <!-- Enlace de salto: el primer Tab del teclado permite ir directo al contenido -->
+  <a class="enlace-salto" href="#contenido">Saltar al contenido</a>
+
+  <!-- ===================== ENCABEZADO (FLEXBOX) ===================== -->
+  <header class="encabezado">
+    <div class="contenedor encabezado__barra">
+      <a class="marca" href="#inicio" aria-label="AromaSur Café, ir al inicio">
+        <img src="img/logo.svg" alt="" width="40" height="40">
+        <span>AromaSur <strong>Café</strong></span>
+      </a>
+
+      <button class="boton-icono menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">
+        <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <span class="solo-lectores">Abrir menú</span>
+      </button>
+
+      <nav class="navegacion" aria-label="Principal">
+        <ul class="navegacion__lista" id="menu-principal">
+          <li><a href="#temario">Temario</a></li>
+          <li><a href="#temas">Temas</a></li>
+          <li><a href="#comparativa">Comparativa</a></li>
+          <li><a href="#boletin">Boletín</a></li>
+        </ul>
+      </nav>
+
+      <button class="boton-icono tema-toggle" type="button" aria-pressed="false">
+        <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <span class="solo-lectores">Activar modo oscuro</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <!-- ===================== HÉROE (GRID 2 COLUMNAS) ===================== -->
+    <section class="heroe" id="inicio" aria-labelledby="titulo-principal">
+      <div class="contenedor heroe__grid">
+        <div class="heroe__texto">
+          <p class="etiqueta">Tutorial gratuito · 5 temas</p>
+          <h1 id="titulo-principal">Prepara café de especialidad en casa</h1>
+          <p class="heroe__intro">
+            En AromaSur Café tostamos granos del sur del Huila. En este tutorial aprenderás,
+            paso a paso, a sacar el mejor sabor de cada grano con cuatro métodos caseros.
+          </p>
+          <div class="heroe__acciones">
+            <a class="boton boton--primario" href="#temario">Empezar el tutorial</a>
+            <a class="boton boton--secundario" href="#comparativa">Ver comparativa</a>
+          </div>
+        </div>
+        <img class="heroe__imagen" src="img/hero.svg" alt="Taza de café humeante sobre un plato, rodeada de granos tostados"
+             width="640" height="480">
+      </div>
+    </section>
+
+    <!-- ===================== TEMARIO: LISTA ORDENADA CON ENLACES ===================== -->
+    <section class="seccion" id="temario" aria-labelledby="titulo-temario">
+      <div class="contenedor">
+        <h2 id="titulo-temario">Contenido del tutorial</h2>
+        <p class="seccion__intro">Sigue los temas en orden o salta al que necesites.</p>
+        <ol class="temario">
+          <li><a href="#tema-molienda">Elegir y moler el grano</a></li>
+          <li><a href="#tema-prensa">Prensa francesa</a></li>
+          <li><a href="#tema-v60">Filtro V60</a></li>
+          <li><a href="#tema-moka">Cafetera moka</a></li>
+          <li><a href="#tema-cold-brew">Cold brew</a></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================== TEMAS + LATERAL (GRID CON ÁREAS) ===================== -->
+    <div class="contenedor diseno">
+      <section class="temas" id="temas" aria-labelledby="titulo-temas">
+        <h2 id="titulo-temas">Temas</h2>
+
+        <!-- Cada tema es un <article>: tiene sentido por sí solo -->
+        <div class="temas__grid">
+          <article class="tema" id="tema-molienda">
+            <h3>1. Elegir y moler el grano</h3>
+            <figure>
+              <img src="img/molienda.svg" alt="Molino manual junto a granos enteros y café molido en tres tamaños: grueso, medio y fino"
+                   width="640" height="400" loading="lazy">
+              <figcaption>El tamaño de la molienda cambia según el método.</figcaption>
+            </figure>
+            <ul class="tema__datos" aria-label="Datos del tema">
+              <li>5 min</li>
+              <li>Nivel básico</li>
+            </ul>
+            <p>
+              Compra el café en grano y muélelo justo antes de prepararlo: así conserva sus aromas.
+              Usa molienda gruesa para prensa y cold brew, media para filtro y fina para moka.
+            </p>
+            <details>
+              <summary>Paso a paso</summary>
+              <ol>
+                <li>Revisa la fecha de tueste: lo ideal es usarlo dentro del primer mes.</li>
+                <li>Pesa el café: unos 15 g por taza de 250 ml.</li>
+                <li>Ajusta el molino al método y muele solo lo que vas a usar.</li>
+              </ol>
+            </details>
+            <a class="tema__volver" href="#temario">Volver al temario</a>
+          </article>
+
+          <article class="tema" id="tema-prensa">
+            <h3>2. Prensa francesa</h3>
+            <figure>
+              <img src="img/prensa-francesa.svg" alt="Prensa francesa con café en reposo y un reloj que marca cuatro minutos"
+                   width="640" height="400" loading="lazy">
+              <figcaption>Inmersión total durante 4 minutos.</figcaption>
+            </figure>
+            <ul class="tema__datos" aria-label="Datos del tema">
+              <li>6 min</li>
+              <li>Nivel básico</li>
+            </ul>
+            <p>
+              El café queda sumergido en el agua y luego un filtro metálico lo separa.
+              Da una bebida con cuerpo, ideal para empezar.
+            </p>
+            <details>
+              <summary>Paso a paso</summary>
+              <ol>
+                <li>Agrega 30 g de café de molienda gruesa.</li>
+                <li>Vierte 450 ml de agua entre 92 y 96 °C y revuelve suave.</li>
+                <li>Tapa, espera 4 minutos y baja el émbolo despacio.</li>
+              </ol>
+            </details>
+            <a class="tema__volver" href="#temario">Volver al temario</a>
+          </article>
+
+          <article class="tema" id="tema-v60">
+            <h3>3. Filtro V60</h3>
+            <figure>
+              <img src="img/filtro-v60.svg" alt="Tetera de cuello de cisne vertiendo agua sobre un cono V60 con filtro de papel"
+                   width="640" height="400" loading="lazy">
+              <figcaption>Vertido en espiral desde el centro.</figcaption>
+            </figure>
+            <ul class="tema__datos" aria-label="Datos del tema">
+              <li>4 min</li>
+              <li>Nivel medio</li>
+            </ul>
+            <p>
+              Método de filtrado por goteo con papel. Resalta la acidez y las notas frutales;
+              el control del vertido es la clave.
+            </p>
+            <details>
+              <summary>Paso a paso</summary>
+              <ol>
+                <li>Enjuaga el filtro con agua caliente y desecha esa agua.</li>
+                <li>Agrega 15 g de molienda media y vierte 30 ml para el bloom (30 s).</li>
+                <li>Completa 250 ml en espiral; el goteo debe terminar cerca de los 3 minutos.</li>
+              </ol>
+            </details>
+            <a class="tema__volver" href="#temario">Volver al temario</a>
+          </article>
+
+          <article class="tema" id="tema-moka">
+            <h3>4. Cafetera moka</h3>
+            <figure>
+              <img src="img/moka.svg" alt="Cafetera moka de aluminio sobre la llama de una estufa"
+                   width="640" height="400" loading="lazy">
+              <figcaption>La presión del vapor empuja el agua hacia arriba.</figcaption>
+            </figure>
+            <ul class="tema__datos" aria-label="Datos del tema">
+              <li>7 min</li>
+              <li>Nivel medio</li>
+            </ul>
+            <p>
+              La cafetera italiana usa el vapor para pasar el agua por el café.
+              Produce una bebida intensa, perfecta para un café con leche.
+            </p>
+            <details>
+              <summary>Paso a paso</summary>
+              <ol>
+                <li>Llena la base con agua caliente hasta la válvula.</li>
+                <li>Llena el filtro con molienda fina-media sin compactar.</li>
+                <li>Fuego medio con la tapa abierta; retírala cuando empiece a burbujear.</li>
+              </ol>
+            </details>
+            <a class="tema__volver" href="#temario">Volver al temario</a>
+          </article>
+
+          <article class="tema" id="tema-cold-brew">
+            <h3>5. Cold brew</h3>
+            <figure>
+              <img src="img/cold-brew.svg" alt="Frasco con café frío y hielo junto a un vaso servido con pitillo"
+                   width="640" height="400" loading="lazy">
+              <figcaption>Extracción en frío durante la noche.</figcaption>
+            </figure>
+            <ul class="tema__datos" aria-label="Datos del tema">
+              <li>12 a 18 h</li>
+              <li>Nivel básico</li>
+            </ul>
+            <p>
+              El café reposa en agua fría por muchas horas. El resultado es suave, dulce
+              y con poca acidez; se guarda en la nevera hasta una semana.
+            </p>
+            <details>
+              <summary>Paso a paso</summary>
+              <ol>
+                <li>Mezcla 100 g de molienda gruesa con 800 ml de agua fría.</li>
+                <li>Tapa y deja reposar en la nevera de 12 a 18 horas.</li>
+                <li>Filtra y sirve con hielo, diluido 1:1 con agua o leche.</li>
+              </ol>
+            </details>
+            <a class="tema__volver" href="#temario">Volver al temario</a>
+          </article>
+        </div>
+      </section>
+
+      <!-- Contenido complementario: se relaciona con el principal pero no es indispensable -->
+      <aside class="lateral" aria-labelledby="titulo-lateral">
+        <h2 id="titulo-lateral">Consejo del barista</h2>
+        <p>Usa agua filtrada: el café es 98 % agua y el cloro opaca el sabor.</p>
+        <h3>Glosario</h3>
+        <dl class="glosario">
+          <dt>Bloom</dt>
+          <dd>Primer vertido corto que libera el gas del café recién molido.</dd>
+          <dt>Proporción</dt>
+          <dd>Relación entre gramos de café y mililitros de agua, por ejemplo 1:15.</dd>
+          <dt>Extracción</dt>
+          <dd>Proceso en el que el agua disuelve los sabores del grano.</dd>
+        </dl>
+      </aside>
+    </div>
+
+    <!-- ===================== TABLA COMPARATIVA ===================== -->
+    <section class="seccion seccion--alterna" id="comparativa" aria-labelledby="titulo-comparativa">
+      <div class="contenedor">
+        <h2 id="titulo-comparativa">Comparativa de métodos</h2>
+        <!-- El contenedor permite desplazar la tabla en pantallas pequeñas -->
+        <div class="tabla-contenedor" tabindex="0" role="region" aria-labelledby="titulo-comparativa">
+          <table>
+            <caption>Valores de referencia para una preparación</caption>
+            <thead>
+              <tr>
+                <th scope="col">Método</th>
+                <th scope="col">Molienda</th>
+                <th scope="col">Proporción</th>
+                <th scope="col">Tiempo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Prensa francesa</th><td>Gruesa</td><td>1:15</td><td>4 min</td></tr>
+              <tr><th scope="row">Filtro V60</th><td>Media</td><td>1:16</td><td>3 min</td></tr>
+              <tr><th scope="row">Cafetera moka</th><td>Fina-media</td><td>1:10</td><td>5 min</td></tr>
+              <tr><th scope="row">Cold brew</th><td>Gruesa</td><td>1:8</td><td>12 a 18 h</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FORMULARIO ACCESIBLE ===================== -->
+    <section class="seccion" id="boletin" aria-labelledby="titulo-boletin">
+      <div class="contenedor contenedor--estrecho">
+        <h2 id="titulo-boletin">Recibe nuevas recetas</h2>
+        <p class="seccion__intro">Un correo al mes, sin spam.</p>
+        <form class="formulario" id="form-boletin" action="#" method="post">
+          <div class="campo">
+            <label for="correo">Correo electrónico</label>
+            <input id="correo" name="correo" type="email" autocomplete="email" required
+                   aria-describedby="correo-error">
+            <p class="campo__error" id="correo-error"></p>
+          </div>
+          <div class="campo">
+            <label for="metodo">Método favorito</label>
+            <select id="metodo" name="metodo">
+              <option value="prensa">Prensa francesa</option>
+              <option value="v60">Filtro V60</option>
+              <option value="moka">Cafetera moka</option>
+              <option value="cold-brew">Cold brew</option>
+            </select>
+          </div>
+          <button class="boton boton--primario" type="submit">Suscribirme</button>
+          <!-- aria-live: los lectores de pantalla anuncian el mensaje cuando cambia -->
+          <p class="formulario__estado" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== PIE DE PÁGINA (GRID AUTO-FIT) ===================== -->
+  <footer class="pie">
+    <div class="contenedor pie__grid">
+      <div>
+        <p class="pie__marca">AromaSur Café S.A.S.</p>
+        <p>Empresa ficticia creada con fines educativos · SENA ADSO.</p>
+      </div>
+      <nav aria-label="Pie de página">
+        <ul class="pie__enlaces">
+          <li><a href="#temario">Temario</a></li>
+          <li><a href="#comparativa">Comparativa</a></li>
+          <li><a href="#boletin">Boletín</a></li>
+        </ul>
+      </nav>
+      <p>&copy; <span id="anio">2026</span> AromaSur Café. Garzón, Huila.</p>
+    </div>
+  </footer>
+</body>
+</html>

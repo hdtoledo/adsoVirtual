@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400">
+  <rect width="640" height="400" fill="#E6EEF0"/>
+  <circle cx="110" cy="300" r="80" fill="#D3E1E5"/>
+  <!-- frasco -->
+  <rect x="230" y="70" width="150" height="30" rx="8" fill="#2F6B3A"/>
+  <path d="M236 100h138v230a26 26 0 0 1-26 26h-86a26 26 0 0 1-26-26z" fill="#FFFFFF" opacity=".85"/>
+  <path d="M242 160h126v170a20 20 0 0 1-20 20h-86a20 20 0 0 1-20-20z" fill="#5B3A29"/>
+  <!-- hielos -->
+  <g fill="#FFFFFF" opacity=".75">
+    <rect x="262" y="176" width="36" height="36" rx="6" transform="rotate(-12 280 194)"/>
+    <rect x="310" y="196" width="34" height="34" rx="6" transform="rotate(14 327 213)"/>
+    <rect x="276" y="236" width="30" height="30" rx="6" transform="rotate(6 291 251)"/>
+  </g>
+  <!-- vaso servido -->
+  <path d="M430 220h90l-10 130h-70z" fill="#FFFFFF" opacity=".9"/>
+  <path d="M436 260h78l-7 86h-64z" fill="#8B5E3C"/>
+  <rect x="470" y="190" width="8" height="120" rx="4" fill="#B4532A" transform="rotate(12 474 250)"/>
+  <!-- luna: reposo nocturno -->
+  <path d="M560 70a40 40 0 1 0 30 66 32 32 0 1 1-30-66z" fill="#2F6B3A"/>
+</svg>

@@ -1,0 +1,630 @@
+/* ==========================================================================
+   AromaSur Café · Tutorial de métodos de preparación
+   Hoja de estilos MOBILE-FIRST: los estilos base son para el celular y las
+   media queries (min-width) agregan cambios para pantallas más grandes.
+
+   Índice
+   1. Variables (tokens de diseño)
+   2. Reset mínimo
+   3. Estilos base (tipografía, enlaces, imágenes)
+   4. Utilidades y accesibilidad
+   5. Componentes: encabezado, botones, héroe, temario, temas, lateral,
+      tabla, formulario y pie
+   6. Media queries (tablet y escritorio)
+   7. Preferencias del usuario (movimiento reducido)
+   ========================================================================== */
+
+/* 1. VARIABLES ------------------------------------------------------------ */
+:root {
+  --color-primario: #5B3A29;        /* café tostado: botones y títulos */
+  --color-primario-hover: #45291C;
+  --color-acento: #B4532A;          /* terracota: detalles y numeración */
+  --color-secundario: #2F6B3A;      /* verde hoja: etiquetas */
+  --color-texto: #1F1A17;
+  --color-texto-suave: #6F6259;
+  --color-fondo: #FBF7F2;
+  --color-superficie: #FFFFFF;
+  --color-alterno: #F4E9DD;
+  --color-borde: #E6DCD2;
+  --color-error: #B42318;
+  --color-exito: #1F7A3A;
+
+  --fuente-base: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --radio: 1rem;
+  --sombra: 0 4px 16px rgb(91 58 41 / 0.08);
+  --ancho-maximo: 72rem;
+  --alto-encabezado: 4.5rem;
+}
+
+/* Modo oscuro: solo se redefinen las variables, los componentes no cambian */
+[data-theme="dark"] {
+  --color-primario: #E3B98F;
+  --color-primario-hover: #F0CDA9;
+  --color-acento: #F09A6B;
+  --color-secundario: #8FD19E;
+  --color-texto: #F3ECE4;
+  --color-texto-suave: #C9BBAE;
+  --color-fondo: #17120F;
+  --color-superficie: #221B17;
+  --color-alterno: #2B221D;
+  --color-borde: #3D322B;
+  --color-error: #FF8A80;
+  --color-exito: #8FD19E;
+  --sombra: 0 4px 16px rgb(0 0 0 / 0.4);
+  color-scheme: dark;
+}
+
+/* 2. RESET MÍNIMO ---------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* el ancho incluye padding y borde */
+}
+
+body,
+h1, h2, h3, p, figure, dl, dd {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%; /* la imagen nunca se sale de su contenedor */
+  height: auto;
+}
+
+/* 3. ESTILOS BASE ---------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--alto-encabezado) + 1rem); /* el encabezado fijo no tapa el tema */
+}
+
+body {
+  font-family: var(--fuente-base);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-texto);
+  background-color: var(--color-fondo);
+}
+
+h1, h2, h3 {
+  line-height: 1.2;
+  color: var(--color-primario);
+}
+
+h1 { font-size: clamp(2rem, 5vw + 1rem, 3.5rem); } /* crece con la pantalla, con mínimo y máximo */
+h2 { font-size: clamp(1.5rem, 2vw + 1rem, 2.25rem); margin-bottom: 0.5rem; }
+h3 { font-size: 1.25rem; }
+
+a {
+  color: var(--color-acento);
+  text-underline-offset: 0.2em;
+}
+
+/* 4. UTILIDADES Y ACCESIBILIDAD ------------------------------------------- */
+.contenedor {
+  width: min(100% - 2rem, var(--ancho-maximo)); /* 1rem de margen a cada lado en móvil */
+  margin-inline: auto;
+}
+
+.contenedor--estrecho {
+  max-width: 36rem;
+}
+
+/* Oculta visualmente pero sigue disponible para lectores de pantalla */
+.solo-lectores {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.enlace-salto {
+  position: absolute;
+  left: 1rem;
+  top: -100%;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  background: var(--color-primario);
+  color: var(--color-superficie);
+  border-radius: 0.5rem;
+}
+
+.enlace-salto:focus {
+  top: 1rem; /* aparece solo cuando recibe el foco con Tab */
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-acento);
+  outline-offset: 3px;
+}
+
+/* 5. COMPONENTES ----------------------------------------------------------- */
+
+/* 5.1 Encabezado · FLEXBOX: una fila con elementos alineados al centro */
+.encabezado {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: var(--color-superficie);
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.encabezado__barra {
+  display: flex;
+  flex-wrap: wrap;          /* en móvil el menú baja a una segunda línea */
+  align-items: center;      /* centra en el eje vertical (eje cruzado) */
+  gap: 0.5rem;
+  min-height: var(--alto-encabezado);
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin-right: auto;       /* empuja los demás elementos a la derecha */
+  color: var(--color-primario);
+  font-size: 1.125rem;
+  text-decoration: none;
+}
+
+.boton-icono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;              /* área táctil mínima de 48 px */
+  height: 3rem;
+  border: 1px solid var(--color-borde);
+  border-radius: 0.75rem;
+  background: transparent;
+  color: var(--color-texto);
+  cursor: pointer;
+}
+
+.boton-icono:hover {
+  background-color: var(--color-alterno);
+}
+
+/* Estado activo del interruptor de tema (aria-pressed lo actualiza JS) */
+.tema-toggle[aria-pressed="true"] {
+  background-color: var(--color-alterno);
+  color: var(--color-primario);
+}
+
+.navegacion {
+  order: 1;                 /* en móvil se muestra después de los botones */
+  flex-basis: 100%;         /* ocupa toda la fila */
+}
+
+.navegacion__lista {
+  display: flex;
+  flex-direction: column;   /* móvil: enlaces apilados */
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0 0 1rem;
+  list-style: none;
+}
+
+.navegacion__lista a {
+  display: block;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  color: var(--color-texto);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.navegacion__lista a:hover {
+  background-color: var(--color-alterno);
+  color: var(--color-primario);
+}
+
+/* Sin JavaScript el menú siempre se ve (mejora progresiva).
+   Con JavaScript se oculta hasta que el botón lo abre. */
+.no-js .menu-toggle {
+  display: none;
+}
+
+.js .navegacion__lista {
+  display: none;
+}
+
+.js .encabezado[data-menu="abierto"] .navegacion__lista {
+  display: flex;
+}
+
+/* 5.2 Botones */
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--color-primario);
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.boton--primario {
+  background-color: var(--color-primario);
+  color: var(--color-superficie);
+}
+
+.boton--primario:hover {
+  background-color: var(--color-primario-hover);
+  border-color: var(--color-primario-hover);
+}
+
+.boton--secundario {
+  background-color: transparent;
+  color: var(--color-primario);
+}
+
+.boton--secundario:hover {
+  background-color: var(--color-alterno);
+}
+
+/* 5.3 Héroe · GRID: 1 columna en móvil, 2 en tablet (ver media queries) */
+.heroe {
+  padding-block: 3rem;
+  background-color: var(--color-alterno);
+}
+
+.heroe__grid {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+}
+
+.etiqueta {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background-color: var(--color-superficie);
+  color: var(--color-secundario);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.heroe__intro {
+  margin-block: 1rem 1.5rem;
+  max-width: 60ch;          /* líneas de lectura cómodas */
+  color: var(--color-texto-suave);
+  font-size: 1.125rem;
+}
+
+.heroe__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.heroe__imagen {
+  border-radius: calc(var(--radio) * 2);
+}
+
+/* 5.4 Secciones */
+.seccion {
+  padding-block: 3rem;
+}
+
+.seccion--alterna {
+  background-color: var(--color-alterno);
+}
+
+.seccion__intro {
+  margin-bottom: 1.5rem;
+  color: var(--color-texto-suave);
+}
+
+/* 5.5 Temario · FLEXBOX con flex-wrap: tarjetas que se reparten la fila */
+.temario {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: paso;      /* contador propio para dibujar los números */
+}
+
+.temario li {
+  flex: 1 1 12rem;          /* crece, se encoge y parte de 12rem */
+  counter-increment: paso;
+}
+
+.temario a {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  height: 100%;
+  padding: 1rem;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  background-color: var(--color-superficie);
+  color: var(--color-texto);
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color 0.2s ease;
+}
+
+.temario a::before {
+  content: counter(paso);
+  display: grid;
+  place-items: center;      /* centra el número en ambos ejes */
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: var(--color-acento);
+  color: var(--color-superficie); /* blanco en claro, oscuro en modo oscuro: contraste AA en ambos */
+  font-weight: 800;
+}
+
+.temario a:hover {
+  border-color: var(--color-acento);
+}
+
+/* 5.6 Diseño principal · GRID: temas + lateral (áreas en escritorio) */
+.diseno {
+  display: grid;
+  gap: 2rem;
+  padding-block: 1rem 3rem;
+}
+
+/* 5.7 Rejilla de temas · GRID auto-fit: columnas automáticas sin media query */
+.temas__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+/* 5.8 Tarjeta de tema · FLEXBOX en columna */
+.tema {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  background-color: var(--color-superficie);
+  box-shadow: var(--sombra);
+}
+
+.tema img {
+  border-radius: calc(var(--radio) * 0.75);
+}
+
+.tema figcaption {
+  margin-top: 0.5rem;
+  color: var(--color-texto-suave);
+  font-size: 0.875rem;
+}
+
+.tema__datos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tema__datos li {
+  padding: 0.125rem 0.625rem;
+  border-radius: 999px;
+  background-color: var(--color-alterno);
+  color: var(--color-secundario);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.tema details {
+  border-top: 1px solid var(--color-borde);
+  padding-top: 0.75rem;
+}
+
+.tema summary {
+  color: var(--color-primario);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.tema details ol {
+  padding-left: 1.25rem;
+}
+
+.tema__volver {
+  margin-top: auto;         /* empuja el enlace al fondo: todas las tarjetas alinean su pie */
+  font-weight: 600;
+}
+
+/* 5.9 Lateral */
+.lateral {
+  align-self: start;        /* no se estira al alto de la columna de temas */
+  padding: 1.5rem;
+  border-radius: var(--radio);
+  background-color: var(--color-alterno);
+}
+
+.lateral h2 {
+  font-size: 1.375rem;
+}
+
+.lateral h3 {
+  margin-top: 1.5rem;
+  font-size: 1.125rem;
+}
+
+.glosario dt {
+  margin-top: 0.75rem;
+  font-weight: 700;
+}
+
+.glosario dd {
+  color: var(--color-texto-suave);
+}
+
+/* 5.10 Tabla responsive: se desplaza horizontalmente si no cabe */
+.tabla-contenedor {
+  overflow-x: auto;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  background-color: var(--color-superficie);
+}
+
+table {
+  width: 100%;
+  min-width: 32rem;
+  border-collapse: collapse;
+}
+
+caption {
+  padding: 1rem;
+  color: var(--color-texto-suave);
+  text-align: left;
+}
+
+th,
+td {
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--color-borde);
+  text-align: left;
+}
+
+thead th {
+  color: var(--color-primario);
+}
+
+/* 5.11 Formulario */
+.formulario {
+  display: grid;
+  gap: 1rem;
+}
+
+.campo {
+  display: grid;
+  gap: 0.375rem;
+}
+
+label {
+  font-weight: 600;
+}
+
+input,
+select {
+  min-height: 3rem;
+  padding: 0.625rem 0.875rem;
+  border: 1px solid #8F8176; /* contraste 3:1 con el fondo */
+  border-radius: 0.75rem;
+  background-color: var(--color-superficie);
+  color: var(--color-texto);
+  font: inherit;
+}
+
+input[aria-invalid="true"] {
+  border-color: var(--color-error);
+}
+
+.campo__error {
+  min-height: 1.5em;        /* reserva el espacio: el formulario no salta al mostrar el error */
+  color: var(--color-error);
+  font-size: 0.875rem;
+}
+
+.formulario__estado {
+  color: var(--color-exito);
+  font-weight: 700;
+}
+
+/* 5.12 Pie de página · GRID auto-fit */
+.pie {
+  padding-block: 2.5rem;
+  background-color: #2B1C14;
+  color: #F3ECE4;
+}
+
+.pie__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1.5rem;
+}
+
+.pie__marca {
+  font-weight: 800;
+  font-size: 1.125rem;
+}
+
+.pie__enlaces {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pie a {
+  color: #F0CDA9;
+}
+
+/* 6. MEDIA QUERIES --------------------------------------------------------- */
+
+/* Tablet: 48rem = 768px */
+@media (min-width: 48rem) {
+  .heroe {
+    padding-block: 5rem;
+  }
+
+  .heroe__grid {
+    grid-template-columns: 1.1fr 1fr; /* texto un poco más ancho que la imagen */
+  }
+
+  /* El menú pasa a ser una fila y ya no necesita el botón */
+  .menu-toggle {
+    display: none;
+  }
+
+  .navegacion {
+    order: 0;
+    flex-basis: auto;
+  }
+
+  .js .navegacion__lista,
+  .navegacion__lista {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+  }
+}
+
+/* Escritorio: 64rem = 1024px */
+@media (min-width: 64rem) {
+  .diseno {
+    grid-template-columns: minmax(0, 1fr) 18rem;
+    grid-template-areas: "temas lateral";
+  }
+
+  .temas   { grid-area: temas; }
+  .lateral { grid-area: lateral; position: sticky; top: calc(var(--alto-encabezado) + 1rem); }
+}
+
+/* 7. PREFERENCIAS DEL USUARIO --------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400">
+  <rect width="640" height="400" fill="#EFE3D6"/>
+  <circle cx="110" cy="90" r="60" fill="#E2CDB8"/>
+  <!-- émbolo -->
+  <rect x="312" y="40" width="16" height="90" fill="#5B3A29"/>
+  <circle cx="320" cy="40" r="16" fill="#B4532A"/>
+  <!-- tapa -->
+  <rect x="240" y="96" width="160" height="26" rx="8" fill="#5B3A29"/>
+  <!-- jarra de vidrio -->
+  <rect x="250" y="122" width="140" height="220" rx="10" fill="#FFFFFF" opacity=".85"/>
+  <rect x="250" y="190" width="140" height="152" rx="10" fill="#5B3A29"/>
+  <rect x="250" y="190" width="140" height="18" fill="#8B5E3C"/>
+  <rect x="256" y="160" width="128" height="8" rx="4" fill="#B9967A"/>
+  <!-- marco y asa -->
+  <path d="M244 122v220a10 10 0 0 0 10 10h132a10 10 0 0 0 10-10V122" fill="none" stroke="#8B5E3C" stroke-width="10"/>
+  <path d="M396 160h30a20 20 0 0 1 20 20v100a20 20 0 0 1-20 20h-30" fill="none" stroke="#8B5E3C" stroke-width="16" stroke-linecap="round"/>
+  <rect x="230" y="348" width="180" height="16" rx="8" fill="#5B3A29"/>
+  <!-- reloj: 4 minutos -->
+  <circle cx="520" cy="270" r="54" fill="#FFFFFF"/>
+  <circle cx="520" cy="270" r="54" fill="none" stroke="#2F6B3A" stroke-width="8"/>
+  <path d="M520 270v-34M520 270l22 14" stroke="#1F1A17" stroke-width="7" stroke-linecap="round"/>
+</svg>

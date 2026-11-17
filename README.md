@@ -51,7 +51,12 @@ repoVirtual/
     └── guia-06/
         ├── proyeccion.html           # Sesión general de la Guía 06 (16 diapositivas)
         ├── proyeccion-evidencia-01…09.html  # Una sesión por evidencia (solo contenido)
-        └── proyeccion-evidencia-09-10.html  # Sesión compartida AA3-EV02 + EV03 (Figma)
+        ├── proyeccion-evidencia-09-10.html  # Sesión compartida AA3-EV02 + EV03 (Figma)
+        ├── proyeccion-evidencia-11.html     # AA4-EV01: fundamentos HTML, CSS y JS (26 diapositivas)
+        └── demos/
+            └── aa4-ev01-cafe/        # Página demo en HTML/CSS/JS puro que explica la EV11
+                ├── index.html · css/styles.css · js/main.js
+                └── img/              # Ilustraciones SVG propias
 ```
 
 ---
@@ -247,6 +252,23 @@ La tarjeta, la ruta de aprendizaje, el selector de proyección, el pie de págin
   * **Bloque 4 · Prototipo EV02 (18–21):** conexión con el *noodle* en la pestaña Prototype, *Interaction details* (On click → Navigate to → Smart animate, 300 ms), regreso, *Flow starting point*, Present y Share, y **demo interactiva** de Login ↔ Registro en móvil y web con zonas clicables.
   * **Bloque 5 · Entrega (22–24):** cómo adaptarlo al proyecto propio, equivalencias de menús de Figma en español, exportación (PNG 2x, .fig, enlaces), estructura de los dos ZIP y checklist final.
 * **Material complementario:** la sesión anterior de la EV02 (caso *AgroTech Colombia S.A.S.*, 6 mockups) sigue disponible en `proyeccion-evidencia-09.html`.
+
+### 🟢 Evidencia 11 · AA4-EV01: Fundamentos front-end con HTML, CSS y JS (`proyeccion-evidencia-11.html`)
+* **Código oficial:** `GA6-220501096-AA4-EV01`. *“Elabore una página que enseñe un pequeño tutorial seleccionando un tema de su gusto. Establezca un título y emplee una lista ordenada para indicar los distintos conceptos que contiene el tutorial con enlaces a los temas propiamente dichos. Cada tema debe tener su título, imagen y la descripción del tema.”* Entrega: archivos HTML en carpeta comprimida (ZIP).
+* **Página demo:** [`guias/guia-06/demos/aa4-ev01-cafe/`](guias/guia-06/demos/aa4-ev01-cafe/index.html). Es un tutorial de métodos de preparación de café de *AromaSur Café S.A.S.*, la misma empresa ficticia de las EV09–10. Está escrita en HTML, CSS y JS puro, **sin Tailwind**, porque la evidencia evalúa fundamentos. Incluye:
+  * HTML semántico, un temario `<ol>` con anclas y 5 `<article>`, cada uno con título, imagen (`alt`, `width`/`height`, `lazy`) y descripción.
+  * Acordeón `<details>`, tabla y formulario accesibles.
+  * CSS mobile-first con variables, Flexbox, Grid y media queries.
+  * Modo oscuro con contraste AA verificado.
+  * JavaScript para el menú móvil, el tema con `localStorage` y la validación con `aria-live`.
+* **26 diapositivas en 7 bloques.** Los fragmentos de código se extraen de los archivos reales de la demo, así que siempre coinciden con ellos.
+  * **Bloque 1 · Contexto y arquitectura (01–04):** del requisito oficial a la etiqueta que lo cumple, las tres capas de la web y la estructura de carpetas con sus convenciones y herramientas.
+  * **Bloque 2 · HTML semántico (05–10):** el `<head>` línea por línea, las regiones semánticas, la jerarquía de títulos y el enlace de salto, el temario con anclas, la anatomía de un tema, la tabla y el formulario.
+  * **Bloque 3 · CSS (11–12):** la anatomía de una regla, la especificidad y el orden del archivo; las variables, el reset y el modelo de caja.
+  * **Bloque 4 · Flexbox y Grid (13–19):** conceptos, **laboratorios interactivos** de Flexbox y Grid, uso de cada técnica en la demo y un **mapa clicable** que explica, sección por sección, si se usa Flex o Grid, para qué y por qué.
+  * **Bloque 5 · Responsive (20–21):** mobile-first, breakpoints y unidades fluidas, más un **visor en vivo** de la demo en móvil, tablet y escritorio.
+  * **Bloque 6 · JavaScript (22–24):** el patrón seleccionar → escuchar → reaccionar sobre el DOM, el menú móvil con `aria-expanded`, el modo oscuro y la validación accesible.
+  * **Bloque 7 · Calidad y entrega (25–26):** WCAG (POUR), pruebas con teclado, Lighthouse y el validador W3C, la lista de chequeo y el comprimido en PowerShell.
 
 ---
 

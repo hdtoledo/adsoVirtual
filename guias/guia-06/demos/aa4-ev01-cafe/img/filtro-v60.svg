@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400">
+  <rect width="640" height="400" fill="#F4E9DD"/>
+  <circle cx="540" cy="320" r="70" fill="#E8D5C2"/>
+  <!-- tetera cuello de cisne -->
+  <path d="M90 170h110v110a20 20 0 0 1-20 20h-70a20 20 0 0 1-20-20z" fill="#2F6B3A"/>
+  <rect x="84" y="156" width="122" height="20" rx="10" fill="#24542D"/>
+  <path d="M200 200c40 0 50-40 90-60" fill="none" stroke="#2F6B3A" stroke-width="10" stroke-linecap="round"/>
+  <path d="M90 200c-30 0-30 60 0 60" fill="none" stroke="#2F6B3A" stroke-width="10"/>
+  <!-- chorro de agua -->
+  <path d="M292 140c4 20 6 40 8 64" fill="none" stroke="#8FB3C9" stroke-width="5" stroke-linecap="round" stroke-dasharray="10 8"/>
+  <!-- cono V60 -->
+  <path d="M230 200h180l-62 96h-56z" fill="#FFFFFF"/>
+  <path d="M244 210h152l-54 80h-44z" fill="#8B5E3C"/>
+  <path d="M244 210h152" stroke="#5B3A29" stroke-width="6"/>
+  <rect x="276" y="296" width="88" height="12" rx="6" fill="#FFFFFF"/>
+  <!-- jarra servidor -->
+  <path d="M262 308h116l-8 60a14 14 0 0 1-14 12h-72a14 14 0 0 1-14-12z" fill="#FFFFFF" opacity=".9"/>
+  <path d="M268 340h104l-4 28a10 10 0 0 1-10 8h-76a10 10 0 0 1-10-8z" fill="#5B3A29"/>
+  <!-- gotas -->
+  <g fill="#5B3A29"><circle cx="320" cy="318" r="4"/><circle cx="320" cy="330" r="3"/></g>
+</svg>

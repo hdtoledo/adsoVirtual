@@ -26,7 +26,7 @@ Este documento es la **hoja de ruta maestra** para instructores y aprendices de 
 | **08** | `GA6-220501096-AA3-EV01` | Conocimiento | Selección de herramientas para prototipado | Técnica (UI/UX) | 8h | ZIP (Word + Prototipo) |
 | **09** | `GA6-220501096-AA3-EV02` | Desempeño | Crear diseño web/móvil con componentes y tecnologías | Técnica (UI/UX) | 12h | ZIP (Mockup + Doc) |
 | **10** | `GA6-220501096-AA3-EV03` | Producto | Interfaces gráficas según requerimientos del proyecto | Técnica (UI/UX) | 12h | ZIP (Figma / Web) |
-| **11** | `GA6-220501096-AA4-EV01` | Conocimiento | Fundamentos de componentes front-end (HTML, CSS, JS) | Técnica (Frontend) | 16h | ZIP / Enlace Web |
+| **11** | `GA6-220501096-AA4-EV01` | Conocimiento | Fundamentos de componentes front-end (HTML, CSS, JS) | Técnica (Frontend) | 16h | ZIP (HTML + CSS + JS) |
 | **12** | `GA6-220501096-AA4-EV02` | Desempeño | Establecer componentes front-end de la aplicación web | Técnica (Frontend) | 16h | ZIP (Doc técnico) |
 | **13** | `GA6-220501096-AA4-EV03` | Producto | Diseño front-end que cumpla con el proyecto formativo | Técnica (Frontend) | 16h | ZIP (Código Frontend) |
 | **14** | `GA6-230101507-AA1-EV01` | Desempeño | Foro: Técnicas de coordinación motriz | Transversal (Física) | 12h | Plataforma LMS |
@@ -326,14 +326,30 @@ Este documento es la **hoja de ruta maestra** para instructores y aprendices de 
 **Nombre:** Fundamentos en la implementación de componentes front-end, HTML, CSS, JS.  
 - **Tipo:** Evidencia de Conocimiento.
 - **Instrumento de Evaluación:** `IE-GA6-220501096-AA4-EV01`.
-- **Descripción:** Elaborar una página web interactiva que funcione como un tutorial práctico sobre una temática tecnológica de libre elección, aplicando etiquetas semánticas de HTML5, estilos CSS3 modernos y dinamismo básico con JavaScript.
+- **Diapositivas de Proyección:** [proyeccion-evidencia-11.html](guias/guia-06/proyeccion-evidencia-11.html) (26 slides).
+- **Página demo de referencia:** [demos/aa4-ev01-cafe](guias/guia-06/demos/aa4-ev01-cafe/index.html). Tutorial de métodos de preparación de café del caso ficticio *AromaSur Café S.A.S.*
+- **Descripción Oficial de la Guía:**
+  > *"Con base en el siguiente contexto, aplique los principales componentes de HTML y CSS: elabore una página que enseñe un pequeño tutorial seleccionando un tema de su gusto. Establezca un título y emplee una lista ordenada para indicar los distintos conceptos que contiene el tutorial con enlaces a los temas propiamente dichos. Cada tema debe tener su título imagen y la descripción del tema."*
+- **Elementos para tener en cuenta según la Guía:**
+  - Debe incluir los elementos vistos en el componente.
+  - La página debe utilizar estilos CSS.
 - **Paso a Paso:**
-  1. Estructurar semántica HTML5: `<header>`, `<nav>`, `<main>`, `<article>`, `<section>`, `<aside>`, `<footer>`.
-  2. Implementar una lista ordenada con enlaces internos ancla (`href="#tema1"`).
-  3. Diseñar tarjetas para cada tema con título, imagen descriptiva y contenido.
-  4. Aplicar diseño responsive con CSS Flexbox o Grid.
-  5. Agregar interactividad con JavaScript (ej. modo oscuro, filtro interactivo o acordeón).
-- **Formato de Entrega:** Carpeta comprimida ZIP con los archivos fuente (`index.html`, `styles.css`, `script.js` e imágenes) o enlace a repositorio en GitHub Pages.
+  1. Elegir el tema del tutorial y definir de 4 a 5 conceptos, cada uno con su título, imagen y descripción.
+  2. Crear la estructura: `index.html`, `css/styles.css`, `js/main.js` e `img/`. Nombres en minúscula, sin espacios ni tildes, y rutas relativas.
+  3. Escribir el HTML semántico: `<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<aside>` y `<footer>`, con un único `<h1>` y sin saltar niveles de título.
+  4. Crear el temario como lista ordenada `<ol>` con enlaces internos (`href="#tema-1"`) que apunten al `id` de cada tema, y un enlace de regreso en cada tema.
+  5. Maquetar cada tema como `<article>` con `<h3>`, `<figure>`/`<img>` (con `alt`, `width` y `height`) y su descripción.
+  6. Estilizar con CSS mobile-first:
+     - Variables para los colores.
+     - Flexbox para los componentes en una línea (encabezado, temario, tarjetas).
+     - Grid para el layout y las rejillas (héroe, temas + lateral, pie).
+     - Media queries con `min-width`.
+  7. Agregar interactividad con JavaScript externo (`defer`): menú móvil con `aria-expanded`, modo oscuro o validación de formulario.
+  8. Probar con teclado (Tab, Enter y Esc), con Lighthouse (accesibilidad ≥ 90) y con el validador W3C (0 errores).
+- **Lineamientos Generales para la Entrega:**
+  - **Productos a Entregar:** los archivos HTML (con su CSS, JS e imágenes) dentro de una carpeta comprimida.
+  - **Formato:** **ZIP** (`GA6-220501096-AA4-EV01_Nombre_Apellido.zip`).
+  - **Espacio de Envío en Zajuna LMS:** *Fundamentos en la implementación de componentes front-end, HTML, CSS, JS. GA6-220501096-AA4-EV01.*
 
 ---
 

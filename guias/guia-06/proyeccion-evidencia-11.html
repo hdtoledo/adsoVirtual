@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<!-- Archivo generado. Sesión AA4-EV01: fundamentos front-end con la demo demos/aa4-ev01-cafe/ -->
+<html lang="es" class="h-full bg-slate-50 antialiased">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evidencia 11: Fundamentos front-end HTML, CSS y JS · ADSO Virtual · SENA CADPH Garzón</title>
+  <meta name="description" content="Sesión interactiva de la evidencia GA6-220501096-AA4-EV01: página tutorial con HTML semántico, CSS Flexbox y Grid, diseño responsive, accesibilidad y JavaScript, paso a paso.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/png" href="../../assets/logo_green.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="../../assets/js/tailwind.config.js"></script>
+  <script src="https://unpkg.com/lucide@1.60.0/dist/umd/lucide.min.js"></script>
+
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/presenter.css">
+  <style>
+    /* Código sin ligaduras: los aprendices deben ver <!-- y => tal como se escriben */
+    pre, code { font-variant-ligatures: none; }
+    /* Mapa Flex/Grid (diapositiva 19) */
+    .mapa-zona { display: flex; align-items: center; justify-content: space-between; gap: .5rem; padding: .5rem .75rem; border-radius: .75rem; border: 2px solid; font-size: .8125rem; font-weight: 700; text-align: left; transition: background-color .2s ease, box-shadow .2s ease; }
+    .mapa-zona span { font-family: 'JetBrains Mono', monospace; font-size: .625rem; font-weight: 800; padding: .125rem .375rem; border-radius: .375rem; }
+    .mapa-zona.is-flex { border-color: #fcd34d; background: #fffbeb; color: #78350f; }
+    .mapa-zona.is-flex span { background: #fde68a; }
+    .mapa-zona.is-grid { border-color: #7dd3fc; background: #f0f9ff; color: #0c4a6e; }
+    .mapa-zona.is-grid span { background: #bae6fd; }
+    .mapa-zona[aria-pressed="true"] { box-shadow: 0 0 0 3px #39A900; }
+    .mapa-zona.is-flex[aria-pressed="true"] { background: #fde68a; }
+    .mapa-zona.is-grid[aria-pressed="true"] { background: #bae6fd; }
+    /* Visor responsive (diapositiva 21) */
+    .visor-btn { border-color: #cbd5e1; background: #fff; color: #334155; }
+    .visor-btn[aria-pressed="true"] { border-color: #39A900; background: #ecfdf5; color: #14532d; }
+  </style>
+</head>
+<body class="min-h-full flex flex-col bg-slate-50 text-slate-900 font-sans selection:bg-[#39A900] selection:text-white" data-evidencia="ev-11">
+
+  <!-- Interfaz común (cintillo + barra de control): la genera assets/js/presenter.js -->
+  <div data-presenter="top"></div>
+
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 flex flex-col justify-center">
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 1 · PORTADA Y OBJETIVOS DE LA SESIÓN -->
+    <!-- ===================================================================== -->
+    <section class="slide-content active min-h-[580px]" data-title="Portada y objetivos de la sesión" data-section="Bloque 1: Contexto y arquitectura">
+      <div class="my-auto w-full space-y-5">
+        <div class="bg-white rounded-3xl border border-slate-200 p-8 sm:p-12 shadow-sm text-center relative overflow-hidden flex flex-col items-center">
+          <div class="absolute -top-32 -right-32 w-72 h-72 bg-emerald-50 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="absolute -bottom-32 -left-32 w-72 h-72 bg-amber-50 rounded-full blur-3xl pointer-events-none"></div>
+          <span class="relative inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-6">
+            <span class="w-2 h-2 rounded-full bg-[#39A900]"></span> Guía de Aprendizaje 06 • AA4 • Frontend Web
+          </span>
+          <h1 class="relative text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight max-w-4xl leading-tight mb-4">
+            Fundamentos de componentes <span class="text-sena">front-end</span>: HTML, CSS y JS
+          </h1>
+          <p class="relative text-sm sm:text-base font-mono font-bold text-slate-500 mb-8">Evidencia oficial: <span class="text-slate-800">GA6-220501096-AA4-EV01</span></p>
+          <div class="relative grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-4xl text-left">
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+              <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Objetivo</p>
+              <p class="text-sm font-semibold text-slate-800 mt-1">Construir una página tutorial con HTML semántico, CSS (Flexbox y Grid) y JavaScript, responsive y accesible.</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+              <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Entregable</p>
+              <p class="text-sm font-semibold text-slate-800 mt-1">Carpeta comprimida (ZIP) con los archivos HTML, CSS, JS e imágenes.</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+              <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Herramientas</p>
+              <p class="text-sm font-semibold text-slate-800 mt-1">VS Code + Live Server, navegador con DevTools y validador W3C.</p>
+            </div>
+          </div>
+          <div class="relative mt-6 flex flex-wrap justify-center gap-3 text-xs font-bold">
+            <span class="px-3 py-1 rounded-full bg-amber-50 text-amber-900 border border-amber-200">Caso: AromaSur Café S.A.S. (ficticio)</span>
+            <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200">Tutorial: métodos de preparación de café</span>
+          </div>
+          <div class="relative mt-8 flex flex-wrap justify-center gap-3">
+            <button type="button" onclick="presenter.nextSlide()" class="inline-flex items-center gap-2 bg-[#00324D] hover:bg-[#00263A] text-white font-bold px-6 py-3 rounded-xl text-sm shadow-md transition-colors">
+              Iniciar explicación <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+            <a href="demos/aa4-ev01-cafe/index.html" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-[#39A900] hover:bg-[#2D8200] text-white font-bold px-4 py-2.5 rounded-xl text-sm shadow-sm transition-colors "><i data-lucide="external-link" class="w-4 h-4"></i> Ver la página demo</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 2 · QUÉ PIDE LA EVIDENCIA Y CÓMO LA CUMPLE LA DEMO -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Qué pide la evidencia y cómo la cumple la demo" data-section="Bloque 1: Contexto y arquitectura">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-emerald-50 border-emerald-200 text-emerald-800"><i data-lucide="clipboard-list" class="w-3.5 h-3.5"></i> Requisitos oficiales</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">De la guía al código: cada requisito tiene su etiqueta</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed"><em>"Elabore una página que enseñe un pequeño tutorial seleccionando un tema de su gusto. Establezca un título y emplee una lista ordenada para indicar los distintos conceptos que contiene el tutorial con enlaces a los temas propiamente dichos. Cada tema debe tener su título, imagen y la descripción del tema."</em></p>
+        </header>
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-x-auto">
+          <table class="w-full text-sm min-w-[640px]">
+            <thead class="bg-slate-50 text-left text-[11px] uppercase tracking-wider text-slate-500">
+              <tr><th class="px-4 py-3" scope="col">La guía pide</th><th class="px-4 py-3" scope="col">Cómo lo resuelve la demo</th><th class="px-4 py-3" scope="col">Etiquetas</th></tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr><th scope="row" class="px-4 py-3 text-left font-bold text-slate-900">Establecer un título</th><td class="px-4 py-3 text-slate-600">Título de la pestaña y título principal visible en el héroe.</td><td class="px-4 py-3 font-mono text-[12px] text-sky-800">&lt;title&gt;, &lt;h1&gt;</td></tr><tr><th scope="row" class="px-4 py-3 text-left font-bold text-slate-900">Lista ordenada con enlaces a los temas</th><td class="px-4 py-3 text-slate-600">Temario con 5 enlaces internos que llevan a cada tema.</td><td class="px-4 py-3 font-mono text-[12px] text-sky-800">&lt;ol&gt;, &lt;a href=&quot;#tema-…&quot;&gt;</td></tr><tr><th scope="row" class="px-4 py-3 text-left font-bold text-slate-900">Cada tema con título, imagen y descripción</th><td class="px-4 py-3 text-slate-600">Un artículo por tema con su ilustración y explicación.</td><td class="px-4 py-3 font-mono text-[12px] text-sky-800">&lt;article&gt;, &lt;h3&gt;, &lt;figure&gt;, &lt;img&gt;, &lt;p&gt;</td></tr><tr><th scope="row" class="px-4 py-3 text-left font-bold text-slate-900">La página debe utilizar estilos CSS</th><td class="px-4 py-3 text-slate-600">Hoja externa mobile-first con variables, Flexbox y Grid.</td><td class="px-4 py-3 font-mono text-[12px] text-sky-800">&lt;link rel=&quot;stylesheet&quot;&gt;</td></tr><tr><th scope="row" class="px-4 py-3 text-left font-bold text-slate-900">Incluir los elementos vistos en el componente</th><td class="px-4 py-3 text-slate-600">Semántica, tabla, formulario, acordeón y JavaScript.</td><td class="px-4 py-3 font-mono text-[12px] text-sky-800">&lt;header&gt;, &lt;nav&gt;, &lt;table&gt;, &lt;form&gt;, &lt;details&gt;, &lt;script&gt;</td></tr><tr><th scope="row" class="px-4 py-3 text-left font-bold text-slate-900">Entregar archivos HTML en carpeta comprimida</th><td class="px-4 py-3 text-slate-600">La carpeta del proyecto completa en un ZIP.</td><td class="px-4 py-3 font-mono text-[12px] text-sky-800">.zip</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="flex flex-wrap items-center gap-3">
+          <a href="demos/aa4-ev01-cafe/index.html" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-[#39A900] hover:bg-[#2D8200] text-white font-bold px-4 py-2.5 rounded-xl text-sm shadow-sm transition-colors "><i data-lucide="external-link" class="w-4 h-4"></i> Abrir la demo</a> <a href="https://github.com/hdtoledo/adsoVirtual/tree/master/guias/guia-06/demos/aa4-ev01-cafe" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-[#00324D] border border-slate-300 font-bold px-4 py-2.5 rounded-xl text-sm transition-colors "><i data-lucide="folder-git-2" class="w-4 h-4"></i> Ver el código fuente</a>
+          <p class="text-xs text-slate-500">Tema libre: tú eliges el tuyo (videojuegos, fútbol, recetas, programación…). La estructura es la misma.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 3 · LAS TRES CAPAS DE LA WEB -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Las tres capas de la web" data-section="Bloque 1: Contexto y arquitectura">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-emerald-50 border-emerald-200 text-emerald-800"><i data-lucide="layers" class="w-3.5 h-3.5"></i> Concepto base</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">HTML, CSS y JavaScript: cada uno con una responsabilidad</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Piensa en una casa: primero se levanta la estructura, luego se pintan y decoran los espacios y al final se instala la electricidad para que las cosas funcionen.</p>
+        </header>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          
+          <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col">
+            <div class="p-5 space-y-2 flex-1">
+              <div class="flex items-center gap-3">
+                <span class="w-11 h-11 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center"><i data-lucide="file-code-2" class="w-5 h-5"></i></span>
+                <div><p class="text-lg font-extrabold text-slate-900">HTML</p><p class="text-xs font-bold text-slate-500">Estructura y significado: ¿qué es cada cosa?</p></div>
+              </div>
+              <p class="text-sm text-slate-600 leading-relaxed">Es la obra negra: define que algo es un título, una lista, una imagen o un botón. Sin HTML no hay contenido.</p>
+            </div>
+            <pre class="bg-[#00263A] px-4 py-3 text-[12px] leading-relaxed text-slate-100 overflow-x-auto"><code><span class="text-sky-300">&lt;button</span><span class="text-amber-200"> class</span>=<span class="text-emerald-300">&quot;tema-toggle&quot;</span><span class="text-sky-300">&gt;</span>
+  Modo oscuro
+<span class="text-sky-300">&lt;/button</span><span class="text-sky-300">&gt;</span></code></pre>
+          </div>
+          
+          <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col">
+            <div class="p-5 space-y-2 flex-1">
+              <div class="flex items-center gap-3">
+                <span class="w-11 h-11 rounded-xl bg-sky-100 text-sky-800 flex items-center justify-center"><i data-lucide="palette" class="w-5 h-5"></i></span>
+                <div><p class="text-lg font-extrabold text-slate-900">CSS</p><p class="text-xs font-bold text-slate-500">Presentación: ¿cómo se ve?</p></div>
+              </div>
+              <p class="text-sm text-slate-600 leading-relaxed">Son la pintura y los acabados: colores, tipografía, espacios y la organización en pantalla (Flexbox y Grid).</p>
+            </div>
+            <pre class="bg-[#00263A] px-4 py-3 text-[12px] leading-relaxed text-slate-100 overflow-x-auto"><code><span class="text-amber-200">.tema-toggle </span>{
+<span class="text-sky-300">  border-radius</span>: 0.75rem;
+<span class="text-sky-300">  width</span>: 3rem;
+}</code></pre>
+          </div>
+          
+          <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col">
+            <div class="p-5 space-y-2 flex-1">
+              <div class="flex items-center gap-3">
+                <span class="w-11 h-11 rounded-xl bg-rose-100 text-rose-800 flex items-center justify-center"><i data-lucide="zap" class="w-5 h-5"></i></span>
+                <div><p class="text-lg font-extrabold text-slate-900">JavaScript</p><p class="text-xs font-bold text-slate-500">Comportamiento: ¿qué hace?</p></div>
+              </div>
+              <p class="text-sm text-slate-600 leading-relaxed">Es la instalación eléctrica: responde a clics y teclas, valida datos y cambia la página sin recargarla.</p>
+            </div>
+            <pre class="bg-[#00263A] px-4 py-3 text-[12px] leading-relaxed text-slate-100 overflow-x-auto"><code>boton.addEventListener(<span class="text-emerald-300">'click'</span>, () =&gt; {
+  aplicarTema(<span class="text-emerald-300">'dark'</span>);
+});</code></pre>
+          </div>
+        </div>
+        
+          <div class="flex items-start gap-3 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-sm text-emerald-950">
+            <i data-lucide="lightbulb" class="w-5 h-5 text-emerald-700 mt-0.5"></i>
+            <p><strong>Separación de responsabilidades.</strong> Separar las capas en archivos distintos (<code class="font-mono">index.html</code>, <code class="font-mono">styles.css</code>, <code class="font-mono">main.js</code>) hace el código más fácil de leer, reutilizar y mantener. Además aplicamos <strong>mejora progresiva</strong>: la página se lee sin CSS y funciona sin JavaScript; cada capa suma, ninguna es obligatoria para acceder al contenido.</p>
+          </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 4 · ARQUITECTURA DEL PROYECTO Y CONVENCIONES -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Arquitectura del proyecto y convenciones" data-section="Bloque 1: Contexto y arquitectura">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-emerald-50 border-emerald-200 text-emerald-800"><i data-lucide="folder-tree" class="w-3.5 h-3.5"></i> Paso 1 · Organizar</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Una carpeta por tipo de archivo</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Antes de escribir código se define dónde vive cada cosa. Esta estructura es el estándar de un sitio estático y es la misma que entregarás en el ZIP.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>estructura del proyecto</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de estructura del proyecto">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[13px] leading-relaxed text-slate-100 flex-1 "><code>aa4-ev01-cafe/            ← carpeta del proyecto (la que se comprime)
+├── index.html            ← estructura: la página de entrada
+├── css/
+│   └── styles.css        ← presentación
+├── js/
+│   └── main.js           ← comportamiento
+└── img/
+    ├── logo.svg
+    ├── hero.svg
+    ├── molienda.svg
+    ├── prensa-francesa.svg
+    ├── filtro-v60.svg
+    ├── moka.svg
+    └── cold-brew.svg</code></pre>
+          </div>
+          <div class="space-y-4">
+            
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="case-sensitive" class="w-5 h-5 text-sena"></i>Convenciones de nombres</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Todo en <strong>minúsculas</strong>, sin espacios, tildes ni ñ: <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">prensa-francesa.svg</code>, no <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">Prensa Francesa.SVG</code>.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>La página principal se llama <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">index.html</code>: es la que abre el servidor por defecto.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Rutas <strong>relativas</strong>: <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">css/styles.css</code>. Nunca <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">C:\Users\…</code>, porque en otro equipo no existe.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Clases con BEM simplificado: bloque__elemento--modificador → <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">tema__datos</code>, <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">boton--primario</code>.</span></li></ul></div>
+          </div>
+            
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="hammer" class="w-5 h-5 text-sena"></i>Herramientas</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="wrench" class="w-4 h-4 text-sena mt-0.5"></i><span><strong>VS Code</strong> con la extensión <strong>Live Server</strong>: clic derecho en index.html → <em>Open with Live Server</em>. Recarga sola al guardar.</span></li><li class="flex items-start gap-2"><i data-lucide="wrench" class="w-4 h-4 text-sena mt-0.5"></i><span><strong>DevTools</strong> del navegador: <kbd class="font-mono text-[11px] font-bold px-1.5 py-0.5 rounded border border-slate-300 bg-white text-slate-700 shadow-sm">F12</kbd>; modo dispositivo con <kbd class="font-mono text-[11px] font-bold px-1.5 py-0.5 rounded border border-slate-300 bg-white text-slate-700 shadow-sm">Ctrl</kbd> + <kbd class="font-mono text-[11px] font-bold px-1.5 py-0.5 rounded border border-slate-300 bg-white text-slate-700 shadow-sm">Shift</kbd> + <kbd class="font-mono text-[11px] font-bold px-1.5 py-0.5 rounded border border-slate-300 bg-white text-slate-700 shadow-sm">M</kbd>.</span></li><li class="flex items-start gap-2"><i data-lucide="wrench" class="w-4 h-4 text-sena mt-0.5"></i><span><strong>Validador W3C</strong>: validator.w3.org para revisar el HTML.</span></li></ul></div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 5 · EL DOCUMENTO HTML BASE Y EL HEAD -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="El documento HTML base y el head" data-section="Bloque 2: HTML semántico">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-amber-50 border-amber-200 text-amber-900"><i data-lucide="file-code-2" class="w-3.5 h-3.5"></i> Paso 2 · HTML</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Todo empieza en el &lt;head&gt;: lo que el navegador lee antes de pintar</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">El <code class="font-mono">&lt;head&gt;</code> no se ve en pantalla, pero decide cómo se interpreta la página: idioma, codificación, tamaño en el celular, título y archivos que carga.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-5">
+          
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 lg:col-span-3">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>index.html</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de index.html">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11.5px] leading-relaxed text-slate-100 flex-1 max-h-[460px]"><code><span class="text-sky-300">&lt;!DOCTYPE html&gt;</span>
+<span class="text-sky-300">&lt;html</span><span class="text-amber-200"> lang</span>=<span class="text-emerald-300">&quot;es&quot;</span><span class="text-amber-200"> class</span>=<span class="text-emerald-300">&quot;no-js&quot;</span><span class="text-sky-300">&gt;</span>
+<span class="text-sky-300">&lt;head</span><span class="text-sky-300">&gt;</span>
+  <span class="text-slate-400 italic">&lt;!-- 1. Metadatos: codificación, vista móvil, título y descripción --&gt;</span>
+  <span class="text-sky-300">&lt;meta</span><span class="text-amber-200"> charset</span>=<span class="text-emerald-300">&quot;UTF-8&quot;</span><span class="text-sky-300">&gt;</span>
+  <span class="text-sky-300">&lt;meta</span><span class="text-amber-200"> name</span>=<span class="text-emerald-300">&quot;viewport&quot;</span><span class="text-amber-200"> content</span>=<span class="text-emerald-300">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="text-sky-300">&gt;</span>
+  <span class="text-sky-300">&lt;title</span><span class="text-sky-300">&gt;</span>Tutorial: prepara café de especialidad en casa | AromaSur Café<span class="text-sky-300">&lt;/title</span><span class="text-sky-300">&gt;</span>
+  <span class="text-sky-300">&lt;meta</span><span class="text-amber-200"> name</span>=<span class="text-emerald-300">&quot;description&quot;</span><span class="text-amber-200"> content</span>=<span class="text-emerald-300">&quot;Tutorial paso a paso de AromaSur Café: cómo moler el grano y preparar café con prensa francesa, filtro V60, cafetera moka y cold brew.&quot;</span><span class="text-sky-300">&gt;</span>
+  <span class="text-sky-300">&lt;meta</span><span class="text-amber-200"> name</span>=<span class="text-emerald-300">&quot;robots&quot;</span><span class="text-amber-200"> content</span>=<span class="text-emerald-300">&quot;noindex&quot;</span><span class="text-sky-300">&gt;</span>
+  <span class="text-sky-300">&lt;link</span><span class="text-amber-200"> rel</span>=<span class="text-emerald-300">&quot;icon&quot;</span><span class="text-amber-200"> href</span>=<span class="text-emerald-300">&quot;img/logo.svg&quot;</span><span class="text-amber-200"> type</span>=<span class="text-emerald-300">&quot;image/svg+xml&quot;</span><span class="text-sky-300">&gt;</span>
+
+  <span class="text-slate-400 italic">&lt;!-- 2. Antes de pintar: marca que JS está activo y aplica el tema guardado (evita parpadeos) --&gt;</span>
+  <span class="text-sky-300">&lt;script</span><span class="text-sky-300">&gt;</span>
+    document.documentElement.classList.replace('no-js', 'js');
+    let tema = null;
+    try { tema = localStorage.getItem('tema'); } catch (e) { /* almacenamiento bloqueado */ }
+    // Sin preferencia guardada, se respeta la del sistema operativo
+    if (!tema) tema = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.dataset.theme = tema;
+  <span class="text-sky-300">&lt;/script</span><span class="text-sky-300">&gt;</span>
+
+  <span class="text-slate-400 italic">&lt;!-- 3. Estilos y comportamiento en archivos externos (separación de responsabilidades) --&gt;</span>
+  <span class="text-sky-300">&lt;link</span><span class="text-amber-200"> rel</span>=<span class="text-emerald-300">&quot;stylesheet&quot;</span><span class="text-amber-200"> href</span>=<span class="text-emerald-300">&quot;css/styles.css&quot;</span><span class="text-sky-300">&gt;</span>
+  <span class="text-sky-300">&lt;script</span><span class="text-amber-200"> src</span>=<span class="text-emerald-300">&quot;js/main.js&quot;</span> defer<span class="text-sky-300">&gt;</span><span class="text-sky-300">&lt;/script</span><span class="text-sky-300">&gt;</span>
+<span class="text-sky-300">&lt;/head</span><span class="text-sky-300">&gt;</span></code></pre>
+          </div>
+          <div class="lg:col-span-2 space-y-3 text-sm">
+            
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2">Línea por línea</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-sena mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;!DOCTYPE html&gt;</code>: activa el modo estándar de HTML5.</span></li><li class="flex items-start gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-sena mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">lang=&quot;es&quot;</code>: el lector de pantalla pronuncia en español y el traductor sabe el idioma.</span></li><li class="flex items-start gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-sena mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">charset=&quot;UTF-8&quot;</code>: tildes, ñ y símbolos se muestran bien.</span></li><li class="flex items-start gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-sena mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">viewport</code>: sin esta línea el celular simula una pantalla de 980 px y todo se ve diminuto.</span></li><li class="flex items-start gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-sena mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;title&gt;</code> y <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">description</code>: texto de la pestaña y del resultado en Google.</span></li><li class="flex items-start gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-sena mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;link rel=&quot;stylesheet&quot;&gt;</code>: el CSS va en el head para que la página aparezca ya con estilos.</span></li><li class="flex items-start gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-sena mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">defer</code>: el JS se descarga en paralelo y se ejecuta cuando el HTML ya existe.</span></li></ul></div>
+          </div>
+            
+          <div class="flex items-start gap-3 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-sm text-emerald-950">
+            <i data-lucide="lightbulb" class="w-5 h-5 text-emerald-700 mt-0.5"></i>
+            <p><strong>Detalle profesional:</strong> El pequeño script en línea marca la clase <code class="font-mono">js</code> y aplica el tema guardado <em>antes</em> de pintar, para evitar un parpadeo de colores al cargar.</p>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 6 · ESTRUCTURA SEMÁNTICA DE LA PÁGINA -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Estructura semántica de la página" data-section="Bloque 2: HTML semántico">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-amber-50 border-amber-200 text-amber-900"><i data-lucide="layout-template" class="w-3.5 h-3.5"></i> Paso 3 · Semántica</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Cada bloque con la etiqueta que describe su función</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Las etiquetas semánticas le dicen al navegador, a Google y a los lectores de pantalla <strong>qué es</strong> cada parte. Un usuario ciego puede saltar directo al <em>main</em> o a la <em>nav</em>.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm space-y-2" aria-label="Diagrama de las regiones de la página">
+            <div class="rounded-xl border-2 border-amber-300 bg-amber-50 text-amber-900 p-2"><p class="font-mono text-[11px] font-extrabold">&lt;header&gt; <span class="font-sans font-semibold opacity-80">encabezado del sitio</span></p><div class="mt-1.5"><div class="rounded-xl border-2 border-amber-400 bg-white text-amber-900 p-2"><p class="font-mono text-[11px] font-extrabold">&lt;nav&gt; <span class="font-sans font-semibold opacity-80">menú principal</span></p></div></div></div>
+            <div class="rounded-xl border-2 border-emerald-300 bg-emerald-50 text-emerald-900 p-2"><p class="font-mono text-[11px] font-extrabold">&lt;main&gt; <span class="font-sans font-semibold opacity-80">contenido principal (uno por página)</span></p>
+              <div class="mt-1.5 space-y-1.5">
+                <div class="rounded-xl border-2 border-emerald-300 bg-white text-emerald-900 p-2"><p class="font-mono text-[11px] font-extrabold">&lt;section&gt; <span class="font-sans font-semibold opacity-80">héroe · temario</span></p></div>
+                <div class="grid grid-cols-3 gap-1.5">
+                  <div class="col-span-2"><div class="rounded-xl border-2 border-emerald-300 bg-white text-emerald-900 p-2"><p class="font-mono text-[11px] font-extrabold">&lt;section&gt; <span class="font-sans font-semibold opacity-80">temas</span></p><div class="mt-1 grid grid-cols-2 gap-1"><div class="rounded-xl border-2 border-sky-300 bg-sky-50 text-sky-900 p-2"><p class="font-mono text-[11px] font-extrabold">&lt;article&gt; <span class="font-sans font-semibold opacity-80">tema</span></p></div><div class="rounded-xl border-2 border-sky-300 bg-sky-50 text-sky-900 p-2"><p class="font-mono text-[11px] font-extrabold">&lt;article&gt; <span class="font-sans font-semibold opacity-80">tema</span></p></div></div></div></div>
+                  <div class="rounded-xl border-2 border-violet-300 bg-violet-50 text-violet-900 p-2"><p class="font-mono text-[11px] font-extrabold">&lt;aside&gt; <span class="font-sans font-semibold opacity-80">lateral</span></p></div>
+                </div>
+                <div class="rounded-xl border-2 border-emerald-300 bg-white text-emerald-900 p-2"><p class="font-mono text-[11px] font-extrabold">&lt;section&gt; <span class="font-sans font-semibold opacity-80">comparativa · boletín</span></p></div>
+              </div></div>
+            <div class="rounded-xl border-2 border-slate-300 bg-slate-50 text-slate-800 p-2"><p class="font-mono text-[11px] font-extrabold">&lt;footer&gt; <span class="font-sans font-semibold opacity-80">pie de página</span></p></div>
+          </div>
+          
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>index.html (esqueleto)</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de index.html (esqueleto)">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11.5px] leading-relaxed text-slate-100 flex-1 "><code><span class="text-sky-300">&lt;body</span><span class="text-sky-300">&gt;</span>
+  <span class="text-sky-300">&lt;a</span><span class="text-amber-200"> class</span>=<span class="text-emerald-300">&quot;enlace-salto&quot;</span><span class="text-amber-200"> href</span>=<span class="text-emerald-300">&quot;#contenido&quot;</span><span class="text-sky-300">&gt;</span>Saltar al contenido<span class="text-sky-300">&lt;/a</span><span class="text-sky-300">&gt;</span>
+
+  <span class="text-sky-300">&lt;header</span><span class="text-amber-200"> class</span>=<span class="text-emerald-300">&quot;encabezado&quot;</span><span class="text-sky-300">&gt;</span>
+    <span class="text-sky-300">&lt;nav</span><span class="text-amber-200"> aria-label</span>=<span class="text-emerald-300">&quot;Principal&quot;</span><span class="text-sky-300">&gt;</span>…<span class="text-sky-300">&lt;/nav</span><span class="text-sky-300">&gt;</span>
+  <span class="text-sky-300">&lt;/header</span><span class="text-sky-300">&gt;</span>
+
+  <span class="text-sky-300">&lt;main</span><span class="text-amber-200"> id</span>=<span class="text-emerald-300">&quot;contenido&quot;</span><span class="text-sky-300">&gt;</span>
+    <span class="text-sky-300">&lt;section</span><span class="text-amber-200"> id</span>=<span class="text-emerald-300">&quot;inicio&quot;</span><span class="text-sky-300">&gt;</span>…<span class="text-sky-300">&lt;/section</span><span class="text-sky-300">&gt;</span>     <span class="text-slate-400 italic">&lt;!-- héroe con el h1 --&gt;</span>
+    <span class="text-sky-300">&lt;section</span><span class="text-amber-200"> id</span>=<span class="text-emerald-300">&quot;temario&quot;</span><span class="text-sky-300">&gt;</span>…<span class="text-sky-300">&lt;/section</span><span class="text-sky-300">&gt;</span>    <span class="text-slate-400 italic">&lt;!-- lista ordenada --&gt;</span>
+
+    <span class="text-sky-300">&lt;div</span><span class="text-amber-200"> class</span>=<span class="text-emerald-300">&quot;diseno&quot;</span><span class="text-sky-300">&gt;</span>                 <span class="text-slate-400 italic">&lt;!-- div: solo para el layout --&gt;</span>
+      <span class="text-sky-300">&lt;section</span><span class="text-amber-200"> id</span>=<span class="text-emerald-300">&quot;temas&quot;</span><span class="text-sky-300">&gt;</span>
+        <span class="text-sky-300">&lt;article</span><span class="text-amber-200"> id</span>=<span class="text-emerald-300">&quot;tema-molienda&quot;</span><span class="text-sky-300">&gt;</span>…<span class="text-sky-300">&lt;/article</span><span class="text-sky-300">&gt;</span>
+        <span class="text-sky-300">&lt;article</span><span class="text-amber-200"> id</span>=<span class="text-emerald-300">&quot;tema-prensa&quot;</span><span class="text-sky-300">&gt;</span>…<span class="text-sky-300">&lt;/article</span><span class="text-sky-300">&gt;</span>
+      <span class="text-sky-300">&lt;/section</span><span class="text-sky-300">&gt;</span>
+      <span class="text-sky-300">&lt;aside</span><span class="text-sky-300">&gt;</span>…<span class="text-sky-300">&lt;/aside</span><span class="text-sky-300">&gt;</span>                   <span class="text-slate-400 italic">&lt;!-- complementario --&gt;</span>
+    <span class="text-sky-300">&lt;/div</span><span class="text-sky-300">&gt;</span>
+
+    <span class="text-sky-300">&lt;section</span><span class="text-amber-200"> id</span>=<span class="text-emerald-300">&quot;comparativa&quot;</span><span class="text-sky-300">&gt;</span>…<span class="text-sky-300">&lt;/section</span><span class="text-sky-300">&gt;</span> <span class="text-slate-400 italic">&lt;!-- tabla --&gt;</span>
+    <span class="text-sky-300">&lt;section</span><span class="text-amber-200"> id</span>=<span class="text-emerald-300">&quot;boletin&quot;</span><span class="text-sky-300">&gt;</span>…<span class="text-sky-300">&lt;/section</span><span class="text-sky-300">&gt;</span>     <span class="text-slate-400 italic">&lt;!-- formulario --&gt;</span>
+  <span class="text-sky-300">&lt;/main</span><span class="text-sky-300">&gt;</span>
+
+  <span class="text-sky-300">&lt;footer</span><span class="text-amber-200"> class</span>=<span class="text-emerald-300">&quot;pie&quot;</span><span class="text-sky-300">&gt;</span>…<span class="text-sky-300">&lt;/footer</span><span class="text-sky-300">&gt;</span>
+<span class="text-sky-300">&lt;/body</span><span class="text-sky-300">&gt;</span></code></pre>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+          <div class="p-3 rounded-xl bg-white border border-slate-200"><p class="font-mono font-extrabold text-slate-900">&lt;section&gt;</p><p class="text-slate-600 mt-1">Agrupa contenido de un mismo tema; lleva su título (h2).</p></div><div class="p-3 rounded-xl bg-white border border-slate-200"><p class="font-mono font-extrabold text-slate-900">&lt;article&gt;</p><p class="text-slate-600 mt-1">Contenido autónomo: tendría sentido copiado en otra página.</p></div><div class="p-3 rounded-xl bg-white border border-slate-200"><p class="font-mono font-extrabold text-slate-900">&lt;aside&gt;</p><p class="text-slate-600 mt-1">Información complementaria: consejos, glosario, publicidad.</p></div><div class="p-3 rounded-xl bg-white border border-slate-200"><p class="font-mono font-extrabold text-slate-900">&lt;div&gt;</p><p class="text-slate-600 mt-1">Sin significado: úsalo solo como contenedor de diseño.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 7 · JERARQUÍA DE TÍTULOS Y ENLACE DE SALTO -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Jerarquía de títulos y enlace de salto" data-section="Bloque 2: HTML semántico">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-amber-50 border-amber-200 text-amber-900"><i data-lucide="heading" class="w-3.5 h-3.5"></i> Paso 4 · Accesibilidad en HTML</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Los títulos son el índice de la página</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Un lector de pantalla puede listar todos los encabezados y saltar entre ellos. Por eso el orden importa más que el tamaño (el tamaño lo decide el CSS).</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+            <p class="text-xs font-extrabold uppercase tracking-wider text-slate-500 mb-3">Esquema de títulos de la demo</p>
+            <ul class="space-y-1.5 text-sm">
+              <li class="flex items-center gap-2" style="padding-left:0rem"><span class="font-mono text-[11px] font-extrabold px-1.5 py-0.5 rounded bg-[#39A900] text-white">h1</span><span class="text-slate-800 font-semibold">Prepara café de especialidad en casa</span></li><li class="flex items-center gap-2" style="padding-left:1.5rem"><span class="font-mono text-[11px] font-extrabold px-1.5 py-0.5 rounded bg-amber-100 text-amber-900">h2</span><span class="text-slate-800 font-semibold">Contenido del tutorial</span></li><li class="flex items-center gap-2" style="padding-left:1.5rem"><span class="font-mono text-[11px] font-extrabold px-1.5 py-0.5 rounded bg-amber-100 text-amber-900">h2</span><span class="text-slate-800 font-semibold">Temas</span></li><li class="flex items-center gap-2" style="padding-left:3rem"><span class="font-mono text-[11px] font-extrabold px-1.5 py-0.5 rounded bg-sky-100 text-sky-900">h3</span><span class="text-slate-800 font-semibold">1. Elegir y moler el grano</span></li><li class="flex items-center gap-2" style="padding-left:3rem"><span class="font-mono text-[11px] font-extrabold px-1.5 py-0.5 rounded bg-sky-100 text-sky-900">h3</span><span class="text-slate-800 font-semibold">2. Prensa francesa … 5. Cold brew</span></li><li class="flex items-center gap-2" style="padding-left:1.5rem"><span class="font-mono text-[11px] font-extrabold px-1.5 py-0.5 rounded bg-amber-100 text-amber-900">h2</span><span class="text-slate-800 font-semibold">Consejo del barista</span></li><li class="flex items-center gap-2" style="padding-left:3rem"><span class="font-mono text-[11px] font-extrabold px-1.5 py-0.5 rounded bg-sky-100 text-sky-900">h3</span><span class="text-slate-800 font-semibold">Glosario</span></li><li class="flex items-center gap-2" style="padding-left:1.5rem"><span class="font-mono text-[11px] font-extrabold px-1.5 py-0.5 rounded bg-amber-100 text-amber-900">h2</span><span class="text-slate-800 font-semibold">Comparativa de métodos</span></li><li class="flex items-center gap-2" style="padding-left:1.5rem"><span class="font-mono text-[11px] font-extrabold px-1.5 py-0.5 rounded bg-amber-100 text-amber-900">h2</span><span class="text-slate-800 font-semibold">Recibe nuevas recetas</span></li>
+            </ul>
+            <div class="mt-4"><ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Un solo <strong>h1</strong> por página: el tema central.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>No saltar niveles: después de un h2 viene un h3, no un h4.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Cada <code class="font-mono">section</code> se conecta con su título mediante <code class="font-mono">aria-labelledby</code>.</span></li></ul></div>
+          </div>
+          <div class="space-y-4">
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>index.html</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de index.html">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[12.5px] leading-relaxed text-slate-100 flex-1 "><code><span class="text-sky-300">&lt;a</span><span class="text-amber-200"> class</span>=<span class="text-emerald-300">&quot;enlace-salto&quot;</span><span class="text-amber-200"> href</span>=<span class="text-emerald-300">&quot;#contenido&quot;</span><span class="text-sky-300">&gt;</span>Saltar al contenido<span class="text-sky-300">&lt;/a</span><span class="text-sky-300">&gt;</span>
+…
+<span class="text-sky-300">&lt;main</span><span class="text-amber-200"> id</span>=<span class="text-emerald-300">&quot;contenido&quot;</span><span class="text-sky-300">&gt;</span>
+
+<span class="text-sky-300">&lt;section</span><span class="text-amber-200"> class</span>=<span class="text-emerald-300">&quot;seccion&quot;</span><span class="text-amber-200"> id</span>=<span class="text-emerald-300">&quot;temario&quot;</span><span class="text-amber-200"> aria-labelledby</span>=<span class="text-emerald-300">&quot;titulo-temario&quot;</span><span class="text-sky-300">&gt;</span>
+  <span class="text-sky-300">&lt;h2</span><span class="text-amber-200"> id</span>=<span class="text-emerald-300">&quot;titulo-temario&quot;</span><span class="text-sky-300">&gt;</span>Contenido del tutorial<span class="text-sky-300">&lt;/h2</span><span class="text-sky-300">&gt;</span></code></pre>
+          </div>
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>css/styles.css</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de css/styles.css">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[12.5px] leading-relaxed text-slate-100 flex-1 "><code><span class="text-amber-200">.enlace-salto </span>{
+<span class="text-sky-300">  position</span>: absolute;
+<span class="text-sky-300">  left</span>: 1rem;
+<span class="text-sky-300">  top</span>: -100%;
+<span class="text-sky-300">  z-index</span>: 100;
+<span class="text-sky-300">  padding</span>: 0.75rem 1rem;
+<span class="text-sky-300">  background</span>: var(<span class="text-violet-300">--color-primario</span>);
+<span class="text-sky-300">  color</span>: var(<span class="text-violet-300">--color-superficie</span>);
+<span class="text-sky-300">  border-radius</span>: 0.5rem;
+}
+
+<span class="text-amber-200">.enlace-salto:focus </span>{
+<span class="text-sky-300">  top</span>: 1rem; <span class="text-slate-400 italic">/* aparece solo cuando recibe el foco con Tab */</span>
+}</code></pre>
+          </div>
+            <p class="text-sm text-slate-600">Prueba en la demo: carga la página y presiona <kbd class="font-mono text-[11px] font-bold px-1.5 py-0.5 rounded border border-slate-300 bg-white text-slate-700 shadow-sm">Tab</kbd>. El primer elemento que aparece es <strong>"Saltar al contenido"</strong>; así quien navega con teclado no recorre todo el menú en cada página.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 8 · TEMARIO: LISTA ORDENADA CON ENLACES INTERNOS -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Temario: lista ordenada con enlaces internos" data-section="Bloque 2: HTML semántico">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-amber-50 border-amber-200 text-amber-900"><i data-lucide="list-ordered" class="w-3.5 h-3.5"></i> Paso 5 · Requisito de la guía</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">La lista ordenada enlaza con cada tema usando anclas</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Un enlace con <code class="font-mono">href="#id"</code> no cambia de página: desplaza la vista hasta el elemento que tiene ese <code class="font-mono">id</code>.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 items-start">
+          <div class="space-y-4">
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>index.html · origen (el temario)</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de index.html · origen (el temario)">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[12.5px] leading-relaxed text-slate-100 flex-1 "><code><span class="text-sky-300">&lt;ol</span><span class="text-amber-200"> class</span>=<span class="text-emerald-300">&quot;temario&quot;</span><span class="text-sky-300">&gt;</span>
+  <span class="text-sky-300">&lt;li</span><span class="text-sky-300">&gt;</span><span class="text-sky-300">&lt;a</span><span class="text-amber-200"> href</span>=<span class="text-emerald-300">&quot;#tema-molienda&quot;</span><span class="text-sky-300">&gt;</span>Elegir y moler el grano<span class="text-sky-300">&lt;/a</span><span class="text-sky-300">&gt;</span><span class="text-sky-300">&lt;/li</span><span class="text-sky-300">&gt;</span>
+  <span class="text-sky-300">&lt;li</span><span class="text-sky-300">&gt;</span><span class="text-sky-300">&lt;a</span><span class="text-amber-200"> href</span>=<span class="text-emerald-300">&quot;#tema-prensa&quot;</span><span class="text-sky-300">&gt;</span>Prensa francesa<span class="text-sky-300">&lt;/a</span><span class="text-sky-300">&gt;</span><span class="text-sky-300">&lt;/li</span><span class="text-sky-300">&gt;</span>
+  <span class="text-sky-300">&lt;li</span><span class="text-sky-300">&gt;</span><span class="text-sky-300">&lt;a</span><span class="text-amber-200"> href</span>=<span class="text-emerald-300">&quot;#tema-v60&quot;</span><span class="text-sky-300">&gt;</span>Filtro V60<span class="text-sky-300">&lt;/a</span><span class="text-sky-300">&gt;</span><span class="text-sky-300">&lt;/li</span><span class="text-sky-300">&gt;</span>
+  <span class="text-sky-300">&lt;li</span><span class="text-sky-300">&gt;</span><span class="text-sky-300">&lt;a</span><span class="text-amber-200"> href</span>=<span class="text-emerald-300">&quot;#tema-moka&quot;</span><span class="text-sky-300">&gt;</span>Cafetera moka<span class="text-sky-300">&lt;/a</span><span class="text-sky-300">&gt;</span><span class="text-sky-300">&lt;/li</span><span class="text-sky-300">&gt;</span>
+  <span class="text-sky-300">&lt;li</span><span class="text-sky-300">&gt;</span><span class="text-sky-300">&lt;a</span><span class="text-amber-200"> href</span>=<span class="text-emerald-300">&quot;#tema-cold-brew&quot;</span><span class="text-sky-300">&gt;</span>Cold brew<span class="text-sky-300">&lt;/a</span><span class="text-sky-300">&gt;</span><span class="text-sky-300">&lt;/li</span><span class="text-sky-300">&gt;</span>
+<span class="text-sky-300">&lt;/ol</span><span class="text-sky-300">&gt;</span></code></pre>
+          </div>
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>index.html · destino (el tema)</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de index.html · destino (el tema)">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[12.5px] leading-relaxed text-slate-100 flex-1 "><code><span class="text-sky-300">&lt;article</span><span class="text-amber-200"> class</span>=<span class="text-emerald-300">&quot;tema&quot;</span><span class="text-amber-200"> id</span>=<span class="text-emerald-300">&quot;tema-molienda&quot;</span><span class="text-sky-300">&gt;</span>
+  <span class="text-sky-300">&lt;h3</span><span class="text-sky-300">&gt;</span>1. Elegir y moler el grano<span class="text-sky-300">&lt;/h3</span><span class="text-sky-300">&gt;</span>
+  …
+  <span class="text-sky-300">&lt;a</span><span class="text-amber-200"> class</span>=<span class="text-emerald-300">&quot;tema__volver&quot;</span><span class="text-amber-200"> href</span>=<span class="text-emerald-300">&quot;#temario&quot;</span><span class="text-sky-300">&gt;</span>Volver al temario<span class="text-sky-300">&lt;/a</span><span class="text-sky-300">&gt;</span>
+<span class="text-sky-300">&lt;/article</span><span class="text-sky-300">&gt;</span></code></pre>
+          </div>
+          </div>
+          <div class="space-y-4">
+            <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+              <div class="flex items-center gap-3 text-sm font-mono">
+                <span class="px-3 py-2 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 font-bold">href="#tema-molienda"</span>
+                <i data-lucide="arrow-right" class="w-5 h-5 text-[#39A900] shrink-0"></i>
+                <span class="px-3 py-2 rounded-xl bg-sky-50 border border-sky-200 text-sky-900 font-bold">id="tema-molienda"</span>
+              </div>
+              <div class="mt-4"><ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;ol&gt;</code> porque los temas tienen <strong>orden</strong> (paso 1, 2, 3…). Si el orden no importara, sería <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;ul&gt;</code>.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>El <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">id</code> debe ser <strong>único</strong> en la página y coincidir exactamente con el <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">href</code> (sin el #).</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Cada tema tiene un enlace de regreso: el usuario nunca queda "perdido" al final de un tema largo.</span></li></ul></div>
+            </div>
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>css/styles.css</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de css/styles.css">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[12.5px] leading-relaxed text-slate-100 flex-1 "><code><span class="text-amber-200">html </span>{
+<span class="text-sky-300">  scroll-behavior</span>: smooth;
+<span class="text-sky-300">  scroll-padding-top</span>: calc(var(<span class="text-violet-300">--alto-encabezado</span>) + 1rem); <span class="text-slate-400 italic">/* el encabezado fijo no tapa el tema */</span>
+}</code></pre>
+          </div>
+            
+          <div class="flex items-start gap-3 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-sm text-emerald-950">
+            <i data-lucide="lightbulb" class="w-5 h-5 text-emerald-700 mt-0.5"></i>
+            <p><strong>¿Por qué?</strong> Como el encabezado es fijo (<code class="font-mono">position: sticky</code>), sin <code class="font-mono">scroll-padding-top</code> el título del tema quedaría escondido debajo de él al saltar.</p>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 9 · CADA TEMA: TÍTULO, IMAGEN Y DESCRIPCIÓN -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Cada tema: título, imagen y descripción" data-section="Bloque 2: HTML semántico">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-amber-50 border-amber-200 text-amber-900"><i data-lucide="image" class="w-3.5 h-3.5"></i> Paso 6 · Requisito de la guía</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Anatomía de un &lt;article&gt; de tema</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Cada tema reúne lo que pide la guía (título, imagen y descripción) y suma datos rápidos y un paso a paso desplegable.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-5">
+          
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 lg:col-span-3">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>index.html</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de index.html">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11.5px] leading-relaxed text-slate-100 flex-1 max-h-[470px]"><code><span class="text-sky-300">&lt;article</span><span class="text-amber-200"> class</span>=<span class="text-emerald-300">&quot;tema&quot;</span><span class="text-amber-200"> id</span>=<span class="text-emerald-300">&quot;tema-molienda&quot;</span><span class="text-sky-300">&gt;</span>
+  <span class="text-sky-300">&lt;h3</span><span class="text-sky-300">&gt;</span>1. Elegir y moler el grano<span class="text-sky-300">&lt;/h3</span><span class="text-sky-300">&gt;</span>
+  <span class="text-sky-300">&lt;figure</span><span class="text-sky-300">&gt;</span>
+    <span class="text-sky-300">&lt;img</span><span class="text-amber-200"> src</span>=<span class="text-emerald-300">&quot;img/molienda.svg&quot;</span><span class="text-amber-200"> alt</span>=<span class="text-emerald-300">&quot;Molino manual junto a granos enteros y café molido en tres tamaños: grueso, medio y fino&quot;</span>
+        <span class="text-amber-200"> width</span>=<span class="text-emerald-300">&quot;640&quot;</span><span class="text-amber-200"> height</span>=<span class="text-emerald-300">&quot;400&quot;</span><span class="text-amber-200"> loading</span>=<span class="text-emerald-300">&quot;lazy&quot;</span><span class="text-sky-300">&gt;</span>
+    <span class="text-sky-300">&lt;figcaption</span><span class="text-sky-300">&gt;</span>El tamaño de la molienda cambia según el método.<span class="text-sky-300">&lt;/figcaption</span><span class="text-sky-300">&gt;</span>
+  <span class="text-sky-300">&lt;/figure</span><span class="text-sky-300">&gt;</span>
+  <span class="text-sky-300">&lt;ul</span><span class="text-amber-200"> class</span>=<span class="text-emerald-300">&quot;tema__datos&quot;</span><span class="text-amber-200"> aria-label</span>=<span class="text-emerald-300">&quot;Datos del tema&quot;</span><span class="text-sky-300">&gt;</span>
+    <span class="text-sky-300">&lt;li</span><span class="text-sky-300">&gt;</span>5 min<span class="text-sky-300">&lt;/li</span><span class="text-sky-300">&gt;</span>
+    <span class="text-sky-300">&lt;li</span><span class="text-sky-300">&gt;</span>Nivel básico<span class="text-sky-300">&lt;/li</span><span class="text-sky-300">&gt;</span>
+  <span class="text-sky-300">&lt;/ul</span><span class="text-sky-300">&gt;</span>
+  <span class="text-sky-300">&lt;p</span><span class="text-sky-300">&gt;</span>
+    Compra el café en grano y muélelo justo antes de prepararlo: así conserva sus aromas.
+    Usa molienda gruesa para prensa y cold brew, media para filtro y fina para moka.
+  <span class="text-sky-300">&lt;/p</span><span class="text-sky-300">&gt;</span>
+  <span class="text-sky-300">&lt;details</span><span class="text-sky-300">&gt;</span>
+    <span class="text-sky-300">&lt;summary</span><span class="text-sky-300">&gt;</span>Paso a paso<span class="text-sky-300">&lt;/summary</span><span class="text-sky-300">&gt;</span>
+    <span class="text-sky-300">&lt;ol</span><span class="text-sky-300">&gt;</span>
+      <span class="text-sky-300">&lt;li</span><span class="text-sky-300">&gt;</span>Revisa la fecha de tueste: lo ideal es usarlo dentro del primer mes.<span class="text-sky-300">&lt;/li</span><span class="text-sky-300">&gt;</span>
+      <span class="text-sky-300">&lt;li</span><span class="text-sky-300">&gt;</span>Pesa el café: unos 15 g por taza de 250 ml.<span class="text-sky-300">&lt;/li</span><span class="text-sky-300">&gt;</span>
+      <span class="text-sky-300">&lt;li</span><span class="text-sky-300">&gt;</span>Ajusta el molino al método y muele solo lo que vas a usar.<span class="text-sky-300">&lt;/li</span><span class="text-sky-300">&gt;</span>
+    <span class="text-sky-300">&lt;/ol</span><span class="text-sky-300">&gt;</span>
+  <span class="text-sky-300">&lt;/details</span><span class="text-sky-300">&gt;</span>
+  <span class="text-sky-300">&lt;a</span><span class="text-amber-200"> class</span>=<span class="text-emerald-300">&quot;tema__volver&quot;</span><span class="text-amber-200"> href</span>=<span class="text-emerald-300">&quot;#temario&quot;</span><span class="text-sky-300">&gt;</span>Volver al temario<span class="text-sky-300">&lt;/a</span><span class="text-sky-300">&gt;</span>
+<span class="text-sky-300">&lt;/article</span><span class="text-sky-300">&gt;</span></code></pre>
+          </div>
+          <div class="lg:col-span-2 space-y-3">
+            
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="image" class="w-5 h-5 text-sena"></i>La imagen correcta</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">alt</code> describe lo que muestra la imagen para quien no la ve. No escribas "imagen de…".</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Si la imagen es decorativa (el logo junto al nombre de la marca), usa <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">alt=&quot;&quot;</code> para que el lector la ignore.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">width</code> y <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">height</code> reservan el espacio: el texto no "salta" cuando la imagen termina de cargar.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">loading=&quot;lazy&quot;</code> descarga la imagen solo cuando el usuario se acerca a ella.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;figure&gt;</code> + <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;figcaption&gt;</code> asocian la imagen con su pie de foto.</span></li></ul></div>
+          </div>
+            
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="chevrons-up-down" class="w-5 h-5 text-sena"></i>Acordeón sin JavaScript</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;details&gt;</code> y <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;summary&gt;</code> crean un bloque desplegable nativo: funciona con teclado (<kbd class="font-mono text-[11px] font-bold px-1.5 py-0.5 rounded border border-slate-300 bg-white text-slate-700 shadow-sm">Enter</kbd>), lo anuncian los lectores de pantalla y no necesita una sola línea de JS.</p></div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 10 · OTROS COMPONENTES: TABLA Y FORMULARIO -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Otros componentes: tabla y formulario" data-section="Bloque 2: HTML semántico">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-amber-50 border-amber-200 text-amber-900"><i data-lucide="table" class="w-3.5 h-3.5"></i> Paso 7 · Componentes del curso</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Tablas para datos y formularios accesibles</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">La guía pide incluir los elementos vistos en el componente. La demo agrega una tabla comparativa y un formulario de suscripción.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <div class="space-y-3">
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>index.html · tabla</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de index.html · tabla">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11.5px] leading-relaxed text-slate-100 flex-1 "><code><span class="text-sky-300">&lt;div</span><span class="text-amber-200"> class</span>=<span class="text-emerald-300">&quot;tabla-contenedor&quot;</span><span class="text-amber-200"> tabindex</span>=<span class="text-emerald-300">&quot;0&quot;</span><span class="text-amber-200"> role</span>=<span class="text-emerald-300">&quot;region&quot;</span>
+    <span class="text-amber-200"> aria-labelledby</span>=<span class="text-emerald-300">&quot;titulo-comparativa&quot;</span><span class="text-sky-300">&gt;</span>
+  <span class="text-sky-300">&lt;table</span><span class="text-sky-300">&gt;</span>
+    <span class="text-sky-300">&lt;caption</span><span class="text-sky-300">&gt;</span>Valores de referencia para una preparación<span class="text-sky-300">&lt;/caption</span><span class="text-sky-300">&gt;</span>
+    <span class="text-sky-300">&lt;thead</span><span class="text-sky-300">&gt;</span>
+      <span class="text-sky-300">&lt;tr</span><span class="text-sky-300">&gt;</span>
+        <span class="text-sky-300">&lt;th</span><span class="text-amber-200"> scope</span>=<span class="text-emerald-300">&quot;col&quot;</span><span class="text-sky-300">&gt;</span>Método<span class="text-sky-300">&lt;/th</span><span class="text-sky-300">&gt;</span>
+        <span class="text-sky-300">&lt;th</span><span class="text-amber-200"> scope</span>=<span class="text-emerald-300">&quot;col&quot;</span><span class="text-sky-300">&gt;</span>Molienda<span class="text-sky-300">&lt;/th</span><span class="text-sky-300">&gt;</span>
+        …
+      <span class="text-sky-300">&lt;/tr</span><span class="text-sky-300">&gt;</span>
+    <span class="text-sky-300">&lt;/thead</span><span class="text-sky-300">&gt;</span>
+    <span class="text-sky-300">&lt;tbody</span><span class="text-sky-300">&gt;</span>
+      <span class="text-sky-300">&lt;tr</span><span class="text-sky-300">&gt;</span><span class="text-sky-300">&lt;th</span><span class="text-amber-200"> scope</span>=<span class="text-emerald-300">&quot;row&quot;</span><span class="text-sky-300">&gt;</span>Prensa francesa<span class="text-sky-300">&lt;/th</span><span class="text-sky-300">&gt;</span><span class="text-sky-300">&lt;td</span><span class="text-sky-300">&gt;</span>Gruesa<span class="text-sky-300">&lt;/td</span><span class="text-sky-300">&gt;</span>…<span class="text-sky-300">&lt;/tr</span><span class="text-sky-300">&gt;</span>
+    <span class="text-sky-300">&lt;/tbody</span><span class="text-sky-300">&gt;</span>
+  <span class="text-sky-300">&lt;/table</span><span class="text-sky-300">&gt;</span>
+<span class="text-sky-300">&lt;/div</span><span class="text-sky-300">&gt;</span></code></pre>
+          </div>
+            <ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;caption&gt;</code> es el título de la tabla.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">scope=&quot;col&quot;</code> / <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">scope=&quot;row&quot;</code> indican si el encabezado describe una columna o una fila.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>El contenedor con <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">overflow-x: auto</code> permite deslizar la tabla en el celular; <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">tabindex=&quot;0&quot;</code> deja hacerlo con el teclado.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Las tablas son para datos tabulares, nunca para maquetar la página.</span></li></ul>
+          </div>
+          <div class="space-y-3">
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>index.html · formulario</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de index.html · formulario">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11.5px] leading-relaxed text-slate-100 flex-1 "><code><span class="text-sky-300">&lt;div</span><span class="text-amber-200"> class</span>=<span class="text-emerald-300">&quot;campo&quot;</span><span class="text-sky-300">&gt;</span>
+  <span class="text-sky-300">&lt;label</span><span class="text-amber-200"> for</span>=<span class="text-emerald-300">&quot;correo&quot;</span><span class="text-sky-300">&gt;</span>Correo electrónico<span class="text-sky-300">&lt;/label</span><span class="text-sky-300">&gt;</span>
+  <span class="text-sky-300">&lt;input</span><span class="text-amber-200"> id</span>=<span class="text-emerald-300">&quot;correo&quot;</span><span class="text-amber-200"> name</span>=<span class="text-emerald-300">&quot;correo&quot;</span><span class="text-amber-200"> type</span>=<span class="text-emerald-300">&quot;email&quot;</span><span class="text-amber-200"> autocomplete</span>=<span class="text-emerald-300">&quot;email&quot;</span> required
+        <span class="text-amber-200"> aria-describedby</span>=<span class="text-emerald-300">&quot;correo-error&quot;</span><span class="text-sky-300">&gt;</span>
+  <span class="text-sky-300">&lt;p</span><span class="text-amber-200"> class</span>=<span class="text-emerald-300">&quot;campo__error&quot;</span><span class="text-amber-200"> id</span>=<span class="text-emerald-300">&quot;correo-error&quot;</span><span class="text-sky-300">&gt;</span><span class="text-sky-300">&lt;/p</span><span class="text-sky-300">&gt;</span>
+<span class="text-sky-300">&lt;/div</span><span class="text-sky-300">&gt;</span></code></pre>
+          </div>
+            <ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&lt;label for=&quot;correo&quot;&gt;</code> se conecta con <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">id=&quot;correo&quot;</code>: al hacer clic en el texto se activa el campo y el lector lo anuncia.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">type=&quot;email&quot;</code> muestra el teclado con @ en el celular y valida el formato.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">autocomplete=&quot;email&quot;</code> permite autocompletar; <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">required</code> lo hace obligatorio.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">aria-describedby</code> conecta el campo con su mensaje de error.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Nunca uses solo el placeholder como etiqueta: desaparece al escribir.</span></li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 11 · CSS: ANATOMÍA DE UNA REGLA Y CASCADA -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="CSS: anatomía de una regla y cascada" data-section="Bloque 3: CSS, estilos y cascada">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-sky-50 border-sky-200 text-sky-800"><i data-lucide="palette" class="w-3.5 h-3.5"></i> Paso 8 · CSS</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Cómo decide el navegador qué estilo aplicar</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Una hoja de estilos es una lista de reglas. Cuando dos reglas afectan al mismo elemento, gana la más <strong>específica</strong>; si empatan, gana la que está <strong>más abajo</strong>.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-3">
+            <p class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Anatomía de una regla</p>
+            <div class="font-mono text-sm bg-[#00263A] text-slate-100 rounded-xl p-4 leading-loose">
+              <span class="text-amber-200 border-b-2 border-amber-300">.boton--primario</span> {<br>
+              &nbsp;&nbsp;<span class="text-sky-300 border-b-2 border-sky-300">background-color</span>: <span class="text-emerald-300 border-b-2 border-emerald-300">var(--color-primario)</span>;<br>}
+            </div>
+            <div class="flex flex-wrap gap-2 text-[11px] font-bold">
+              <span class="px-2 py-1 rounded-lg bg-amber-100 text-amber-900">selector: a quién</span>
+              <span class="px-2 py-1 rounded-lg bg-sky-100 text-sky-900">propiedad: qué cambia</span>
+              <span class="px-2 py-1 rounded-lg bg-emerald-100 text-emerald-900">valor: cómo queda</span>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-3">
+            <p class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Especificidad (de menor a mayor)</p>
+            <ol class="space-y-2 text-sm">
+              <li class="flex items-center justify-between gap-2 p-2 rounded-lg bg-slate-50"><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">a</code> etiqueta</span><span class="font-mono text-xs text-slate-500">0,0,1</span></li>
+              <li class="flex items-center justify-between gap-2 p-2 rounded-lg bg-slate-50"><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">.tema</code> clase, <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">:hover</code>, <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">[atributo]</code></span><span class="font-mono text-xs text-slate-500">0,1,0</span></li>
+              <li class="flex items-center justify-between gap-2 p-2 rounded-lg bg-slate-50"><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">#temario</code> id</span><span class="font-mono text-xs text-slate-500">1,0,0</span></li>
+            </ol>
+            <p class="text-sm text-slate-600">En la demo, <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">.js .navegacion__lista</code> (0,2,0) le gana a <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">.navegacion__lista</code> (0,1,0) y oculta el menú solo cuando JS está activo.</p>
+            <p class="text-xs text-slate-500">Buena práctica: estiliza con <strong>clases</strong>; deja los id para anclas y JS, y evita <code class="font-mono">!important</code>.</p>
+          </div>
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-3">
+            <p class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Orden del archivo styles.css</p>
+            <ol class="space-y-1.5 text-sm text-slate-700 list-decimal pl-5">
+              <li><strong>Variables</strong>: colores, radios, sombras</li>
+              <li><strong>Reset</strong> mínimo</li>
+              <li><strong>Base</strong>: tipografía, enlaces, imágenes</li>
+              <li><strong>Utilidades</strong> y accesibilidad</li>
+              <li><strong>Componentes</strong>: encabezado, héroe, temas…</li>
+              <li><strong>Media queries</strong>: tablet y escritorio</li>
+              <li><strong>Preferencias</strong> del usuario</li>
+            </ol>
+            <p class="text-xs text-slate-500">De lo general a lo particular: así la cascada trabaja a tu favor.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 12 · VARIABLES, RESET Y MODELO DE CAJA -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Variables, reset y modelo de caja" data-section="Bloque 3: CSS, estilos y cascada">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-sky-50 border-sky-200 text-sky-800"><i data-lucide="box" class="w-3.5 h-3.5"></i> Paso 9 · Bases del CSS</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Tokens de diseño y el modelo de caja</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Los colores de la guía de estilos (la misma de AromaSur en Figma) se vuelven <strong>variables CSS</strong>: se definen una vez y se usan en todo el archivo.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+          <div class="space-y-3">
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>css/styles.css · variables</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de css/styles.css · variables">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11.5px] leading-relaxed text-slate-100 flex-1 "><code><span class="text-amber-200">:root </span>{
+<span class="text-sky-300">  --color-primario</span>: <span class="text-orange-300">#5B3A29</span>;   <span class="text-slate-400 italic">/* café tostado */</span>
+<span class="text-sky-300">  --color-acento</span>: <span class="text-orange-300">#B4532A</span>;     <span class="text-slate-400 italic">/* terracota */</span>
+<span class="text-sky-300">  --color-secundario</span>: <span class="text-orange-300">#2F6B3A</span>; <span class="text-slate-400 italic">/* verde hoja */</span>
+<span class="text-sky-300">  --color-texto</span>: <span class="text-orange-300">#1F1A17</span>;
+<span class="text-sky-300">  --color-fondo</span>: <span class="text-orange-300">#FBF7F2</span>;
+<span class="text-sky-300">  --radio</span>: 1rem;
+}
+
+<span class="text-amber-200">.boton--primario </span>{
+<span class="text-sky-300">  background-color</span>: var(<span class="text-violet-300">--color-primario</span>);
+}</code></pre>
+          </div>
+            <div class="flex gap-1.5"><span class="flex-1 h-8 rounded-lg border border-slate-200" style="background:#5B3A29" title="#5B3A29"></span><span class="flex-1 h-8 rounded-lg border border-slate-200" style="background:#B4532A" title="#B4532A"></span><span class="flex-1 h-8 rounded-lg border border-slate-200" style="background:#2F6B3A" title="#2F6B3A"></span><span class="flex-1 h-8 rounded-lg border border-slate-200" style="background:#1F1A17" title="#1F1A17"></span><span class="flex-1 h-8 rounded-lg border border-slate-200" style="background:#FBF7F2" title="#FBF7F2"></span></div>
+          </div>
+          <div class="space-y-3">
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>css/styles.css · reset</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de css/styles.css · reset">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11.5px] leading-relaxed text-slate-100 flex-1 "><code>*,
+*::before,
+<span class="text-amber-200">*::after </span>{
+<span class="text-sky-300">  box-sizing</span>: border-box; <span class="text-slate-400 italic">/* el ancho incluye padding y borde */</span>
+}
+
+body,
+<span class="text-amber-200">h1, h2, h3, p, figure, dl, dd </span>{
+<span class="text-sky-300">  margin</span>: 0;
+}
+
+<span class="text-amber-200">img </span>{
+<span class="text-sky-300">  display</span>: block;
+<span class="text-sky-300">  max-width</span>: 100%; <span class="text-slate-400 italic">/* la imagen nunca se sale de su contenedor */</span>
+<span class="text-sky-300">  height</span>: auto;
+}</code></pre>
+          </div>
+            <p class="text-sm text-slate-600"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">max-width: 100%</code> en las imágenes es la primera regla responsive: ninguna imagen se sale de su contenedor.</p>
+          </div>
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-3">
+            <p class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Modelo de caja</p>
+            <div class="rounded-xl border-2 border-dashed border-orange-300 bg-orange-50 p-3 text-[11px] font-bold text-orange-800">margin
+              <div class="mt-1 rounded-lg border-4 border-slate-700 bg-white p-0.5"><span class="block px-1 text-slate-700">border</span>
+                <div class="rounded bg-emerald-100 p-3 text-emerald-800">padding
+                  <div class="mt-1 rounded bg-sky-200 py-3 text-center text-sky-900">contenido</div>
+                </div>
+              </div>
+            </div>
+            <p class="text-sm text-slate-600">Con <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">box-sizing: border-box</code>, un elemento de <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">width: 300px</code> mide <strong>300 px</strong> aunque tenga padding y borde. Sin él mediría 300 + padding + borde, y los cálculos se descuadran.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 13 · FLEXBOX: EJES Y PROPIEDADES -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Flexbox: ejes y propiedades" data-section="Bloque 4: Layout con Flexbox y Grid">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-violet-50 border-violet-200 text-violet-800"><i data-lucide="columns-3" class="w-3.5 h-3.5"></i> Paso 10 · Flexbox</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Flexbox organiza elementos en UNA dimensión</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Una fila <strong>o</strong> una columna. El contenedor (padre) recibe <code class="font-mono">display: flex</code> y sus hijos directos se alinean sobre dos ejes.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-5">
+          <div class="lg:col-span-2 bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-4">
+            <div class="relative rounded-xl border-2 border-violet-300 bg-violet-50 p-4 pt-8 pb-10">
+              <span class="absolute top-1.5 left-3 font-mono text-[11px] font-bold text-violet-800">.contenedor { display: flex }</span>
+              <div class="flex items-center gap-2">
+                <div class="rounded-lg bg-violet-500 text-white font-extrabold text-sm flex items-center justify-center w-12 h-10">1</div><div class="rounded-lg bg-violet-500 text-white font-extrabold text-sm flex items-center justify-center w-12 h-14">2</div><div class="rounded-lg bg-violet-500 text-white font-extrabold text-sm flex items-center justify-center w-12 h-8">3</div>
+              </div>
+              <div class="absolute left-4 right-4 bottom-3 flex items-center gap-1 text-[10px] font-extrabold text-amber-700">
+                <span class="flex-1 h-0.5 bg-amber-500"></span>eje principal → justify-content
+              </div>
+              <div class="absolute right-3 top-8 bottom-10 flex flex-col items-center gap-1 text-[10px] font-extrabold text-sky-700">
+                <span class="flex-1 w-0.5 bg-sky-500"></span><span class="[writing-mode:vertical-rl]">align-items</span>
+              </div>
+            </div>
+            <ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Con <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">flex-direction: row</code> el eje principal es horizontal; con <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">column</code> se vuelve vertical y los ejes se intercambian.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">justify-content</code> reparte en el eje principal; <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">align-items</code> alinea en el eje cruzado.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">gap</code> pone espacio entre los hijos, sin márgenes manuales.</span></li></ul>
+          </div>
+          <div class="lg:col-span-3 bg-white rounded-2xl border border-slate-200 shadow-sm overflow-x-auto">
+            <table class="w-full text-sm min-w-[520px]">
+              <thead class="bg-slate-50 text-left text-[11px] uppercase tracking-wider text-slate-500"><tr><th class="px-3 py-2" scope="col">Propiedad</th><th class="px-3 py-2" scope="col">Valores comunes</th><th class="px-3 py-2" scope="col">Para qué</th></tr></thead>
+              <tbody class="divide-y divide-slate-100">
+                <tr><td colspan="3" class="px-3 py-1.5 text-[11px] font-extrabold uppercase tracking-wider text-violet-700 bg-violet-50">En el contenedor (padre)</td></tr>
+                <tr><td class="px-3 py-2 font-mono text-[12px] text-sky-800 font-bold whitespace-nowrap">flex-direction</td><td class="px-3 py-2 font-mono text-[11px] text-slate-500">row | column</td><td class="px-3 py-2 text-slate-600">Dirección del eje principal.</td></tr>
+                <tr><td class="px-3 py-2 font-mono text-[12px] text-sky-800 font-bold whitespace-nowrap">justify-content</td><td class="px-3 py-2 font-mono text-[11px] text-slate-500">flex-start | center | space-between</td><td class="px-3 py-2 text-slate-600">Reparte los hijos en el eje principal.</td></tr>
+                <tr><td class="px-3 py-2 font-mono text-[12px] text-sky-800 font-bold whitespace-nowrap">align-items</td><td class="px-3 py-2 font-mono text-[11px] text-slate-500">stretch | center | flex-start</td><td class="px-3 py-2 text-slate-600">Alinea los hijos en el eje cruzado.</td></tr>
+                <tr><td class="px-3 py-2 font-mono text-[12px] text-sky-800 font-bold whitespace-nowrap">flex-wrap</td><td class="px-3 py-2 font-mono text-[11px] text-slate-500">nowrap | wrap</td><td class="px-3 py-2 text-slate-600">Permite pasar a otra línea si no caben.</td></tr>
+                <tr><td class="px-3 py-2 font-mono text-[12px] text-sky-800 font-bold whitespace-nowrap">gap</td><td class="px-3 py-2 font-mono text-[11px] text-slate-500">0.75rem</td><td class="px-3 py-2 text-slate-600">Espacio entre hijos.</td></tr>
+                <tr><td colspan="3" class="px-3 py-1.5 text-[11px] font-extrabold uppercase tracking-wider text-violet-700 bg-violet-50">En los hijos</td></tr>
+                <tr><td class="px-3 py-2 font-mono text-[12px] text-sky-800 font-bold whitespace-nowrap">flex</td><td class="px-3 py-2 font-mono text-[11px] text-slate-500">1 1 12rem</td><td class="px-3 py-2 text-slate-600">Crecer · encogerse · tamaño base (flex-grow, flex-shrink, flex-basis).</td></tr>
+                <tr><td class="px-3 py-2 font-mono text-[12px] text-sky-800 font-bold whitespace-nowrap">order</td><td class="px-3 py-2 font-mono text-[11px] text-slate-500">0 | 1 | -1</td><td class="px-3 py-2 text-slate-600">Cambia el orden visual sin tocar el HTML.</td></tr>
+                <tr><td class="px-3 py-2 font-mono text-[12px] text-sky-800 font-bold whitespace-nowrap">margin-*: auto</td><td class="px-3 py-2 font-mono text-[11px] text-slate-500">margin-right: auto</td><td class="px-3 py-2 text-slate-600">Absorbe el espacio libre y empuja a los demás.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 14 · LABORATORIO INTERACTIVO DE FLEXBOX -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Laboratorio interactivo de Flexbox" data-section="Bloque 4: Layout con Flexbox y Grid">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-violet-50 border-violet-200 text-violet-800"><i data-lucide="flask-conical" class="w-3.5 h-3.5"></i> Practica en vivo</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Cambia las propiedades y observa qué pasa</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Pide a los aprendices que predigan el resultado <em>antes</em> de cambiar cada valor. Los hijos tienen alturas distintas a propósito para que se note <code class="font-mono">align-items</code>.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-5" data-flex-lab>
+          <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm space-y-3">
+            
+              <label class="block text-xs font-bold text-slate-600">flex-direction
+                <select data-prop="flex-direction" class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-2 py-2 font-mono text-[12px] text-slate-800"><option>row</option><option>column</option><option>row-reverse</option></select>
+              </label>
+            
+              <label class="block text-xs font-bold text-slate-600">justify-content
+                <select data-prop="justify-content" class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-2 py-2 font-mono text-[12px] text-slate-800"><option>flex-start</option><option>center</option><option>flex-end</option><option>space-between</option><option>space-around</option><option>space-evenly</option></select>
+              </label>
+            
+              <label class="block text-xs font-bold text-slate-600">align-items
+                <select data-prop="align-items" class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-2 py-2 font-mono text-[12px] text-slate-800"><option>stretch</option><option>flex-start</option><option>center</option><option>flex-end</option></select>
+              </label>
+            
+              <label class="block text-xs font-bold text-slate-600">flex-wrap
+                <select data-prop="flex-wrap" class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-2 py-2 font-mono text-[12px] text-slate-800"><option>nowrap</option><option>wrap</option></select>
+              </label>
+            
+              <label class="block text-xs font-bold text-slate-600">gap
+                <select data-prop="gap" class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-2 py-2 font-mono text-[12px] text-slate-800"><option>0.75rem</option><option>0</option><option>2rem</option></select>
+              </label>
+            <label class="flex items-center gap-2 text-xs font-bold text-slate-600"><input type="checkbox" data-flex-grow class="w-4 h-4 accent-[#7c3aed]"> El ítem 2 crece (flex-grow: 1)</label>
+          </div>
+          <div class="lg:col-span-2 bg-white rounded-2xl border border-slate-200 p-4 shadow-sm">
+            <div data-flex-box class="h-72 rounded-xl border-2 border-dashed border-violet-300 bg-violet-50/60 p-3 overflow-auto" style="display:flex">
+              <div data-flex-item="1" class="rounded-lg bg-violet-500 text-white font-extrabold flex items-center justify-center shrink-0 min-w-[4.5rem] px-4 min-h-[3rem]">1</div><div data-flex-item="2" class="rounded-lg bg-violet-500 text-white font-extrabold flex items-center justify-center shrink-0 min-w-[4.5rem] px-4 min-h-[5rem]">2</div><div data-flex-item="3" class="rounded-lg bg-violet-500 text-white font-extrabold flex items-center justify-center shrink-0 min-w-[4.5rem] px-4 min-h-[2.5rem]">3</div><div data-flex-item="4" class="rounded-lg bg-violet-500 text-white font-extrabold flex items-center justify-center shrink-0 min-w-[4.5rem] px-4 min-h-[4rem]">4</div>
+            </div>
+          </div>
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col">
+            <div class="px-4 py-2 border-b border-white/10 font-mono text-[11px] text-slate-300">CSS generado</div>
+            <pre class="p-4 text-[12px] leading-relaxed text-emerald-200 overflow-auto flex-1"><code data-flex-css></code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 15 · FLEXBOX APLICADO EN LA DEMO -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Flexbox aplicado en la demo" data-section="Bloque 4: Layout con Flexbox y Grid">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-violet-50 border-violet-200 text-violet-800"><i data-lucide="columns-3" class="w-3.5 h-3.5"></i> Flexbox en cada sección</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Tres usos típicos de Flexbox en la página</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Usamos Flexbox cuando el contenido va <strong>en una línea</strong> (horizontal o vertical) y queremos alinearlo o repartir el espacio sobrante.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <div class="space-y-3">
+            <p class="text-sm font-extrabold text-slate-900">1. Encabezado: alinear en una fila</p>
+            <div class="rounded-xl border border-slate-200 bg-slate-50 p-3"><div class="flex items-center gap-1.5"><span class="rounded-md px-2 py-1 text-[10px] font-bold bg-amber-200 text-amber-900">logo</span><span class="flex-1 border-t-2 border-dashed border-amber-400 text-[9px] text-amber-700 text-center">margin-right: auto</span><span class="rounded-md px-2 py-1 text-[10px] font-bold bg-amber-200 text-amber-900">menú</span><span class="rounded-md px-2 py-1 text-[10px] font-bold bg-amber-200 text-amber-900">tema</span></div></div>
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>styles.css</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de styles.css">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11.5px] leading-relaxed text-slate-100 flex-1 "><code><span class="text-amber-200">.encabezado__barra </span>{
+<span class="text-sky-300">  display</span>: flex;
+<span class="text-sky-300">  flex-wrap</span>: wrap;          <span class="text-slate-400 italic">/* en móvil el menú baja a una segunda línea */</span>
+<span class="text-sky-300">  align-items</span>: center;      <span class="text-slate-400 italic">/* centra en el eje vertical (eje cruzado) */</span>
+<span class="text-sky-300">  gap</span>: 0.5rem;
+<span class="text-sky-300">  min-height</span>: var(<span class="text-violet-300">--alto-encabezado</span>);
+}
+
+<span class="text-amber-200">.marca </span>{
+<span class="text-sky-300">  margin-right</span>: auto;
+}</code></pre>
+          </div>
+          </div>
+          <div class="space-y-3">
+            <p class="text-sm font-extrabold text-slate-900">2. Temario: repartir con flex-wrap</p>
+            <div class="rounded-xl border border-slate-200 bg-slate-50 p-3"><div class="flex flex-wrap gap-1.5"><span class="flex-[1_1_5rem] rounded-md bg-white border border-amber-300 px-2 py-1 text-[10px] font-bold text-amber-900">1 Moler</span><span class="flex-[1_1_5rem] rounded-md bg-white border border-amber-300 px-2 py-1 text-[10px] font-bold text-amber-900">2 Prensa</span><span class="flex-[1_1_5rem] rounded-md bg-white border border-amber-300 px-2 py-1 text-[10px] font-bold text-amber-900">3 V60</span><span class="flex-[1_1_5rem] rounded-md bg-white border border-amber-300 px-2 py-1 text-[10px] font-bold text-amber-900">4 Moka</span><span class="flex-[1_1_5rem] rounded-md bg-white border border-amber-300 px-2 py-1 text-[10px] font-bold text-amber-900">5 Cold brew</span></div></div>
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>styles.css</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de styles.css">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11.5px] leading-relaxed text-slate-100 flex-1 "><code><span class="text-amber-200">.temario </span>{
+<span class="text-sky-300">  display</span>: flex;
+<span class="text-sky-300">  flex-wrap</span>: wrap;
+<span class="text-sky-300">  gap</span>: 0.75rem;
+<span class="text-sky-300">  margin</span>: 0;
+<span class="text-sky-300">  padding</span>: 0;
+<span class="text-sky-300">  list-style</span>: none;
+<span class="text-sky-300">  counter-reset</span>: paso;      <span class="text-slate-400 italic">/* contador propio para dibujar los números */</span>
+}
+
+<span class="text-amber-200">.temario li </span>{
+<span class="text-sky-300">  flex</span>: 1 1 12rem;
+}</code></pre>
+          </div>
+          </div>
+          <div class="space-y-3">
+            <p class="text-sm font-extrabold text-slate-900">3. Tarjeta: columna con pie alineado</p>
+            <div class="rounded-xl border border-slate-200 bg-slate-50 p-3"><div class="grid grid-cols-2 gap-2"><div class="flex flex-col gap-1 rounded-md bg-white border border-slate-200 p-1.5 h-24"><span class="h-2 w-3/4 rounded bg-slate-300"></span><span class="h-6 rounded bg-amber-100"></span><span class="h-2 rounded bg-slate-200"></span><span class="mt-auto text-[9px] font-bold text-amber-700">Volver ↑</span></div><div class="flex flex-col gap-1 rounded-md bg-white border border-slate-200 p-1.5 h-24"><span class="h-2 w-3/4 rounded bg-slate-300"></span><span class="h-6 rounded bg-amber-100"></span><span class="h-2 rounded bg-slate-200"></span><span class="h-2 rounded bg-slate-200"></span><span class="mt-auto text-[9px] font-bold text-amber-700">Volver ↑</span></div></div></div>
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>styles.css</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de styles.css">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11.5px] leading-relaxed text-slate-100 flex-1 "><code><span class="text-amber-200">.tema </span>{
+<span class="text-sky-300">  display</span>: flex;
+<span class="text-sky-300">  flex-direction</span>: column;
+<span class="text-sky-300">  gap</span>: 0.75rem;
+<span class="text-sky-300">  padding</span>: 1.25rem;
+<span class="text-sky-300">  border</span>: 1px solid var(<span class="text-violet-300">--color-borde</span>);
+<span class="text-sky-300">  border-radius</span>: var(<span class="text-violet-300">--radio</span>);
+<span class="text-sky-300">  background-color</span>: var(<span class="text-violet-300">--color-superficie</span>);
+<span class="text-sky-300">  box-shadow</span>: var(<span class="text-violet-300">--sombra</span>);
+}
+
+<span class="text-amber-200">.tema__volver </span>{
+<span class="text-sky-300">  margin-top</span>: auto;
+}</code></pre>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 16 · CSS GRID: FILAS, COLUMNAS Y FR -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="CSS Grid: filas, columnas y fr" data-section="Bloque 4: Layout con Flexbox y Grid">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-violet-50 border-violet-200 text-violet-800"><i data-lucide="layout-grid" class="w-3.5 h-3.5"></i> Paso 11 · Grid</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Grid organiza en DOS dimensiones a la vez</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Filas <strong>y</strong> columnas. Es la herramienta para el layout de la página y para rejillas de tarjetas.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-5">
+          <div class="lg:col-span-2 bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-3">
+            <div class="relative rounded-xl border-2 border-sky-300 bg-sky-50 p-4 pt-8">
+              <span class="absolute top-1.5 left-3 font-mono text-[11px] font-bold text-sky-800">grid-template-columns: 1fr 2fr 1fr</span>
+              <div class="grid gap-2" style="grid-template-columns:1fr 2fr 1fr">
+                <div class="rounded-lg bg-sky-500 text-white font-extrabold text-xs flex items-center justify-center h-12">1fr</div><div class="rounded-lg bg-sky-500 text-white font-extrabold text-xs flex items-center justify-center h-12">2fr</div><div class="rounded-lg bg-sky-500 text-white font-extrabold text-xs flex items-center justify-center h-12">1fr</div><div class="rounded-lg bg-sky-500 text-white font-extrabold text-xs flex items-center justify-center h-12">1fr</div><div class="rounded-lg bg-sky-500 text-white font-extrabold text-xs flex items-center justify-center h-12">2fr</div><div class="rounded-lg bg-sky-500 text-white font-extrabold text-xs flex items-center justify-center h-12">1fr</div>
+              </div>
+            </div>
+            <ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">fr</code> = una fracción del espacio libre: aquí la columna central mide el doble.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">gap</code> separa filas y columnas.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Los hijos se ubican solos en las celdas, en orden.</span></li></ul>
+          </div>
+          <div class="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
+            
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="repeat" class="w-5 h-5 text-sky-600"></i>repeat()</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p>Evita repetir: <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">repeat(3, 1fr)</code> = <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">1fr 1fr 1fr</code>.</p></div>
+          </div>
+            
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="move-horizontal" class="w-5 h-5 text-sky-600"></i>minmax()</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p>Tamaño con mínimo y máximo: <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">minmax(17rem, 1fr)</code> = nunca menos de 17rem, puede crecer.</p></div>
+          </div>
+            
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="wand-sparkles" class="w-5 h-5 text-sky-600"></i>auto-fit</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">repeat(auto-fit, minmax(17rem, 1fr))</code>: el navegador calcula cuántas columnas caben. <strong>Responsive sin media queries.</strong></p></div>
+          </div>
+            
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="layout-dashboard" class="w-5 h-5 text-sky-600"></i>grid-template-areas</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p>Le pones nombre a las zonas y "dibujas" el layout: <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">&quot;temas lateral&quot;</code>. Cada hijo se ubica con <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">grid-area</code>.</p></div>
+          </div>
+            
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="crosshair" class="w-5 h-5 text-sky-600"></i>place-items</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">place-items: center</code> centra en ambos ejes. Lo usamos para el número de cada tema del temario.</p></div>
+          </div>
+            
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="shrink" class="w-5 h-5 text-sky-600"></i>min()</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">min(100%, 17rem)</code> evita que una tarjeta de 17rem desborde una pantalla de 320 px.</p></div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 17 · LABORATORIO INTERACTIVO DE GRID -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Laboratorio interactivo de Grid" data-section="Bloque 4: Layout con Flexbox y Grid">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-violet-50 border-violet-200 text-violet-800"><i data-lucide="flask-conical" class="w-3.5 h-3.5"></i> Practica en vivo</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Comprueba cómo auto-fit cambia el número de columnas</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Elige <code class="font-mono">repeat(auto-fit, minmax(9rem, 1fr))</code> y reduce el ancho del contenedor: las columnas se reorganizan solas, igual que las tarjetas de la demo.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-5" data-grid-lab>
+          <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm space-y-3">
+            <label class="block text-xs font-bold text-slate-600">grid-template-columns
+              <select data-grid-cols class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-2 py-2 font-mono text-[12px] text-slate-800">
+                <option>1fr</option><option>1fr 1fr</option><option>1fr 2fr</option><option>repeat(3, 1fr)</option><option>200px 1fr</option><option>repeat(auto-fit, minmax(9rem, 1fr))</option>
+              </select>
+            </label>
+            <label class="block text-xs font-bold text-slate-600">gap
+              <select data-grid-gap class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-2 py-2 font-mono text-[12px] text-slate-800"><option>0.75rem</option><option>0</option><option>2rem</option></select>
+            </label>
+            <label class="block text-xs font-bold text-slate-600">Ancho del contenedor: <span data-grid-width-label class="font-mono">100%</span>
+              <input type="range" min="30" max="100" value="100" data-grid-width class="mt-2 w-full accent-[#0284c7]">
+            </label>
+            <p class="text-xs font-bold text-sky-800 bg-sky-50 rounded-lg px-3 py-2">Resultado: <span data-grid-count>—</span></p>
+          </div>
+          <div class="lg:col-span-2 bg-white rounded-2xl border border-slate-200 p-4 shadow-sm">
+            <div data-grid-box class="rounded-xl border-2 border-dashed border-sky-300 bg-sky-50/60 p-3 grid">
+              <div class="rounded-lg bg-sky-500 text-white font-extrabold flex items-center justify-center h-16 min-w-0">1</div><div class="rounded-lg bg-sky-500 text-white font-extrabold flex items-center justify-center h-16 min-w-0">2</div><div class="rounded-lg bg-sky-500 text-white font-extrabold flex items-center justify-center h-16 min-w-0">3</div><div class="rounded-lg bg-sky-500 text-white font-extrabold flex items-center justify-center h-16 min-w-0">4</div><div class="rounded-lg bg-sky-500 text-white font-extrabold flex items-center justify-center h-16 min-w-0">5</div><div class="rounded-lg bg-sky-500 text-white font-extrabold flex items-center justify-center h-16 min-w-0">6</div>
+            </div>
+          </div>
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col">
+            <div class="px-4 py-2 border-b border-white/10 font-mono text-[11px] text-slate-300">CSS generado</div>
+            <pre class="p-4 text-[12px] leading-relaxed text-emerald-200 overflow-auto flex-1"><code data-grid-css></code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 18 · GRID APLICADO EN LA DEMO -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Grid aplicado en la demo" data-section="Bloque 4: Layout con Flexbox y Grid">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-violet-50 border-violet-200 text-violet-800"><i data-lucide="layout-grid" class="w-3.5 h-3.5"></i> Grid en cada sección</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Cuatro usos de Grid en la página</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Usamos Grid cuando necesitamos <strong>columnas definidas</strong> o una rejilla donde los elementos se alinean en filas y columnas al mismo tiempo.</p>
+        </header>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="space-y-2">
+            <p class="text-sm font-extrabold text-slate-900">1. Héroe: texto + imagen (1 → 2 columnas)</p>
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>styles.css</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de styles.css">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11.5px] leading-relaxed text-slate-100 flex-1 "><code><span class="text-amber-200">.heroe__grid </span>{
+<span class="text-sky-300">  display</span>: grid;
+<span class="text-sky-300">  gap</span>: 2rem;
+<span class="text-sky-300">  align-items</span>: center;
+}
+
+<span class="text-pink-300">@media</span> (min-width: 48rem) {
+<span class="text-amber-200">  .heroe__grid </span>{ grid-template-columns: 1.1fr 1fr; }
+}</code></pre>
+          </div>
+          </div>
+          <div class="space-y-2">
+            <p class="text-sm font-extrabold text-slate-900">2. Diseño de página con áreas con nombre</p>
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>styles.css</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de styles.css">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11.5px] leading-relaxed text-slate-100 flex-1 "><code><span class="text-amber-200">.diseno </span>{
+<span class="text-sky-300">  grid-template-columns</span>: minmax(0, 1fr) 18rem;
+<span class="text-sky-300">  grid-template-areas</span>: <span class="text-emerald-300">&quot;temas lateral&quot;</span>;
+}
+<span class="text-amber-200">.temas   </span>{ grid-area: temas; }
+<span class="text-amber-200">.lateral </span>{ grid-area: lateral; }</code></pre>
+          </div>
+          </div>
+          <div class="space-y-2">
+            <p class="text-sm font-extrabold text-slate-900">3. Rejilla de temas: auto-fit (sin media queries)</p>
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>styles.css</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de styles.css">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11.5px] leading-relaxed text-slate-100 flex-1 "><code><span class="text-amber-200">.temas__grid </span>{
+<span class="text-sky-300">  display</span>: grid;
+<span class="text-sky-300">  grid-template-columns</span>: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+<span class="text-sky-300">  gap</span>: 1.5rem;
+<span class="text-sky-300">  margin-top</span>: 1rem;
+}</code></pre>
+          </div>
+          </div>
+          <div class="space-y-2">
+            <p class="text-sm font-extrabold text-slate-900">4. Pie de página: columnas que se apilan solas</p>
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>styles.css</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de styles.css">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11.5px] leading-relaxed text-slate-100 flex-1 "><code><span class="text-amber-200">.pie__grid </span>{
+<span class="text-sky-300">  display</span>: grid;
+<span class="text-sky-300">  grid-template-columns</span>: repeat(auto-fit, minmax(14rem, 1fr));
+<span class="text-sky-300">  gap</span>: 1.5rem;
+}</code></pre>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 19 · MAPA: FLEX O GRID EN CADA SECCIÓN -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Mapa: Flex o Grid en cada sección" data-section="Bloque 4: Layout con Flexbox y Grid">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-violet-50 border-violet-200 text-violet-800"><i data-lucide="map" class="w-3.5 h-3.5"></i> Para qué y por qué</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Haz clic en cada zona de la página para ver la decisión</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Regla práctica: <strong>Grid para el esqueleto</strong> (filas y columnas) y <strong>Flexbox para el interior</strong> de los componentes (una línea). Se combinan, no compiten.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-5" data-mapa>
+          <div class="lg:col-span-2 bg-white rounded-2xl border border-slate-200 p-3 shadow-sm space-y-1.5" aria-label="Esquema de la página demo">
+            <button type="button" data-mapa-item="encabezado" aria-pressed="false" class="mapa-zona is-flex w-full">Encabezado<span>FLEX</span></button>
+            <div class="rounded-xl border border-slate-200 p-1.5 space-y-1.5">
+              <button type="button" data-mapa-item="heroe" aria-pressed="false" class="mapa-zona is-grid w-full">Héroe<span>GRID</span></button>
+              <button type="button" data-mapa-item="acciones" aria-pressed="false" class="mapa-zona is-flex w-full">Botones del héroe<span>FLEX</span></button>
+            </div>
+            <button type="button" data-mapa-item="temario" aria-pressed="false" class="mapa-zona is-flex w-full">Temario (ol)<span>FLEX</span></button>
+            <div class="rounded-xl border border-slate-200 p-1.5 space-y-1.5">
+              <button type="button" data-mapa-item="diseno" aria-pressed="false" class="mapa-zona is-grid w-full">Temas + lateral<span>GRID</span></button>
+              <div class="grid grid-cols-3 gap-1.5">
+                <div class="col-span-2 space-y-1.5"><button type="button" data-mapa-item="temas" aria-pressed="false" class="mapa-zona is-grid w-full">Rejilla de temas<span>GRID</span></button><button type="button" data-mapa-item="tarjeta" aria-pressed="false" class="mapa-zona is-flex w-full">Tarjeta de tema<span>FLEX</span></button></div>
+                <div class="rounded-lg bg-slate-100 text-[10px] font-bold text-slate-500 flex items-center justify-center">aside</div>
+              </div>
+            </div>
+            <button type="button" data-mapa-item="formulario" aria-pressed="false" class="mapa-zona is-grid w-full">Formulario<span>GRID</span></button>
+            <button type="button" data-mapa-item="pie" aria-pressed="false" class="mapa-zona is-grid w-full">Pie de página<span>GRID</span></button>
+          </div>
+          <div class="lg:col-span-3 space-y-3">
+            <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-3" aria-live="polite">
+              <div class="flex flex-wrap items-center gap-2">
+                <p class="text-lg font-extrabold text-slate-900" data-mapa-nombre></p>
+                <span data-mapa-tecnica></span>
+                <code class="font-mono text-xs text-slate-500" data-mapa-clase></code>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                <div class="p-3 rounded-xl bg-slate-50 border border-slate-100"><p class="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1">Para qué</p><p class="text-slate-700" data-mapa-para></p></div>
+                <div class="p-3 rounded-xl bg-emerald-50 border border-emerald-100"><p class="text-[11px] font-extrabold uppercase tracking-wider text-emerald-700 mb-1">Por qué</p><p class="text-emerald-950" data-mapa-porque></p></div>
+              </div>
+            </div>
+            <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden">
+              <div class="px-4 py-2 border-b border-white/10 font-mono text-[11px] text-slate-300">css/styles.css</div>
+              <pre class="p-4 text-[12px] leading-relaxed text-emerald-200 overflow-auto"><code data-mapa-css></code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 20 · MOBILE-FIRST Y MEDIA QUERIES -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Mobile-first y media queries" data-section="Bloque 5: Diseño responsive">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-emerald-50 border-emerald-200 text-emerald-800"><i data-lucide="smartphone" class="w-3.5 h-3.5"></i> Paso 12 · Responsive</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Primero el celular, luego se agrega para pantallas grandes</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">La mayoría de usuarios entra desde el celular. Escribimos los estilos base para la pantalla pequeña y usamos <code class="font-mono">@media (min-width: …)</code> para <strong>sumar</strong> cambios cuando hay más espacio.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>css/styles.css</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de css/styles.css">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11.5px] leading-relaxed text-slate-100 flex-1 "><code><span class="text-slate-400 italic">/* BASE = celular: una columna, menú oculto tras el botón */</span>
+<span class="text-amber-200">.heroe__grid </span>{
+<span class="text-sky-300">  display</span>: grid;
+<span class="text-sky-300">  gap</span>: 2rem;
+}
+
+<span class="text-slate-400 italic">/* Tablet: 48rem = 768px → se SUMAN cambios */</span>
+<span class="text-pink-300">@media</span> (min-width: 48rem) {
+<span class="text-amber-200">  .heroe__grid </span>{ grid-template-columns: 1.1fr 1fr; }
+<span class="text-amber-200">  .menu-toggle </span>{ display: none; }
+}
+
+<span class="text-slate-400 italic">/* Escritorio: 64rem = 1024px */</span>
+<span class="text-pink-300">@media</span> (min-width: 64rem) {
+<span class="text-amber-200">  .diseno </span>{
+<span class="text-sky-300">    grid-template-columns</span>: minmax(0, 1fr) 18rem;
+  }
+}</code></pre>
+          </div>
+          <div class="space-y-3">
+            
+            <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
+              <p class="flex items-center gap-2 font-extrabold text-slate-900"><i data-lucide="smartphone" class="w-5 h-5 text-sena"></i> Móvil <span class="ml-auto font-mono text-[11px] text-slate-500">&lt; 768 px</span></p>
+              <p class="text-xs text-slate-600 mt-1">Una columna, menú hamburguesa, tabla con desplazamiento horizontal.</p>
+            </div>
+            
+            <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
+              <p class="flex items-center gap-2 font-extrabold text-slate-900"><i data-lucide="tablet" class="w-5 h-5 text-sena"></i> Tablet <span class="ml-auto font-mono text-[11px] text-slate-500">≥ 768 px</span></p>
+              <p class="text-xs text-slate-600 mt-1">Héroe en 2 columnas, menú en fila, tarjetas en 2 columnas (auto-fit).</p>
+            </div>
+            
+            <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
+              <p class="flex items-center gap-2 font-extrabold text-slate-900"><i data-lucide="monitor" class="w-5 h-5 text-sena"></i> Escritorio <span class="ml-auto font-mono text-[11px] text-slate-500">≥ 1024 px</span></p>
+              <p class="text-xs text-slate-600 mt-1">Aparece el lateral fijo al lado de los temas (grid-template-areas).</p>
+            </div>
+            
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="ruler" class="w-5 h-5 text-sena"></i>Unidades que se adaptan</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">rem</code> para tamaños y espacios: respeta el tamaño de letra que eligió el usuario.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">%</code>, <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">fr</code> y <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">min(100% - 2rem, 72rem)</code> para anchos fluidos.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">clamp(2rem, 5vw + 1rem, 3.5rem)</code>: el h1 crece con la pantalla, con mínimo y máximo.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">60ch</code>: líneas de lectura de ~60 caracteres.</span></li></ul></div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 21 · VISOR RESPONSIVE DE LA DEMO -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Visor responsive de la demo" data-section="Bloque 5: Diseño responsive">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-emerald-50 border-emerald-200 text-emerald-800"><i data-lucide="monitor-smartphone" class="w-3.5 h-3.5"></i> Demostración en vivo</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">La misma página en tres anchos de pantalla</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Cambia de dispositivo y señala qué cambió: el menú, las columnas del héroe, la rejilla de temas y el lateral. Es el mismo HTML; solo cambia el CSS.</p>
+        </header>
+        <div class="space-y-3" data-visor>
+          <div class="flex flex-wrap items-center gap-2">
+            <button type="button" data-visor-width="390" aria-pressed="true" class="visor-btn inline-flex items-center gap-2 px-3 py-2 rounded-xl border text-sm font-bold transition-colors"><i data-lucide="smartphone" class="w-4 h-4"></i> Móvil <span class="font-mono text-[11px] opacity-70">390</span></button> <button type="button" data-visor-width="768" aria-pressed="false" class="visor-btn inline-flex items-center gap-2 px-3 py-2 rounded-xl border text-sm font-bold transition-colors"><i data-lucide="tablet" class="w-4 h-4"></i> Tablet <span class="font-mono text-[11px] opacity-70">768</span></button> <button type="button" data-visor-width="1280" aria-pressed="false" class="visor-btn inline-flex items-center gap-2 px-3 py-2 rounded-xl border text-sm font-bold transition-colors"><i data-lucide="monitor" class="w-4 h-4"></i> Escritorio <span class="font-mono text-[11px] opacity-70">1280</span></button>
+            <span class="ml-auto font-mono text-xs text-slate-500" data-visor-label></span>
+          </div>
+          <div data-visor-stage class="relative h-[460px] rounded-2xl border border-slate-300 bg-slate-200 overflow-hidden flex justify-center">
+            <iframe src="demos/aa4-ev01-cafe/index.html" title="Demo AromaSur Café en vista previa" loading="lazy" class="origin-top bg-white shadow-xl border-0 shrink-0"></iframe>
+          </div>
+          <p class="text-xs text-slate-500">En tu equipo: abre la demo y usa el modo dispositivo de DevTools (<kbd class="font-mono text-[11px] font-bold px-1.5 py-0.5 rounded border border-slate-300 bg-white text-slate-700 shadow-sm">Ctrl</kbd> + <kbd class="font-mono text-[11px] font-bold px-1.5 py-0.5 rounded border border-slate-300 bg-white text-slate-700 shadow-sm">Shift</kbd> + <kbd class="font-mono text-[11px] font-bold px-1.5 py-0.5 rounded border border-slate-300 bg-white text-slate-700 shadow-sm">M</kbd>) para probar más tamaños.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 22 · JAVASCRIPT: DOM, EVENTOS Y MENÚ MÓVIL -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="JavaScript: DOM, eventos y menú móvil" data-section="Bloque 6: JavaScript y el DOM">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-rose-50 border-rose-200 text-rose-800"><i data-lucide="zap" class="w-3.5 h-3.5"></i> Paso 13 · JavaScript</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">El patrón de todo script: seleccionar, escuchar, reaccionar</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">El <strong>DOM</strong> es la representación del HTML como objetos que JavaScript puede leer y cambiar. Cada interacción sigue los mismos cuatro pasos.</p>
+        </header>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+          <div class="p-3 rounded-xl bg-white border border-slate-200 shadow-sm"><p class="flex items-center gap-2 text-sm font-extrabold text-slate-900"><span class="w-6 h-6 rounded-full bg-rose-100 text-rose-800 text-xs flex items-center justify-center">1</span><i data-lucide="mouse-pointer-click" class="w-4 h-4 text-rose-600"></i> Seleccionar</p><p class="font-mono text-[11px] text-slate-500 mt-1">document.querySelector()</p></div><div class="p-3 rounded-xl bg-white border border-slate-200 shadow-sm"><p class="flex items-center gap-2 text-sm font-extrabold text-slate-900"><span class="w-6 h-6 rounded-full bg-rose-100 text-rose-800 text-xs flex items-center justify-center">2</span><i data-lucide="ear" class="w-4 h-4 text-rose-600"></i> Escuchar</p><p class="font-mono text-[11px] text-slate-500 mt-1">addEventListener('click')</p></div><div class="p-3 rounded-xl bg-white border border-slate-200 shadow-sm"><p class="flex items-center gap-2 text-sm font-extrabold text-slate-900"><span class="w-6 h-6 rounded-full bg-rose-100 text-rose-800 text-xs flex items-center justify-center">3</span><i data-lucide="cpu" class="w-4 h-4 text-rose-600"></i> Reaccionar</p><p class="font-mono text-[11px] text-slate-500 mt-1">función que decide</p></div><div class="p-3 rounded-xl bg-white border border-slate-200 shadow-sm"><p class="flex items-center gap-2 text-sm font-extrabold text-slate-900"><span class="w-6 h-6 rounded-full bg-rose-100 text-rose-800 text-xs flex items-center justify-center">4</span><i data-lucide="refresh-cw" class="w-4 h-4 text-rose-600"></i> Modificar el DOM</p><p class="font-mono text-[11px] text-slate-500 mt-1">atributos, clases, texto</p></div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-5">
+          
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 lg:col-span-3">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>js/main.js · menú móvil</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de js/main.js · menú móvil">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11.5px] leading-relaxed text-slate-100 flex-1 "><code>const encabezado = document.querySelector('.encabezado');
+const botonMenu = document.querySelector('.menu-toggle');
+const textoMenu = botonMenu.querySelector('.solo-lectores');
+
+function cambiarMenu(abrir) {
+  encabezado.dataset.menu = abrir ? 'abierto' : 'cerrado'; // el CSS reacciona a este atributo
+  botonMenu.setAttribute('aria-expanded', String(abrir));   // informa el estado al lector de pantalla
+  textoMenu.textContent = abrir ? 'Cerrar menú' : 'Abrir menú';
+}
+
+botonMenu.addEventListener('click', () =&gt; {
+  const estaAbierto = botonMenu.getAttribute('aria-expanded') === 'true';
+  cambiarMenu(!estaAbierto);
+});</code></pre>
+          </div>
+          <div class="lg:col-span-2 space-y-3">
+            
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="menu" class="w-5 h-5 text-rose-600"></i>Qué hace</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Al hacer clic, alterna <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">data-menu=&quot;abierto&quot;</code> en el encabezado.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>El <strong>CSS</strong> decide cómo se ve el menú abierto; JS solo cambia el <strong>estado</strong>.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">aria-expanded</code> le dice al lector de pantalla si el menú está abierto o cerrado.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Los enlaces cierran el menú y <kbd class="font-mono text-[11px] font-bold px-1.5 py-0.5 rounded border border-slate-300 bg-white text-slate-700 shadow-sm">Esc</kbd> también, devolviendo el foco al botón.</span></li></ul></div>
+          </div>
+            
+          <div class="flex items-start gap-3 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-sm text-emerald-950">
+            <i data-lucide="lightbulb" class="w-5 h-5 text-emerald-700 mt-0.5"></i>
+            <p><strong>¿Por qué un atributo y no estilos en JS?</strong> Cambiar <code class="font-mono">element.style.display</code> mezcla las capas. Con un atributo de estado, la apariencia sigue viviendo en el CSS y el código queda más limpio.</p>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 23 · MODO OSCURO CON VARIABLES Y LOCALSTORAGE -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Modo oscuro con variables y localStorage" data-section="Bloque 6: JavaScript y el DOM">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-rose-50 border-rose-200 text-rose-800"><i data-lucide="moon" class="w-3.5 h-3.5"></i> Paso 14 · Interactividad</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Modo oscuro: JS cambia un atributo, CSS cambia los colores</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Gracias a las variables, el modo oscuro no reescribe componentes: solo redefine los tokens dentro de <code class="font-mono">[data-theme="dark"]</code>.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>js/main.js · modo oscuro</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de js/main.js · modo oscuro">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11.5px] leading-relaxed text-slate-100 flex-1 "><code>function aplicarTema(tema) {
+  raiz.dataset.theme = tema;                         // activa las variables de [data-theme=&quot;dark&quot;]
+  const oscuro = tema === 'dark';
+  botonTema.setAttribute('aria-pressed', String(oscuro));
+  textoTema.textContent = oscuro ? 'Desactivar modo oscuro' : 'Activar modo oscuro';
+}
+
+aplicarTema(raiz.dataset.theme || 'light'); // sincroniza el botón con el tema aplicado en &lt;head&gt;
+
+botonTema.addEventListener('click', () =&gt; {
+  const nuevoTema = raiz.dataset.theme === 'dark' ? 'light' : 'dark';
+  aplicarTema(nuevoTema);
+  try {
+    localStorage.setItem('tema', nuevoTema); // se recuerda en la próxima visita
+  } catch (error) {
+    // Navegación privada o almacenamiento bloqueado: el tema solo dura esta visita
+  }
+});</code></pre>
+          </div>
+          <div class="space-y-3">
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>css/styles.css</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de css/styles.css">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11.5px] leading-relaxed text-slate-100 flex-1 "><code><span class="text-amber-200">[data-theme=&quot;dark&quot;] </span>{
+<span class="text-sky-300">  --color-primario</span>: <span class="text-orange-300">#E3B98F</span>;
+<span class="text-sky-300">  --color-texto</span>: <span class="text-orange-300">#F3ECE4</span>;
+<span class="text-sky-300">  --color-fondo</span>: <span class="text-orange-300">#17120F</span>;
+<span class="text-sky-300">  --color-superficie</span>: <span class="text-orange-300">#221B17</span>;
+  <span class="text-slate-400 italic">/* … el resto de componentes no cambia */</span>
+}</code></pre>
+          </div>
+            <ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">localStorage</code> recuerda la elección para la próxima visita. Va en <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">try/catch</code> porque el navegador puede bloquearlo (modo privado).</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Si el usuario nunca eligió, se respeta la preferencia del sistema operativo con <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">prefers-color-scheme</code>.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">aria-pressed</code> indica que el botón es un interruptor (encendido/apagado).</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Los colores oscuros también deben cumplir contraste de 4.5:1 con el texto.</span></li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 24 · VALIDACIÓN ACCESIBLE DEL FORMULARIO -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Validación accesible del formulario" data-section="Bloque 6: JavaScript y el DOM">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-rose-50 border-rose-200 text-rose-800"><i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Paso 15 · Formularios</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Validar, avisar y guiar al usuario</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">La API <code class="font-mono">validity</code> del navegador ya sabe si el correo está vacío o mal escrito; nosotros mostramos un mensaje claro y lo anunciamos a los lectores de pantalla.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-5">
+          
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 lg:col-span-3">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>js/main.js · formulario</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de js/main.js · formulario">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[11.5px] leading-relaxed text-slate-100 flex-1 max-h-[470px]"><code>formulario.noValidate = true; // usamos mensajes propios en lugar de las burbujas del navegador
+
+function validarCorreo() {
+  let mensaje = '';
+  if (correo.validity.valueMissing) {
+    mensaje = 'Escribe tu correo electrónico.';
+  } else if (correo.validity.typeMismatch) {
+    mensaje = 'El correo debe tener el formato nombre@dominio.com.';
+  }
+  errorCorreo.textContent = mensaje;
+  correo.setAttribute('aria-invalid', String(mensaje !== ''));
+  return mensaje === '';
+}
+
+correo.addEventListener('blur', validarCorreo); // valida al salir del campo
+
+formulario.addEventListener('submit', (evento) =&gt; {
+  evento.preventDefault(); // evita recargar la página: no hay servidor en esta demo
+  estado.textContent = '';
+
+  if (!validarCorreo()) {
+    correo.focus(); // lleva al usuario directo al campo con error
+    return;
+  }
+
+  const metodo = formulario.metodo.selectedOptions[0].textContent;
+  estado.textContent = `¡Listo! Te enviaremos recetas de ${metodo}.`;
+  formulario.reset();
+});</code></pre>
+          </div>
+          <div class="lg:col-span-2 space-y-3">
+            
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="list-checks" class="w-5 h-5 text-rose-600"></i>Buenas prácticas aplicadas</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">preventDefault()</code> evita recargar la página (esta demo no tiene servidor).</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">aria-invalid=&quot;true&quot;</code> marca el campo con error para tecnologías de apoyo.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>El mensaje de error está conectado con <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">aria-describedby</code>.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>El mensaje de éxito está en una región <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">aria-live=&quot;polite&quot;</code>: se anuncia sin mover el foco.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Ante un error, el foco vuelve al campo: el usuario sabe dónde corregir.</span></li></ul></div>
+          </div>
+            <div class="flex items-start gap-3 p-4 rounded-2xl bg-amber-50 border border-amber-200 text-sm text-amber-950">
+              <i data-lucide="triangle-alert" class="w-5 h-5 text-amber-700 mt-0.5"></i>
+              <p><strong>Seguridad:</strong> la validación en el navegador mejora la experiencia, pero se puede saltar. En un proyecto real, el <strong>servidor siempre vuelve a validar</strong> los datos.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 25 · ACCESIBILIDAD Y PRUEBAS DE CALIDAD -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Accesibilidad y pruebas de calidad" data-section="Bloque 7: Calidad y entrega">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-emerald-50 border-emerald-200 text-emerald-800"><i data-lucide="accessibility" class="w-3.5 h-3.5"></i> Paso 16 · Calidad</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Accesibilidad (WCAG 2.1) y cómo probarla</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Una página accesible funciona para todos: personas con discapacidad visual, motriz o cognitiva, y también para quien navega con sol en la pantalla o con una sola mano.</p>
+        </header>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="eye" class="w-5 h-5 text-sena"></i>Perceptible</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p>Texto alternativo en imágenes, contraste AA (4.5:1) verificado en modo claro y oscuro, texto que escala con rem.</p></div>
+          </div>
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="keyboard" class="w-5 h-5 text-sena"></i>Operable</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p>Todo funciona con teclado, foco visible con :focus-visible, enlace de salto, áreas táctiles de 48 px.</p></div>
+          </div>
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="message-square-text" class="w-5 h-5 text-sena"></i>Comprensible</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p>lang="es", etiquetas visibles en el formulario, errores que explican cómo corregir.</p></div>
+          </div>
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="code" class="w-5 h-5 text-sena"></i>Robusto</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p>HTML semántico y válido, aria-expanded / aria-pressed / aria-live solo donde hace falta.</p></div>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-3">
+          
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="keyboard" class="w-5 h-5 text-sena"></i>1. Prueba con teclado</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="keyboard" class="w-4 h-4 text-sena mt-0.5"></i><span><kbd class="font-mono text-[11px] font-bold px-1.5 py-0.5 rounded border border-slate-300 bg-white text-slate-700 shadow-sm">Tab</kbd> / <kbd class="font-mono text-[11px] font-bold px-1.5 py-0.5 rounded border border-slate-300 bg-white text-slate-700 shadow-sm">Shift</kbd> + <kbd class="font-mono text-[11px] font-bold px-1.5 py-0.5 rounded border border-slate-300 bg-white text-slate-700 shadow-sm">Tab</kbd>: ¿se ve siempre dónde está el foco?</span></li><li class="flex items-start gap-2"><i data-lucide="keyboard" class="w-4 h-4 text-sena mt-0.5"></i><span><kbd class="font-mono text-[11px] font-bold px-1.5 py-0.5 rounded border border-slate-300 bg-white text-slate-700 shadow-sm">Enter</kbd> abre enlaces y el acordeón; <kbd class="font-mono text-[11px] font-bold px-1.5 py-0.5 rounded border border-slate-300 bg-white text-slate-700 shadow-sm">Esc</kbd> cierra el menú.</span></li><li class="flex items-start gap-2"><i data-lucide="keyboard" class="w-4 h-4 text-sena mt-0.5"></i><span>Sin el mouse debes poder llegar a todo.</span></li></ul></div>
+          </div>
+          
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="gauge" class="w-5 h-5 text-sena"></i>2. Lighthouse</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="gauge" class="w-4 h-4 text-sena mt-0.5"></i><span>DevTools → pestaña <strong>Lighthouse</strong> → categoría Accesibilidad → <em>Analyze page load</em>.</span></li><li class="flex items-start gap-2"><i data-lucide="gauge" class="w-4 h-4 text-sena mt-0.5"></i><span>Meta: <strong>90 o más</strong>. Corrige lo que marque en rojo.</span></li></ul></div>
+          </div>
+          
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="badge-check" class="w-5 h-5 text-sena"></i>3. Validador W3C</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="badge-check" class="w-4 h-4 text-sena mt-0.5"></i><span>validator.w3.org → <em>Validate by File Upload</em> → sube tu index.html.</span></li><li class="flex items-start gap-2"><i data-lucide="badge-check" class="w-4 h-4 text-sena mt-0.5"></i><span>Meta: <strong>0 errores</strong>. Los errores típicos: etiquetas sin cerrar e id repetidos.</span></li></ul></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 26 · PASO A PASO DE TU ENTREGA EN ZAJUNA -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Paso a paso de tu entrega en Zajuna" data-section="Bloque 7: Calidad y entrega">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-emerald-50 border-emerald-200 text-emerald-800"><i data-lucide="package-check" class="w-3.5 h-3.5"></i> Entrega</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Construye tu propio tutorial y entrégalo</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Elige un tema que te guste, define 4 o 5 conceptos y reutiliza esta misma arquitectura. No copies la demo: el contenido, las imágenes y los colores deben ser tuyos.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+            <p class="text-xs font-extrabold uppercase tracking-wider text-slate-500 mb-3">Lista de chequeo antes de subir</p>
+            <ol class="space-y-2 text-sm text-slate-700">
+              <li class="flex items-start gap-3 p-2.5 rounded-xl bg-slate-50 border border-slate-100"><span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">1</span><span>Título de la página (<code class="font-mono">&lt;title&gt;</code>) y un único <code class="font-mono">&lt;h1&gt;</code> visible.</span></li><li class="flex items-start gap-3 p-2.5 rounded-xl bg-slate-50 border border-slate-100"><span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">2</span><span>Lista ordenada (<code class="font-mono">&lt;ol&gt;</code>) con enlaces internos a cada tema.</span></li><li class="flex items-start gap-3 p-2.5 rounded-xl bg-slate-50 border border-slate-100"><span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">3</span><span>Cada tema con su título, imagen (con <code class="font-mono">alt</code>) y descripción.</span></li><li class="flex items-start gap-3 p-2.5 rounded-xl bg-slate-50 border border-slate-100"><span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">4</span><span>Hoja de estilos externa con Flexbox, Grid y al menos una media query.</span></li><li class="flex items-start gap-3 p-2.5 rounded-xl bg-slate-50 border border-slate-100"><span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">5</span><span>Etiquetas semánticas: header, nav, main, section, article, aside, footer.</span></li><li class="flex items-start gap-3 p-2.5 rounded-xl bg-slate-50 border border-slate-100"><span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">6</span><span>JavaScript externo con al menos una interacción (menú, modo oscuro, validación…).</span></li><li class="flex items-start gap-3 p-2.5 rounded-xl bg-slate-50 border border-slate-100"><span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">7</span><span>Probada en celular y escritorio; validador W3C sin errores.</span></li><li class="flex items-start gap-3 p-2.5 rounded-xl bg-slate-50 border border-slate-100"><span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">8</span><span>Carpeta comprimida en ZIP con la nomenclatura oficial.</span></li>
+            </ol>
+          </div>
+          <div class="space-y-3">
+            
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>PowerShell · comprimir la carpeta</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de PowerShell · comprimir la carpeta">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[12px] leading-relaxed text-slate-100 flex-1 "><code># Desde la carpeta que contiene tu proyecto
+Compress-Archive -Path .\mi-tutorial `
+  -DestinationPath .\GA6-220501096-AA4-EV01_Nombre_Apellido.zip</code></pre>
+          </div>
+            
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="upload-cloud" class="w-5 h-5 text-sena"></i>Antes de enviar</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Descomprime el ZIP en otra carpeta y abre index.html con doble clic: si las imágenes o estilos no cargan, revisa las rutas relativas y las mayúsculas.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Nomenclatura: <code class="font-mono">GA6-220501096-AA4-EV01_Nombre_Apellido.zip</code>.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Espacio en Zajuna: <em>Fundamentos en la implementación de componentes front-end, HTML, CSS, JS. GA6-220501096-AA4-EV01.</em></span></li></ul></div>
+          </div>
+            <div class="flex flex-wrap gap-3"><a href="demos/aa4-ev01-cafe/index.html" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-[#39A900] hover:bg-[#2D8200] text-white font-bold px-4 py-2.5 rounded-xl text-sm shadow-sm transition-colors "><i data-lucide="external-link" class="w-4 h-4"></i> Abrir la demo de referencia</a> <a href="https://github.com/hdtoledo/adsoVirtual/tree/master/guias/guia-06/demos/aa4-ev01-cafe" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-[#00324D] border border-slate-300 font-bold px-4 py-2.5 rounded-xl text-sm transition-colors "><i data-lucide="folder-git-2" class="w-4 h-4"></i> Ver el código fuente</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Barra inferior, índice y ayuda: los genera assets/js/presenter.js -->
+  <div data-presenter="bottom"></div>
+
+  <script src="../../assets/js/catalogo.js"></script>
+  <script src="../../assets/js/presenter.js"></script>
+  <script>
+    // Interactividad propia de la sesión AA4-EV01: laboratorios de Flexbox y Grid,
+    // mapa de layout de la demo y visor responsive.
+    (function () {
+      // ---------------------------------------------------------------- Flexbox lab
+      const flex = document.querySelector('[data-flex-lab]');
+      if (flex) {
+        const box = flex.querySelector('[data-flex-box]');
+        const out = flex.querySelector('[data-flex-css]');
+        const selects = flex.querySelectorAll('select[data-prop]');
+        const grow = flex.querySelector('[data-flex-grow]');
+        const item2 = flex.querySelector('[data-flex-item="2"]');
+        const render = () => {
+          const lines = ['.contenedor {', '  display: flex;'];
+          selects.forEach((s) => {
+            box.style.setProperty(s.dataset.prop, s.value);
+            lines.push('  ' + s.dataset.prop + ': ' + s.value + ';');
+          });
+          lines.push('}');
+          item2.style.flexGrow = grow.checked ? '1' : '0';
+          if (grow.checked) lines.push('', '.item-2 { flex-grow: 1; } /* ocupa el espacio libre */');
+          out.textContent = lines.join('\n');
+        };
+        selects.forEach((s) => s.addEventListener('change', render));
+        grow.addEventListener('change', render);
+        render();
+      }
+
+      // ------------------------------------------------------------------- Grid lab
+      const grid = document.querySelector('[data-grid-lab]');
+      if (grid) {
+        const box = grid.querySelector('[data-grid-box]');
+        const out = grid.querySelector('[data-grid-css]');
+        const cols = grid.querySelector('[data-grid-cols]');
+        const gap = grid.querySelector('[data-grid-gap]');
+        const width = grid.querySelector('[data-grid-width]');
+        const widthLabel = grid.querySelector('[data-grid-width-label]');
+        const render = () => {
+          box.style.gridTemplateColumns = cols.value;
+          box.style.gap = gap.value;
+          box.style.width = width.value + '%';
+          widthLabel.textContent = width.value + '%';
+          out.textContent = ['.contenedor {', '  display: grid;', '  grid-template-columns: ' + cols.value + ';', '  gap: ' + gap.value + ';', '}'].join('\n');
+          const n = getComputedStyle(box).gridTemplateColumns.split(' ').length;
+          grid.querySelector('[data-grid-count]').textContent = n + (n === 1 ? ' columna' : ' columnas');
+        };
+        [cols, gap, width].forEach((el) => el.addEventListener('input', render));
+        window.addEventListener('resize', render);
+        render();
+      }
+
+      // ------------------------------------------------- Mapa de layout de la demo
+      const MAPA = {
+        encabezado: {
+          nombre: 'Encabezado', tecnica: 'Flexbox', clase: '.encabezado__barra',
+          para: 'Poner en una sola fila el logo, el botón del menú, la navegación y el botón de tema, centrados verticalmente.',
+          porque: 'Es una sola dimensión (una fila). margin-right: auto en el logo empuja el resto a la derecha, y flex-wrap deja bajar el menú a otra línea en el celular.',
+          css: '.encabezado__barra {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  gap: 0.5rem;\n}\n.marca { margin-right: auto; }',
+        },
+        heroe: {
+          nombre: 'Héroe', tecnica: 'Grid', clase: '.heroe__grid',
+          para: 'Mostrar el texto y la imagen principal: apilados en el celular y lado a lado desde tablet.',
+          porque: 'Definimos columnas con proporciones exactas (1.1fr 1fr). Con Grid basta cambiar grid-template-columns en una media query; el HTML no se toca.',
+          css: '.heroe__grid {\n  display: grid;\n  gap: 2rem;\n  align-items: center;\n}\n@media (min-width: 48rem) {\n  .heroe__grid { grid-template-columns: 1.1fr 1fr; }\n}',
+        },
+        acciones: {
+          nombre: 'Botones del héroe', tecnica: 'Flexbox', clase: '.heroe__acciones',
+          para: 'Ubicar los dos botones uno al lado del otro con separación uniforme.',
+          porque: 'Son elementos en línea que deben saltar de renglón si no caben: flex-wrap + gap lo resuelve sin márgenes manuales.',
+          css: '.heroe__acciones {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 0.75rem;\n}',
+        },
+        temario: {
+          nombre: 'Temario (lista ordenada)', tecnica: 'Flexbox', clase: '.temario',
+          para: 'Repartir los 5 enlaces del temario en el ancho disponible.',
+          porque: 'No necesitamos columnas exactas: cada elemento parte de 12rem y crece para llenar la fila (flex: 1 1 12rem). En el celular quedan uno por línea.',
+          css: '.temario {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 0.75rem;\n}\n.temario li { flex: 1 1 12rem; }',
+        },
+        diseno: {
+          nombre: 'Temas + lateral', tecnica: 'Grid (áreas)', clase: '.diseno',
+          para: 'Dividir la página en dos regiones con nombre: el contenido principal y el aside.',
+          porque: 'Es el layout de la página: filas y columnas. grid-template-areas permite leer el diseño en el CSS como un dibujo y reorganizarlo por breakpoint.',
+          css: '@media (min-width: 64rem) {\n  .diseno {\n    grid-template-columns: minmax(0, 1fr) 18rem;\n    grid-template-areas: "temas lateral";\n  }\n  .temas   { grid-area: temas; }\n  .lateral { grid-area: lateral; }\n}',
+        },
+        temas: {
+          nombre: 'Rejilla de temas', tecnica: 'Grid (auto-fit)', clase: '.temas__grid',
+          para: 'Alinear las tarjetas en filas y columnas del mismo ancho.',
+          porque: 'Dos dimensiones a la vez. repeat(auto-fit, minmax(…)) calcula cuántas columnas caben: 1 en celular, 2 o más en pantallas grandes, sin escribir media queries.',
+          css: '.temas__grid {\n  display: grid;\n  grid-template-columns:\n    repeat(auto-fit, minmax(min(100%, 17rem), 1fr));\n  gap: 1.5rem;\n}',
+        },
+        tarjeta: {
+          nombre: 'Tarjeta de tema', tecnica: 'Flexbox (columna)', clase: '.tema',
+          para: 'Apilar título, imagen, datos, descripción y enlace dentro de cada tarjeta.',
+          porque: 'Una sola dimensión (vertical). Con margin-top: auto el enlace "Volver al temario" baja al fondo y todas las tarjetas de una fila quedan alineadas.',
+          css: '.tema {\n  display: flex;\n  flex-direction: column;\n  gap: 0.75rem;\n}\n.tema__volver { margin-top: auto; }',
+        },
+        formulario: {
+          nombre: 'Formulario', tecnica: 'Grid (1 columna)', clase: '.formulario',
+          para: 'Separar etiqueta, campo y mensaje de error con espacios iguales.',
+          porque: 'display: grid + gap da un ritmo vertical uniforme sin sumar márgenes en cada elemento.',
+          css: '.formulario,\n.campo {\n  display: grid;\n  gap: 1rem;\n}',
+        },
+        pie: {
+          nombre: 'Pie de página', tecnica: 'Grid (auto-fit)', clase: '.pie__grid',
+          para: 'Mostrar las tres columnas del pie y apilarlas cuando no caben.',
+          porque: 'Mismo patrón auto-fit de las tarjetas: cada columna mide al menos 14rem; si no caben, pasan a la siguiente fila.',
+          css: '.pie__grid {\n  display: grid;\n  grid-template-columns:\n    repeat(auto-fit, minmax(14rem, 1fr));\n  gap: 1.5rem;\n}',
+        },
+      };
+      const mapa = document.querySelector('[data-mapa]');
+      if (mapa) {
+        const panel = {
+          nombre: mapa.querySelector('[data-mapa-nombre]'),
+          tecnica: mapa.querySelector('[data-mapa-tecnica]'),
+          clase: mapa.querySelector('[data-mapa-clase]'),
+          para: mapa.querySelector('[data-mapa-para]'),
+          porque: mapa.querySelector('[data-mapa-porque]'),
+          css: mapa.querySelector('[data-mapa-css]'),
+        };
+        const select = (key) => {
+          const d = MAPA[key];
+          Object.keys(panel).forEach((k) => { panel[k].textContent = d[k]; });
+          const isGrid = d.tecnica.startsWith('Grid');
+          panel.tecnica.className = 'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-extrabold ' +
+            (isGrid ? 'bg-sky-100 text-sky-800' : 'bg-amber-100 text-amber-900');
+          mapa.querySelectorAll('[data-mapa-item]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.mapaItem === key)));
+        };
+        mapa.addEventListener('click', (e) => {
+          const btn = e.target.closest('[data-mapa-item]');
+          if (btn) select(btn.dataset.mapaItem);
+        });
+        select('encabezado');
+      }
+
+      // ------------------------------------------------------------ Visor responsive
+      const visor = document.querySelector('[data-visor]');
+      if (visor) {
+        const stage = visor.querySelector('[data-visor-stage]');
+        const frame = visor.querySelector('iframe');
+        const label = visor.querySelector('[data-visor-label]');
+        let width = 390;
+        const fit = () => {
+          const available = stage.clientWidth;
+          const height = stage.clientHeight;
+          const scale = Math.min(1, available / width);
+          frame.style.width = width + 'px';
+          frame.style.height = (height / scale) + 'px';
+          frame.style.transform = 'scale(' + scale + ')';
+          label.textContent = width + ' px · escala ' + Math.round(scale * 100) + '%';
+        };
+        visor.querySelectorAll('[data-visor-width]').forEach((btn) => btn.addEventListener('click', () => {
+          width = Number(btn.dataset.visorWidth);
+          visor.querySelectorAll('[data-visor-width]').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+          fit();
+        }));
+        window.addEventListener('resize', fit);
+        // El visor está en una diapositiva oculta: se recalcula cuando se hace visible
+        new ResizeObserver(fit).observe(stage);
+      }
+    })();
+
+  </script>
+</body>
+</html>

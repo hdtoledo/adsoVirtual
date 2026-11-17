@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400">
+  <rect width="640" height="400" fill="#F4E9DD"/>
+  <circle cx="530" cy="80" r="60" fill="#E8D5C2"/>
+  <!-- molino manual -->
+  <rect x="220" y="150" width="140" height="190" rx="18" fill="#8B5E3C"/>
+  <rect x="220" y="150" width="140" height="40" rx="12" fill="#5B3A29"/>
+  <rect x="240" y="210" width="100" height="110" rx="10" fill="#6E4630"/>
+  <rect x="282" y="100" width="16" height="56" fill="#5B3A29"/>
+  <path d="M290 104h110" stroke="#5B3A29" stroke-width="14" stroke-linecap="round"/>
+  <circle cx="404" cy="104" r="20" fill="#B4532A"/>
+  <rect x="200" y="336" width="180" height="20" rx="10" fill="#5B3A29"/>
+  <!-- granos enteros -->
+  <g fill="#5B3A29">
+    <ellipse cx="110" cy="250" rx="24" ry="16" transform="rotate(-20 110 250)"/>
+    <ellipse cx="150" cy="300" rx="24" ry="16" transform="rotate(30 150 300)"/>
+    <ellipse cx="90" cy="320" rx="24" ry="16" transform="rotate(10 90 320)"/>
+  </g>
+  <g stroke="#F4E9DD" stroke-width="3" fill="none" stroke-linecap="round">
+    <path d="M98 258c8-6 16-10 24-16"/>
+    <path d="M140 292c8 5 14 11 20 18"/>
+    <path d="M78 322c8-1 16-3 24-6"/>
+  </g>
+  <!-- café molido (tres tamaños) -->
+  <g fill="#8B5E3C">
+    <circle cx="460" cy="300" r="7"/><circle cx="478" cy="312" r="7"/><circle cx="452" cy="318" r="7"/>
+    <circle cx="512" cy="306" r="4"/><circle cx="522" cy="314" r="4"/><circle cx="506" cy="318" r="4"/><circle cx="518" cy="298" r="4"/>
+    <circle cx="556" cy="310" r="2.5"/><circle cx="562" cy="316" r="2.5"/><circle cx="550" cy="318" r="2.5"/><circle cx="566" cy="306" r="2.5"/><circle cx="558" cy="300" r="2.5"/>
+  </g>
+  <path d="M440 340h140" stroke="#2F6B3A" stroke-width="6" stroke-linecap="round"/>
+</svg>

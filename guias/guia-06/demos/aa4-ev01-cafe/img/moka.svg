@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400">
+  <rect width="640" height="400" fill="#EFE3D6"/>
+  <circle cx="520" cy="100" r="64" fill="#E2CDB8"/>
+  <!-- estufa -->
+  <rect x="180" y="350" width="280" height="22" rx="8" fill="#5B3A29"/>
+  <g fill="#B4532A"><path d="M250 350c0-14 10-14 10-24 6 8 10 14 10 24z"/><path d="M310 350c0-14 10-14 10-24 6 8 10 14 10 24z"/><path d="M370 350c0-14 10-14 10-24 6 8 10 14 10 24z"/></g>
+  <!-- cafetera: cámara superior -->
+  <path d="M250 110h140l-16 110h-108z" fill="#B9B4AE"/>
+  <path d="M250 110h140" stroke="#5B3A29" stroke-width="10" stroke-linecap="round"/>
+  <path d="M250 110l-26 22" stroke="#B9B4AE" stroke-width="14" stroke-linecap="round"/>
+  <circle cx="320" cy="96" r="12" fill="#5B3A29"/>
+  <!-- cintura -->
+  <rect x="262" y="218" width="116" height="16" fill="#8E8781"/>
+  <!-- cámara inferior -->
+  <path d="M266 234h108l20 108h-148z" fill="#B9B4AE"/>
+  <circle cx="356" cy="282" r="8" fill="#8E8781"/>
+  <!-- asa -->
+  <path d="M388 128h30a12 12 0 0 1 12 12v58a12 12 0 0 1-12 12h-36" fill="none" stroke="#1F1A17" stroke-width="16" stroke-linecap="round"/>
+  <!-- vapor -->
+  <g fill="none" stroke="#B9967A" stroke-width="8" stroke-linecap="round">
+    <path d="M200 80c-14 18 14 32 0 52"/><path d="M160 110c-14 18 14 32 0 52"/>
+  </g>
+</svg>

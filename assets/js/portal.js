@@ -284,9 +284,13 @@
   }
   const state = { guia: 'all', cat: 'all', query: '', page: 1 };
 
+  // La guía activa se muestra primero; dentro de cada guía se respeta el orden del catálogo
+  const EVIDENCIAS_ORDENADAS = [...EVIDENCIAS].sort((a, b) =>
+    (GUIAS[b.guia]?.status === 'activa') - (GUIAS[a.guia]?.status === 'activa'));
+
   function getFiltered() {
     const q = state.query.toLowerCase().trim();
-    return EVIDENCIAS.filter((ev) => {
+    return EVIDENCIAS_ORDENADAS.filter((ev) => {
       const matchGuia = state.guia === 'all' || ev.guia === state.guia;
       const matchCat = state.cat === 'all' || ev.category === state.cat;
       const matchSearch = !q || [ev.code, ev.title, ev.summary, ev.format, ev.catName, ev.guiaName, ev.activity]

@@ -12,10 +12,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-  <script src="../../assets/js/tailwind.config.js"></script>
+  <script src="../../assets/js/tailwind.config.js?v=2026.11.23"></script>
   <script src="https://unpkg.com/lucide@1.60.0/dist/umd/lucide.min.js"></script>
-  <link rel="stylesheet" href="../../assets/css/base.css">
-  <link rel="stylesheet" href="../../assets/css/presenter.css">
+  <link rel="stylesheet" href="../../assets/css/base.css?v=2026.11.23">
+  <link rel="stylesheet" href="../../assets/css/presenter.css?v=2026.11.23">
   <style>
     pre, code { font-variant-ligatures: none; }
     /* Matriz ponderada (diapositiva 10) */
@@ -198,7 +198,7 @@
           </div>
         </div>
         <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
-          <svg viewBox="0 0 640 140" class="w-full h-auto" role="img" aria-label="En el modelo distribuido cada equipo tiene el repositorio completo y se sincroniza con un remoto">
+          <svg viewBox="0 0 640 140" class="w-full max-w-2xl mx-auto h-auto" role="img" aria-label="En el modelo distribuido cada equipo tiene el repositorio completo y se sincroniza con un remoto">
             <rect x="250" y="10" width="140" height="44" rx="10" fill="#ecfdf5" stroke="#39A900" stroke-width="2"/>
             <text x="320" y="38" text-anchor="middle" font-size="14" font-weight="700" fill="#14532d">Remoto (GitHub)</text>
             <rect x="10" y="90" width="140" height="42" rx="10" fill="#f8fafc" stroke="#94a3b8"/><text x="80" y="116" text-anchor="middle" font-size="13" font-weight="600" fill="#334155">Equipo de Laura</text><line x1="80" y1="90" x2="320" y2="54" stroke="#39A900" stroke-width="2" stroke-dasharray="5 4"/><rect x="250" y="90" width="140" height="42" rx="10" fill="#f8fafc" stroke="#94a3b8"/><text x="320" y="116" text-anchor="middle" font-size="13" font-weight="600" fill="#334155">Equipo de Andrés</text><line x1="320" y1="90" x2="320" y2="54" stroke="#39A900" stroke-width="2" stroke-dasharray="5 4"/><rect x="490" y="90" width="140" height="42" rx="10" fill="#f8fafc" stroke="#94a3b8"/><text x="560" y="116" text-anchor="middle" font-size="13" font-weight="600" fill="#334155">Equipo de Sofía</text><line x1="560" y1="90" x2="320" y2="54" stroke="#39A900" stroke-width="2" stroke-dasharray="5 4"/>
@@ -701,8 +701,9 @@ git branch -d feature/catalogo-filtros</code></pre>
     </section>
   </main>
   <div data-presenter="bottom"></div>
-  <script src="../../assets/js/catalogo.js"></script>
-  <script src="../../assets/js/presenter.js"></script>
+  <!-- ?v= obliga a descargar el catálogo y el motor vigentes en lugar de la copia en caché -->
+  <script src="../../assets/js/catalogo.js?v=2026.11.23"></script>
+  <script src="../../assets/js/presenter.js?v=2026.11.23"></script>
   <script>
     // Matriz de selección ponderada (diapositiva 10): el puntaje total se recalcula al mover los pesos.
     (function () {

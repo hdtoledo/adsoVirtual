@@ -25,12 +25,12 @@
 
   <!-- Tailwind (Play CDN, versión fijada) + configuración compartida de marca -->
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-  <script src="assets/js/tailwind.config.js"></script>
+  <script src="assets/js/tailwind.config.js?v=2026.11.23"></script>
 
   <!-- Iconografía Lucide (versión fijada) -->
   <script src="https://unpkg.com/lucide@1.60.0/dist/umd/lucide.min.js"></script>
 
-  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/base.css?v=2026.11.23">
 </head>
 <body class="min-h-full flex flex-col bg-slate-50/60 text-slate-900 font-sans selection:bg-[#39A900] selection:text-white">
 
@@ -990,7 +990,9 @@
   <!-- ========================================================================= -->
   <!-- 10. DATOS (catalogo.js) Y LÓGICA DEL PORTAL (portal.js) -->
   <!-- ========================================================================= -->
-  <script src="assets/js/catalogo.js"></script>
-  <script src="assets/js/portal.js"></script>
+  <!-- ?v= evita que el navegador combine un HTML nuevo con un JS viejo en caché:
+       súbelo cada vez que cambien catalogo.js o portal.js -->
+  <script src="assets/js/catalogo.js?v=2026.11.23"></script>
+  <script src="assets/js/portal.js?v=2026.11.23"></script>
 </body>
 </html>

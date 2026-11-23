@@ -96,6 +96,8 @@ Sitio 100 % estático (GitHub Pages), sin paso de compilación. Tres principios:
 
 La tarjeta, la ruta de aprendizaje, el selector de proyección, el pie de página y el enlace "Siguiente sesión" de la presentación anterior se actualizan solos.
 
+**Caché:** GitHub Pages guarda los `.js` y `.css` durante 10 minutos. Por eso `index.html` y las sesiones de la Guía 07 cargan los archivos compartidos con `?v=AAAA.MM.DD`. Cuando cambien `catalogo.js`, `portal.js` o `presenter.js`, actualiza esa fecha. Si no, un navegador puede combinar el HTML nuevo con un JS viejo y mostrar la página incompleta.
+
 ### Enlaces útiles
 
 * `index.html#ev-05` abre directamente el paso a paso de una evidencia.

@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<!-- Archivo generado. Sesión GA7-220501096-AA1-EV01, caso AromaSur Café -->
+<html lang="es" class="h-full bg-slate-50 antialiased">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AA1-EV01: Plan de trabajo y versionamiento · ADSO Virtual · SENA CADPH Garzón</title>
+  <meta name="description" content="Sesión interactiva de la evidencia GA7-220501096-AA1-EV01: informe técnico de plan de trabajo con la selección de herramientas y tecnologías de versionamiento, caso AromaSur Café.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/png" href="../../assets/logo_green.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="../../assets/js/tailwind.config.js"></script>
+  <script src="https://unpkg.com/lucide@1.60.0/dist/umd/lucide.min.js"></script>
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/presenter.css">
+  <style>
+    pre, code { font-variant-ligatures: none; }
+    /* Matriz ponderada (diapositiva 10) */
+    .matriz-fila.is-ganadora { border-color: #39A900; background: #ecfdf5; box-shadow: 0 0 0 2px #39A900 inset; }
+    .matriz-fila.is-ganadora [data-barra] { background: #39A900; }
+  </style>
+</head>
+<body class="min-h-full flex flex-col bg-slate-50 text-slate-900 font-sans selection:bg-[#39A900] selection:text-white" data-evidencia="ev-ga7-01">
+  <div data-presenter="top"></div>
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 flex flex-col justify-center">
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 1 · PORTADA Y OBJETIVOS DE LA SESIÓN -->
+    <!-- ===================================================================== -->
+    <section class="slide-content active min-h-[580px]" data-title="Portada y objetivos de la sesión" data-section="Bloque 1: Contexto y caso">
+      <div class="my-auto w-full space-y-5">
+        <div class="bg-white rounded-3xl border border-slate-200 p-8 sm:p-12 shadow-sm text-center relative overflow-hidden flex flex-col items-center">
+          <div class="absolute -top-32 -right-32 w-72 h-72 bg-orange-50 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="absolute -bottom-32 -left-32 w-72 h-72 bg-emerald-50 rounded-full blur-3xl pointer-events-none"></div>
+          <span class="relative inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-6"><span class="w-2 h-2 rounded-full bg-[#39A900]"></span> Guía de Aprendizaje 07 • AA1 • Versionamiento</span>
+          <h1 class="relative text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight max-w-4xl leading-tight mb-4">Informe técnico de <span class="text-sena">plan de trabajo</span> para construir el software</h1>
+          <p class="relative text-sm sm:text-base font-mono font-bold text-slate-500 mb-8">Evidencia oficial: <span class="text-slate-800">GA7-220501096-AA1-EV01</span> · Evidencia de conocimiento</p>
+          <div class="relative grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-4xl text-left">
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100"><p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Objetivo</p><p class="text-sm font-semibold text-slate-800 mt-1">Seleccionar y justificar las herramientas y tecnologías de versionamiento del proyecto y planear su construcción.</p></div>
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100"><p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Entregable</p><p class="text-sm font-semibold text-slate-800 mt-1">Documento informe técnico en PDF. Extensión libre.</p></div>
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100"><p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Insumos</p><p class="text-sm font-semibold text-slate-800 mt-1">Artefactos de diseño de tu proyecto: requisitos, diagramas, prototipos y front-end.</p></div>
+          </div>
+          <div class="relative mt-6 flex flex-wrap justify-center gap-2 text-xs font-bold">
+            <span class="px-3 py-1 rounded-full bg-amber-50 text-amber-900 border border-amber-200">Caso: AromaSur Café S.A.S. (ficticio)</span>
+            <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200">Componente formativo: Integración continua</span>
+          </div>
+          <button type="button" onclick="presenter.nextSlide()" class="relative mt-8 inline-flex items-center gap-2 bg-[#39A900] hover:bg-[#2D8200] text-white font-bold px-6 py-3 rounded-xl text-sm shadow-md transition-colors">Iniciar explicación <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 2 · QUÉ PIDE LA EVIDENCIA -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Qué pide la evidencia" data-section="Bloque 1: Contexto y caso">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-emerald-50 border-emerald-200 text-emerald-800"><i data-lucide="clipboard-list" class="w-3.5 h-3.5"></i> Requisitos oficiales</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Un informe que decide con qué se versionará el software</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed"><em>"Con base en las características del software a desarrollar, realice un informe técnico especificando herramientas y tecnologías de versionamiento a utilizar, según lo visto en los componentes formativos."</em></p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          
+          <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-x-auto ">
+            <table class="w-full text-sm min-w-[420px]">
+              <thead class="bg-slate-50"><tr><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">La guía pide</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Sección del informe</th></tr></thead>
+              <tbody class="divide-y divide-slate-100"><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Portada</th><td class="px-3 py-2 text-slate-600 align-top">Datos del aprendiz, ficha, evidencia, instructor y centro.</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Introducción</th><td class="px-3 py-2 text-slate-600 align-top">Qué software se construirá y por qué necesita control de versiones.</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Objetivo</th><td class="px-3 py-2 text-slate-600 align-top">Qué decide este informe.</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Selección de herramientas de versionamiento</th><td class="px-3 py-2 text-slate-600 align-top">Comparación con criterios, decisión y justificación.</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">"Según las características del software"</th><td class="px-3 py-2 text-slate-600 align-top">Descripción del software, sus módulos y su stack.</td></tr></tbody>
+            </table>
+          </div>
+          <div class="space-y-3">
+            
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="badge-check" class="w-5 h-5 text-sena"></i>Criterio de evaluación</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p class="text-base font-semibold text-slate-800">"Interpreta el informe de diseño para definir el plan de trabajo en la construcción del software."</p><p>Por eso el informe no es solo una lista de herramientas: parte de tu diseño y termina en un <strong>plan de trabajo</strong>.</p></div>
+          </div>
+            
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="package-check" class="w-5 h-5 text-sena"></i>Lineamientos de entrega</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Producto: documento informe técnico.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Extensión: libre.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Formato: <strong>PDF</strong>.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Espacio en Zajuna: <em>Informe técnico de plan de trabajo para construcción de software. GA7-220501096-AA1-EV01.</em></span></li></ul></div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 3 · DÓNDE ENCAJA: LA ACTIVIDAD AA1 -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Dónde encaja: la actividad AA1" data-section="Bloque 1: Contexto y caso">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-emerald-50 border-emerald-200 text-emerald-800"><i data-lucide="git-branch" class="w-3.5 h-3.5"></i> AA1 · 40 horas</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">La EV01 es la decisión; las siguientes la ejecutan</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">La actividad AA1 es <em>Configurar herramientas de versionamiento para control de código</em>. Lo que elijas en este informe es lo que instalarás en la EV04 y usarás en la EV05 y en todo el código de la guía.</p>
+        </header>
+        <ol class="grid grid-cols-1 md:grid-cols-5 gap-2">
+          <li class="relative p-4 rounded-2xl bg-[#00324D] text-white shadow-sm"><p class="font-mono text-xs font-extrabold text-emerald-300">AA1-EV01</p><p class="text-sm font-extrabold mt-1 ">Plan y selección</p><p class="text-xs mt-1 text-slate-200">Decides las herramientas y el plan.</p><span class="absolute top-2 right-2 text-[9px] font-extrabold uppercase bg-[#39A900] px-1.5 py-0.5 rounded">Hoy</span></li><li class="relative p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="font-mono text-xs font-extrabold text-slate-500">AA1-EV02</p><p class="text-sm font-extrabold mt-1 text-slate-900">Estándares</p><p class="text-xs mt-1 text-slate-600">Defines cómo se escribe el código.</p></li><li class="relative p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="font-mono text-xs font-extrabold text-slate-500">AA1-EV03</p><p class="text-sm font-extrabold mt-1 text-slate-900">Git local vs remoto</p><p class="text-xs mt-1 text-slate-600">Comparas comandos y características.</p></li><li class="relative p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="font-mono text-xs font-extrabold text-slate-500">AA1-EV04</p><p class="text-sm font-extrabold mt-1 text-slate-900">Instalación</p><p class="text-xs mt-1 text-slate-600">Instalas y configuras lo que elegiste.</p></li><li class="relative p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="font-mono text-xs font-extrabold text-slate-500">AA1-EV05</p><p class="text-sm font-extrabold mt-1 text-slate-900">Git en acción</p><p class="text-xs mt-1 text-slate-600">Video conectando local y remoto.</p></li>
+        </ol>
+        
+          <div class="flex items-start gap-3 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-sm text-emerald-950">
+            <i data-lucide="lightbulb" class="w-5 h-5 text-emerald-700 mt-0.5"></i>
+            <p><strong>La clave de la evidencia:</strong> Elegir sin criterios ("uso GitHub porque sí") es el error más común. Un informe técnico explica <strong>por qué</strong> esa herramienta sirve para <strong>tu</strong> software y tu equipo, y cómo la usarás día a día.</p>
+          </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 4 · CASO AROMASUR: DEL DISEÑO AL PLAN -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Caso AromaSur: del diseño al plan" data-section="Bloque 1: Contexto y caso">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-emerald-50 border-emerald-200 text-emerald-800"><i data-lucide="coffee" class="w-3.5 h-3.5"></i> Caso de estudio</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">AromaSur ya tiene diseño; ahora hay que construirlo</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">En las guías anteriores se diseñó la plataforma de pedidos mayoristas de AromaSur Café. Esos artefactos son el "informe de diseño" que el criterio pide interpretar.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-5">
+          <div class="lg:col-span-2 space-y-2">
+            <p class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Lo que ya existe</p>
+            <div class="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 shadow-sm"><span class="w-9 h-9 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center"><i data-lucide="file-text" class="w-4 h-4"></i></span><div><p class="text-sm font-bold text-slate-900">Requisitos</p><p class="text-xs text-slate-500">RF01–RF07 y RNF01–RNF03</p></div></div><div class="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 shadow-sm"><span class="w-9 h-9 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center"><i data-lucide="workflow" class="w-4 h-4"></i></span><div><p class="text-sm font-bold text-slate-900">Diagramas</p><p class="text-xs text-slate-500">Casos de uso y diagrama de clases</p></div></div><div class="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 shadow-sm"><span class="w-9 h-9 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center"><i data-lucide="pen-tool" class="w-4 h-4"></i></span><div><p class="text-sm font-bold text-slate-900">Prototipo</p><p class="text-xs text-slate-500">Login, Registro y Catálogo en Figma</p></div></div><div class="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 shadow-sm"><span class="w-9 h-9 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center"><i data-lucide="code-xml" class="w-4 h-4"></i></span><div><p class="text-sm font-bold text-slate-900">Front-end</p><p class="text-xs text-slate-500">Pantallas en HTML, CSS y JS (Guía 06)</p></div></div>
+          </div>
+          <div class="lg:col-span-3 space-y-3">
+            <p class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Lo que se construirá en la Guía 07</p>
+            
+          <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-x-auto ">
+            <table class="w-full text-sm min-w-[440px]">
+              <thead class="bg-slate-50"><tr><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Módulo</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Alcance</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Requisitos</th></tr></thead>
+              <tbody class="divide-y divide-slate-100"><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Autenticación</th><td class="px-3 py-2 text-slate-600 align-top">Registro e inicio de sesión de clientes y asesores</td><td class="px-3 py-2 text-slate-600 align-top">RF01–RF04</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Catálogo</th><td class="px-3 py-2 text-slate-600 align-top">Consulta y filtro de cafés</td><td class="px-3 py-2 text-slate-600 align-top">RF05</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Pedidos</th><td class="px-3 py-2 text-slate-600 align-top">Armar, confirmar y consultar pedidos</td><td class="px-3 py-2 text-slate-600 align-top">RF06–RF07</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Administración</th><td class="px-3 py-2 text-slate-600 align-top">Gestión de productos y estados de pedido por el asesor</td><td class="px-3 py-2 text-slate-600 align-top">RF08 (nuevo)</td></tr></tbody>
+            </table>
+          </div>
+            <div class="grid grid-cols-3 gap-2 text-center text-xs font-bold">
+              <div class="p-3 rounded-xl bg-sky-50 border border-sky-200 text-sky-900"><i data-lucide="atom" class="w-4 h-4 mx-auto mb-1"></i> Web en React</div>
+              <div class="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900"><i data-lucide="server" class="w-4 h-4 mx-auto mb-1"></i> API REST</div>
+              <div class="p-3 rounded-xl bg-violet-50 border border-violet-200 text-violet-900"><i data-lucide="database" class="w-4 h-4 mx-auto mb-1"></i> Base de datos</div>
+            </div>
+            <p class="text-xs text-slate-500">Equipo de ejemplo: 3 aprendices (líder técnico, back-end y front-end). Tu informe debe describir <strong>tu</strong> proyecto y <strong>tu</strong> equipo.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 5 · POR QUÉ CONTROLAR VERSIONES -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Por qué controlar versiones" data-section="Bloque 2: Control de versiones">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-amber-50 border-amber-200 text-amber-900"><i data-lucide="history" class="w-3.5 h-3.5"></i> Concepto 1</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Sin control de versiones, el equipo trabaja a ciegas</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Un <strong>sistema de control de versiones</strong> registra cada cambio del código: qué cambió, quién lo hizo, cuándo y por qué. Permite volver atrás y trabajar en equipo sin sobrescribirse.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <div class="bg-white rounded-2xl border border-rose-200 p-5 shadow-sm space-y-3">
+            <p class="flex items-center gap-2 text-sm font-extrabold text-rose-800"><i data-lucide="x-circle" class="w-5 h-5"></i> Sin control de versiones</p>
+            <ul class="space-y-1.5 font-mono text-xs"><li class="flex items-center gap-2 p-2 rounded-lg bg-rose-50 text-rose-900"><i data-lucide="file-archive" class="w-4 h-4"></i> proyecto_final.zip</li><li class="flex items-center gap-2 p-2 rounded-lg bg-rose-50 text-rose-900"><i data-lucide="file-archive" class="w-4 h-4"></i> proyecto_final_v2.zip</li><li class="flex items-center gap-2 p-2 rounded-lg bg-rose-50 text-rose-900"><i data-lucide="file-archive" class="w-4 h-4"></i> proyecto_final_v2_corregido.zip</li><li class="flex items-center gap-2 p-2 rounded-lg bg-rose-50 text-rose-900"><i data-lucide="file-archive" class="w-4 h-4"></i> proyecto_FINAL_ahora_si.zip</li><li class="flex items-center gap-2 p-2 rounded-lg bg-rose-50 text-rose-900"><i data-lucide="file-archive" class="w-4 h-4"></i> proyecto_final_de_laura.zip</li></ul>
+            <ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="circle-help" class="w-4 h-4 text-rose-600 mt-0.5"></i><span>¿Cuál es la versión buena?</span></li><li class="flex items-start gap-2"><i data-lucide="circle-help" class="w-4 h-4 text-rose-600 mt-0.5"></i><span>¿Quién borró la validación del login?</span></li><li class="flex items-start gap-2"><i data-lucide="circle-help" class="w-4 h-4 text-rose-600 mt-0.5"></i><span>Dos personas editaron el mismo archivo: se pierde trabajo.</span></li></ul>
+          </div>
+          <div class="bg-white rounded-2xl border border-emerald-200 p-5 shadow-sm space-y-3">
+            <p class="flex items-center gap-2 text-sm font-extrabold text-emerald-800"><i data-lucide="check-circle-2" class="w-5 h-5"></i> Con Git</p>
+            <ul class="space-y-1.5 font-mono text-xs">
+              <li class="flex items-center gap-2 p-2 rounded-lg bg-emerald-50 text-emerald-950"><span class="text-emerald-700 font-bold">a1f3c9e</span><span class="flex-1 truncate">feat(auth): agregar validación del login</span><span class="text-emerald-700">Laura</span></li><li class="flex items-center gap-2 p-2 rounded-lg bg-emerald-50 text-emerald-950"><span class="text-emerald-700 font-bold">7b2d410</span><span class="flex-1 truncate">fix(pedidos): corregir total con IVA</span><span class="text-emerald-700">Andrés</span></li><li class="flex items-center gap-2 p-2 rounded-lg bg-emerald-50 text-emerald-950"><span class="text-emerald-700 font-bold">c90e1aa</span><span class="flex-1 truncate">docs: actualizar README</span><span class="text-emerald-700">Sofía</span></li>
+            </ul>
+            <ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Historial completo y una sola versión oficial.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Cada cambio tiene autor, fecha y motivo.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Ramas para trabajar en paralelo sin pisarse.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Copia de seguridad en un servidor remoto.</span></li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 6 · TIPOS DE SISTEMAS DE CONTROL DE VERSIONES -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Tipos de sistemas de control de versiones" data-section="Bloque 2: Control de versiones">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-amber-50 border-amber-200 text-amber-900"><i data-lucide="network" class="w-3.5 h-3.5"></i> Concepto 2</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Local, centralizado y distribuido</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Tu informe debe explicar qué tipo de sistema eliges y por qué. Hoy el estándar de la industria es el modelo <strong>distribuido</strong> con Git.</p>
+        </header>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-2">
+            <p class="flex items-center gap-2 text-base font-extrabold text-slate-900"><i data-lucide="hard-drive" class="w-5 h-5 text-sena"></i> Local</p>
+            <p class="text-xs font-mono text-slate-500">Ej.: RCS</p>
+            <p class="text-sm text-slate-700">Las versiones se guardan solo en el equipo del desarrollador.</p>
+            <p class="text-xs text-slate-600"><strong>Ojo:</strong> Sin colaboración; si el disco falla, se pierde todo.</p>
+          </div><div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-2">
+            <p class="flex items-center gap-2 text-base font-extrabold text-slate-900"><i data-lucide="server" class="w-5 h-5 text-sena"></i> Centralizado</p>
+            <p class="text-xs font-mono text-slate-500">Ej.: Subversion (SVN), CVS</p>
+            <p class="text-sm text-slate-700">Un servidor central guarda la historia; cada uno descarga una copia de trabajo.</p>
+            <p class="text-xs text-slate-600"><strong>Ojo:</strong> Si el servidor cae, nadie puede registrar cambios.</p>
+          </div><div class="p-5 rounded-2xl bg-emerald-50 border-2 border-emerald-300 shadow-sm space-y-2">
+            <p class="flex items-center gap-2 text-base font-extrabold text-slate-900"><i data-lucide="network" class="w-5 h-5 text-sena"></i> Distribuido <span class="ml-auto text-[10px] font-extrabold uppercase bg-[#39A900] text-white px-1.5 py-0.5 rounded">Recomendado</span></p>
+            <p class="text-xs font-mono text-slate-500">Ej.: Git, Mercurial</p>
+            <p class="text-sm text-slate-700">Cada desarrollador tiene una copia completa del repositorio y su historia.</p>
+            <p class="text-xs text-slate-600"><strong>Ojo:</strong> Trabaja sin conexión; cualquier copia sirve de respaldo.</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+          <svg viewBox="0 0 640 140" class="w-full h-auto" role="img" aria-label="En el modelo distribuido cada equipo tiene el repositorio completo y se sincroniza con un remoto">
+            <rect x="250" y="10" width="140" height="44" rx="10" fill="#ecfdf5" stroke="#39A900" stroke-width="2"/>
+            <text x="320" y="38" text-anchor="middle" font-size="14" font-weight="700" fill="#14532d">Remoto (GitHub)</text>
+            <rect x="10" y="90" width="140" height="42" rx="10" fill="#f8fafc" stroke="#94a3b8"/><text x="80" y="116" text-anchor="middle" font-size="13" font-weight="600" fill="#334155">Equipo de Laura</text><line x1="80" y1="90" x2="320" y2="54" stroke="#39A900" stroke-width="2" stroke-dasharray="5 4"/><rect x="250" y="90" width="140" height="42" rx="10" fill="#f8fafc" stroke="#94a3b8"/><text x="320" y="116" text-anchor="middle" font-size="13" font-weight="600" fill="#334155">Equipo de Andrés</text><line x1="320" y1="90" x2="320" y2="54" stroke="#39A900" stroke-width="2" stroke-dasharray="5 4"/><rect x="490" y="90" width="140" height="42" rx="10" fill="#f8fafc" stroke="#94a3b8"/><text x="560" y="116" text-anchor="middle" font-size="13" font-weight="600" fill="#334155">Equipo de Sofía</text><line x1="560" y1="90" x2="320" y2="54" stroke="#39A900" stroke-width="2" stroke-dasharray="5 4"/>
+          </svg>
+          <p class="text-xs text-slate-500 text-center">Cada equipo tiene el repositorio completo. Se sincronizan con <code class="font-mono">git push</code> y <code class="font-mono">git pull</code>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 7 · CÓMO FUNCIONA GIT: LAS CUATRO ZONAS -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Cómo funciona Git: las cuatro zonas" data-section="Bloque 2: Control de versiones">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-amber-50 border-amber-200 text-amber-900"><i data-lucide="git-commit-horizontal" class="w-3.5 h-3.5"></i> Concepto 3</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Un cambio viaja por cuatro zonas</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Entender este recorrido es la base de la EV03 (Git local vs remoto) y de la EV05 (el video con los comandos).</p>
+        </header>
+        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm overflow-x-auto">
+          <div class="flex items-stretch gap-1 min-w-[720px]">
+            <div class="flex-1 p-3 rounded-xl border-2 border-slate-300 bg-slate-50 text-slate-800 text-center"><p class="text-sm font-extrabold">Directorio de trabajo</p><p class="text-[11px] mt-0.5 opacity-80">Los archivos que editas</p></div>
+            <div class="flex flex-col items-center justify-center px-1 shrink-0"><i data-lucide="arrow-right" class="w-5 h-5 text-[#39A900]"></i><code class="font-mono text-[10px] font-bold text-slate-700 whitespace-nowrap">git add</code></div>
+            <div class="flex-1 p-3 rounded-xl border-2 border-amber-300 bg-amber-50 text-amber-900 text-center"><p class="text-sm font-extrabold">Área de preparación</p><p class="text-[11px] mt-0.5 opacity-80">Staging: lo que irá en el commit</p></div>
+            <div class="flex flex-col items-center justify-center px-1 shrink-0"><i data-lucide="arrow-right" class="w-5 h-5 text-[#39A900]"></i><code class="font-mono text-[10px] font-bold text-slate-700 whitespace-nowrap">git commit</code></div>
+            <div class="flex-1 p-3 rounded-xl border-2 border-violet-300 bg-violet-50 text-violet-900 text-center"><p class="text-sm font-extrabold">Repositorio local</p><p class="text-[11px] mt-0.5 opacity-80">Historia en la carpeta .git</p></div>
+            <div class="flex flex-col items-center justify-center px-1 shrink-0"><i data-lucide="arrow-right" class="w-5 h-5 text-[#39A900]"></i><code class="font-mono text-[10px] font-bold text-slate-700 whitespace-nowrap">git push</code></div>
+            <div class="flex-1 p-3 rounded-xl border-2 border-emerald-300 bg-emerald-50 text-emerald-900 text-center"><p class="text-sm font-extrabold">Repositorio remoto</p><p class="text-[11px] mt-0.5 opacity-80">GitHub, GitLab o Bitbucket</p></div>
+          </div>
+          <div class="flex justify-end mt-2 min-w-[720px]"><p class="text-[11px] font-mono font-bold text-slate-500 flex items-center gap-1"><i data-lucide="arrow-left" class="w-4 h-4 text-sky-600"></i> git pull / git clone traen los cambios del remoto</p></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+          
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="split" class="w-5 h-5 text-sena"></i>Git ≠ GitHub</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p><strong>Git</strong> es el programa que guarda versiones en tu equipo. <strong>GitHub</strong> es un servicio en internet que aloja repositorios Git. Por eso el informe elige ambos: la herramienta y la plataforma.</p></div>
+          </div>
+          
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="laptop" class="w-5 h-5 text-sena"></i>Local</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">git init</code>, <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">git add</code>, <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">git commit</code>, <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">git log</code>, <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">git branch</code>: funcionan sin internet.</p></div>
+          </div>
+          
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="cloud" class="w-5 h-5 text-sena"></i>Remoto</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">git remote</code>, <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">git push</code>, <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">git pull</code>, <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">git clone</code>: necesitan la plataforma y conexión.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 8 · VOCABULARIO MÍNIMO DE GIT -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Vocabulario mínimo de Git" data-section="Bloque 2: Control de versiones">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-amber-50 border-amber-200 text-amber-900"><i data-lucide="book-a" class="w-3.5 h-3.5"></i> Concepto 4</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Nueve palabras que usarás todo el tiempo</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Inclúyelas en el informe (como glosario o dentro del texto): demuestran que comprendes la herramienta que seleccionas.</p>
+        </header>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="font-mono text-sm font-extrabold text-[#00324D]">Repositorio</p><p class="text-sm text-slate-600 mt-1">Carpeta del proyecto con toda su historia de cambios.</p></div><div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="font-mono text-sm font-extrabold text-[#00324D]">Commit</p><p class="text-sm text-slate-600 mt-1">Foto del proyecto en un momento, con autor, fecha y mensaje.</p></div><div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="font-mono text-sm font-extrabold text-[#00324D]">Rama (branch)</p><p class="text-sm text-slate-600 mt-1">Línea de trabajo paralela; permite desarrollar sin afectar la versión estable.</p></div><div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="font-mono text-sm font-extrabold text-[#00324D]">Merge</p><p class="text-sm text-slate-600 mt-1">Unir los cambios de una rama en otra.</p></div><div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="font-mono text-sm font-extrabold text-[#00324D]">Pull request</p><p class="text-sm text-slate-600 mt-1">Solicitud para revisar y unir una rama en la plataforma remota.</p></div><div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="font-mono text-sm font-extrabold text-[#00324D]">Remoto</p><p class="text-sm text-slate-600 mt-1">Copia del repositorio alojada en un servidor (origin).</p></div><div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="font-mono text-sm font-extrabold text-[#00324D]">Clone</p><p class="text-sm text-slate-600 mt-1">Descargar un repositorio remoto completo a tu equipo.</p></div><div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="font-mono text-sm font-extrabold text-[#00324D]">Tag</p><p class="text-sm text-slate-600 mt-1">Etiqueta que marca una versión importante, como v1.0.0.</p></div><div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="font-mono text-sm font-extrabold text-[#00324D]">.gitignore</p><p class="text-sm text-slate-600 mt-1">Lista de archivos que Git no debe versionar (dependencias, secretos).</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 9 · PLATAFORMAS REMOTAS: GITHUB, GITLAB Y BITBUCKET -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Plataformas remotas: GitHub, GitLab y Bitbucket" data-section="Bloque 3: Selección de herramientas">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-sky-50 border-sky-200 text-sky-800"><i data-lucide="cloud" class="w-3.5 h-3.5"></i> Selección · Paso 1</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Las tres plataformas más usadas para alojar repositorios Git</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Las tres usan Git; cambian los servicios que ofrecen alrededor. Compáralas con las necesidades de tu proyecto, no por popularidad.</p>
+        </header>
+        
+          <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-x-auto ">
+            <table class="w-full text-sm min-w-[680px]">
+              <thead class="bg-slate-50"><tr><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Característica</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">GitHub</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">GitLab</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Bitbucket</th></tr></thead>
+              <tbody class="divide-y divide-slate-100"><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Empresa</th><td class="px-3 py-2 text-slate-600 align-top">Microsoft</td><td class="px-3 py-2 text-slate-600 align-top">GitLab Inc.</td><td class="px-3 py-2 text-slate-600 align-top">Atlassian</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Repositorios privados gratis</th><td class="px-3 py-2 text-slate-600 align-top">Sí, ilimitados</td><td class="px-3 py-2 text-slate-600 align-top">Sí</td><td class="px-3 py-2 text-slate-600 align-top">Sí, equipos de hasta 5 usuarios</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">CI/CD integrado</th><td class="px-3 py-2 text-slate-600 align-top">GitHub Actions</td><td class="px-3 py-2 text-slate-600 align-top">GitLab CI/CD</td><td class="px-3 py-2 text-slate-600 align-top">Bitbucket Pipelines</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Gestión del trabajo</th><td class="px-3 py-2 text-slate-600 align-top">Issues y Projects (tableros)</td><td class="px-3 py-2 text-slate-600 align-top">Issues, tableros y épicas</td><td class="px-3 py-2 text-slate-600 align-top">Integración con Jira</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Revisión de código</th><td class="px-3 py-2 text-slate-600 align-top">Pull requests</td><td class="px-3 py-2 text-slate-600 align-top">Merge requests</td><td class="px-3 py-2 text-slate-600 align-top">Pull requests</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Sitio estático gratis</th><td class="px-3 py-2 text-slate-600 align-top">GitHub Pages</td><td class="px-3 py-2 text-slate-600 align-top">GitLab Pages</td><td class="px-3 py-2 text-slate-600 align-top">No incluido</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Puede instalarse en servidor propio</th><td class="px-3 py-2 text-slate-600 align-top">Solo en planes empresariales</td><td class="px-3 py-2 text-slate-600 align-top">Sí (edición Community)</td><td class="px-3 py-2 text-slate-600 align-top">Sí (Data Center)</td></tr></tbody>
+            </table>
+          </div>
+        
+          <div class="flex items-start gap-3 p-4 rounded-2xl bg-amber-50 border border-amber-200 text-sm text-amber-950">
+            <i data-lucide="triangle-alert" class="w-5 h-5 text-amber-700 mt-0.5"></i><p>Los planes y límites gratuitos cambian con el tiempo. Antes de entregar, verifica las condiciones vigentes en el sitio oficial de cada plataforma y cita la fuente en el informe.</p>
+          </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 10 · MATRIZ DE SELECCIÓN PONDERADA -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Matriz de selección ponderada" data-section="Bloque 3: Selección de herramientas">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-sky-50 border-sky-200 text-sky-800"><i data-lucide="scale" class="w-3.5 h-3.5"></i> Selección · Paso 2</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Decidir con números: la matriz ponderada</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Cada criterio recibe un <strong>peso</strong> (qué tan importante es para tu proyecto, de 1 a 5) y cada plataforma una <strong>nota</strong> (de 1 a 5). Puntaje = suma de nota × peso. Mueve los pesos y observa cómo cambia la decisión.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-5" data-matriz='{"GitHub":[5,5,5,4,5,5],"GitLab":[5,4,5,5,4,4],"Bitbucket":[4,4,4,3,3,2]}'>
+          <div class="lg:col-span-3 bg-white rounded-2xl border border-slate-200 shadow-sm overflow-x-auto">
+            <table class="w-full text-sm min-w-[560px]">
+              <thead class="bg-slate-50"><tr><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Criterio</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Peso</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500 text-center">GitHub</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500 text-center">GitLab</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500 text-center">Bitbucket</th></tr></thead>
+              <tbody class="divide-y divide-slate-100">
+                <tr><th scope="row" class="px-3 py-2 text-left font-semibold text-slate-800">Costo para el equipo</th><td class="px-3 py-2"><label class="flex items-center gap-2"><span class="sr-only">Peso de Costo para el equipo</span><input type="range" min="1" max="5" value="5" data-peso="0" class="w-20 accent-[#0284c7]"><span class="font-mono text-xs font-bold text-sky-800 w-3" data-peso-valor="0">5</span></label></td><td class="px-3 py-2 text-center font-mono font-bold text-slate-700">5</td><td class="px-3 py-2 text-center font-mono font-bold text-slate-700">5</td><td class="px-3 py-2 text-center font-mono font-bold text-slate-700">4</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-semibold text-slate-800">Integración con las herramientas del curso</th><td class="px-3 py-2"><label class="flex items-center gap-2"><span class="sr-only">Peso de Integración con las herramientas del curso</span><input type="range" min="1" max="5" value="4" data-peso="1" class="w-20 accent-[#0284c7]"><span class="font-mono text-xs font-bold text-sky-800 w-3" data-peso-valor="1">4</span></label></td><td class="px-3 py-2 text-center font-mono font-bold text-slate-700">5</td><td class="px-3 py-2 text-center font-mono font-bold text-slate-700">4</td><td class="px-3 py-2 text-center font-mono font-bold text-slate-700">4</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-semibold text-slate-800">CI/CD incluido</th><td class="px-3 py-2"><label class="flex items-center gap-2"><span class="sr-only">Peso de CI/CD incluido</span><input type="range" min="1" max="5" value="3" data-peso="2" class="w-20 accent-[#0284c7]"><span class="font-mono text-xs font-bold text-sky-800 w-3" data-peso-valor="2">3</span></label></td><td class="px-3 py-2 text-center font-mono font-bold text-slate-700">5</td><td class="px-3 py-2 text-center font-mono font-bold text-slate-700">5</td><td class="px-3 py-2 text-center font-mono font-bold text-slate-700">4</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-semibold text-slate-800">Gestión del trabajo (issues y tableros)</th><td class="px-3 py-2"><label class="flex items-center gap-2"><span class="sr-only">Peso de Gestión del trabajo (issues y tableros)</span><input type="range" min="1" max="5" value="4" data-peso="3" class="w-20 accent-[#0284c7]"><span class="font-mono text-xs font-bold text-sky-800 w-3" data-peso-valor="3">4</span></label></td><td class="px-3 py-2 text-center font-mono font-bold text-slate-700">4</td><td class="px-3 py-2 text-center font-mono font-bold text-slate-700">5</td><td class="px-3 py-2 text-center font-mono font-bold text-slate-700">3</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-semibold text-slate-800">Comunidad y documentación</th><td class="px-3 py-2"><label class="flex items-center gap-2"><span class="sr-only">Peso de Comunidad y documentación</span><input type="range" min="1" max="5" value="3" data-peso="4" class="w-20 accent-[#0284c7]"><span class="font-mono text-xs font-bold text-sky-800 w-3" data-peso-valor="4">3</span></label></td><td class="px-3 py-2 text-center font-mono font-bold text-slate-700">5</td><td class="px-3 py-2 text-center font-mono font-bold text-slate-700">4</td><td class="px-3 py-2 text-center font-mono font-bold text-slate-700">3</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-semibold text-slate-800">Publicar demos y portafolio</th><td class="px-3 py-2"><label class="flex items-center gap-2"><span class="sr-only">Peso de Publicar demos y portafolio</span><input type="range" min="1" max="5" value="2" data-peso="5" class="w-20 accent-[#0284c7]"><span class="font-mono text-xs font-bold text-sky-800 w-3" data-peso-valor="5">2</span></label></td><td class="px-3 py-2 text-center font-mono font-bold text-slate-700">5</td><td class="px-3 py-2 text-center font-mono font-bold text-slate-700">4</td><td class="px-3 py-2 text-center font-mono font-bold text-slate-700">2</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="lg:col-span-2 space-y-3">
+            <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-3" aria-live="polite">
+              <p class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Resultado</p>
+              <div data-fila="GitHub" class="matriz-fila p-3 rounded-xl border border-slate-200"><div class="flex items-center justify-between text-sm font-bold text-slate-900"><span>GitHub</span><span class="font-mono text-xs" data-total="GitHub"></span></div><div class="mt-2 h-2 rounded-full bg-slate-100 overflow-hidden"><div class="h-full rounded-full bg-sky-500 transition-[width] duration-300 motion-reduce:transition-none" data-barra="GitHub" style="width:0%"></div></div></div><div data-fila="GitLab" class="matriz-fila p-3 rounded-xl border border-slate-200"><div class="flex items-center justify-between text-sm font-bold text-slate-900"><span>GitLab</span><span class="font-mono text-xs" data-total="GitLab"></span></div><div class="mt-2 h-2 rounded-full bg-slate-100 overflow-hidden"><div class="h-full rounded-full bg-sky-500 transition-[width] duration-300 motion-reduce:transition-none" data-barra="GitLab" style="width:0%"></div></div></div><div data-fila="Bitbucket" class="matriz-fila p-3 rounded-xl border border-slate-200"><div class="flex items-center justify-between text-sm font-bold text-slate-900"><span>Bitbucket</span><span class="font-mono text-xs" data-total="Bitbucket"></span></div><div class="mt-2 h-2 rounded-full bg-slate-100 overflow-hidden"><div class="h-full rounded-full bg-sky-500 transition-[width] duration-300 motion-reduce:transition-none" data-barra="Bitbucket" style="width:0%"></div></div></div>
+            </div>
+            <p class="text-xs text-slate-500">Las notas son la valoración del equipo AromaSur. En tu informe, define tus criterios, pesos y notas, y explica cada nota en una frase.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 11 · HERRAMIENTAS CLIENTE PARA TRABAJAR CON GIT -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Herramientas cliente para trabajar con Git" data-section="Bloque 3: Selección de herramientas">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-sky-50 border-sky-200 text-sky-800"><i data-lucide="monitor-cog" class="w-3.5 h-3.5"></i> Selección · Paso 3</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Además de la plataforma, elige cómo usarás Git en tu equipo</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">La plataforma vive en internet; el cliente es el programa con el que trabajas en tu computador. El informe debe nombrar ambos.</p>
+        </header>
+        
+          <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-x-auto ">
+            <table class="w-full text-sm min-w-[600px]">
+              <thead class="bg-slate-50"><tr><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Herramienta</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Para qué</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Decisión AromaSur</th></tr></thead>
+              <tbody class="divide-y divide-slate-100"><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Git (consola) + Git Bash</th><td class="px-3 py-2 text-slate-600 align-top">Todos los comandos; es lo que se evalúa en la EV05.</td><td class="px-3 py-2 text-slate-600 align-top">Obligatorio</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Control de código de VS Code</th><td class="px-3 py-2 text-slate-600 align-top">Ver cambios, hacer commits y resolver conflictos desde el editor.</td><td class="px-3 py-2 text-slate-600 align-top">Recomendado</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">IntelliJ IDEA / Android Studio</th><td class="px-3 py-2 text-slate-600 align-top">Git integrado para los módulos en Java y móviles (AA2–AA3).</td><td class="px-3 py-2 text-slate-600 align-top">Según el proyecto</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">GitHub Desktop</th><td class="px-3 py-2 text-slate-600 align-top">Interfaz gráfica sencilla para quien está empezando.</td><td class="px-3 py-2 text-slate-600 align-top">Opcional</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Git Credential Manager</th><td class="px-3 py-2 text-slate-600 align-top">Guarda de forma segura las credenciales de la plataforma (viene con Git para Windows).</td><td class="px-3 py-2 text-slate-600 align-top">Incluido</td></tr></tbody>
+            </table>
+          </div>
+        
+          <div class="flex items-start gap-3 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-sm text-emerald-950">
+            <i data-lucide="lightbulb" class="w-5 h-5 text-emerald-700 mt-0.5"></i>
+            <p><strong>Consola primero:</strong> Aunque uses una interfaz gráfica, aprende los comandos: la EV03 pide la tabla de comandos y la EV05 un video ejecutándolos. Las interfaces gráficas ejecutan esos mismos comandos por debajo.</p>
+          </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 12 · LA DECISIÓN DE AROMASUR -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="La decisión de AromaSur" data-section="Bloque 3: Selección de herramientas">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-sky-50 border-sky-200 text-sky-800"><i data-lucide="check-check" class="w-3.5 h-3.5"></i> Selección · Resultado</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Selección de herramientas de versionamiento a utilizar</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Esta tabla es el corazón del informe: <strong>herramienta → elección → justificación</strong>. La justificación siempre se apoya en las características del software y en la matriz.</p>
+        </header>
+        
+          <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-x-auto ">
+            <table class="w-full text-sm min-w-[680px]">
+              <thead class="bg-slate-50"><tr><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Necesidad</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Herramienta elegida</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Justificación</th></tr></thead>
+              <tbody class="divide-y divide-slate-100"><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Sistema de control de versiones</th><td class="px-3 py-2 text-slate-600 align-top">Git</td><td class="px-3 py-2 text-slate-600 align-top">Distribuido, gratuito, estándar de la industria y exigido en la AA1.</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Plataforma remota</th><td class="px-3 py-2 text-slate-600 align-top">GitHub</td><td class="px-3 py-2 text-slate-600 align-top">Mayor puntaje en la matriz (repositorios privados, Actions, Projects y Pages para publicar la demo).</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Cliente principal</th><td class="px-3 py-2 text-slate-600 align-top">Git (consola) + VS Code</td><td class="px-3 py-2 text-slate-600 align-top">Los comandos se evalúan en la EV05; VS Code ya es el editor del equipo.</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Gestión del trabajo</th><td class="px-3 py-2 text-slate-600 align-top">GitHub Projects + Issues</td><td class="px-3 py-2 text-slate-600 align-top">Un tablero con las tareas de cada módulo, enlazado a las ramas y pull requests.</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Integración continua</th><td class="px-3 py-2 text-slate-600 align-top">GitHub Actions</td><td class="px-3 py-2 text-slate-600 align-top">Validar en cada pull request que el proyecto compila y que las pruebas pasan.</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Autenticación</th><td class="px-3 py-2 text-slate-600 align-top">Git Credential Manager + verificación en dos pasos</td><td class="px-3 py-2 text-slate-600 align-top">No guardar contraseñas en texto plano ni en el código.</td></tr></tbody>
+            </table>
+          </div>
+        
+          <div class="flex items-start gap-3 p-4 rounded-2xl bg-amber-50 border border-amber-200 text-sm text-amber-950">
+            <i data-lucide="triangle-alert" class="w-5 h-5 text-amber-700 mt-0.5"></i><p><strong>Seguridad desde el primer commit:</strong> nunca subas contraseñas, tokens ni el archivo <code class="font-mono">.env</code> al repositorio. Si un secreto se sube por error, hay que <strong>cambiarlo</strong>: borrarlo en un commit nuevo no lo elimina del historial.</p>
+          </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 13 · ESTRATEGIA DE RAMAS -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Estrategia de ramas" data-section="Bloque 4: Plan de trabajo">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-violet-50 border-violet-200 text-violet-800"><i data-lucide="git-fork" class="w-3.5 h-3.5"></i> Plan · Paso 1</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">¿Cómo trabajará el equipo en paralelo sin romper la versión estable?</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">La estrategia de ramas (<em>branching</em>) es parte del plan de trabajo. Las dos más conocidas son GitHub Flow y Git Flow.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <div class="bg-white rounded-2xl border-2 border-emerald-300 p-5 shadow-sm space-y-3">
+            <p class="flex items-center gap-2 text-base font-extrabold text-slate-900">GitHub Flow <span class="ml-auto text-[10px] font-extrabold uppercase bg-[#39A900] text-white px-1.5 py-0.5 rounded">Elegida</span></p>
+            <svg viewBox="0 0 520 150" class="w-full h-auto" role="img" aria-label="GitHub Flow: ramas feature que salen de main y vuelven por pull request">
+  <line x1="20" y1="40" x2="500" y2="40" stroke="#00324D" stroke-width="4"/>
+  <text x="20" y="22" font-size="13" font-weight="700" fill="#00324D">main (siempre estable)</text>
+  <path d="M120 40 C150 40 150 105 180 105 L260 105 C290 105 290 40 320 40" fill="none" stroke="#39A900" stroke-width="3"/>
+  <path d="M320 40 C350 40 350 105 380 105 L420 105 C450 105 450 40 470 40" fill="none" stroke="#39A900" stroke-width="3"/>
+  <circle cx="40" cy="40" r="8" fill="#00324D"/><circle cx="120" cy="40" r="8" fill="#00324D"/><circle cx="320" cy="40" r="8" fill="#00324D"/><circle cx="470" cy="40" r="8" fill="#00324D"/>
+  <circle cx="190" cy="105" r="7" fill="#39A900"/><circle cx="240" cy="105" r="7" fill="#39A900"/><circle cx="390" cy="105" r="7" fill="#39A900"/><circle cx="420" cy="105" r="7" fill="#39A900"/>
+  <text x="160" y="135" font-size="11" fill="#166534">feature/login</text>
+  <text x="365" y="135" font-size="11" fill="#166534">feature/catalogo</text>
+  <text x="290" y="72" font-size="10" fill="#334155">PR</text><text x="440" y="72" font-size="10" fill="#334155">PR</text>
+</svg>
+            <ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Una rama estable: <code class="font-mono">main</code>.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Cada tarea en una rama <code class="font-mono">feature/…</code> que vuelve por pull request revisado.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Simple: ideal para equipos pequeños y entregas frecuentes.</span></li></ul>
+          </div>
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-3">
+            <p class="text-base font-extrabold text-slate-900">Git Flow</p>
+            <svg viewBox="0 0 520 190" class="w-full h-auto" role="img" aria-label="Git Flow: ramas main, develop, feature y release">
+  <line x1="20" y1="30" x2="500" y2="30" stroke="#00324D" stroke-width="4"/><text x="20" y="18" font-size="12" font-weight="700" fill="#00324D">main</text>
+  <line x1="20" y1="80" x2="500" y2="80" stroke="#7c3aed" stroke-width="4"/><text x="20" y="68" font-size="12" font-weight="700" fill="#6d28d9">develop</text>
+  <path d="M100 80 C120 80 120 130 140 130 L200 130 C220 130 220 80 240 80" fill="none" stroke="#39A900" stroke-width="3"/>
+  <path d="M280 80 C300 80 300 170 320 170 L360 170 C380 170 380 30 420 30" fill="none" stroke="#f59e0b" stroke-width="3"/>
+  <path d="M360 170 C380 170 390 80 410 80" fill="none" stroke="#f59e0b" stroke-width="3" stroke-dasharray="4 3"/>
+  <circle cx="40" cy="30" r="8" fill="#00324D"/><circle cx="420" cy="30" r="8" fill="#00324D"/>
+  <circle cx="60" cy="80" r="7" fill="#7c3aed"/><circle cx="100" cy="80" r="7" fill="#7c3aed"/><circle cx="240" cy="80" r="7" fill="#7c3aed"/><circle cx="280" cy="80" r="7" fill="#7c3aed"/><circle cx="410" cy="80" r="7" fill="#7c3aed"/><circle cx="470" cy="80" r="7" fill="#7c3aed"/>
+  <circle cx="160" cy="130" r="6" fill="#39A900"/><circle cx="190" cy="130" r="6" fill="#39A900"/>
+  <circle cx="340" cy="170" r="6" fill="#f59e0b"/>
+  <text x="135" y="150" font-size="11" fill="#166534">feature/*</text><text x="300" y="188" font-size="11" fill="#b45309">release/1.0</text><text x="428" y="22" font-size="11" fill="#00324D">v1.0.0</text>
+</svg>
+            <ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="minus" class="w-4 h-4 text-slate-400 mt-0.5"></i><span><code class="font-mono">main</code> para producción y <code class="font-mono">develop</code> para integración.</span></li><li class="flex items-start gap-2"><i data-lucide="minus" class="w-4 h-4 text-slate-400 mt-0.5"></i><span>Ramas de <code class="font-mono">feature</code>, <code class="font-mono">release</code> y <code class="font-mono">hotfix</code>.</span></li><li class="flex items-start gap-2"><i data-lucide="minus" class="w-4 h-4 text-slate-400 mt-0.5"></i><span>Útil con versiones planificadas y equipos grandes; más pasos.</span></li></ul>
+          </div>
+        </div>
+        
+          <div class="flex items-start gap-3 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-sm text-emerald-950">
+            <i data-lucide="lightbulb" class="w-5 h-5 text-emerald-700 mt-0.5"></i>
+            <p><strong>Justificación:</strong> AromaSur es un equipo de 3 personas que entrega por evidencias: GitHub Flow da orden sin la complejidad de Git Flow. Escribe en el informe <strong>cuál eliges y por qué</strong>.</p>
+          </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 14 · CONVENCIONES: RAMAS, COMMITS Y VERSIONES -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Convenciones: ramas, commits y versiones" data-section="Bloque 4: Plan de trabajo">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-violet-50 border-violet-200 text-violet-800"><i data-lucide="tag" class="w-3.5 h-3.5"></i> Plan · Paso 2</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Reglas que todo el equipo sigue igual</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Las convenciones hacen que el historial se lea como un diario del proyecto. Documéntalas en el informe y en el README del repositorio.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>mensajes de commit</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de mensajes de commit">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[12px] leading-relaxed text-slate-100 flex-1 "><code># Formato Conventional Commits:  tipo(alcance): descripción en presente
+feat(auth): agregar inicio de sesión con correo y contraseña
+fix(pedidos): corregir el total cuando el pedido queda vacío
+docs(readme): explicar cómo ejecutar la API en local
+refactor(catalogo): separar el filtro en su propia función
+test(auth): probar contraseña con menos de 8 caracteres
+chore: actualizar dependencias</code></pre>
+          </div>
+          <div class="space-y-3">
+            
+          <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-x-auto ">
+            <table class="w-full text-sm min-w-[480px]">
+              <thead class="bg-slate-50"><tr><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Elemento</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Convención</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Ejemplo</th></tr></thead>
+              <tbody class="divide-y divide-slate-100"><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Rama nueva</th><td class="px-3 py-2 text-slate-600 align-top"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">feature/</code> + tema en minúsculas</td><td class="px-3 py-2 text-slate-600 align-top"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">feature/catalogo-filtros</code></td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Corrección</th><td class="px-3 py-2 text-slate-600 align-top"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">fix/</code> + problema</td><td class="px-3 py-2 text-slate-600 align-top"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">fix/total-pedido</code></td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Versión entregada</th><td class="px-3 py-2 text-slate-600 align-top">Tag con versionado semántico</td><td class="px-3 py-2 text-slate-600 align-top"><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">v0.2.0</code></td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Pull request</th><td class="px-3 py-2 text-slate-600 align-top">Título igual al commit principal y revisión de un compañero</td><td class="px-3 py-2 text-slate-600 align-top">"feat(pedidos): confirmar pedido"</td></tr></tbody>
+            </table>
+          </div>
+            
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="tags" class="w-5 h-5 text-sena"></i>Versionado semántico (SemVer)</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">MAYOR.MENOR.PARCHE</code>: <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">v1.4.2</code>. Cambia el PARCHE al corregir, el MENOR al agregar funciones y el MAYOR al romper compatibilidad. AromaSur etiqueta cada entrega: <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">v0.1.0</code> en la AA2, <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">v0.2.0</code> en la AA3…</p></div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 15 · ESTRUCTURA DEL REPOSITORIO -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Estructura del repositorio" data-section="Bloque 4: Plan de trabajo">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-violet-50 border-violet-200 text-violet-800"><i data-lucide="folder-tree" class="w-3.5 h-3.5"></i> Plan · Paso 3</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Un repositorio ordenado desde el primer día</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Defínelo en el informe: cuántos repositorios tendrá el proyecto, qué carpetas y qué archivos nunca se suben.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 ">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>estructura propuesta</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de estructura propuesta">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[12px] leading-relaxed text-slate-100 flex-1 "><code>aromasur/                    ← un solo repositorio (monorepo)
+├── api/                     ← servicios web (AA5)
+├── web/                     ← front-end en React (AA4)
+├── modulos-java/            ← módulos JDBC y servlets (AA2–AA3)
+├── docs/                    ← informes PDF de la guía y diagramas
+├── .github/workflows/       ← integración continua (GitHub Actions)
+├── .gitignore               ← node_modules/, target/, .env, *.log
+├── .env.example             ← variables SIN valores reales
+└── README.md                ← qué es, cómo ejecutarlo y convenciones</code></pre>
+          </div>
+          <div class="space-y-3">
+            
+          <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-x-auto ">
+            <table class="w-full text-sm min-w-[440px]">
+              <thead class="bg-slate-50"><tr><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Opción</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Ventaja</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Cuándo usarla</th></tr></thead>
+              <tbody class="divide-y divide-slate-100"><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Monorepo</th><td class="px-3 py-2 text-slate-600 align-top">Todo el proyecto en un lugar; un solo enlace para las entregas.</td><td class="px-3 py-2 text-slate-600 align-top">Equipos pequeños y proyectos formativos.</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Varios repositorios</th><td class="px-3 py-2 text-slate-600 align-top">Cada parte se despliega por separado.</td><td class="px-3 py-2 text-slate-600 align-top">Equipos grandes o servicios independientes.</td></tr></tbody>
+            </table>
+          </div>
+            
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="shield-check" class="w-5 h-5 text-sena"></i>.gitignore y .env</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p><code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">.gitignore</code> evita subir dependencias, compilados y secretos. Las credenciales de la base de datos van en <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">.env</code> (ignorado) y en el repositorio solo queda <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">.env.example</code> con los nombres de las variables.</p></div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 16 · TECNOLOGÍAS DEL PROYECTO POR CAPA -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Tecnologías del proyecto por capa" data-section="Bloque 4: Plan de trabajo">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-violet-50 border-violet-200 text-violet-800"><i data-lucide="boxes" class="w-3.5 h-3.5"></i> Plan · Paso 4</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Las tecnologías que se versionarán</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">La guía pide herramientas "y tecnologías". Presenta el stack por capa y relaciónalo con la actividad de la guía donde se usa.</p>
+        </header>
+        
+          <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-x-auto ">
+            <table class="w-full text-sm min-w-[680px]">
+              <thead class="bg-slate-50"><tr><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Capa</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Tecnología</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Por qué</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Actividad</th></tr></thead>
+              <tbody class="divide-y divide-slate-100"><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Control de versiones</th><td class="px-3 py-2 text-slate-600 align-top">Git + GitHub</td><td class="px-3 py-2 text-slate-600 align-top">Selección de este informe.</td><td class="px-3 py-2 text-slate-600 align-top">Todas</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Base de datos</th><td class="px-3 py-2 text-slate-600 align-top">MySQL</td><td class="px-3 py-2 text-slate-600 align-top">Modelo relacional ya diseñado en la Guía 06.</td><td class="px-3 py-2 text-slate-600 align-top">AA2</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Módulos Java</th><td class="px-3 py-2 text-slate-600 align-top">Java 21 + JDBC, Servlets y JSP</td><td class="px-3 py-2 text-slate-600 align-top">Exigidos por la AA2.</td><td class="px-3 py-2 text-slate-600 align-top">AA2</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Framework back-end</th><td class="px-3 py-2 text-slate-600 align-top">Spring Boot</td><td class="px-3 py-2 text-slate-600 align-top">Desarrollo ágil de la AA3 y base de las API.</td><td class="px-3 py-2 text-slate-600 align-top">AA3, AA5</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Front-end</th><td class="px-3 py-2 text-slate-600 align-top">React + Vite</td><td class="px-3 py-2 text-slate-600 align-top">Exigido por la AA4; reutiliza el diseño de la Guía 06.</td><td class="px-3 py-2 text-slate-600 align-top">AA4</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Pruebas de API</th><td class="px-3 py-2 text-slate-600 align-top">Postman</td><td class="px-3 py-2 text-slate-600 align-top">Exigido por la AA5.</td><td class="px-3 py-2 text-slate-600 align-top">AA5</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Editor / IDE</th><td class="px-3 py-2 text-slate-600 align-top">VS Code e IntelliJ IDEA Community</td><td class="px-3 py-2 text-slate-600 align-top">Gratuitos y con Git integrado.</td><td class="px-3 py-2 text-slate-600 align-top">Todas</td></tr></tbody>
+            </table>
+          </div>
+        <p class="text-xs text-slate-500">Este es el stack de AromaSur. Si tu proyecto usa PHP, Node.js o Android, cámbialo y justifícalo con tus requisitos.</p>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 17 · PLAN DE TRABAJO POR ETAPAS -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Plan de trabajo por etapas" data-section="Bloque 4: Plan de trabajo">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-violet-50 border-violet-200 text-violet-800"><i data-lucide="calendar-range" class="w-3.5 h-3.5"></i> Plan · Paso 5</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">El plan de trabajo de construcción</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Une las actividades de la guía con lo que se construye, las ramas que se crean y la versión que se etiqueta al terminar cada etapa.</p>
+        </header>
+        
+          <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-x-auto ">
+            <table class="w-full text-sm min-w-[720px]">
+              <thead class="bg-slate-50"><tr><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Etapa</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Actividad</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Entregable</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Ramas</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Versión</th></tr></thead>
+              <tbody class="divide-y divide-slate-100"><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">1. Preparación</th><td class="px-3 py-2 text-slate-600 align-top">AA1</td><td class="px-3 py-2 text-slate-600 align-top">Plan, estándares, instalación y repositorio creado</td><td class="px-3 py-2 text-slate-600 align-top">main inicial</td><td class="px-3 py-2 text-slate-600 align-top">v0.0.1</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">2. Módulo con datos</th><td class="px-3 py-2 text-slate-600 align-top">AA2</td><td class="px-3 py-2 text-slate-600 align-top">CRUD con JDBC y módulo web con servlets y JSP</td><td class="px-3 py-2 text-slate-600 align-top">feature/jdbc-productos, feature/web-pedidos</td><td class="px-3 py-2 text-slate-600 align-top">v0.1.0</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">3. Módulos con framework</th><td class="px-3 py-2 text-slate-600 align-top">AA3</td><td class="px-3 py-2 text-slate-600 align-top">Módulo en Spring Boot probado contra historias de usuario</td><td class="px-3 py-2 text-slate-600 align-top">feature/…</td><td class="px-3 py-2 text-slate-600 align-top">v0.2.0</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">4. Front-end</th><td class="px-3 py-2 text-slate-600 align-top">AA4</td><td class="px-3 py-2 text-slate-600 align-top">Componentes y pantallas en React</td><td class="px-3 py-2 text-slate-600 align-top">feature/web-…</td><td class="px-3 py-2 text-slate-600 align-top">v0.3.0</td></tr><tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">5. Servicios web</th><td class="px-3 py-2 text-slate-600 align-top">AA5</td><td class="px-3 py-2 text-slate-600 align-top">API de autenticación y del proyecto, probadas en Postman</td><td class="px-3 py-2 text-slate-600 align-top">feature/api-…</td><td class="px-3 py-2 text-slate-600 align-top">v1.0.0</td></tr></tbody>
+            </table>
+          </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+          
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="users" class="w-5 h-5 text-sena"></i>Responsables</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p>Asigna cada etapa o módulo a un integrante. Si trabajas solo, indica igualmente el orden y los tiempos.</p></div>
+          </div>
+          
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="clock" class="w-5 h-5 text-sena"></i>Tiempos</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p>Usa las horas de cada actividad de la guía (AA1 40 h … AA5 144 h) y el cronograma de Zajuna para estimar las semanas.</p></div>
+          </div>
+          
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="kanban" class="w-5 h-5 text-sena"></i>Seguimiento</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p>Cada tarea del plan se vuelve un <em>issue</em> en el tablero; cada issue, una rama; cada rama, un pull request.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 18 · FLUJO DE TRABAJO DIARIO CON GIT -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Flujo de trabajo diario con Git" data-section="Bloque 4: Plan de trabajo">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-violet-50 border-violet-200 text-violet-800"><i data-lucide="terminal" class="w-3.5 h-3.5"></i> Plan · Paso 6</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Así se trabaja cada tarea del plan</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Incluye este flujo en el informe como "procedimiento de trabajo". Los comandos funcionan igual en PowerShell, Git Bash y la terminal de VS Code.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-5">
+          
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 lg:col-span-3">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>PowerShell</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de PowerShell">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+              </button>
+            </div>
+            <pre class="p-4 overflow-auto text-[12px] leading-relaxed text-slate-100 flex-1 "><code># 1. Traer lo último de main
+git switch main
+git pull origin main
+
+# 2. Crear la rama de la tarea
+git switch -c feature/catalogo-filtros
+
+# 3. Trabajar y registrar cambios pequeños
+git add .
+git commit -m &quot;feat(catalogo): filtrar cafés por perfil&quot;
+
+# 4. Subir la rama y abrir el pull request en GitHub
+git push -u origin feature/catalogo-filtros
+
+# 5. Tras la aprobación del PR: actualizar main y borrar la rama local
+git switch main
+git pull origin main
+git branch -d feature/catalogo-filtros</code></pre>
+          </div>
+          <div class="lg:col-span-2 space-y-3">
+            
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="list-checks" class="w-5 h-5 text-sena"></i>Reglas del equipo</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Nadie trabaja directamente en <code class="font-mono">main</code>.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Commits pequeños con un solo propósito.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Hacer <code class="font-mono">git pull</code> antes de empezar cada día.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Todo pull request lo revisa otra persona.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Proteger <code class="font-mono">main</code> en GitHub para exigir pull request.</span></li></ul></div>
+          </div>
+            <p class="text-xs text-slate-500">Comprueba la instalación con <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">git --version</code>. La salida esperada se parece a <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">git version 2.x.x.windows.1</code>; la instalación paso a paso es la EV04.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 19 · ESTRUCTURA DEL INFORME TÉCNICO -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Estructura del informe técnico" data-section="Bloque 5: Informe y entrega">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-emerald-50 border-emerald-200 text-emerald-800"><i data-lucide="file-text" class="w-3.5 h-3.5"></i> Informe</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">El informe, sección por sección</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Las secciones marcadas son las mínimas que exige la guía. Las demás demuestran el criterio de evaluación: interpretar el diseño para definir el plan.</p>
+        </header>
+        <ol class="grid grid-cols-1 md:grid-cols-3 gap-2">
+          <li class="flex items-start gap-3 p-3 rounded-xl bg-white border border-emerald-300 shadow-sm"><span class="w-7 h-7 rounded-full bg-[#39A900] text-white font-extrabold text-xs flex items-center justify-center shrink-0">1</span><div><p class="text-sm font-extrabold text-slate-900">Portada <span class="text-[10px] font-extrabold uppercase text-emerald-700">· mínimo</span></p><p class="text-xs text-slate-600 mt-0.5">Título y código de la evidencia, nombre del proyecto, aprendiz(ces), ficha, instructor, centro y fecha.</p></div></li><li class="flex items-start gap-3 p-3 rounded-xl bg-white border border-emerald-300 shadow-sm"><span class="w-7 h-7 rounded-full bg-[#39A900] text-white font-extrabold text-xs flex items-center justify-center shrink-0">2</span><div><p class="text-sm font-extrabold text-slate-900">Introducción <span class="text-[10px] font-extrabold uppercase text-emerald-700">· mínimo</span></p><p class="text-xs text-slate-600 mt-0.5">Contexto del software y por qué el control de versiones es necesario.</p></div></li><li class="flex items-start gap-3 p-3 rounded-xl bg-white border border-emerald-300 shadow-sm"><span class="w-7 h-7 rounded-full bg-[#39A900] text-white font-extrabold text-xs flex items-center justify-center shrink-0">3</span><div><p class="text-sm font-extrabold text-slate-900">Objetivo <span class="text-[10px] font-extrabold uppercase text-emerald-700">· mínimo</span></p><p class="text-xs text-slate-600 mt-0.5">General y, si quieres, específicos.</p></div></li><li class="flex items-start gap-3 p-3 rounded-xl bg-white border border-slate-200 shadow-sm"><span class="w-7 h-7 rounded-full bg-slate-100 text-slate-700 font-extrabold text-xs flex items-center justify-center shrink-0">4</span><div><p class="text-sm font-extrabold text-slate-900">Descripción del software</p><p class="text-xs text-slate-600 mt-0.5">Módulos, requisitos principales y equipo (interpretación del diseño).</p></div></li><li class="flex items-start gap-3 p-3 rounded-xl bg-white border border-slate-200 shadow-sm"><span class="w-7 h-7 rounded-full bg-slate-100 text-slate-700 font-extrabold text-xs flex items-center justify-center shrink-0">5</span><div><p class="text-sm font-extrabold text-slate-900">Marco conceptual</p><p class="text-xs text-slate-600 mt-0.5">Tipos de control de versiones, Git y vocabulario.</p></div></li><li class="flex items-start gap-3 p-3 rounded-xl bg-white border border-emerald-300 shadow-sm"><span class="w-7 h-7 rounded-full bg-[#39A900] text-white font-extrabold text-xs flex items-center justify-center shrink-0">6</span><div><p class="text-sm font-extrabold text-slate-900">Selección de herramientas de versionamiento <span class="text-[10px] font-extrabold uppercase text-emerald-700">· mínimo</span></p><p class="text-xs text-slate-600 mt-0.5">Comparación, matriz ponderada y tabla de decisión justificada.</p></div></li><li class="flex items-start gap-3 p-3 rounded-xl bg-white border border-slate-200 shadow-sm"><span class="w-7 h-7 rounded-full bg-slate-100 text-slate-700 font-extrabold text-xs flex items-center justify-center shrink-0">7</span><div><p class="text-sm font-extrabold text-slate-900">Tecnologías del proyecto</p><p class="text-xs text-slate-600 mt-0.5">Stack por capa relacionado con las actividades.</p></div></li><li class="flex items-start gap-3 p-3 rounded-xl bg-white border border-slate-200 shadow-sm"><span class="w-7 h-7 rounded-full bg-slate-100 text-slate-700 font-extrabold text-xs flex items-center justify-center shrink-0">8</span><div><p class="text-sm font-extrabold text-slate-900">Plan de trabajo</p><p class="text-xs text-slate-600 mt-0.5">Estrategia de ramas, convenciones, estructura del repositorio, etapas y flujo diario.</p></div></li><li class="flex items-start gap-3 p-3 rounded-xl bg-white border border-slate-200 shadow-sm"><span class="w-7 h-7 rounded-full bg-slate-100 text-slate-700 font-extrabold text-xs flex items-center justify-center shrink-0">9</span><div><p class="text-sm font-extrabold text-slate-900">Conclusiones y referencias</p><p class="text-xs text-slate-600 mt-0.5">Lo decidido y las fuentes (documentación oficial de Git y de las plataformas).</p></div></li>
+        </ol>
+        <p class="text-xs text-slate-500">Formato: títulos numerados, tablas con título y fuente, letra legible (11–12 pt) y exportación a PDF desde Word o Google Docs.</p>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 20 · EJEMPLO DE REDACCIÓN -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Ejemplo de redacción" data-section="Bloque 5: Informe y entrega">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-emerald-50 border-emerald-200 text-emerald-800"><i data-lucide="pen-line" class="w-3.5 h-3.5"></i> Informe</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Cómo se ve una buena introducción, objetivo y justificación</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Ejemplo con AromaSur para que veas el nivel esperado. Escribe el tuyo con los datos de tu proyecto: un texto copiado no demuestra el criterio.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="quote" class="w-5 h-5 text-sena"></i>Introducción</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p class="italic">"La plataforma de pedidos mayoristas de AromaSur Café permitirá a cafeterías y tiendas consultar el catálogo, hacer pedidos y seguir su estado. Su construcción involucra una API, una aplicación web en React y una base de datos, desarrolladas por un equipo de tres aprendices. Para coordinar el trabajo, conservar el historial de cambios y recuperar versiones anteriores, el proyecto requiere un sistema de control de versiones. Este informe presenta la selección de esas herramientas y el plan de trabajo para construir el software."</p></div>
+          </div>
+          
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="target" class="w-5 h-5 text-sena"></i>Objetivo</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p class="italic">"Seleccionar y justificar las herramientas y tecnologías de versionamiento que se utilizarán en la construcción de la plataforma AromaSur, y definir el plan de trabajo con su estrategia de ramas, convenciones y etapas de desarrollo."</p></div>
+          </div>
+          
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="scale" class="w-5 h-5 text-sena"></i>Justificación (fragmento)</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p class="italic">"Se selecciona GitHub como plataforma remota porque obtuvo el mayor puntaje en la matriz ponderada (96 %): ofrece repositorios privados sin costo para el equipo, GitHub Actions para validar cada pull request y GitHub Pages para publicar la demo de la aplicación web."</p><p class="text-xs not-italic text-slate-500 pt-1">El porcentaje sale de la matriz con los pesos por defecto.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 21 · CHECKLIST Y ENTREGA EN ZAJUNA -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Checklist y entrega en Zajuna" data-section="Bloque 5: Informe y entrega">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-emerald-50 border-emerald-200 text-emerald-800"><i data-lucide="package-check" class="w-3.5 h-3.5"></i> Entrega</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Antes de subir el PDF</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Revisa cada punto. La lista de chequeo del instructor es IE-GA7-220501096-AA1-EV01.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <ol class="space-y-2"><li class="flex items-start gap-3 p-2.5 rounded-xl bg-white border border-slate-200"><span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">1</span><span class="text-sm text-slate-700">PDF con portada, introducción y objetivo.</span></li><li class="flex items-start gap-3 p-2.5 rounded-xl bg-white border border-slate-200"><span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">2</span><span class="text-sm text-slate-700">Descripción del software basada en tus artefactos de diseño.</span></li><li class="flex items-start gap-3 p-2.5 rounded-xl bg-white border border-slate-200"><span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">3</span><span class="text-sm text-slate-700">Tipos de control de versiones y conceptos de Git explicados con tus palabras.</span></li><li class="flex items-start gap-3 p-2.5 rounded-xl bg-white border border-slate-200"><span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">4</span><span class="text-sm text-slate-700">Comparación de plataformas y matriz ponderada con criterios propios.</span></li><li class="flex items-start gap-3 p-2.5 rounded-xl bg-white border border-slate-200"><span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">5</span><span class="text-sm text-slate-700">Tabla de selección de herramientas con justificación.</span></li><li class="flex items-start gap-3 p-2.5 rounded-xl bg-white border border-slate-200"><span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">6</span><span class="text-sm text-slate-700">Estrategia de ramas, convenciones de commits y estructura del repositorio.</span></li><li class="flex items-start gap-3 p-2.5 rounded-xl bg-white border border-slate-200"><span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">7</span><span class="text-sm text-slate-700">Plan de trabajo por etapas relacionado con las actividades de la guía.</span></li><li class="flex items-start gap-3 p-2.5 rounded-xl bg-white border border-slate-200"><span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">8</span><span class="text-sm text-slate-700">Referencias a la documentación oficial consultada.</span></li></ol>
+          <div class="space-y-3">
+            
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="triangle-alert" class="w-5 h-5 text-rose-600"></i>Errores frecuentes</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="x" class="w-4 h-4 text-rose-600 mt-0.5"></i><span>Listar herramientas sin explicar por qué se eligieron.</span></li><li class="flex items-start gap-2"><i data-lucide="x" class="w-4 h-4 text-rose-600 mt-0.5"></i><span>Confundir Git (herramienta) con GitHub (plataforma).</span></li><li class="flex items-start gap-2"><i data-lucide="x" class="w-4 h-4 text-rose-600 mt-0.5"></i><span>Copiar tablas de internet sin citar la fuente.</span></li><li class="flex items-start gap-2"><i data-lucide="x" class="w-4 h-4 text-rose-600 mt-0.5"></i><span>No relacionar la selección con el software que se va a construir.</span></li><li class="flex items-start gap-2"><i data-lucide="x" class="w-4 h-4 text-rose-600 mt-0.5"></i><span>Entregar en Word: el formato pedido es PDF.</span></li></ul></div>
+          </div>
+            
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="upload-cloud" class="w-5 h-5 text-sena"></i>Envío</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p>Nombre sugerido: <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">GA7-220501096-AA1-EV01_Nombre_Apellido.pdf</code></p><p>Espacio: <em>Informe técnico de plan de trabajo para construcción de software. GA7-220501096-AA1-EV01.</em></p></div>
+          </div>
+            
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="rocket" class="w-5 h-5 text-sena"></i>Reto opcional</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p>Crea ya el repositorio de tu proyecto con el README, el <code class="font-mono">.gitignore</code> y la estructura del plan, y agrega el enlace al informe. Te adelantas a la EV04 y la EV05.</p></div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div data-presenter="bottom"></div>
+  <script src="../../assets/js/catalogo.js"></script>
+  <script src="../../assets/js/presenter.js"></script>
+  <script>
+    // Matriz de selección ponderada (diapositiva 10): el puntaje total se recalcula al mover los pesos.
+    (function () {
+      const matriz = document.querySelector('[data-matriz]');
+      if (!matriz) return;
+      const pesos = [...matriz.querySelectorAll('input[data-peso]')];
+      const opciones = JSON.parse(matriz.dataset.matriz); // { GitHub: [5,5,...], GitLab: [...], ... }
+
+      function calcular() {
+        const w = pesos.map((input) => Number(input.value));
+        const maximo = w.reduce((a, b) => a + b, 0) * 5 || 1;
+        const totales = Object.entries(opciones).map(([nombre, notas]) => [nombre, notas.reduce((s, n, i) => s + n * w[i], 0)]);
+        const mejor = Math.max(...totales.map(([, t]) => t));
+
+        pesos.forEach((input) => { matriz.querySelector(`[data-peso-valor="${input.dataset.peso}"]`).textContent = input.value; });
+        totales.forEach(([nombre, total]) => {
+          const pct = Math.round((total / maximo) * 100);
+          matriz.querySelector(`[data-total="${nombre}"]`).textContent = `${total} pts · ${pct}%`;
+          matriz.querySelector(`[data-barra="${nombre}"]`).style.width = `${pct}%`;
+          const fila = matriz.querySelector(`[data-fila="${nombre}"]`);
+          fila.classList.toggle('is-ganadora', total === mejor);
+        });
+      }
+
+      pesos.forEach((input) => input.addEventListener('input', calcular));
+      calcular();
+    })();
+
+  </script>
+</body>
+</html>

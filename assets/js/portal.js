@@ -98,20 +98,50 @@
   // ---------------------------------------------------------------------------
   // 1. Ruta de aprendizaje (guía activa)
   // ---------------------------------------------------------------------------
+  // Guías con ruta: las que tienen actividades definidas (la activa primero)
+  const GUIAS_CON_RUTA = CATALOG.guias
+    .filter((g) => g.activities && g.activities.length)
+    .sort((a, b) => (b.status === 'activa') - (a.status === 'activa'));
+  let rutaGuiaId = GUIA_ACTIVA ? GUIA_ACTIVA.id : (GUIAS_CON_RUTA[0] && GUIAS_CON_RUTA[0].id);
+
+  const STATUS_LABEL = { activa: 'En curso', finalizada: 'Completada', anterior: 'Anterior', proxima: 'Próxima' };
+
+  function renderRutaTabs() {
+    const tabs = $('ruta-tabs');
+    if (!tabs) return;
+    tabs.hidden = GUIAS_CON_RUTA.length < 2;
+    tabs.innerHTML = GUIAS_CON_RUTA.map((g) => {
+      const on = g.id === rutaGuiaId;
+      return `
+        <button type="button" data-ruta-guia="${esc(g.id)}" aria-pressed="${on}" aria-controls="ruta-actividades"
+          class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold border transition-colors ${on ? 'bg-[#00324D] text-white border-[#00324D] shadow-xs' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'}">
+          ${g.status === 'activa' ? '<span class="w-2 h-2 rounded-full bg-[#39A900]" aria-hidden="true"></span>' : ''}
+          ${esc(g.name)} <span class="font-semibold ${on ? 'text-slate-200' : 'text-slate-500'}">· ${esc(STATUS_LABEL[g.status] || '')}</span>
+        </button>`;
+    }).join('');
+  }
+
   function renderRuta() {
     const container = $('ruta-actividades');
-    if (!container || !GUIA_ACTIVA) return;
+    const guia = GUIAS[rutaGuiaId];
+    if (!container || !guia) return;
 
-    const evs = EVIDENCIAS.filter((e) => e.guia === GUIA_ACTIVA.id);
+    const evs = EVIDENCIAS.filter((e) => e.guia === guia.id);
     const publicadas = evs.filter((e) => e.session).length;
 
+    $('ruta-kicker').textContent = `Ruta de Aprendizaje · ${guia.name}`;
     $('ruta-progress-label').textContent = `${publicadas} de ${evs.length}`;
     $('ruta-progress-bar').style.width = `${Math.round((publicadas / evs.length) * 100)}%`;
     const bar = $('ruta-progressbar');
+    bar.setAttribute('aria-label', `Sesiones publicadas de la ${guia.name}`);
     bar.setAttribute('aria-valuemax', String(evs.length));
     bar.setAttribute('aria-valuenow', String(publicadas));
+    const general = $('ruta-general');
+    general.hidden = !guia.generalSession;
+    if (guia.generalSession) general.href = guia.folder + guia.generalSession.file;
 
-    container.innerHTML = GUIA_ACTIVA.activities.map((act) => {
+    renderRutaTabs();
+    container.innerHTML = guia.activities.map((act) => {
       const items = evs.filter((e) => e.activityId === act.id);
       const listas = items.filter((e) => e.session).length;
       const completa = listas === items.length && items.length > 0;
@@ -172,8 +202,86 @@
   }
 
   // ---------------------------------------------------------------------------
+  // 1b. Centro de descarga de guías (tarjetas generadas desde el catálogo)
+  // ---------------------------------------------------------------------------
+  function guiaCard(g) {
+    const activa = g.status === 'activa';
+    const evs = EVIDENCIAS.filter((e) => e.guia === g.id);
+    const publicadas = evs.filter((e) => e.session).length;
+    const badge = activa
+      ? '<div class="absolute top-0 right-0 bg-[#39A900] text-white text-[10px] font-extrabold uppercase px-3 py-1 rounded-bl-xl tracking-wider">En curso • Guía activa</div>'
+      : `<div class="absolute top-0 right-0 bg-slate-100 text-slate-600 text-[10px] font-extrabold uppercase px-3 py-1 rounded-bl-xl tracking-wider border-l border-b border-slate-200">${esc(STATUS_LABEL[g.status] || '')}</div>`;
+    return `
+        <article class="bg-white ${activa ? 'border-2 border-[#39A900] shadow-sm' : 'border border-slate-200 shadow-2xs'} rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden">
+          ${badge}
+          <div class="space-y-4">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl ${activa ? 'bg-emerald-50 border-emerald-200 text-sena' : 'bg-slate-50 border-slate-200 text-slate-500'} border flex items-center justify-center">
+                <i data-lucide="${activa ? 'file-down' : 'book-check'}" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <span class="text-[10px] font-mono font-bold text-slate-400 uppercase">Fase de ${esc(g.fase)}</span>
+                <h3 class="text-lg font-extrabold text-slate-900">${esc(g.title)}</h3>
+              </div>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed">${esc(g.summary || '')}</p>
+            <dl class="space-y-1.5 pt-2 border-t border-slate-100 text-xs text-slate-700">
+              <div class="flex justify-between"><dt class="text-slate-500">Horas técnicas:</dt><dd class="text-[#00324D] font-mono font-bold">${g.hours} horas</dd></div>
+              <div class="flex justify-between"><dt class="text-slate-500">Evidencias técnicas:</dt><dd class="text-sena font-mono font-bold">${evs.length}</dd></div>
+              <div class="flex justify-between"><dt class="text-slate-500">Sesiones publicadas:</dt><dd class="text-slate-800 font-mono font-bold">${publicadas} de ${evs.length}</dd></div>
+            </dl>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-100 space-y-2">
+            <a href="${esc(g.pdf)}" download class="w-full inline-flex items-center justify-center gap-2 ${activa ? 'bg-[#39A900] hover:bg-[#2D8200] text-white shadow-sm' : 'bg-white hover:bg-slate-50 text-[#00324D] border border-slate-300'} text-xs font-bold py-2.5 px-4 rounded-lg transition-colors">
+              <i data-lucide="download" class="w-4 h-4"></i>
+              <span>Descargar ${esc(g.name)} (PDF oficial)</span>
+            </a>
+            <div class="grid grid-cols-2 gap-2">
+              <button type="button" data-ver-ruta="${esc(g.id)}" class="inline-flex items-center justify-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-[11px] font-bold py-2 rounded-lg transition-colors">
+                <i data-lucide="route" class="w-3.5 h-3.5 text-emerald-600"></i><span>Ver ruta</span>
+              </button>
+              ${g.generalSession ? `<a href="${esc(g.folder + g.generalSession.file)}" class="inline-flex items-center justify-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-[11px] font-bold py-2 rounded-lg transition-colors">
+                <i data-lucide="presentation" class="w-3.5 h-3.5 text-sena"></i><span>Visión general</span>
+              </a>` : '<span></span>'}
+            </div>
+          </div>
+        </article>`;
+  }
+
+  function renderGuias() {
+    const grid = $('guias-grid');
+    if (!grid) return;
+    grid.querySelectorAll('[data-skeleton]').forEach((el) => el.remove());
+    const cards = GUIAS_CON_RUTA.filter((g) => g.pdf).map(guiaCard).join('');
+    grid.insertAdjacentHTML('afterbegin', cards);
+  }
+
+  // ---------------------------------------------------------------------------
   // 2. Explorador multi-guía
   // ---------------------------------------------------------------------------
+  const FILTER_BTN = 'px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition-all';
+
+  function renderFiltros() {
+    const guiaBox = $('guia-filter-container');
+    const catBox = $('category-filter-container');
+    if (guiaBox) {
+      const guias = CATALOG.guias.filter((g) => EVIDENCIAS.some((e) => e.guia === g.id))
+        .sort((a, b) => (b.status === 'activa') - (a.status === 'activa'));
+      guiaBox.insertAdjacentHTML('beforeend', guias.map((g) => `
+        <button type="button" data-guia="${esc(g.id)}" aria-pressed="false" class="guia-filter-btn ${FILTER_BTN} flex items-center gap-1.5">
+          ${g.status === 'activa' ? '<span class="w-2 h-2 rounded-full bg-sena" aria-hidden="true"></span>' : ''}
+          <span>${esc(g.name)} (${g.status === 'activa' ? 'Activa · ' : ''}${esc(g.tagline || '')})</span>
+        </button>`).join(''));
+    }
+    if (catBox) {
+      const usadas = Object.keys(CATEGORIAS).filter((id) => EVIDENCIAS.some((e) => e.category === id));
+      const anchor = $('btn-transversales-info');
+      const html = usadas.map((id) => `
+        <button type="button" data-cat="${esc(id)}" aria-pressed="false" class="cat-filter-btn ${FILTER_BTN.replace('px-3.5 py-1.5', 'px-3 py-1')}">${esc(CATEGORIAS[id].name)}</button>`).join('');
+      if (anchor) anchor.insertAdjacentHTML('beforebegin', html);
+      else catBox.insertAdjacentHTML('beforeend', html);
+    }
+  }
   const state = { guia: 'all', cat: 'all', query: '', page: 1 };
 
   function getFiltered() {
@@ -525,6 +633,9 @@
     const list = $('footer-resources');
     if (!list) return;
     const items = [];
+    GUIAS_CON_RUTA.filter((g) => g.pdf).forEach((g) => {
+      items.push(`<li><a href="${esc(g.pdf)}" download class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="download" class="w-3.5 h-3.5"></i> Descargar ${esc(g.name)} PDF</a></li>`);
+    });
     CATALOG.guias.filter((g) => g.generalSession).forEach((g) => {
       items.push(`<li><a href="${esc(g.folder + g.generalSession.file)}" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i data-lucide="monitor" class="w-3.5 h-3.5"></i> Sesión general ${esc(g.name)}</a></li>`);
     });
@@ -545,7 +656,9 @@
 
     document.querySelectorAll('[data-sesiones-count]').forEach((el) => { el.textContent = sesionesDisponibles(); });
 
+    renderGuias();
     renderRuta();
+    renderFiltros();
     renderEvidencias();
     renderProjectionSelector();
     renderFooterSessions();
@@ -584,6 +697,14 @@
 
     // Delegación: tarjetas, ruta, paginación, checklist
     document.addEventListener('click', (e) => {
+      const tab = e.target.closest('[data-ruta-guia]');
+      if (tab) { rutaGuiaId = tab.dataset.rutaGuia; renderRuta(); renderIcons(); return; }
+      const verRuta = e.target.closest('[data-ver-ruta]');
+      if (verRuta) {
+        rutaGuiaId = verRuta.dataset.verRuta; renderRuta(); renderIcons();
+        $('ruta').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      }
       const open = e.target.closest('[data-open-evidence]');
       if (open) { openEvidenceModal(open.dataset.openEvidence); return; }
       const na = e.target.closest('[data-not-available]');

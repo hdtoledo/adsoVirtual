@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<!-- Archivo generado desde assets/js/catalogo.js. Sesión general de la Guía 07 -->
+<html lang="es" class="h-full bg-slate-50 antialiased">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visión general Guía 07 · ADSO Virtual · SENA CADPH Garzón</title>
+  <meta name="description" content="Sesión general de la Guía de Aprendizaje 07 (GA7-220501096): 498 horas, 5 actividades y 16 evidencias, del plan de trabajo con Git a las API probadas con Postman.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/png" href="../../assets/logo_green.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="../../assets/js/tailwind.config.js"></script>
+  <script src="https://unpkg.com/lucide@1.60.0/dist/umd/lucide.min.js"></script>
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/presenter.css">
+  <style>pre, code { font-variant-ligatures: none; }</style>
+</head>
+<body class="min-h-full flex flex-col bg-slate-50 text-slate-900 font-sans selection:bg-[#39A900] selection:text-white" data-guia="guia-07">
+  <div data-presenter="top"></div>
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 flex flex-col justify-center">
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 1 · PORTADA: GUÍA DE APRENDIZAJE 07 -->
+    <!-- ===================================================================== -->
+    <section class="slide-content active min-h-[580px]" data-title="Portada: Guía de Aprendizaje 07" data-section="Bloque 1: La guía">
+      <div class="my-auto w-full space-y-5">
+        <div class="bg-white rounded-3xl border border-slate-200 p-8 sm:p-12 shadow-sm text-center relative overflow-hidden flex flex-col items-center">
+          <div class="absolute -top-32 -right-32 w-72 h-72 bg-emerald-50 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="absolute -bottom-32 -left-32 w-72 h-72 bg-orange-50 rounded-full blur-3xl pointer-events-none"></div>
+          <span class="relative inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-6"><span class="w-2 h-2 rounded-full bg-[#39A900]"></span> Fase de Ejecución • AP7 Codificar los módulos del software</span>
+          <h1 class="relative text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight max-w-4xl leading-tight mb-3">Guía de Aprendizaje 07: <span class="text-sena">del plan al código</span></h1>
+          <p class="relative text-sm sm:text-base text-slate-600 max-w-3xl mb-8">Proyecto formativo: <strong>Construcción de software integrador de tecnologías orientadas a servicios</strong></p>
+          <div class="relative grid grid-cols-2 md:grid-cols-4 gap-3 w-full max-w-4xl">
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100"><p class="text-2xl font-extrabold text-[#00324D] font-mono">498</p><p class="text-xs font-semibold text-slate-500 mt-1">horas técnicas</p></div><div class="p-4 rounded-2xl bg-slate-50 border border-slate-100"><p class="text-2xl font-extrabold text-[#00324D] font-mono">5</p><p class="text-xs font-semibold text-slate-500 mt-1">actividades (AA1–AA5)</p></div><div class="p-4 rounded-2xl bg-slate-50 border border-slate-100"><p class="text-2xl font-extrabold text-[#00324D] font-mono">16</p><p class="text-xs font-semibold text-slate-500 mt-1">evidencias</p></div><div class="p-4 rounded-2xl bg-slate-50 border border-slate-100"><p class="text-2xl font-extrabold text-[#00324D] font-mono">220501096</p><p class="text-xs font-semibold text-slate-500 mt-1">competencia técnica</p></div>
+          </div>
+          <div class="relative mt-6 grid grid-cols-1 md:grid-cols-2 gap-3 w-full max-w-4xl text-left">
+            <div class="p-4 rounded-2xl bg-emerald-50 border border-emerald-100"><p class="text-[11px] font-extrabold uppercase tracking-wider text-emerald-800">Resultado 220501096-01</p><p class="text-sm font-semibold text-slate-800 mt-1">Planear actividades de construcción del software de acuerdo con el diseño establecido.</p></div>
+            <div class="p-4 rounded-2xl bg-emerald-50 border border-emerald-100"><p class="text-[11px] font-extrabold uppercase tracking-wider text-emerald-800">Resultado 220501096-04</p><p class="text-sm font-semibold text-slate-800 mt-1">Codificar el software de acuerdo con el diseño establecido.</p></div>
+          </div>
+          <button type="button" onclick="presenter.nextSlide()" class="relative mt-8 inline-flex items-center gap-2 bg-[#39A900] hover:bg-[#2D8200] text-white font-bold px-6 py-3 rounded-xl text-sm shadow-md transition-colors">Iniciar <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 2 · MAPA DE LAS 5 ACTIVIDADES -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Mapa de las 5 actividades" data-section="Bloque 1: La guía">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-emerald-50 border-emerald-200 text-emerald-800"><i data-lucide="map" class="w-3.5 h-3.5"></i> Panorama</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">498 horas en 5 actividades que se construyen una sobre otra</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Cada actividad usa lo que dejó la anterior: el plan y el repositorio de la AA1 acompañan todo el código de la AA2 a la AA5.</p>
+        </header>
+        <div class="space-y-2.5">
+          <div class="grid grid-cols-[3rem_1fr] sm:grid-cols-[3rem_1fr_15rem] gap-3 items-center p-3 rounded-2xl bg-white border border-slate-200 shadow-sm">
+              <span class="w-12 h-12 rounded-xl bg-orange-100 text-orange-800 flex items-center justify-center"><i data-lucide="git-branch" class="w-5 h-5"></i></span>
+              <div class="min-w-0"><p class="text-sm font-extrabold text-slate-900"><span class="font-mono">AA1</span> · Configurar herramientas de versionamiento para control de código, de acuerdo con las metodologías de desarrollo</p><p class="text-xs text-slate-500 mt-0.5">5 evidencias</p></div>
+              <div class="col-span-2 sm:col-span-1 flex items-center gap-2"><div class="flex-1 h-2.5 rounded-full bg-slate-100 overflow-hidden"><div class="h-full rounded-full bg-orange-500" style="width:28%"></div></div><span class="font-mono text-xs font-bold text-slate-700 w-14 text-right">40 h</span></div>
+            </div><div class="grid grid-cols-[3rem_1fr] sm:grid-cols-[3rem_1fr_15rem] gap-3 items-center p-3 rounded-2xl bg-white border border-slate-200 shadow-sm">
+              <span class="w-12 h-12 rounded-xl bg-rose-100 text-rose-800 flex items-center justify-center"><i data-lucide="database" class="w-5 h-5"></i></span>
+              <div class="min-w-0"><p class="text-sm font-extrabold text-slate-900"><span class="font-mono">AA2</span> · Aplicar estándares de codificación, de acuerdo con el diseño</p><p class="text-xs text-slate-500 mt-0.5">2 evidencias</p></div>
+              <div class="col-span-2 sm:col-span-1 flex items-center gap-2"><div class="flex-1 h-2.5 rounded-full bg-slate-100 overflow-hidden"><div class="h-full rounded-full bg-rose-500" style="width:67%"></div></div><span class="font-mono text-xs font-bold text-slate-700 w-14 text-right">96 h</span></div>
+            </div><div class="grid grid-cols-[3rem_1fr] sm:grid-cols-[3rem_1fr_15rem] gap-3 items-center p-3 rounded-2xl bg-white border border-slate-200 shadow-sm">
+              <span class="w-12 h-12 rounded-xl bg-violet-100 text-violet-800 flex items-center justify-center"><i data-lucide="layers" class="w-5 h-5"></i></span>
+              <div class="min-w-0"><p class="text-sm font-extrabold text-slate-900"><span class="font-mono">AA3</span> · Codificar los módulos del software stand-alone, web y móvil, de acuerdo con el diseño</p><p class="text-xs text-slate-500 mt-0.5">2 evidencias</p></div>
+              <div class="col-span-2 sm:col-span-1 flex items-center gap-2"><div class="flex-1 h-2.5 rounded-full bg-slate-100 overflow-hidden"><div class="h-full rounded-full bg-violet-500" style="width:85%"></div></div><span class="font-mono text-xs font-bold text-slate-700 w-14 text-right">122 h</span></div>
+            </div><div class="grid grid-cols-[3rem_1fr] sm:grid-cols-[3rem_1fr_15rem] gap-3 items-center p-3 rounded-2xl bg-white border border-slate-200 shadow-sm">
+              <span class="w-12 h-12 rounded-xl bg-sky-100 text-sky-800 flex items-center justify-center"><i data-lucide="atom" class="w-5 h-5"></i></span>
+              <div class="min-w-0"><p class="text-sm font-extrabold text-slate-900"><span class="font-mono">AA4</span> · Codificar el front-end utilizando framework, de acuerdo con el diseño</p><p class="text-xs text-slate-500 mt-0.5">3 evidencias</p></div>
+              <div class="col-span-2 sm:col-span-1 flex items-center gap-2"><div class="flex-1 h-2.5 rounded-full bg-slate-100 overflow-hidden"><div class="h-full rounded-full bg-sky-500" style="width:67%"></div></div><span class="font-mono text-xs font-bold text-slate-700 w-14 text-right">96 h</span></div>
+            </div><div class="grid grid-cols-[3rem_1fr] sm:grid-cols-[3rem_1fr_15rem] gap-3 items-center p-3 rounded-2xl bg-white border border-slate-200 shadow-sm">
+              <span class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center"><i data-lucide="server" class="w-5 h-5"></i></span>
+              <div class="min-w-0"><p class="text-sm font-extrabold text-slate-900"><span class="font-mono">AA5</span> · Crear servicios web, de acuerdo con el diseño</p><p class="text-xs text-slate-500 mt-0.5">4 evidencias</p></div>
+              <div class="col-span-2 sm:col-span-1 flex items-center gap-2"><div class="flex-1 h-2.5 rounded-full bg-slate-100 overflow-hidden"><div class="h-full rounded-full bg-emerald-500" style="width:100%"></div></div><span class="font-mono text-xs font-bold text-slate-700 w-14 text-right">144 h</span></div>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 3 · AA1: CONFIGURAR HERRAMIENTAS DE VERSIONAMIENTO PARA CONTROL DE CÓDIGO -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="AA1: Configurar herramientas de versionamiento para control de código" data-section="Bloque 2: Actividades y evidencias">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-emerald-50 border-emerald-200 text-emerald-800"><i data-lucide="git-branch" class="w-3.5 h-3.5"></i> AA1 · 40 horas</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Configurar herramientas de versionamiento para control de código, de acuerdo con las metodologías de desarrollo</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Antes de escribir código se planea cómo se construirá y se prepara el control de versiones: todo lo que se programe en la guía vivirá en un repositorio Git.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
+          <div class="lg:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-3">
+            <article class="p-4 rounded-2xl bg-white border border-orange-200 shadow-sm flex flex-col gap-2">
+              <div class="flex flex-wrap items-center gap-1.5"><span class="font-mono text-[11px] font-extrabold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded">AA1-EV01</span><span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full border bg-sky-50 text-sky-800 border-sky-200">Conocimiento</span><a href="proyeccion-evidencia-01.html" class="ml-auto inline-flex items-center gap-1 text-[10px] font-extrabold text-emerald-700 hover:underline"><i data-lucide="presentation" class="w-3 h-3"></i> Sesión lista</a></div>
+              <p class="text-sm font-extrabold text-slate-900 leading-snug">Informe técnico de plan de trabajo para construcción de software</p>
+              <p class="text-xs text-slate-600 leading-relaxed">Informe técnico que, a partir de las características del software, especifica las herramientas y tecnologías de versionamiento que se usarán para construirlo. Se explica con el caso AromaSur Café: selección justificada de Git, plataforma remota, estrategia de ramas, convenciones y plan de trabajo.</p>
+              <p class="mt-auto pt-1 text-[11px] text-slate-500 flex items-center gap-1"><i data-lucide="package" class="w-3 h-3"></i> PDF (informe técnico)</p>
+            </article><article class="p-4 rounded-2xl bg-white border border-orange-200 shadow-sm flex flex-col gap-2">
+              <div class="flex flex-wrap items-center gap-1.5"><span class="font-mono text-[11px] font-extrabold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded">AA1-EV02</span><span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full border bg-amber-50 text-amber-900 border-amber-200">Desempeño</span></div>
+              <p class="text-sm font-extrabold text-slate-900 leading-snug">Definir estándares de codificación, de acuerdo con la plataforma de desarrollo elegida</p>
+              <p class="text-xs text-slate-600 leading-relaxed">Informe técnico con el estándar de codificación del software: nombramiento de variables, clases, métodos y paquetes según la plataforma elegida.</p>
+              <p class="mt-auto pt-1 text-[11px] text-slate-500 flex items-center gap-1"><i data-lucide="package" class="w-3 h-3"></i> PDF (informe técnico)</p>
+            </article><article class="p-4 rounded-2xl bg-white border border-orange-200 shadow-sm flex flex-col gap-2">
+              <div class="flex flex-wrap items-center gap-1.5"><span class="font-mono text-[11px] font-extrabold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded">AA1-EV03</span><span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full border bg-sky-50 text-sky-800 border-sky-200">Conocimiento</span></div>
+              <p class="text-sm font-extrabold text-slate-900 leading-snug">Identifica herramientas de versionamiento</p>
+              <p class="text-xs text-slate-600 leading-relaxed">Documento con tablas que comparan Git local y Git remoto: diferencias, características y descripción de sus comandos básicos.</p>
+              <p class="mt-auto pt-1 text-[11px] text-slate-500 flex items-center gap-1"><i data-lucide="package" class="w-3 h-3"></i> PDF (informe técnico)</p>
+            </article><article class="p-4 rounded-2xl bg-white border border-orange-200 shadow-sm flex flex-col gap-2">
+              <div class="flex flex-wrap items-center gap-1.5"><span class="font-mono text-[11px] font-extrabold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded">AA1-EV04</span><span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full border bg-amber-50 text-amber-900 border-amber-200">Desempeño</span></div>
+              <p class="text-sm font-extrabold text-slate-900 leading-snug">Instalación y configuración de herramienta de versionamiento (local/web)</p>
+              <p class="text-xs text-slate-600 leading-relaxed">Documento paso a paso, con pantallazos, de la instalación y configuración de Git en el equipo y de la cuenta en la plataforma remota.</p>
+              <p class="mt-auto pt-1 text-[11px] text-slate-500 flex items-center gap-1"><i data-lucide="package" class="w-3 h-3"></i> PDF (documento de instalación)</p>
+            </article><article class="p-4 rounded-2xl bg-white border border-orange-200 shadow-sm flex flex-col gap-2">
+              <div class="flex flex-wrap items-center gap-1.5"><span class="font-mono text-[11px] font-extrabold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded">AA1-EV05</span><span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full border bg-emerald-50 text-emerald-800 border-emerald-200">Producto</span></div>
+              <p class="text-sm font-extrabold text-slate-900 leading-snug">Herramientas de versionamiento (GIT) instalada y configurada</p>
+              <p class="text-xs text-slate-600 leading-relaxed">Video en el que se conecta el repositorio local con un repositorio remoto llamado Programa-Git y se ejecutan los comandos básicos de Git explicando cada paso.</p>
+              <p class="mt-auto pt-1 text-[11px] text-slate-500 flex items-center gap-1"><i data-lucide="package" class="w-3 h-3"></i> Video MP4</p>
+            </article>
+          </div>
+          
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="library" class="w-5 h-5 text-sena"></i>Material de formación</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><ul class="space-y-1.5"><li class="flex items-start gap-2"><i data-lucide="book-open" class="w-4 h-4 text-sena mt-0.5"></i><span>Aplicación del paradigma orientado a objetos en el lenguaje de programación</span></li><li class="flex items-start gap-2"><i data-lucide="book-open" class="w-4 h-4 text-sena mt-0.5"></i><span>Integración continua</span></li></ul><p class="text-xs text-slate-500 pt-2">Componentes formativos recomendados por la guía para esta actividad.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 4 · AA2: APLICAR ESTÁNDARES DE CODIFICACIÓN -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="AA2: Aplicar estándares de codificación" data-section="Bloque 2: Actividades y evidencias">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-emerald-50 border-emerald-200 text-emerald-800"><i data-lucide="database" class="w-3.5 h-3.5"></i> AA2 · 96 horas</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Aplicar estándares de codificación, de acuerdo con el diseño</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Primer código del proyecto: un módulo con base de datos (JDBC) y luego su versión web con servlets, formularios y JSP, siguiendo el estándar definido en la AA1.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
+          <div class="lg:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-3">
+            <article class="p-4 rounded-2xl bg-white border border-rose-200 shadow-sm flex flex-col gap-2">
+              <div class="flex flex-wrap items-center gap-1.5"><span class="font-mono text-[11px] font-extrabold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded">AA2-EV01</span><span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full border bg-amber-50 text-amber-900 border-amber-200">Desempeño</span></div>
+              <p class="text-sm font-extrabold text-slate-900 leading-snug">Codificación de módulos del software</p>
+              <p class="text-xs text-slate-600 leading-relaxed">Codificación de un módulo del proyecto con conexión a base de datos por JDBC, operaciones de inserción, consulta, actualización y eliminación, estándares de codificación y control de versiones.</p>
+              <p class="mt-auto pt-1 text-[11px] text-slate-500 flex items-center gap-1"><i data-lucide="package" class="w-3 h-3"></i> ZIP o RAR (proyecto + enlace del repositorio)</p>
+            </article><article class="p-4 rounded-2xl bg-white border border-rose-200 shadow-sm flex flex-col gap-2">
+              <div class="flex flex-wrap items-center gap-1.5"><span class="font-mono text-[11px] font-extrabold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded">AA2-EV02</span><span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full border bg-emerald-50 text-emerald-800 border-emerald-200">Producto</span></div>
+              <p class="text-sm font-extrabold text-slate-900 leading-snug">Módulos de software codificados y probados</p>
+              <p class="text-xs text-slate-600 leading-relaxed">Codificación del módulo del proyecto para la web con servlets: formularios HTML, métodos GET y POST y elementos de JSP, con control de versiones.</p>
+              <p class="mt-auto pt-1 text-[11px] text-slate-500 flex items-center gap-1"><i data-lucide="package" class="w-3 h-3"></i> ZIP o RAR (proyecto + enlace del repositorio)</p>
+            </article>
+          </div>
+          
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="library" class="w-5 h-5 text-sena"></i>Material de formación</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><ul class="space-y-1.5"><li class="flex items-start gap-2"><i data-lucide="book-open" class="w-4 h-4 text-sena mt-0.5"></i><span>Desarrollo de aplicaciones web con Java</span></li><li class="flex items-start gap-2"><i data-lucide="book-open" class="w-4 h-4 text-sena mt-0.5"></i><span>Construcción Api</span></li><li class="flex items-start gap-2"><i data-lucide="book-open" class="w-4 h-4 text-sena mt-0.5"></i><span>Servicios web con PHP</span></li></ul><p class="text-xs text-slate-500 pt-2">Componentes formativos recomendados por la guía para esta actividad.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 5 · AA3: CODIFICAR LOS MÓDULOS DEL SOFTWARE STAND-ALONE -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="AA3: Codificar los módulos del software stand-alone" data-section="Bloque 2: Actividades y evidencias">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-emerald-50 border-emerald-200 text-emerald-800"><i data-lucide="layers" class="w-3.5 h-3.5"></i> AA3 · 122 horas</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Codificar los módulos del software stand-alone, web y móvil, de acuerdo con el diseño</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">El módulo se construye con un framework para el desarrollo ágil (web o móvil) y se prueba contra las historias de usuario o casos de uso.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
+          <div class="lg:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-3">
+            <article class="p-4 rounded-2xl bg-white border border-violet-200 shadow-sm flex flex-col gap-2">
+              <div class="flex flex-wrap items-center gap-1.5"><span class="font-mono text-[11px] font-extrabold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded">AA3-EV01</span><span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full border bg-amber-50 text-amber-900 border-amber-200">Desempeño</span></div>
+              <p class="text-sm font-extrabold text-slate-900 leading-snug">Codificación de módulos del software stand-alone, web y móvil</p>
+              <p class="text-xs text-slate-600 leading-relaxed">Codificación del módulo del proyecto (web o móvil) aplicando uno de los frameworks del componente formativo, con comentarios, estándares de codificación y control de versiones.</p>
+              <p class="mt-auto pt-1 text-[11px] text-slate-500 flex items-center gap-1"><i data-lucide="package" class="w-3 h-3"></i> ZIP o RAR (proyecto + enlace del repositorio)</p>
+            </article><article class="p-4 rounded-2xl bg-white border border-violet-200 shadow-sm flex flex-col gap-2">
+              <div class="flex flex-wrap items-center gap-1.5"><span class="font-mono text-[11px] font-extrabold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded">AA3-EV02</span><span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full border bg-emerald-50 text-emerald-800 border-emerald-200">Producto</span></div>
+              <p class="text-sm font-extrabold text-slate-900 leading-snug">Módulos de software stand-alone, web y móvil codificados y probados</p>
+              <p class="text-xs text-slate-600 leading-relaxed">Pruebas del módulo de la AA3-EV01 según las historias de usuario o casos de uso: documento con un pantallazo por requisito y pruebas de validación, más un video de la funcionalidad.</p>
+              <p class="mt-auto pt-1 text-[11px] text-slate-500 flex items-center gap-1"><i data-lucide="package" class="w-3 h-3"></i> ZIP o RAR (proyecto + Word + video + enlace)</p>
+            </article>
+          </div>
+          
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="library" class="w-5 h-5 text-sena"></i>Material de formación</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><ul class="space-y-1.5"><li class="flex items-start gap-2"><i data-lucide="book-open" class="w-4 h-4 text-sena mt-0.5"></i><span>Desarrollo de aplicaciones web con Java</span></li><li class="flex items-start gap-2"><i data-lucide="book-open" class="w-4 h-4 text-sena mt-0.5"></i><span>Construcción Api</span></li><li class="flex items-start gap-2"><i data-lucide="book-open" class="w-4 h-4 text-sena mt-0.5"></i><span>Servicios web con PHP</span></li></ul><p class="text-xs text-slate-500 pt-2">Componentes formativos recomendados por la guía para esta actividad.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 6 · AA4: CODIFICAR EL FRONT-END UTILIZANDO FRAMEWORK -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="AA4: Codificar el front-end utilizando framework" data-section="Bloque 2: Actividades y evidencias">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-emerald-50 border-emerald-200 text-emerald-800"><i data-lucide="atom" class="w-3.5 h-3.5"></i> AA4 · 96 horas</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Codificar el front-end utilizando framework, de acuerdo con el diseño</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">El front-end pasa del HTML, CSS y JS de la Guía 06 a componentes de React: primero la teoría, luego la definición de componentes y al final el código.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
+          <div class="lg:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-3">
+            <article class="p-4 rounded-2xl bg-white border border-sky-200 shadow-sm flex flex-col gap-2">
+              <div class="flex flex-wrap items-center gap-1.5"><span class="font-mono text-[11px] font-extrabold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded">AA4-EV01</span><span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full border bg-sky-50 text-sky-800 border-sky-200">Conocimiento</span></div>
+              <p class="text-sm font-extrabold text-slate-900 leading-snug">Taller sobre componentes front-end</p>
+              <p class="text-xs text-slate-600 leading-relaxed">Documento que responde: diferencia entre React y JSX, qué son las clases en React, principales eventos de React y un mapa conceptual de React, con las principales características del framework.</p>
+              <p class="mt-auto pt-1 text-[11px] text-slate-500 flex items-center gap-1"><i data-lucide="package" class="w-3 h-3"></i> PDF</p>
+            </article><article class="p-4 rounded-2xl bg-white border border-sky-200 shadow-sm flex flex-col gap-2">
+              <div class="flex flex-wrap items-center gap-1.5"><span class="font-mono text-[11px] font-extrabold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded">AA4-EV02</span><span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full border bg-amber-50 text-amber-900 border-amber-200">Desempeño</span></div>
+              <p class="text-sm font-extrabold text-slate-900 leading-snug">Verificación de procedimientos para la definición de componentes front-end de la aplicación</p>
+              <p class="text-xs text-slate-600 leading-relaxed">Documento que describe los componentes de React que se usarán en la codificación del proyecto, cada uno con su justificación.</p>
+              <p class="mt-auto pt-1 text-[11px] text-slate-500 flex items-center gap-1"><i data-lucide="package" class="w-3 h-3"></i> PDF</p>
+            </article><article class="p-4 rounded-2xl bg-white border border-sky-200 shadow-sm flex flex-col gap-2">
+              <div class="flex flex-wrap items-center gap-1.5"><span class="font-mono text-[11px] font-extrabold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded">AA4-EV03</span><span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full border bg-emerald-50 text-emerald-800 border-emerald-200">Producto</span></div>
+              <p class="text-sm font-extrabold text-slate-900 leading-snug">Componente front-end del proyecto formativo y proyectos de clase</p>
+              <p class="text-xs text-slate-600 leading-relaxed">Codificación del módulo front-end del proyecto (web o móvil) con lo visto en el componente formativo, con comentarios, estándares de codificación y control de versiones.</p>
+              <p class="mt-auto pt-1 text-[11px] text-slate-500 flex items-center gap-1"><i data-lucide="package" class="w-3 h-3"></i> ZIP o RAR (proyecto + enlace del repositorio)</p>
+            </article>
+          </div>
+          
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="library" class="w-5 h-5 text-sena"></i>Material de formación</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><ul class="space-y-1.5"><li class="flex items-start gap-2"><i data-lucide="book-open" class="w-4 h-4 text-sena mt-0.5"></i><span>Desarrollo de aplicaciones web con Java</span></li><li class="flex items-start gap-2"><i data-lucide="book-open" class="w-4 h-4 text-sena mt-0.5"></i><span>Construcción Api</span></li><li class="flex items-start gap-2"><i data-lucide="book-open" class="w-4 h-4 text-sena mt-0.5"></i><span>Servicios web con PHP</span></li></ul><p class="text-xs text-slate-500 pt-2">Componentes formativos recomendados por la guía para esta actividad.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 7 · AA5: CREAR SERVICIOS WEB -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="AA5: Crear servicios web" data-section="Bloque 2: Actividades y evidencias">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-emerald-50 border-emerald-200 text-emerald-800"><i data-lucide="server" class="w-3.5 h-3.5"></i> AA5 · 144 horas</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Crear servicios web, de acuerdo con el diseño</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Se construyen API: primero un caso guiado (registro e inicio de sesión) y luego las del proyecto, ambas probadas y documentadas con Postman.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
+          <div class="lg:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-3">
+            <article class="p-4 rounded-2xl bg-white border border-emerald-200 shadow-sm flex flex-col gap-2">
+              <div class="flex flex-wrap items-center gap-1.5"><span class="font-mono text-[11px] font-extrabold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded">AA5-EV01</span><span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full border bg-amber-50 text-amber-900 border-amber-200">Desempeño</span></div>
+              <p class="text-sm font-extrabold text-slate-900 leading-snug">Diseño y desarrollo de servicios web - caso</p>
+              <p class="text-xs text-slate-600 leading-relaxed">Servicio web de registro e inicio de sesión: recibe usuario y contraseña y responde autenticación satisfactoria o error de autenticación. Código comentado y versionado.</p>
+              <p class="mt-auto pt-1 text-[11px] text-slate-500 flex items-center gap-1"><i data-lucide="package" class="w-3 h-3"></i> ZIP o RAR (proyecto + enlace del repositorio)</p>
+            </article><article class="p-4 rounded-2xl bg-white border border-emerald-200 shadow-sm flex flex-col gap-2">
+              <div class="flex flex-wrap items-center gap-1.5"><span class="font-mono text-[11px] font-extrabold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded">AA5-EV02</span><span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full border bg-emerald-50 text-emerald-800 border-emerald-200">Producto</span></div>
+              <p class="text-sm font-extrabold text-slate-900 leading-snug">API</p>
+              <p class="text-xs text-slate-600 leading-relaxed">Testing de la API de la AA5-EV01 con Postman: video de las pruebas, documento con pantallazos y archivo con los endpoints.</p>
+              <p class="mt-auto pt-1 text-[11px] text-slate-500 flex items-center gap-1"><i data-lucide="package" class="w-3 h-3"></i> ZIP o RAR (proyecto + video + pruebas + endpoints)</p>
+            </article><article class="p-4 rounded-2xl bg-white border border-emerald-200 shadow-sm flex flex-col gap-2">
+              <div class="flex flex-wrap items-center gap-1.5"><span class="font-mono text-[11px] font-extrabold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded">AA5-EV03</span><span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full border bg-amber-50 text-amber-900 border-amber-200">Desempeño</span></div>
+              <p class="text-sm font-extrabold text-slate-900 leading-snug">Diseño y desarrollo de servicios web - proyecto</p>
+              <p class="text-xs text-slate-600 leading-relaxed">Diseño y codificación de las API que necesita el software del proyecto formativo, con la documentación de cada servicio y control de versiones.</p>
+              <p class="mt-auto pt-1 text-[11px] text-slate-500 flex items-center gap-1"><i data-lucide="package" class="w-3 h-3"></i> ZIP o RAR (proyecto + enlace del repositorio)</p>
+            </article><article class="p-4 rounded-2xl bg-white border border-emerald-200 shadow-sm flex flex-col gap-2">
+              <div class="flex flex-wrap items-center gap-1.5"><span class="font-mono text-[11px] font-extrabold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded">AA5-EV04</span><span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full border bg-emerald-50 text-emerald-800 border-emerald-200">Producto</span></div>
+              <p class="text-sm font-extrabold text-slate-900 leading-snug">API del proyecto</p>
+              <p class="text-xs text-slate-600 leading-relaxed">Testing con Postman de las API del proyecto construidas en la AA5-EV03: video, documento con pantallazos y archivo con los endpoints.</p>
+              <p class="mt-auto pt-1 text-[11px] text-slate-500 flex items-center gap-1"><i data-lucide="package" class="w-3 h-3"></i> ZIP o RAR (proyecto + video + pruebas + endpoints)</p>
+            </article>
+          </div>
+          
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="library" class="w-5 h-5 text-sena"></i>Material de formación</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><ul class="space-y-1.5"><li class="flex items-start gap-2"><i data-lucide="book-open" class="w-4 h-4 text-sena mt-0.5"></i><span>Desarrollo de aplicaciones web con Java</span></li><li class="flex items-start gap-2"><i data-lucide="book-open" class="w-4 h-4 text-sena mt-0.5"></i><span>Construcción Api</span></li><li class="flex items-start gap-2"><i data-lucide="book-open" class="w-4 h-4 text-sena mt-0.5"></i><span>Servicios web con PHP</span></li></ul><p class="text-xs text-slate-500 pt-2">Componentes formativos recomendados por la guía para esta actividad.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 8 · STACK TECNOLÓGICO DE LA GUÍA -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Stack tecnológico de la guía" data-section="Bloque 3: Cómo trabajar la guía">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-emerald-50 border-emerald-200 text-emerald-800"><i data-lucide="boxes" class="w-3.5 h-3.5"></i> Tecnologías</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Las herramientas que usarás durante la guía</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">La guía menciona Spring Boot, React, Android, Swift y Node como frameworks para el desarrollo ágil. Cada actividad indica cuál aplicar; elige según tu proyecto y justifícalo en el plan de trabajo (AA1-EV01).</p>
+        </header>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-wider text-slate-500"><i data-lucide="git-branch" class="w-4 h-4 text-sena"></i> Versionamiento</p><p class="text-sm font-extrabold text-slate-900 mt-1.5">Git + GitHub o GitLab</p><p class="text-xs text-slate-600 mt-1">AA1 a AA5: todo proyecto se versiona y se entrega con el enlace del repositorio.</p></div><div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-wider text-slate-500"><i data-lucide="database" class="w-4 h-4 text-sena"></i> Datos</p><p class="text-sm font-extrabold text-slate-900 mt-1.5">MySQL / PostgreSQL + JDBC</p><p class="text-xs text-slate-600 mt-1">AA2-EV01: conexión a la base de datos y operaciones CRUD.</p></div><div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-wider text-slate-500"><i data-lucide="globe" class="w-4 h-4 text-sena"></i> Web con Java</p><p class="text-sm font-extrabold text-slate-900 mt-1.5">Servlets + JSP</p><p class="text-xs text-slate-600 mt-1">AA2-EV02: formularios HTML procesados con GET y POST.</p></div><div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-wider text-slate-500"><i data-lucide="layers" class="w-4 h-4 text-sena"></i> Frameworks</p><p class="text-sm font-extrabold text-slate-900 mt-1.5">Spring Boot (web) · Android (móvil)</p><p class="text-xs text-slate-600 mt-1">AA3: módulos con frameworks para el desarrollo ágil.</p></div><div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-wider text-slate-500"><i data-lucide="atom" class="w-4 h-4 text-sena"></i> Front-end</p><p class="text-sm font-extrabold text-slate-900 mt-1.5">React (componentes y JSX)</p><p class="text-xs text-slate-600 mt-1">AA4: taller, definición de componentes y código.</p></div><div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-wider text-slate-500"><i data-lucide="server" class="w-4 h-4 text-sena"></i> Servicios web</p><p class="text-sm font-extrabold text-slate-900 mt-1.5">API REST (Java, Node.js o PHP)</p><p class="text-xs text-slate-600 mt-1">AA5: registro e inicio de sesión y las API del proyecto.</p></div><div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-wider text-slate-500"><i data-lucide="send" class="w-4 h-4 text-sena"></i> Pruebas de API</p><p class="text-sm font-extrabold text-slate-900 mt-1.5">Postman</p><p class="text-xs text-slate-600 mt-1">AA5-EV02 y EV04: testing, video y archivo de endpoints.</p></div><div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-wider text-slate-500"><i data-lucide="code-xml" class="w-4 h-4 text-sena"></i> Editor</p><p class="text-sm font-extrabold text-slate-900 mt-1.5">VS Code / IntelliJ IDEA / Android Studio</p><p class="text-xs text-slate-600 mt-1">Según la tecnología de cada actividad.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 9 · UN MISMO PROYECTO DE PRINCIPIO A FIN -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Un mismo proyecto de principio a fin" data-section="Bloque 3: Cómo trabajar la guía">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-emerald-50 border-emerald-200 text-emerald-800"><i data-lucide="git-commit-horizontal" class="w-3.5 h-3.5"></i> Hilo conductor</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Las evidencias son etapas del mismo software</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">No son ejercicios aislados: el plan define las herramientas, el estándar define cómo se escribe el código y Git guarda la historia de todo lo que construyes.</p>
+        </header>
+        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm overflow-x-auto">
+          <ol class="flex items-stretch gap-2 min-w-[760px]">
+            <li class="flex-1 relative p-3 rounded-xl bg-orange-50 border border-orange-200"><p class="font-mono text-[11px] font-extrabold text-slate-700">AA1-EV01</p><p class="text-xs font-semibold text-slate-800 mt-1">Plan de trabajo y herramientas</p><span class="absolute -right-3 top-1/2 -translate-y-1/2 z-10 w-5 h-5 rounded-full bg-[#39A900] text-white flex items-center justify-center"><i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></span></li><li class="flex-1 relative p-3 rounded-xl bg-orange-50 border border-orange-200"><p class="font-mono text-[11px] font-extrabold text-slate-700">AA1-EV02</p><p class="text-xs font-semibold text-slate-800 mt-1">Estándar de codificación</p><span class="absolute -right-3 top-1/2 -translate-y-1/2 z-10 w-5 h-5 rounded-full bg-[#39A900] text-white flex items-center justify-center"><i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></span></li><li class="flex-1 relative p-3 rounded-xl bg-orange-50 border border-orange-200"><p class="font-mono text-[11px] font-extrabold text-slate-700">AA1-EV03 a EV05</p><p class="text-xs font-semibold text-slate-800 mt-1">Git local y remoto funcionando</p><span class="absolute -right-3 top-1/2 -translate-y-1/2 z-10 w-5 h-5 rounded-full bg-[#39A900] text-white flex items-center justify-center"><i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></span></li><li class="flex-1 relative p-3 rounded-xl bg-emerald-50 border border-emerald-200"><p class="font-mono text-[11px] font-extrabold text-slate-700">AA2 y AA3</p><p class="text-xs font-semibold text-slate-800 mt-1">Módulos en Java</p><span class="absolute -right-3 top-1/2 -translate-y-1/2 z-10 w-5 h-5 rounded-full bg-[#39A900] text-white flex items-center justify-center"><i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></span></li><li class="flex-1 relative p-3 rounded-xl bg-emerald-50 border border-emerald-200"><p class="font-mono text-[11px] font-extrabold text-slate-700">AA4</p><p class="text-xs font-semibold text-slate-800 mt-1">Front-end en React</p><span class="absolute -right-3 top-1/2 -translate-y-1/2 z-10 w-5 h-5 rounded-full bg-[#39A900] text-white flex items-center justify-center"><i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></span></li><li class="flex-1 relative p-3 rounded-xl bg-emerald-50 border border-emerald-200"><p class="font-mono text-[11px] font-extrabold text-slate-700">AA5</p><p class="text-xs font-semibold text-slate-800 mt-1">API probadas con Postman</p></li>
+          </ol>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+          
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="link" class="w-5 h-5 text-sena"></i>Desde la AA2</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p>Todas las entregas de código incluyen un <strong>archivo con el enlace del repositorio</strong>. Sin repositorio la evidencia está incompleta.</p></div>
+          </div>
+          
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="files" class="w-5 h-5 text-sena"></i>Artefactos previos</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p>Cada módulo se codifica con base en el diagrama de clases, casos de uso, historias de usuario, prototipos y el plan de trabajo con las tecnologías seleccionadas.</p></div>
+          </div>
+          
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="history" class="w-5 h-5 text-sena"></i>Commits frecuentes</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p>El historial de commits demuestra tu trabajo. Commits pequeños, con mensajes claros, desde el primer día.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 10 · ENTREGAS, FORMATOS Y NOMENCLATURA -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Entregas, formatos y nomenclatura" data-section="Bloque 3: Cómo trabajar la guía">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-emerald-50 border-emerald-200 text-emerald-800"><i data-lucide="package-check" class="w-3.5 h-3.5"></i> Entregas</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Qué se entrega en cada evidencia</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Los documentos van en PDF; el código, en carpeta comprimida ZIP o RAR con el enlace del repositorio; la AA1-EV05 es un video MP4.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-4">
+          <div class="lg:col-span-3 bg-white rounded-2xl border border-slate-200 shadow-sm overflow-auto max-h-[440px]">
+            <table class="w-full text-sm"><thead class="bg-slate-50 sticky top-0"><tr><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Código</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Evidencia</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Formato</th></tr></thead><tbody class="divide-y divide-slate-100"><tr><th scope="row" class="px-3 py-1.5 text-left font-mono text-[11px] font-bold text-slate-800 whitespace-nowrap">AA1-EV01</th><td class="px-3 py-1.5 text-xs text-slate-700">Informe técnico de plan de trabajo para construcción de software</td><td class="px-3 py-1.5 text-xs text-slate-600 whitespace-nowrap">PDF</td></tr><tr><th scope="row" class="px-3 py-1.5 text-left font-mono text-[11px] font-bold text-slate-800 whitespace-nowrap">AA1-EV02</th><td class="px-3 py-1.5 text-xs text-slate-700">Definir estándares de codificación, de acuerdo con la plataforma de desarrollo elegida</td><td class="px-3 py-1.5 text-xs text-slate-600 whitespace-nowrap">PDF</td></tr><tr><th scope="row" class="px-3 py-1.5 text-left font-mono text-[11px] font-bold text-slate-800 whitespace-nowrap">AA1-EV03</th><td class="px-3 py-1.5 text-xs text-slate-700">Identifica herramientas de versionamiento</td><td class="px-3 py-1.5 text-xs text-slate-600 whitespace-nowrap">PDF</td></tr><tr><th scope="row" class="px-3 py-1.5 text-left font-mono text-[11px] font-bold text-slate-800 whitespace-nowrap">AA1-EV04</th><td class="px-3 py-1.5 text-xs text-slate-700">Instalación y configuración de herramienta de versionamiento (local/web)</td><td class="px-3 py-1.5 text-xs text-slate-600 whitespace-nowrap">PDF</td></tr><tr><th scope="row" class="px-3 py-1.5 text-left font-mono text-[11px] font-bold text-slate-800 whitespace-nowrap">AA1-EV05</th><td class="px-3 py-1.5 text-xs text-slate-700">Herramientas de versionamiento (GIT) instalada y configurada</td><td class="px-3 py-1.5 text-xs text-slate-600 whitespace-nowrap">Video MP4</td></tr><tr><th scope="row" class="px-3 py-1.5 text-left font-mono text-[11px] font-bold text-slate-800 whitespace-nowrap">AA2-EV01</th><td class="px-3 py-1.5 text-xs text-slate-700">Codificación de módulos del software</td><td class="px-3 py-1.5 text-xs text-slate-600 whitespace-nowrap">ZIP o RAR</td></tr><tr><th scope="row" class="px-3 py-1.5 text-left font-mono text-[11px] font-bold text-slate-800 whitespace-nowrap">AA2-EV02</th><td class="px-3 py-1.5 text-xs text-slate-700">Módulos de software codificados y probados</td><td class="px-3 py-1.5 text-xs text-slate-600 whitespace-nowrap">ZIP o RAR</td></tr><tr><th scope="row" class="px-3 py-1.5 text-left font-mono text-[11px] font-bold text-slate-800 whitespace-nowrap">AA3-EV01</th><td class="px-3 py-1.5 text-xs text-slate-700">Codificación de módulos del software stand-alone, web y móvil</td><td class="px-3 py-1.5 text-xs text-slate-600 whitespace-nowrap">ZIP o RAR</td></tr><tr><th scope="row" class="px-3 py-1.5 text-left font-mono text-[11px] font-bold text-slate-800 whitespace-nowrap">AA3-EV02</th><td class="px-3 py-1.5 text-xs text-slate-700">Módulos de software stand-alone, web y móvil codificados y probados</td><td class="px-3 py-1.5 text-xs text-slate-600 whitespace-nowrap">ZIP o RAR</td></tr><tr><th scope="row" class="px-3 py-1.5 text-left font-mono text-[11px] font-bold text-slate-800 whitespace-nowrap">AA4-EV01</th><td class="px-3 py-1.5 text-xs text-slate-700">Taller sobre componentes front-end</td><td class="px-3 py-1.5 text-xs text-slate-600 whitespace-nowrap">PDF</td></tr><tr><th scope="row" class="px-3 py-1.5 text-left font-mono text-[11px] font-bold text-slate-800 whitespace-nowrap">AA4-EV02</th><td class="px-3 py-1.5 text-xs text-slate-700">Verificación de procedimientos para la definición de componentes front-end de la aplicación</td><td class="px-3 py-1.5 text-xs text-slate-600 whitespace-nowrap">PDF</td></tr><tr><th scope="row" class="px-3 py-1.5 text-left font-mono text-[11px] font-bold text-slate-800 whitespace-nowrap">AA4-EV03</th><td class="px-3 py-1.5 text-xs text-slate-700">Componente front-end del proyecto formativo y proyectos de clase</td><td class="px-3 py-1.5 text-xs text-slate-600 whitespace-nowrap">ZIP o RAR</td></tr><tr><th scope="row" class="px-3 py-1.5 text-left font-mono text-[11px] font-bold text-slate-800 whitespace-nowrap">AA5-EV01</th><td class="px-3 py-1.5 text-xs text-slate-700">Diseño y desarrollo de servicios web - caso</td><td class="px-3 py-1.5 text-xs text-slate-600 whitespace-nowrap">ZIP o RAR</td></tr><tr><th scope="row" class="px-3 py-1.5 text-left font-mono text-[11px] font-bold text-slate-800 whitespace-nowrap">AA5-EV02</th><td class="px-3 py-1.5 text-xs text-slate-700">API</td><td class="px-3 py-1.5 text-xs text-slate-600 whitespace-nowrap">ZIP o RAR</td></tr><tr><th scope="row" class="px-3 py-1.5 text-left font-mono text-[11px] font-bold text-slate-800 whitespace-nowrap">AA5-EV03</th><td class="px-3 py-1.5 text-xs text-slate-700">Diseño y desarrollo de servicios web - proyecto</td><td class="px-3 py-1.5 text-xs text-slate-600 whitespace-nowrap">ZIP o RAR</td></tr><tr><th scope="row" class="px-3 py-1.5 text-left font-mono text-[11px] font-bold text-slate-800 whitespace-nowrap">AA5-EV04</th><td class="px-3 py-1.5 text-xs text-slate-700">API del proyecto</td><td class="px-3 py-1.5 text-xs text-slate-600 whitespace-nowrap">ZIP o RAR</td></tr></tbody></table>
+          </div>
+          <div class="lg:col-span-2 space-y-3">
+            
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="file-archive" class="w-5 h-5 text-sena"></i>Nombre de las carpetas comprimidas</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><p>La guía pide el nombre del aprendiz y el número de la evidencia:</p><p class="font-mono text-xs bg-slate-50 rounded-lg p-2">NOMBRE_APELLIDO_AA3_EV01.zip</p><p>En la AA2 aparece sin guion bajo (<code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">NOMBREAPELLIDO_AA2_EV01</code>) y en la AA5-EV03 y EV04 el texto repite EV01 y EV02. Usa siempre el número real de la evidencia que entregas.</p></div>
+          </div>
+            
+          <div class="flex items-start gap-3 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-sm text-emerald-950">
+            <i data-lucide="lightbulb" class="w-5 h-5 text-emerald-700 mt-0.5"></i>
+            <p><strong>Revisión final:</strong> Antes de comprimir, descomprime una copia en otra carpeta y verifica que el proyecto abre y que el enlace del repositorio es público o que el instructor tiene acceso.</p>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 11 · EVALUACIÓN Y RECOMENDACIONES -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Evaluación y recomendaciones" data-section="Bloque 3: Cómo trabajar la guía">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-emerald-50 border-emerald-200 text-emerald-800"><i data-lucide="list-checks" class="w-3.5 h-3.5"></i> Evaluación</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Cómo se evalúa la guía</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Cada evidencia tiene su lista de chequeo (IE-GA7-220501096-AAx-EVxx). Estos son los criterios oficiales agrupados por actividad.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div class="space-y-2"><div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="font-mono text-xs font-extrabold text-[#00324D]">AA1</p><p class="text-sm text-slate-700 mt-1">Interpreta el informe de diseño para definir el plan de trabajo · Define estándares de codificación · Selecciona y configura herramientas de versionamiento.</p></div><div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="font-mono text-xs font-extrabold text-[#00324D]">AA2 a AA4</p><p class="text-sm text-slate-700 mt-1">Codifica los módulos del software stand-alone, web y móvil, de acuerdo con las especificaciones del diseño y el estándar de codificación.</p></div><div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="font-mono text-xs font-extrabold text-[#00324D]">AA5</p><p class="text-sm text-slate-700 mt-1">Crea servicios web para disponer de métodos reutilizables en el software.</p></div></div>
+          <div class="space-y-3">
+            
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm ">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="lightbulb" class="w-5 h-5 text-sena"></i>Recomendaciones</h3>
+            <div class="text-sm text-slate-600 leading-relaxed space-y-2"><ul class="space-y-2"><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Organiza tu tiempo: la guía es exigente (498 horas).</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Consulta los componentes formativos antes de cada evidencia.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Asiste a los encuentros de asesoría virtual con tus dudas concretas.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Versiona desde el primer día y sube cambios con frecuencia.</span></li><li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5"></i><span>Revisa la lista de chequeo antes de subir a Zajuna.</span></li></ul></div>
+          </div>
+            <a href="proyeccion-evidencia-01.html" class="flex items-center justify-between gap-3 p-4 rounded-2xl bg-[#00324D] hover:bg-[#00263A] text-white transition-colors"><span><span class="block text-[11px] font-extrabold uppercase tracking-wider text-emerald-300">Primera sesión</span><span class="block text-sm font-bold">AA1-EV01 · Plan de trabajo y herramientas de versionamiento</span></span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div data-presenter="bottom"></div>
+  <script src="../../assets/js/catalogo.js"></script>
+  <script src="../../assets/js/presenter.js"></script>
+</body>
+</html>

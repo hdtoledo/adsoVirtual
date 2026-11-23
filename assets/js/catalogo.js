@@ -17,7 +17,9 @@ window.ADSO_CATALOGO = {
       id: "guia-06",
       name: "Guía 06",
       title: "Guía de Aprendizaje 06",
-      status: "activa",
+      status: "finalizada",
+      tagline: "Bases de datos, prototipado y frontend",
+      summary: "Modelo relacional y NoSQL, SQL, prototipado en Figma y maquetación web con HTML, CSS y JavaScript.",
       fase: "Ejecución",
       competencia: "220501096",
       hours: 192,
@@ -57,6 +59,8 @@ window.ADSO_CATALOGO = {
       name: "Guía 05",
       title: "Guía de Aprendizaje 05",
       status: "anterior",
+      tagline: "Análisis y arquitectura UML",
+      summary: "Especificación de requisitos y modelado del software con UML.",
       fase: "Análisis",
       competencia: "220501095",
       folder: "guias/guia-05/",
@@ -66,11 +70,48 @@ window.ADSO_CATALOGO = {
       id: "guia-07",
       name: "Guía 07",
       title: "Guía de Aprendizaje 07",
-      status: "proxima",
+      status: "activa",
+      tagline: "Versionamiento, codificación y servicios web",
+      summary: "Plan de trabajo y control de versiones con Git, codificación de módulos en Java (JDBC, servlets y frameworks), front-end con React y servicios web probados con Postman.",
+      project: "Construcción de software integrador de tecnologías orientadas a servicios",
       fase: "Ejecución",
       competencia: "220501096",
+      hours: 498,
+      pdf: "guias/Guia_aprendizaje_7.pdf",
       folder: "guias/guia-07/",
-      activities: []
+      generalSession: {
+        file: "proyeccion.html",
+        slides: 11,
+        title: "Visión general de la Guía 07: codificar los módulos del software",
+        blurb: "Apertura de la guía: 498 horas, 5 actividades y 16 evidencias, del plan de trabajo con Git a las API probadas con Postman, con el stack, las entregas y los criterios de evaluación."
+      },
+      activities: [
+        {
+          id: "AA1",
+          title: "Configurar herramientas de versionamiento para control de código, de acuerdo con las metodologías de desarrollo",
+          hours: 40
+        },
+        {
+          id: "AA2",
+          title: "Aplicar estándares de codificación, de acuerdo con el diseño",
+          hours: 96
+        },
+        {
+          id: "AA3",
+          title: "Codificar los módulos del software stand-alone, web y móvil, de acuerdo con el diseño",
+          hours: 122
+        },
+        {
+          id: "AA4",
+          title: "Codificar el front-end utilizando framework, de acuerdo con el diseño",
+          hours: 96
+        },
+        {
+          id: "AA5",
+          title: "Crear servicios web, de acuerdo con el diseño",
+          hours: 144
+        }
+      ]
     }
   ],
   categorias: {
@@ -103,6 +144,21 @@ window.ADSO_CATALOGO = {
       name: "Arquitectura UML",
       icon: "workflow",
       badge: "bg-cyan-50 text-cyan-800 border-cyan-200"
+    },
+    versionamiento: {
+      name: "Planeación y Versionamiento",
+      icon: "git-branch",
+      badge: "bg-orange-50 text-orange-800 border-orange-200"
+    },
+    java: {
+      name: "Codificación Java",
+      icon: "file-code-2",
+      badge: "bg-rose-50 text-rose-800 border-rose-200"
+    },
+    react: {
+      name: "Front-end con React",
+      icon: "atom",
+      badge: "bg-sky-50 text-sky-800 border-sky-200"
     }
   },
   evidencias: [
@@ -743,30 +799,38 @@ window.ADSO_CATALOGO = {
       guiaName: "Guía 07",
       fase: "Ejecución",
       code: "GA7-220501096-AA1-EV01",
-      activity: "AA1: Servicios Web",
-      category: "backend",
-      catName: "Backend & APIs",
-      type: "Producto",
-      hours: "24 Horas",
-      title: "Construcción de API RESTful con Node.js / Express o Spring Boot",
-      format: "ZIP / Repositorio Git",
+      activity: "AA1: Versionamiento",
+      category: "versionamiento",
+      catName: "Planeación y Versionamiento",
+      type: "Conocimiento",
+      hours: "AA1 · 40 h",
+      title: "Informe técnico de plan de trabajo para construcción de software",
+      format: "PDF (informe técnico)",
       instrument: "IE-GA7-220501096-AA1-EV01",
-      summary: "Desarrollo de servicios backend con endpoints REST (GET, POST, PUT, DELETE), control de rutas, middlewares y códigos de estado HTTP estándar.",
+      summary: "Informe técnico que, a partir de las características del software, especifica las herramientas y tecnologías de versionamiento que se usarán para construirlo. Se explica con el caso AromaSur Café: selección justificada de Git, plataforma remota, estrategia de ramas, convenciones y plan de trabajo.",
       steps: [
-        "Configurar el proyecto backend con estructura modular (controladores, servicios, modelos, rutas).",
-        "Implementar operaciones CRUD completas sobre las entidades principales.",
-        "Aplicar middlewares de manejo de errores, parseo de JSON y CORS.",
-        "Verificar respuestas con códigos de estado HTTP semánticos (200, 201, 400, 404, 500)."
+        "Revisar los artefactos de diseño del software (requisitos, diagramas, prototipos) para conocer qué se va a construir.",
+        "Comprender los tipos de control de versiones (local, centralizado y distribuido) y los conceptos de Git.",
+        "Comparar plataformas remotas (GitHub, GitLab, Bitbucket) y clientes (Git CLI, VS Code, GitHub Desktop) con criterios ponderados.",
+        "Seleccionar y justificar las herramientas de versionamiento para el proyecto.",
+        "Definir la estrategia de ramas, las convenciones de commits y la estructura del repositorio.",
+        "Redactar el informe con portada, introducción, objetivo, selección de herramientas y plan de trabajo, y exportarlo a PDF."
       ],
-      criteria: "Construye servicios web backend aplicando el estilo arquitectónico RESTful.",
+      criteria: "Interpreta el informe de diseño para definir el plan de trabajo en la construcción del software.",
       checklist: [
-        "Código backend limpio con dependencias instaladas y configuradas.",
-        "Rutas RESTful estructuradas respetando plurales y métodos HTTP.",
-        "Manejo global de excepciones sin caída del servidor.",
-        "Enlace a repositorio Git o carpeta ZIP comprimida."
+        "Archivo PDF con portada, introducción y objetivo.",
+        "Descripción del software a construir y de sus tecnologías.",
+        "Selección de herramientas de versionamiento con criterios y justificación.",
+        "Estrategia de ramas, convenciones y plan de trabajo.",
+        "Entrega formal en el espacio de la evidencia en Zajuna LMS."
       ],
       activityId: "AA1",
-      session: null
+      session: {
+        file: "proyeccion-evidencia-01.html",
+        slides: 21,
+        title: "AA1-EV01: Plan de trabajo y herramientas de versionamiento",
+        blurb: "Del diseño al plan de construcción: control de versiones, Git, comparación de plataformas con matriz ponderada interactiva, estrategia de ramas, Conventional Commits, plan de trabajo por actividades y estructura del informe técnico, con el caso AromaSur Café."
+      }
     },
     {
       id: "ev-ga7-02",
@@ -774,27 +838,28 @@ window.ADSO_CATALOGO = {
       guiaName: "Guía 07",
       fase: "Ejecución",
       code: "GA7-220501096-AA1-EV02",
-      activity: "AA1: Persistencia Backend",
-      category: "backend",
-      catName: "Backend & APIs",
+      activity: "AA1: Versionamiento",
+      category: "versionamiento",
+      catName: "Planeación y Versionamiento",
       type: "Desempeño",
-      hours: "20 Horas",
-      title: "Integración del backend con base de datos mediante ORM/ODM",
-      format: "Código Fuente / ZIP",
+      hours: "AA1 · 40 h",
+      title: "Definir estándares de codificación, de acuerdo con la plataforma de desarrollo elegida",
+      format: "PDF (informe técnico)",
       instrument: "IE-GA7-220501096-AA1-EV02",
-      summary: "Conexión de la API a MySQL o MongoDB utilizando capas de acceso a datos (Prisma / Mongoose / Sequelize), validaciones y transacciones seguras.",
+      summary: "Informe técnico con el estándar de codificación del software: nombramiento de variables, clases, métodos y paquetes según la plataforma elegida.",
       steps: [
-        "Configurar variables de entorno y cadena de conexión a la base de datos.",
-        "Definir esquemas de datos del ORM/ODM con tipos y validaciones de campo.",
-        "Implementar consultas de persistencia (creación, lectura, actualización y borrado).",
-        "Probar concurrencia e integridad transaccional en operaciones complejas."
+        "Identificar el lenguaje y la plataforma de desarrollo del proyecto.",
+        "Consultar la guía de estilo oficial de la plataforma (por ejemplo, convenciones de Java).",
+        "Definir reglas de nombramiento de variables, clases, métodos, constantes y paquetes con ejemplos.",
+        "Definir reglas de formato, comentarios y organización de archivos.",
+        "Redactar el informe con portada, introducción y objetivo y exportarlo a PDF."
       ],
-      criteria: "Integra la capa de persistencia de datos con los servicios del backend mediante mapeadores objeto-relacional.",
+      criteria: "Define estándares de codificación de acuerdo con las reglas de la plataforma de desarrollo seleccionada.",
       checklist: [
-        "Conexión exitosa a motor de base de datos relacional o NoSQL.",
-        "Uso de ORM (Prisma / Sequelize) u ODM (Mongoose) documentado.",
-        "Operaciones asíncronas con promesas o async/await gestionadas.",
-        "Capturas de base de datos con registros creados desde los endpoints."
+        "Archivo PDF con portada, introducción y objetivo.",
+        "Estándares de nombramiento con ejemplos correctos e incorrectos.",
+        "Reglas de formato, comentarios y estructura de paquetes.",
+        "Entrega formal en el espacio de la evidencia en Zajuna LMS."
       ],
       activityId: "AA1",
       session: null
@@ -804,30 +869,449 @@ window.ADSO_CATALOGO = {
       guia: "guia-07",
       guiaName: "Guía 07",
       fase: "Ejecución",
+      code: "GA7-220501096-AA1-EV03",
+      activity: "AA1: Versionamiento",
+      category: "versionamiento",
+      catName: "Planeación y Versionamiento",
+      type: "Conocimiento",
+      hours: "AA1 · 40 h",
+      title: "Identifica herramientas de versionamiento",
+      format: "PDF (informe técnico)",
+      instrument: "IE-GA7-220501096-AA1-EV03",
+      summary: "Documento con tablas que comparan Git local y Git remoto: diferencias, características y descripción de sus comandos básicos.",
+      steps: [
+        "Estudiar el componente formativo Integración continua.",
+        "Construir la tabla de diferencias y características entre Git local y Git remoto.",
+        "Construir la tabla de comandos básicos de Git local y remoto con su descripción.",
+        "Redactar el documento con portada, introducción y objetivo y exportarlo a PDF."
+      ],
+      criteria: "Selecciona y configura herramientas de versionamiento para el control de cambios en el código.",
+      checklist: [
+        "Archivo PDF con portada, introducción y objetivo.",
+        "Tabla de diferencias y características de Git local y remoto.",
+        "Tabla de comandos básicos con su descripción.",
+        "Entrega formal en el espacio de la evidencia en Zajuna LMS."
+      ],
+      activityId: "AA1",
+      session: null
+    },
+    {
+      id: "ev-ga7-04",
+      guia: "guia-07",
+      guiaName: "Guía 07",
+      fase: "Ejecución",
+      code: "GA7-220501096-AA1-EV04",
+      activity: "AA1: Versionamiento",
+      category: "versionamiento",
+      catName: "Planeación y Versionamiento",
+      type: "Desempeño",
+      hours: "AA1 · 40 h",
+      title: "Instalación y configuración de herramienta de versionamiento (local/web)",
+      format: "PDF (documento de instalación)",
+      instrument: "IE-GA7-220501096-AA1-EV04",
+      summary: "Documento paso a paso, con pantallazos, de la instalación y configuración de Git en el equipo y de la cuenta en la plataforma remota.",
+      steps: [
+        "Instalar Git en el equipo y verificar la versión.",
+        "Configurar nombre, correo y rama principal de Git.",
+        "Crear la cuenta en la plataforma remota (GitHub, GitLab u otra) y configurar la autenticación.",
+        "Documentar cada paso con pantallazos y exportar a PDF."
+      ],
+      criteria: "Selecciona y configura herramientas de versionamiento para el control de cambios en el código.",
+      checklist: [
+        "Archivo PDF con portada, introducción y objetivo.",
+        "Paso a paso con pantallazos de la instalación local.",
+        "Paso a paso con pantallazos de la configuración remota.",
+        "Entrega formal en el espacio de la evidencia en Zajuna LMS."
+      ],
+      activityId: "AA1",
+      session: null
+    },
+    {
+      id: "ev-ga7-05",
+      guia: "guia-07",
+      guiaName: "Guía 07",
+      fase: "Ejecución",
+      code: "GA7-220501096-AA1-EV05",
+      activity: "AA1: Versionamiento",
+      category: "versionamiento",
+      catName: "Planeación y Versionamiento",
+      type: "Producto",
+      hours: "AA1 · 40 h",
+      title: "Herramientas de versionamiento (GIT) instalada y configurada",
+      format: "Video MP4",
+      instrument: "IE-GA7-220501096-AA1-EV05",
+      summary: "Video en el que se conecta el repositorio local con un repositorio remoto llamado Programa-Git y se ejecutan los comandos básicos de Git explicando cada paso.",
+      steps: [
+        "Crear el repositorio público Programa-Git en GitHub, GitLab u otra plataforma.",
+        "Agregarlo como remoto del repositorio local y listar los remotos (git remote -v).",
+        "Subir los cambios con git push y comprobar el historial en la plataforma.",
+        "Crear kotlin.txt con nombre y correo, hacer git add, git commit -m \"Añadido datos.\" y git push.",
+        "Grabar el video con presentación inicial, explicando cada requerimiento."
+      ],
+      criteria: "Selecciona y configura herramientas de versionamiento para el control de cambios en el código.",
+      checklist: [
+        "Video MP4 con presentación del aprendiz y de los ejercicios.",
+        "Repositorio Programa-Git conectado y con historial visible.",
+        "Ejecución explicada de cada comando solicitado.",
+        "Entrega formal en el espacio de la evidencia en Zajuna LMS."
+      ],
+      activityId: "AA1",
+      session: null
+    },
+    {
+      id: "ev-ga7-06",
+      guia: "guia-07",
+      guiaName: "Guía 07",
+      fase: "Ejecución",
       code: "GA7-220501096-AA2-EV01",
-      activity: "AA2: Pruebas y Documentación",
+      activity: "AA2: Estándares y JDBC/Servlets",
+      category: "java",
+      catName: "Codificación Java",
+      type: "Desempeño",
+      hours: "AA2 · 96 h",
+      title: "Codificación de módulos del software",
+      format: "ZIP o RAR (proyecto + enlace del repositorio)",
+      instrument: "IE-GA7-220501096-AA2-EV01",
+      summary: "Codificación de un módulo del proyecto con conexión a base de datos por JDBC, operaciones de inserción, consulta, actualización y eliminación, estándares de codificación y control de versiones.",
+      steps: [
+        "Revisar los artefactos del ciclo de software (clases, casos de uso, historias de usuario, prototipos, plan de trabajo).",
+        "Crear el proyecto con control de versiones.",
+        "Implementar la conexión a la base de datos con JDBC.",
+        "Codificar inserción, consulta, actualización y eliminación aplicando el estándar de codificación.",
+        "Comprimir el proyecto con el archivo del enlace del repositorio: NOMBREAPELLIDO_AA2_EV01."
+      ],
+      criteria: "Codifica los módulos del software stand-alone, web y móvil, de acuerdo con las especificaciones del diseño y el estándar de codificación.",
+      checklist: [
+        "Carpeta comprimida (ZIP o RAR) con los archivos del proyecto y un archivo con el enlace del repositorio.",
+        "Conexión a la base de datos por JDBC.",
+        "Funcionalidades de inserción, consulta, actualización y eliminación.",
+        "Nombres de variables, métodos, clases y paquetes según el estándar.",
+        "Entrega formal en el espacio de la evidencia en Zajuna LMS."
+      ],
+      activityId: "AA2",
+      session: null
+    },
+    {
+      id: "ev-ga7-07",
+      guia: "guia-07",
+      guiaName: "Guía 07",
+      fase: "Ejecución",
+      code: "GA7-220501096-AA2-EV02",
+      activity: "AA2: Estándares y JDBC/Servlets",
+      category: "java",
+      catName: "Codificación Java",
+      type: "Producto",
+      hours: "AA2 · 96 h",
+      title: "Módulos de software codificados y probados",
+      format: "ZIP o RAR (proyecto + enlace del repositorio)",
+      instrument: "IE-GA7-220501096-AA2-EV02",
+      summary: "Codificación del módulo del proyecto para la web con servlets: formularios HTML, métodos GET y POST y elementos de JSP, con control de versiones.",
+      steps: [
+        "Revisar los artefactos del ciclo de software.",
+        "Crear el proyecto web con control de versiones.",
+        "Construir formularios HTML procesados por servlets con GET y POST.",
+        "Usar elementos de JSP para presentar la información.",
+        "Comprimir el proyecto con el archivo del enlace del repositorio: NOMBREAPELLIDO_AA2_EV02."
+      ],
+      criteria: "Codifica los módulos del software stand-alone, web y móvil, de acuerdo con las especificaciones del diseño y el estándar de codificación.",
+      checklist: [
+        "Carpeta comprimida (ZIP o RAR) con los archivos del proyecto y un archivo con el enlace del repositorio.",
+        "Formularios HTML con servlets.",
+        "Uso de los métodos GET y POST.",
+        "Uso de elementos de JSP.",
+        "Entrega formal en el espacio de la evidencia en Zajuna LMS."
+      ],
+      activityId: "AA2",
+      session: null
+    },
+    {
+      id: "ev-ga7-08",
+      guia: "guia-07",
+      guiaName: "Guía 07",
+      fase: "Ejecución",
+      code: "GA7-220501096-AA3-EV01",
+      activity: "AA3: Módulos con frameworks",
+      category: "java",
+      catName: "Codificación Java",
+      type: "Desempeño",
+      hours: "AA3 · 122 h",
+      title: "Codificación de módulos del software stand-alone, web y móvil",
+      format: "ZIP o RAR (proyecto + enlace del repositorio)",
+      instrument: "IE-GA7-220501096-AA3-EV01",
+      summary: "Codificación del módulo del proyecto (web o móvil) aplicando uno de los frameworks del componente formativo, con comentarios, estándares de codificación y control de versiones.",
+      steps: [
+        "Elegir el tipo de proyecto (web o móvil) y el framework.",
+        "Revisar los artefactos del ciclo de software.",
+        "Crear el proyecto con control de versiones.",
+        "Codificar el módulo con comentarios y estándares de codificación.",
+        "Comprimir el proyecto con el archivo del enlace del repositorio: NOMBRE_APELLIDO_AA3_EV01."
+      ],
+      criteria: "Codifica los módulos del software stand-alone, web y móvil, de acuerdo con las especificaciones del diseño y el estándar de codificación.",
+      checklist: [
+        "Carpeta comprimida (ZIP o RAR) con los archivos del proyecto y un archivo con el enlace del repositorio.",
+        "Uso de un framework visto en el componente.",
+        "Código comentado y con estándares de codificación.",
+        "Entrega formal en el espacio de la evidencia en Zajuna LMS."
+      ],
+      activityId: "AA3",
+      session: null
+    },
+    {
+      id: "ev-ga7-09",
+      guia: "guia-07",
+      guiaName: "Guía 07",
+      fase: "Ejecución",
+      code: "GA7-220501096-AA3-EV02",
+      activity: "AA3: Módulos con frameworks",
+      category: "java",
+      catName: "Codificación Java",
+      type: "Producto",
+      hours: "AA3 · 122 h",
+      title: "Módulos de software stand-alone, web y móvil codificados y probados",
+      format: "ZIP o RAR (proyecto + Word + video + enlace)",
+      instrument: "IE-GA7-220501096-AA3-EV02",
+      summary: "Pruebas del módulo de la AA3-EV01 según las historias de usuario o casos de uso: documento con un pantallazo por requisito y pruebas de validación, más un video de la funcionalidad.",
+      steps: [
+        "Listar las historias de usuario o casos de uso del módulo.",
+        "Ejecutar cada requisito y tomar el pantallazo de la interfaz.",
+        "Probar validaciones: fechas, números, textos, caracteres especiales y longitudes.",
+        "Redactar el documento con portada, introducción y objetivo.",
+        "Grabar el video de la funcionalidad y comprimir todo: NOMBRE_APELLIDO_AA3_EV02."
+      ],
+      criteria: "Codifica los módulos del software stand-alone, web y móvil, de acuerdo con las especificaciones del diseño y el estándar de codificación.",
+      checklist: [
+        "Archivos del proyecto y enlace del repositorio.",
+        "Documento Word con historia de usuario o caso de uso y su pantallazo.",
+        "Pruebas de validación documentadas.",
+        "Video con toda la funcionalidad del módulo.",
+        "Entrega formal en el espacio de la evidencia en Zajuna LMS."
+      ],
+      activityId: "AA3",
+      session: null
+    },
+    {
+      id: "ev-ga7-10",
+      guia: "guia-07",
+      guiaName: "Guía 07",
+      fase: "Ejecución",
+      code: "GA7-220501096-AA4-EV01",
+      activity: "AA4: Front-end con React",
+      category: "react",
+      catName: "Front-end con React",
+      type: "Conocimiento",
+      hours: "AA4 · 96 h",
+      title: "Taller sobre componentes front-end",
+      format: "PDF",
+      instrument: "IE-GA7-220501096-AA4-EV01",
+      summary: "Documento que responde: diferencia entre React y JSX, qué son las clases en React, principales eventos de React y un mapa conceptual de React, con las principales características del framework.",
+      steps: [
+        "Estudiar el componente formativo sobre React.",
+        "Explicar la diferencia entre React y JSX con ejemplos.",
+        "Explicar los componentes de clase y compararlos con los de función.",
+        "Describir los principales eventos de React.",
+        "Elaborar el mapa conceptual y redactar el documento en PDF."
+      ],
+      criteria: "Codifica los módulos del software stand-alone, web y móvil, de acuerdo con las especificaciones del diseño y el estándar de codificación.",
+      checklist: [
+        "Archivo PDF con portada, introducción y objetivo.",
+        "Respuesta a los 4 puntos del taller.",
+        "Principales características del framework.",
+        "Entrega formal en el espacio de la evidencia en Zajuna LMS."
+      ],
+      activityId: "AA4",
+      session: null
+    },
+    {
+      id: "ev-ga7-11",
+      guia: "guia-07",
+      guiaName: "Guía 07",
+      fase: "Ejecución",
+      code: "GA7-220501096-AA4-EV02",
+      activity: "AA4: Front-end con React",
+      category: "react",
+      catName: "Front-end con React",
+      type: "Desempeño",
+      hours: "AA4 · 96 h",
+      title: "Verificación de procedimientos para la definición de componentes front-end de la aplicación",
+      format: "PDF",
+      instrument: "IE-GA7-220501096-AA4-EV02",
+      summary: "Documento que describe los componentes de React que se usarán en la codificación del proyecto, cada uno con su justificación.",
+      steps: [
+        "Revisar los prototipos y el documento de componentes de la Guía 06.",
+        "Identificar los componentes de React del proyecto.",
+        "Justificar cada componente (propósito, props, estado y pantallas donde se usa).",
+        "Redactar el documento con portada, introducción y objetivo y exportarlo a PDF."
+      ],
+      criteria: "Codifica los módulos del software stand-alone, web y móvil, de acuerdo con las especificaciones del diseño y el estándar de codificación.",
+      checklist: [
+        "Archivo PDF con portada, introducción y objetivo.",
+        "Componentes de React del proyecto.",
+        "Justificación de cada componente.",
+        "Entrega formal en el espacio de la evidencia en Zajuna LMS."
+      ],
+      activityId: "AA4",
+      session: null
+    },
+    {
+      id: "ev-ga7-12",
+      guia: "guia-07",
+      guiaName: "Guía 07",
+      fase: "Ejecución",
+      code: "GA7-220501096-AA4-EV03",
+      activity: "AA4: Front-end con React",
+      category: "react",
+      catName: "Front-end con React",
+      type: "Producto",
+      hours: "AA4 · 96 h",
+      title: "Componente front-end del proyecto formativo y proyectos de clase",
+      format: "ZIP o RAR (proyecto + enlace del repositorio)",
+      instrument: "IE-GA7-220501096-AA4-EV03",
+      summary: "Codificación del módulo front-end del proyecto (web o móvil) con lo visto en el componente formativo, con comentarios, estándares de codificación y control de versiones.",
+      steps: [
+        "Revisar los artefactos del ciclo de software y los componentes definidos en la AA4-EV02.",
+        "Crear el proyecto con control de versiones.",
+        "Codificar los componentes y pantallas del módulo con comentarios y estándares.",
+        "Comprimir el proyecto con el archivo del enlace del repositorio: NOMBRE_APELLIDO_AA4_EV03."
+      ],
+      criteria: "Codifica los módulos del software stand-alone, web y móvil, de acuerdo con las especificaciones del diseño y el estándar de codificación.",
+      checklist: [
+        "Carpeta comprimida (ZIP o RAR) con los archivos del proyecto y un archivo con el enlace del repositorio.",
+        "Componentes del módulo front-end funcionando.",
+        "Código comentado y con estándares de codificación.",
+        "Entrega formal en el espacio de la evidencia en Zajuna LMS."
+      ],
+      activityId: "AA4",
+      session: null
+    },
+    {
+      id: "ev-ga7-13",
+      guia: "guia-07",
+      guiaName: "Guía 07",
+      fase: "Ejecución",
+      code: "GA7-220501096-AA5-EV01",
+      activity: "AA5: Servicios web",
+      category: "backend",
+      catName: "Backend & APIs",
+      type: "Desempeño",
+      hours: "AA5 · 144 h",
+      title: "Diseño y desarrollo de servicios web - caso",
+      format: "ZIP o RAR (proyecto + enlace del repositorio)",
+      instrument: "IE-GA7-220501096-AA5-EV01",
+      summary: "Servicio web de registro e inicio de sesión: recibe usuario y contraseña y responde autenticación satisfactoria o error de autenticación. Código comentado y versionado.",
+      steps: [
+        "Diseñar los endpoints de registro e inicio de sesión.",
+        "Crear el proyecto con control de versiones.",
+        "Codificar el registro guardando la contraseña con hash, nunca en texto plano.",
+        "Codificar el inicio de sesión con mensajes de éxito y de error.",
+        "Comprimir el proyecto con el archivo del enlace del repositorio: NOMBRE_APELLIDO_AA5_EV01."
+      ],
+      criteria: "Crea servicios web para disponer de métodos reutilizables en el software.",
+      checklist: [
+        "Carpeta comprimida (ZIP o RAR) con los archivos del proyecto y un archivo con el enlace del repositorio.",
+        "Servicio de registro e inicio de sesión funcionando.",
+        "Respuesta de éxito y de error de autenticación.",
+        "Código comentado.",
+        "Entrega formal en el espacio de la evidencia en Zajuna LMS."
+      ],
+      activityId: "AA5",
+      session: null
+    },
+    {
+      id: "ev-ga7-14",
+      guia: "guia-07",
+      guiaName: "Guía 07",
+      fase: "Ejecución",
+      code: "GA7-220501096-AA5-EV02",
+      activity: "AA5: Servicios web",
       category: "backend",
       catName: "Backend & APIs",
       type: "Producto",
-      hours: "16 Horas",
-      title: "Documentación y pruebas de endpoints con Postman y Swagger/OpenAPI",
-      format: "JSON / PDF",
-      instrument: "IE-GA7-220501096-AA2-EV01",
-      summary: "Especificación de contratos de API con Swagger UI / OpenAPI 3.0 y batería de pruebas automáticas de peticiones y respuestas en Postman.",
+      hours: "AA5 · 144 h",
+      title: "API",
+      format: "ZIP o RAR (proyecto + video + pruebas + endpoints)",
+      instrument: "IE-GA7-220501096-AA5-EV02",
+      summary: "Testing de la API de la AA5-EV01 con Postman: video de las pruebas, documento con pantallazos y archivo con los endpoints.",
       steps: [
-        "Integrar Swagger UI en la aplicación backend con anotaciones OpenAPI.",
-        "Exportar la colección de pruebas de Postman con variables de entorno.",
-        "Escribir tests automáticos en Postman verificando status codes y payloads JSON.",
-        "Generar informe de pruebas con evidencias de ejecución exitosa."
+        "Instalar Postman.",
+        "Probar cada endpoint con casos de éxito y de error.",
+        "Documentar las pruebas con pantallazos.",
+        "Grabar el video del testing.",
+        "Comprimir proyecto, video, documento, archivo de endpoints y enlace del repositorio: NOMBRE_APELLIDO_AA5_EV02."
       ],
-      criteria: "Documenta y valida los servicios web aplicando herramientas de prueba y especificación de contratos.",
+      criteria: "Crea servicios web para disponer de métodos reutilizables en el software.",
       checklist: [
-        "Interfaz Swagger accesible en ruta local /api-docs.",
-        "Colección de Postman exportada en formato JSON v2.1.",
-        "Tests automáticos de aserción (pm.test) implementados.",
-        "Informe PDF con resultados de pruebas y tiempos de respuesta."
+        "Archivos del proyecto y enlace del repositorio.",
+        "Video del testing con Postman.",
+        "Documento con pantallazos de las pruebas.",
+        "Archivo con los endpoints de la API.",
+        "Entrega formal en el espacio de la evidencia en Zajuna LMS."
       ],
-      activityId: "AA2",
+      activityId: "AA5",
+      session: null
+    },
+    {
+      id: "ev-ga7-15",
+      guia: "guia-07",
+      guiaName: "Guía 07",
+      fase: "Ejecución",
+      code: "GA7-220501096-AA5-EV03",
+      activity: "AA5: Servicios web",
+      category: "backend",
+      catName: "Backend & APIs",
+      type: "Desempeño",
+      hours: "AA5 · 144 h",
+      title: "Diseño y desarrollo de servicios web - proyecto",
+      format: "ZIP o RAR (proyecto + enlace del repositorio)",
+      instrument: "IE-GA7-220501096-AA5-EV03",
+      summary: "Diseño y codificación de las API que necesita el software del proyecto formativo, con la documentación de cada servicio y control de versiones.",
+      steps: [
+        "Identificar los servicios que requiere el software del proyecto.",
+        "Diseñar los endpoints, métodos, datos de entrada y respuestas.",
+        "Codificar las API con control de versiones.",
+        "Documentar cada servicio.",
+        "Comprimir el proyecto con el archivo del enlace del repositorio, con el nombre que indique la guía."
+      ],
+      criteria: "Crea servicios web para disponer de métodos reutilizables en el software.",
+      checklist: [
+        "Carpeta comprimida (ZIP o RAR) con los archivos del proyecto y un archivo con el enlace del repositorio.",
+        "Servicios necesarios para el software del proyecto.",
+        "Documentación de cada servicio.",
+        "Entrega formal en el espacio de la evidencia en Zajuna LMS."
+      ],
+      activityId: "AA5",
+      session: null
+    },
+    {
+      id: "ev-ga7-16",
+      guia: "guia-07",
+      guiaName: "Guía 07",
+      fase: "Ejecución",
+      code: "GA7-220501096-AA5-EV04",
+      activity: "AA5: Servicios web",
+      category: "backend",
+      catName: "Backend & APIs",
+      type: "Producto",
+      hours: "AA5 · 144 h",
+      title: "API del proyecto",
+      format: "ZIP o RAR (proyecto + video + pruebas + endpoints)",
+      instrument: "IE-GA7-220501096-AA5-EV04",
+      summary: "Testing con Postman de las API del proyecto construidas en la AA5-EV03: video, documento con pantallazos y archivo con los endpoints.",
+      steps: [
+        "Probar cada API del proyecto en Postman con casos de éxito y de error.",
+        "Documentar las pruebas con pantallazos.",
+        "Grabar el video del testing.",
+        "Preparar el archivo con los endpoints.",
+        "Comprimir todo con el enlace del repositorio, con el nombre que indique la guía."
+      ],
+      criteria: "Crea servicios web para disponer de métodos reutilizables en el software.",
+      checklist: [
+        "Archivos del proyecto y enlace del repositorio.",
+        "Video del testing con Postman.",
+        "Documento con pantallazos de las pruebas.",
+        "Archivo con los endpoints de las API.",
+        "Entrega formal en el espacio de la evidencia en Zajuna LMS."
+      ],
+      activityId: "AA5",
       session: null
     }
   ]

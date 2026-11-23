@@ -16,12 +16,21 @@
 
 ---
 
-## 🎯 Guía Activa: Guía de Aprendizaje 06 (En Ejecución)
+## 🎯 Guía Activa: Guía de Aprendizaje 07 (En Ejecución)
 * **Código de Programa:** 228118
-* **Fase del Proyecto:** Ejecución
-* **Competencia Técnica Principal:** `220501096` - Desarrollar la solución de software de acuerdo con el diseño y metodologías de desarrollo.
-* **Carga Horaria Técnica:** 192 Horas de Formación Técnica en Desarrollo de Software.
-* **Evidencias Técnicas Cubiertas:** 13 Entregables Técnicos Oficiales (Bases de Datos Relacionales SQL, NoSQL MongoDB, Figma y Maquetación Frontend Web).
+* **Proyecto:** Construcción de software integrador de tecnologías orientadas a servicios · **AP7:** Codificar los módulos del software.
+* **Competencia Técnica:** `220501096` - Desarrollar la solución de software de acuerdo con el diseño y metodologías de desarrollo.
+* **Resultados de aprendizaje:**
+  * `220501096-01`: planear actividades de construcción del software.
+  * `220501096-04`: codificar el software de acuerdo con el diseño.
+* **Carga Horaria Técnica:** 498 horas en 5 actividades:
+  * AA1 Versionamiento: 40 h.
+  * AA2 Estándares de codificación: 96 h.
+  * AA3 Módulos stand-alone, web y móvil: 122 h.
+  * AA4 Front-end con React: 96 h.
+  * AA5 Servicios web: 144 h.
+* **Evidencias:** 16 entregables oficiales. El detalle está en [GUIA_07_EVIDENCIAS_PASO_A_PASO.md](GUIA_07_EVIDENCIAS_PASO_A_PASO.md).
+* **Guía anterior:** la Guía 06 está completa (13 de 13 sesiones publicadas) y sigue disponible en el portal y en [GUIA_06_EVIDENCIAS_PASO_A_PASO.md](GUIA_06_EVIDENCIAS_PASO_A_PASO.md).
 
 ---
 
@@ -33,7 +42,8 @@ repoVirtual/
 ├── 404.html                          # Página de error autocontenida (rutas resueltas en tiempo de ejecución)
 ├── index.html                        # Portal: descarga de guías, ruta de aprendizaje y explorador de evidencias
 ├── README.md
-├── GUIA_06_EVIDENCIAS_PASO_A_PASO.md # Referencia documental de evidencias y criterios
+├── GUIA_06_EVIDENCIAS_PASO_A_PASO.md # Referencia documental de evidencias y criterios (Guía 06)
+├── GUIA_07_EVIDENCIAS_PASO_A_PASO.md # Referencia documental de evidencias y criterios (Guía 07)
 ├── assets/
 │   ├── logo_green.png · logo_sena.png · logo_hd.png
 │   ├── css/
@@ -45,7 +55,10 @@ repoVirtual/
 │       ├── portal.js                 # Lógica del portal (ruta, filtros, paginación, modales, checklist)
 │       └── presenter.js              # Motor ÚNICO de presentaciones (genera toda la interfaz común)
 └── guias/
-    ├── Guia_aprendizaje_6.pdf        # PDF oficial SENA
+    ├── Guia_aprendizaje_6.pdf · Guia_aprendizaje_7.pdf  # PDF oficiales SENA
+    ├── guia-07/
+    │   ├── proyeccion.html           # Sesión general de la Guía 07 (11 diapositivas, generada desde el catálogo)
+    │   └── proyeccion-evidencia-01.html  # AA1-EV01: plan de trabajo y versionamiento (21 diapositivas)
     ├── _plantilla/
     │   └── proyeccion-plantilla.html # Punto de partida para nuevas sesiones
     └── guia-06/
@@ -77,7 +90,7 @@ Sitio 100 % estático (GitHub Pages), sin paso de compilación. Tres principios:
 
 ### Publicar una nueva sesión (3 pasos)
 
-1. Copiar `guias/_plantilla/proyeccion-plantilla.html` a `guias/guia-06/proyeccion-evidencia-NN.html` y escribir las diapositivas (`<section class="slide-content" data-title="…" data-section="…">`).
+1. Copiar `guias/_plantilla/proyeccion-plantilla.html` a `guias/guia-XX/proyeccion-evidencia-NN.html` y escribir las diapositivas (`<section class="slide-content" data-title="…" data-section="…">`).
 2. En `catalogo.js`, agregar a la evidencia: `session: { file, slides, title, blurb }`.
 3. Ajustar `data-evidencia="ev-NN"` en el `<body>` de la presentación. Si una sesión cubre varias evidencias, se listan separadas por espacio (`data-evidencia="ev-09 ev-10"`) y ambas evidencias apuntan al mismo `session.file`; el portal y la navegación la muestran una sola vez.
 
@@ -94,20 +107,20 @@ La tarjeta, la ruta de aprendizaje, el selector de proyección, el pie de págin
 ## 💻 Características del Portal Web Principal (`index.html`)
 
 ### 1. Centro de Descarga de Guías de Aprendizaje
-* Acceso centralizado y descarga directa en un clic de la **Guía de Aprendizaje 06 (PDF Oficial SENA)**.
-* Tarjetas informativas de fase con desglose de horas técnicas y competencias curriculares.
-* Módulos preparados para la integración de las guías subsiguientes (**Guía 05** y **Guía 07**).
+* Tarjetas **generadas desde `catalogo.js`** para cada guía con PDF: estado (en curso o completada), horas, evidencias y sesiones publicadas.
+* Cada tarjeta tiene la descarga del PDF oficial, el acceso a su ruta y la sesión de visión general.
+* Para agregar una guía nueva basta con su objeto en `guias` (con `pdf`, `summary`, `tagline` y `activities`) y sus evidencias.
 
-### 2. Ruta de Aprendizaje de la Guía Activa
-* Las evidencias técnicas agrupadas por **actividad de aprendizaje (AA1–AA4)**, en el orden en que se trabajan, con horas, tipo, formato de entrega y estado de la sesión.
+### 2. Ruta de Aprendizaje por Guía
+* Botones para cambiar de guía; se abre por defecto la guía con `status: "activa"`.
+* Muestra las evidencias técnicas agrupadas por **actividad de aprendizaje**, en el orden en que se trabajan, con tipo, formato de entrega y estado de la sesión.
 * Barra de progreso de sesiones publicadas y acceso directo al **paso a paso** o a la **proyección** de cada evidencia.
 
 ### 3. Explorador General Multi-Guía con Filtros y Paginación Dinámica
-* **Orientación Multi-Guía:** Permite filtrar y explorar evidencias de distintas guías de formación ADSO:
-  * **Guía 05:** Análisis de Requerimientos y Modelado de Arquitectura UML (3 evidencias).
-  * **Guía 06 (Activa):** Bases de Datos Relacionales/NoSQL, Prototipado Figma y Frontend Web (13 evidencias).
-  * **Guía 07:** Servicios Backend, APIs REST, ORM/ODM y documentación Swagger/Postman (3 evidencias).
-* **Filtros por Área Técnica:** Selector por categorías (`Bases de Datos SQL`, `NoSQL MongoDB`, `Prototipado UI/UX Figma`, `Frontend Web`, `Backend & APIs`, `Arquitectura UML`).
+* **Filtros por guía y por área técnica**, generados desde el catálogo: solo aparecen las guías y categorías que tienen evidencias.
+* **Guía 07 (activa):** versionamiento con Git, codificación en Java (JDBC, servlets, frameworks), React y servicios web (16 evidencias).
+* **Guía 06:** bases de datos SQL y NoSQL, prototipado en Figma y front-end web (13 evidencias).
+* **Guía 05:** análisis de requisitos y arquitectura UML.
 * **Buscador en Tiempo Real:** Filtrado reactivo instantáneo por código de evidencia (ej. `AA1-EV01`, `AA1-EV02`, `AA1-EV03`, `AA1-EV04`), título, resumen o tecnologías.
 * **Paginación Dinámica:** Paginación calibrada a **6 evidencias por página** con navegación previa/siguiente, botones numerados y contador contextual (`Mostrando X a Y de Z evidencias`).
 * **Estado de Disponibilidad de Diapositivas:**
@@ -305,6 +318,29 @@ La tarjeta, la ruta de aprendizaje, el selector de proyección, el pie de págin
     * Catálogo con `<template>` y `textContent` (prevención de XSS).
     * Pedido con `<dialog>`, toast e `Intl.NumberFormat`.
   * **Bloque 5 · Calidad y entrega (23–26):** **visor en vivo** (4 pantallas × móvil/escritorio), trazabilidad de las decisiones de usabilidad, cómo adaptarlo al proyecto propio y entrega de los dos ZIP.
+
+### 🟢 Guía 07 · Sesión general (`guias/guia-07/proyeccion.html`)
+* 11 diapositivas generadas desde `catalogo.js`:
+  * portada con los resultados de aprendizaje;
+  * mapa de las 5 actividades con sus horas;
+  * una diapositiva por actividad con sus evidencias y el material de formación;
+  * stack tecnológico;
+  * hilo conductor del proyecto versionado;
+  * tabla de entregas y nomenclatura;
+  * criterios de evaluación.
+
+### 🟢 Guía 07 · AA1-EV01: Informe técnico de plan de trabajo (`guias/guia-07/proyeccion-evidencia-01.html`)
+* **Código oficial:** `GA7-220501096-AA1-EV01` (conocimiento).
+  * Pide un informe técnico con las herramientas y tecnologías de versionamiento, con portada, introducción, objetivo y selección de herramientas.
+  * Entrega en PDF.
+  * Criterio: *"Interpreta el informe de diseño para definir el plan de trabajo en la construcción del software."*
+* **Caso:** AromaSur Café S.A.S. pasa del diseño (Guías 05–06) a la construcción.
+* **21 diapositivas en 5 bloques:**
+  * **Contexto:** requisitos oficiales, la cadena EV01 → EV05 de la AA1 y los módulos que se construirán.
+  * **Control de versiones:** por qué versionar; sistemas local, centralizado y distribuido; las cuatro zonas de Git y el vocabulario básico.
+  * **Selección:** GitHub, GitLab y Bitbucket; **matriz ponderada interactiva**; herramientas cliente; tabla de decisión justificada y aviso de secretos.
+  * **Plan de trabajo:** GitHub Flow frente a Git Flow (diagramas), Conventional Commits y SemVer, monorepo con `.gitignore` y `.env.example`, stack por capa, etapas alineadas a AA1–AA5 y flujo diario en PowerShell.
+  * **Informe y entrega:** estructura del informe, ejemplo de redacción, checklist, errores frecuentes y reto opcional.
 
 ---
 

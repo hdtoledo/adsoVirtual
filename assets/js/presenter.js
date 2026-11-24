@@ -652,8 +652,9 @@
         '¿': () => this.toggleHelpModal(),
       };
 
-      // Dentro del índice, Espacio/Enter activan el botón enfocado
+      // Dentro del índice o sobre un control interactivo, Espacio/Enter activan el control enfocado
       if (this.isMenuOpen() && [' ', 'Enter'].includes(e.key)) return;
+      if (e.key === ' ' && e.target && e.target.closest('button, a, [role="tab"], [role="button"]')) return;
 
       const action = actions[key];
       if (action) {

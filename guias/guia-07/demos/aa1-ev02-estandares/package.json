@@ -1,0 +1,14 @@
+{
+  "name": "aromasur-estandares-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Demo de referencia para GA7-220501096-AA1-EV02: estándares de codificación en JavaScript (Node.js, Express, React y BD relacionales).",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node src/app.js",
+    "check": "node --check src/app.js && node --check src/modelo/estado-pedido.js && node --check src/modelo/producto.js && node --check src/modelo/pedido.js && node --check src/repositorios/productos.repo.js && node --check src/controladores/productos.controller.js && node --check src/rutas/productos.routes.js"
+  }
+}

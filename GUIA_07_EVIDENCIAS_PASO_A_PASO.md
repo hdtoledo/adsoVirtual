@@ -8,7 +8,7 @@
 
 **Duración:** 498 horas técnicas. Guía oficial: [Guia_aprendizaje_7.pdf](guias/Guia_aprendizaje_7.pdf).
 
-> Las entregas calificadas se hacen siempre en **Zajuna LMS**. Este documento resume la guía oficial; ante cualquier diferencia, prevalece el PDF.
+> Las entregas calificadas se hacen siempre en **Zajuna LMS**. En el curso trabajaremos todas las evidencias de la Guía 07 sobre el proyecto base **AromaSur Café S.A.S.** con el stack unificado de **Bases de datos relacionales (MySQL / PostgreSQL) + Node.js + Express + React (JavaScript)**. Este documento resume la guía oficial; ante cualquier diferencia de lineamientos formales, prevalece el PDF.
 
 ---
 
@@ -63,8 +63,20 @@ Material de formación: *Aplicación del paradigma orientado a objetos en el len
   6. Redactar el informe con portada, introducción, objetivo, desarrollo, conclusiones y referencias, y exportarlo a **PDF**.
 - **Entrega:** documento informe técnico, extensión libre, formato PDF. Espacio en Zajuna: *Informe técnico de plan de trabajo para construcción de software. GA7-220501096-AA1-EV01.*
 
-### 2. `GA7-220501096-AA1-EV02` · Definir estándares de codificación
-Informe técnico con el estándar de codificación del software: nombramiento de variables, declaración de clases y de métodos, entre otros. Debe tener portada, introducción y objetivo. Se entrega en PDF.
+### 2. `GA7-220501096-AA1-EV02` · Definir estándares de codificación, de acuerdo con la plataforma de desarrollo elegida
+- **Diapositivas:** [guias/guia-07/proyeccion-evidencia-02.html](guias/guia-07/proyeccion-evidencia-02.html) (21 slides, caso AromaSur Café S.A.S. en JavaScript: BD relacional, Express, React y Node.js, con validador de nombres y auditor de código interactivos).
+- **Demo de referencia:** [guias/guia-07/demos/aa1-ev02-estandares/](guias/guia-07/demos/aa1-ev02-estandares/README.md) (modelo Node.js ES Modules ejecutable `estado-pedido.js`, `producto.js`, `pedido.js` y `app.js`; capa HTTP de referencia `productos.routes.js` → `productos.controller.js` → `productos.repo.js`; `package.json` y `.editorconfig`).
+- **Descripción oficial:**
+  > *"Con base en las características del software a desarrollar, realice un informe técnico con el estándar de codificación a utilizar para el desarrollo del software según lo visto en los componentes formativos. Se deben seguir las normas básicas de presentación de un documento escrito, es decir, el documento debe tener como mínimo una portada, introducción, objetivo, estándares de codificación como nombramiento de variables, declaración de clases, declaración de métodos, etc."*
+- **Criterio:** define estándares de codificación de acuerdo con las reglas de la plataforma de desarrollo seleccionada. **Instrumento:** `IE-GA7-220501096-AA1-EV02`.
+- **Paso a paso:**
+  1. Retomar la plataforma de AromaSur (**Base de datos relacional SQL + Node.js + Express + React**) y declarar las guías oficiales adoptadas (Airbnb JavaScript Style Guide, React Docs, Express Best Practices y SQL Style Guide).
+  2. Definir las convenciones de nombramiento para carpetas, archivos (`kebab-case.js` / `PascalCase.jsx`), variables (`const`/`let`), booleanos, constantes (`UPPER_SNAKE_CASE`), clases, funciones, hooks (`use*`) y SQL (`snake_case`) con ejemplos **correctos e incorrectos**.
+  3. Especificar las reglas de declaración de clases JS (campos privados `#`, orden interno), funciones (verbos, longitud acotada, guard clauses, desestructuración) y controladores Express.
+  4. Documentar formato (2 espacios, 100 columnas, `===` estricto, llaves, UTF-8/LF), comentarios útiles con JSDoc, manejo de errores y reglas de codificación segura (`.env`, SQL parametrizado, `bcrypt`, prevención XSS).
+  5. Documentar las herramientas de verificación automática (`.editorconfig`, ESLint y Prettier) e incluir un ejemplo real de AromaSur (antes y después).
+  6. Redactar el informe con portada, introducción, objetivo, desarrollo, conclusiones y referencias, y exportarlo a **PDF**.
+- **Entrega:** documento informe técnico, extensión libre, formato PDF. Espacio en Zajuna: *Definir estándares de codificación, de acuerdo con la plataforma de desarrollo elegida. GA7-220501096-AA1-EV02.*
 
 ### 3. `GA7-220501096-AA1-EV03` · Identifica herramientas de versionamiento
 Documento con tablas de diferencias y características entre Git local y Git remoto, y una tabla con la descripción de sus comandos básicos. Debe tener portada, introducción y objetivo. Se entrega en PDF.
@@ -85,16 +97,16 @@ El video empieza con una presentación del aprendiz y de los ejercicios.
 ---
 
 ## Actividad GA7-220501096-AA2 · Aplicar estándares de codificación, de acuerdo con el diseño (96 h)
-Material de formación: *Desarrollo de aplicaciones web con Java*, *Construcción Api* y *Servicios web con PHP*.
+Stack de trabajo AromaSur: *Node.js + Express (JavaScript)* y *Bases de datos relacionales (MySQL / PostgreSQL)*.
 
 ### 6. `GA7-220501096-AA2-EV01` · Codificación de módulos del software
-- Módulo del proyecto con conexión a la base de datos por **JDBC**.
-- Debe tener inserción, consulta, actualización y eliminación.
-- Cumple el estándar de codificación en el nombramiento de variables, métodos, clases y paquetes.
+- Módulo de AromaSur en **Node.js** con conexión a base de datos relacional mediante pool y consultas parametrizadas.
+- Debe tener inserción, consulta, actualización y eliminación (CRUD).
+- Cumple el estándar de codificación JavaScript en el nombramiento de variables, funciones, clases y archivos.
 - Proyecto creado con control de versiones.
 
 ### 7. `GA7-220501096-AA2-EV02` · Módulos de software codificados y probados
-- Módulo web con **servlets**: formularios HTML, métodos GET y POST y elementos de **JSP**.
+- Módulo web de AromaSur con **Node.js + Express**: formularios HTML, rutas GET y POST y vistas dinámicas conectadas a la base de datos relacional.
 - Proyecto creado con control de versiones.
 
 ---

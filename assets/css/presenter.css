@@ -75,4 +75,15 @@
   }
   .slide-content:last-child { break-after: auto; page-break-after: auto; }
   .shadow-sm, .shadow-md, .shadow-lg, .shadow-xl, .shadow-2xl { box-shadow: none !important; }
+  /* Bloques de código legibles incluso si se imprime sin "Gráficos de fondo" */
+  .code-box {
+    background: #f8fafc !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #0f172a !important;
+  }
+  .code-box > div:first-child { border-bottom-color: #cbd5e1 !important; }
+  .code-box pre,
+  .code-box code,
+  .code-box span { color: #0f172a !important; }
+  .code-box .copy-btn { display: none !important; }
 }

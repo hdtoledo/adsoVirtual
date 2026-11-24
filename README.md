@@ -58,7 +58,10 @@ repoVirtual/
     ├── Guia_aprendizaje_6.pdf · Guia_aprendizaje_7.pdf  # PDF oficiales SENA
     ├── guia-07/
     │   ├── proyeccion.html           # Sesión general de la Guía 07 (11 diapositivas, generada desde el catálogo)
-    │   └── proyeccion-evidencia-01.html  # AA1-EV01: plan de trabajo y versionamiento (21 diapositivas)
+    │   ├── proyeccion-evidencia-01.html  # AA1-EV01: plan de trabajo y versionamiento (21 diapositivas)
+    │   ├── proyeccion-evidencia-02.html  # AA1-EV02: estándares de codificación en JavaScript (21 diapositivas)
+    │   └── demos/
+    │       └── aa1-ev02-estandares/  # Demo Node.js ejecutable (AromaSur) y .editorconfig que explica la EV02
     ├── _plantilla/
     │   └── proyeccion-plantilla.html # Punto de partida para nuevas sesiones
     └── guia-06/
@@ -120,7 +123,7 @@ La tarjeta, la ruta de aprendizaje, el selector de proyección, el pie de págin
 
 ### 3. Explorador General Multi-Guía con Filtros y Paginación Dinámica
 * **Filtros por guía y por área técnica**, generados desde el catálogo: solo aparecen las guías y categorías que tienen evidencias.
-* **Guía 07 (activa):** versionamiento con Git, codificación en Java (JDBC, servlets, frameworks), React y servicios web (16 evidencias).
+* **Guía 07 (activa):** versionamiento con Git, estándares de codificación en JavaScript, módulos con bases de datos relacionales + Node.js + Express, front-end en React y servicios web REST (16 evidencias).
 * **Guía 06:** bases de datos SQL y NoSQL, prototipado en Figma y front-end web (13 evidencias).
 * **Guía 05:** análisis de requisitos y arquitectura UML.
 * **Buscador en Tiempo Real:** Filtrado reactivo instantáneo por código de evidencia (ej. `AA1-EV01`, `AA1-EV02`, `AA1-EV03`, `AA1-EV04`), título, resumen o tecnologías.
@@ -343,6 +346,20 @@ La tarjeta, la ruta de aprendizaje, el selector de proyección, el pie de págin
   * **Selección:** GitHub, GitLab y Bitbucket; **matriz ponderada interactiva**; herramientas cliente; tabla de decisión justificada y aviso de secretos.
   * **Plan de trabajo:** GitHub Flow frente a Git Flow (diagramas), Conventional Commits y SemVer, monorepo con `.gitignore` y `.env.example`, stack por capa, etapas alineadas a AA1–AA5 y flujo diario en PowerShell.
   * **Informe y entrega:** estructura del informe, ejemplo de redacción, checklist, errores frecuentes y reto opcional.
+
+### 🟢 Guía 07 · AA1-EV02: Estándares de codificación en JavaScript (`guias/guia-07/proyeccion-evidencia-02.html`)
+* **Código oficial:** `GA7-220501096-AA1-EV02` (desempeño).
+  * Pide un informe técnico con el estándar de codificación del software según la plataforma elegida (portada, introducción, objetivo, nombramiento de variables, declaración de clases, declaración de métodos, etc.).
+  * Entrega en PDF. Instrumento: `IE-GA7-220501096-AA1-EV02`.
+  * Criterio: *"Define estándares de codificación de acuerdo con las reglas de la plataforma de desarrollo seleccionada."*
+* **Stack de AromaSur:** Bases de datos relacionales (MySQL / PostgreSQL), Node.js, Express y React (JavaScript ES Modules).
+* **Demo de referencia:** [`guias/guia-07/demos/aa1-ev02-estandares/`](guias/guia-07/demos/aa1-ev02-estandares/README.md) con los módulos JavaScript ejecutables de AromaSur (modelo `estado-pedido.js`, `producto.js`, `pedido.js` y `app.js` ejecutables; capa HTTP de referencia `productos.routes.js` → `productos.controller.js` → `productos.repo.js`), `package.json` y `.editorconfig`.
+* **21 diapositivas en 5 bloques:**
+  * **Contexto y fundamentos:** requisitos oficiales, hilo conductor EV02 → AA5 y comparación visual sin estándar vs con estándar en JavaScript.
+  * **Plataforma y convenciones:** guías oficiales del stack (Airbnb JavaScript, React Docs, Express Best Practices y SQL Style) y las 5 notaciones de nombres (`PascalCase`, `camelCase`, `UPPER_SNAKE_CASE`, `snake_case`, `kebab-case`).
+  * **Nombramiento y declaración:** estructura de carpetas y archivos (`kebab-case.js` / `PascalCase.jsx`), variables `const`/`let` y constantes, **validador interactivo de identificadores JS/React/Express/SQL**, clases JS con campos privados (`#`), funciones y guard clauses, formato (2 espacios, `===`), JSDoc y manejo de errores.
+  * **Ecosistema, auditoría y automatización:** convenciones de React, Express y BD relacional SQL; **auditoría interactiva antes y después (7 infracciones JS)**; `.editorconfig`, ESLint/Prettier y ejecución en PowerShell (`node src/app.js`); reglas de codificación segura.
+  * **Informe y entrega:** estructura sección por sección, ejemplo de redacción, hoja resumen del estándar AromaSur, checklist, errores frecuentes y reto opcional.
 
 ---
 

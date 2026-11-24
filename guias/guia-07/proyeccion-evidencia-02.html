@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<!-- Sesión GA7-220501096-AA1-EV02, caso AromaSur Café (Stack BD Relacional + Express + React + Node.js) -->
+<html lang="es" class="h-full bg-slate-50 antialiased">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AA1-EV02: Estándares de codificación en JavaScript · ADSO Virtual · SENA CADPH Garzón</title>
+  <meta name="description" content="Sesión interactiva de la evidencia GA7-220501096-AA1-EV02: informe técnico con el estándar de codificación para JavaScript (Node.js, Express, React y bases de datos relacionales), caso AromaSur Café.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/png" href="../../assets/logo_green.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="../../assets/js/tailwind.config.js?v=2026.11.23.3"></script>
+  <script src="https://unpkg.com/lucide@1.60.0/dist/umd/lucide.min.js"></script>
+  <link rel="stylesheet" href="../../assets/css/base.css?v=2026.11.23.3">
+  <link rel="stylesheet" href="../../assets/css/presenter.css?v=2026.11.23.3">
+  <style>
+    pre, code { font-variant-ligatures: none; }
+    .auditor-linea[aria-pressed="true"] { background: rgba(244, 63, 94, 0.25); box-shadow: inset 0 0 0 2px #fb7185; }
+    .auditor-tab[aria-selected="true"] { background: #00324D; color: #ffffff; border-color: #00324D; }
+    @media print {
+      [data-auditor-panel="despues"] { display: block !important; margin-top: 0.75rem; }
+      [data-auditor-panel="antes"] > div:first-child { background: #f8fafc !important; border: 1px solid #cbd5e1 !important; color: #0f172a !important; }
+      .auditor-linea { color: #9f1239 !important; background: transparent !important; box-shadow: none !important; }
+      [data-auditor-panel="antes"] .text-slate-400,
+      [data-auditor-panel="antes"] .text-rose-400 { color: #475569 !important; }
+    }
+  </style>
+</head>
+<body class="min-h-full flex flex-col bg-slate-50 text-slate-900 font-sans selection:bg-[#39A900] selection:text-white" data-evidencia="ev-ga7-02">
+  <div data-presenter="top"></div>
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 flex flex-col justify-center">
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 1 · PORTADA Y OBJETIVOS DE LA SESIÓN                      -->
+    <!-- ===================================================================== -->
+    <section class="slide-content active min-h-[580px]" data-title="Portada y objetivos de la sesión" data-section="Bloque 1: Contexto y fundamentos">
+      <div class="my-auto w-full space-y-5">
+        <div class="bg-white rounded-3xl border border-slate-200 p-8 sm:p-12 shadow-sm text-center relative overflow-hidden flex flex-col items-center">
+          <div class="absolute -top-32 -right-32 w-72 h-72 bg-amber-50 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="absolute -bottom-32 -left-32 w-72 h-72 bg-emerald-50 rounded-full blur-3xl pointer-events-none"></div>
+          <span class="relative inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-6"><span class="w-2 h-2 rounded-full bg-[#39A900]"></span> Guía de Aprendizaje 07 • AA1 • Estándares de codificación</span>
+          <h1 class="relative text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight max-w-4xl leading-tight mb-4">Definir <span class="text-sena">estándares de codificación</span> en JavaScript</h1>
+          <p class="relative text-sm sm:text-base font-mono font-bold text-slate-500 mb-8">Evidencia oficial: <span class="text-slate-800">GA7-220501096-AA1-EV02</span> · Evidencia de desempeño</p>
+          <div class="relative grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-4xl text-left">
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100"><p class="text-[10px] font-bold uppercase tracking-wider text-slate-600">Objetivo</p><p class="text-sm font-semibold text-slate-800 mt-1">Establecer reglas claras de nombramiento, clases, funciones, formato y comentarios para el proyecto en JavaScript.</p></div>
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100"><p class="text-[10px] font-bold uppercase tracking-wider text-slate-600">Entregable</p><p class="text-sm font-semibold text-slate-800 mt-1">Documento informe técnico en PDF. Extensión libre.</p></div>
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100"><p class="text-[10px] font-bold uppercase tracking-wider text-slate-600">Stack del proyecto</p><p class="text-sm font-semibold text-slate-800 mt-1">Base de datos relacional (SQL) · Node.js · Express · React.</p></div>
+          </div>
+          <div class="relative mt-6 flex flex-wrap justify-center gap-2 text-xs font-bold">
+            <span class="px-3 py-1 rounded-full bg-amber-50 text-amber-900 border border-amber-200">Caso base: AromaSur Café S.A.S.</span>
+            <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200">Lenguaje: JavaScript (ES Modules) + SQL</span>
+          </div>
+          <button type="button" onclick="presenter.nextSlide()" class="relative mt-8 inline-flex items-center gap-2 bg-[#39A900] hover:bg-[#2D8200] text-white font-bold px-6 py-3 rounded-xl text-sm shadow-md transition-colors">Iniciar explicación <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 2 · QUÉ PIDE LA EVIDENCIA                                 -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Qué pide la evidencia" data-section="Bloque 1: Contexto y fundamentos">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-emerald-50 border-emerald-200 text-emerald-800"><i data-lucide="clipboard-list" class="w-3.5 h-3.5"></i> Requisitos oficiales</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">El manual de estilo con el que escribirás todo AromaSur</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed"><em>"Con base en las características del software a desarrollar, realice un informe técnico con el estándar de codificación a utilizar para el desarrollo del software según lo visto en los componentes formativos."</em></p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-x-auto">
+            <table class="w-full text-sm min-w-[420px]">
+              <thead class="bg-slate-50"><tr><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">La guía pide</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Sección del informe</th></tr></thead>
+              <tbody class="divide-y divide-slate-100">
+                <tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Portada</th><td class="px-3 py-2 text-slate-600 align-top">Aprendiz, ficha, código de evidencia, proyecto AromaSur, instructor y centro.</td></tr>
+                <tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Introducción</th><td class="px-3 py-2 text-slate-600 align-top">Plataforma (BD relacional, Express, React, Node.js) y por qué estandarizar el código.</td></tr>
+                <tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Objetivo</th><td class="px-3 py-2 text-slate-600 align-top">Qué reglas fija el documento y en qué módulos del proyecto se aplicarán.</td></tr>
+                <tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Nombramiento de variables</th><td class="px-3 py-2 text-slate-600 align-top">Convenciones para variables, propiedades, constantes, parámetros y booleanos.</td></tr>
+                <tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Declaración de clases y métodos</th><td class="px-3 py-2 text-slate-600 align-top">Módulos ES, clases con campos privados <code class="font-mono text-xs">#</code>, funciones, controladores y componentes React.</td></tr>
+                <tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">"…etc." (estándar completo)</th><td class="px-3 py-2 text-slate-600 align-top">Formato, JSDoc, manejo de errores, seguridad SQL/Express y ESLint/Prettier.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="space-y-3">
+            <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+              <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="badge-check" class="w-5 h-5 text-sena"></i>Criterio de evaluación principal</h3>
+              <div class="text-sm text-slate-600 leading-relaxed space-y-2">
+                <p class="text-base font-semibold text-slate-800">"Define estándares de codificación de acuerdo con las reglas de la plataforma de desarrollo seleccionada."</p>
+                <p>No sirve copiar una guía genérica: cada regla debe incluir <strong>ejemplos concretos en JavaScript y SQL</strong> basados en AromaSur.</p>
+              </div>
+            </div>
+            <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+              <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="package-check" class="w-5 h-5 text-sena"></i>Lineamientos de entrega</h3>
+              <div class="text-sm text-slate-600 leading-relaxed">
+                <ul class="space-y-1.5">
+                  <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5 shrink-0"></i><span>Producto: documento informe técnico (extensión libre).</span></li>
+                  <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5 shrink-0"></i><span>Formato: <strong>PDF</strong> · Instrumento: <code class="font-mono text-xs bg-slate-100 px-1 py-0.5 rounded">IE-GA7-220501096-AA1-EV02</code>.</span></li>
+                  <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5 shrink-0"></i><span>Espacio en Zajuna: <em>Definir estándares de codificación, de acuerdo con la plataforma de desarrollo elegida. GA7-220501096-AA1-EV02.</em></span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 3 · DÓNDE ENCAJA EN LA GUÍA 07                            -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Dónde encaja: de la EV02 a toda la guía" data-section="Bloque 1: Contexto y fundamentos">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-emerald-50 border-emerald-200 text-emerald-800"><i data-lucide="git-branch" class="w-3.5 h-3.5"></i> Hilo conductor</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Lo que defines hoy se aplicará en todo el código de AromaSur</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">En la EV01 definiste el plan y Git. En la EV02 fijas el contrato de estilo en <strong>JavaScript y SQL</strong> que gobernarás desde AA2 hasta las API de AA5.</p>
+        </header>
+        <ol class="grid grid-cols-1 md:grid-cols-5 gap-2">
+          <li class="relative p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="font-mono text-xs font-extrabold text-slate-500">AA1-EV01</p><p class="text-sm font-extrabold mt-1 text-slate-900">Plan y stack</p><p class="text-xs mt-1 text-slate-600">Git, GitHub y arquitectura BD relacional + Express + React + Node.js.</p></li>
+          <li class="relative p-4 rounded-2xl bg-[#00324D] text-white shadow-sm"><p class="font-mono text-xs font-extrabold text-emerald-300">AA1-EV02</p><p class="text-sm font-extrabold mt-1">Estándares JS</p><p class="text-xs mt-1 text-slate-200">Reglas de nombramiento, clases, funciones, formato y SQL.</p><span class="absolute top-2 right-2 text-[9px] font-extrabold uppercase bg-[#39A900] px-1.5 py-0.5 rounded">Hoy</span></li>
+          <li class="relative p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="font-mono text-xs font-extrabold text-slate-500">AA1-EV03–05</p><p class="text-sm font-extrabold mt-1 text-slate-900">Git listo</p><p class="text-xs mt-1 text-slate-600">Comandos, instalación y repositorio remoto conectado.</p></li>
+          <li class="relative p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="font-mono text-xs font-extrabold text-slate-500">AA2–AA3</p><p class="text-sm font-extrabold mt-1 text-slate-900">Node + Express + SQL</p><p class="text-xs mt-1 text-slate-600">Módulos CRUD conectados a BD relacional con el estándar.</p></li>
+          <li class="relative p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="font-mono text-xs font-extrabold text-slate-500">AA4–AA5</p><p class="text-sm font-extrabold mt-1 text-slate-900">React y API</p><p class="text-xs mt-1 text-slate-600">Componentes React y servicios REST probados en Postman.</p></li>
+        </ol>
+        <div class="flex items-start gap-3 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-sm text-emerald-950">
+          <i data-lucide="lightbulb" class="w-5 h-5 text-emerald-700 mt-0.5 shrink-0"></i>
+          <p><strong>Ventaja de un solo lenguaje:</strong> al trabajar back-end (Node.js + Express) y front-end (React) en <strong>JavaScript</strong>, el equipo comparte convenciones, ESLint y Prettier en todo el repositorio.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 4 · QUÉ ES UN ESTÁNDAR Y POR QUÉ IMPORTA                  -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Qué es un estándar y por qué importa" data-section="Bloque 1: Contexto y fundamentos">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-amber-50 border-amber-200 text-amber-900"><i data-lucide="book-open" class="w-3.5 h-3.5"></i> Concepto base</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">El código se escribe una vez, pero se lee diez veces</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Un <strong>estándar de codificación</strong> es el conjunto de convenciones compartidas por un equipo para que cualquier archivo parezca escrito por una sola persona, sin importar quién lo programó.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <div class="min-w-0 bg-white rounded-2xl border border-rose-200 p-5 shadow-sm space-y-3">
+            <p class="flex items-center gap-2 text-sm font-extrabold text-rose-800"><i data-lucide="x-circle" class="w-5 h-5"></i> Sin estándar de codificación</p>
+            <div class="code-box bg-[#00263A] rounded-xl border border-rose-400/40 overflow-hidden">
+              <pre class="p-3.5 overflow-x-auto text-[12px] leading-relaxed text-rose-200"><code>class prod {
+ constructor(p,s){this.p=p;this.s=s;}
+ calc(c){var t=0;if(c&gt;0)t=this.p*c;return t;}
+}</code></pre>
+            </div>
+            <ul class="space-y-1.5 text-sm text-slate-600">
+              <li class="flex items-start gap-2"><i data-lucide="x" class="w-4 h-4 text-rose-600 mt-0.5 shrink-0"></i><span>Nombres crípticos (<code class="font-mono">p</code>, <code class="font-mono">s</code>, <code class="font-mono">c</code>) y uso de <code class="font-mono">var</code> obsoleto.</span></li>
+              <li class="flex items-start gap-2"><i data-lucide="x" class="w-4 h-4 text-rose-600 mt-0.5 shrink-0"></i><span>Propiedades públicas sin validar: cualquiera asigna un precio negativo.</span></li>
+              <li class="flex items-start gap-2"><i data-lucide="x" class="w-4 h-4 text-rose-600 mt-0.5 shrink-0"></i><span>Revisiones en Git llenas de conflictos por espacios y llaves distintas.</span></li>
+            </ul>
+          </div>
+          <div class="min-w-0 bg-white rounded-2xl border border-emerald-200 p-5 shadow-sm space-y-3">
+            <p class="flex items-center gap-2 text-sm font-extrabold text-emerald-800"><i data-lucide="check-circle-2" class="w-5 h-5"></i> Con estándar (AromaSur · JavaScript)</p>
+            <div class="code-box bg-[#00263A] rounded-xl border border-emerald-400/40 overflow-hidden">
+              <pre class="p-3.5 overflow-x-auto text-[12px] leading-relaxed text-emerald-200"><code>export class Producto {
+  #precioCop;
+
+  calcularSubtotal(cantidad) {
+    if (!Number.isInteger(cantidad) || cantidad &lt;= 0) {
+      throw new RangeError('Cantidad inválida');
+    }
+    return this.#precioCop * cantidad;
+  }
+}</code></pre>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-xs font-bold">
+              <div class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900">1. Nombramiento claro</div>
+              <div class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900">2. Clases y módulos limpios</div>
+              <div class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900">3. Formato y JSDoc</div>
+              <div class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900">4. Seguridad y linters</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 5 · PLATAFORMA AROMASUR Y GUÍAS OFICIALES                 -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Plataforma AromaSur y guías oficiales" data-section="Bloque 2: Plataforma y convenciones">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-sky-50 border-sky-200 text-sky-800"><i data-lucide="boxes" class="w-3.5 h-3.5"></i> Plataforma elegida</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">No inventes desde cero: adopta las guías oficiales del stack</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">AromaSur se construye con <strong>BD relacional + Node.js + Express + React</strong>. En tu informe declaras la guía base de cada capa y qué reglas concreta tu equipo.</p>
+        </header>
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-x-auto">
+          <table class="w-full text-sm min-w-[680px]">
+            <thead class="bg-slate-50">
+              <tr>
+                <th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Capa del stack AromaSur</th>
+                <th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Guía oficial de referencia</th>
+                <th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Verificación automática</th>
+                <th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Actividades</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="bg-emerald-50/60"><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">JavaScript / Node.js 24 LTS (ESM)</th><td class="px-3 py-2 text-slate-700 align-top"><strong>Airbnb JavaScript Style Guide</strong> + MDN</td><td class="px-3 py-2 text-slate-700 align-top">ESLint + Prettier</td><td class="px-3 py-2 font-bold text-emerald-800 align-top">AA2, AA3, AA5</td></tr>
+              <tr class="bg-emerald-50/40"><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Back-end · Express</th><td class="px-3 py-2 text-slate-700 align-top">Express Best Practices + Node Best Practices</td><td class="px-3 py-2 text-slate-700 align-top">ESLint + Postman</td><td class="px-3 py-2 font-bold text-emerald-800 align-top">AA2, AA3, AA5</td></tr>
+              <tr class="bg-emerald-50/40"><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Front-end · React + Vite</th><td class="px-3 py-2 text-slate-700 align-top">Airbnb React/JSX + Documentación oficial React</td><td class="px-3 py-2 text-slate-700 align-top">eslint-plugin-react + Prettier</td><td class="px-3 py-2 font-bold text-emerald-800 align-top">AA4</td></tr>
+              <tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Base de datos relacional (MySQL / PostgreSQL)</th><td class="px-3 py-2 text-slate-600 align-top">SQL Style Guide (Simon Holywell)</td><td class="px-3 py-2 text-slate-600 align-top">MySQL Workbench / SQLFluff</td><td class="px-3 py-2 text-slate-600 align-top">AA2–AA5</td></tr>
+              <tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Editor y control de versiones</th><td class="px-3 py-2 text-slate-600 align-top">EditorConfig + Conventional Commits (EV01)</td><td class="px-3 py-2 text-slate-600 align-top">.editorconfig + GitHub Actions</td><td class="px-3 py-2 text-slate-600 align-top">Todas (AA1–AA5)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-slate-500"><strong>Regla del equipo:</strong> todo el proyecto AromaSur usa <strong>ES Modules</strong> (<code class="font-mono">"type": "module"</code> con <code class="font-mono">import</code>/<code class="font-mono">export</code>), nunca mezclando <code class="font-mono">require()</code> de CommonJS con <code class="font-mono">import</code>.</p>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 6 · LAS 5 NOTACIONES DE NOMBRES (CASE STYLES)             -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Las 5 notaciones de nombres" data-section="Bloque 2: Plataforma y convenciones">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-sky-50 border-sky-200 text-sky-800"><i data-lucide="book-a" class="w-3.5 h-3.5"></i> Notaciones</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Cinco formas de escribir identificadores y dónde va cada una</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Cada capa del stack usa una notación distinta para reconocer al instante si lees una clase, una variable, una constante, un archivo o una columna SQL.</p>
+        </header>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+          <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-2">
+            <span class="inline-block font-mono text-xs font-extrabold px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-200">PascalCase</span>
+            <p class="font-mono text-sm font-bold text-[#00324D]">TarjetaCafe</p>
+            <p class="text-xs text-slate-600">Cada palabra inicia en mayúscula.</p>
+            <p class="text-[11px] text-slate-500 pt-1 border-t border-slate-100"><strong>Uso:</strong> Clases JS (<code class="font-mono">Producto</code>) y componentes React (<code class="font-mono">TarjetaCafe.jsx</code>).</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-2">
+            <span class="inline-block font-mono text-xs font-extrabold px-2 py-0.5 rounded bg-sky-50 text-sky-800 border border-sky-200">camelCase</span>
+            <p class="font-mono text-sm font-bold text-[#00324D]">calcularTotal</p>
+            <p class="text-xs text-slate-600">Primera palabra en minúscula; siguientes en mayúscula.</p>
+            <p class="text-[11px] text-slate-500 pt-1 border-t border-slate-100"><strong>Uso:</strong> Variables, propiedades, funciones, métodos, JSON y hooks (<code class="font-mono">usePedidos</code>).</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-2">
+            <span class="inline-block font-mono text-xs font-extrabold px-2 py-0.5 rounded bg-amber-50 text-amber-900 border border-amber-200">UPPER_SNAKE</span>
+            <p class="font-mono text-sm font-bold text-[#00324D]">STOCK_MINIMO</p>
+            <p class="text-xs text-slate-600">Todo en mayúsculas separado por guion bajo.</p>
+            <p class="text-[11px] text-slate-500 pt-1 border-t border-slate-100"><strong>Uso:</strong> Constantes globales, estados congelados y variables <code class="font-mono">.env</code> (<code class="font-mono">DB_HOST</code>).</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-2">
+            <span class="inline-block font-mono text-xs font-extrabold px-2 py-0.5 rounded bg-violet-50 text-violet-800 border border-violet-200">snake_case</span>
+            <p class="font-mono text-sm font-bold text-[#00324D]">precio_cop</p>
+            <p class="text-xs text-slate-600">Todo en minúsculas separado por guion bajo.</p>
+            <p class="text-[11px] text-slate-500 pt-1 border-t border-slate-100"><strong>Uso:</strong> Tablas y columnas de la base de datos relacional (<code class="font-mono">detalle_pedidos</code>).</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-2">
+            <span class="inline-block font-mono text-xs font-extrabold px-2 py-0.5 rounded bg-rose-50 text-rose-800 border border-rose-200">kebab-case</span>
+            <p class="font-mono text-sm font-bold text-[#00324D]">estado-pedido.js</p>
+            <p class="text-xs text-slate-600">Todo en minúsculas separado por guion medio.</p>
+            <p class="text-[11px] text-slate-500 pt-1 border-t border-slate-100"><strong>Uso:</strong> Archivos Node/Express, endpoints REST, clases CSS y ramas Git.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 p-4 rounded-2xl bg-amber-50 border border-amber-200 text-sm text-amber-950">
+          <i data-lucide="triangle-alert" class="w-5 h-5 text-amber-700 mt-0.5 shrink-0"></i>
+          <p><strong>Regla de idioma y acentos:</strong> en AromaSur usamos <strong>español sin tildes ni ñ</strong> para nombres del dominio (<code class="font-mono">codigo</code>, <code class="font-mono">anio</code>, <code class="font-mono">descripcion</code>) y prefijos técnicos estándar del ecosistema JS (<code class="font-mono">use</code>, <code class="font-mono">handle</code>, <code class="font-mono">on</code>, <code class="font-mono">is</code>). Nunca mezcles sin criterio (<code class="font-mono">obtenerPrice</code>).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 7 · MÓDULOS, CARPETAS Y ARCHIVOS (NODE + EXPRESS + REACT) -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Módulos, carpetas y archivos JS" data-section="Bloque 3: Nombramiento y declaración">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-violet-50 border-violet-200 text-violet-800"><i data-lucide="folder-tree" class="w-3.5 h-3.5"></i> Regla 1 · Organización</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Carpetas por responsabilidad y nombres consistentes de archivo</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Windows no distingue mayúsculas en archivos, pero Linux (servidores y GitHub Actions) sí. Mantener una regla estricta evita errores que solo fallan al desplegar.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>Estructura AromaSur (monorepo JS)</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar estructura de carpetas"><i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar</button>
+            </div>
+            <pre class="p-4 overflow-auto text-[12px] leading-relaxed text-slate-100 flex-1"><code>aromasur/
+├── .editorconfig
+├── api/                          ← Node.js + Express + BD relacional
+│   └── src/
+│       ├── app.js                ← arranque de Express
+│       ├── modelo/               ← producto.js, pedido.js, estado-pedido.js
+│       ├── rutas/                ← pedidos.routes.js (endpoints REST)
+│       ├── controladores/        ← pedidos.controller.js (HTTP ↔ negocio)
+│       ├── servicios/            ← pedidos.service.js (reglas de negocio)
+│       ├── repositorios/         ← productos.repo.js (consultas SQL)
+│       └── middlewares/          ← auth.middleware.js, error.middleware.js
+├── web/                          ← React + Vite (AA4)
+│   └── src/
+│       ├── components/           ← TarjetaCafe.jsx, BotonPrimario.jsx
+│       ├── pages/                ← CatalogoPage.jsx, LoginPage.jsx
+│       └── hooks/                ← usePedidos.js
+└── db/                           ← schema.sql, seed.sql</code></pre>
+          </div>
+          <div class="space-y-3">
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-x-auto">
+              <table class="w-full text-sm min-w-[420px]">
+                <thead class="bg-slate-50"><tr><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Tipo de archivo</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Correcto</th><th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Incorrecto</th></tr></thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Módulos Node / Express</th><td class="px-3 py-2 font-mono text-xs text-emerald-800 align-top">estado-pedido.js, pedidos.routes.js</td><td class="px-3 py-2 font-mono text-xs text-rose-700 align-top">Estado_Pedido.js, Rutas Pedidos.js</td></tr>
+                  <tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Componente React</th><td class="px-3 py-2 font-mono text-xs text-emerald-800 align-top">TarjetaCafe.jsx</td><td class="px-3 py-2 font-mono text-xs text-rose-700 align-top">tarjetacafe.jsx / tarjeta_cafe.jsx</td></tr>
+                  <tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Hook React</th><td class="px-3 py-2 font-mono text-xs text-emerald-800 align-top">usePedidos.js</td><td class="px-3 py-2 font-mono text-xs text-rose-700 align-top">pedidosHook.js</td></tr>
+                  <tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Scripts SQL</th><td class="px-3 py-2 font-mono text-xs text-emerald-800 align-top">01-esquema.sql, 02-semilla.sql</td><td class="px-3 py-2 font-mono text-xs text-rose-700 align-top">Base Datos Final v2.sql</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm text-sm text-slate-600 leading-relaxed">
+              <p><strong class="text-slate-900">Demo real del repo:</strong> explora <code class="font-mono text-xs bg-slate-100 px-1 py-0.5 rounded">guias/guia-07/demos/aa1-ev02-estandares/</code> con los módulos ejecutables en Node.js sin instalar paquetes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 8 · NOMBRAMIENTO DE VARIABLES, CONSTANTES Y BOOLEANOS     -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Nombramiento de variables y constantes" data-section="Bloque 3: Nombramiento y declaración">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-violet-50 border-violet-200 text-violet-800"><i data-lucide="tag" class="w-3.5 h-3.5"></i> Regla 2 · Variables y constantes</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">El nombre de una variable dice qué guarda; const protege su valor</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Esta es una de las secciones obligatorias de la guía. En JavaScript moderno siempre se usa <code class="font-mono text-xs">const</code> por defecto, <code class="font-mono text-xs">let</code> solo cuando se reasigna y <strong>nunca <code class="font-mono text-xs">var</code></strong>.</p>
+        </header>
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-x-auto">
+          <table class="w-full text-sm min-w-[680px]">
+            <thead class="bg-slate-50">
+              <tr>
+                <th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Elemento</th>
+                <th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Regla en JavaScript</th>
+                <th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Correcto</th>
+                <th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Incorrecto</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Variable / propiedad</th><td class="px-3 py-2 text-slate-600 align-top">Sustantivo descriptivo en <code class="font-mono text-xs">camelCase</code> con <code class="font-mono text-xs">const</code> / <code class="font-mono text-xs">let</code>.</td><td class="px-3 py-2 font-mono text-xs text-emerald-800 align-top">const precioCop = 38500;</td><td class="px-3 py-2 font-mono text-xs text-rose-700 align-top">var p = 38500; / Precio_Cop</td></tr>
+              <tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Booleano</th><td class="px-3 py-2 text-slate-600 align-top">Pregunta afirmativa: <code class="font-mono text-xs">es</code>, <code class="font-mono text-xs">tiene</code>, <code class="font-mono text-xs">esta</code> o <code class="font-mono text-xs">is</code>/<code class="font-mono text-xs">has</code>.</td><td class="px-3 py-2 font-mono text-xs text-emerald-800 align-top">tieneStock, esStockBajo, esActivo</td><td class="px-3 py-2 font-mono text-xs text-rose-700 align-top">estado, flag, noInactivo</td></tr>
+              <tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Constante fija</th><td class="px-3 py-2 text-slate-600 align-top"><code class="font-mono text-xs">UPPER_SNAKE_CASE</code> (+ <code class="font-mono text-xs">Object.freeze</code> en catálogos).</td><td class="px-3 py-2 font-mono text-xs text-emerald-800 align-top">STOCK_MINIMO = 5, ESTADOS_PEDIDO</td><td class="px-3 py-2 font-mono text-xs text-rose-700 align-top">stockMinimo = 5 / usar 5 suelto</td></tr>
+              <tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Arreglo / lista</th><td class="px-3 py-2 text-slate-600 align-top">Nombre en plural; sin sufijos redundantes (<code class="font-mono text-xs">Array</code>, <code class="font-mono text-xs">Lista</code>).</td><td class="px-3 py-2 font-mono text-xs text-emerald-800 align-top">productos, items, pedidosPendientes</td><td class="px-3 py-2 font-mono text-xs text-rose-700 align-top">listaProductosArray, item</td></tr>
+              <tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900 align-top">Dinero y fechas</th><td class="px-3 py-2 text-slate-600 align-top">Enteros en pesos COP o centavos (<code class="font-mono text-xs">Number.isInteger</code>); fechas en ISO 8601.</td><td class="px-3 py-2 font-mono text-xs text-emerald-800 align-top">precioCop: 38500, creadoEn: '2026-11-23'</td><td class="px-3 py-2 font-mono text-xs text-rose-700 align-top">precio: '38.500' / 0.1 + 0.2</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-slate-500"><strong>¿Por qué evitar decimales flotantes en dinero?</strong> En JavaScript <code class="font-mono">0.1 + 0.2 === 0.30000000000000004</code>; guardar precios en pesos COP enteros (o en centavos enteros) garantiza totales exactos.</p>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 9 · LABORATORIO INTERACTIVO: VALIDADOR DE NOMBRES         -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Laboratorio: validador de nombres" data-section="Bloque 3: Nombramiento y declaración">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-sky-50 border-sky-200 text-sky-800"><i data-lucide="check-check" class="w-3.5 h-3.5"></i> Práctica interactiva</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Comprueba si tus identificadores cumplen el estándar JS / SQL</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Elige el tipo de elemento del stack AromaSur y escribe un nombre (o usa los botones de prueba) para validar la convención al instante.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-5" data-validador>
+          <div class="lg:col-span-3 bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label for="val-tipo" class="block text-xs font-extrabold uppercase tracking-wider text-slate-600 mb-1.5">Tipo de elemento</label>
+                <select id="val-tipo" class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#39A900]">
+                  <option value="clase">Clase (JavaScript)</option>
+                  <option value="variable">Variable / Propiedad (JS)</option>
+                  <option value="funcion">Función / Método (JS)</option>
+                  <option value="constante">Constante / Variable .env</option>
+                  <option value="archivo">Archivo Node / Express (kebab-case)</option>
+                  <option value="componente">Componente React (.jsx)</option>
+                  <option value="hook">Hook personalizado React (use*)</option>
+                  <option value="sql">Tabla o columna SQL</option>
+                </select>
+              </div>
+              <div>
+                <label for="val-nombre" class="block text-xs font-extrabold uppercase tracking-wider text-slate-600 mb-1.5">Identificador a evaluar</label>
+                <input id="val-nombre" type="text" value="Producto" autocomplete="off" spellcheck="false" aria-describedby="val-regla" placeholder="Ej.: PedidoMayorista" class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 font-mono text-sm font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#39A900]">
+              </div>
+            </div>
+            <div>
+              <p class="text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">Prueba rápida (clic para cargar):</p>
+              <div class="flex flex-wrap gap-1.5">
+                <button type="button" data-ejemplo="clase:Producto" aria-label="Probar clase: Producto" class="min-h-[44px] sm:min-h-0 px-2.5 py-1.5 rounded-lg text-xs font-mono font-semibold bg-slate-100 hover:bg-emerald-50 hover:text-emerald-800 border border-slate-200 transition-colors">Producto</button>
+                <button type="button" data-ejemplo="clase:pedido_mayorista" aria-label="Probar clase incorrecta: pedido_mayorista" class="min-h-[44px] sm:min-h-0 px-2.5 py-1.5 rounded-lg text-xs font-mono font-semibold bg-slate-100 hover:bg-rose-50 hover:text-rose-800 border border-slate-200 transition-colors">pedido_mayorista</button>
+                <button type="button" data-ejemplo="variable:precioCop" aria-label="Probar variable: precioCop" class="min-h-[44px] sm:min-h-0 px-2.5 py-1.5 rounded-lg text-xs font-mono font-semibold bg-slate-100 hover:bg-emerald-50 hover:text-emerald-800 border border-slate-200 transition-colors">precioCop</button>
+                <button type="button" data-ejemplo="variable:p1" aria-label="Probar variable incorrecta: p1" class="min-h-[44px] sm:min-h-0 px-2.5 py-1.5 rounded-lg text-xs font-mono font-semibold bg-slate-100 hover:bg-rose-50 hover:text-rose-800 border border-slate-200 transition-colors">p1</button>
+                <button type="button" data-ejemplo="funcion:descontarStock" aria-label="Probar función: descontarStock" class="min-h-[44px] sm:min-h-0 px-2.5 py-1.5 rounded-lg text-xs font-mono font-semibold bg-slate-100 hover:bg-emerald-50 hover:text-emerald-800 border border-slate-200 transition-colors">descontarStock</button>
+                <button type="button" data-ejemplo="constante:STOCK_MINIMO" aria-label="Probar constante: STOCK_MINIMO" class="min-h-[44px] sm:min-h-0 px-2.5 py-1.5 rounded-lg text-xs font-mono font-semibold bg-slate-100 hover:bg-emerald-50 hover:text-emerald-800 border border-slate-200 transition-colors">STOCK_MINIMO</button>
+                <button type="button" data-ejemplo="archivo:pedidos.routes.js" aria-label="Probar archivo Express: pedidos.routes.js" class="min-h-[44px] sm:min-h-0 px-2.5 py-1.5 rounded-lg text-xs font-mono font-semibold bg-slate-100 hover:bg-emerald-50 hover:text-emerald-800 border border-slate-200 transition-colors">pedidos.routes.js</button>
+                <button type="button" data-ejemplo="componente:TarjetaCafe" aria-label="Probar componente React: TarjetaCafe" class="min-h-[44px] sm:min-h-0 px-2.5 py-1.5 rounded-lg text-xs font-mono font-semibold bg-slate-100 hover:bg-emerald-50 hover:text-emerald-800 border border-slate-200 transition-colors">TarjetaCafe</button>
+                <button type="button" data-ejemplo="hook:usePedidos" aria-label="Probar hook React: usePedidos" class="min-h-[44px] sm:min-h-0 px-2.5 py-1.5 rounded-lg text-xs font-mono font-semibold bg-slate-100 hover:bg-emerald-50 hover:text-emerald-800 border border-slate-200 transition-colors">usePedidos</button>
+                <button type="button" data-ejemplo="sql:detalle_pedidos" aria-label="Probar tabla SQL: detalle_pedidos" class="min-h-[44px] sm:min-h-0 px-2.5 py-1.5 rounded-lg text-xs font-mono font-semibold bg-slate-100 hover:bg-emerald-50 hover:text-emerald-800 border border-slate-200 transition-colors">detalle_pedidos</button>
+                <button type="button" data-ejemplo="sql:DetallePedidos" aria-label="Probar tabla SQL incorrecta: DetallePedidos" class="min-h-[44px] sm:min-h-0 px-2.5 py-1.5 rounded-lg text-xs font-mono font-semibold bg-slate-100 hover:bg-rose-50 hover:text-rose-800 border border-slate-200 transition-colors">DetallePedidos</button>
+              </div>
+            </div>
+          </div>
+          <div class="lg:col-span-2 bg-white rounded-2xl border-2 border-slate-200 p-5 shadow-sm flex flex-col justify-between gap-3" data-val-card aria-live="polite" aria-atomic="true">
+            <div class="space-y-2">
+              <span data-val-badge class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-emerald-100 text-emerald-800">Cumple el estándar</span>
+              <p data-val-titulo class="text-base font-extrabold text-slate-900">Notación PascalCase válida</p>
+              <p data-val-detalle class="text-sm text-slate-600 leading-relaxed"></p>
+            </div>
+            <div data-val-sugerencia-box class="hidden p-3 rounded-xl bg-slate-50 border border-slate-200">
+              <p class="text-[11px] font-bold uppercase tracking-wider text-slate-600">Sugerencia corregida</p>
+              <p data-val-sugerencia class="font-mono text-sm font-extrabold text-[#00324D] mt-0.5"></p>
+            </div>
+            <p id="val-regla" class="text-xs text-slate-600 pt-2 border-t border-slate-100" data-val-regla></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 10 · DECLARACIÓN DE CLASES Y ORDEN INTERNO (POO EN JS)    -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Declaración de clases en JavaScript" data-section="Bloque 3: Nombramiento y declaración">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-violet-50 border-violet-200 text-violet-800"><i data-lucide="layers" class="w-3.5 h-3.5"></i> Regla 3 · Clases (POO)</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Clases encapsuladas con campos privados # y orden interno fijo</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Aplica el paradigma orientado a objetos en JavaScript moderno: campos privados reales (<code class="font-mono text-xs">#</code>), validaciones en el <code class="font-mono text-xs">constructor</code> y seis bloques en orden fijo.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-5">
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0 lg:col-span-3">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>src/modelo/producto.js (extracto de la demo)</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar código de producto.js"><i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar</button>
+            </div>
+            <pre class="p-4 overflow-auto text-[12px] leading-relaxed text-slate-100 flex-1"><code>export class Producto {
+  static STOCK_MINIMO = 5;                       // 1. Constantes
+
+  #codigo;                                       // 2. Campos privados (#)
+  #nombre;
+  #precioCop;
+  #cantidadDisponible;
+
+  constructor({ codigo, nombre, precioCop,       // 3. Constructor + validación
+    cantidadDisponible }) {
+    // … guard clauses de codigo, nombre y stock (ver demo)
+    if (!Number.isInteger(precioCop) || precioCop &lt;= 0) {
+      throw new RangeError('Precio inválido');
+    }
+    this.#codigo = codigo.trim();
+    this.#nombre = nombre.trim();
+    this.#precioCop = precioCop;
+    this.#cantidadDisponible = cantidadDisponible;
+  }
+
+  esStockBajo() {                                // 4. Métodos de negocio
+    return this.#cantidadDisponible &lt;= Producto.STOCK_MINIMO;
+  }
+  get codigo() { return this.#codigo; }          // 5. Getters de solo lectura
+  #validarCantidad(cantidad) {                   // 6. Privados al final
+    if (!Number.isInteger(cantidad) || cantidad &lt;= 0) {
+      throw new RangeError('La cantidad debe ser un entero mayor que cero');
+    }
+  }
+}</code></pre>
+          </div>
+          <div class="lg:col-span-2 space-y-3">
+            <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+              <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="list-checks" class="w-5 h-5 text-sena"></i>Orden interno oficial</h3>
+              <ol class="space-y-1.5 text-sm text-slate-700">
+                <li><strong>1.</strong> Constantes <code class="font-mono text-xs">static</code> en <code class="font-mono text-xs">UPPER_SNAKE_CASE</code></li>
+                <li><strong>2.</strong> Campos privados <code class="font-mono text-xs">#</code> (encapsulamiento real)</li>
+                <li><strong>3.</strong> <code class="font-mono text-xs">constructor</code> con objeto desestructurado y validación</li>
+                <li><strong>4.</strong> Métodos públicos de negocio en <code class="font-mono text-xs">camelCase</code></li>
+                <li><strong>5.</strong> <code class="font-mono text-xs">get</code> de solo lectura (sin <code class="font-mono text-xs">set</code> innecesarios)</li>
+                <li><strong>6.</strong> Métodos privados <code class="font-mono text-xs">#</code> auxiliares al final</li>
+              </ol>
+            </div>
+            <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm text-xs text-slate-600 leading-relaxed">
+              <p><strong class="text-slate-900">Catálogos cerrados:</strong> usa <code class="font-mono">export const ESTADOS_PEDIDO = Object.freeze({ PENDIENTE: 'PENDIENTE', ... })</code> en lugar de textos repetidos por el código.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 11 · DECLARACIÓN DE FUNCIONES, MÉTODOS Y MANEJADORES      -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Declaración de funciones y métodos" data-section="Bloque 3: Nombramiento y declaración">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-violet-50 border-violet-200 text-violet-800"><i data-lucide="code" class="w-3.5 h-3.5"></i> Regla 4 · Funciones y métodos</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Funciones cortas, con verbo claro y validaciones tempranas</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Ya sea un método de clase, una función auxiliar o un controlador Express, una función hace una sola tarea y falla rápido ante datos inválidos.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <div class="space-y-3">
+            <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+              <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="check-check" class="w-5 h-5 text-sena"></i>Cinco reglas para funciones limpias</h3>
+              <ul class="space-y-2 text-sm text-slate-600">
+                <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5 shrink-0"></i><span><strong>Verbo + sustantivo en camelCase:</strong> <code class="font-mono text-xs">agregarProducto</code>, <code class="font-mono text-xs">calcularTotalCop</code>, <code class="font-mono text-xs">buscarProductoPorCodigo</code>.</span></li>
+                <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5 shrink-0"></i><span><strong>Tamaño acotado:</strong> idealmente 10 a 25 líneas; si supera 40, divide en funciones auxiliares.</span></li>
+                <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5 shrink-0"></i><span><strong>Máximo 3 parámetros:</strong> si necesita más, recibe un objeto desestructurado <code class="font-mono text-xs">({ codigo, nombre, precioCop })</code>.</span></li>
+                <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5 shrink-0"></i><span><strong>Guard clauses y async/await:</strong> valida arriba para evitar <code class="font-mono text-xs">if</code> anidados y usa <code class="font-mono text-xs">async/await</code> en lugar de callbacks anidados.</span></li>
+                <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5 shrink-0"></i><span><strong>Retornos inmutables:</strong> devuelve copias (<code class="font-mono text-xs">Object.freeze([...this.#items])</code>) para proteger el estado interno.</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300 min-w-0 truncate"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>src/modelo/pedido.js (guard clauses)</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar método agregarProducto"><i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar</button>
+            </div>
+            <pre class="p-4 overflow-auto text-[12px] leading-relaxed text-slate-100 flex-1"><code>agregarProducto(producto, cantidad) {
+  // Validaciones tempranas: sin pirámide de if anidados
+  if (!(producto instanceof Producto)) {
+    throw new TypeError('Se requiere una instancia válida de Producto');
+  }
+  if (this.#estado !== ESTADOS_PEDIDO.PENDIENTE) {
+    throw new Error('Solo se pueden agregar ítems a un pedido pendiente');
+  }
+
+  producto.descontarStock(cantidad);
+  this.#items.push(Object.freeze({
+    codigoProducto: producto.codigo,
+    nombreProducto: producto.nombre,
+    precioCop: producto.precioCop,
+    cantidad,
+    subtotalCop: producto.precioCop * cantidad,
+  }));
+}</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 12 · FORMATO, SANGRÍA Y LEGIBILIDAD EN JAVASCRIPT         -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Formato, sangría y legibilidad" data-section="Bloque 3: Nombramiento y declaración">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-violet-50 border-violet-200 text-violet-800"><i data-lucide="file-code" class="w-3.5 h-3.5"></i> Regla 5 · Formato</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Un formato uniforme evita bugs sutiles y ruido en Git</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Define estas seis reglas en el informe; luego <code class="font-mono text-xs bg-slate-100 px-1 py-0.5 rounded">.editorconfig</code> y <strong>Prettier</strong> las aplicarán automáticamente al guardar.</p>
+        </header>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="text-sm font-extrabold text-[#00324D]">Sangría de 2 espacios</p><p class="text-xs text-slate-600 mt-1"><strong>2 espacios</strong> en todo el repositorio (JS, JSX, JSON, CSS y SQL). Nunca mezclar tabs y espacios.</p></div>
+          <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="text-sm font-extrabold text-[#00324D]">Ancho máximo 100 caracteres</p><p class="text-xs text-slate-600 mt-1">Facilita comparar dos archivos lado a lado al revisar pull requests en GitHub.</p></div>
+          <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="text-sm font-extrabold text-[#00324D]">Igualdad estricta y llaves</p><p class="text-xs text-slate-600 mt-1">Siempre <code class="font-mono">===</code> / <code class="font-mono">!==</code> (nunca <code class="font-mono">==</code>) y siempre llaves K&amp;R en <code class="font-mono">if</code>/<code class="font-mono">for</code>, incluso de una línea (regla del equipo: endurecemos Airbnb con <code class="font-mono">curly: 'all'</code>).</p></div>
+          <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="text-sm font-extrabold text-[#00324D]">Comillas, punto y coma e imports</p><p class="text-xs text-slate-600 mt-1">Comillas simples <code class="font-mono">'...'</code>, punto y coma al final, y orden de <code class="font-mono">import</code>: nativos → npm → locales.</p></div>
+          <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="text-sm font-extrabold text-[#00324D]">Codificación UTF-8 y LF</p><p class="text-xs text-slate-600 mt-1">Todos los archivos en <strong>UTF-8</strong> y salto de línea <strong>LF</strong> para evitar diffs falsos entre Windows y Linux.</p></div>
+          <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm"><p class="text-sm font-extrabold text-[#00324D]">Coma final (trailing comma)</p><p class="text-xs text-slate-600 mt-1">Coma al final de objetos y arreglos multilínea: agregar una propiedad solo toca una línea en Git.</p></div>
+        </div>
+        <div class="flex items-start gap-3 p-4 rounded-2xl bg-amber-50 border border-amber-200 text-sm text-amber-950">
+          <i data-lucide="triangle-alert" class="w-5 h-5 text-amber-700 mt-0.5 shrink-0"></i>
+          <p><strong>Por qué prohibir <code class="font-mono">==</code>:</strong> en JavaScript <code class="font-mono">'0' == false</code> y <code class="font-mono">'' == 0</code> evalúan a <code class="font-mono">true</code> por coerción implícita. Con <code class="font-mono">===</code> se comparan tipo y valor.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 13 · COMENTARIOS ÚTILES, JSDOC Y MANEJO DE ERRORES        -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Comentarios, JSDoc y errores" data-section="Bloque 3: Nombramiento y declaración">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-violet-50 border-violet-200 text-violet-800"><i data-lucide="file-text" class="w-3.5 h-3.5"></i> Regla 6 · Documentación y errores</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Comenta el "por qué" con JSDoc y maneja errores en Express</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Las actividades AA3, AA4 y AA5 piden "código comentado". Usa <strong>JSDoc</strong> en funciones y servicios públicos; evita comentarios que solo repiten la línea siguiente.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>JSDoc vs comentario redundante</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar ejemplo de JSDoc"><i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar</button>
+            </div>
+            <pre class="p-4 overflow-auto text-[12px] leading-relaxed text-slate-100 flex-1"><code>// MAL: repite lo que ya dice el código
+// Resta la cantidad al stock disponible
+this.#cantidadDisponible -= cantidad;
+
+// BIEN: documenta el contrato público con JSDoc
+/**
+ * Descuenta unidades del inventario tras validar disponibilidad.
+ * @param {number} cantidad - Unidades solicitadas (entero &gt; 0)
+ * @throws {RangeError} Si la cantidad no es un entero positivo
+ * @throws {Error} Si no hay stock suficiente
+ */
+descontarStock(cantidad) { … }</code></pre>
+          </div>
+          <div class="space-y-3">
+            <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+              <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="shield-check" class="w-5 h-5 text-sena"></i>Reglas de manejo de errores</h3>
+              <ul class="space-y-2 text-sm text-slate-600">
+                <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5 shrink-0"></i><span><strong>Errores descriptivos:</strong> usa <code class="font-mono text-xs">TypeError</code> (tipo inválido), <code class="font-mono text-xs">RangeError</code> (rango) y <code class="font-mono text-xs">Error</code> de dominio.</span></li>
+                <li class="flex items-start gap-2"><i data-lucide="x" class="w-4 h-4 text-rose-600 mt-0.5 shrink-0"></i><span><strong>Prohibido <code class="font-mono text-xs">catch (err) {}</code> vacío:</strong> oculta fallos reales en promesas y consultas SQL.</span></li>
+                <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-sena mt-0.5 shrink-0"></i><span><strong>Middleware central en Express:</strong> delega fallos con <code class="font-mono text-xs">next(error)</code> y responde JSON uniforme sin exponer <code class="font-mono text-xs">error.stack</code>.</span></li>
+                <li class="flex items-start gap-2"><i data-lucide="x" class="w-4 h-4 text-rose-600 mt-0.5 shrink-0"></i><span><strong>Sin código comentado muerto ni <code class="font-mono text-xs">console.log</code> olvidados:</strong> para historial ya existe Git.</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 14 · ESTÁNDAR EN LAS 3 CAPAS: REACT, EXPRESS Y SQL        -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Estándar en React, Express y SQL" data-section="Bloque 4: Ecosistema, auditoría y automatización">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-sky-50 border-sky-200 text-sky-800"><i data-lucide="layers" class="w-3.5 h-3.5"></i> Coherencia entre capas</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">BD relacional, Express y React hablando el mismo idioma</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Tu informe debe cubrir las tres capas reales de AromaSur para que el código de la AA2 a la AA5 mantenga coherencia de extremo a extremo.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <div class="bg-white rounded-2xl border border-sky-200 p-5 shadow-sm space-y-2.5">
+            <p class="flex items-center gap-2 text-base font-extrabold text-slate-900"><i data-lucide="atom" class="w-5 h-5 text-sky-600"></i> Front-end · React (AA4)</p>
+            <ul class="space-y-1.5 text-xs text-slate-600">
+              <li><strong>Componentes funcionales:</strong> <code class="font-mono text-sky-900">PascalCase</code> (<code class="font-mono">TarjetaCafe.jsx</code>); un componente principal por archivo.</li>
+              <li><strong>Hooks:</strong> prefijo <code class="font-mono text-sky-900">use</code> (<code class="font-mono">usePedidos.js</code>).</li>
+              <li><strong>Eventos:</strong> <code class="font-mono text-sky-900">handle</code> en interno (<code class="font-mono">handleEnviar</code>) y <code class="font-mono text-sky-900">on</code> en props (<code class="font-mono">onConfirmar</code>).</li>
+              <li><strong>Estilos:</strong> clases CSS en <code class="font-mono text-sky-900">kebab-case</code> o utilidades Tailwind consistentes.</li>
+            </ul>
+          </div>
+          <div class="bg-white rounded-2xl border border-emerald-200 p-5 shadow-sm space-y-2.5">
+            <p class="flex items-center gap-2 text-base font-extrabold text-slate-900"><i data-lucide="server" class="w-5 h-5 text-emerald-700"></i> Back-end · Node.js + Express</p>
+            <ul class="space-y-1.5 text-xs text-slate-600">
+              <li><strong>Capas separadas:</strong> <code class="font-mono text-emerald-900">rutas → controladores → servicios → repositorios</code>.</li>
+              <li><strong>Endpoints REST:</strong> plural y <code class="font-mono text-emerald-900">kebab-case</code> (<code class="font-mono">/api/v1/pedidos</code>), verbos solo en HTTP (<code class="font-mono">GET/POST/PATCH</code>).</li>
+              <li><strong>JSON:</strong> claves en <code class="font-mono text-emerald-900">camelCase</code> (<code class="font-mono">precioCop</code>).</li>
+              <li><strong>Configuración:</strong> solo en <code class="font-mono text-emerald-900">process.env</code> (<code class="font-mono">UPPER_SNAKE_CASE</code>).</li>
+            </ul>
+          </div>
+          <div class="bg-white rounded-2xl border border-blue-200 p-5 shadow-sm space-y-2.5">
+            <p class="flex items-center gap-2 text-base font-extrabold text-slate-900"><i data-lucide="database" class="w-5 h-5 text-blue-600"></i> Base de datos · SQL Relacional</p>
+            <ul class="space-y-1.5 text-xs text-slate-600">
+              <li><strong>Tablas:</strong> <code class="font-mono text-blue-900">snake_case</code> en plural (<code class="font-mono">productos</code>, <code class="font-mono">detalle_pedidos</code>).</li>
+              <li><strong>Columnas:</strong> <code class="font-mono text-blue-900">snake_case</code> singular (<code class="font-mono">precio_cop</code>, <code class="font-mono">creado_en</code>).</li>
+              <li><strong>Llaves:</strong> <code class="font-mono text-blue-900">id</code> como PK y <code class="font-mono text-blue-900">pedido_id</code> como FK explícita.</li>
+              <li><strong>Sentencias SQL:</strong> palabras clave en MAYÚSCULAS (<code class="font-mono">SELECT</code>, <code class="font-mono">WHERE</code>, <code class="font-mono">INNER JOIN</code>).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 15 · AUDITORÍA INTERACTIVA: ANTES Y DESPUÉS               -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Auditoría interactiva: antes y después" data-section="Bloque 4: Ecosistema, auditoría y automatización">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-rose-50 border-rose-200 text-rose-800"><i data-lucide="search" class="w-3.5 h-3.5"></i> Auditoría en vivo</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Encuentra las 7 infracciones en JavaScript antes de refactorizar</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Haz clic en cada línea marcada en rojo para ver qué regla incumple y compárala con el <code class="font-mono text-xs bg-slate-100 px-1 py-0.5 rounded">src/modelo/producto.js</code> real de la demo.</p>
+        </header>
+        <div class="space-y-3" data-auditor>
+          <div class="flex flex-wrap items-center gap-2" role="tablist" aria-label="Vista de código">
+            <button type="button" role="tab" id="auditor-tab-antes" aria-controls="auditor-panel-antes" aria-selected="true" tabindex="0" data-auditor-tab="antes" class="auditor-tab min-h-[44px] sm:min-h-0 px-4 py-2 rounded-xl text-xs font-extrabold border border-slate-300 bg-white text-slate-700 transition-colors">Antes: código sin estándar (7 infracciones)</button>
+            <button type="button" role="tab" id="auditor-tab-despues" aria-controls="auditor-panel-despues" aria-selected="false" tabindex="-1" data-auditor-tab="despues" class="auditor-tab min-h-[44px] sm:min-h-0 px-4 py-2 rounded-xl text-xs font-extrabold border border-slate-300 bg-white text-slate-700 transition-colors">Después: producto.js limpio (demo real)</button>
+          </div>
+          <div role="tabpanel" id="auditor-panel-antes" aria-labelledby="auditor-tab-antes" class="grid grid-cols-1 lg:grid-cols-5 gap-4" data-auditor-panel="antes">
+            <div class="min-w-0 lg:col-span-3 bg-[#00263A] rounded-2xl border border-[#00324D] p-4 font-mono text-[12px] leading-relaxed text-slate-200 space-y-1 overflow-x-auto">
+              <button type="button" data-infraccion="1" aria-label="Infracción 1: var stockMin = 5;" aria-pressed="true" class="auditor-linea block min-w-full w-max whitespace-pre text-left px-2 py-1.5 rounded hover:bg-rose-500/20 text-rose-200 transition-colors"><span class="text-rose-400 mr-2" aria-hidden="true">01 ⚠</span>var stockMin = 5;</button>
+              <button type="button" data-infraccion="2" aria-label="Infracción 2: class producto_cafe" aria-pressed="false" class="auditor-linea block min-w-full w-max whitespace-pre text-left px-2 py-1.5 rounded hover:bg-rose-500/20 text-rose-200 transition-colors"><span class="text-rose-400 mr-2" aria-hidden="true">02 ⚠</span>class producto_cafe {</button>
+              <button type="button" data-infraccion="3" aria-label="Infracción 3: constructor(p, s) con propiedades públicas" aria-pressed="false" class="auditor-linea block min-w-full w-max whitespace-pre text-left px-2 py-1.5 rounded hover:bg-rose-500/20 text-rose-200 transition-colors"><span class="text-rose-400 mr-2" aria-hidden="true">03 ⚠</span>  constructor(p, s) { this.p = p; this.s = s; }</button>
+              <button type="button" data-infraccion="4" aria-label="Infracción 4: método Bajo()" aria-pressed="false" class="auditor-linea block min-w-full w-max whitespace-pre text-left px-2 py-1.5 rounded hover:bg-rose-500/20 text-rose-200 transition-colors"><span class="text-rose-400 mr-2" aria-hidden="true">04 ⚠</span>  Bajo() { return this.s &lt;= 5; }</button>
+              <button type="button" data-infraccion="5" aria-label="Infracción 5: método Descontar(c)" aria-pressed="false" class="auditor-linea block min-w-full w-max whitespace-pre text-left px-2 py-1.5 rounded hover:bg-rose-500/20 text-rose-200 transition-colors"><span class="text-rose-400 mr-2" aria-hidden="true">05 ⚠</span>  Descontar(c) { if (c &gt; 0) this.s -= c; }</button>
+              <button type="button" data-infraccion="6" aria-label="Infracción 6: esGrano con igualdad ==" aria-pressed="false" class="auditor-linea block min-w-full w-max whitespace-pre text-left px-2 py-1.5 rounded hover:bg-rose-500/20 text-rose-200 transition-colors"><span class="text-rose-400 mr-2" aria-hidden="true">06 ⚠</span>  esGrano(tipo) { return tipo == '1'; }</button>
+              <button type="button" data-infraccion="7" aria-label="Infracción 7: guardar con catch vacío" aria-pressed="false" class="auditor-linea block min-w-full w-max whitespace-pre text-left px-2 py-1.5 rounded hover:bg-rose-500/20 text-rose-200 transition-colors"><span class="text-rose-400 mr-2" aria-hidden="true">07 ⚠</span>  guardar(db) { try { db.save(this); } catch (e) {} }</button>
+              <div class="px-2 py-1 text-slate-400 whitespace-pre"><span class="mr-2" aria-hidden="true">08   </span>}</div>
+            </div>
+            <div class="lg:col-span-2 bg-white rounded-2xl border border-slate-200 p-5 shadow-sm flex flex-col justify-between gap-3" aria-live="polite" aria-atomic="true">
+              <div class="space-y-2">
+                <span data-inf-etiqueta class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold uppercase bg-rose-50 text-rose-800 border border-rose-200">Infracción 1 de 7</span>
+                <h3 data-inf-titulo class="text-base font-extrabold text-slate-900"></h3>
+                <p data-inf-porque class="text-sm text-slate-600 leading-relaxed"></p>
+              </div>
+              <div class="p-3 rounded-xl bg-emerald-50 border border-emerald-200">
+                <p class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-800">Corrección en AromaSur</p>
+                <p data-inf-solucion class="font-mono text-xs font-bold text-emerald-950 mt-1 break-words"></p>
+              </div>
+            </div>
+          </div>
+          <div role="tabpanel" id="auditor-panel-despues" aria-labelledby="auditor-tab-despues" class="hidden" data-auditor-panel="despues">
+            <div class="code-box bg-[#00263A] rounded-2xl border border-emerald-400/50 shadow-sm overflow-hidden">
+              <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+                <span class="inline-flex items-center gap-2 font-mono text-[11px] text-emerald-300"><i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i>src/modelo/producto.js (ejecutable en Node.js, 0 infracciones)</span>
+                <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar versión corregida de producto.js"><i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar</button>
+              </div>
+              <pre class="p-4 overflow-auto text-[12px] leading-relaxed text-emerald-100"><code>export class Producto {
+  static STOCK_MINIMO = 5;
+  #codigo;
+  #nombre;
+  #precioCop;
+  #cantidadDisponible;
+
+  constructor({ codigo, nombre, precioCop, cantidadDisponible }) {
+    if (typeof codigo !== 'string' || !codigo.trim()) {
+      throw new TypeError('El código del producto es obligatorio');
+    }
+    if (typeof nombre !== 'string' || !nombre.trim()) {
+      throw new TypeError('El nombre del producto es obligatorio');
+    }
+    if (!Number.isInteger(precioCop) || precioCop &lt;= 0) {
+      throw new RangeError('El precio en COP debe ser un entero mayor que cero');
+    }
+    if (!Number.isInteger(cantidadDisponible) || cantidadDisponible &lt; 0) {
+      throw new RangeError('El stock inicial debe ser un entero mayor o igual a cero');
+    }
+
+    this.#codigo = codigo.trim();
+    this.#nombre = nombre.trim();
+    this.#precioCop = precioCop;
+    this.#cantidadDisponible = cantidadDisponible;
+  }
+
+  tieneStock(cantidadSolicitada) {
+    return Number.isInteger(cantidadSolicitada)
+      &amp;&amp; cantidadSolicitada &gt; 0
+      &amp;&amp; this.#cantidadDisponible &gt;= cantidadSolicitada;
+  }
+
+  esStockBajo() {
+    return this.#cantidadDisponible &lt;= Producto.STOCK_MINIMO;
+  }
+
+  descontarStock(cantidad) {
+    this.#validarCantidad(cantidad);
+    if (!this.tieneStock(cantidad)) {
+      throw new Error(`Stock insuficiente para el producto ${this.#codigo}`);
+    }
+    this.#cantidadDisponible -= cantidad;
+  }
+
+  get codigo() { return this.#codigo; }
+  get nombre() { return this.#nombre; }
+  get precioCop() { return this.#precioCop; }
+  get cantidadDisponible() { return this.#cantidadDisponible; }
+
+  #validarCantidad(cantidad) {
+    if (!Number.isInteger(cantidad) || cantidad &lt;= 0) {
+      throw new RangeError('La cantidad debe ser un entero mayor que cero');
+    }
+  }
+}
+// JSDoc completo en la demo: src/modelo/producto.js</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 16 · AUTOMATIZAR EL ESTÁNDAR EN VS CODE Y POWERSHELL      -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Automatizar el estándar y probar la demo" data-section="Bloque 4: Ecosistema, auditoría y automatización">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-sky-50 border-sky-200 text-sky-800"><i data-lucide="monitor-cog" class="w-3.5 h-3.5"></i> Automatización</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Un estándar que solo vive en un PDF se olvida a la semana</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Configura <code class="font-mono text-xs bg-slate-100 px-1 py-0.5 rounded">.editorconfig</code>, <strong>ESLint</strong> y <strong>Prettier</strong> en la raíz del proyecto para que VS Code y GitHub Actions revisen el código por ti.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden flex flex-col min-w-0">
+            <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300"><i data-lucide="file-code" class="w-3.5 h-3.5 text-[#39A900]"></i>.editorconfig (en la demo)</span>
+              <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar archivo .editorconfig"><i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar</button>
+            </div>
+            <pre class="p-4 overflow-auto text-[12px] leading-relaxed text-slate-100 flex-1"><code>root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+max_line_length = 100
+
+[*.md]
+trim_trailing_whitespace = false</code></pre>
+          </div>
+          <div class="min-w-0 space-y-3">
+            <div class="code-box bg-[#00263A] rounded-2xl border border-[#00324D] shadow-sm overflow-hidden">
+              <div class="flex items-center justify-between gap-2 px-4 py-2 border-b border-white/10">
+                <span class="inline-flex items-center gap-2 font-mono text-[11px] text-slate-300"><i data-lucide="terminal" class="w-3.5 h-3.5 text-[#39A900]"></i>PowerShell · Ejecutar la demo Node.js</span>
+                <button type="button" class="copy-btn inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white text-xs transition-colors" aria-label="Copiar comando PowerShell"><i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar</button>
+              </div>
+              <pre class="p-3.5 overflow-auto text-[12px] leading-relaxed text-emerald-200"><code>cd guias\guia-07\demos\aa1-ev02-estandares
+node src/app.js</code></pre>
+            </div>
+            <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm text-xs text-slate-600 space-y-1.5">
+              <p class="font-extrabold text-slate-900">Salida esperada:</p>
+              <pre class="font-mono text-[11px] text-slate-700 bg-slate-50 p-2.5 rounded-lg border border-slate-100 overflow-x-auto leading-relaxed"><code>Pedido: PED-2026-001
+Estado: CONFIRMADO
+Total: $ 308.000
+Stock restante: 4
+¿Stock bajo?: true</code></pre>
+              <p>Extensiones recomendadas en VS Code: <strong>EditorConfig</strong>, <strong>ESLint</strong> y <strong>Prettier</strong> con <em>Format on Save</em>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 17 · SEGURIDAD DENTRO DEL ESTÁNDAR DE CODIFICACIÓN        -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Seguridad dentro del estándar" data-section="Bloque 4: Ecosistema, auditoría y automatización">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-rose-50 border-rose-200 text-rose-800"><i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Reglas no negociables</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Un estándar profesional también prohíbe código inseguro</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Incluir una sección de <strong>codificación segura</strong> en tu informe prepara directamente el back-end en Express + SQL (AA2–AA3) y el servicio de autenticación (AA5).</p>
+        </header>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-2">
+            <p class="text-sm font-extrabold text-slate-900">1. Cero secretos en código o en el cliente React</p>
+            <p class="text-xs text-slate-600">Credenciales de BD y llaves JWT van en <code class="font-mono">.env</code> (ignorado en Git) y se leen con <code class="font-mono">process.env</code> solo en Node.js; nunca en variables <code class="font-mono">VITE_</code>.</p>
+          </div>
+          <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-2">
+            <p class="text-sm font-extrabold text-slate-900">2. Consultas SQL parametrizadas (cero concatenación)</p>
+            <p class="text-xs text-slate-600">Usar siempre parámetros (<code class="font-mono">pool.execute('SELECT ... WHERE codigo = ?', [codigo])</code> en MySQL o <code class="font-mono">$1</code> en PostgreSQL); nunca plantillas <code class="font-mono">`... ${codigo}`</code>.</p>
+          </div>
+          <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-2">
+            <p class="text-sm font-extrabold text-slate-900">3. Contraseñas siempre con hash (AA5)</p>
+            <p class="text-xs text-slate-600">Guardar contraseñas con <strong>bcrypt</strong> o <strong>argon2</strong>, nunca en texto plano ni impresas en logs de consola.</p>
+          </div>
+          <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-2">
+            <p class="text-sm font-extrabold text-slate-900">4. Validar en Express y prevenir XSS en React</p>
+            <p class="text-xs text-slate-600">Validar el <code class="font-mono">req.body</code> en el servidor (ej. con Zod), no devolver <code class="font-mono">error.stack</code> al cliente y evitar <code class="font-mono">dangerouslySetInnerHTML</code> con datos sin sanear.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 18 · ESTRUCTURA DEL INFORME TÉCNICO                       -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Estructura del informe técnico" data-section="Bloque 5: Informe y entrega">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-emerald-50 border-emerald-200 text-emerald-800"><i data-lucide="file-text" class="w-3.5 h-3.5"></i> Informe PDF</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">El informe técnico, sección por sección</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Las secciones resaltadas en verde son los mínimos que menciona la guía. Las demás completan un estándar listo para aplicar en AromaSur.</p>
+        </header>
+        <ol class="grid grid-cols-1 md:grid-cols-3 gap-2">
+          <li class="flex items-start gap-3 p-3 rounded-xl bg-white border border-emerald-300 shadow-sm"><span class="w-7 h-7 rounded-full bg-[#39A900] text-white font-extrabold text-xs flex items-center justify-center shrink-0">1</span><div><p class="text-sm font-extrabold text-slate-900">Portada <span class="text-[10px] font-extrabold uppercase text-emerald-700">· mínimo</span></p><p class="text-xs text-slate-600 mt-0.5">Evidencia GA7-220501096-AA1-EV02, proyecto AromaSur, aprendiz(ces), ficha, instructor, centro y fecha.</p></div></li>
+          <li class="flex items-start gap-3 p-3 rounded-xl bg-white border border-emerald-300 shadow-sm"><span class="w-7 h-7 rounded-full bg-[#39A900] text-white font-extrabold text-xs flex items-center justify-center shrink-0">2</span><div><p class="text-sm font-extrabold text-slate-900">Introducción <span class="text-[10px] font-extrabold uppercase text-emerald-700">· mínimo</span></p><p class="text-xs text-slate-600 mt-0.5">Contexto de AromaSur, su stack JS/SQL y por qué estandarizar el código.</p></div></li>
+          <li class="flex items-start gap-3 p-3 rounded-xl bg-white border border-emerald-300 shadow-sm"><span class="w-7 h-7 rounded-full bg-[#39A900] text-white font-extrabold text-xs flex items-center justify-center shrink-0">3</span><div><p class="text-sm font-extrabold text-slate-900">Objetivo <span class="text-[10px] font-extrabold uppercase text-emerald-700">· mínimo</span></p><p class="text-xs text-slate-600 mt-0.5">Objetivo general y alcance sobre BD relacional, Express, React y Node.js.</p></div></li>
+          <li class="flex items-start gap-3 p-3 rounded-xl bg-white border border-slate-200 shadow-sm"><span class="w-7 h-7 rounded-full bg-slate-100 text-slate-700 font-extrabold text-xs flex items-center justify-center shrink-0">4</span><div><p class="text-sm font-extrabold text-slate-900">Plataforma y guías base</p><p class="text-xs text-slate-600 mt-0.5">Stack elegido (SQL + Express + React + Node.js) y guías oficiales adoptadas (Airbnb JS, React, SQL Style).</p></div></li>
+          <li class="flex items-start gap-3 p-3 rounded-xl bg-white border border-emerald-300 shadow-sm"><span class="w-7 h-7 rounded-full bg-[#39A900] text-white font-extrabold text-xs flex items-center justify-center shrink-0">5</span><div><p class="text-sm font-extrabold text-slate-900">Reglas de nombramiento <span class="text-[10px] font-extrabold uppercase text-emerald-700">· mínimo</span></p><p class="text-xs text-slate-600 mt-0.5">Tabla de carpetas, archivos, variables, booleanos, constantes, clases, funciones y hooks con ejemplos.</p></div></li>
+          <li class="flex items-start gap-3 p-3 rounded-xl bg-white border border-emerald-300 shadow-sm"><span class="w-7 h-7 rounded-full bg-[#39A900] text-white font-extrabold text-xs flex items-center justify-center shrink-0">6</span><div><p class="text-sm font-extrabold text-slate-900">Clases, funciones y formato <span class="text-[10px] font-extrabold uppercase text-emerald-700">· mínimo</span></p><p class="text-xs text-slate-600 mt-0.5">Campos privados <code class="font-mono text-[11px]">#</code>, orden interno, 2 espacios, <code class="font-mono text-[11px]">===</code>, JSDoc y manejo de errores.</p></div></li>
+          <li class="flex items-start gap-3 p-3 rounded-xl bg-white border border-slate-200 shadow-sm"><span class="w-7 h-7 rounded-full bg-slate-100 text-slate-700 font-extrabold text-xs flex items-center justify-center shrink-0">7</span><div><p class="text-sm font-extrabold text-slate-900">Capas React, Express y SQL</p><p class="text-xs text-slate-600 mt-0.5">Convenciones de componentes, endpoints REST, tablas/columnas SQL y reglas de seguridad.</p></div></li>
+          <li class="flex items-start gap-3 p-3 rounded-xl bg-white border border-slate-200 shadow-sm"><span class="w-7 h-7 rounded-full bg-slate-100 text-slate-700 font-extrabold text-xs flex items-center justify-center shrink-0">8</span><div><p class="text-sm font-extrabold text-slate-900">Automatización y ejemplo real</p><p class="text-xs text-slate-600 mt-0.5"><code class="font-mono text-[11px]">.editorconfig</code>, ESLint/Prettier y un módulo real de AromaSur (antes y después).</p></div></li>
+          <li class="flex items-start gap-3 p-3 rounded-xl bg-white border border-slate-200 shadow-sm"><span class="w-7 h-7 rounded-full bg-slate-100 text-slate-700 font-extrabold text-xs flex items-center justify-center shrink-0">9</span><div><p class="text-sm font-extrabold text-slate-900">Conclusiones y referencias</p><p class="text-xs text-slate-600 mt-0.5">Compromiso del equipo y enlaces a las guías oficiales consultadas (MDN, Airbnb, React, Express).</p></div></li>
+        </ol>
+        <p class="text-xs text-slate-500">Presentación: letra legible (11–12 pt), bloques de código en fuente monoespaciada (Consolas o JetBrains Mono), tablas numeradas y exportación a PDF.</p>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 19 · EJEMPLO DE REDACCIÓN (AROMASUR)                      -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Ejemplo de redacción" data-section="Bloque 5: Informe y entrega">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-emerald-50 border-emerald-200 text-emerald-800"><i data-lucide="pen-line" class="w-3.5 h-3.5"></i> Referencia</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Cómo se ve una buena introducción, objetivo y ficha de regla</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Referencia de redacción técnica para AromaSur: redacta con tus propias palabras y agrega tus ejemplos de código (módulos de catálogo, pedidos o clientes).</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="quote" class="w-5 h-5 text-sena"></i>Introducción</h3>
+            <p class="text-sm text-slate-600 leading-relaxed italic">"La plataforma mayorista de AromaSur Café se construirá sobre un stack unificado en JavaScript: Node.js y Express para la API REST, React para la interfaz web y una base de datos relacional SQL para la persistencia. Para que todos los módulos conserven una estructura homogénea, faciliten la revisión en GitHub y reduzcan defectos desde el inicio, este informe establece el estándar de codificación del proyecto."</p>
+          </div>
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="target" class="w-5 h-5 text-sena"></i>Objetivo</h3>
+            <p class="text-sm text-slate-600 leading-relaxed italic">"Definir el estándar de codificación del proyecto AromaSur Café para las capas de base de datos relacional, Express, React y Node.js, especificando reglas de nombramiento, declaración de clases y funciones, formato, documentación con JSDoc, codificación segura y verificación automática con ESLint y Prettier."</p>
+          </div>
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+            <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="scale" class="w-5 h-5 text-sena"></i>Ficha de regla (modelo)</h3>
+            <div class="text-xs text-slate-600 leading-relaxed space-y-1.5">
+              <p><strong>Regla N-03 (Constantes):</strong> toda constante de configuración o regla fija se declara con <code class="font-mono">const</code> o <code class="font-mono">static</code> en <code class="font-mono">UPPER_SNAKE_CASE</code>.</p>
+              <p><strong>Por qué:</strong> elimina números mágicos y prohíbe reasignaciones con <code class="font-mono">var</code>.</p>
+              <p class="text-emerald-800 font-mono"><span aria-hidden="true">✓ </span>static STOCK_MINIMO = 5;</p>
+              <p class="text-rose-700 font-mono"><span aria-hidden="true">✗ </span>var stockMin = 5;</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 20 · RESUMEN MAESTRO DEL ESTÁNDAR AROMASUR                -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Resumen maestro del estándar AromaSur" data-section="Bloque 5: Informe y entrega">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-emerald-50 border-emerald-200 text-emerald-800"><i data-lucide="boxes" class="w-3.5 h-3.5"></i> Hoja de referencia</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Tabla resumen para incluir en tu informe técnico</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Una tabla consolidada al final del desarrollo permite consultar en segundos qué convención rige en cada parte del stack AromaSur.</p>
+        </header>
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-x-auto">
+          <table class="w-full text-sm min-w-[680px]">
+            <thead class="bg-slate-50">
+              <tr>
+                <th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Capa</th>
+                <th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Archivos / Rutas</th>
+                <th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Símbolos clave</th>
+                <th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Sangría</th>
+                <th scope="col" class="px-3 py-2 text-left text-[11px] uppercase tracking-wider text-slate-500">Herramienta</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900">Node.js (modelo / servicios)</th><td class="px-3 py-2 font-mono text-xs text-slate-700">kebab-case.js</td><td class="px-3 py-2 font-mono text-xs text-slate-700">PascalCase / camelCase / #privado</td><td class="px-3 py-2 text-slate-600">2 espacios</td><td class="px-3 py-2 text-slate-600">ESLint + Prettier</td></tr>
+              <tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900">Express (API REST)</th><td class="px-3 py-2 font-mono text-xs text-slate-700">recurso.routes.js · /api/v1/pedidos</td><td class="px-3 py-2 font-mono text-xs text-slate-700">camelCase (JSON y manejadores)</td><td class="px-3 py-2 text-slate-600">2 espacios</td><td class="px-3 py-2 text-slate-600">ESLint + Postman</td></tr>
+              <tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900">React (Front-end)</th><td class="px-3 py-2 font-mono text-xs text-slate-700">PascalCase.jsx · use*.js</td><td class="px-3 py-2 font-mono text-xs text-slate-700">PascalCase / handle* / on*</td><td class="px-3 py-2 text-slate-600">2 espacios</td><td class="px-3 py-2 text-slate-600">eslint-plugin-react</td></tr>
+              <tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900">BD Relacional (SQL)</th><td class="px-3 py-2 font-mono text-xs text-slate-700">01-esquema.sql</td><td class="px-3 py-2 font-mono text-xs text-slate-700">snake_case · SELECT / WHERE</td><td class="px-3 py-2 text-slate-600">2 espacios</td><td class="px-3 py-2 text-slate-600">MySQL Workbench</td></tr>
+              <tr><th scope="row" class="px-3 py-2 text-left font-bold text-slate-900">Configuración y Git</th><td class="px-3 py-2 font-mono text-xs text-slate-700">.editorconfig · .env.example</td><td class="px-3 py-2 font-mono text-xs text-slate-700">UPPER_SNAKE · feature/tema</td><td class="px-3 py-2 text-slate-600">UTF-8 / LF</td><td class="px-3 py-2 text-slate-600">Git + GitHub Actions</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-slate-500"><strong>Tip para tu entrega:</strong> toma al menos un módulo adicional de AromaSur (por ejemplo <code class="font-mono">Cliente</code>, <code class="font-mono">Categoria</code> o <code class="font-mono">usuarios.routes.js</code>) para redactar ejemplos propios en tu informe.</p>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- DIAPOSITIVA 21 · CHECKLIST Y ENTREGA EN ZAJUNA                        -->
+    <!-- ===================================================================== -->
+    <section class="slide-content hidden min-h-[580px]" data-title="Checklist y entrega en Zajuna" data-section="Bloque 5: Informe y entrega">
+      <div class="my-auto w-full space-y-5">
+        <header class="space-y-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-extrabold uppercase tracking-wider bg-emerald-50 border-emerald-200 text-emerald-800"><i data-lucide="package-check" class="w-3.5 h-3.5"></i> Entrega</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Antes de subir el PDF a Zajuna</h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">Verifica cada punto contra la lista de chequeo oficial <code class="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded">IE-GA7-220501096-AA1-EV02</code>.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <ol class="space-y-2">
+            <li class="flex items-start gap-3 p-2.5 rounded-xl bg-white border border-slate-200"><span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">1</span><span class="text-sm text-slate-700">PDF con portada, introducción y objetivo claros.</span></li>
+            <li class="flex items-start gap-3 p-2.5 rounded-xl bg-white border border-slate-200"><span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">2</span><span class="text-sm text-slate-700">Plataforma (BD relacional, Express, React, Node.js) y guías oficiales declaradas.</span></li>
+            <li class="flex items-start gap-3 p-2.5 rounded-xl bg-white border border-slate-200"><span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">3</span><span class="text-sm text-slate-700">Reglas de nombramiento (variables, constantes, clases, funciones, archivos y SQL).</span></li>
+            <li class="flex items-start gap-3 p-2.5 rounded-xl bg-white border border-slate-200"><span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">4</span><span class="text-sm text-slate-700">Ejemplos correctos e incorrectos en JavaScript y SQL basados en AromaSur.</span></li>
+            <li class="flex items-start gap-3 p-2.5 rounded-xl bg-white border border-slate-200"><span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">5</span><span class="text-sm text-slate-700">Reglas de clases (<code class="font-mono text-xs">#</code>, orden interno), formato (2 espacios, <code class="font-mono text-xs">===</code>), JSDoc y errores.</span></li>
+            <li class="flex items-start gap-3 p-2.5 rounded-xl bg-white border border-slate-200"><span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">6</span><span class="text-sm text-slate-700">Convenciones para React, Express, SQL y reglas básicas de codificación segura.</span></li>
+            <li class="flex items-start gap-3 p-2.5 rounded-xl bg-white border border-slate-200"><span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">7</span><span class="text-sm text-slate-700">Herramientas de verificación (<code class="font-mono text-xs">.editorconfig</code>, ESLint, Prettier) y ejemplo antes/después.</span></li>
+            <li class="flex items-start gap-3 p-2.5 rounded-xl bg-white border border-slate-200"><span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">8</span><span class="text-sm text-slate-700">Conclusiones y referencias a la documentación oficial consultada.</span></li>
+          </ol>
+          <div class="space-y-3">
+            <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+              <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="triangle-alert" class="w-5 h-5 text-rose-600"></i>Errores frecuentes</h3>
+              <ul class="space-y-1.5 text-sm text-slate-600">
+                <li class="flex items-start gap-2"><i data-lucide="x" class="w-4 h-4 text-rose-600 mt-0.5 shrink-0"></i><span>Mezclar reglas de otro lenguaje que no forma parte del stack del proyecto.</span></li>
+                <li class="flex items-start gap-2"><i data-lucide="x" class="w-4 h-4 text-rose-600 mt-0.5 shrink-0"></i><span>Listar teoría sin ejemplos concretos de código correcto vs incorrecto.</span></li>
+                <li class="flex items-start gap-2"><i data-lucide="x" class="w-4 h-4 text-rose-600 mt-0.5 shrink-0"></i><span>Usar <code class="font-mono text-xs">var</code> o <code class="font-mono text-xs">==</code> dentro de los propios ejemplos "correctos" del informe.</span></li>
+                <li class="flex items-start gap-2"><i data-lucide="x" class="w-4 h-4 text-rose-600 mt-0.5 shrink-0"></i><span>Subir un archivo <code class="font-mono text-xs">.docx</code> en lugar de PDF.</span></li>
+              </ul>
+            </div>
+            <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+              <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="upload-cloud" class="w-5 h-5 text-sena"></i>Envío</h3>
+              <div class="text-sm text-slate-600 leading-relaxed space-y-1.5">
+                <p>Nombre sugerido: <code class="font-mono text-[0.85em] px-1 py-0.5 rounded bg-slate-100 text-slate-800">GA7-220501096-AA1-EV02_Nombre_Apellido.pdf</code></p>
+                <p>Espacio: <em>Definir estándares de codificación, de acuerdo con la plataforma de desarrollo elegida. GA7-220501096-AA1-EV02.</em></p>
+              </div>
+            </div>
+            <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+              <h3 class="flex items-center gap-2 text-base font-extrabold text-slate-900 mb-2"><i data-lucide="rocket" class="w-5 h-5 text-sena"></i>Reto opcional</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">Agrega <code class="font-mono text-xs bg-slate-100 px-1 py-0.5 rounded">.editorconfig</code>, <code class="font-mono text-xs bg-slate-100 px-1 py-0.5 rounded">package.json</code> y una clase propia de AromaSur ejecutándose con <code class="font-mono text-xs bg-slate-100 px-1 py-0.5 rounded">node src/app.js</code> en tu repositorio Git, e incluye la captura en el informe.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <div data-presenter="bottom"></div>
+  <!-- ?v= obliga a descargar el catálogo y el motor vigentes en lugar de la copia en caché -->
+  <script src="../../assets/js/catalogo.js?v=2026.11.23.3"></script>
+  <script src="../../assets/js/presenter.js?v=2026.11.23.3"></script>
+  <script>
+    // 1. Validador interactivo de identificadores JS / React / Express / SQL (diapositiva 9)
+    (function () {
+      const raiz = document.querySelector('[data-validador]');
+      if (!raiz) return;
+      const tipoEl = document.getElementById('val-tipo');
+      const nombreEl = document.getElementById('val-nombre');
+      const card = raiz.querySelector('[data-val-card]');
+      const badge = raiz.querySelector('[data-val-badge]');
+      const titulo = raiz.querySelector('[data-val-titulo]');
+      const detalle = raiz.querySelector('[data-val-detalle]');
+      const sugBox = raiz.querySelector('[data-val-sugerencia-box]');
+      const sug = raiz.querySelector('[data-val-sugerencia]');
+      const reglaEl = raiz.querySelector('[data-val-regla]');
+
+      const RESERVADAS = new Set([
+        'class', 'const', 'let', 'var', 'function', 'return', 'if', 'else', 'for', 'while',
+        'do', 'switch', 'case', 'default', 'break', 'continue', 'try', 'catch', 'finally',
+        'throw', 'new', 'null', 'true', 'false', 'undefined', 'import', 'export', 'extends',
+        'super', 'this', 'await', 'typeof', 'instanceof', 'delete', 'void', 'yield', 'enum'
+      ]);
+
+      const REGLAS = {
+        clase: {
+          patron: /^[A-Z][a-zA-Z0-9]+$/,
+          requiereMinuscula: true,
+          notacion: 'PascalCase',
+          fallback: 'ProductoCafe',
+          regla: 'Clases JavaScript: sustantivo singular en PascalCase (sin guiones bajos, tildes ni todo en mayúsculas).',
+          sugerir: (v) => aPascal(v)
+        },
+        variable: {
+          patron: /^[a-z][a-zA-Z0-9]*$/,
+          minLen: 3,
+          permitirCortas: new Set(['id']),
+          validarReservada: true,
+          notacion: 'camelCase',
+          fallback: 'precioCop',
+          regla: 'Variables y propiedades JS: sustantivo descriptivo en camelCase con const/let (evita nombres de 1 o 2 letras, salvo id).',
+          sugerir: (v) => {
+            const c = aCamel(v);
+            return c && (c.length >= 3 || c === 'id') && !RESERVADAS.has(c) ? c : '';
+          }
+        },
+        funcion: {
+          patron: /^[a-z][a-zA-Z0-9]*$/,
+          minLen: 3,
+          validarReservada: true,
+          notacion: 'camelCase (verbo)',
+          fallback: 'calcularTotalCop',
+          regla: 'Funciones y métodos JS: verbo en infinitivo en camelCase (ej. calcularTotalCop, descontarStock); los que devuelven booleano empiezan por es/tiene/esta (esStockBajo, tieneStock).',
+          sugerir: (v) => {
+            const c = aCamel(v);
+            return c && c.length >= 3 && !RESERVADAS.has(c) ? c : '';
+          }
+        },
+        constante: {
+          patron: /^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$/,
+          notacion: 'UPPER_SNAKE_CASE',
+          fallback: 'STOCK_MINIMO',
+          regla: 'Constantes fijas, catálogos congelados y variables .env: solo mayúsculas y guiones bajos (ej. STOCK_MINIMO, DB_HOST).',
+          sugerir: (v) => aUpperSnake(v)
+        },
+        archivo: {
+          patron: /^[a-z][a-z0-9]*(-[a-z0-9]+)*(\.[a-z0-9]+)*\.js$/,
+          notacion: 'kebab-case.js',
+          fallback: 'estado-pedido.js',
+          regla: 'Archivos de módulos Node.js y Express: minúsculas con guion medio y extensión .js (ej. estado-pedido.js, pedidos.routes.js).',
+          sugerir: (v) => {
+            const sinExt = limpiar(v).replace(/\.(js|jsx|ts|mjs|cjs)$/i, '');
+            const base = palabras(sinExt).map((p) => p.toLowerCase()).join('-');
+            return base ? `${base}.js` : '';
+          }
+        },
+        componente: {
+          patron: /^[A-Z][a-zA-Z0-9]+$/,
+          requiereMinuscula: true,
+          notacion: 'PascalCase (React)',
+          fallback: 'TarjetaCafe',
+          regla: 'Componentes React: PascalCase coincidiendo con el archivo .jsx (ej. TarjetaCafe, FormularioPedido).',
+          sugerir: (v) => aPascal(v)
+        },
+        hook: {
+          patron: /^use[A-Z][a-zA-Z0-9]*$/,
+          notacion: 'use + PascalCase (Hook React)',
+          fallback: 'usePedidos',
+          regla: 'Hooks personalizados de React: siempre inician con "use" seguido de PascalCase (ej. usePedidos, useCatalogo).',
+          sugerir: (v) => {
+            const limpio = aPascal(limpiar(v).replace(/^use[\s_-]*/i, ''));
+            return limpio ? `use${limpio}` : '';
+          }
+        },
+        sql: {
+          patron: /^[a-z][a-z0-9]*(_[a-z0-9]+)*$/,
+          notacion: 'snake_case',
+          fallback: 'detalle_pedidos',
+          regla: 'Tablas y columnas SQL: minúsculas con guion bajo, sin espacios ni tildes (ej. detalle_pedidos, precio_cop).',
+          sugerir: (v) => aSnake(v)
+        }
+      };
+
+      function limpiar(texto) {
+        return String(texto || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ñ/gi, 'n').trim();
+      }
+      function palabras(texto) {
+        const ps = limpiar(texto)
+          .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
+          .split(/[^a-zA-Z0-9]+/)
+          .filter(Boolean);
+        while (ps.length && /^[0-9]+$/.test(ps[0])) ps.shift();
+        if (ps.length) ps[0] = ps[0].replace(/^[0-9]+/, '');
+        return ps.filter(Boolean);
+      }
+      function aPascal(texto) {
+        const res = palabras(texto).map((p) => p.charAt(0).toUpperCase() + p.slice(1).toLowerCase()).join('');
+        return res.length >= 2 && /[a-z]/.test(res) ? res : '';
+      }
+      function aCamel(texto) {
+        const ps = palabras(texto);
+        if (!ps.length) return '';
+        return ps[0].toLowerCase() + ps.slice(1).map((p) => p.charAt(0).toUpperCase() + p.slice(1).toLowerCase()).join('');
+      }
+      function aSnake(texto) {
+        return palabras(texto).map((p) => p.toLowerCase()).join('_');
+      }
+      function aUpperSnake(texto) {
+        return palabras(texto).map((p) => p.toUpperCase()).join('_');
+      }
+
+      function evaluar() {
+        const tipo = tipoEl.value;
+        const cfg = REGLAS[tipo];
+        const valor = nombreEl.value.trim();
+        if (reglaEl.textContent !== cfg.regla) reglaEl.textContent = cfg.regla;
+
+        if (!valor) {
+          card.className = 'lg:col-span-2 bg-white rounded-2xl border-2 border-slate-200 p-5 shadow-sm flex flex-col justify-between gap-3';
+          badge.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-slate-100 text-slate-700';
+          badge.textContent = 'Escribe un nombre';
+          titulo.textContent = 'Esperando identificador';
+          detalle.textContent = 'Ingresa un nombre de AromaSur o selecciona uno de los botones de prueba.';
+          sugBox.classList.add('hidden');
+          return;
+        }
+
+        const tieneTildeON = /[áéíóúÁÉÍÓÚñÑ\s]/.test(valor);
+        const esReservada = Boolean(cfg.validarReservada && RESERVADAS.has(valor.toLowerCase()));
+        const todoMayuscula = Boolean(cfg.requiereMinuscula && !/[a-z]/.test(valor));
+        const cumplePatron = cfg.patron.test(valor);
+        const esMuyCorto = Boolean(cfg.minLen && valor.length < cfg.minLen && !(cfg.permitirCortas && cfg.permitirCortas.has(valor)));
+        const ok = !tieneTildeON && !esReservada && !todoMayuscula && cumplePatron && !esMuyCorto;
+
+        if (ok) {
+          card.className = 'lg:col-span-2 bg-emerald-50/40 rounded-2xl border-2 border-emerald-300 p-5 shadow-sm flex flex-col justify-between gap-3';
+          badge.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-emerald-100 text-emerald-800';
+          badge.textContent = 'Cumple el estándar';
+          titulo.textContent = `Válido en ${cfg.notacion}`;
+          detalle.textContent = `"${valor}" sigue la convención esperada para este elemento y se puede usar tal cual en tu informe y tu código.`;
+          sugBox.classList.add('hidden');
+        } else {
+          card.className = 'lg:col-span-2 bg-rose-50/40 rounded-2xl border-2 border-rose-300 p-5 shadow-sm flex flex-col justify-between gap-3';
+          badge.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-rose-100 text-rose-800';
+          badge.textContent = 'No cumple';
+          if (tieneTildeON) {
+            titulo.textContent = 'Contiene tildes, ñ o espacios';
+            detalle.textContent = 'Los identificadores de código no deben llevar espacios, tildes ni ñ para evitar errores de codificación o ejecución.';
+          } else if (esReservada) {
+            titulo.textContent = 'Es una palabra reservada de JavaScript';
+            detalle.textContent = `"${valor}" pertenece a la sintaxis del lenguaje y no debe usarse como identificador.`;
+          } else if (todoMayuscula) {
+            titulo.textContent = 'Todo en mayúsculas no es PascalCase';
+            detalle.textContent = 'Las mayúsculas sostenidas se reservan para constantes (UPPER_SNAKE_CASE). En PascalCase solo va en mayúscula la inicial de cada palabra.';
+          } else if (esMuyCorto) {
+            titulo.textContent = 'Nombre demasiado corto o críptico';
+            detalle.textContent = `"${valor}" no comunica qué representa. Usa un nombre completo y legible del dominio.`;
+          } else {
+            titulo.textContent = `Se esperaba ${cfg.notacion}`;
+            detalle.textContent = `"${valor}" no coincide con la notación definida para este tipo de elemento.`;
+          }
+          const candidata = cfg.sugerir(valor);
+          const valida = candidata && cfg.patron.test(candidata) && (!cfg.requiereMinuscula || /[a-z]/.test(candidata));
+          sug.textContent = valida ? candidata : cfg.fallback;
+          sugBox.classList.remove('hidden');
+        }
+      }
+
+      tipoEl.addEventListener('change', evaluar);
+      nombreEl.addEventListener('input', evaluar);
+      raiz.querySelectorAll('[data-ejemplo]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const [t, n] = btn.dataset.ejemplo.split(':');
+          tipoEl.value = t;
+          nombreEl.value = n;
+          evaluar();
+        });
+      });
+      evaluar();
+    })();
+
+    // 2. Auditor interactivo "Antes vs Después" en JavaScript (diapositiva 15)
+    (function () {
+      const auditor = document.querySelector('[data-auditor]');
+      if (!auditor) return;
+
+      const INFRACCIONES = {
+        '1': {
+          titulo: 'Uso de var y constante fuera de UPPER_SNAKE_CASE',
+          porque: 'En JavaScript moderno var está prohibido por su alcance confuso (hoisting). Además una constante fija va con const o static en UPPER_SNAKE_CASE.',
+          solucion: 'static STOCK_MINIMO = 5;'
+        },
+        '2': {
+          titulo: 'Clase en snake_case minúsculas',
+          porque: 'Las clases de JavaScript deben nombrarse en PascalCase y exportarse explícitamente como módulo ES.',
+          solucion: 'export class Producto {'
+        },
+        '3': {
+          titulo: 'Propiedades públicas, nombres crípticos y sin validación',
+          porque: 'Sin campos privados (#) cualquier módulo puede dañar el estado; "p" y "s" no explican qué guardan y faltan guard clauses.',
+          solucion: 'constructor({ codigo, nombre, precioCop, cantidadDisponible }) { ... }'
+        },
+        '4': {
+          titulo: 'Método en PascalCase y número mágico (5)',
+          porque: 'Los métodos van en camelCase (con prefijo es/tiene para booleanos) y el umbral 5 debe venir de Producto.STOCK_MINIMO.',
+          solucion: 'esStockBajo() { return this.#cantidadDisponible <= Producto.STOCK_MINIMO; }'
+        },
+        '5': {
+          titulo: 'Método en PascalCase, if sin llaves y stock negativo',
+          porque: 'Omitir llaves facilita bugs al añadir líneas, el parámetro "c" es críptico y permite descontar más stock del disponible.',
+          solucion: 'descontarStock(cantidad) { if (!this.tieneStock(cantidad)) { throw new Error(...); } ... }'
+        },
+        '6': {
+          titulo: 'Comparación débil con == en lugar de ===',
+          porque: 'El operador == realiza conversiones implícitas peligrosas (ej. 1 == "1" o "" == 0). El estándar exige siempre igualdad estricta ===.',
+          solucion: "esGrano(tipo) { return tipo === 'GRANO'; }"
+        },
+        '7': {
+          titulo: 'Bloque catch vacío que silencia errores',
+          porque: 'Atrapar una excepción sin registrarla ni propagarla oculta fallos reales de base de datos o red y hace imposible depurar.',
+          solucion: 'Propagar el error al middleware global de Express con next(error).'
+        }
+      };
+
+      const botones = [...auditor.querySelectorAll('[data-infraccion]')];
+      const etiqueta = auditor.querySelector('[data-inf-etiqueta]');
+      const titulo = auditor.querySelector('[data-inf-titulo]');
+      const porque = auditor.querySelector('[data-inf-porque]');
+      const solucion = auditor.querySelector('[data-inf-solucion]');
+
+      function mostrar(id) {
+        const info = INFRACCIONES[id];
+        if (!info) return;
+        botones.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.infraccion === id)));
+        etiqueta.textContent = `Infracción ${id} de 7`;
+        titulo.textContent = info.titulo;
+        porque.textContent = info.porque;
+        solucion.textContent = info.solucion;
+      }
+
+      botones.forEach((b) => b.addEventListener('click', () => mostrar(b.dataset.infraccion)));
+      mostrar('1');
+
+      const tabs = [...auditor.querySelectorAll('[data-auditor-tab]')];
+      const paneles = [...auditor.querySelectorAll('[data-auditor-panel]')];
+      function activarTab(tab, enfocar) {
+        const destino = tab.dataset.auditorTab;
+        tabs.forEach((t) => {
+          const activa = t === tab;
+          t.setAttribute('aria-selected', String(activa));
+          t.setAttribute('tabindex', activa ? '0' : '-1');
+        });
+        paneles.forEach((p) => p.classList.toggle('hidden', p.dataset.auditorPanel !== destino));
+        if (enfocar) tab.focus();
+      }
+      tabs.forEach((tab, idx) => {
+        tab.addEventListener('click', () => activarTab(tab, false));
+        tab.addEventListener('keydown', (e) => {
+          let nextIdx = null;
+          if (e.key === 'ArrowRight') nextIdx = (idx + 1) % tabs.length;
+          else if (e.key === 'ArrowLeft') nextIdx = (idx - 1 + tabs.length) % tabs.length;
+          else if (e.key === 'Home') nextIdx = 0;
+          else if (e.key === 'End') nextIdx = tabs.length - 1;
+          if (nextIdx !== null) {
+            e.preventDefault();
+            e.stopPropagation();
+            activarTab(tabs[nextIdx], true);
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

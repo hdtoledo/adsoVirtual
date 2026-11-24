@@ -1,0 +1,14 @@
+# Normaliza todo el texto a LF en el repositorio y en la copia de trabajo,
+# sin depender de core.autocrlf de cada equipo (coherente con .editorconfig).
+* text=auto eol=lf
+
+# Binarios: sin conversión ni diff de texto.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.pdf binary
+*.woff binary
+*.woff2 binary
